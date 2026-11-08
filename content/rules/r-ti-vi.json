@@ -27,13 +27,13 @@
     }
   ],
   "quick_check": {
-    "prompt_sl": "Živjo, kako ___?",
+    "prompt_sl": "Dober dan, gospa. Kako ___?",
     "options": [
       "si",
       "ste"
     ],
-    "answer": "si",
-    "explain_en": "Živjo is the casual hello for someone you are close to, so ti and the singular verb: kako si."
+    "answer": "ste",
+    "explain_en": "Gospa, madam, is a polite address to one person you are not close to, so vi and the plural verb: kako ste."
   },
   "helper_de": "ti and vi work like du and Sie, and vi takes the plural verb.",
   "helper_en": "English has one you for everyone. In Slovenian, ti to a stranger sounds too familiar, so start with vi."
