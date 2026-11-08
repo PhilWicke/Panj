@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { lintContent } from '../../tools/lint-content.js';
+import { normalize, stripDiacritics } from '../../app/js/engine/grading.js';
 
 const CONTENT_URL = new URL('../../content/', import.meta.url);
 const contentDir = fileURLToPath(CONTENT_URL);
@@ -30,14 +31,11 @@ test('units.json lists the ten units of the syllabus in order, each with its own
   assert.equal(new Set(units.map((u) => u.motif)).size, units.length, 'motifs repeat');
 });
 
-// The grader (Task 6) accepts an answer that differs from its target only by missing
-// diacritics as a slip that names the missed letters. An accept entry that is just the
-// target with its diacritics stripped would turn that slip into a full correct for one
-// item alone, so no lesson lists one. `plain` mirrors the grader's normalize plus
-// stripDiacritics closely enough for this check; swap in the real functions once
-// app/js/engine/grading.js exists.
-const plain = (s) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase()
-  .replace(/[.,;:!?"'()\-–—]/g, '').replace(/\s+/g, ' ').trim();
+// The grader accepts an answer that differs from its target only by missing diacritics as
+// a slip that names the missed letters. An accept entry that is just the target with its
+// diacritics stripped would turn that slip into a full correct for one item alone, so no
+// lesson lists one. `plain` is the grader's own view of a line without diacritics.
+const plain = (s) => stripDiacritics(normalize(s));
 
 test('no accept entry repeats its target without diacritics or punctuation (the grader already takes those)', async () => {
   const lessonsDir = new URL('lessons/', CONTENT_URL);
