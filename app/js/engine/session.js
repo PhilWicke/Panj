@@ -1,0 +1,365 @@
+// The daily session builder. Given the item states, the current lesson with its unit's lessons,
+// the rule cards, the settings and the mode, buildSession returns today's queue of exercises as a
+// plan that assumes correct answers; the session screen runs it one entry at a time and handles
+// retries itself. Every function is pure: nothing here reads the clock, draws randomness except
+// through the `rng` passed in, or writes to its inputs.
+//
+// The queue, in order:
+//   1. due reviews (typed recall, oldest due first) interleaved with the lesson's new items. A new
+//      item is a meet, an immediate recall and two later recalls spaced by other work; an item
+//      left in learning on an earlier day gets the recalls it still needs, first. A rule card
+//      follows the immediate recall of the first item that introduces it, then the lesson's
+//      structured exercises for that rule. An item's slot production is its third recall.
+//   2. rule cards the lesson lists but no item introduces, until their quick check is recorded.
+//   3. with sound: listening over known items, then one perception drill.
+//   4. the lesson's dialogue, once every item it practises has graduated.
+//   5. with speech recognition on: speaking over known items.
+//   6. one fluency pass over five review-phase items, when there are at least five.
+// Items whose verification is not `accepted` never enter the queue (the compiler keeps them in the
+// lesson's `items`); items the builder has no content for are trusted, since their state means
+// they were accepted when they were practised. Rule ids share the states with the items (a rule's
+// quick check is a scheduled item whose id is the rule id) and are never typed recalls.
+
+import { GRADUATE_AFTER, isDue, retrievability } from './scheduler.js';
+import { localDateKey } from '../util/time.js';
+
+/** @typedef {import('./scheduler.js').ItemState} ItemState */
+/** @typedef {import('./scheduler.js').Settings} Settings */
+/** @typedef {import('../content/types.js').Lesson} Lesson */
+/** @typedef {import('../content/types.js').Rule} Rule */
+/** @typedef {import('../content/types.js').Item} Item */
+
+/** @typedef {'meet'|'typed_en_sl'|'typed_sl_en'|'structured'|'slot'|'dialogue'|'listening'|'speaking'|'perception'|'rule'|'fluency'} ExerciseKind */
+
+/**
+ * One exercise of the day's queue. The fields set depend on the kind: `meet`, `typed_en_sl`,
+ * `typed_sl_en`, `listening` and `speaking` carry `itemId`; `rule` carries `ruleId`; `structured`
+ * carries `exerciseId` and `ruleId`; `slot` carries `exerciseId` and `itemId`; `dialogue` carries
+ * `exerciseId`; `fluency` carries `itemIds`; `perception` carries nothing. `lessonId` is set when
+ * the entry belongs to a lesson the builder was given.
+ * @typedef {object} QueueEntry
+ * @property {ExerciseKind} kind
+ * @property {string} [itemId]
+ * @property {string[]} [itemIds] `fluency` only: up to five review-phase items for the quick typed pass (Ruling 5)
+ * @property {string} [ruleId]
+ * @property {string} [exerciseId]
+ * @property {string} [lessonId]
+ */
+
+/**
+ * @typedef {object} Mode
+ * @property {boolean} mute no sound: no listening, speaking or perception entries
+ * @property {boolean} speech speech recognition is on, so speaking entries are added (unless muted)
+ */
+
+/**
+ * @typedef {object} SessionInput
+ * @property {number} now epoch ms
+ * @property {Record<string, ItemState>} states by item id (rule ids included)
+ * @property {Lesson|null} lesson the current lesson, or null when there is none
+ * @property {Lesson[]} unitLessons the lessons of the current unit
+ * @property {Rule[]} rules the rule cards the bundle carries
+ * @property {Settings} settings
+ * @property {Mode} mode
+ * @property {number} newToday items met earlier today
+ * @property {number} minutesToday minutes practised earlier today
+ * @property {() => number} [rng] a generator in [0, 1); Math.random when omitted
+ * @property {string} [tz] IANA zone, for tests; the phone's zone when omitted
+ */
+
+/**
+ * @typedef {object} Session
+ * @property {QueueEntry[]} queue
+ * @property {number} newCount items met for the first time in this queue
+ * @property {number} reviewCount due reviews in this queue
+ * @property {number} estimatedMinutes the sum of MINUTES_PER_KIND over the queue
+ */
+
+/** @typedef {{ intro: QueueEntry[], later: QueueEntry[][] }} LearningUnit an item's entries: what is emitted when it comes up, then one group per later recall */
+
+/** Minutes a typed recall takes, the unit of the review forecast. */
+export const REVIEW_MINUTES = 0.25;
+/** Minutes a new item takes: its meet and the GRADUATE_AFTER recalls that graduate it. */
+export const NEW_ITEM_MINUTES = 0.75;
+/**
+ * Minutes per queue entry. A meet's time is counted with its item's recalls, so a new item adds
+ * NEW_ITEM_MINUTES and a slot in place of the third recall adds nothing more.
+ * @type {Readonly<Record<ExerciseKind, number>>}
+ */
+export const MINUTES_PER_KIND = Object.freeze({
+  meet: NEW_ITEM_MINUTES - GRADUATE_AFTER * REVIEW_MINUTES,
+  typed_en_sl: REVIEW_MINUTES,
+  typed_sl_en: REVIEW_MINUTES,
+  structured: 0.25,
+  slot: REVIEW_MINUTES,
+  dialogue: 1,
+  listening: 0.25,
+  speaking: 0.5,
+  perception: 0.25,
+  rule: 0.5,
+  fluency: 1,
+});
+
+const FLUENCY_ITEMS = 5;
+const LISTENING_PER_SESSION = 2;
+const SPEAKING_PER_SESSION = 2;
+const MORE_MINUTES_UNTIL = 15;
+const RULE_ID = /^r-[a-z0-9-]+$/;
+const DAY_MS = 86_400_000;
+
+/**
+ * The review load in a window: every scheduled item (phase not `new`, rule items left out) due by
+ * `now` plus `days` days, at REVIEW_MINUTES each. Items already overdue count, since they are
+ * load whether they are reviewed today or tomorrow.
+ * @param {Record<string, ItemState>} states
+ * @param {number} now epoch ms
+ * @param {number} [days]
+ * @returns {number} minutes
+ */
+export function forecastReviewMinutes(states, now, days = 1) {
+  const horizon = now + days * DAY_MS;
+  let count = 0;
+  for (const [id, state] of Object.entries(states)) {
+    if (state.phase !== 'new' && !RULE_ID.test(id) && state.due <= horizon) count += 1;
+  }
+  return count * REVIEW_MINUTES;
+}
+
+/**
+ * The options of the closing menu, in display order: stop always; three more minutes until the
+ * goal plus MORE_MINUTES_UNTIL minutes are done; a speaking round when sound is on; continue the
+ * lesson when it has items left.
+ * @param {{ minutesToday: number, settings: Settings, lessonRemaining: boolean, mode: Mode }} input
+ * @returns {('stop'|'more3'|'speaking'|'continue')[]}
+ */
+export function closingMenu({ minutesToday, settings, lessonRemaining, mode }) {
+  /** @type {('stop'|'more3'|'speaking'|'continue')[]} */
+  const options = ['stop'];
+  if (minutesToday < settings.dailyMinutes + MORE_MINUTES_UNTIL) options.push('more3');
+  if (!mode.mute) options.push('speaking');
+  if (lessonRemaining) options.push('continue');
+  return options;
+}
+
+/**
+ * `count` entries spread over `groups` groups as evenly as possible, the earlier groups taking
+ * the remainder.
+ * @param {number} count
+ * @param {number} groups
+ * @returns {number[]}
+ */
+function spread(count, groups) {
+  const base = Math.floor(count / groups);
+  const extra = count % groups;
+  return Array.from({ length: groups }, (_, i) => base + (i < extra ? 1 : 0));
+}
+
+/**
+ * Up to `n` elements of `pool` in random order, without repeats (a partial Fisher-Yates shuffle).
+ * @template T
+ * @param {T[]} pool
+ * @param {number} n
+ * @param {() => number} rng
+ * @returns {T[]}
+ */
+function sample(pool, n, rng) {
+  const copy = pool.slice();
+  const taken = Math.min(n, copy.length);
+  for (let i = 0; i < taken; i += 1) {
+    const j = i + Math.floor(rng() * (copy.length - i));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy.slice(0, taken);
+}
+
+/**
+ * The learning units interleaved with the reviews. Unit i opens step i; its second recall comes in
+ * step i + 1 and its third in step i + 2, after the next items' introductions, so the recalls of
+ * one item are spaced by other work. The reviews are spread over the gaps before, between and
+ * after the steps, the earlier gaps taking more, so a session opens with reviews.
+ * @param {LearningUnit[]} units
+ * @param {QueueEntry[]} reviews
+ * @returns {QueueEntry[]}
+ */
+function interleave(units, reviews) {
+  /** @type {QueueEntry[][]} */
+  const steps = [];
+  const stepCount = units.length === 0 ? 0 : units.length + GRADUATE_AFTER - 1;
+  for (let i = 0; i < stepCount; i += 1) {
+    /** @type {QueueEntry[]} */
+    const step = [];
+    if (i < units.length) step.push(...units[i].intro);
+    for (let lag = 1; lag < GRADUATE_AFTER; lag += 1) {
+      const unit = units[i - lag];
+      if (unit && unit.later[lag - 1]) step.push(...unit.later[lag - 1]);
+    }
+    steps.push(step);
+  }
+  const shares = spread(reviews.length, steps.length + 1);
+  /** @type {QueueEntry[]} */
+  const queue = [];
+  let taken = 0;
+  for (let gap = 0; gap <= steps.length; gap += 1) {
+    queue.push(...reviews.slice(taken, taken + shares[gap]));
+    taken += shares[gap];
+    if (gap < steps.length) queue.push(...steps[gap]);
+  }
+  return queue;
+}
+
+/**
+ * Today's queue. See the module comment for its shape.
+ * @param {SessionInput} input
+ * @returns {Session}
+ */
+export function buildSession(input) {
+  const { now, states, lesson, unitLessons, rules, settings, mode, newToday, rng = Math.random, tz } = input;
+  const todayKey = localDateKey(now, tz);
+
+  /** @type {Map<string, { item: Item, lesson: Lesson }>} the items the builder has content for */
+  const known = new Map();
+  for (const l of lesson ? [lesson, ...unitLessons] : unitLessons) {
+    for (const item of l.items) if (!known.has(item.id)) known.set(item.id, { item, lesson: l });
+  }
+  const ruleIds = new Set(rules.map((rule) => rule.id));
+  /** @param {string} id @returns {boolean} an item (not a rule) that may be practised */
+  const practisable = (id) => {
+    if (RULE_ID.test(id)) return false;
+    const entry = known.get(id);
+    return !entry || entry.item.verification.status === 'accepted';
+  };
+  /** @param {string} id @returns {string|undefined} */
+  const lessonOf = (id) => known.get(id)?.lesson.id;
+  /** @param {string} itemId @returns {QueueEntry} */
+  const typed = (itemId) => {
+    const lessonId = lessonOf(itemId);
+    return lessonId ? { kind: 'typed_en_sl', itemId, lessonId } : { kind: 'typed_en_sl', itemId };
+  };
+  /** @param {ItemState} a @param {ItemState} b */
+  const byDue = (a, b) => a.due - b.due || (a.itemId < b.itemId ? -1 : 1);
+
+  const scheduled = Object.entries(states).filter(([id]) => practisable(id)).map(([, state]) => state);
+  const reviews = scheduled
+    .filter((state) => (state.phase === 'review' || state.phase === 'lapsed') && isDue(state, now))
+    .sort(byDue)
+    .map((state) => typed(state.itemId));
+  const unfinished = scheduled.filter((state) => state.phase === 'learning').sort(byDue);
+  const reviewPhase = scheduled.filter((state) => state.phase === 'review');
+
+  // New items: the lesson's accepted items not met yet, in lesson order, up to the per-day cap and
+  // the budget: tomorrow's forecast plus NEW_ITEM_MINUTES per new item stays within the daily goal.
+  const remaining = lesson
+    ? lesson.items.filter((item) => item.verification.status === 'accepted' && (states[item.id]?.phase ?? 'new') === 'new')
+    : [];
+  const budget = Math.floor((settings.dailyMinutes - forecastReviewMinutes(states, now, 1)) / NEW_ITEM_MINUTES);
+  const fresh = remaining.slice(0, Math.max(0, Math.min(settings.newPerDay - newToday, remaining.length, budget)));
+
+  /** @type {Set<string>} items that graduate within this plan */
+  const learningToday = new Set();
+  /** @type {Set<string>} rules queued in this session, card or practice */
+  const queuedRules = new Set();
+  /** @param {string} ruleId the rule's quick-check item is in review and recallable at the retention target */
+  const faded = (ruleId) => {
+    const state = states[ruleId];
+    return state !== undefined && state.phase === 'review' && retrievability(state, now) >= settings.desiredRetention;
+  };
+  /**
+   * The card (unless faded) and the lesson's structured exercises for a rule the bundle carries.
+   * @param {string} ruleId @param {Lesson} inLesson @returns {QueueEntry[]}
+   */
+  const ruleEntries = (ruleId, inLesson) => {
+    queuedRules.add(ruleId);
+    /** @type {QueueEntry[]} */
+    const entries = faded(ruleId) ? [] : [{ kind: 'rule', ruleId, lessonId: inLesson.id }];
+    for (const exercise of inLesson.structured) {
+      if (exercise.rule === ruleId) entries.push({ kind: 'structured', exerciseId: exercise.id, ruleId, lessonId: inLesson.id });
+    }
+    return entries;
+  };
+  /**
+   * An item's entries: the meet (for a new item), `needed` recalls of which the last is the item's
+   * slot production when its lesson has one, and after the first recall the cards of the rules the
+   * item introduces.
+   * @param {string} itemId @param {boolean} meet @param {number} needed @returns {LearningUnit}
+   */
+  const unitFor = (itemId, meet, needed) => {
+    learningToday.add(itemId);
+    const entry = known.get(itemId);
+    const lessonId = entry?.lesson.id;
+    /** @type {QueueEntry[][]} */
+    const groups = Array.from({ length: needed }, () => [typed(itemId)]);
+    const production = entry ? entry.lesson.production.filter((exercise) => exercise.item === itemId) : [];
+    if (production.length > 0) {
+      groups[needed - 1] = production.map((exercise) => ({ kind: 'slot', exerciseId: exercise.id, itemId, lessonId }));
+    }
+    /** @type {QueueEntry[]} */
+    const intro = meet && lessonId ? [{ kind: 'meet', itemId, lessonId }] : [];
+    intro.push(...groups[0]);
+    if (meet && entry) {
+      for (const ruleId of entry.item.rules ?? []) {
+        if (!queuedRules.has(ruleId) && ruleIds.has(ruleId)) intro.push(...ruleEntries(ruleId, entry.lesson));
+      }
+    }
+    return { intro, later: groups.slice(1) };
+  };
+
+  /** @type {LearningUnit[]} */
+  const units = [];
+  for (const state of unfinished) {
+    const done = state.sessionKey === todayKey ? state.correctInSession : 0;
+    units.push(unitFor(state.itemId, false, Math.max(1, GRADUATE_AFTER - done)));
+  }
+  for (const item of fresh) units.push(unitFor(item.id, true, GRADUATE_AFTER));
+
+  const queue = interleave(units, reviews);
+
+  // Rules the lesson lists that no item introduces today or later, never quick-checked: shown
+  // after the learning work until their quick check is recorded.
+  if (lesson) {
+    for (const ruleId of lesson.rules) {
+      if (queuedRules.has(ruleId) || !ruleIds.has(ruleId) || states[ruleId] !== undefined) continue;
+      if (remaining.some((item) => (item.rules ?? []).includes(ruleId))) continue;
+      queue.push(...ruleEntries(ruleId, lesson));
+    }
+  }
+
+  // The dialogue, once every item it practises has graduated or graduates within this plan.
+  /** @type {QueueEntry|null} */
+  let dialogue = null;
+  if (lesson?.dialogue) {
+    const practised = new Set(lesson.dialogue.lines.flatMap((line) => line.new_items ?? []));
+    const graduated = (/** @type {string} */ id) => {
+      const phase = states[id]?.phase;
+      return practisable(id) && (phase === 'review' || phase === 'lapsed' || learningToday.has(id));
+    };
+    if ([...practised].every(graduated)) dialogue = { kind: 'dialogue', exerciseId: lesson.dialogue.id, lessonId: lesson.id };
+  }
+
+  if (queue.length === 0 && !dialogue) return { queue: [], newCount: 0, reviewCount: 0, estimatedMinutes: 0 };
+
+  // Known material for the extras: review-phase items, those not reviewed today first.
+  const notDue = reviewPhase.filter((state) => !isDue(state, now));
+  const due = reviewPhase.filter((state) => isDue(state, now));
+  /** @param {number} n @returns {string[]} */
+  const pick = (n) => {
+    const picked = sample(notDue, n, rng);
+    return picked.concat(sample(due, n - picked.length, rng)).map((state) => state.itemId);
+  };
+
+  if (!mode.mute) {
+    for (const itemId of pick(LISTENING_PER_SESSION)) queue.push({ kind: 'listening', itemId });
+    queue.push({ kind: 'perception' });
+  }
+  if (dialogue) queue.push(dialogue);
+  if (!mode.mute && mode.speech) {
+    for (const itemId of pick(SPEAKING_PER_SESSION)) queue.push({ kind: 'speaking', itemId });
+  }
+  if (reviewPhase.length >= FLUENCY_ITEMS) queue.push({ kind: 'fluency', itemIds: pick(FLUENCY_ITEMS) });
+
+  return {
+    queue,
+    newCount: fresh.length,
+    reviewCount: reviews.length,
+    estimatedMinutes: queue.reduce((sum, entry) => sum + MINUTES_PER_KIND[entry.kind], 0),
+  };
+}
