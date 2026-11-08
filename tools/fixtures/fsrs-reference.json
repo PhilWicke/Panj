@@ -1,0 +1,263 @@
+{
+  "package": "ts-fsrs",
+  "version": "6.0.0",
+  "fsrsVersion": "v6.0.0",
+  "dependency": {
+    "name": "@open-spaced-repetition/srs-kit",
+    "version": "1.0.0"
+  },
+  "source": "dist/index.mjs of the npm tarball, imported directly with srs-kit beside it",
+  "node": "v25.2.1",
+  "generated": "2026-11-08T22:30:28.088Z",
+  "start": "2026-01-01T09:00:00.000Z",
+  "ratings": [
+    "Good",
+    "Good",
+    "Good",
+    "Again"
+  ],
+  "scenarios": [
+    {
+      "name": "short-term",
+      "options": {
+        "request_retention": 0.9
+      },
+      "steps": [
+        {
+          "rating": "Good",
+          "ratingValue": 3,
+          "date": "2026-01-01T09:00:00.000Z",
+          "card": {
+            "stability": 2.3065,
+            "difficulty": 2.11810397,
+            "due": "2026-01-01T09:10:00.000Z",
+            "scheduled_days": 0,
+            "state": 1,
+            "reps": 1,
+            "lapses": 0,
+            "learning_steps": 1,
+            "last_review": "2026-01-01T09:00:00.000Z"
+          },
+          "retrievabilityNextDay": 0.9468475
+        },
+        {
+          "rating": "Good",
+          "ratingValue": 3,
+          "date": "2026-01-02T09:00:00.000Z",
+          "card": {
+            "stability": 7.31530068,
+            "difficulty": 2.11121424,
+            "due": "2026-01-09T09:00:00.000Z",
+            "scheduled_days": 7,
+            "state": 2,
+            "reps": 2,
+            "lapses": 0,
+            "learning_steps": 0,
+            "last_review": "2026-01-02T09:00:00.000Z"
+          },
+          "retrievabilityNextDay": 0.9807942
+        },
+        {
+          "rating": "Good",
+          "ratingValue": 3,
+          "date": "2026-01-03T09:00:00.000Z",
+          "card": {
+            "stability": 11.9910269,
+            "difficulty": 2.1043314,
+            "due": "2026-01-15T09:00:00.000Z",
+            "scheduled_days": 12,
+            "state": 2,
+            "reps": 3,
+            "lapses": 0,
+            "learning_steps": 0,
+            "last_review": "2026-01-03T09:00:00.000Z"
+          },
+          "retrievabilityNextDay": 0.98795512
+        },
+        {
+          "rating": "Again",
+          "ratingValue": 1,
+          "date": "2026-01-04T09:00:00.000Z",
+          "card": {
+            "stability": 1.39124787,
+            "difficulty": 7.38997579,
+            "due": "2026-01-04T09:10:00.000Z",
+            "scheduled_days": 0,
+            "state": 3,
+            "reps": 4,
+            "lapses": 1,
+            "learning_steps": 0,
+            "last_review": "2026-01-04T09:00:00.000Z"
+          },
+          "retrievabilityNextDay": 0.9210469
+        }
+      ]
+    },
+    {
+      "name": "long-term",
+      "options": {
+        "request_retention": 0.9,
+        "enable_short_term": false
+      },
+      "steps": [
+        {
+          "rating": "Good",
+          "ratingValue": 3,
+          "date": "2026-01-01T09:00:00.000Z",
+          "card": {
+            "stability": 2.3065,
+            "difficulty": 2.11810397,
+            "due": "2026-01-04T09:00:00.000Z",
+            "scheduled_days": 3,
+            "state": 2,
+            "reps": 1,
+            "lapses": 0,
+            "learning_steps": 0,
+            "last_review": "2026-01-01T09:00:00.000Z"
+          },
+          "retrievabilityNextDay": 0.9468475
+        },
+        {
+          "rating": "Good",
+          "ratingValue": 3,
+          "date": "2026-01-02T09:00:00.000Z",
+          "card": {
+            "stability": 7.31530068,
+            "difficulty": 2.11121424,
+            "due": "2026-01-09T09:00:00.000Z",
+            "scheduled_days": 7,
+            "state": 2,
+            "reps": 2,
+            "lapses": 0,
+            "learning_steps": 0,
+            "last_review": "2026-01-02T09:00:00.000Z"
+          },
+          "retrievabilityNextDay": 0.9807942
+        },
+        {
+          "rating": "Good",
+          "ratingValue": 3,
+          "date": "2026-01-03T09:00:00.000Z",
+          "card": {
+            "stability": 11.9910269,
+            "difficulty": 2.1043314,
+            "due": "2026-01-15T09:00:00.000Z",
+            "scheduled_days": 12,
+            "state": 2,
+            "reps": 3,
+            "lapses": 0,
+            "learning_steps": 0,
+            "last_review": "2026-01-03T09:00:00.000Z"
+          },
+          "retrievabilityNextDay": 0.98795512
+        },
+        {
+          "rating": "Again",
+          "ratingValue": 1,
+          "date": "2026-01-04T09:00:00.000Z",
+          "card": {
+            "stability": 1.39124787,
+            "difficulty": 7.38997579,
+            "due": "2026-01-05T09:00:00.000Z",
+            "scheduled_days": 1,
+            "state": 2,
+            "reps": 4,
+            "lapses": 1,
+            "learning_steps": 0,
+            "last_review": "2026-01-04T09:00:00.000Z"
+          },
+          "retrievabilityNextDay": 0.9210469
+        }
+      ]
+    }
+  ],
+  "exportNames": [
+    "AbstractScheduler",
+    "CLAMP_PARAMETERS",
+    "COST_ADR_DEFAULT_GOAL_COST_WEIGHT",
+    "COST_ADR_DEFAULT_POLICY",
+    "ConvertStepUnitToMinutes",
+    "DEFAULT_LEECH_THRESHOLD",
+    "DEFAULT_MAXIMUM_INTERVAL",
+    "DefaultScheduler",
+    "FSRS",
+    "FSRS5_DEFAULT_DECAY",
+    "FSRS6_DEFAULT_DECAY",
+    "FSRSMemoryStateSchema",
+    "FSRSVersion",
+    "FUZZ_RANGES",
+    "Grades",
+    "INIT_S_MAX",
+    "Rating",
+    "S_MAX",
+    "S_MIN",
+    "State",
+    "StrategyMode",
+    "TypeConvert",
+    "W17_W18_Ceiling",
+    "calculateLearningSteps",
+    "calculateScheduleDay",
+    "calculateScheduleDays",
+    "checkParameters",
+    "clamp",
+    "costAdrConfigSchema",
+    "costAdrPolicySchema",
+    "createEmptyCard",
+    "createSchedulerFuzzingMiddleware",
+    "dateChrono",
+    "dateDiffInDays",
+    "date_diff",
+    "date_scheduler",
+    "defaultGraduatingInterval",
+    "defaultLearningSteps",
+    "defaultRelearningSteps",
+    "default_enable_fuzz",
+    "default_enable_short_term",
+    "default_maximum_interval",
+    "default_request_retention",
+    "default_w",
+    "defineChrono",
+    "defineMiddleware",
+    "defineModel",
+    "defineScheduler",
+    "desiredRetentionConfigSchema",
+    "desiredRetentionSchema",
+    "elapsedDaysSchema",
+    "fnv1aMulberry32Rng",
+    "formatDate",
+    "fsrs",
+    "fuzzingCardFieldsSchema",
+    "fuzzingCardInitInputSchema",
+    "fuzzingConfigSchema",
+    "fuzzingRevlogFieldsSchema",
+    "generatorParameters",
+    "getFuzzRange",
+    "get_fuzz_range",
+    "gradeSchema",
+    "learningStepFieldsSchema",
+    "learningStepsConfigSchema",
+    "leechCardFieldsSchema",
+    "leechConfigSchema",
+    "monotonicIntervalConfigSchema",
+    "numericChrono",
+    "ratingSchema",
+    "roundTo",
+    "scheduledDaysFieldsSchema",
+    "scheduledDaysSchema",
+    "schedulerCostAdrMiddleware",
+    "schedulerDesiredRetentionMiddleware",
+    "schedulerFuzzingMiddleware",
+    "schedulerLearningStepsMiddleware",
+    "schedulerLeechMiddleware",
+    "schedulerMaximumIntervalMiddleware",
+    "schedulerMonotonicIntervalMiddleware",
+    "schedulerScheduledDaysMiddleware",
+    "schedulerStatsMiddleware",
+    "show_diff_message",
+    "stateSchema",
+    "statsConfigSchema",
+    "statsFieldsSchema",
+    "temporalInstantChrono",
+    "withFuzzing"
+  ]
+}
