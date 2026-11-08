@@ -134,4 +134,37 @@
  * @property {string[]} lessons lesson ids in order
  */
 
+// ---------------------------------------------------------------------------
+// The compiled bundle under app/content/dist/, written by tools/build-content.js.
+
+/**
+ * One entry of the bundle's lesson list, in course order (units in order, lessons in the unit's order).
+ * @typedef {object} LessonIndexEntry
+ * @property {string} id
+ * @property {string} unit
+ * @property {number} order
+ * @property {string} title_sl
+ * @property {string} title_en
+ * @property {number} itemCount items the lesson schedules: every item in a dev build, accepted items in a strict build
+ */
+
+/**
+ * app/content/dist/index.json.
+ * @typedef {object} Index
+ * @property {string} version the first 12 hex characters of the SHA-256 over the content files; app/version.js carries the same value
+ * @property {'dev'|'strict'} mode `dev` when built with --allow-pending (every item is practised), `strict` otherwise (items that are not accepted stay in `items` but leave the practice sets, and a lesson without an accepted item is left out)
+ * @property {string} generated time of the build, ISO 8601
+ * @property {Unit[]} units every unit of units.json, each listing only the lessons the bundle carries
+ * @property {Rule[]} rules
+ * @property {LessonIndexEntry[]} lessonIndex
+ * @property {{ scheduledItems: number, lemmasMet: number }} counts `lemmasMet` is the number of distinct lowercase word tokens (runs of letters and digits, split on everything else) over the `sl` of the scheduled items, their examples and the dialogue lines of the lessons in the index
+ */
+
+/**
+ * app/content/dist/units/uNN.json, one file per unit, also for a unit without lessons.
+ * @typedef {object} UnitContent
+ * @property {Unit} unit
+ * @property {Lesson[]} lessons the unit's lessons in order, with `verification.notes` removed and, in a strict build, the practice sets reduced to accepted items
+ */
+
 export {};

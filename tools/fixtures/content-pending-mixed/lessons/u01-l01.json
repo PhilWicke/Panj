@@ -1,0 +1,156 @@
+{
+  "id": "u01-l01",
+  "unit": "u01",
+  "order": 1,
+  "title_sl": "Prvi pozdrav",
+  "title_en": "First hello",
+  "items": [
+    {
+      "id": "u01-l01-i01",
+      "type": "chunk",
+      "sl": "Živjo.",
+      "sl_colloquial": null,
+      "en": "Hi.",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Živjo, kako si?",
+          "en": "Hi, how are you?"
+        }
+      ],
+      "helper": "Casual, like hi among friends. With an older person or a stranger, say Dober dan.",
+      "accept": [
+        "živijo"
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l01-i02",
+      "type": "chunk",
+      "sl": "Dober dan.",
+      "en": "Good day.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan, kako ste?",
+          "en": "Good day, how are you?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l01-i03",
+      "type": "word",
+      "sl": "brat",
+      "en": "brother",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "du": "brata",
+        "pl": "bratje"
+      },
+      "examples": [
+        {
+          "sl": "To je moj brat.",
+          "en": "This is my brother."
+        }
+      ],
+      "verification": {
+        "review1": "accepted",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "Second reviewer asks whether the dual form brata is right."
+      }
+    }
+  ],
+  "rules": [
+    "r-biti-present"
+  ],
+  "structured": [
+    {
+      "id": "u01-l01-s01",
+      "prompt_sl": "Jaz ___ tukaj.",
+      "options": [
+        "sem",
+        "si",
+        "je"
+      ],
+      "answer": "sem",
+      "rule": "r-biti-present",
+      "en": "I am here."
+    }
+  ],
+  "production": [
+    {
+      "id": "u01-l01-p01",
+      "en": "Greet a friend.",
+      "answer": "Živjo.",
+      "accept": [
+        "Živijo."
+      ],
+      "item": "u01-l01-i01"
+    },
+    {
+      "id": "u01-l01-p02",
+      "en": "Greet someone politely during the day.",
+      "answer": "Dober dan.",
+      "item": "u01-l01-i02"
+    },
+    {
+      "id": "u01-l01-p03",
+      "en": "Say the word for brother.",
+      "answer": "brat",
+      "item": "u01-l01-i03"
+    }
+  ],
+  "dialogue": {
+    "id": "u01-l01-d",
+    "title_sl": "Pri vratih",
+    "title_en": "At the door",
+    "setting_en": "You arrive at your hosts' house with your brother.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Dober dan.",
+        "en": "Good day."
+      },
+      {
+        "speaker": "you",
+        "sl": "Dober dan.",
+        "en": "Good day.",
+        "new_items": [
+          "u01-l01-i02"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "To je moj brat.",
+        "en": "This is my brother.",
+        "new_items": [
+          "u01-l01-i03"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Živjo. Dobrodošli.",
+        "en": "Hi. Welcome."
+      }
+    ]
+  }
+}

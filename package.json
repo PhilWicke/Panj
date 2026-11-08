@@ -14,6 +14,7 @@
     "typecheck": "npx -y -p typescript@5 tsc -p jsconfig.json --noEmit",
     "lint:content": "node tools/lint-content.js",
     "build:content": "node tools/build-content.js",
+    "build:content:dev": "node tools/build-content.js --allow-pending",
     "audio": "node tools/gen-audio.js --from-bundle",
     "voice-check": "node tools/voice-check.js",
     "icons": "sh tools/gen-icons.sh"
