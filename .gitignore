@@ -1,0 +1,12 @@
+node_modules/
+.superpowers/
+tmp/
+*.pcm
+*.wav
+.DS_Store
+test-results/
+playwright-report/
+
+# Build outputs of tools/build-content.js
+app/content/dist/
+app/version.js

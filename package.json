@@ -1,0 +1,21 @@
+{
+  "name": "slovelingo",
+  "version": "0.1.0",
+  "description": "An installable web app for learning Slovenian.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test 'tests/**/*.test.js'",
+    "serve": "node tools/serve.js",
+    "typecheck": "npx -y -p typescript@5 tsc -p jsconfig.json --noEmit",
+    "lint:content": "node tools/lint-content.js",
+    "build:content": "node tools/build-content.js",
+    "audio": "node tools/gen-audio.js --from-bundle",
+    "voice-check": "node tools/voice-check.js",
+    "icons": "sh tools/gen-icons.sh"
+  }
+}
