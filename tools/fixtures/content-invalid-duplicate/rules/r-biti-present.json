@@ -1,0 +1,98 @@
+{
+  "id": "r-biti-present",
+  "unit": "u01",
+  "title_en": "To be: biti in the present",
+  "card_en": "Biti changes with the person: sem, si, je in the singular, sva, sta, sta in the dual, smo, ste, so in the plural.",
+  "example": {
+    "sl": "Jaz sem tukaj.",
+    "en": "I am here."
+  },
+  "table": {
+    "rows": [
+      "1",
+      "2",
+      "3"
+    ],
+    "cols": [
+      "sg",
+      "du",
+      "pl"
+    ],
+    "cells": {
+      "1.sg": {
+        "form": "sem",
+        "pronoun": "jaz"
+      },
+      "2.sg": {
+        "form": "si",
+        "pronoun": "ti"
+      },
+      "3.sg": {
+        "form": "je",
+        "pronoun": "on/ona"
+      },
+      "1.du": {
+        "form": "sva",
+        "pronoun": "midva"
+      },
+      "2.du": {
+        "form": "sta",
+        "pronoun": "vidva"
+      },
+      "3.du": {
+        "form": "sta",
+        "pronoun": "onadva",
+        "note_en": "The dual is for exactly two."
+      },
+      "1.pl": {
+        "form": "smo",
+        "pronoun": "mi"
+      },
+      "2.pl": {
+        "form": "ste",
+        "pronoun": "vi",
+        "note_en": "Also the polite form for one person."
+      },
+      "3.pl": {
+        "form": "so",
+        "pronoun": "oni"
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "Number",
+      "options": [
+        "singular",
+        "dual",
+        "plural"
+      ],
+      "examples": {
+        "singular": {
+          "sl": "Jaz sem tukaj.",
+          "en": "I am here."
+        },
+        "dual": {
+          "sl": "Midva sva tukaj.",
+          "en": "We two are here."
+        },
+        "plural": {
+          "sl": "Mi smo tukaj.",
+          "en": "We are here."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Midva ___ lačna.",
+    "options": [
+      "sem",
+      "sva",
+      "smo"
+    ],
+    "answer": "sva",
+    "explain_en": "Midva means the two of us, so biti takes the dual form sva."
+  },
+  "helper_de": "sem, si, je work like bin, bist, ist.",
+  "helper_en": null
+}

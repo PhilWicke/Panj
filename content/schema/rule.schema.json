@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Rule",
+  "description": "One file under content/rules/<id>.json: a rule card. Mirrors the Rule typedef in app/js/content/types.js; tools/lint-content.js checks this shape by hand.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "unit", "title_en", "card_en", "example", "quick_check"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^r-[a-z0-9-]+$", "description": "The file is named <id>.json." },
+    "unit": { "type": "string", "pattern": "^u[0-9]{2}$", "description": "Must exist in units.json." },
+    "title_en": { "$ref": "#/$defs/enText" },
+    "card_en": { "$ref": "#/$defs/enText", "description": "The card text: one idea in at most 40 words (lint rule card-length)." },
+    "example": { "$ref": "#/$defs/Example" },
+    "table": {
+      "type": "object",
+      "description": "The paradigm table that opens on tap.",
+      "additionalProperties": false,
+      "required": ["rows", "cols", "cells"],
+      "properties": {
+        "rows": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/text" } },
+        "cols": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/text" } },
+        "cells": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/RuleCell" },
+          "description": "Keyed \"<row>.<col>\" with a row from rows and a col from cols. A missing cell renders empty."
+        }
+      }
+    },
+    "toggles": { "type": "array", "items": { "$ref": "#/$defs/Toggle" } },
+    "quick_check": { "$ref": "#/$defs/QuickCheck" },
+    "helper_de": { "type": ["string", "null"], "minLength": 1, "description": "Contrastive line for German speakers." },
+    "helper_en": { "type": ["string", "null"], "minLength": 1, "description": "Contrastive line for English speakers." }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1 },
+    "slText": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[abcčdefghijklmnoprsštuvzžABCČDEFGHIJKLMNOPRSŠTUVZŽ0-9 .,;:!?'\"()-]+$",
+      "description": "Slovenian text: the 25 letters of the Slovenian alphabet, digits, spaces and the punctuation .,;:!?'\"()- (lint rule alphabet)."
+    },
+    "promptText": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[abcčdefghijklmnoprsštuvzžABCČDEFGHIJKLMNOPRSŠTUVZŽ0-9 .,;:!?'\"()_-]+$",
+      "description": "Slovenian text with the blank marked by underscores."
+    },
+    "enText": {
+      "type": "string",
+      "minLength": 1,
+      "description": "English copy in generic framing: never girlfriend, boyfriend, my partner, her parents or his parents (lint rule personal)."
+    },
+    "Example": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sl", "en"],
+      "properties": {
+        "sl": { "$ref": "#/$defs/slText" },
+        "en": { "$ref": "#/$defs/enText" }
+      }
+    },
+    "RuleCell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["form"],
+      "properties": {
+        "form": { "$ref": "#/$defs/text" },
+        "pronoun": { "$ref": "#/$defs/text" },
+        "note_en": { "$ref": "#/$defs/enText", "description": "Shown when the cell is tapped." }
+      }
+    },
+    "Toggle": {
+      "type": "object",
+      "description": "A switch that swaps the example live; one example per option, keyed by the option.",
+      "additionalProperties": false,
+      "required": ["label", "options", "examples"],
+      "properties": {
+        "label": { "$ref": "#/$defs/enText" },
+        "options": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "$ref": "#/$defs/text" } },
+        "examples": { "type": "object", "additionalProperties": { "$ref": "#/$defs/Example" } }
+      }
+    },
+    "QuickCheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prompt_sl", "options", "answer", "explain_en"],
+      "properties": {
+        "prompt_sl": { "$ref": "#/$defs/promptText" },
+        "options": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "$ref": "#/$defs/text" } },
+        "answer": { "$ref": "#/$defs/text", "description": "One of the options." },
+        "explain_en": { "$ref": "#/$defs/enText" }
+      }
+    }
+  }
+}

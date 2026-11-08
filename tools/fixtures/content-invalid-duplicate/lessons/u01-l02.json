@@ -1,0 +1,32 @@
+{
+  "id": "u01-l02",
+  "unit": "u01",
+  "order": 2,
+  "title_sl": "Še en pozdrav",
+  "title_en": "Another hello",
+  "items": [
+    {
+      "id": "u01-l02-i01",
+      "type": "chunk",
+      "sl": "dober dan",
+      "en": "Good day.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan, gospa.",
+          "en": "Good day, madam."
+        }
+      ],
+      "helper": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [],
+  "structured": [],
+  "production": []
+}

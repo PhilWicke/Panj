@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lesson",
+  "description": "One file under content/lessons/<id>.json. Mirrors the Lesson typedef in app/js/content/types.js. tools/lint-content.js checks this shape by hand (lint rule schema) and adds the corpus rules alphabet, duplicate, reference, pending-practised, register, personal and helper-missing.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "unit", "order", "title_sl", "title_en", "items", "rules", "structured", "production"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": {
+      "type": "string",
+      "pattern": "^u[0-9]{2}-l[0-9]{2}$",
+      "description": "The file is named <id>.json and every id inside the lesson starts with <id>-."
+    },
+    "unit": { "$ref": "#/$defs/unitId", "description": "Must exist in units.json, and that unit must list this lesson." },
+    "order": { "type": "integer", "minimum": 1, "description": "Position within the unit, from 1." },
+    "title_sl": { "$ref": "#/$defs/slText" },
+    "title_en": { "$ref": "#/$defs/enText" },
+    "items": { "type": "array", "items": { "$ref": "#/$defs/Item" } },
+    "rules": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ruleId" },
+      "description": "Rule cards introduced in this lesson. Each must exist under content/rules/."
+    },
+    "structured": { "type": "array", "items": { "$ref": "#/$defs/StructuredExercise" } },
+    "production": { "type": "array", "items": { "$ref": "#/$defs/ProductionExercise" } },
+    "dialogue": { "$ref": "#/$defs/Dialogue" }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1 },
+    "slText": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[abcčdefghijklmnoprsštuvzžABCČDEFGHIJKLMNOPRSŠTUVZŽ0-9 .,;:!?'\"()-]+$",
+      "description": "Slovenian text: the 25 letters of the Slovenian alphabet, digits, spaces and the punctuation .,;:!?'\"()- (lint rule alphabet)."
+    },
+    "promptText": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[abcčdefghijklmnoprsštuvzžABCČDEFGHIJKLMNOPRSŠTUVZŽ0-9 .,;:!?'\"()_-]+$",
+      "description": "Slovenian text with the blank marked by underscores."
+    },
+    "enText": {
+      "type": "string",
+      "minLength": 1,
+      "description": "English copy in generic framing: never girlfriend, boyfriend, my partner, her parents or his parents (lint rule personal)."
+    },
+    "unitId": { "type": "string", "pattern": "^u[0-9]{2}$" },
+    "itemId": { "type": "string", "pattern": "^u[0-9]{2}-l[0-9]{2}-i[0-9]{2}$" },
+    "ruleId": { "type": "string", "pattern": "^r-[a-z0-9-]+$" },
+    "Example": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sl", "en"],
+      "properties": {
+        "sl": { "$ref": "#/$defs/slText" },
+        "en": { "$ref": "#/$defs/enText" }
+      }
+    },
+    "Verification": {
+      "type": "object",
+      "description": "Only items with status accepted are practised; the linter fails a strict build that would practise anything else (lint rule pending-practised).",
+      "additionalProperties": false,
+      "required": ["review1", "review2", "native", "status"],
+      "properties": {
+        "review1": { "enum": ["accepted", "doubtful", "rejected", null], "description": "Verdict of the first blind review, null until reviewed." },
+        "review2": { "enum": ["accepted", "doubtful", "rejected", null], "description": "Verdict of the second blind review, null until reviewed." },
+        "native": { "enum": ["confirmed", "corrected", null], "description": "What the native speaker said, null until asked." },
+        "status": { "enum": ["accepted", "pending", "rejected"] },
+        "notes": { "type": "string", "description": "Internal notes, not shown in the app." }
+      }
+    },
+    "Slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "fillers"],
+      "properties": {
+        "label": { "$ref": "#/$defs/enText" },
+        "fillers": { "type": "array", "items": { "$ref": "#/$defs/itemId" }, "description": "Ids of the items that fill this slot." }
+      }
+    },
+    "Item": {
+      "type": "object",
+      "description": "A scheduled item: a chunk, a word, or an inflected form practised on its own. No two items in the corpus share sl and type (lint rule duplicate).",
+      "additionalProperties": false,
+      "required": ["id", "type", "sl", "en", "register", "examples", "verification"],
+      "properties": {
+        "id": { "$ref": "#/$defs/itemId" },
+        "type": { "enum": ["chunk", "word", "form"] },
+        "sl": { "$ref": "#/$defs/slText", "description": "Standard Slovenian form." },
+        "sl_colloquial": { "oneOf": [{ "$ref": "#/$defs/slText" }, { "type": "null" }], "description": "Colloquial form that is heard but not written." },
+        "en": { "$ref": "#/$defs/enText", "description": "English gloss." },
+        "register": {
+          "enum": ["neutral", "colloquial", "formal", "recognition"],
+          "description": "recognition items are never asked for in production or structured exercises (lint rule register)."
+        },
+        "pos": { "$ref": "#/$defs/text", "description": "Part of speech." },
+        "gender": { "enum": ["m", "f", "n", null] },
+        "forms": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/text" },
+          "description": "Inflected forms by label (case, number), so slot production can grade them."
+        },
+        "slots": { "type": "array", "items": { "$ref": "#/$defs/Slot" } },
+        "examples": { "type": "array", "items": { "$ref": "#/$defs/Example" } },
+        "helper": {
+          "oneOf": [{ "$ref": "#/$defs/enText" }, { "type": "null" }],
+          "description": "Cognate, false friend or one-line mnemonic. The linter warns when a cognate has none (lint rule helper-missing)."
+        },
+        "accept": { "type": "array", "items": { "$ref": "#/$defs/text" }, "description": "Accepted answer variants." },
+        "rules": { "type": "array", "items": { "$ref": "#/$defs/ruleId" }, "description": "Ids of the rules the item exercises." },
+        "freq_rank": { "type": ["integer", "null"], "minimum": 1, "description": "Rank in the spoken frequency list." },
+        "audio": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "sl": { "$ref": "#/$defs/text" },
+            "examples": { "type": "array", "items": { "$ref": "#/$defs/text" } }
+          },
+          "description": "Audio ids for the headword and the examples."
+        },
+        "verification": { "$ref": "#/$defs/Verification" }
+      }
+    },
+    "StructuredExercise": {
+      "type": "object",
+      "description": "Choose the form or ending in context. Practises a rule, not an item.",
+      "additionalProperties": false,
+      "required": ["id", "prompt_sl", "options", "answer", "rule", "en"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^u[0-9]{2}-l[0-9]{2}-s[0-9]{2}$" },
+        "prompt_sl": { "$ref": "#/$defs/promptText" },
+        "options": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "$ref": "#/$defs/text" } },
+        "answer": { "$ref": "#/$defs/text", "description": "One of the options." },
+        "rule": { "$ref": "#/$defs/ruleId" },
+        "en": { "$ref": "#/$defs/enText" }
+      }
+    },
+    "ProductionExercise": {
+      "type": "object",
+      "description": "Typed production from English to Slovenian, recorded as a recall of item.",
+      "additionalProperties": false,
+      "required": ["id", "en", "answer", "item"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^u[0-9]{2}-l[0-9]{2}-p[0-9]{2}$" },
+        "en": { "$ref": "#/$defs/enText", "description": "The instruction shown to the learner." },
+        "answer": { "$ref": "#/$defs/text" },
+        "accept": { "type": "array", "items": { "$ref": "#/$defs/text" } },
+        "item": { "$ref": "#/$defs/itemId", "description": "The item practised; it must be accepted for a strict build." },
+        "filler": { "$ref": "#/$defs/text", "description": "The slot filler used, for slot substitutions." }
+      }
+    },
+    "DialogueLine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["speaker", "sl", "en"],
+      "properties": {
+        "speaker": { "$ref": "#/$defs/text", "description": "you is the learner; the other speakers are the roles in the scene." },
+        "sl": { "$ref": "#/$defs/slText" },
+        "en": { "$ref": "#/$defs/enText" },
+        "audio": { "$ref": "#/$defs/text" },
+        "new_items": { "type": "array", "items": { "$ref": "#/$defs/itemId" }, "description": "Ids of the items this line practises." }
+      }
+    },
+    "Dialogue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title_sl", "title_en", "setting_en", "lines"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^u[0-9]{2}-l[0-9]{2}-d$" },
+        "title_sl": { "$ref": "#/$defs/slText" },
+        "title_en": { "$ref": "#/$defs/enText" },
+        "setting_en": { "$ref": "#/$defs/enText", "description": "The scene in English, in generic framing." },
+        "lines": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/DialogueLine" } }
+      }
+    }
+  }
+}

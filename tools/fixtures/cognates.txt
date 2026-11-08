@@ -1,0 +1,27 @@
+# Slovenian words with a German helper word, one sl<TAB>de pair per line.
+# tools/lint-content.js warns (rule helper-missing) when an item with one of these headwords has no helper line.
+brat	Bruder
+hiša	Haus
+miza	Tisch
+krompir	Kartoffel
+šola	Schule
+sestra	Schwester
+mati	Mutter
+sin	Sohn
+mleko	Milch
+jabolko	Apfel
+vino	Wein
+sol	Salz
+nos	Nase
+zob	Zahn
+srce	Herz
+noč	Nacht
+sonce	Sonne
+sneg	Schnee
+veter	Wind
+kuhinja	Küche
+cerkev	Kirche
+ura	Uhr
+šunka	Schinken
+žemlja	Semmel
+papir	Papier

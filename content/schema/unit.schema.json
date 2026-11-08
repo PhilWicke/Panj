@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Units",
+  "description": "content/units.json: an array with every unit of the course in order. Each entry mirrors the Unit typedef in app/js/content/types.js; tools/lint-content.js checks this shape by hand.",
+  "type": "array",
+  "items": { "$ref": "#/$defs/Unit" },
+  "$defs": {
+    "Unit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "order", "title_sl", "title_en", "motif", "lessons"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^u[0-9]{2}$" },
+        "order": { "type": "integer", "minimum": 1 },
+        "title_sl": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[abcčdefghijklmnoprsštuvzžABCČDEFGHIJKLMNOPRSŠTUVZŽ0-9 .,;:!?'\"()-]+$",
+          "description": "Slovenian text: the 25 letters of the Slovenian alphabet, digits, spaces and the punctuation .,;:!?'\"()- (lint rule alphabet)."
+        },
+        "title_en": { "type": "string", "minLength": 1 },
+        "motif": { "type": "string", "minLength": 1, "description": "The hive motif drawn on the unit's panel." },
+        "lessons": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^u[0-9]{2}-l[0-9]{2}$" },
+          "description": "Lesson ids in order. Each must exist as content/lessons/<id>.json and name this unit (lint rule reference)."
+        }
+      }
+    }
+  }
+}

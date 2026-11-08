@@ -1,0 +1,137 @@
+// Content types for Slovelingo: the shapes of the JSON files under content/.
+//
+// These typedefs are the reference for authors, for the linter
+// (tools/lint-content.js, which checks every file against them by hand) and for
+// the bundle compiler. The files under content/schema/ describe the same shapes
+// as JSON Schema for editors and for the content plan.
+//
+// Ids: units are `uNN`, lessons `uNN-lNN`, and everything inside a lesson
+// carries the lesson id as its prefix: items `uNN-lNN-iNN`, structured
+// exercises `uNN-lNN-sNN`, production exercises `uNN-lNN-pNN` and the dialogue
+// `uNN-lNN-d`. Rules are `r-[a-z0-9-]+`. Ids are unique across the corpus.
+
+/** @typedef {'neutral'|'colloquial'|'formal'|'recognition'} Register */
+
+/** @typedef {'accepted'|'pending'|'rejected'} VerifyStatus */
+
+/**
+ * The verification record of an item. Only items with status `accepted` are practised.
+ * @typedef {object} Verification
+ * @property {'accepted'|'doubtful'|'rejected'|null} review1 verdict of the first blind review, null until reviewed
+ * @property {'accepted'|'doubtful'|'rejected'|null} review2 verdict of the second blind review, null until reviewed
+ * @property {'confirmed'|'corrected'|null} native what the native speaker said, null until asked
+ * @property {VerifyStatus} status
+ * @property {string} [notes] internal notes, not shown in the app
+ */
+
+/**
+ * A scheduled item: a chunk, a word, or an inflected form practised on its own.
+ * @typedef {object} Item
+ * @property {string} id `uNN-lNN-iNN`
+ * @property {'chunk'|'word'|'form'} type
+ * @property {string} sl standard Slovenian form
+ * @property {string|null} [sl_colloquial] colloquial form that is heard but not written
+ * @property {string} en English gloss
+ * @property {Register} register
+ * @property {string} [pos] part of speech
+ * @property {'m'|'f'|'n'|null} [gender]
+ * @property {Record<string, string>} [forms] inflected forms by label (case, number), so slot production can grade them
+ * @property {{ label: string, fillers: string[] }[]} [slots] the slots of a chunk, each with the ids of the items that fill it
+ * @property {{ sl: string, en: string }[]} examples
+ * @property {string|null} [helper] cognate, false friend or one-line mnemonic
+ * @property {string[]} [accept] accepted answer variants
+ * @property {string[]} [rules] ids of the rules the item exercises
+ * @property {number|null} [freq_rank] rank in the spoken frequency list
+ * @property {{ sl?: string, examples?: string[] }} [audio] audio ids for the headword and the examples
+ * @property {Verification} verification
+ */
+
+/**
+ * Choose the form or ending in context. Practises a rule, not an item.
+ * @typedef {object} StructuredExercise
+ * @property {string} id `uNN-lNN-sNN`
+ * @property {string} prompt_sl the sentence with its blank marked by underscores
+ * @property {string[]} options
+ * @property {string} answer one of the options
+ * @property {string} rule id of the rule the exercise practises
+ * @property {string} en
+ */
+
+/**
+ * Typed production from English to Slovenian, recorded as a recall of `item`.
+ * @typedef {object} ProductionExercise
+ * @property {string} id `uNN-lNN-pNN`
+ * @property {string} en the instruction shown to the learner
+ * @property {string} answer
+ * @property {string[]} [accept]
+ * @property {string} item id of the item practised
+ * @property {string} [filler] the slot filler used, for slot substitutions
+ */
+
+/**
+ * @typedef {object} DialogueLine
+ * @property {string} speaker `you` is the learner; the other speakers are the roles in the scene
+ * @property {string} sl
+ * @property {string} en
+ * @property {string} [audio]
+ * @property {string[]} [new_items] ids of the items this line practises
+ */
+
+/**
+ * @typedef {object} Dialogue
+ * @property {string} id `uNN-lNN-d`
+ * @property {string} title_sl
+ * @property {string} title_en
+ * @property {string} setting_en the scene in English, in generic framing
+ * @property {DialogueLine[]} lines
+ */
+
+/**
+ * One file under content/lessons/<id>.json.
+ * @typedef {object} Lesson
+ * @property {string} id `uNN-lNN`
+ * @property {string} unit id of the unit, which lists this lesson in units.json
+ * @property {number} order position within the unit, from 1
+ * @property {string} title_sl
+ * @property {string} title_en
+ * @property {Item[]} items
+ * @property {string[]} rules ids of the rule cards introduced in this lesson
+ * @property {StructuredExercise[]} structured
+ * @property {ProductionExercise[]} production
+ * @property {Dialogue} [dialogue]
+ */
+
+/**
+ * @typedef {object} RuleCell
+ * @property {string} form
+ * @property {string} [pronoun]
+ * @property {string} [note_en]
+ */
+
+/**
+ * One file under content/rules/<id>.json: a rule card.
+ * @typedef {object} Rule
+ * @property {string} id `r-[a-z0-9-]+`
+ * @property {string} unit
+ * @property {string} title_en
+ * @property {string} card_en the card text, at most 40 words
+ * @property {{ sl: string, en: string }} example
+ * @property {{ rows: string[], cols: string[], cells: Record<string, RuleCell> }} [table] paradigm table; `cells` is keyed `"<row>.<col>"`
+ * @property {{ label: string, options: string[], examples: Record<string, { sl: string, en: string }> }[]} [toggles] each toggle has one example per option, keyed by the option
+ * @property {{ prompt_sl: string, options: string[], answer: string, explain_en: string }} quick_check
+ * @property {string|null} [helper_de]
+ * @property {string|null} [helper_en]
+ */
+
+/**
+ * One entry of content/units.json, which is an array of units in course order.
+ * @typedef {object} Unit
+ * @property {string} id `uNN`
+ * @property {number} order
+ * @property {string} title_sl
+ * @property {string} title_en
+ * @property {string} motif the hive motif drawn on the unit's panel
+ * @property {string[]} lessons lesson ids in order
+ */
+
+export {};
