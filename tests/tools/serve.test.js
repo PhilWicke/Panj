@@ -6,14 +6,14 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { startServer } from '../../tools/serve.js';
 
-test('serves app files with correct content types', async () => {
+test('serves app files with correct content types', async (t) => {
   const srv = await startServer({ root: fileURLToPath(new URL('../../app/', import.meta.url)), port: 0 });
+  t.after(() => srv.close());
   const res = await fetch(`http://localhost:${srv.port}/manifest.webmanifest`);
   assert.equal(res.status, 200);
   assert.equal(res.headers.get('content-type'), 'application/manifest+json');
   const js = await fetch(`http://localhost:${srv.port}/js/main.js`);
   assert.equal(js.headers.get('content-type'), 'text/javascript; charset=utf-8');
-  await srv.close();
 });
 
 /** @type {string} */
