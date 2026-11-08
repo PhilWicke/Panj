@@ -1,0 +1,84 @@
+[
+  {
+    "id": "u01",
+    "order": 1,
+    "title_sl": "Prvi stik",
+    "title_en": "First contact",
+    "motif": "flower",
+    "lessons": [
+      "u01-l01"
+    ]
+  },
+  {
+    "id": "u02",
+    "order": 2,
+    "title_sl": "Družina in ljudje",
+    "title_en": "Family and people",
+    "motif": "heart",
+    "lessons": []
+  },
+  {
+    "id": "u03",
+    "order": 3,
+    "title_sl": "Pri mizi",
+    "title_en": "At the table",
+    "motif": "wheat",
+    "lessons": []
+  },
+  {
+    "id": "u04",
+    "order": 4,
+    "title_sl": "V kavarni in v trgovini",
+    "title_en": "In the café and the shop",
+    "motif": "hexagon",
+    "lessons": []
+  },
+  {
+    "id": "u05",
+    "order": 5,
+    "title_sl": "Dan in čas",
+    "title_en": "Day and time",
+    "motif": "sun",
+    "lessons": []
+  },
+  {
+    "id": "u06",
+    "order": 6,
+    "title_sl": "Dom",
+    "title_en": "Home",
+    "motif": "house",
+    "lessons": []
+  },
+  {
+    "id": "u07",
+    "order": 7,
+    "title_sl": "Po mestu",
+    "title_en": "Around town",
+    "motif": "bird",
+    "lessons": []
+  },
+  {
+    "id": "u08",
+    "order": 8,
+    "title_sl": "Prosti čas in vreme",
+    "title_en": "Free time and the weather",
+    "motif": "leaf",
+    "lessons": []
+  },
+  {
+    "id": "u09",
+    "order": 9,
+    "title_sl": "Telo in zdravje",
+    "title_en": "Body and health",
+    "motif": "star",
+    "lessons": []
+  },
+  {
+    "id": "u10",
+    "order": 10,
+    "title_sl": "Delo in študij",
+    "title_en": "Work and study",
+    "motif": "bee",
+    "lessons": []
+  }
+]

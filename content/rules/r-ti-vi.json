@@ -1,0 +1,40 @@
+{
+  "id": "r-ti-vi",
+  "unit": "u01",
+  "title_en": "Ti or vi: the two words for you",
+  "card_en": "Two words for you. Ti is for someone close, a friend or a child, with the singular verb: kako si. Vi is for an older person, a stranger or a group, with the plural verb: kako ste.",
+  "example": {
+    "sl": "Kako si?",
+    "en": "How are you?"
+  },
+  "toggles": [
+    {
+      "label": "Talking to",
+      "options": [
+        "someone close",
+        "an older person or a stranger"
+      ],
+      "examples": {
+        "someone close": {
+          "sl": "Kako si?",
+          "en": "How are you?"
+        },
+        "an older person or a stranger": {
+          "sl": "Kako ste?",
+          "en": "How are you?"
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Živjo, kako ___?",
+    "options": [
+      "si",
+      "ste"
+    ],
+    "answer": "si",
+    "explain_en": "Živjo is the casual hello for someone you are close to, so ti and the singular verb: kako si."
+  },
+  "helper_de": "ti and vi work like du and Sie, and vi takes the plural verb.",
+  "helper_en": "English has one you for everyone. In Slovenian, ti to a stranger sounds too familiar, so start with vi."
+}

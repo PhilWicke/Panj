@@ -1,0 +1,387 @@
+{
+  "id": "u01-l01",
+  "unit": "u01",
+  "order": 1,
+  "title_sl": "Prvi pozdrav",
+  "title_en": "First hello",
+  "items": [
+    {
+      "id": "u01-l01-i01",
+      "type": "chunk",
+      "sl": "Živjo.",
+      "sl_colloquial": null,
+      "en": "Hi.",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Živjo, kako si?",
+          "en": "Hi, how are you?"
+        },
+        {
+          "sl": "Živjo, pridi naprej.",
+          "en": "Hi, come on in."
+        }
+      ],
+      "helper": null,
+      "accept": [
+        "zivjo",
+        "živijo"
+      ],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": null,
+        "review2": null,
+        "native": null,
+        "status": "pending"
+      }
+    },
+    {
+      "id": "u01-l01-i02",
+      "type": "chunk",
+      "sl": "Dober dan.",
+      "sl_colloquial": null,
+      "en": "Good day.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan, kako ste?",
+          "en": "Good day, how are you?"
+        },
+        {
+          "sl": "Dober dan, gospa.",
+          "en": "Good day, madam."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-ti-vi",
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": null,
+        "review2": null,
+        "native": null,
+        "status": "pending"
+      }
+    },
+    {
+      "id": "u01-l01-i03",
+      "type": "chunk",
+      "sl": "Dober večer.",
+      "sl_colloquial": null,
+      "en": "Good evening.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober večer, dobrodošli.",
+          "en": "Good evening, welcome."
+        },
+        {
+          "sl": "Dober večer, kako ste?",
+          "en": "Good evening, how are you?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": null,
+        "review2": null,
+        "native": null,
+        "status": "pending"
+      }
+    },
+    {
+      "id": "u01-l01-i04",
+      "type": "chunk",
+      "sl": "Lahko noč.",
+      "sl_colloquial": null,
+      "en": "Good night.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala za lep večer. Lahko noč.",
+          "en": "Thank you for the lovely evening. Good night."
+        },
+        {
+          "sl": "Lahko noč, se vidimo jutri.",
+          "en": "Good night, see you tomorrow."
+        }
+      ],
+      "helper": "noč is night, like German Nacht.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": null,
+        "review2": null,
+        "native": null,
+        "status": "pending"
+      }
+    },
+    {
+      "id": "u01-l01-i05",
+      "type": "chunk",
+      "sl": "Adijo.",
+      "sl_colloquial": null,
+      "en": "Bye.",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Adijo, se vidimo.",
+          "en": "Bye, see you."
+        },
+        {
+          "sl": "Adijo, lahko noč.",
+          "en": "Bye, good night."
+        }
+      ],
+      "helper": "From Italian addio, like French adieu.",
+      "accept": [],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": null,
+        "review2": null,
+        "native": null,
+        "status": "pending"
+      }
+    },
+    {
+      "id": "u01-l01-i06",
+      "type": "chunk",
+      "sl": "Nasvidenje.",
+      "sl_colloquial": null,
+      "en": "Goodbye.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala in nasvidenje.",
+          "en": "Thank you and goodbye."
+        },
+        {
+          "sl": "Nasvidenje, lep dan še naprej.",
+          "en": "Goodbye, enjoy the rest of your day."
+        }
+      ],
+      "helper": "Built like Auf Wiedersehen: na svidenje, until we see each other again.",
+      "accept": [
+        "na svidenje"
+      ],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": null,
+        "review2": null,
+        "native": null,
+        "status": "pending"
+      }
+    },
+    {
+      "id": "u01-l01-i07",
+      "type": "chunk",
+      "sl": "Hvala.",
+      "sl_colloquial": null,
+      "en": "Thank you.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dobro, hvala.",
+          "en": "Fine, thank you."
+        },
+        {
+          "sl": "Hvala lepa.",
+          "en": "Thank you very much."
+        }
+      ],
+      "helper": null,
+      "accept": [
+        "hvala lepa"
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": null,
+        "review2": null,
+        "native": null,
+        "status": "pending"
+      }
+    },
+    {
+      "id": "u01-l01-i08",
+      "type": "chunk",
+      "sl": "Prosim.",
+      "sl_colloquial": null,
+      "en": "Please.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kar naprej, prosim.",
+          "en": "Come on in, please."
+        },
+        {
+          "sl": "Hvala. Prosim.",
+          "en": "Thank you. You're welcome."
+        }
+      ],
+      "helper": "Literally I ask, from prositi, to ask.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": null,
+        "review2": null,
+        "native": null,
+        "status": "pending"
+      }
+    }
+  ],
+  "rules": [
+    "r-biti-present",
+    "r-ti-vi"
+  ],
+  "structured": [
+    {
+      "id": "u01-l01-s01",
+      "prompt_sl": "Jaz ___ tukaj.",
+      "options": [
+        "sem",
+        "si",
+        "je",
+        "ste"
+      ],
+      "answer": "sem",
+      "rule": "r-biti-present",
+      "en": "I am here."
+    },
+    {
+      "id": "u01-l01-s02",
+      "prompt_sl": "Ti ___ doma.",
+      "options": [
+        "sem",
+        "si",
+        "je",
+        "ste"
+      ],
+      "answer": "si",
+      "rule": "r-biti-present",
+      "en": "You are at home."
+    },
+    {
+      "id": "u01-l01-s03",
+      "prompt_sl": "Ona ___ tukaj.",
+      "options": [
+        "sem",
+        "si",
+        "je",
+        "ste"
+      ],
+      "answer": "je",
+      "rule": "r-biti-present",
+      "en": "She is here."
+    },
+    {
+      "id": "u01-l01-s04",
+      "prompt_sl": "Vi ___ doma.",
+      "options": [
+        "sem",
+        "si",
+        "je",
+        "ste"
+      ],
+      "answer": "ste",
+      "rule": "r-biti-present",
+      "en": "You are at home."
+    }
+  ],
+  "production": [
+    {
+      "id": "u01-l01-p01",
+      "en": "Greet someone in the evening.",
+      "answer": "Dober večer.",
+      "accept": [],
+      "item": "u01-l01-i03"
+    },
+    {
+      "id": "u01-l01-p02",
+      "en": "Say good night.",
+      "answer": "Lahko noč.",
+      "accept": [],
+      "item": "u01-l01-i04"
+    },
+    {
+      "id": "u01-l01-p03",
+      "en": "Thank someone.",
+      "answer": "Hvala.",
+      "accept": [
+        "hvala lepa"
+      ],
+      "item": "u01-l01-i07"
+    },
+    {
+      "id": "u01-l01-p04",
+      "en": "Say goodbye politely.",
+      "answer": "Nasvidenje.",
+      "accept": [
+        "na svidenje"
+      ],
+      "item": "u01-l01-i06"
+    }
+  ],
+  "dialogue": {
+    "id": "u01-l01-d",
+    "title_sl": "Pri vratih",
+    "title_en": "At the door",
+    "setting_en": "It is evening. You arrive at a Slovenian family's house as a guest, and one of your hosts opens the door.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Dober večer. Dobrodošli.",
+        "en": "Good evening. Welcome."
+      },
+      {
+        "speaker": "you",
+        "sl": "Dober večer.",
+        "en": "Good evening.",
+        "new_items": [
+          "u01-l01-i03"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kar naprej, prosim.",
+        "en": "Come on in, please."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala.",
+        "en": "Thank you.",
+        "new_items": [
+          "u01-l01-i07"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kako ste?",
+        "en": "How are you?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Dobro, hvala.",
+        "en": "Fine, thank you."
+      }
+    ]
+  }
+}
