@@ -37,7 +37,12 @@ const RULE_ID = /^r-[a-z0-9-]+$/;
 
 // Anything outside the Slovenian alphabet (no q, w, x, y), digits, space and the punctuation .,;:!?'"()-
 const NOT_SLOVENIAN = /[^abcčdefghijklmnoprsštuvzžABCČDEFGHIJKLMNOPRSŠTUVZŽ0-9 .,;:!?'"()-]/gu;
-// The same, allowing the underscore that marks the blank in prompt_sl.
+// The blank marker contract for prompt_sl (structured exercises and quick checks),
+// shared by the content authors, the bundle compiler and the structured
+// exercise's blankify: the blank is one run of one or more underscores, exactly
+// one per prompt, and it may attach to a stem ("Midva ___ lačna.", "Pijem kav_").
+// The underscore is allowed nowhere else in Slovenian text.
+const BLANK = /_+/g;
 const NOT_SLOVENIAN_PROMPT = /[^abcčdefghijklmnoprsštuvzžABCČDEFGHIJKLMNOPRSŠTUVZŽ0-9 .,;:!?'"()_-]/gu;
 
 const PERSONAL_PHRASES = ['girlfriend', 'boyfriend', 'my partner', 'her parents', 'his parents'];
@@ -328,17 +333,24 @@ function checkRuleConsistency(rule, report) {
 
 /**
  * Lint rule alphabet: Slovenian text uses only the Slovenian alphabet, digits, spaces and .,;:!?'"()-
- * @param {unknown} value @param {string} at @param {Report} report @param {boolean} [blank] allow `_` as the blank marker
+ * A prompt (`blank`) additionally carries exactly one blank marked by underscores, see BLANK.
+ * @param {unknown} value @param {string} at @param {Report} report @param {boolean} [blank] the value is a prompt_sl
  */
 function checkAlphabet(value, at, report, blank = false) {
   if (typeof value !== 'string') return;
   const found = new Set();
   for (const match of value.matchAll(blank ? NOT_SLOVENIAN_PROMPT : NOT_SLOVENIAN)) found.add(match[0]);
-  if (found.size === 0) return;
-  const list = [...found]
-    .map((ch) => `${quote(ch)} (U+${(ch.codePointAt(0) ?? 0).toString(16).toUpperCase().padStart(4, '0')})`)
-    .join(', ');
-  report(at, `contains characters outside the Slovenian alphabet: ${list}`);
+  if (found.size > 0) {
+    const list = [...found]
+      .map((ch) => `${quote(ch)} (U+${(ch.codePointAt(0) ?? 0).toString(16).toUpperCase().padStart(4, '0')})`)
+      .join(', ');
+    report(at, `contains characters outside the Slovenian alphabet: ${list}`);
+  }
+  if (!blank) return;
+  const blanks = value.match(BLANK)?.length ?? 0;
+  if (blanks !== 1) {
+    report(at, `expected exactly one blank marked by underscores, like "Midva ___ lačna." or "Pijem kav_", found ${blanks === 0 ? 'none' : blanks}`);
+  }
 }
 
 /** @param {Doc} lesson @param {Report} report */

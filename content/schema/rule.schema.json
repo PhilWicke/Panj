@@ -43,8 +43,8 @@
     "promptText": {
       "type": "string",
       "minLength": 1,
-      "pattern": "^[abcčdefghijklmnoprsštuvzžABCČDEFGHIJKLMNOPRSŠTUVZŽ0-9 .,;:!?'\"()_-]+$",
-      "description": "Slovenian text with the blank marked by underscores."
+      "pattern": "^[abcčdefghijklmnoprsštuvzžABCČDEFGHIJKLMNOPRSŠTUVZŽ0-9 .,;:!?'\"()-]*_+[abcčdefghijklmnoprsštuvzžABCČDEFGHIJKLMNOPRSŠTUVZŽ0-9 .,;:!?'\"()-]*$",
+      "description": "Slovenian text with exactly one blank, a run of one or more underscores that may attach to a stem (\"Midva ___ lačna.\", \"Pijem kav_\"). The underscore is allowed nowhere else (lint rule alphabet)."
     },
     "enText": {
       "type": "string",

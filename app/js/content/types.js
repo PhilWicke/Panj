@@ -50,7 +50,7 @@
  * Choose the form or ending in context. Practises a rule, not an item.
  * @typedef {object} StructuredExercise
  * @property {string} id `uNN-lNN-sNN`
- * @property {string} prompt_sl the sentence with its blank marked by underscores
+ * @property {string} prompt_sl the sentence with exactly one blank, a run of one or more underscores that may attach to a stem ("Midva ___ lačna.", "Pijem kav_"); the underscore is the only character outside the Slovenian alphabet allowed here, and the exercise replaces that run when it renders
  * @property {string[]} options
  * @property {string} answer one of the options
  * @property {string} rule id of the rule the exercise practises
@@ -118,7 +118,7 @@
  * @property {{ sl: string, en: string }} example
  * @property {{ rows: string[], cols: string[], cells: Record<string, RuleCell> }} [table] paradigm table; `cells` is keyed `"<row>.<col>"`
  * @property {{ label: string, options: string[], examples: Record<string, { sl: string, en: string }> }[]} [toggles] each toggle has one example per option, keyed by the option
- * @property {{ prompt_sl: string, options: string[], answer: string, explain_en: string }} quick_check
+ * @property {{ prompt_sl: string, options: string[], answer: string, explain_en: string }} quick_check one question on the card; `prompt_sl` follows the same blank contract as `StructuredExercise.prompt_sl`
  * @property {string|null} [helper_de]
  * @property {string|null} [helper_en]
  */

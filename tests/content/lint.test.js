@@ -143,6 +143,21 @@ test('recognition-only items are never asked for in production or structured exe
   ]));
 });
 
+test('prompt_sl carries exactly one blank, a run of underscores that may attach to a stem', async () => {
+  const r = await lintMutated(async (dir) => {
+    await editJson(dir, LESSON, (doc) => {
+      doc.structured[0].prompt_sl = 'Jaz sem tukaj.';
+      doc.structured.push({ id: 'u01-l01-s02', prompt_sl: 'Pijem kav_', options: ['o', 'a'], answer: 'o', rule: 'r-biti-present', en: 'I drink coffee.' });
+    });
+    await editJson(dir, RULE, (doc) => { doc.quick_check.prompt_sl = 'M_dva ___ lačna.'; });
+  });
+  assert.deepEqual(new Set(byRule(r.errors, 'alphabet').map(describe)), new Set([
+    'lessons/u01-l01.json structured/u01-l01-s01/prompt_sl: expected exactly one blank marked by underscores, like "Midva ___ lačna." or "Pijem kav_", found none',
+    'rules/r-biti-present.json quick_check/prompt_sl: expected exactly one blank marked by underscores, like "Midva ___ lačna." or "Pijem kav_", found 2',
+  ]));
+  assert.equal(r.errors.length, 2);
+});
+
 test('malformed JSON and a missing units.json are schema errors on the file', async () => {
   const r = await lintMutated(async (dir) => {
     await writeFile(join(dir, RULE), '{ "id": "r-biti-present", ');
@@ -211,7 +226,12 @@ test('schema files are valid JSON Schema documents that agree with the linter on
   assert.ok(sl.test(`Živjo, kako si? (Dober dan.) "ČŠŽ" 'ok'; 12:30 - ja!`));
   assert.ok(!sl.test('Dobár dan.'));
   assert.ok(!sl.test('Jaz ___ tukaj.'));
-  assert.ok(new RegExp(schemas.Lesson.$defs.promptText.pattern, 'u').test('Jaz ___ tukaj.'));
+  const prompt = new RegExp(schemas.Lesson.$defs.promptText.pattern, 'u');
+  assert.ok(prompt.test('Jaz ___ tukaj.'));
+  assert.ok(prompt.test('Pijem kav_'));
+  assert.ok(!prompt.test('Jaz sem tukaj.'));
+  assert.ok(!prompt.test('M_dva ___ lačna.'));
+  assert.equal(schemas.Rule.$defs.promptText.pattern, schemas.Lesson.$defs.promptText.pattern);
   assert.equal(schemas.Rule.$defs.slText.pattern, schemas.Lesson.$defs.slText.pattern);
   assert.equal(schemas.Units.$defs.Unit.properties.title_sl.pattern, schemas.Lesson.$defs.slText.pattern);
 });
