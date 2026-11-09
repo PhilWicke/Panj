@@ -152,7 +152,7 @@
       "helper": "rešilec, ambulance, comes from rešiti, to save or rescue.",
       "accept": [],
       "rules": [
-        "r-imperative-recognition"
+        "r-ti-vi"
       ],
       "freq_rank": null,
       "verification": {
