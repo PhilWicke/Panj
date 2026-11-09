@@ -21,6 +21,7 @@ import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
+import { elements } from '../helpers/dom-query.js';
 import { h } from '../../app/js/util/dom.js';
 import { shuffle } from '../../app/js/util/shuffle.js';
 import { recognitionBlocked, resetRecognition } from '../../app/js/audio/speech.js';
@@ -66,22 +67,6 @@ let document;
 before(() => {
   document = installFakeDom();
 });
-
-/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
-function elements(root) {
-  /** @type {any[]} */
-  const found = [];
-  /** @param {any} node */
-  const walk = (node) => {
-    for (const child of node.childNodes) {
-      if (!child.tagName) continue;
-      found.push(child);
-      walk(child);
-    }
-  };
-  walk(root);
-  return found;
-}
 
 /** The button under `root` that reads `text`, if any. @param {any} root @param {string} text */
 const button = (root, text) => elements(root).find((el) => el.tagName === 'BUTTON' && el.textContent === text);

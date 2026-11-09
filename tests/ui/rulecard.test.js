@@ -9,6 +9,7 @@ import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
+import { elements } from '../helpers/dom-query.js';
 import {
   DEFAULT_SETTINGS, MASTERY_SESSIONS, createState, recordRecall, retrievability, skipAheadState,
 } from '../../app/js/engine/scheduler.js';
@@ -46,22 +47,6 @@ const unit = (id, order) => ({ id, order, title_sl: id, title_en: id, motif: 'fl
 before(() => {
   installFakeDom();
 });
-
-/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
-function elements(root) {
-  /** @type {any[]} */
-  const found = [];
-  /** @param {any} node */
-  const walk = (node) => {
-    for (const child of node.childNodes) {
-      if (!child.tagName) continue;
-      found.push(child);
-      walk(child);
-    }
-  };
-  walk(root);
-  return found;
-}
 
 test('tableCellsFor lists the cells row by row, each with its row and col, and skips the missing ones', () => {
   const cells = tableCellsFor(biti);

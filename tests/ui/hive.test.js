@@ -16,6 +16,7 @@ import { test, before, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
+import { elements, withClass } from '../helpers/dom-query.js';
 import { HIVE_WIDTH, CELL_W, CELL_H, CAPTION_H, STRIP_PITCH, cellWidth, stripCells, cellCenters, hexPoints,
   renderHive, renderStrip, resetHiveMemory, sealedUnits } from '../../app/js/ui/components/hive.js';
 
@@ -26,25 +27,6 @@ before(() => {
 beforeEach(() => {
   resetHiveMemory();
 });
-
-/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
-function elements(root) {
-  /** @type {any[]} */
-  const found = [];
-  /** @param {any} node */
-  const walk = (node) => {
-    for (const child of node.childNodes) {
-      if (!child.tagName) continue;
-      found.push(child);
-      walk(child);
-    }
-  };
-  walk(root);
-  return found;
-}
-
-/** @param {any} root @param {string} className */
-const withClass = (root, className) => elements(root).filter((e) => e.classList.contains(className));
 
 const TITLES = ['Prvi stik', 'Družina in ljudje', 'Pri mizi', 'V kavarni in v trgovini', 'Dan in čas', 'Dom', 'Po mestu', 'Prosti čas in vreme', 'Telo in zdravje', 'Delo in študij'];
 const MOTIFS = ['flower', 'heart', 'wheat', 'cup', 'sun', 'house', 'bird', 'leaf', 'hand', 'bee'];

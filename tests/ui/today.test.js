@@ -12,6 +12,7 @@ import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
+import { elements, withClass } from '../helpers/dom-query.js';
 import { createState, skipAheadState } from '../../app/js/engine/scheduler.js';
 import { weekSummary } from '../../app/js/engine/progress.js';
 import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
@@ -34,25 +35,6 @@ const weekOf = (monday, days) => days.map((d) => session(berlin(monday + d, 8)))
 before(() => {
   installFakeDom();
 });
-
-/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
-function elements(root) {
-  /** @type {any[]} */
-  const found = [];
-  /** @param {any} node */
-  const walk = (node) => {
-    for (const child of node.childNodes) {
-      if (!child.tagName) continue;
-      found.push(child);
-      walk(child);
-    }
-  };
-  walk(root);
-  return found;
-}
-
-/** @param {any} root @param {string} className */
-const withClass = (root, className) => elements(root).filter((e) => e.classList.contains(className));
 
 test('greetingFor: Dobro jutro before 10, Dober dan until 18, Dober večer after', () => {
   for (const hour of [0, 5, 9]) assert.equal(greetingFor(hour), 'Dobro jutro', `hour ${hour}`);

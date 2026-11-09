@@ -12,6 +12,7 @@
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
+import { elements } from '../helpers/dom-query.js';
 import { grade } from '../../app/js/engine/grading.js';
 import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
 import { renderFeedback } from '../../app/js/ui/components/feedback.js';
@@ -23,22 +24,6 @@ import { DEFAULT_INTENTION, onboardingSettings, renderOnboarding } from '../../a
 before(() => {
   installFakeDom();
 });
-
-/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
-function elements(root) {
-  /** @type {any[]} */
-  const found = [];
-  /** @param {any} node */
-  const walk = (node) => {
-    for (const child of node.childNodes) {
-      if (!child.tagName) continue;
-      found.push(child);
-      walk(child);
-    }
-  };
-  walk(root);
-  return found;
-}
 
 test('countLine and defaultPrediction: the intro card counts items and minutes, and guesses 80 percent', () => {
   assert.equal(countLine(8), '8 items, about 3 min');

@@ -7,6 +7,7 @@
 import { test, before, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
+import { elements, withClass } from '../helpers/dom-query.js';
 import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
 import { renderHiveScreen } from '../../app/js/ui/screens/hive.js';
 
@@ -21,25 +22,6 @@ beforeEach(() => {
   globalThis.location = { hash: '', replace() {} };
   container = document.createElement('main');
 });
-
-/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
-function elements(root) {
-  /** @type {any[]} */
-  const found = [];
-  /** @param {any} node */
-  const walk = (node) => {
-    for (const child of node.childNodes) {
-      if (!child.tagName) continue;
-      found.push(child);
-      walk(child);
-    }
-  };
-  walk(root);
-  return found;
-}
-
-/** @param {any} root @param {string} className */
-const withClass = (root, className) => elements(root).filter((e) => e.classList.contains(className));
 
 /** @param {string} id @param {string} sl @param {string} en */
 const item = (id, sl, en) => ({

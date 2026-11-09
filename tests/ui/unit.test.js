@@ -8,6 +8,7 @@ import { test, before, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
+import { elements } from '../helpers/dom-query.js';
 import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
 import { renderUnit } from '../../app/js/ui/screens/unit.js';
 
@@ -41,22 +42,6 @@ const appWith = (sealed) => /** @type {any} */ ({
   allowPending: false,
   state: { items: {}, settings: { ...DEFAULT_APP_SETTINGS, voice: 'female' }, meta: { schemaVersion: 1, createdAt: 0, ...(sealed ? { sealed } : {}) } },
 });
-
-/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
-function elements(root) {
-  /** @type {any[]} */
-  const found = [];
-  /** @param {any} node */
-  const walk = (node) => {
-    for (const child of node.childNodes) {
-      if (!child.tagName) continue;
-      found.push(child);
-      walk(child);
-    }
-  };
-  walk(root);
-  return found;
-}
 
 /** @param {any} root */
 const keepButton = (root) => elements(root).find((el) => el.tagName === 'BUTTON' && el.classList.contains('btn-secondary'));

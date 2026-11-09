@@ -8,6 +8,7 @@
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
+import { elements } from '../helpers/dom-query.js';
 import { showToast, toastRegion } from '../../app/js/ui/components/toast.js';
 
 /** @type {any} */
@@ -16,22 +17,6 @@ let document;
 before(() => {
   document = installFakeDom();
 });
-
-/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
-function elements(root) {
-  /** @type {any[]} */
-  const found = [];
-  /** @param {any} node */
-  const walk = (node) => {
-    for (const child of node.childNodes) {
-      if (!child.tagName) continue;
-      found.push(child);
-      walk(child);
-    }
-  };
-  walk(root);
-  return found;
-}
 
 /** The status regions on the body. @returns {any[]} */
 const regions = () => document.body.childNodes.filter((/** @type {any} */ node) => node.classList?.contains('toast-region'));
