@@ -316,6 +316,47 @@ test('pending items are never queued even if present in the lesson', () => {
   assert.ok(accepted.some((e) => e.kind === 'slot') && accepted.some((e) => e.kind === 'dialogue'));
 });
 
+test('allowPending lets a dev build practise pending items', () => {
+  // the test lesson with every item pending, as a dev build compiles it
+  const pending = lesson({ items: lesson().items.map((i) => ({ ...i, verification: verified('pending') })) });
+  const input = { now: T0, states: {}, lesson: pending, unitLessons: [pending], rules: RULES, settings: S, mode: SPEECH, newToday: 0, minutesToday: 0, rng: seeded(1), tz: TZ };
+  const strict = buildSession(input);
+  assert.equal(referencedItems(strict.queue).size, 0, 'by default no entry names a pending item');
+  assert.equal(strict.newCount, 0);
+  assert.deepEqual(buildSession({ ...input, allowPending: false }), strict);
+  const session = buildSession({ ...input, allowPending: true });
+  assert.ok(session.queue.some((e) => e.kind === 'meet'));         // the pending lesson's items are met
+  assert.ok(session.newCount > 0);
+  assert.equal(session.newCount, 3);
+  assert.deepEqual(session, buildSession({ ...input, lesson: lesson(), unitLessons: [lesson()] }), 'the queue the lesson gives once its items are accepted');
+  assert.ok(session.queue.some((e) => e.kind === 'slot') && session.queue.some((e) => e.kind === 'dialogue'));
+  // pending items with states: a due review, unfinished learning, the dialogue over them, the audio and fluency material
+  const more = lesson({ items: [...pending.items, ...[4, 5, 6, 7].map((n) => item(`u01-l02-i0${n}`, [], 'pending'))] });
+  const states = byId(
+    review('u01-l02-i02', T0 - DAY), recall(createState('u01-l02-i03', T0 - DAY), 'correct', T0 - DAY),
+    ...[4, 5, 6, 7].map((n) => review(`u01-l02-i0${n}`, T0 + n * DAY)),
+  );
+  const dev = buildSession({ ...input, lesson: more, unitLessons: [more], states, allowPending: true });
+  assert.equal(dev.reviewCount, 1);
+  assert.equal(dev.newCount, 1);
+  assert.deepEqual(dev.queue[0], { kind: 'typed_en_sl', itemId: 'u01-l02-i02', lessonId: 'u01-l02' }, 'the due pending item opens the session');
+  assert.deepEqual(recallsOf(dev.queue, 'u01-l02-i03').map((i) => dev.queue[i].kind), ['typed_en_sl', 'typed_en_sl', 'typed_en_sl'], 'the unfinished pending item gets its recalls');
+  assert.ok(dev.queue.some((e) => e.kind === 'dialogue'), 'the dialogue over pending items is ready once they graduate');
+  assert.equal(dev.queue.filter((e) => e.kind === 'listening').length, 2);
+  assert.equal(dev.queue.filter((e) => e.kind === 'speaking').length, 2);
+  assert.equal(dev.queue.at(-1).kind, 'fluency');
+  assert.equal(forecastReviewMinutes(states, T0), 2 * REVIEW_MINUTES, 'the forecast never looked at verification');
+  const off = buildSession({ ...input, lesson: more, unitLessons: [more], states });
+  assert.equal(referencedItems(off.queue).size, 0);
+  assert.deepEqual([off.newCount, off.reviewCount], [0, 0]);
+  // a rejected item is not accepted either, so the flag admits it too
+  const rejected = lesson({ items: [item('u01-l02-i01', [], 'rejected')], rules: [], structured: [], production: [], dialogue: undefined });
+  assert.equal(buildSession({ ...input, lesson: rejected, unitLessons: [rejected], allowPending: true }).newCount, 1);
+  assert.equal(buildSession({ ...input, lesson: rejected, unitLessons: [rejected] }).newCount, 0);
+  // rule ids are never typed recalls, with or without the flag
+  assert.equal(buildSession({ ...input, states: byId(review('r-a', T0 - DAY)), allowPending: true }).reviewCount, 0);
+});
+
 test('closing menu options follow the rules', () => {
   assert.deepEqual(closingMenu({ minutesToday: 10, settings: S, lessonRemaining: true, mode: SOUND }), ['stop', 'more3', 'speaking', 'continue']);
   assert.deepEqual(closingMenu({ minutesToday: 25, settings: S, lessonRemaining: true, mode: SOUND }), ['stop', 'speaking', 'continue'], 'at the goal plus 15 minutes, no more3');

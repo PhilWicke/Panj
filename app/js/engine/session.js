@@ -17,12 +17,14 @@
 //   5. with speech recognition on: speaking over known items.
 //   6. one fluency pass over five review-phase items, when there are at least five.
 // Items whose verification is not `accepted` never enter the queue (the compiler keeps them in the
-// lesson's `items`); items the builder has no content for are trusted, since their state means
-// they were accepted when they were practised. Rule ids share the states with the items (a rule's
-// quick check is a scheduled item whose id is the rule id) and are never typed recalls.
+// lesson's `items`), unless `allowPending` is set, which a dev build does to try pending content
+// end to end; items the builder has no content for are trusted, since their state means they were
+// accepted when they were practised. Rule ids share the states with the items (a rule's quick
+// check is a scheduled item whose id is the rule id) and are never typed recalls.
 
 import { GRADUATE_AFTER, isDue, retrievability } from './scheduler.js';
 import { localDateKey } from '../util/time.js';
+import { isRuleId } from '../util/ids.js';
 
 /** @typedef {import('./scheduler.js').ItemState} ItemState */
 /** @typedef {import('./scheduler.js').Settings} Settings */
@@ -66,6 +68,7 @@ import { localDateKey } from '../util/time.js';
  * @property {number} minutesToday minutes practised earlier today
  * @property {() => number} [rng] a generator in [0, 1); Math.random when omitted
  * @property {string} [tz] IANA zone, for tests; the phone's zone when omitted
+ * @property {boolean} [allowPending] a dev build practises items whose verification is not accepted; never set on a strict build (false when omitted)
  */
 
 /**
@@ -105,7 +108,6 @@ const FLUENCY_ITEMS = 5;
 const LISTENING_PER_SESSION = 2;
 const SPEAKING_PER_SESSION = 2;
 const MORE_MINUTES_UNTIL = 15;
-const RULE_ID = /^r-[a-z0-9-]+$/;
 const DAY_MS = 86_400_000;
 
 /**
@@ -121,7 +123,7 @@ export function forecastReviewMinutes(states, now, days = 1) {
   const horizon = now + days * DAY_MS;
   let count = 0;
   for (const [id, state] of Object.entries(states)) {
-    if (state.phase !== 'new' && !RULE_ID.test(id) && state.due <= horizon) count += 1;
+    if (state.phase !== 'new' && !isRuleId(id) && state.due <= horizon) count += 1;
   }
   return count * REVIEW_MINUTES;
 }
@@ -214,7 +216,7 @@ function interleave(units, reviews) {
  * @returns {Session}
  */
 export function buildSession(input) {
-  const { now, states, lesson, unitLessons, rules, settings, mode, newToday, rng = Math.random, tz } = input;
+  const { now, states, lesson, unitLessons, rules, settings, mode, newToday, rng = Math.random, tz, allowPending = false } = input;
   const todayKey = localDateKey(now, tz);
 
   /** @type {Map<string, { item: Item, lesson: Lesson }>} the items the builder has content for */
@@ -223,11 +225,11 @@ export function buildSession(input) {
     for (const item of l.items) if (!known.has(item.id)) known.set(item.id, { item, lesson: l });
   }
   const ruleIds = new Set(rules.map((rule) => rule.id));
-  /** @param {string} id @returns {boolean} an item (not a rule) that may be practised */
+  /** @param {string} id @returns {boolean} an item (not a rule) that may be practised: accepted, unknown, or any known item with allowPending */
   const practisable = (id) => {
-    if (RULE_ID.test(id)) return false;
+    if (isRuleId(id)) return false;
     const entry = known.get(id);
-    return !entry || entry.item.verification.status === 'accepted';
+    return !entry || allowPending || entry.item.verification.status === 'accepted';
   };
   /** @param {string} id @returns {string|undefined} */
   const lessonOf = (id) => known.get(id)?.lesson.id;
@@ -247,10 +249,10 @@ export function buildSession(input) {
   const unfinished = scheduled.filter((state) => state.phase === 'learning').sort(byDue);
   const reviewPhase = scheduled.filter((state) => state.phase === 'review');
 
-  // New items: the lesson's accepted items not met yet, in lesson order, up to the per-day cap and
-  // the budget: tomorrow's forecast plus NEW_ITEM_MINUTES per new item stays within the daily goal.
+  // New items: the lesson's practisable items not met yet, in lesson order, up to the per-day cap
+  // and the budget: tomorrow's forecast plus NEW_ITEM_MINUTES per new item stays within the daily goal.
   const remaining = lesson
-    ? lesson.items.filter((item) => item.verification.status === 'accepted' && (states[item.id]?.phase ?? 'new') === 'new')
+    ? lesson.items.filter((item) => practisable(item.id) && (states[item.id]?.phase ?? 'new') === 'new')
     : [];
   const budget = Math.floor((settings.dailyMinutes - forecastReviewMinutes(states, now, 1)) / NEW_ITEM_MINUTES);
   const fresh = remaining.slice(0, Math.max(0, Math.min(settings.newPerDay - newToday, remaining.length, budget)));

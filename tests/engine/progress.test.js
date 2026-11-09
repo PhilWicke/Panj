@@ -102,7 +102,7 @@ test('lessonFill is the share of accepted items recallable now', () => {
   assert.equal(lessonFill(states, lesson('u01-l04', [item('u01-l01-i09', 'f', [], 'pending')]), T0, R), 0);
 });
 
-test('week starts Monday and grace day makes four of seven count as met', () => {
+test('week starts Monday, days are local dates and the neighbouring weeks are left out', () => {
   const sunday = berlin(11, 20);
   const sessions = [session(berlin(5, 8)), session(berlin(6, 12)), session(berlin(8, 7, 30)), session(berlin(10, 22))];   // Mon Tue Thu Sat
   const week = weekSummary(sessions, sunday, 5, TZ);
@@ -110,7 +110,8 @@ test('week starts Monday and grace day makes four of seven count as met', () => 
   assert.deepEqual(week.days.map((d) => d.date), ['2026-01-05', '2026-01-06', '2026-01-07', '2026-01-08', '2026-01-09', '2026-01-10', '2026-01-11']);
   assert.deepEqual(week.days.map((d) => d.active), [true, true, false, true, false, true, false]);
   assert.deepEqual(week.days.map((d) => d.minutes), [10, 10, 0, 10, 0, 10, 0]);
-  assert.deepEqual([week.activeDays, week.target, week.graceUsed, week.met, week.remainingDays], [4, 5, true, true, 0]);
+  // Sunday evening without a session yet: today can still make it five, so the week is not met yet (the grace day applies once it is over)
+  assert.deepEqual([week.activeDays, week.target, week.graceUsed, week.met, week.remainingDays], [4, 5, false, false, 0]);
   // five days: met without the grace day
   const five = weekSummary([...sessions, session(berlin(11, 9))], sunday, 5, TZ);
   assert.deepEqual([five.activeDays, five.graceUsed, five.met], [5, false, true]);
@@ -138,7 +139,9 @@ test('week starts Monday and grace day makes four of seven count as met', () => 
   const t3 = weekSummary(sessions.slice(0, 3), sunday, 3, TZ);
   assert.deepEqual([t3.target, t3.graceUsed, t3.met], [3, false, true]);
   const t4 = weekSummary(sessions.slice(0, 3), sunday, 4, TZ);
-  assert.deepEqual([t4.target, t4.graceUsed, t4.met], [4, true, true]);
+  assert.deepEqual([t4.target, t4.graceUsed, t4.met], [4, false, false], 'three of four with Sunday still open');
+  const t4over = weekSummary(sessions.slice(0, 3), berlin(14, 12), 4, TZ, sunday);
+  assert.deepEqual([t4over.target, t4over.graceUsed, t4over.met], [4, true, true], 'three of four once the week is over: the grace day');
   assert.equal(weekSummary([], sunday, undefined, TZ).target, 5);
   // without a zone the phone's zone applies
   const here = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -154,6 +157,117 @@ test('week starts Monday and grace day makes four of seven count as met', () => 
   const none = weekSummary([], berlin(7, 12), 5, TZ);
   assert.deepEqual([none.activeDays, none.graceUsed, none.met, none.remainingDays], [0, false, false, 4]);
   assert.ok(none.days.every((d) => !d.active && d.minutes === 0));
+});
+
+test('lessonFill and hiveFill count pending items only with allowPending', () => {
+  // a lesson whose items are all pending, every one of them in review with high retrievability
+  const l = lesson('u01-l05', [item('u01-l05-i01', 'a', [], 'pending'), item('u01-l05-i02', 'b', [], 'pending')]);
+  const states = byId(reviewed('u01-l05-i01', 1), reviewed('u01-l05-i02', 1));
+  assert.ok(Object.values(states).every((s) => retrievability(s, T0) > 0.95));
+  assert.equal(lessonFill(states, l, T0, 0.9), 0);
+  assert.equal(lessonFill(states, l, T0, 0.9, {}), 0);
+  assert.equal(lessonFill(states, l, T0, 0.9, { allowPending: false }), 0);
+  assert.equal(lessonFill(states, l, T0, 0.9, { allowPending: true }), 1);
+  const content = { unit: unit('u01', [l]), lessons: [l] };
+  assert.equal(hiveFill(states, content, T0, 0.9).fill, 0);
+  assert.deepEqual(hiveFill(states, content, T0, 0.9, { allowPending: true }), { unitId: 'u01', cells: [{ lessonId: 'u01-l05', fill: 1 }], fill: 1 });
+  // a mixed lesson: with the flag every item counts, so an unmet rejected item lowers the share
+  const mixed = lesson('u01-l01', [item('u01-l01-i01', 'a'), item('u01-l01-i02', 'b'), item('u01-l01-i09', 'f', [], 'pending'), item('u01-l01-i10', 'g', [], 'rejected')]);
+  const mixedStates = byId(fresh, edge, reviewed('u01-l01-i09', 1));
+  assert.equal(lessonFill(mixedStates, mixed, T0, R), 1, 'two of the two accepted items');
+  assert.equal(lessonFill(mixedStates, mixed, T0, R, { allowPending: true }), 3 / 4, 'three of all four');
+  const two = { unit: unit('u01', [mixed, l]), lessons: [mixed, l] };
+  const all = { ...mixedStates, ...states };
+  assert.deepEqual(hiveFill(all, two, T0, R, { allowPending: true }), { unitId: 'u01', cells: [{ lessonId: 'u01-l01', fill: 3 / 4 }, { lessonId: 'u01-l05', fill: 1 }], fill: 5 / 6 });
+  assert.deepEqual(hiveFill(all, two, T0, R), { unitId: 'u01', cells: [{ lessonId: 'u01-l01', fill: 1 }, { lessonId: 'u01-l05', fill: 0 }], fill: 1 });
+  // recallNow counts states and never looked at verification
+  assert.equal(recallNow(states, T0, R), 2);
+});
+
+test('weekSummary: five active days meet the target', () => {
+  const sessions = [5, 6, 7, 8, 9].map((d) => session(berlin(d, 8)));   // Monday to Friday
+  const friday = weekSummary(sessions, berlin(9, 9), 5, TZ);
+  assert.deepEqual([friday.activeDays, friday.met, friday.graceUsed, friday.reachable], [5, true, false, true]);
+  assert.deepEqual([friday.todayActive, friday.remainingDays, friday.possibleDays], [true, 2, 7]);
+  const sunday = weekSummary(sessions, berlin(11, 20), 5, TZ);
+  assert.deepEqual([sunday.met, sunday.graceUsed, sunday.reachable, sunday.todayActive, sunday.possibleDays], [true, false, true, false, 6]);
+  // the same week seen from the Wednesday after it
+  const later = weekSummary(sessions, berlin(14, 12), 5, TZ, berlin(7, 12));
+  assert.deepEqual([later.weekStart, later.met, later.graceUsed, later.reachable, later.remainingDays, later.possibleDays, later.todayActive], ['2026-01-05', true, false, true, 0, 5, false]);
+  // seven of seven: met, no grace
+  const all = weekSummary([5, 6, 7, 8, 9, 10, 11].map((d) => session(berlin(d, 8))), berlin(11, 20), 5, TZ);
+  assert.deepEqual([all.activeDays, all.possibleDays, all.met, all.graceUsed], [7, 7, true, false]);
+});
+
+test('weekSummary: four active days with the week over are met with the grace day', () => {
+  const sessions = [session(berlin(5, 8)), session(berlin(6, 12)), session(berlin(8, 7, 30)), session(berlin(10, 22))];   // Mon Tue Thu Sat
+  // weekOf = a day in the previous week; now = the following Wednesday
+  const week = weekSummary(sessions, berlin(14, 12), 5, TZ, berlin(7, 12));
+  assert.equal(week.weekStart, '2026-01-05');
+  assert.deepEqual([week.activeDays, week.remainingDays, week.possibleDays, week.met, week.graceUsed, week.reachable, week.todayActive], [4, 0, 4, true, true, true, false]);
+  // the same week seen from any later day, the Monday after it included, reads the same, whichever of its days names it
+  for (const day of [12, 13, 20]) assert.deepEqual(weekSummary(sessions, berlin(day, 9), 5, TZ, berlin(10, 12)), week);
+  // a session today, in the following week, is not this week's
+  assert.deepEqual(weekSummary([...sessions, session(berlin(14, 9))], berlin(14, 12), 5, TZ, berlin(7, 12)), week);
+  // three active days with the week over: not met, the grace day does not stretch
+  const three = weekSummary(sessions.slice(0, 3), berlin(14, 12), 5, TZ, berlin(7, 12));
+  assert.deepEqual([three.activeDays, three.possibleDays, three.met, three.graceUsed, three.reachable], [3, 3, false, false, false]);
+  // weekOf defaults to now
+  assert.deepEqual(weekSummary(sessions, berlin(14, 12), 5, TZ), weekSummary(sessions, berlin(14, 12), 5, TZ, berlin(14, 12)));
+});
+
+test('weekSummary: four active days on a Sunday with no session yet today are not met and still reachable', () => {
+  const sessions = [session(berlin(5, 8)), session(berlin(6, 12)), session(berlin(8, 7, 30)), session(berlin(10, 22))];   // Mon Tue Thu Sat
+  const sunday = weekSummary(sessions, berlin(11, 20), 5, TZ);
+  // possibleDays 5 (today can still be added)
+  assert.deepEqual([sunday.activeDays, sunday.remainingDays, sunday.todayActive, sunday.possibleDays], [4, 0, false, 5]);
+  assert.deepEqual([sunday.met, sunday.graceUsed, sunday.reachable], [false, false, true]);
+  // a session on Sunday makes it five
+  const done = weekSummary([...sessions, session(berlin(11, 21))], berlin(11, 22), 5, TZ);
+  assert.deepEqual([done.activeDays, done.todayActive, done.possibleDays, done.met, done.graceUsed], [5, true, 5, true, false]);
+  // once Monday comes without it, the grace day counts the week as met
+  const monday = weekSummary(sessions, berlin(12, 9), 5, TZ, berlin(11, 20));
+  assert.deepEqual([monday.possibleDays, monday.met, monday.graceUsed, monday.reachable], [4, true, true, true]);
+  // the calendar marks active days only: Sunday stays unmarked, the grace day is text
+  assert.deepEqual(monday.days.map((d) => d.active), [true, true, false, true, false, true, false]);
+});
+
+test('weekSummary: two active days with two days left cannot reach the target', () => {
+  // Friday evening with a session today, active Monday and Friday: possibleDays 4
+  const friday = weekSummary([session(berlin(5, 8)), session(berlin(9, 18))], berlin(9, 21), 5, TZ);
+  assert.deepEqual([friday.activeDays, friday.todayActive, friday.remainingDays, friday.possibleDays], [2, true, 2, 4]);
+  assert.deepEqual([friday.met, friday.graceUsed, friday.reachable], [false, false, true], 'four of five would be the grace day');
+  // one day left: possibleDays 3, out of reach
+  const saturday = weekSummary([session(berlin(5, 8)), session(berlin(10, 18))], berlin(10, 21), 5, TZ);
+  assert.deepEqual([saturday.activeDays, saturday.todayActive, saturday.remainingDays, saturday.possibleDays], [2, true, 1, 3]);
+  assert.deepEqual([saturday.met, saturday.graceUsed, saturday.reachable], [false, false, false]);
+  // without a session yet, the day itself is still possible
+  const saturdayMorning = weekSummary([session(berlin(5, 8))], berlin(10, 9), 5, TZ);
+  assert.deepEqual([saturdayMorning.activeDays, saturdayMorning.todayActive, saturdayMorning.possibleDays, saturdayMorning.reachable], [1, false, 3, false]);
+  const fridayMorning = weekSummary([session(berlin(5, 8)), session(berlin(6, 8))], berlin(9, 9), 5, TZ);
+  assert.deepEqual([fridayMorning.activeDays, fridayMorning.possibleDays, fridayMorning.reachable, fridayMorning.met], [2, 5, true, false]);
+  // an empty week on its Monday: everything is still possible
+  const monday = weekSummary([], berlin(5, 9), 5, TZ);
+  assert.deepEqual([monday.activeDays, monday.remainingDays, monday.possibleDays, monday.reachable, monday.met], [0, 6, 7, true, false]);
+  // a week still to come: all seven days are possible
+  const next = weekSummary([], berlin(9, 9), 5, TZ, berlin(14, 12));
+  assert.deepEqual([next.weekStart, next.remainingDays, next.possibleDays, next.todayActive, next.reachable], ['2026-01-12', 7, 7, false, true]);
+  // a status, never a loss message: counts and booleans, nothing else
+  assert.deepEqual(Object.keys(saturday).sort(), ['activeDays', 'days', 'graceUsed', 'met', 'possibleDays', 'reachable', 'remainingDays', 'target', 'todayActive', 'weekStart']);
+});
+
+test('weekSummary: target 1 has no grace day', () => {
+  // graceDays 0, so 0 active days is never met, not even once the week is over
+  const sunday = weekSummary([], berlin(11, 20), 1, TZ);
+  assert.deepEqual([sunday.target, sunday.met, sunday.graceUsed, sunday.reachable, sunday.possibleDays], [1, false, false, true, 1]);
+  const over = weekSummary([], berlin(14, 12), 1, TZ, berlin(11, 20));
+  assert.deepEqual([over.met, over.graceUsed, over.reachable, over.possibleDays], [false, false, false, 0]);
+  const one = weekSummary([session(berlin(7, 8))], berlin(14, 12), 1, TZ, berlin(11, 20));
+  assert.deepEqual([one.activeDays, one.met, one.graceUsed, one.reachable], [1, true, false, true]);
+  // target 2 has one: a single active day meets it once the week is over, none does not
+  const two = weekSummary([session(berlin(7, 8))], berlin(14, 12), 2, TZ, berlin(11, 20));
+  assert.deepEqual([two.met, two.graceUsed], [true, true]);
+  assert.equal(weekSummary([], berlin(14, 12), 2, TZ, berlin(11, 20)).met, false);
 });
 
 test('sessions at 23:58 and 00:05 local land on different days', () => {

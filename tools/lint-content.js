@@ -6,6 +6,7 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { RULE_ID } from '../app/js/util/ids.js';
 
 /**
  * One finding. `file` is relative to the content directory. `path` locates the
@@ -33,7 +34,6 @@ const ITEM_ID = /^u\d{2}-l\d{2}-i\d{2}$/;
 const STRUCTURED_ID = /^u\d{2}-l\d{2}-s\d{2}$/;
 const PRODUCTION_ID = /^u\d{2}-l\d{2}-p\d{2}$/;
 const DIALOGUE_ID = /^u\d{2}-l\d{2}-d$/;
-const RULE_ID = /^r-[a-z0-9-]+$/;
 
 // Anything outside the Slovenian alphabet (no q, w, x, y), digits, space and the punctuation .,;:!?'"()-
 const NOT_SLOVENIAN = /[^abcčdefghijklmnoprsštuvzžABCČDEFGHIJKLMNOPRSŠTUVZŽ0-9 .,;:!?'"()-]/gu;

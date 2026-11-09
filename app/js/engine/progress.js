@@ -11,6 +11,7 @@
 import { retrievability } from './scheduler.js';
 import { localDateKey, daysBetween } from '../util/time.js';
 import { wordTokens } from '../util/tokens.js';
+import { isRuleId } from '../util/ids.js';
 
 /** @typedef {import('./scheduler.js').ItemState} ItemState */
 /** @typedef {import('../content/types.js').Lesson} Lesson */
@@ -41,25 +42,30 @@ import { wordTokens } from '../util/tokens.js';
  */
 
 /**
+ * The status of a week, as weekSummary reads it from `now`: what is done, what is still possible
+ * and whether the target is met or still within reach. Never a loss message.
  * @typedef {object} WeekSummary
  * @property {string} weekStart the Monday, `YYYY-MM-DD`
- * @property {WeekDay[]} days Monday to Sunday
+ * @property {WeekDay[]} days Monday to Sunday; active days only, the grace day is never marked here
  * @property {number} activeDays
  * @property {number} target active days per week
- * @property {boolean} graceUsed the week counts as met only with its one grace day
- * @property {boolean} met
- * @property {number} remainingDays days of the week after today, 6 on a Monday and 0 on a Sunday
+ * @property {number} remainingDays days of the week after today: 6 on its Monday, 0 on its Sunday and once the week is over, 7 for a week still to come
+ * @property {boolean} todayActive a session started today, today being a day of this week
+ * @property {number} possibleDays the active days plus the days the week can still add, today included while it has no session yet
+ * @property {boolean} met the target is reached, or can no longer be reached and the active days fall short of it by no more than the grace day
+ * @property {boolean} graceUsed met by the grace day alone: the week is over with target minus one active days
+ * @property {boolean} reachable the target can still be met, the grace day counted: possibleDays is at least target minus the grace day
  */
 
 /** @typedef {{ lessonId: string, fill: number }} HiveCell */
 /** @typedef {{ unitId: string, cells: HiveCell[], fill: number }} HiveFill */
+/** @typedef {{ allowPending?: boolean }} FillOptions allowPending: every item of a lesson counts, as a dev build practises them all; accepted items only when omitted */
 
 /** The hours A1 courses budget, shown next to hoursPracticed. */
 export const a1Hours = Object.freeze({ min: 120, max: 180 });
 
 const DAY_MS = 86_400_000;
 const DAYS_PER_WEEK = 7;
-const RULE_ID = /^r-[a-z0-9-]+$/;
 
 /**
  * An item the learner can recall now: in review (mastered or not) with a predicted recall at or
@@ -86,7 +92,7 @@ function recallable(state, now, retention) {
 export function recallNow(states, now, retention) {
   let count = 0;
   for (const [id, state] of Object.entries(states)) {
-    if (!RULE_ID.test(id) && recallable(state, now, retention)) count += 1;
+    if (!isRuleId(id) && recallable(state, now, retention)) count += 1;
   }
   return count;
 }
@@ -119,55 +125,62 @@ export function wordsMet(states, units) {
 }
 
 /**
- * The accepted items of a lesson and how many of them are recallable now.
+ * The items of a lesson that count (the accepted ones, or every item with `allowPending`) and how
+ * many of them are recallable now.
  * @param {Record<string, ItemState>} states
  * @param {Lesson} lesson
  * @param {number} now
  * @param {number} retention
- * @returns {{ accepted: number, recalled: number }}
+ * @param {boolean} allowPending
+ * @returns {{ counted: number, recalled: number }}
  */
-function tally(states, lesson, now, retention) {
-  let accepted = 0;
+function tally(states, lesson, now, retention, allowPending) {
+  let counted = 0;
   let recalled = 0;
   for (const item of lesson.items) {
-    if (item.verification.status !== 'accepted') continue;
-    accepted += 1;
+    if (!allowPending && item.verification.status !== 'accepted') continue;
+    counted += 1;
     if (recallable(states[item.id], now, retention)) recalled += 1;
   }
-  return { accepted, recalled };
+  return { counted, recalled };
 }
 
-/** @param {{ accepted: number, recalled: number }} t @returns {number} 0 to 1, and 0 when nothing is accepted */
-const share = (t) => (t.accepted === 0 ? 0 : t.recalled / t.accepted);
+/** @param {{ counted: number, recalled: number }} t @returns {number} 0 to 1, and 0 when nothing counts */
+const share = (t) => (t.counted === 0 ? 0 : t.recalled / t.counted);
 
 /**
- * The share of the lesson's accepted items the learner can recall now, 0 to 1: what a hive cell
- * shows, retention rather than completion. A lesson without accepted items is 0.
+ * The share of the lesson's items the learner can recall now, 0 to 1: what a hive cell shows,
+ * retention rather than completion. The accepted items count, or every item with
+ * `options.allowPending` (a dev build); a lesson without counted items is 0.
  * @param {Record<string, ItemState>} states by item id
  * @param {Lesson} lesson
  * @param {number} now epoch ms
  * @param {number} retention the desired retention, 0 to 1
+ * @param {FillOptions} [options]
  * @returns {number}
  */
-export function lessonFill(states, lesson, now, retention) {
-  return share(tally(states, lesson, now, retention));
+export function lessonFill(states, lesson, now, retention, options = {}) {
+  return share(tally(states, lesson, now, retention, options.allowPending === true));
 }
 
 /**
  * The fill of a unit's panel: one cell per lesson the bundle carries, in order, with that lesson's
- * fill, and the unit's own fill as the share of all its accepted items that are recallable now
- * (weighted by items, so a lesson of ten items counts for more than one of three).
+ * fill, and the unit's own fill as the share of all its counted items that are recallable now
+ * (weighted by items, so a lesson of ten items counts for more than one of three). The accepted
+ * items count, or every item with `options.allowPending` (a dev build).
  * @param {Record<string, ItemState>} states by item id
  * @param {UnitContent} unitContent
  * @param {number} now epoch ms
  * @param {number} retention the desired retention, 0 to 1
+ * @param {FillOptions} [options]
  * @returns {HiveFill}
  */
-export function hiveFill(states, unitContent, now, retention) {
-  const total = { accepted: 0, recalled: 0 };
+export function hiveFill(states, unitContent, now, retention, options = {}) {
+  const allowPending = options.allowPending === true;
+  const total = { counted: 0, recalled: 0 };
   const cells = unitContent.lessons.map((lesson) => {
-    const t = tally(states, lesson, now, retention);
-    total.accepted += t.accepted;
+    const t = tally(states, lesson, now, retention, allowPending);
+    total.counted += t.counted;
     total.recalled += t.recalled;
     return { lessonId: lesson.id, fill: share(t) };
   });
@@ -175,20 +188,25 @@ export function hiveFill(states, unitContent, now, retention) {
 }
 
 /**
- * The week that contains `now`, Monday to Sunday in the learner's local days. A day is active when
- * a session started on it (a session that runs past midnight counts for the day it started). The
- * target is met at `target` active days, or at `target - 1` with the week's one grace day, which
- * `graceUsed` then reports; it is a status of the week so far, never a loss message.
+ * The week that contains `weekOf` (today's week when omitted), Monday to Sunday in the learner's
+ * local days, read from `now`. A day is active when a session started on it (a session that runs
+ * past midnight counts for the day it started). The summary is a status of the week, never a loss
+ * message: how many days are active, how many the week can still have (`possibleDays`: the active
+ * days, the days after today, and today while it has no session yet), whether the target is met
+ * and whether it is still within reach. A target of two or more carries one grace day, a target of
+ * one none; the grace day counts only once the week can no longer reach the target on its own, and
+ * `graceUsed` says so, so the week view shows it as text while the calendar marks active days only.
  * @param {SessionRecord[]} sessions
- * @param {number} now epoch ms
+ * @param {number} now epoch ms; today is its local date
  * @param {number} [target] active days per week, 5 by default
  * @param {string} [tz] IANA zone, for tests; the phone's zone when omitted
+ * @param {number} [weekOf] epoch ms of any instant in the week to summarise; `now` when omitted
  * @returns {WeekSummary}
  */
-export function weekSummary(sessions, now, target = 5, tz) {
-  const todayUtc = Date.parse(`${localDateKey(now, tz)}T00:00:00Z`);
-  const weekday = (new Date(todayUtc).getUTCDay() + 6) % DAYS_PER_WEEK;   // Monday 0 to Sunday 6
-  const mondayUtc = todayUtc - weekday * DAY_MS;
+export function weekSummary(sessions, now, target = 5, tz, weekOf = now) {
+  const weekOfUtc = Date.parse(`${localDateKey(weekOf, tz)}T00:00:00Z`);
+  const weekday = (new Date(weekOfUtc).getUTCDay() + 6) % DAYS_PER_WEEK;   // Monday 0 to Sunday 6
+  const mondayUtc = weekOfUtc - weekday * DAY_MS;
   /** @type {WeekDay[]} */
   const days = Array.from({ length: DAYS_PER_WEEK }, (_, i) => ({
     date: new Date(mondayUtc + i * DAY_MS).toISOString().slice(0, 10),
@@ -202,15 +220,24 @@ export function weekSummary(sessions, now, target = 5, tz) {
     days[index].minutes += session.minutes;
   }
   const activeDays = days.filter((day) => day.active).length;
-  const graceUsed = activeDays === target - 1;
+  const todayIndex = daysBetween(days[0].date, localDateKey(now, tz));   // 0 to 6 inside the week, negative before it, 7 and more after it
+  const todayInWeek = todayIndex >= 0 && todayIndex < DAYS_PER_WEEK;
+  const remainingDays = Math.max(0, Math.min(DAYS_PER_WEEK, DAYS_PER_WEEK - 1 - todayIndex));
+  const todayActive = todayInWeek && days[todayIndex].active;
+  const possibleDays = activeDays + remainingDays + (todayInWeek && !todayActive ? 1 : 0);
+  const graceDays = target >= 2 ? 1 : 0;
+  const met = activeDays >= target || (possibleDays < target && activeDays >= target - graceDays);
   return {
     weekStart: days[0].date,
     days,
     activeDays,
     target,
-    graceUsed,
-    met: activeDays >= target || graceUsed,
-    remainingDays: DAYS_PER_WEEK - 1 - weekday,
+    remainingDays,
+    todayActive,
+    possibleDays,
+    met,
+    graceUsed: met && activeDays < target,
+    reachable: possibleDays >= target - graceDays,
   };
 }
 
