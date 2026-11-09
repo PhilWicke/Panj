@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Lesson",
-  "description": "One file under content/lessons/<id>.json. Mirrors the Lesson typedef in app/js/content/types.js. tools/lint-content.js checks this shape by hand (lint rule schema) and adds the corpus rules alphabet, duplicate, reference, pending-practised, register, personal and helper-missing.",
+  "description": "One file under content/lessons/<id>.json. Mirrors the Lesson typedef in app/js/content/types.js. tools/lint-content.js checks this shape by hand (lint rule schema) and adds the corpus rules alphabet, duplicate, reference, pending-practised, register, personal, lesson-count, consolidation, standalone, examples and helper-missing.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "unit", "order", "title_sl", "title_en", "items", "rules", "structured", "production"],
+  "required": ["id", "unit", "order", "role", "title_sl", "title_en", "items", "rules", "structured", "production"],
   "properties": {
     "$schema": { "type": "string" },
     "id": {
@@ -13,7 +13,11 @@
       "description": "The file is named <id>.json and every id inside the lesson starts with <id>-."
     },
     "unit": { "$ref": "#/$defs/unitId", "description": "Must exist in units.json, and that unit must list this lesson." },
-    "order": { "type": "integer", "minimum": 1, "description": "Position within the unit, from 1." },
+    "order": { "type": "integer", "minimum": 1, "description": "Position within the unit, from 1: the lesson's place in the unit's list (lint rule lesson-count)." },
+    "role": {
+      "enum": ["theme", "consolidation"],
+      "description": "A theme lesson brings new items and rule cards. The consolidation lesson comes last in its unit, introduces no rule card, and its production and dialogue new_items may practise items of the unit's earlier lessons (lint rules consolidation and standalone)."
+    },
     "title_sl": { "$ref": "#/$defs/slText" },
     "title_en": { "$ref": "#/$defs/enText" },
     "items": { "type": "array", "items": { "$ref": "#/$defs/Item" } },
@@ -102,7 +106,7 @@
           "description": "Inflected forms by label (case, number), so slot production can grade them."
         },
         "slots": { "type": "array", "items": { "$ref": "#/$defs/Slot" } },
-        "examples": { "type": "array", "items": { "$ref": "#/$defs/Example" } },
+        "examples": { "type": "array", "items": { "$ref": "#/$defs/Example" }, "description": "One or two example sentences of at most eight words each (lint rule examples)." },
         "helper": {
           "oneOf": [{ "$ref": "#/$defs/enText" }, { "type": "null" }],
           "description": "Cognate, false friend or one-line mnemonic. The linter warns when a cognate has none (lint rule helper-missing)."
@@ -146,7 +150,7 @@
         "en": { "$ref": "#/$defs/enText", "description": "The instruction shown to the learner." },
         "answer": { "$ref": "#/$defs/text" },
         "accept": { "type": "array", "items": { "$ref": "#/$defs/text" } },
-        "item": { "$ref": "#/$defs/itemId", "description": "The item practised; it must be accepted for a strict build." },
+        "item": { "$ref": "#/$defs/itemId", "description": "The item practised: an item of this lesson, or in a consolidation lesson of this unit up to this lesson (lint rule standalone); it must be accepted for a strict build." },
         "filler": { "$ref": "#/$defs/text", "description": "The slot filler used, for slot substitutions." }
       }
     },
@@ -156,10 +160,10 @@
       "required": ["speaker", "sl", "en"],
       "properties": {
         "speaker": { "$ref": "#/$defs/text", "description": "you is the learner; the other speakers are the roles in the scene." },
-        "sl": { "$ref": "#/$defs/slText" },
+        "sl": { "$ref": "#/$defs/slText", "description": "At most 60 characters and 10 words, so the line can be typed (lint rule standalone)." },
         "en": { "$ref": "#/$defs/enText" },
         "audio": { "$ref": "#/$defs/text" },
-        "new_items": { "type": "array", "items": { "$ref": "#/$defs/itemId" }, "description": "Ids of the items this line practises." }
+        "new_items": { "type": "array", "items": { "$ref": "#/$defs/itemId" }, "description": "Ids of the items this line practises, under the same rule as a production item (lint rule standalone)." }
       }
     },
     "Dialogue": {

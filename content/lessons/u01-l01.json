@@ -2,6 +2,7 @@
   "id": "u01-l01",
   "unit": "u01",
   "order": 1,
+  "role": "theme",
   "title_sl": "Prvi pozdrav",
   "title_en": "First hello",
   "items": [

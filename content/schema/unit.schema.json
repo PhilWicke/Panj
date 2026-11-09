@@ -8,10 +8,19 @@
     "Unit": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "order", "title_sl", "title_en", "motif", "lessons"],
+      "required": ["id", "order", "level", "lessonCount", "title_sl", "title_en", "motif", "lessons"],
       "properties": {
         "id": { "type": "string", "pattern": "^u[0-9]{2}$" },
         "order": { "type": "integer", "minimum": 1 },
+        "level": {
+          "enum": ["A1", "A2", "B1", "B2", "C1", "C2"],
+          "description": "The CEFR level the unit belongs to. Unit ids continue across levels."
+        },
+        "lessonCount": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "How many lessons the unit has when complete: theme lessons, then one consolidation lesson last. A unit lists at most this many (lint rule lesson-count); one with fewer, but at least one, is a warning (lint rule unit-incomplete)."
+        },
         "title_sl": {
           "type": "string",
           "minLength": 1,
@@ -23,7 +32,7 @@
         "lessons": {
           "type": "array",
           "items": { "type": "string", "pattern": "^u[0-9]{2}-l[0-9]{2}$" },
-          "description": "Lesson ids in order. Each must exist as content/lessons/<id>.json and name this unit (lint rule reference)."
+          "description": "Lesson ids in order. Each must exist as content/lessons/<id>.json and name this unit (lint rule reference), and its order is its position here (lint rule lesson-count)."
         }
       }
     }

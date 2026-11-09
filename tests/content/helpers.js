@@ -92,10 +92,10 @@ const ADDED_ITEMS = {
 
 /**
  * Adds lesson `id` to unit u01 at the next position, with one accepted word item chosen by that
- * position, so lessons added in a row repeat no item and no gloss.
- * @param {string} dir @param {string} id
+ * position, so lessons added in a row repeat no item and no gloss, and with the given role.
+ * @param {string} dir @param {string} id @param {'theme'|'consolidation'} [role]
  */
-export async function addLesson(dir, id) {
+export async function addLesson(dir, id, role = 'theme') {
   const units = JSON.parse(await readFile(join(dir, 'units.json'), 'utf8'));
   const position = units.find((/** @type {any} */ unit) => unit.id === 'u01').lessons.length + 1;
   const added = ADDED_ITEMS[/** @type {2|3|4|5} */ (position)];
@@ -107,6 +107,7 @@ export async function addLesson(dir, id) {
     id,
     unit: 'u01',
     order: position,
+    role,
     title_sl: 'Slovo',
     title_en: 'Goodbye',
     items: [{

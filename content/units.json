@@ -2,6 +2,8 @@
   {
     "id": "u01",
     "order": 1,
+    "level": "A1",
+    "lessonCount": 5,
     "title_sl": "Prvi stik",
     "title_en": "First contact",
     "motif": "flower",
@@ -12,6 +14,8 @@
   {
     "id": "u02",
     "order": 2,
+    "level": "A1",
+    "lessonCount": 5,
     "title_sl": "Družina in ljudje",
     "title_en": "Family and people",
     "motif": "heart",
@@ -20,6 +24,8 @@
   {
     "id": "u03",
     "order": 3,
+    "level": "A1",
+    "lessonCount": 5,
     "title_sl": "Pri mizi",
     "title_en": "At the table",
     "motif": "wheat",
@@ -28,14 +34,18 @@
   {
     "id": "u04",
     "order": 4,
+    "level": "A1",
+    "lessonCount": 5,
     "title_sl": "V kavarni in v trgovini",
     "title_en": "In the café and the shop",
-    "motif": "hexagon",
+    "motif": "cup",
     "lessons": []
   },
   {
     "id": "u05",
     "order": 5,
+    "level": "A1",
+    "lessonCount": 5,
     "title_sl": "Dan in čas",
     "title_en": "Day and time",
     "motif": "sun",
@@ -44,6 +54,8 @@
   {
     "id": "u06",
     "order": 6,
+    "level": "A1",
+    "lessonCount": 5,
     "title_sl": "Dom",
     "title_en": "Home",
     "motif": "house",
@@ -52,6 +64,8 @@
   {
     "id": "u07",
     "order": 7,
+    "level": "A1",
+    "lessonCount": 5,
     "title_sl": "Po mestu",
     "title_en": "Around town",
     "motif": "bird",
@@ -60,6 +74,8 @@
   {
     "id": "u08",
     "order": 8,
+    "level": "A1",
+    "lessonCount": 5,
     "title_sl": "Prosti čas in vreme",
     "title_en": "Free time and the weather",
     "motif": "leaf",
@@ -68,14 +84,18 @@
   {
     "id": "u09",
     "order": 9,
+    "level": "A1",
+    "lessonCount": 5,
     "title_sl": "Telo in zdravje",
     "title_en": "Body and health",
-    "motif": "star",
+    "motif": "hand",
     "lessons": []
   },
   {
     "id": "u10",
     "order": 10,
+    "level": "A1",
+    "lessonCount": 5,
     "title_sl": "Delo in študij",
     "title_en": "Work and study",
     "motif": "bee",

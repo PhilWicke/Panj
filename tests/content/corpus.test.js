@@ -10,10 +10,11 @@ import { lintContent } from '../../tools/lint-content.js';
 import { reviewGuard } from '../../tools/review-guard.js';
 import { DIALOGUE_SHARE, EXAMPLE_SHARE, knownShares } from '../../tools/known-words.js';
 import { normalize, stripDiacritics } from '../../app/js/engine/grading.js';
+import { SHAPES } from './shapes.js';
 
 const CONTENT_URL = new URL('../../content/', import.meta.url);
 const contentDir = fileURLToPath(CONTENT_URL);
-const MOTIFS = ['flower', 'bee', 'sun', 'hexagon', 'leaf', 'bird', 'house', 'star', 'heart', 'wheat'];
+const MOTIFS = ['flower', 'heart', 'wheat', 'cup', 'sun', 'house', 'bird', 'leaf', 'hand', 'bee'];
 
 test('the content lints clean in development mode (pending items allowed)', async () => {
   const r = await lintContent({ contentDir, allowPending: true });
@@ -57,13 +58,14 @@ test('NATIVE_LIST.md has one row per doubted item and no row for an accepted or 
   assert.equal(new Set(rowIds).size, rowIds.length);
 });
 
-test('units.json lists the ten units of the syllabus in order, each with its own motif', async () => {
+test('units.json lists the A1 units in order, each with its motif and the A1 lessonCount; later levels may follow', async () => {
   const units = JSON.parse(await readFile(new URL('units.json', CONTENT_URL), 'utf8'));
-  const ids = Array.from({ length: 10 }, (_, i) => `u${String(i + 1).padStart(2, '0')}`);
-  assert.deepEqual(units.map((u) => u.id), ids);
-  assert.deepEqual(units.map((u) => u.order), ids.map((_, i) => i + 1));
-  for (const u of units) assert.ok(MOTIFS.includes(u.motif), `${u.id} has motif ${JSON.stringify(u.motif)}`);
-  assert.equal(new Set(units.map((u) => u.motif)).size, units.length, 'motifs repeat');
+  const a1 = units.filter((u) => u.level === 'A1');
+  assert.equal(a1.length, SHAPES.A1.courseItems / SHAPES.A1.unitItems);
+  assert.deepEqual(a1.map((u) => u.id), ['u01', 'u02', 'u03', 'u04', 'u05', 'u06', 'u07', 'u08', 'u09', 'u10']);
+  assert.deepEqual(a1.map((u) => u.order), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  assert.deepEqual(a1.map((u) => u.motif), MOTIFS);
+  for (const u of a1) assert.equal(u.lessonCount, SHAPES.A1.lessonCount, u.id);
 });
 
 // The grader accepts an answer that differs from its target only by missing diacritics as

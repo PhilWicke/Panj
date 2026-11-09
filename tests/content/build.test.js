@@ -78,7 +78,7 @@ const missing = (file) => assert.rejects(stat(file), { code: 'ENOENT' });
 
 test('index.json carries the mode, the build time, every unit and rule, and a unit without lessons still gets its file', async () => {
   const content = await copyFixture('content-valid', (dir) => editJson(dir, 'units.json', (units) => {
-    units.push({ id: 'u02', order: 2, title_sl: 'Družina', title_en: 'Family', motif: 'heart', lessons: [] });
+    units.push({ id: 'u02', order: 2, level: 'A1', lessonCount: 5, title_sl: 'Družina', title_en: 'Family', motif: 'heart', lessons: [] });
   }));
   const out = await tmp();
   const dev = await buildContent({ contentDir: content, outDir: out, allowPending: true });
@@ -92,7 +92,7 @@ test('index.json carries the mode, the build time, every unit and rule, and a un
   assert.deepEqual(index.counts, { scheduledItems: 3, lemmasMet: 11 });
   assert.deepEqual(await readJson(join(out, 'units/u02.json')), { unit: index.units[1], lessons: [] });
   assert.deepEqual({ ...dev, warnings: dev.warnings.map((w) => w.rule) }, {
-    version: index.version, mode: 'dev', units: 2, lessons: 1, scheduledItems: 3, lemmasMet: 11, warnings: ['helper-missing'], stripped: [], omittedLessons: [],
+    version: index.version, mode: 'dev', units: 2, lessons: 1, scheduledItems: 3, lemmasMet: 11, warnings: ['helper-missing', 'unit-incomplete'], stripped: [], omittedLessons: [],
   });
   const strict = await buildContent({ contentDir: content, outDir: out });
   assert.equal((await readJson(join(out, 'index.json'))).mode, 'strict');
@@ -294,4 +294,49 @@ test('a production whose item and filler are both pending is stripped once and c
     'pending-filler production/u01-l01-p03/filler',
     'pending-practised production/u01-l01-p03/item',
   ]);
+});
+
+test('the bundle carries level and lessonCount on units and role on lessons', async () => {
+  const out = await tmp();
+  await buildContent({ contentDir: fx('content-valid'), outDir: out, allowPending: true });
+  const index = await readJson(join(out, 'index.json'));
+  assert.deepEqual([index.units[0].level, index.units[0].lessonCount], ['A1', 5]);
+  assert.equal((await readJson(join(out, 'units/u01.json'))).lessons[0].role, 'theme');
+});
+// buildContent throws "compiler and linter disagree" whenever the compiler drops a reference the linter does not report.
+test('a consolidation lesson keeps production and new_items over earlier items of its unit, and a strict build strips only the pending ones', async () => {
+  /** u01 complete: lessons 2 to 4 added as theme lessons and lesson 5 as the consolidation lesson, practising u01-l01-i02 in
+   * production and u01-l03-i01 in a dialogue line; u01-l01-i02 accepted or pending. @param {'accepted'|'pending'} status */
+  const course = (status) => copyFixture('content-valid', async (dir) => {
+    for (const n of [2, 3, 4]) await addLesson(dir, `u01-l0${n}`, 'theme');
+    await addLesson(dir, 'u01-l05', 'consolidation');
+    await editJson(dir, 'lessons/u01-l05.json', (doc) => {
+      doc.production = [{ id: 'u01-l05-p01', en: 'Greet someone politely during the day.', answer: 'Dober dan.', item: 'u01-l01-i02' }];
+      doc.dialogue = { id: 'u01-l05-d', title_sl: 'Obisk', title_en: 'A visit', setting_en: 'At the door.', lines: [
+        { speaker: 'host', sl: 'Dober dan.', en: 'Good day.' },
+        { speaker: 'you', sl: 'Hvala, gospa.', en: 'Thank you, madam.', new_items: ['u01-l03-i01'] },
+      ] };
+    });
+    if (status === 'pending') {
+      await editJson(dir, 'lessons/u01-l01.json', (doc) => { doc.items[1].verification = { review1: 'accepted', review2: 'doubtful', native: null, status: 'pending' }; });
+    }
+  });
+  /** @param {string} contentDir */
+  const strictBuild = async (contentDir) => {
+    const out = await tmp();
+    const result = await buildContent({ contentDir, outDir: out });
+    const lesson = (await readJson(join(out, 'units/u01.json'))).lessons.find((l) => l.id === 'u01-l05');
+    return { result, lesson };
+  };
+
+  const accepted = await strictBuild(await course('accepted'));
+  assert.deepEqual(accepted.lesson.production.map((p) => [p.id, p.item]), [['u01-l05-p01', 'u01-l01-i02']]);
+  assert.deepEqual(accepted.lesson.dialogue.lines[1].new_items, ['u01-l03-i01']);
+  assert.deepEqual(accepted.result.stripped, []);
+
+  const pending = await strictBuild(await course('pending'));
+  assert.deepEqual(pending.lesson.production, [], 'the pending earlier item is not practised');
+  assert.deepEqual(pending.lesson.dialogue.lines[1].new_items, ['u01-l03-i01'], 'an accepted earlier item stays');
+  assert.deepEqual(pending.result.stripped.filter((s) => s.file === 'lessons/u01-l05.json').map((s) => [s.rule, s.path]),
+    [['pending-practised', 'production/u01-l05-p01/item']]);
 });

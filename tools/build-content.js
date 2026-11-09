@@ -16,7 +16,9 @@
 // `new_items` and every slot's `fillers`, and a production whose `filler` is
 // such an item goes too; a lesson without a single accepted item is left out of
 // the bundle. Fillers resolve across the whole corpus, as the linter resolves
-// them. A dev build keeps everything.
+// them. A consolidation lesson practises the items of its unit's earlier lessons
+// as well as its own, as the linter's standalone rule allows. A dev build keeps
+// everything.
 //
 // Library: buildContent({ contentDir, outDir, allowPending, versionFile, appDir }).
 // CLI: node tools/build-content.js [--allow-pending] [--check] [--known-check] [contentDir];
@@ -121,19 +123,23 @@ async function readCorpus(dir) {
  * internal verification notes, with the practice sets limited to the items that
  * `scheduled` accepts, and with the word tokens `lemmasMet` counts for it.
  * Production `item` and dialogue `new_items` keep only scheduled items of this
- * lesson. Slot fillers and production fillers resolve through `context`, built
- * once over the whole corpus, so a filler in another lesson is judged as the
- * linter judges it: a filler id outside `scheduledIds` leaves its slot, and a
- * production whose `filler` resolves (resolveFiller) to such an item is removed.
- * `removed` counts one per removed filler id, per production removed for its
- * item and per production removed for its filler (twice when both apply), as
- * the linter's pending-practised and pending-filler findings count them.
+ * lesson, and in a consolidation lesson also the scheduled items of the lessons
+ * its unit lists before it (`earlierIds`, which a theme lesson ignores): the set
+ * the linter's standalone rule allows, so only an unscheduled id is dropped.
+ * Slot fillers and production fillers resolve through `context`, built once over
+ * the whole corpus, so a filler in another lesson is judged as the linter judges
+ * it: a filler id outside `scheduledIds` leaves its slot, and a production whose
+ * `filler` resolves (resolveFiller) to such an item is removed. `removed` counts
+ * one per removed filler id, per production removed for its item and per
+ * production removed for its filler (twice when both apply), as the linter's
+ * pending-practised and pending-filler findings count them. `itemCount` and
+ * `tokens` count the lesson's own items only.
  * @param {Lesson & { $schema?: string }} doc
  * @param {(item: Item) => boolean} scheduled
- * @param {{ scheduledIds: Set<string>, itemsById: Map<string, Item> }} context
+ * @param {{ scheduledIds: Set<string>, itemsById: Map<string, Item>, earlierIds: Set<string> }} context
  * @returns {{ lesson: Lesson, itemCount: number, removed: number, tokens: string[] }}
  */
-function compileLesson(doc, scheduled, { scheduledIds, itemsById }) {
+function compileLesson(doc, scheduled, { scheduledIds, itemsById, earlierIds }) {
   const { $schema, ...lesson } = doc;
   let removed = 0;
   const items = lesson.items.map(({ verification: { notes, ...verification }, ...item }) => {
@@ -146,8 +152,10 @@ function compileLesson(doc, scheduled, { scheduledIds, itemsById }) {
     return { ...item, slots, verification };
   });
   const ids = new Set(items.filter(scheduled).map((item) => item.id));
+  // The items production and dialogue lines may practise.
+  const practisable = lesson.role === 'consolidation' ? new Set([...ids, ...earlierIds]) : ids;
   const production = lesson.production.filter((exercise) => {
-    let pending = ids.has(exercise.item) ? 0 : 1;
+    let pending = practisable.has(exercise.item) ? 0 : 1;
     if (exercise.filler !== undefined) {
       const filler = resolveFiller(exercise.filler, itemsById.get(exercise.item), (id) => itemsById.get(id));
       if (filler !== null && !scheduledIds.has(filler)) pending += 1;
@@ -159,7 +167,7 @@ function compileLesson(doc, scheduled, { scheduledIds, itemsById }) {
     ...lesson.dialogue,
     lines: lesson.dialogue.lines.map((line) => {
       if (!line.new_items) return line;
-      const kept = line.new_items.filter((id) => ids.has(id));
+      const kept = line.new_items.filter((id) => practisable.has(id));
       removed += line.new_items.length - kept.length;
       return { ...line, new_items: kept };
     }),
@@ -293,7 +301,7 @@ export async function buildContent({ contentDir, outDir, allowPending = false, v
   const lessonsById = new Map(corpus.lessons.map((lesson) => [lesson.id, lesson]));
   // Every item of every lesson, and the ids the build schedules, for fillers that live in another lesson.
   const itemsById = new Map(corpus.lessons.flatMap((lesson) => lesson.items.map((item) => [item.id, item])));
-  const context = { itemsById, scheduledIds: new Set([...itemsById.values()].filter(scheduled).map((item) => item.id)) };
+  const corpusContext = { itemsById, scheduledIds: new Set([...itemsById.values()].filter(scheduled).map((item) => item.id)) };
 
   /** @type {Unit[]} */
   const units = [];
@@ -309,10 +317,13 @@ export async function buildContent({ contentDir, outDir, allowPending = false, v
   for (const unit of corpus.units) {
     /** @type {Lesson[]} */
     const lessons = [];
+    /** @type {Set<string>} the scheduled item ids of the unit's lessons compiled so far */
+    const earlierIds = new Set();
     for (const id of unit.lessons) {
       const source = lessonsById.get(id);
       if (!source) throw new Error(`unit ${unit.id} lists the unknown lesson ${id}`);
-      const { lesson, itemCount, removed: removedHere, tokens } = compileLesson(source, scheduled, context);
+      const { lesson, itemCount, removed: removedHere, tokens } = compileLesson(source, scheduled, { ...corpusContext, earlierIds });
+      for (const item of source.items) if (corpusContext.scheduledIds.has(item.id)) earlierIds.add(item.id);
       removed += removedHere;
       if (!allowPending && itemCount === 0) {
         omittedLessons.push(id);

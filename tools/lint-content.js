@@ -1,7 +1,8 @@
 // Content linter: checks the JSON under content/ against the shapes in
 // app/js/content/types.js and the content rules of the plan.
-// Library: lintContent({ contentDir, allowPending }), statusFor(verdicts), and resolveFiller,
-// the slot-filler match the bundle compiler shares.
+// Library: lintContent({ contentDir, allowPending }), statusFor(verdicts), resolveFiller, the
+// slot-filler match the bundle compiler shares, and normalizeSl, the headword comparison the
+// syllabus tests share.
 // CLI: node tools/lint-content.js [--allow-pending] [contentDir]; exit 1 on any error.
 // No dependencies beyond Node's own modules (node:fs, node:path, node:url), the app's
 // util/ids.js, the one place the rule-id pattern lives, and util/tokens.js, the word tokeniser.
@@ -30,7 +31,7 @@ const COGNATES_FILE = fileURLToPath(new URL('./fixtures/cognates.txt', import.me
 const USAGE = 'Usage: node tools/lint-content.js [--allow-pending] [contentDir]';
 
 // Rules that produce warnings; every other rule produces errors.
-const WARNING_RULES = new Set(['helper-missing', 'form-unrecorded']);
+const WARNING_RULES = new Set(['helper-missing', 'form-unrecorded', 'unit-incomplete']);
 
 const UNIT_ID = /^u\d{2}$/;
 const LESSON_ID = /^u\d{2}-l\d{2}$/;
@@ -53,6 +54,12 @@ const PERSONAL_PHRASES = ['girlfriend', 'boyfriend', 'my partner', 'her parents'
 // English copy the learner sees. Verification notes are internal and not checked.
 const PERSONAL_FIELDS = new Set(['en', 'title_en', 'setting_en', 'card_en', 'explain_en', 'note_en', 'helper', 'helper_en', 'helper_de', 'label']);
 const CARD_WORD_LIMIT = 40;
+// standalone: a dialogue line is short enough to type.
+const MAX_LINE_CHARS = 60;
+const MAX_LINE_WORDS = 10;
+// examples: one or two per item, each of at most eight words.
+const MAX_EXAMPLES = 2;
+const MAX_EXAMPLE_WORDS = 8;
 // form-unrecorded looks at word items whose headword has at least this many letters.
 const FORM_HEADWORD_LETTERS = 4;
 
@@ -62,6 +69,8 @@ const STATUSES = ['accepted', 'pending', 'rejected'];
 const REGISTERS = ['neutral', 'colloquial', 'formal', 'recognition'];
 const ITEM_TYPES = ['chunk', 'word', 'form'];
 const GENDERS = ['m', 'f', 'n'];
+const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+const ROLES = ['theme', 'consolidation'];
 
 // ---------------------------------------------------------------------------
 // Small helpers
@@ -104,7 +113,7 @@ function walk(value, at, key, visit) {
 }
 
 /** Lowercase, single spaces, no trailing sentence punctuation: "Dober dan." and "dober dan" are the same headword. @param {string} s */
-const normalizeSl = (s) => s.normalize('NFC').toLowerCase().replace(/\s+/g, ' ').trim().replace(/[.!?]+$/, '').trim();
+export const normalizeSl = (s) => s.normalize('NFC').toLowerCase().replace(/\s+/g, ' ').trim().replace(/[.!?]+$/, '').trim();
 /** Lowercase words separated by single spaces, for whole-word containment. @param {string} s */
 const wordsOf = (s) => normalizeSl(s).replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 /** The first four letters without diacritics, for the cognate heuristic. @param {string} s */
@@ -282,6 +291,7 @@ const lessonShape = object({
   id: req(lessonId),
   unit: req(unitId),
   order: req(positiveInteger),
+  role: req(oneOf(ROLES)),
   title_sl: req(text),
   title_en: req(text),
   items: req(arrayOf(item)),
@@ -311,6 +321,8 @@ const unitsShape = arrayOf(
   object({
     id: req(unitId),
     order: req(positiveInteger),
+    level: req(oneOf(LEVELS)),
+    lessonCount: req(positiveInteger),
     title_sl: req(text),
     title_en: req(text),
     motif: req(text),
@@ -492,9 +504,43 @@ function checkFormsRecorded(lesson, report) {
   });
 }
 
+/**
+ * Lint rule examples: an item has one or two examples, each of at most eight words (wordTokens).
+ * @param {Doc} lesson @param {Report} report
+ */
+function checkExamples(lesson, report) {
+  eachObject(lesson.items, 'items', (x, at) => {
+    if (!Array.isArray(x.examples)) return;
+    const n = x.examples.length;
+    if (n < 1 || n > MAX_EXAMPLES) report(sub(at, 'examples'), `has ${n} examples; an item has one or two`);
+    eachObject(x.examples, sub(at, 'examples'), (example, exampleAt) => {
+      if (typeof example.sl !== 'string') return;
+      const words = wordTokens(example.sl).length;
+      if (words > MAX_EXAMPLE_WORDS) report(sub(exampleAt, 'sl'), `has ${words} words; an example has at most ${MAX_EXAMPLE_WORDS}`);
+    });
+  });
+}
+
+/**
+ * Lint rule standalone, the part one file decides: every dialogue line can be typed, at most 60
+ * characters (code points of the NFC text) and 10 words (wordTokens).
+ * @param {Doc} lesson @param {Report} report
+ */
+function checkLineLength(lesson, report) {
+  if (!isObject(lesson.dialogue)) return;
+  eachObject(lesson.dialogue.lines, 'dialogue/lines', (line, at) => {
+    if (typeof line.sl !== 'string') return;
+    const chars = [...line.sl.normalize('NFC')].length;
+    const words = wordTokens(line.sl).length;
+    if (chars > MAX_LINE_CHARS || words > MAX_LINE_WORDS) {
+      report(sub(at, 'sl'), `has ${chars} characters and ${words} words; a line to type has at most ${MAX_LINE_CHARS} and ${MAX_LINE_WORDS}`);
+    }
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Corpus checks: duplicate, ambiguous-gloss, reference, pending-practised, pending-filler,
-// register, helper-missing
+// register, lesson-count, unit-incomplete, consolidation, standalone, helper-missing
 
 /**
  * @param {{ units: unknown, lessons: { file: string, doc: unknown }[], rules: { file: string, doc: unknown }[] }} corpus
@@ -536,13 +582,18 @@ function checkCorpus(corpus, allowPending, cognates, issues) {
   }
   /** @type {Set<string>} */
   const lessonIds = new Set();
-  /** @type {Map<string, { item: Doc, file: string }>} */
+  /** @type {Map<string, { doc: Doc, file: string }>} */
+  const lessonsById = new Map();
+  /** @type {Map<string, { item: Doc, file: string, lesson: unknown }>} the item and the id of the lesson that holds it */
   const items = new Map();
   for (const { file, doc } of corpus.lessons) {
     if (!isObject(doc)) continue;
-    if (claim(doc.id, file, 'id')) lessonIds.add(doc.id);
+    if (claim(doc.id, file, 'id')) {
+      lessonIds.add(doc.id);
+      lessonsById.set(doc.id, { doc, file });
+    }
     eachObject(doc.items, 'items', (x, at) => {
-      if (claim(x.id, file, sub(at, 'id'))) items.set(x.id, { item: x, file });
+      if (claim(x.id, file, sub(at, 'id'))) items.set(x.id, { item: x, file, lesson: doc.id });
     });
     eachObject(doc.structured, 'structured', (x, at) => claim(x.id, file, sub(at, 'id')));
     eachObject(doc.production, 'production', (x, at) => claim(x.id, file, sub(at, 'id')));
@@ -590,6 +641,60 @@ function checkCorpus(corpus, allowPending, cognates, issues) {
     if (unitsLoaded && isObject(doc) && typeof doc.unit === 'string' && !units.has(doc.unit)) add(file, 'reference', 'unit', `unit ${quote(doc.unit)} is not in units.json`);
   }
 
+  // Course order: units by `order`, lessons in their unit's list. A lesson takes its place from
+  // the first unit in that order that lists it; a lesson no unit lists has none (reference
+  // reports it) and stands with its own items and rules only.
+  /** @param {Doc} unit */
+  const orderOf = (unit) => (Number.isInteger(unit.order) ? /** @type {number} */ (unit.order) : Infinity);
+  /** @type {{ unit: Doc, at: string }[]} */
+  const unitsInOrder = [];
+  eachObject(corpus.units, '', (unit, at) => unitsInOrder.push({ unit, at }));
+  unitsInOrder.sort((a, b) => orderOf(a.unit) - orderOf(b.unit) || 0);
+  /** @type {Map<string, { unit: Doc, position: number, earlier: Set<unknown>, rules: Set<unknown> }>} */
+  const placed = new Map();
+  /** @type {Set<unknown>} every rule a lesson lists, up to the lesson being walked */
+  const introduced = new Set();
+  for (const { unit } of unitsInOrder) {
+    if (!Array.isArray(unit.lessons)) continue;
+    unit.lessons.forEach((id, i) => {
+      if (typeof id !== 'string' || placed.has(id)) return;
+      const doc = lessonsById.get(id)?.doc;
+      if (doc && Array.isArray(doc.rules)) for (const rule of doc.rules) introduced.add(rule);
+      placed.set(id, { unit, position: i + 1, earlier: new Set(unit.lessons.slice(0, i)), rules: new Set(introduced) });
+    });
+  }
+
+  // lesson-count and unit-incomplete: a unit lists at most lessonCount lessons, a complete unit has
+  // exactly one consolidation lesson, and a unit part of the way there is a warning.
+  for (const { unit, at } of unitsInOrder) {
+    const { lessons, lessonCount } = unit;
+    if (!Array.isArray(lessons) || typeof lessonCount !== 'number' || !Number.isInteger(lessonCount) || lessonCount < 1) continue;
+    const n = lessons.length;
+    if (n > lessonCount) {
+      add('units.json', 'lesson-count', sub(at, 'lessons'), `lists ${n} lessons, more than its lessonCount ${lessonCount}`);
+    } else if (n === lessonCount) {
+      const k = lessons.filter((id) => typeof id === 'string' && lessonsById.get(id)?.doc.role === 'consolidation').length;
+      if (k !== 1) add('units.json', 'lesson-count', sub(at, 'lessons'), `has all ${lessonCount} lessons but ${k} consolidation lessons; a complete unit has exactly one`);
+    } else if (n > 0) {
+      add('units.json', 'unit-incomplete', sub(at, 'lessons'), `lists ${n} of ${lessonCount} lessons`);
+    }
+  }
+
+  // lesson-count (a lesson's order is its place in the unit) and consolidation (the last lesson,
+  // with no rule card of its own).
+  for (const [id, { doc, file }] of lessonsById) {
+    const place = placed.get(id);
+    if (place && Number.isInteger(doc.order) && doc.order !== place.position) {
+      add(file, 'lesson-count', 'order', `is ${doc.order}, but the unit lists the lesson at position ${place.position}`);
+    }
+    if (doc.role !== 'consolidation') continue;
+    const lessonCount = place?.unit.lessonCount;
+    if (place && Number.isInteger(lessonCount) && place.position !== lessonCount) {
+      add(file, 'consolidation', 'role', `a consolidation lesson comes last, at position ${lessonCount}, not ${place.position}`);
+    }
+    if (Array.isArray(doc.rules) && doc.rules.length > 0) add(file, 'consolidation', 'rules', 'a consolidation lesson introduces no rule card');
+  }
+
   // Recognition-only items, as whole words, for the register rule.
   const recognition = [...items.values()]
     .filter(({ item: x }) => x.register === 'recognition' && typeof x.sl === 'string')
@@ -626,6 +731,20 @@ function checkCorpus(corpus, allowPending, cognates, issues) {
         add(file, 'pending-filler', at, `uses filler item ${quote(id)} whose verification status is ${status === undefined ? 'missing' : quote(status)}`);
       }
     };
+    // standalone: practice draws on this lesson's items, in a consolidation lesson also on the
+    // items of the lessons its unit lists before it; a structured exercise's rule is one a lesson
+    // up to this one introduces. Unknown ids are left to reference.
+    const place = typeof doc.id === 'string' ? placed.get(doc.id) : undefined;
+    const consolidation = doc.role === 'consolidation';
+    const own = new Set();
+    eachObject(doc.items, 'items', (x) => own.add(x.id));
+    /** @param {unknown} id @param {string} at */
+    const standalone = (id, at) => {
+      if (typeof id !== 'string' || !items.has(id) || own.has(id)) return;
+      if (!consolidation) add(file, 'standalone', at, `practises ${quote(id)}, which is not an item of this lesson`);
+      else if (!place?.earlier.has(items.get(id)?.lesson)) add(file, 'standalone', at, `practises ${quote(id)}, which is not an item of this unit up to this lesson`);
+    };
+    const rulesSoFar = place?.rules ?? new Set(Array.isArray(doc.rules) ? doc.rules : []);
     /** register: a typed answer never contains a recognition-only item. @param {unknown} answer @param {string} at */
     const producible = (answer, at) => {
       if (typeof answer !== 'string') return;
@@ -655,11 +774,15 @@ function checkCorpus(corpus, allowPending, cognates, issues) {
     });
     eachObject(doc.structured, 'structured', (x, at) => {
       knownRule(x.rule, sub(at, 'rule'));
+      if (typeof x.rule === 'string' && ruleIds.has(x.rule) && !rulesSoFar.has(x.rule)) {
+        add(file, 'standalone', sub(at, 'rule'), `uses rule ${quote(x.rule)} before a lesson introduces it`);
+      }
       producible(x.answer, sub(at, 'answer'));
     });
     eachObject(doc.production, 'production', (x, at) => {
       knownItem(x.item, sub(at, 'item'));
       practised(x.item, sub(at, 'item'));
+      standalone(x.item, sub(at, 'item'));
       const target = typeof x.item === 'string' ? items.get(x.item) : undefined;
       // reference: a filler is the text or a form of a slot filler of the production's item.
       if (typeof x.filler === 'string' && target) {
@@ -679,6 +802,7 @@ function checkCorpus(corpus, allowPending, cognates, issues) {
         line.new_items.forEach((id, i) => {
           knownItem(id, `${at}/new_items/${i}`);
           practised(id, `${at}/new_items/${i}`);
+          standalone(id, `${at}/new_items/${i}`);
         });
       });
     }
@@ -833,6 +957,8 @@ export async function lintContent({ contentDir, allowPending = false }) {
     checkPersonal(doc, reporter(file, 'personal'));
     checkStatus(doc, reporter(file, 'status-consistency'));
     checkFormsRecorded(doc, reporter(file, 'form-unrecorded'));
+    checkExamples(doc, reporter(file, 'examples'));
+    checkLineLength(doc, reporter(file, 'standalone'));
   }
   for (const { file, doc } of rules) {
     const schema = reporter(file, 'schema');
