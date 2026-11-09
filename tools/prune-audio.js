@@ -4,9 +4,9 @@
 // every voice), and pruneAudio deletes the other clips of a folder with their manifest entries.
 // Nothing here calls Gemini.
 //
-// Library: pruneKeep, pruneAudio.
+// Library: keepVoices, pruneKeep, pruneAudio.
 // CLI: node tools/prune-audio.js [--voice <name> ...] prunes app/assets/audio/ against
-// app/content/dist/ (run a content build first), the voices defaulting to DEFAULT_VOICES, and
+// app/content/dist/ (run a content build first), keeping DEFAULT_VOICES and any voice named, and
 // prints removed=<n> kept=<n>. Exit 1 when the bundle is missing or the prune failed, 2 on a bad
 // argument.
 import { readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
@@ -28,6 +28,15 @@ const USAGE = 'Usage: node tools/prune-audio.js [--voice <name> ...]';
 
 /** @param {unknown} err */
 const errorMessage = (err) => (err instanceof Error ? err.message : String(err));
+
+/**
+ * The voices a prune keeps: the course's voices and any named. Naming a voice can only add to what
+ * stays, so pruning after re-recording one voice never deletes the other's clips; a voice the
+ * course has dropped is in neither list and is still pruned.
+ * @param {string[]} [named]
+ * @returns {string[]}
+ */
+export const keepVoices = (named = []) => [...new Set([...DEFAULT_VOICES, ...named])];
 
 /**
  * Every clip a bundle needs: each text of bundleTexts and of drillTexts, each once, in every voice.
@@ -91,7 +100,7 @@ async function main(argv) {
     console.error(`${errorMessage(err)}\n${USAGE}`);
     return 2;
   }
-  const voices = values.voice ?? DEFAULT_VOICES;
+  const voices = keepVoices(values.voice);
 
   let keep;
   try {

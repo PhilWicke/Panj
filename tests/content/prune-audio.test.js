@@ -11,7 +11,8 @@ import { promisify } from 'node:util';
 import { audioId } from '../../app/js/util/audio-id.js';
 import { drillTexts } from '../../app/js/util/audio-texts.js';
 import { buildContent } from '../../tools/build-content.js';
-import { pruneAudio, pruneKeep } from '../../tools/prune-audio.js';
+import { DEFAULT_VOICES } from '../../tools/gen-audio.js';
+import { keepVoices, pruneAudio, pruneKeep } from '../../tools/prune-audio.js';
 import { copyFixture, removeCopies } from './helpers.js';
 
 /** @type {string[]} */
@@ -88,6 +89,12 @@ test('a damaged manifest stops pruneAudio before any clip is deleted', async () 
   await writeFile(join(outDir, 'manifest.json'), '{ not json');
   await assert.rejects(pruneAudio({ outDir, keep: [] }), /manifest\.json is not valid JSON/);
   assert.ok((await readdir(outDir)).includes(`${await audioId('Stari stavek.', 'Kore')}.mp3`));
+});
+
+test('keepVoices: naming a voice only adds to the default voices, so pruning for one voice never drops the other', () => {
+  assert.deepEqual(keepVoices(undefined), DEFAULT_VOICES);
+  assert.deepEqual(keepVoices(['Kore']), DEFAULT_VOICES);
+  assert.deepEqual(keepVoices(['Puck', 'Aoede']), [...DEFAULT_VOICES, 'Aoede']);
 });
 
 test('CLI refuses an unknown option before it reads or changes anything', async () => {
