@@ -16,6 +16,17 @@
 //   4. the lesson's dialogue, once every item it practises has graduated.
 //   5. with speech recognition on: speaking over known items.
 //   6. one fluency pass over five review-phase items, when there are at least five.
+// A consolidation lesson (lessonRole) brings its unit's earlier lessons together. Its meets queue
+// no rule card and no structured exercise, and step 2 is left out. Its practice comes in groups of
+// one exercise: each structured exercise, after its rule's card when the bundle carries the rule,
+// it has not faded and its card is not queued yet, and each production over a practisable item of
+// an earlier lesson of the unit that the learner has met, taken in turn (structured 1, production
+// 1, structured 2, ...), the rest of the longer list last. With N the lesson's practisable items
+// and G the groups, group g is anchored to N[floor(g * N.length / G)] and comes right after that
+// item's first recall in the run that meets it, so the groups fall between the new items and each
+// plays once over the lesson. A due review of an earlier item whose production plays today is left
+// out, the production being its recall. Production over the lesson's own items stays their third
+// recall; any other production is not queued.
 // buildMoreRound plans the closing menu's "Three more minutes" (Ruling 80): typed recall over the
 // review-phase items the run did not practise, weakest first, filled up from the run's misses.
 // Items whose verification is not `accepted` never enter the queue (the compiler keeps them in the
@@ -25,7 +36,7 @@
 // check is a scheduled item whose id is the rule id) and are never typed recalls.
 
 import { GRADUATE_AFTER, isDue, retrievability } from './scheduler.js';
-import { practisable as practisableItem } from './course.js';
+import { lessonRole, practisable as practisableItem } from './course.js';
 import { localDateKey } from '../util/time.js';
 import { isRuleId } from '../util/ids.js';
 
@@ -215,6 +226,23 @@ function sample(pool, n, rng) {
 }
 
 /**
+ * Two lists taken in turn, the first list leading, the rest of the longer list last.
+ * @template T
+ * @param {T[]} first
+ * @param {T[]} second
+ * @returns {T[]}
+ */
+function alternate(first, second) {
+  /** @type {T[]} */
+  const out = [];
+  for (let i = 0; i < Math.max(first.length, second.length); i += 1) {
+    if (i < first.length) out.push(first[i]);
+    if (i < second.length) out.push(second[i]);
+  }
+  return out;
+}
+
+/**
  * The learning units interleaved with the reviews. Unit i opens step i; its second recall comes in
  * step i + 1 and its third in step i + 2, after the next items' introductions, so the recalls of
  * one item are spaced by other work. The reviews are spread over the gaps before, between and
@@ -257,6 +285,8 @@ function interleave(units, reviews) {
 export function buildSession(input) {
   const { now, states, lesson, unitLessons, rules, settings, mode, newToday, rng = Math.random, tz, allowPending = false } = input;
   const todayKey = localDateKey(now, tz);
+  /** the current lesson when it is a consolidation lesson, else null */
+  const consolidation = lesson && lessonRole(lesson) === 'consolidation' ? lesson : null;
 
   /** @type {Map<string, { item: Item, lesson: Lesson }>} the items the builder has content for */
   const known = new Map();
@@ -281,10 +311,6 @@ export function buildSession(input) {
   const byDue = (a, b) => a.due - b.due || (a.itemId < b.itemId ? -1 : 1);
 
   const scheduled = Object.entries(states).filter(([id]) => practisable(id)).map(([, state]) => state);
-  const reviews = scheduled
-    .filter((state) => (state.phase === 'review' || state.phase === 'lapsed') && isDue(state, now))
-    .sort(byDue)
-    .map((state) => typed(state.itemId));
   const unfinished = scheduled.filter((state) => state.phase === 'learning').sort(byDue);
   const reviewPhase = scheduled.filter((state) => state.phase === 'review');
 
@@ -295,6 +321,39 @@ export function buildSession(input) {
     : [];
   const budget = Math.floor((settings.dailyMinutes - forecastReviewMinutes(states, now, 1)) / NEW_ITEM_MINUTES);
   const fresh = remaining.slice(0, Math.max(0, Math.min(settings.newPerDay - newToday, remaining.length, budget)));
+
+  // A consolidation lesson's groups (see the module comment), kept only when their anchor is new today.
+  /** @type {Map<string, QueueEntry[]>} the groups queued today by the id of their anchor item, in group order */
+  const anchored = new Map();
+  /** @type {Set<string>} earlier items whose production is queued today */
+  const produced = new Set();
+  if (consolidation) {
+    const earlier = new Set(unitLessons
+      .filter((l) => l.order < consolidation.order)
+      .flatMap((l) => l.items.filter((item) => practisable(item.id)).map((item) => item.id)));
+    /** @type {QueueEntry[]} */
+    const structured = consolidation.structured.map((exercise) => ({
+      kind: 'structured', exerciseId: exercise.id, ruleId: exercise.rule, lessonId: consolidation.id,
+    }));
+    /** @type {QueueEntry[]} */
+    const production = consolidation.production
+      .filter((exercise) => earlier.has(exercise.item) && (states[exercise.item]?.phase ?? 'new') !== 'new')
+      .map((exercise) => ({ kind: 'slot', exerciseId: exercise.id, itemId: exercise.item, lessonId: consolidation.id }));
+    const groups = alternate(structured, production);
+    const anchors = consolidation.items.filter((item) => practisable(item.id));
+    const freshIds = new Set(fresh.map((item) => item.id));
+    groups.forEach((group, g) => {
+      const anchor = anchors[Math.floor((g * anchors.length) / groups.length)];
+      if (!anchor || !freshIds.has(anchor.id)) return;
+      anchored.set(anchor.id, [...(anchored.get(anchor.id) ?? []), group]);
+      if (group.itemId !== undefined) produced.add(group.itemId);
+    });
+  }
+
+  const reviews = scheduled
+    .filter((state) => (state.phase === 'review' || state.phase === 'lapsed') && isDue(state, now) && !produced.has(state.itemId))
+    .sort(byDue)
+    .map((state) => typed(state.itemId));
 
   /** @type {Set<string>} items that graduate within this plan */
   const learningToday = new Set();
@@ -320,8 +379,8 @@ export function buildSession(input) {
   };
   /**
    * An item's entries: the meet (for a new item), right after it the cards of the rules the item
-   * introduces with their structured exercises, then `needed` recalls of which the last is the
-   * item's slot production when its lesson has one.
+   * introduces with their structured exercises (not in a consolidation lesson), then `needed`
+   * recalls of which the last is the item's slot production when its lesson has one.
    * @param {string} itemId @param {boolean} meet @param {number} needed @returns {LearningUnit}
    */
   const unitFor = (itemId, meet, needed) => {
@@ -336,7 +395,7 @@ export function buildSession(input) {
     }
     /** @type {QueueEntry[]} */
     const intro = meet && lessonId ? [{ kind: 'meet', itemId, lessonId }] : [];
-    if (meet && entry) {
+    if (meet && entry && !consolidation) {
       for (const ruleId of entry.item.rules ?? []) {
         if (!queuedRules.has(ruleId) && ruleIds.has(ruleId)) intro.push(...ruleEntries(ruleId, entry.lesson));
       }
@@ -345,19 +404,36 @@ export function buildSession(input) {
     return { intro, later: groups.slice(1) };
   };
 
+  /**
+   * A consolidation group as queued: a structured exercise comes after its rule's card when the
+   * bundle carries the rule, it has not faded and its card is not queued yet.
+   * @param {QueueEntry} group @returns {QueueEntry[]}
+   */
+  const withCard = (group) => {
+    const ruleId = group.kind === 'structured' ? group.ruleId : undefined;
+    if (ruleId === undefined) return [group];
+    const card = !queuedRules.has(ruleId) && ruleIds.has(ruleId) && !faded(ruleId);
+    queuedRules.add(ruleId);
+    return card ? [{ kind: 'rule', ruleId, lessonId: group.lessonId }, group] : [group];
+  };
+
   /** @type {LearningUnit[]} */
   const units = [];
   for (const state of unfinished) {
     const done = state.sessionKey === todayKey ? state.correctInSession : 0;
     units.push(unitFor(state.itemId, false, Math.max(1, GRADUATE_AFTER - done)));
   }
-  for (const item of fresh) units.push(unitFor(item.id, true, GRADUATE_AFTER));
+  for (const item of fresh) {
+    const unit = unitFor(item.id, true, GRADUATE_AFTER);
+    for (const group of anchored.get(item.id) ?? []) unit.intro.push(...withCard(group));
+    units.push(unit);
+  }
 
   const queue = interleave(units, reviews);
 
   // Rules the lesson lists that no item introduces today or later, never quick-checked: shown
-  // after the learning work until their quick check is recorded.
-  if (lesson) {
+  // after the learning work until their quick check is recorded. Not in a consolidation lesson.
+  if (lesson && !consolidation) {
     for (const ruleId of lesson.rules) {
       if (queuedRules.has(ruleId) || !ruleIds.has(ruleId) || states[ruleId] !== undefined) continue;
       if (remaining.some((item) => (item.rules ?? []).includes(ruleId))) continue;

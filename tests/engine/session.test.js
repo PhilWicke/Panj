@@ -2,7 +2,8 @@
 // The daily session builder: due reviews interleaved with the lesson's new items under the per-day
 // and forecast caps, rule cards right after the meet that introduces them, slot production as the third
 // recall, the dialogue once its items have graduated, audio kinds by mode, one fluency pass to
-// close, the closing menu, and the "Three more minutes" round (Ruling 80).
+// close, the closing menu, the "Three more minutes" round (Ruling 80), and consolidation lessons,
+// whose structured and production exercises over the unit's earlier items fall between their new items.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
@@ -486,4 +487,86 @@ test('the estimate adds up per kind, a session without a lesson is reviews only,
     assert.ok(KINDS.has(e.kind));
     for (const [k, v] of Object.entries(e)) assert.ok(v !== undefined && v !== null, `${e.kind}.${k} is set`);
   }
+});
+
+/** A theme lesson u01-l0n of two plain items. @param {number} n */
+const themeLesson = (n) => lesson({
+  id: `u01-l0${n}`, order: n, items: [item(`u01-l0${n}-i01`), item(`u01-l0${n}-i02`)],
+  rules: [], structured: [], production: [], dialogue: undefined,
+});
+/** The consolidation lesson u01-l05: two new items, two structured exercises, production over two earlier items, its own item and another unit's item. */
+const consolidation = (overrides = {}) => lesson({
+  id: 'u01-l05', order: 5, role: 'consolidation',
+  items: [item('u01-l05-i01', ['r-c']), item('u01-l05-i02')],
+  rules: ['r-c'],
+  structured: [
+    { id: 'u01-l05-s01', prompt_sl: 'a _', options: ['x', 'y'], answer: 'x', rule: 'r-a', en: 'a' },
+    { id: 'u01-l05-s02', prompt_sl: 'b _', options: ['x', 'y'], answer: 'x', rule: 'r-b', en: 'b' },
+  ],
+  production: [
+    { id: 'u01-l05-p01', en: 'One.', answer: 'sl u01-l01-i01', item: 'u01-l01-i01' },
+    { id: 'u01-l05-p02', en: 'Own.', answer: 'sl u01-l05-i01', item: 'u01-l05-i01' },
+    { id: 'u01-l05-p03', en: 'Two.', answer: 'sl u01-l02-i01', item: 'u01-l02-i01' },
+    { id: 'u01-l05-p04', en: 'Elsewhere.', answer: 'sl u02-l01-i01', item: 'u02-l01-i01' },
+  ],
+  dialogue: undefined,
+  ...overrides,
+});
+const THEMES = [1, 2, 3, 4].map(themeLesson);
+/** Every theme item in review, due in three days; r-a recallable (faded), r-b and r-c long overdue. */
+const unitStates = () => byId(
+  ...THEMES.flatMap((l) => l.items.map((i) => review(i.id, T0 + 3 * DAY))),
+  review('r-a', T0 + 3 * DAY), review('r-b', T0 - 60 * DAY), review('r-c', T0 - 60 * DAY));
+const GROUP_IDS = ['u01-l05-s01', 'u01-l05-s02', 'u01-l05-p01', 'u01-l05-p03'];
+// RULES already carries r-a, r-b and r-c.
+const buildC = (overrides = {}) => build({ lesson: consolidation(), unitLessons: [...THEMES, consolidation()], states: unitStates(), ...overrides });
+
+test("a consolidation lesson plays its structured and production exercises over the unit's earlier items, between its new items", () => {
+  const q = buildC().queue;
+  const at = (pred) => q.findIndex(pred);
+  const meet1 = at((e) => e.kind === 'meet' && e.itemId === 'u01-l05-i01');
+  const meet2 = at((e) => e.kind === 'meet' && e.itemId === 'u01-l05-i02');
+  const s01 = at((e) => e.exerciseId === 'u01-l05-s01');
+  const p01 = at((e) => e.exerciseId === 'u01-l05-p01');
+  const card = at((e) => e.kind === 'rule' && e.ruleId === 'r-b');
+  const s02 = at((e) => e.exerciseId === 'u01-l05-s02');
+  const p03 = at((e) => e.exerciseId === 'u01-l05-p03');
+  assert.deepEqual(q[s01], { kind: 'structured', exerciseId: 'u01-l05-s01', ruleId: 'r-a', lessonId: 'u01-l05' });
+  assert.deepEqual(q[p01], { kind: 'slot', exerciseId: 'u01-l05-p01', itemId: 'u01-l01-i01', lessonId: 'u01-l05' });
+  assert.ok(meet1 < s01 && s01 < p01 && p01 < meet2, 'the first two groups sit between the first and the second new item');
+  assert.ok(meet2 < card && card + 1 === s02 && s02 < p03, "r-b's card right before its structured exercise");
+  assert.deepEqual(q.filter((e) => e.kind === 'rule').map((e) => e.ruleId), ['r-b'], 'r-a has faded and r-c is never introduced here');
+  assert.equal(q.filter((e) => e.exerciseId === 'u01-l05-p04').length, 0, "another unit's item is not practised");
+  assert.deepEqual(q.filter((e) => e.exerciseId === 'u01-l05-p02').map((e) => e.itemId), ['u01-l05-i01'], 'own production stays the third recall');
+  for (const id of GROUP_IDS) assert.equal(q.filter((e) => e.exerciseId === id).length, 1, id);
+});
+
+test('consolidation groups wait for the run that introduces their anchor item', () => {
+  const first = buildC({ settings: { ...S, newPerDay: 1 } }).queue.map((e) => e.exerciseId).filter(Boolean);
+  assert.deepEqual(first.filter((id) => GROUP_IDS.includes(id)), ['u01-l05-s01', 'u01-l05-p01']);
+  const started = { ...unitStates(), 'u01-l05-i01': recall(createState('u01-l05-i01', T0), 'correct', T0) };
+  const second = buildC({ states: started, newToday: 1, settings: { ...S, newPerDay: 2 } }).queue.map((e) => e.exerciseId).filter(Boolean);
+  assert.deepEqual(second.filter((id) => GROUP_IDS.includes(id)), ['u01-l05-s02', 'u01-l05-p03']);
+});
+
+test('a due review of an earlier item whose production plays today is replaced by that production', () => {
+  const states = { ...unitStates(), 'u01-l01-i01': review('u01-l01-i01', T0 - DAY) };
+  const s = buildC({ states });
+  assert.equal(s.queue.filter((e) => e.kind === 'typed_en_sl' && e.itemId === 'u01-l01-i01').length, 0);
+  assert.equal(s.queue.filter((e) => e.exerciseId === 'u01-l05-p01').length, 1);
+  assert.equal(s.reviewCount, 0);
+});
+
+test('production over an earlier item never met, or pending in a strict build, is not queued', () => {
+  const states = unitStates();
+  delete states['u01-l02-i01'];
+  assert.equal(buildC({ states }).queue.filter((e) => e.exerciseId === 'u01-l05-p03').length, 0, 'never met');
+  const pendingTwo = { ...themeLesson(2), items: [item('u01-l02-i01', [], 'pending'), item('u01-l02-i02')] };
+  const q = buildC({ unitLessons: [THEMES[0], pendingTwo, THEMES[2], THEMES[3], consolidation()] }).queue;
+  assert.equal(q.filter((e) => e.exerciseId === 'u01-l05-p03').length, 0, 'pending, strict');
+  assert.ok(q.length > 0, 'the session still builds');
+});
+
+test('a theme lesson, or one without a role, is built as in v1', () => {
+  assert.deepEqual(build({ lesson: lesson({ role: 'theme' }) }), build({ lesson: lesson() }));
 });
