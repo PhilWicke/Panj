@@ -4,7 +4,8 @@
 // options through the rng it is given; the outcomes map a pick to `aux` only, a slot answer to a
 // recall of the exercise's item, and a dialogue's learner lines to one recall per item they
 // practise plus one `aux` for the lines without items; a slot hides a base chunk that would give
-// the answer away; a dialogue line counts as a miss when any of its items would; speaker labels.
+// the answer away; a dialogue line counts as a miss when any of its items would; a line's playback
+// holds the scene until it settles or for the line's wait at most; speaker labels.
 // The exercises' DOM runs in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
@@ -12,7 +13,7 @@ import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
 import { blankify, shuffle, promptWithBlank, structuredOutcome } from '../../app/js/ui/exercises/structured.js';
 import { slotBase, slotOutcome } from '../../app/js/ui/exercises/slot.js';
-import { dialogueOutcome, lineEffective, speakerLabel } from '../../app/js/ui/exercises/dialogue.js';
+import { dialogueOutcome, lineEffective, speakerLabel, playWaitMs, playWithin } from '../../app/js/ui/exercises/dialogue.js';
 
 /** @typedef {import('../../app/js/content/types.js').Lesson} Lesson */
 /** @typedef {import('../../app/js/content/types.js').Item} Item */
@@ -165,4 +166,53 @@ test('speakerLabel names the roles generically, in sentence case', () => {
   assert.equal(speakerLabel('passer-by'), 'Passer-by');
   assert.equal(speakerLabel('colleague'), 'Colleague');
   assert.equal(speakerLabel('guide'), 'Guide', 'a role without a label shows as written, capitalised');
+});
+
+test('playWaitMs gives a line its allowance plus time for its length at a slow speaking rate', () => {
+  assert.equal(playWaitMs(''), 3000);
+  assert.equal(playWaitMs('Dober večer.'), 4200);
+  assert.ok(playWaitMs('Dober večer, kako ste danes?') > playWaitMs('Dober večer.'), 'a longer line waits longer');
+});
+
+test('playWithin goes on when the playback settles, however it settles, and after the wait when it never does', async (t) => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const flush = () => new Promise((resolve) => setImmediate(resolve));
+  /** @param {() => Promise<unknown>} play @param {number} ms */
+  const watch = (play, ms) => {
+    const state = { settled: false, rejected: false };
+    playWithin(play, ms).then(() => { state.settled = true; }, () => { state.rejected = true; });
+    return state;
+  };
+
+  let calls = 0;
+  const played = watch(() => { calls += 1; return Promise.resolve('device'); }, 5000);
+  await flush();
+  assert.ok(played.settled, 'a playback that ends lets the scene go on at once');
+  assert.equal(calls, 1, 'the line is played once');
+
+  const failed = watch(() => Promise.reject(new Error('no voice')), 5000);
+  const thrown = watch(() => { throw new Error('player missing'); }, 5000);
+  await flush();
+  assert.ok(failed.settled && !failed.rejected, 'a failed playback goes on, never rejects');
+  assert.ok(thrown.settled && !thrown.rejected, 'nor does a player that throws');
+
+  /** @type {(value: string) => void} */
+  let endLate = () => {};
+  const stalled = watch(() => new Promise((resolve) => { endLate = resolve; }), 5000);
+  const silent = watch(() => new Promise(() => {}), 4200);
+  await flush();
+  assert.ok(!stalled.settled && !silent.settled, 'a playback still going holds the scene');
+  t.mock.timers.tick(4199);
+  await flush();
+  assert.ok(!silent.settled, 'until its wait is up');
+  t.mock.timers.tick(1);
+  await flush();
+  assert.ok(silent.settled && !silent.rejected, 'a playback that never settles holds the scene for its wait at most');
+  assert.ok(!stalled.settled);
+  t.mock.timers.tick(800);
+  await flush();
+  assert.ok(stalled.settled, 'each line its own wait');
+  endLate('device');
+  await flush();
+  assert.ok(stalled.settled && !stalled.rejected, 'an end after the wait changes nothing');
 });

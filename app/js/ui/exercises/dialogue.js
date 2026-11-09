@@ -1,16 +1,16 @@
 // The dialogue scene (spec 4.2, point 5): the lesson's scripted exchange. The title and the
 // setting, then the lines in order, as a transcript that grows: a line of another speaker shows
-// its Slovenian large with the English under it and plays (unless muted), then the scene goes on;
-// a learner line shows the English and a typed answer field, graded against the line's Slovenian
-// with the diacritic rule, with the feedback panel after it. Once the learner goes on, the line
+// its Slovenian large with the English under it and plays (unless muted), and the scene goes on
+// when the playback ends, or after the line's wait if it never does; a learner line shows the
+// English and the shared typed answer field, graded against the line's Slovenian with the
+// diacritic rule, with the feedback panel after it. Once the learner goes on, the line
 // stays in the transcript as it should be said. The outcome is one recall per item a learner line
 // practises, with that line's result, and one `aux` for the learner lines without items. Spoken
 // learner lines arrive with Task 14; this exercise types them whatever the speech setting says.
 
 import { h, mount } from '../../util/dom.js';
 import { grade } from '../../engine/grading.js';
-import { renderFeedback } from '../components/feedback.js';
-import { answerField } from './slot.js';
+import { answerField, mountFeedback } from '../components/answer-field.js';
 
 /** @typedef {import('./registry.js').ExerciseRender} ExerciseRender */
 /** @typedef {import('./registry.js').ExerciseOutcome} ExerciseOutcome */
@@ -22,6 +22,10 @@ const LEARNER = 'you';
 /** Labels of the roles the content uses; any other role shows as written, capitalised. */
 /** @type {Record<string, string>} */
 const SPEAKERS = { you: 'You', host: 'Your host' };
+// The longest a line's playback holds the scene: an allowance for loading the voice or the file,
+// plus the line at a slow speaking rate (about ten characters a second).
+const PLAY_WAIT_BASE_MS = 3000;
+const PLAY_WAIT_PER_CHAR_MS = 100;
 
 /**
  * @param {string} speaker
@@ -29,6 +33,34 @@ const SPEAKERS = { you: 'You', host: 'Your host' };
  */
 export function speakerLabel(speaker) {
   return SPEAKERS[speaker] ?? `${speaker.charAt(0).toUpperCase()}${speaker.slice(1)}`;
+}
+
+/**
+ * How long the scene waits for a line to play before it goes on without the end of the playback.
+ * @param {string} text the line's Slovenian
+ * @returns {number} milliseconds
+ */
+export function playWaitMs(text) {
+  return PLAY_WAIT_BASE_MS + PLAY_WAIT_PER_CHAR_MS * text.length;
+}
+
+/**
+ * Starts `play` and settles once it settles or after `ms`, whichever comes first; it never
+ * rejects, also when `play` throws. A playback whose promise never settles (a browser that drops
+ * the utterance's `end`, a stalled load) so holds the scene for `ms` at most.
+ * @param {() => Promise<unknown>} play
+ * @param {number} ms
+ * @returns {Promise<void>}
+ */
+export function playWithin(play, ms) {
+  return new Promise((resolve) => {
+    const timer = setTimeout(resolve, ms);
+    const done = () => {
+      clearTimeout(timer);
+      resolve();
+    };
+    Promise.resolve().then(play).then(done, done);
+  });
 }
 
 /**
@@ -104,8 +136,8 @@ export function render(container, entry, ctx) {
       const line = lines[index];
       if (line.speaker !== LEARNER) {
         transcript.append(h('li', { class: 'lesson-card' }, said(line)));
-        // A scene left mid-way stops talking.
-        if (!ctx.mode.mute && container.isConnected) await ctx.play(line.sl).catch(() => 'none');
+        // A scene left mid-way stops talking; a playback that never ends holds it for the line's wait.
+        if (!ctx.mode.mute && container.isConnected) await playWithin(() => ctx.play(line.sl), playWaitMs(line.sl));
         return step(index + 1);
       }
 
@@ -117,15 +149,13 @@ export function render(container, entry, ctx) {
         onAnswer: (answer) => {
           const graded = grade(answer, line.sl, []);
           results[index] = graded.result;
-          const panel = renderFeedback({
+          mountFeedback(feedbackSlot, {
             answer, graded, effective: lineEffective(line, graded.result, ctx.effective), target: line.sl, rule: ctx.rule,
             onDone: () => {
               card.replaceChildren(...said(line));
               void step(index + 1);
             },
           });
-          feedbackSlot.append(panel);
-          /** @type {HTMLElement|null} */ (panel.querySelector('[data-autofocus]'))?.focus();
         },
       });
       card.append(
