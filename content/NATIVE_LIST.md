@@ -60,3 +60,19 @@ For each row, add one line to native-confirmations.tsv: the id, a tab, then `con
 | u10-l01-i05 | služba | job, place of work | review1 doubtful: Register. The gloss 'place of work' and the example 'Danes sem v službi' use the sense SSKJ labels pog. ('// pog. stavba, prostor, kjer se opravlja tako delo ... to sem slišal v službi'), and Pravopis has knj. pog. for 'čakati koga pred službo'. The item is tagged neutral, so by the style guide it waits for a native to confirm the tag. The job sense itself carries no label; forms and helper are fine. |  |
 | u10-l04-i02 | Učim se slovensko. | I am learning Slovenian. | review1 doubtful: The accept variants are confirmed: Pravopis gives učiti se kaj, česa, so slovenščine and slovenščino both stand. The headword with the adverb slovensko is the doubt: Fran shows the adverb only with govoriti and no attestation of učiti se slovensko. It sounds natural in speech to me, but I cannot source it and the neutral tag rests on it.; review2 doubtful: sl and examples use the adverb slovensko with učiti se. SSKJ and Pravopis show that adverb only with govoriti, the same holds for angleško, and Pravopis gives učiti se the government kaj, česa (fiziko, kuhanja). So the accept variants Učim se slovenščine and Učim se slovenščino are supported, while the headword form, heard in speech as far as I know, is not attested in the dictionaries. A native should confirm it, or the headword should move to slovenščino or slovenščine. Slovensko se učim shares the doubt. Fix: Učim se slovenščino. | Učim se slovenščino. |
 | u10-l05-i01 | Kako je bilo v službi? | How was work? | review1 doubtful: Natural, but register: 'v službi' for the workplace is the sense SSKJ labels pog. ('to sem slišal v službi'), and the chunk is tagged neutral. By the style guide it waits for a native to confirm the tag. |  |
+
+## Drill words
+
+| id | sl | en | doubt | proposed fix |
+|---|---|---|---|---|
+| drill:bil | bil | was (he) | drill word: is the clip clear, and told apart from bila? |  |
+| drill:bila | bila | was (she) | drill word: is the clip clear, and told apart from bil? |  |
+| drill:vas | vas | village; you (plural or polite, as object) | drill word: is the clip clear, and told apart from vaš? |  |
+| drill:vaš | vaš | your (plural or polite) | drill word: is the clip clear, and told apart from vas? |  |
+| drill:kosa | kosa | scythe | drill word: is the clip clear, and told apart from koza and koža? |  |
+| drill:koza | koza | goat | drill word: is the clip clear, and told apart from kosa and koža? |  |
+| drill:koža | koža | skin | drill word: is the clip clear, and told apart from kosa and koza? |  |
+| drill:peti | peti | to sing; fifth | drill word: is the clip clear, and told apart from pesti? |  |
+| drill:pesti | pesti | fists | drill word: is the clip clear, and told apart from peti? |  |
+| drill:v šoli | v šoli | at school | drill word: is the clip clear, and told apart from šoli? |  |
+| drill:šoli | šoli | school (dative or locative) | drill word: is the clip clear, and told apart from v šoli? |  |
