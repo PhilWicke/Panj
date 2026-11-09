@@ -6,16 +6,14 @@ import { after, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { applyReview } from '../../tools/apply-review.js';
 import { nativeConfirm } from '../../tools/native-confirm.js';
 import { reviewGuard, slFingerprint } from '../../tools/review-guard.js';
-import { copyFixture, editJson, removeCopies, reviewDoc } from './helpers.js';
+import { NATIVE_LIST_TEMPLATE, copyFixture, editJson, removeCopies, reviewDoc } from './helpers.js';
 
 after(removeCopies);
 
 const LESSON = 'lessons/u01-l01.json';
-const NATIVE_LIST = fileURLToPath(new URL('../../content/NATIVE_LIST.md', import.meta.url));
 
 /** @param {string} file */
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -31,7 +29,7 @@ const fixture = (edit) => copyFixture('content-valid', async (dir) => {
     for (const item of doc.items) item.verification = { review1: null, review2: null, native: null, status: 'pending' };
     edit?.(doc);
   });
-  await writeFile(join(dir, 'NATIVE_LIST.md'), await readFile(NATIVE_LIST, 'utf8'));
+  await writeFile(join(dir, 'NATIVE_LIST.md'), NATIVE_LIST_TEMPLATE);
   await mkdir(join(dir, 'reviews'));
   const review = await reviewDoc(dir, 'u01-l01', {
     review2: {
@@ -109,4 +107,26 @@ test('a hand-filled tsv reads through a BOM, CRLF, spaces, blank lines, capitals
   assert.equal(tsv, 'id\tverdict\tcorrection\nu01-l01-i99\tconfirmed\nu01-l01-i02\tmaybe\n');
   assert.ok(list.includes('| u01-l01-i02 |'), list);
   assert.equal(item('u01-l01-i02').verification.status, 'pending');
+});
+
+test('a row confirmed after its item changed without a new review leaves the item to the guard', async () => {
+  const dir = await fixture();
+  // A slip: the doubted item's Slovenian changes after its review without the reset, so the row
+  // still shows the text the reviewers saw.
+  await editJson(dir, LESSON, (doc) => { doc.items[1].sl = 'Dober dan vam.'; });
+  const r = await confirm(dir, 'id\tverdict\tcorrection\nu01-l01-i02\tconfirmed\n');
+  assert.equal(r.confirmed, 1);
+  assert.deepEqual(await reviewGuard({ contentDir: dir }), [{ lesson: 'u01-l01', key: 'u01-l01-i02', message: 'accepted, but its Slovenian text changed after the review' }]);
+});
+
+test('a correction refreshes only the fingerprints that were current, so an edit made after the review still shows', async () => {
+  const dir = await fixture();
+  // A slip on the doubted item's example; the dialogue line the correction also changes is current.
+  await editJson(dir, LESSON, (doc) => { doc.items[2].examples[0].sl = 'To je moj brat, gospa.'; });
+  const r = await confirm(dir, 'id\tverdict\tcorrection\nu01-l01-i03\tcorrected\tbratec\n');
+  const { lesson, item, review } = await state(dir);
+  assert.equal(r.corrected, 1);
+  assert.equal(item('u01-l01-i03').examples[0].sl, 'To je moj bratec, gospa.');
+  assert.equal(review.applied['u01-l01-d-03'], slFingerprint(lesson.dialogue.lines[2]));
+  assert.deepEqual(await reviewGuard({ contentDir: dir }), [{ lesson: 'u01-l01', key: 'u01-l01-i03', message: 'accepted, but its Slovenian text changed after the review' }]);
 });

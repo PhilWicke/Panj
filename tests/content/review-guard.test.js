@@ -95,6 +95,14 @@ test('an accepted item without a review is reported; a native confirmation stand
   assert.deepEqual((await reviewGuard({ contentDir: bare })).filter((i) => i.key === 'u01-l01-i01'), []);
 });
 
+test('a native verdict stands in only for a missing review: text changed after its recorded review is reported', async () => {
+  const copy = await copyFixture('content-valid', acceptedReview);
+  await editJson(copy, LESSON, (doc) => { doc.items[0].verification.native = 'confirmed'; });
+  assert.deepEqual(await reviewGuard({ contentDir: copy }), []);
+  await editJson(copy, LESSON, (doc) => { doc.items[0].examples[0].sl = 'Živjo, kako ste?'; });
+  assert.deepEqual(await reviewGuard({ contentDir: copy }), [{ lesson: 'u01-l01', key: 'u01-l01-i01', message: 'accepted, but its Slovenian text changed after the review' }]);
+});
+
 const exec = promisify(execFile);
 const CLI = fileURLToPath(new URL('../../tools/review-guard.js', import.meta.url));
 

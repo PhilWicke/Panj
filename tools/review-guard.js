@@ -2,7 +2,8 @@
 // tools/apply-review.js applies a review it records, per judged entry, a fingerprint of the
 // entry's Slovenian (slFingerprint); the guard recomputes the fingerprints and reports every
 // accepted item, and every line of a lesson that ships an accepted item, whose review is missing,
-// not an acceptance by both halves, or recorded for other text.
+// not an acceptance by both halves, or recorded for other text. A native speaker's verdict stands
+// in for a missing review, never for a recorded one that no longer matches the text.
 //
 // Library: SL_KEYS, slFingerprint(entry), entriesOf(lesson, rules), reviewFilesFor(contentDir,
 // lessonId), reviewGuard({ contentDir }), and the course readers the other review tools share,
@@ -220,10 +221,10 @@ export function latestJudging(files, section, key) {
 const bothAccept = (doc, key) => ['review1', 'review2'].every((reviewer) => halfOf(doc, /** @type {'review1'|'review2'} */ (reviewer))?.lines?.[key]?.verdict === 'accepted');
 
 /**
- * Reports, in course order and then entriesOf order: every item with status `accepted` and no
- * native verdict whose latest judging round recorded no fingerprint for it, or one for other
- * text; and, in a lesson with at least one accepted item, every line whose latest judging round
- * is missing, not an acceptance by both halves, or recorded for other text.
+ * Reports, in course order and then entriesOf order: every item with status `accepted` whose
+ * latest judging round recorded a fingerprint for other text, or recorded none while the item has
+ * no native verdict; and, in a lesson with at least one accepted item, every line whose latest
+ * judging round is missing, not an acceptance by both halves, or recorded for other text.
  * @param {{ contentDir: string }} options
  * @returns {Promise<GuardIssue[]>}
  */
@@ -240,10 +241,11 @@ export async function reviewGuard({ contentDir }) {
       const report = (message) => issues.push({ lesson, key, message });
       if (itemIds.has(key)) {
         const verification = /** @type {import('../app/js/content/types.js').Item} */ (entry).verification;
-        if (verification?.status !== 'accepted' || verification.native) continue;
+        if (verification?.status !== 'accepted') continue;
         const recorded = latestJudging(files, 'items', key)?.doc.applied?.[key];
-        if (recorded === undefined) report('accepted without a recorded review');
-        else if (recorded !== slFingerprint(entry)) report('accepted, but its Slovenian text changed after the review');
+        if (recorded === undefined) {
+          if (!verification.native) report('accepted without a recorded review');
+        } else if (recorded !== slFingerprint(entry)) report('accepted, but its Slovenian text changed after the review');
       } else if (shipsAccepted) {
         const round = latestJudging(files, 'lines', key);
         if (round && !bothAccept(round.doc, key)) report('not accepted by both reviews');

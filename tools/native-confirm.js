@@ -7,7 +7,9 @@
 //   case of the first letter) wherever a learner types or reads it as running text: item examples,
 //   production answers and accepted variants, dialogue lines, and rule card and toggle examples,
 //   in every lesson and rule. The review fingerprint of every entry it changed is refreshed in the
-//   latest round that judged it, so the review guard keeps accepting it. Occurrences in other
+//   latest round that judged it, so the review guard keeps accepting it, but only where that
+//   fingerprint was the entry's text before the correction: an entry edited after its review
+//   keeps its stale fingerprint, and the guard goes on reporting it. Occurrences in other
 //   Slovenian fields (another item's text, any item's colloquial form, forms or accepted variants,
 //   structured exercises, production fillers, rule tables and quick checks) are left for a person
 //   to judge and reported as untouched.
@@ -103,18 +105,22 @@ export async function nativeConfirm({ contentDir, tsvPath, nativeListPath }) {
   const result = { confirmed: 0, corrected: 0, replaced: 0, unmatched: [], untouched: [] };
   /** @type {Set<string>} */
   const untouched = new Set();
-  /** The entries whose Slovenian changed, by lesson id and key, for the fingerprint refresh. @type {Map<string, Map<string, unknown>>} */
+  /**
+   * The entries whose Slovenian changed, by lesson id and key, each with its fingerprint before
+   * the first change, for the fingerprint refresh.
+   * @type {Map<string, Map<string, { entry: unknown, before: string }>>}
+   */
   const changed = new Map();
-  /** @param {string} lessonId @param {string} key @param {unknown} entry */
-  const record = (lessonId, key, entry) => {
+  /** @param {string} lessonId @param {string} key @param {unknown} entry @param {string} before its fingerprint before this change */
+  const record = (lessonId, key, entry, before) => {
     const entries = changed.get(lessonId) ?? new Map();
-    entries.set(key, entry);
+    if (!entries.has(key)) entries.set(key, { entry, before });
     changed.set(lessonId, entries);
   };
-  /** A lesson entry changed: the lesson file is written and the entry's fingerprint refreshed. @param {Loaded<Lesson>} lesson @param {string} key @param {unknown} entry */
-  const touch = (lesson, key, entry) => {
+  /** A lesson entry changed: the lesson file is written and the entry's fingerprint refreshed. @param {Loaded<Lesson>} lesson @param {string} key @param {unknown} entry @param {string} before */
+  const touch = (lesson, key, entry, before) => {
     lesson.dirty = true;
-    record(lesson.doc.id, key, entry);
+    record(lesson.doc.id, key, entry, before);
   };
 
   /**
@@ -129,8 +135,9 @@ export async function nativeConfirm({ contentDir, tsvPath, nativeListPath }) {
     }
     const old = withoutFinalMark(item.sl);
     const replacement = withoutFinalMark(correction);
+    const itemBefore = slFingerprint(item);
     item.sl = correction;
-    touch(owner, item.id, item);
+    touch(owner, item.id, item, itemBefore);
     if (old === '') return;
     const whole = `(?<![\\p{L}\\p{N}])${escapeRegExp(old)}(?![\\p{L}\\p{N}])`;
     const found = new RegExp(whole, 'iu');
@@ -153,9 +160,10 @@ export async function nativeConfirm({ contentDir, tsvPath, nativeListPath }) {
     for (const lesson of lessons) {
       const { file, doc } = lesson;
       for (const other of doc.items ?? []) {
+        const before = slFingerprint(other);
         let changedHere = false;
         for (const example of other.examples ?? []) if (swap(example, 'sl')) changedHere = true;
-        if (changedHere) touch(lesson, other.id, other);
+        if (changedHere) touch(lesson, other.id, other, before);
         if (other !== item) leave(file, `items/${other.id}/sl`, other.sl);
         leave(file, `items/${other.id}/sl_colloquial`, other.sl_colloquial);
         for (const [label, form] of Object.entries(other.forms ?? {})) leave(file, `items/${other.id}/forms/${label}`, form);
@@ -167,26 +175,31 @@ export async function nativeConfirm({ contentDir, tsvPath, nativeListPath }) {
         leave(file, `structured/${exercise.id}/answer`, exercise.answer);
       }
       for (const exercise of doc.production ?? []) {
+        const before = slFingerprint(exercise);
         let changedHere = swap(exercise, 'answer');
         if (Array.isArray(exercise.accept)) exercise.accept.forEach((_, i) => { if (swap(exercise.accept, i)) changedHere = true; });
-        if (changedHere) touch(lesson, exercise.id, exercise);
+        if (changedHere) touch(lesson, exercise.id, exercise, before);
         leave(file, `production/${exercise.id}/filler`, exercise.filler);
       }
       if (doc.dialogue) {
         const { id, lines } = doc.dialogue;
-        lines.forEach((line, i) => { if (swap(line, 'sl')) touch(lesson, lineKey(id, i), line); });
+        lines.forEach((line, i) => {
+          const before = slFingerprint(line);
+          if (swap(line, 'sl')) touch(lesson, lineKey(id, i), line, before);
+        });
       }
     }
 
     for (const rule of rules) {
       const { file, doc } = rule;
+      const before = slFingerprint(doc);
       let changedHere = isObject(doc.example) && swap(doc.example, 'sl');
       for (const toggle of doc.toggles ?? []) {
         for (const example of Object.values(toggle.examples ?? {})) if (isObject(example) && swap(example, 'sl')) changedHere = true;
       }
       if (changedHere) {
         rule.dirty = true;
-        for (const lesson of lessons) if ((lesson.doc.rules ?? []).includes(doc.id)) record(lesson.doc.id, doc.id, doc);
+        for (const lesson of lessons) if ((lesson.doc.rules ?? []).includes(doc.id)) record(lesson.doc.id, doc.id, doc, before);
       }
       for (const [key, tableCell] of Object.entries(doc.table?.cells ?? {})) {
         leave(file, `table/cells/${key}/form`, tableCell.form);
@@ -230,14 +243,15 @@ export async function nativeConfirm({ contentDir, tsvPath, nativeListPath }) {
   }
   result.untouched = [...untouched];
 
-  // Refresh the recorded fingerprint of every changed entry in the latest round that judged it.
+  // Refresh the recorded fingerprint of every changed entry in the latest round that judged it,
+  // where it held the entry's text before the correction.
   /** @type {Set<{ path: string, doc: import('./review-guard.js').ReviewDoc }>} */
   const reviews = new Set();
   for (const [lessonId, entries] of changed) {
     const files = await reviewFilesFor(contentDir, lessonId);
-    for (const [key, entry] of entries) {
+    for (const [key, { entry, before }] of entries) {
       const round = latestJudging(files, items.has(key) ? 'items' : 'lines', key);
-      if (!round || !isObject(round.doc.applied) || !Object.hasOwn(round.doc.applied, key)) continue;
+      if (!round || !isObject(round.doc.applied) || round.doc.applied[key] !== before) continue;
       round.doc.applied[key] = slFingerprint(entry);
       reviews.add(round);
     }

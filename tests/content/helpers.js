@@ -1,8 +1,8 @@
 // tests/content/helpers.js
 // Shared setup for the content tool tests: temporary copies of the fixtures under
-// tools/fixtures/, in-place JSON edits, the slot and the extra lessons several tests add, and a
-// review document that judges a lesson. Each test file that copies a fixture calls
-// after(removeCopies).
+// tools/fixtures/, in-place JSON edits, the slot and the extra lessons several tests add, a
+// review document that judges a lesson, and the empty native list. Each test file that copies a
+// fixture calls after(removeCopies).
 import { cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -13,6 +13,19 @@ import { entriesOf } from '../../tools/review-guard.js';
 
 /** @type {string[]} */
 const copies = [];
+
+/**
+ * NATIVE_LIST.md as Task 1 Step 4 writes it, with no unit section yet: the start of every test's
+ * native list. Tests never read content/NATIVE_LIST.md, which the unit tasks fill with real rows.
+ */
+export const NATIVE_LIST_TEMPLATE = [
+  '# Ask a native speaker',
+  '',
+  'Each row is a word or phrase that one of the two reviews doubted. It is not practised until a native speaker has looked at it.',
+  '',
+  'For each row, add one line to native-confirmations.tsv: the id, a tab, then `confirmed`, or `corrected`, a tab and the corrected Slovenian. Answers given in a chat are entered the same way. Once `node tools/native-confirm.js` has applied a line, its row leaves this list.',
+  '',
+].join('\n');
 
 /**
  * A temporary copy of tools/fixtures/<name>/, edited by `mutate` when given.

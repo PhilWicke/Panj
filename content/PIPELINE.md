@@ -45,7 +45,7 @@ Two fresh reviewers judge only the rewritten entries. The script writes their ha
 node tools/apply-review.js content/lessons/<lesson>.json --round 2
 ```
 
-From round 2 on, a rejected item is held as a doubt and waits on the native list with its fix.
+From round 2 on, a rejected item is held as a doubt and waits on the native list with its fix. Each round rewrites the native-list row of every item it judges, so the row shows the item's current Slovenian and the latest doubts, and removes the row once the item is no longer doubted.
 
 A line still flagged gets one more rewrite and round 3 (`<lesson>.r3.review.json`, `--round 3`). After round 3, a structured or production exercise still flagged is deleted when its lesson keeps the minimum its level's shape asks for (`SHAPES` in `tests/content/shapes.js`; in a consolidation lesson that includes drawing on every earlier lesson of the unit). Any other line still flagged stops the task with a report to the controller.
 
@@ -62,7 +62,7 @@ One fresh session reads the unit together with the earlier units and checks:
 - unambiguous glosses;
 - generic English.
 
-It may edit English text and metadata directly. Any change to Slovenian text, meaning anything `slFingerprint` in `tools/review-guard.js` covers, resets that item's `verification` to nulls and `pending` and sends the changed entries through the next review round before the gates. `node tools/review-guard.js` refuses accepted text that changed after its review.
+It may edit English text and metadata directly. Any change to Slovenian text, meaning anything `slFingerprint` in `tools/review-guard.js` covers, resets that item's `verification` to nulls and `pending` and sends the changed entries through the next review round before the gates. `node tools/review-guard.js` refuses accepted text that changed after its review, also when a native speaker has confirmed it.
 
 ## 5. Gates
 

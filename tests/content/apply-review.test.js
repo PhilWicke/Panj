@@ -12,12 +12,11 @@ import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { applyReview } from '../../tools/apply-review.js';
 import { slFingerprint } from '../../tools/review-guard.js';
-import { copyFixture, editJson, removeCopies, reviewDoc } from './helpers.js';
+import { NATIVE_LIST_TEMPLATE, copyFixture, editJson, removeCopies, reviewDoc } from './helpers.js';
 
 after(removeCopies);
 
 const LESSON = 'lessons/u01-l01.json';
-const NATIVE_LIST = fileURLToPath(new URL('../../content/NATIVE_LIST.md', import.meta.url));
 
 /** @param {string} file */
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -29,7 +28,7 @@ const fixture = () => copyFixture('content-valid', async (dir) => {
   await editJson(dir, LESSON, (doc) => {
     for (const item of doc.items) item.verification = { review1: null, review2: null, native: null, status: 'pending' };
   });
-  await writeFile(join(dir, 'NATIVE_LIST.md'), await readFile(NATIVE_LIST, 'utf8'));
+  await writeFile(join(dir, 'NATIVE_LIST.md'), NATIVE_LIST_TEMPLATE);
   await mkdir(join(dir, 'reviews'));
 });
 
@@ -133,7 +132,34 @@ test('from round 2 a rejection is held as a doubt with its fix in notes and on t
   assert.deepEqual((await itemOf(dir, 'u01-l01-i03')).verification, { review1: 'doubtful', review2: 'accepted', native: null, status: 'pending', notes: 'review1 rejected in round 2: Still wrong. Fix: brata' });
   const list = await readFile(join(dir, 'NATIVE_LIST.md'), 'utf8');
   assert.ok(list.includes('| u01-l01-i03 | brat | brother | review1 rejected in round 2: Still wrong. Fix: brata | brata |'), list);
+  assert.ok(list.includes('| u01-l01-i02 | Dober dan. | Good day. | review2 doubtful: Is the comma right? |  |'), 'a row the round does not judge stays');
   assert.equal(list.split('## Unit 01').length, 2, 'one section per unit');
+});
+
+test('a later round rewrites the row of an item it doubts again and removes the row of an item it no longer doubts', async () => {
+  const dir = await fixture();
+  await writeReview(dir, FIRST);
+  await applyReview(paths(dir));
+  // The consistency pass changes the doubted item's Slovenian, which resets it for the next round.
+  await editJson(dir, LESSON, (doc) => {
+    const item = doc.items.find((/** @type {any} */ i) => i.id === 'u01-l01-i02');
+    item.sl = 'Dober dan vam.';
+    item.verification = { review1: null, review2: null, native: null, status: 'pending' };
+  });
+  await writeReview(dir, { only: ['u01-l01-i02'], review1: { 'u01-l01-i02': { verdict: 'doubtful', reason: 'Is vam needed?', fix: 'Dober dan.' } } }, 'u01-l01.r2.review.json');
+  assert.deepEqual(await applyReview(paths(dir, 'u01-l01.r2.review.json')), { accepted: 0, pending: 1, rejected: 0, flagged: [] });
+  const doubted = await readFile(join(dir, 'NATIVE_LIST.md'), 'utf8');
+  assert.ok(doubted.includes('|---|---|---|---|---|\n| u01-l01-i02 | Dober dan vam. | Good day. | review1 doubtful: Is vam needed? Fix: Dober dan. | Dober dan. |\n'), doubted);
+  assert.equal(doubted.split('| u01-l01-i02 |').length, 2, 'one row per item');
+  const first = await snapshot(dir);
+  await applyReview(paths(dir, 'u01-l01.r2.review.json'));
+  assert.deepEqual(await snapshot(dir), first, 'applying the round again changes no file');
+
+  await writeReview(dir, { only: ['u01-l01-i02'] }, 'u01-l01.r3.review.json');
+  assert.deepEqual(await applyReview(paths(dir, 'u01-l01.r3.review.json')), { accepted: 1, pending: 0, rejected: 0, flagged: [] });
+  const accepted = await readFile(join(dir, 'NATIVE_LIST.md'), 'utf8');
+  assert.ok(!accepted.includes('| u01-l01-i02 |'), accepted);
+  assert.ok(accepted.endsWith('## Unit 01\n\n| id | sl | en | doubt | proposed fix |\n|---|---|---|---|---|\n'), 'the unit section keeps its heading and table header');
 });
 
 const run = promisify(execFile);

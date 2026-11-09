@@ -2,9 +2,11 @@
 // (round 1) or reviews/<lesson>.rN.review.json (round N) are merged into each judged item's
 // verification record by statusFor, every pending item a review doubted gets a row on
 // NATIVE_LIST.md under its unit, and every key both halves judged gets its slFingerprint in the
-// review file's `applied`, which the review guard checks. Lines the two halves do not both accept
-// come back as flagged for a rewrite. From round 2 on a rejection is stored as a doubt, so the
-// item waits for a native speaker instead of a third rewrite.
+// review file's `applied`, which the review guard checks. The row of a judged item always shows
+// the text and doubts of its latest round: it is rewritten in place when they changed, and it
+// leaves the list once the item is no longer pending and doubted. Lines the two halves do not
+// both accept come back as flagged for a rewrite. From round 2 on a rejection is stored as a
+// doubt, so the item waits for a native speaker instead of a third rewrite.
 //
 // The whole review is validated before anything is written, and applying the same round again
 // changes no file.
@@ -117,6 +119,35 @@ function addRows(text, unit, rows) {
 }
 
 /**
+ * Brings NATIVE_LIST.md up to date with the items a round judged. The row of an item that is
+ * still pending and doubted is written in place, and added under its unit when the list has none;
+ * the row of any other judged item leaves the list (its unit's heading and table header stay).
+ * Rows of items the round did not judge are left as they are.
+ * @param {string} text @param {string} unit two digits
+ * @param {Map<string, string|null>} rows the new row of each judged item by id, null for none
+ * @returns {string}
+ */
+function updateRows(text, unit, rows) {
+  /** @type {Set<string>} */
+  const seen = new Set();
+  /** @type {string[]} */
+  const kept = [];
+  const ids = [...rows.keys()];
+  for (const line of text.split('\n')) {
+    const id = ids.find((key) => isRowOf(line, key));
+    if (id === undefined) {
+      kept.push(line);
+      continue;
+    }
+    const row = rows.get(id);
+    if (typeof row === 'string' && !seen.has(id)) kept.push(row);
+    seen.add(id);
+  }
+  const added = [...rows].filter(([id, row]) => typeof row === 'string' && !seen.has(id)).map(([, row]) => /** @type {string} */ (row));
+  return addRows(kept.join('\n'), unit, added);
+}
+
+/**
  * Applies a review file to its lesson; see the header. Throws, before writing anything, on a
  * `lesson` field that is not the lesson's id, halves other than one review1 and one review2, a
  * key entriesOf does not name, a key judged by one half only, a verdict outside the scale, or a
@@ -158,8 +189,8 @@ export async function applyReview({ lessonPath, reviewPath, nativeListPath }) {
 
   /** @type {ApplyResult} */
   const result = { accepted: 0, pending: 0, rejected: 0, flagged: [] };
-  /** @type {string[]} */
-  const rows = [];
+  /** The native-list row of every judged item, null when the item is not pending and doubted. @type {Map<string, string|null>} */
+  const rows = new Map();
   /** @type {Record<string, string>} */
   const applied = { ...(isObject(review.applied) ? review.applied : {}) };
   for (const [key, entry] of entries) {
@@ -196,15 +227,13 @@ export async function applyReview({ lessonPath, reviewPath, nativeListPath }) {
     item.verification = { review1: stored.review1, review2: stored.review2, native, status, ...(notes.length > 0 ? { notes: notes.join('; ') } : {}) };
     result[status] += 1;
     const doubted = stored.review1 === 'doubtful' || stored.review2 === 'doubtful';
-    if (status === 'pending' && doubted && !listText.split('\n').some((line) => isRowOf(line, key)) && !rows.some((row) => isRowOf(row, key))) {
-      rows.push(`| ${key} | ${cell(item.sl)} | ${cell(item.en)} | ${cell(notes.join('; '))} | ${cell(fixes.join('; '))} |`);
-    }
+    rows.set(key, status === 'pending' && doubted ? `| ${key} | ${cell(item.sl)} | ${cell(item.en)} | ${cell(notes.join('; '))} | ${cell(fixes.join('; '))} |` : null);
   }
 
   const writes = [
     { file: lessonPath, before: lessonText, after: jsonText(lesson) },
     { file: reviewPath, before: reviewText, after: jsonText({ ...review, applied }) },
-    { file: nativeListPath, before: listText, after: addRows(listText, lesson.unit.slice(1), rows) },
+    { file: nativeListPath, before: listText, after: updateRows(listText, lesson.unit.slice(1), rows) },
   ];
   for (const { file, before, after } of writes) if (after !== before) await writeFile(file, after);
   return result;
