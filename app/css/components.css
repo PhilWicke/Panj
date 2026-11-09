@@ -1,10 +1,11 @@
-/* Components: header, screens, buttons, the exercises, the feedback panel, the session bar, the
-   rule card, the Rules screen, the Today screen with its calendar and hive, the unit page, the
-   checkpoint and onboarding forms, the Words, Stats and Settings screens, the tab bar and the
-   toast. Every control is at least 44 by 44 px, through min-height and min-width or padding,
-   never by scaling text; the focus ring is base.css's, and a component only adds its indigo band
-   where its own box-shadow or an SVG shape would leave it out; motion only answers an action, sits
-   in the no-preference block, and the reduce block at the very end switches all of it off. */
+/* Components: header, screens, buttons, the exercises, the feedback panel, the session bar with
+   its Quiet panel and offer, the rule card, the Rules screen, the Today screen with its calendar
+   and hive, the unit page, the checkpoint and onboarding forms, the Words, Stats and Settings
+   screens, the tab bar and the toast. Every control is at least 44 by 44 px, through min-height
+   and min-width or padding, never by scaling text; the focus ring is base.css's, and a component
+   only adds its indigo band where its own box-shadow or an SVG shape would leave it out; motion
+   only answers an action, sits in the no-preference block, and the reduce block at the very end
+   switches all of it off. */
 
 /* Header */
 
@@ -396,7 +397,8 @@
   gap: var(--space-12);
 }
 
-.session-end {
+.session-end,
+.session-quiet {
   padding: 0 var(--space-8);
 }
 
@@ -413,6 +415,25 @@
   height: 100%;
   border-radius: inherit;
   background: var(--honey);
+}
+
+/* The Quiet panel: a quiet card under the session bar with the two choices and their line. */
+.quiet-panel {
+  display: grid;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-16);
+  background: var(--surface);
+}
+
+/* The choice offered beside an exercise; it takes no room while nothing is offered. */
+.quiet-offer {
+  display: flex;
+}
+
+.quiet-offer:empty {
+  display: none;
 }
 
 /* Rule card */

@@ -6,8 +6,9 @@
 // first lessons are still being checked and shows no primary action and no strip, a course with
 // lessons and nothing due keeps the disabled action, the current unit's strip sits under the
 // primary action with the current lesson's cell marked, linking to the Hive, and no intention line
-// shows, even for an old settings record that carries one. The rest of the screen runs in the
-// browser check.
+// shows, even for an old settings record that carries one. The closing menu offers "Can't talk
+// right now" after the speaking round only when the session asks for it. The rest of the screen
+// runs in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -204,4 +205,17 @@ test('renderMenu offers the closing options in order with their labels, the firs
   buttons[0].dispatch('click');
   assert.deepEqual(picks, ['speaking', 'stop']);
   assert.deepEqual(elements(renderMenu(['stop'], () => {})).map((b) => b.textContent), ['Stop here']);
+});
+
+test("renderMenu puts \"Can't talk right now\" after the speaking round when asked, and only then", () => {
+  /** @type {string[]} */
+  const calls = [];
+  const menu = renderMenu(['stop', 'speaking', 'continue'], () => {}, { onCantTalk: () => { calls.push('quiet'); } });
+  const buttons = elements(menu).filter((e) => e.tagName === 'BUTTON');
+  assert.deepEqual(buttons.map((b) => b.textContent), ['Stop here', 'A speaking round', "Can't talk right now", 'Continue the lesson']);
+  assert.equal(buttons[2].className, 'btn btn-quiet');
+  buttons[2].dispatch('click');
+  assert.deepEqual(calls, ['quiet']);
+  assert.deepEqual(elements(renderMenu(['stop', 'continue'], () => {}, { onCantTalk: () => {} })).map((b) => b.textContent), ['Stop here', 'Continue the lesson']);
+  assert.deepEqual(elements(renderMenu(['stop', 'speaking'], () => {})).map((b) => b.textContent), ['Stop here', 'A speaking round']);
 });

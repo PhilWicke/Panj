@@ -21,9 +21,18 @@
 // on, else the self-rated speaking exercise over up to five review-phase items. Each session
 // starts with speech recognition offered again, even if it was refused in an earlier one
 // (resetRecognition). The pure parts are exported for the tests.
+// Quiet choices (ui/quiet.js) hold for the sitting: a run starts from the choices made so far, and
+// its queue leaves out what they drop (quietDrops). "Can't listen right now" and "Can't talk right
+// now" are offered once each, beside the first exercise that would play sound or ask the learner to
+// speak, and both sit in the Quiet panel under the session bar; the closing menu offers "Can't talk
+// right now" after its speaking round. A choice prunes the rest of the queue (pruneQueue) and
+// reaches the exercise on screen: one whose kind it drops is skipped without an outcome, and a
+// meet, dialogue or speaking exercise is drawn again without sound after "Can't listen right now".
+// Every interruptible draw has its own element in the stage, so one left behind cannot draw over
+// what follows, and once the learner can't listen no exercise context plays anything.
 
 import { h, mount } from '../../util/dom.js';
-import { buildMoreRound, buildSession, closingMenu } from '../../engine/session.js';
+import { buildMoreRound, buildSession, closingMenu, quietDrops } from '../../engine/session.js';
 import { createState, effectiveResult, recordRecall, skipAheadState } from '../../engine/scheduler.js';
 import { creditedMinutes, honeyFor } from '../../engine/progress.js';
 import { currentLesson, todayTotals, unmetItems } from '../../engine/course.js';
@@ -33,11 +42,13 @@ import { onlyKnown } from '../../content/loader.js';
 import { saveItemState, appendSession } from '../../store/state.js';
 import { renderFor } from '../exercises/registry.js';
 import { renderMenu } from '../components/menu.js';
+import { OFFER_KINDS, QUIET_LABELS, chooseQuiet, offerQuiet, quietChoices } from '../quiet.js';
 import { navigate } from '../../router.js';
 import { resetRecognition } from '../../audio/speech.js';
 
 /** @typedef {import('../../app-types.js').App} App */
 /** @typedef {import('../../engine/session.js').QueueEntry} QueueEntry */
+/** @typedef {import('../../engine/session.js').ExerciseKind} ExerciseKind */
 /** @typedef {import('../../engine/session.js').Mode} Mode */
 /** @typedef {import('../../engine/scheduler.js').ItemState} ItemState */
 /** @typedef {import('../../engine/scheduler.js').Settings} Settings */
@@ -45,6 +56,7 @@ import { resetRecognition } from '../../audio/speech.js';
 /** @typedef {import('../../engine/progress.js').SessionRecord} SessionRecord */
 /** @typedef {import('../exercises/registry.js').ExerciseContext} ExerciseContext */
 /** @typedef {import('../exercises/registry.js').ExerciseOutcome} ExerciseOutcome */
+/** @typedef {import('../quiet.js').QuietKind} QuietKind */
 
 /** Entries a missed recall waits behind before it comes back. */
 const REQUEUE_GAP = 2;
@@ -52,6 +64,10 @@ const REQUEUE_GAP = 2;
 const RETRIED_KINDS = new Set(['typed_en_sl', 'typed_sl_en']);
 /** Items a speaking round speaks when buildSession planned no speaking entries. */
 const SPEAKING_ROUND = 5;
+/** The quiet choices, in the order the Quiet panel shows them. @type {readonly QuietKind[]} */
+const QUIET_KINDS = ['listen', 'talk'];
+/** Kinds drawn again after "Can't listen right now", so they show without Listen and play nothing. @type {ReadonlySet<ExerciseKind>} */
+const REDRAWN_SILENT = new Set(['meet', 'dialogue', 'speaking']);
 
 /**
  * What the last run practised and missed, for the "Three more minutes" run that may follow it
@@ -73,6 +89,24 @@ export function requeue(queue, index, entry) {
   const at = Math.min(index + 1 + REQUEUE_GAP, queue.length);
   queue.splice(at, 0, entry);
   return at;
+}
+
+/**
+ * Removes, in place, the entries at `from` and after whose kind is in `drops`: a quiet choice
+ * prunes the rest of the run, the entry on screen and those before it staying as they are.
+ * @param {QueueEntry[]} queue
+ * @param {number} from the first index that may go
+ * @param {Set<ExerciseKind>} drops quietDrops of the run's mode
+ * @returns {number} how many it removed
+ */
+export function pruneQueue(queue, from, drops) {
+  let removed = 0;
+  for (let at = queue.length - 1; at >= from; at -= 1) {
+    if (!drops.has(queue[at].kind)) continue;
+    queue.splice(at, 1);
+    removed += 1;
+  }
+  return removed;
 }
 
 /**
@@ -152,12 +186,14 @@ function playable(app, entry) {
  */
 export function renderSession(container, app, params = {}) {
   const settings = app.state.settings;
+  const { cantListen, cantTalk } = quietChoices();
   /**
    * The mode of buildSession and closingMenu: buildQueue settles `mute` once the player has said
-   * whether anything can play. The exercises get the learner's own mute instead (contextFor).
-   * @type {Mode}
+   * whether anything can play. The exercises get the learner's own mute instead (contextFor). The
+   * quiet flags start from the sitting's choices and follow every choice made during the run.
+   * @type {Required<Mode>}
    */
-  const mode = { mute: settings.mute, speech: settings.speech };
+  const mode = { mute: settings.mute, speech: settings.speech, cantListen, cantTalk };
   const startedAt = Date.now();
   /** The run's record id, fixed from the start so every write replaces the one before (Ruling 78). */
   const id = `${startedAt}-${globalThis.crypto.randomUUID()}`;
@@ -181,11 +217,15 @@ export function renderSession(container, app, params = {}) {
   const newPerDay = settings.newPerDay + (params.mode === 'continue' ? remaining : 0);
   /** @type {QueueEntry[]} the run-time queue, filled by buildQueue */
   const queue = [];
+  /** The index of the entry the run is at: -1 before the first, queue.length once the run has ended. */
+  let current = -1;
+  /** Ends the draw on screen early, when a quiet choice skips it or draws it again. @type {((how: 'skip'|'redraw') => void)|null} */
+  let interrupt = null;
 
   /**
    * Builds this run's queue once the player has said whether anything can play, which it does
    * within AUDIO_CHECK_MS (Ruling 95): the day's plan (muted when nothing can, Ruling 81), a
-   * speaking round, or the more round after the last run.
+   * speaking round, or the more round after the last run, without the kinds the quiet choices drop.
    */
   const buildQueue = async () => {
     mode.mute = settings.mute || !(await app.player.audioAvailable());
@@ -196,18 +236,55 @@ export function renderSession(container, app, params = {}) {
     const round = params.mode === 'speaking' ? speakingQueue(planned, known(), mode.speech, Math.random)
       : params.mode === 'more' ? buildMoreRound({ now: startedAt, states: known(), practised: lastRun.practised, missed: lastRun.missed, settings })
         : planned;
-    queue.push(...round.filter((entry) => playable(app, entry)));
+    const drops = quietDrops(mode);
+    queue.push(...round.filter((entry) => !drops.has(entry.kind) && playable(app, entry)));
   };
 
   const progress = h('div', { class: 'progress-fill' });
   const bar = h('div', { class: 'progress', role: 'progressbar', 'aria-label': 'Session progress', 'aria-valuemin': '0' }, progress);
   const stage = h('div', { class: 'stage' });
   const end = h('button', { type: 'button', class: 'btn btn-quiet session-end', onclick: () => { void leave(); } }, 'End');
+  const quietToggle = h('button', {
+    type: 'button', class: 'btn btn-quiet session-quiet', 'aria-expanded': 'false', 'aria-controls': 'session-quiet-panel', onclick: () => togglePanel(),
+  }, 'Quiet');
+  /** Whether a choice holds for this run: made, or for listening, the learner's own mute. @param {QuietKind} kind */
+  const holds = (kind) => (kind === 'listen' ? settings.mute || mode.cantListen : mode.cantTalk);
+  const choices = QUIET_KINDS.map((kind) => ({
+    kind,
+    button: h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => { if (!holds(kind)) choose(kind); } }, QUIET_LABELS[kind]),
+  }));
+  const panel = h('div', { class: 'quiet-panel', id: 'session-quiet-panel', hidden: true },
+    choices.map((choice) => choice.button),
+    h('p', { class: 'quiet' }, 'Lasts until you leave the session.'));
+  /** The choice offered beside the exercise about to be drawn, empty otherwise. */
+  const offer = h('div', { class: 'quiet-offer' });
   // The screen's heading is for assistive technology: each exercise's own heading sits under it.
   mount(container, h('section', { class: 'screen screen-session' },
     h('h1', { class: 'visually-hidden' }, 'Practice session'),
-    h('div', { class: 'session-bar' }, end, bar),
+    h('div', { class: 'session-bar' }, end, bar, quietToggle),
+    panel,
+    offer,
     stage));
+
+  const togglePanel = () => {
+    panel.hidden = !panel.hidden;
+    quietToggle.setAttribute('aria-expanded', String(!panel.hidden));
+  };
+
+  /** Shows each choice pressed, and disabled, while it holds. */
+  const drawPanel = () => {
+    for (const { kind, button } of choices) {
+      button.setAttribute('aria-pressed', String(holds(kind)));
+      if (holds(kind)) button.setAttribute('aria-disabled', 'true');
+      else button.removeAttribute('aria-disabled');
+    }
+  };
+  drawPanel();
+
+  /** Hides End and Quiet, with Quiet's panel, once the run has nothing more to play. */
+  const hideControls = () => {
+    for (const control of [end, quietToggle, panel]) control.hidden = true;
+  };
 
   /** @param {number} done */
   const showProgress = (done) => {
@@ -244,13 +321,79 @@ export function renderSession(container, app, params = {}) {
       lesson: (entry.lessonId === undefined ? undefined : app.lessons.get(entry.lessonId)) ?? found?.lesson ?? null,
       rules: app.index.rules,
       settings,
-      // The learner's own mute, not the derived one: Listen shows and host lines are tried (Ruling 94).
-      mode: { ...mode, mute: settings.mute },
-      play: (text) => app.player.play(text),
+      // The learner's own mute, not the derived one: Listen shows and host lines are tried (Ruling 94),
+      // unless the learner can't listen right now.
+      mode: { ...mode, mute: settings.mute || mode.cantListen },
+      // Read at play time, so an exercise left behind or drawn again after the choice stays silent.
+      play: (text) => (quietChoices().cantListen ? Promise.resolve(/** @type {const} */ ('none')) : app.player.play(text)),
       rng: Math.random,
       allowPending: app.allowPending,
       effective: (id, recall) => effectiveResult(app.state.items[id] ?? createState(id, Date.now()), recall),
     };
+  };
+
+  /**
+   * Makes a quiet choice for the sitting and applies it to this run: the mode follows it, the sound
+   * stops for listening, the rest of the queue loses the kinds it drops, the bar and the panel are
+   * drawn again and the offer goes. The exercise on screen is then skipped when the choice drops its
+   * kind, drawn again when the learner can't listen and it is a meet, dialogue or speaking exercise,
+   * and otherwise stays.
+   * @param {QuietKind} kind
+   */
+  const choose = (kind) => {
+    chooseQuiet(kind);
+    if (kind === 'listen') {
+      mode.cantListen = true;
+      app.player.stop();
+    } else {
+      mode.cantTalk = true;
+    }
+    const drops = quietDrops(mode);
+    pruneQueue(queue, current + 1, drops);
+    if (current >= 0) showProgress(current);
+    drawPanel();
+    mount(offer);
+    const entry = queue[current];
+    if (!interrupt || !entry) return;
+    if (drops.has(entry.kind)) interrupt('skip');
+    else if (kind === 'listen' && REDRAWN_SILENT.has(entry.kind)) interrupt('redraw');
+  };
+
+  /**
+   * Offers a choice beside the entry about to be drawn: listening beside a meet, listening or
+   * perception exercise while the learner has sound, else talking beside a speaking exercise; each
+   * once per sitting (offerQuiet), and nothing once it is chosen.
+   * @param {QueueEntry} entry
+   */
+  const offerFor = (entry) => {
+    /** @type {QuietKind|null} */
+    const kind = !settings.mute && !mode.cantListen && OFFER_KINDS.listen.has(entry.kind) && offerQuiet('listen') ? 'listen'
+      : !mode.cantTalk && OFFER_KINDS.talk.has(entry.kind) && offerQuiet('talk') ? 'talk'
+        : null;
+    mount(offer, kind && h('button', { type: 'button', class: 'btn btn-quiet', onclick: () => choose(kind) }, QUIET_LABELS[kind]));
+  };
+
+  /**
+   * Draws an entry, raced against the quiet choices: a choice that drops its kind skips it, one
+   * that draws it again starts a fresh draw with a fresh context. Each draw has its own element in
+   * the stage, so an exercise left behind cannot draw over what comes after it.
+   * @param {QueueEntry} entry
+   * @returns {Promise<ExerciseOutcome|null>} the outcome, or null when the entry was skipped
+   */
+  const draw = async (entry) => {
+    const render = /** @type {import('../exercises/registry.js').ExerciseRender} */ (renderFor(entry.kind));
+    for (;;) {
+      offerFor(entry);
+      const host = h('div');
+      mount(stage, host);
+      /** @type {Promise<'skip'|'redraw'>} */
+      const interrupted = new Promise((resolve) => { interrupt = resolve; });
+      const drawn = await Promise.race([render(host, entry, contextFor(entry.itemId, entry)), interrupted]);
+      interrupt = null;
+      if (drawn === 'redraw') continue;
+      mount(offer);
+      return drawn === 'skip' ? null : drawn;
+    }
   };
 
   /**
@@ -314,18 +457,11 @@ export function renderSession(container, app, params = {}) {
 
   const close = async () => {
     const session = await record();
-    const now = Date.now();
     lastRun = { practised: new Set(practised), missed: [...missed] };
-    showProgress(queue.length);
-    end.hidden = true;
-    const options = closingMenu({
-      minutesToday: todayTotals(app.state.sessions, now).minutesToday,
-      settings,
-      lessonRemaining: lesson !== null && unmetItems(lesson, known(), app.allowPending) > 0,
-      mode,
-      moreAvailable: buildMoreRound({ now, states: known(), practised, missed, settings }).length > 0,
-    });
-    /** @type {Record<(typeof options)[number], () => void>} */
+    current = queue.length;
+    showProgress(current);
+    hideControls();
+    /** @type {Record<ReturnType<typeof closingMenu>[number], () => void>} */
     const actions = {
       stop: () => navigate('/today'),
       more3: () => navigate('/session?mode=more'),
@@ -339,18 +475,34 @@ export function renderSession(container, app, params = {}) {
     if (tally.newItems > 0) parts.push(`${tally.newItems} new ${tally.newItems === 1 ? 'item' : 'items'}`);
     parts.push(`about ${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`);
     const summary = parts.join(', ');
-    mount(stage, h('article', { class: 'exercise closing' },
-      h('h2', { class: 'prompt' }, 'Session complete.'),
-      h('p', { class: 'en-text' }, `${summary.charAt(0).toUpperCase()}${summary.slice(1)}.`),
-      renderMenu(options, (option) => actions[option]())));
-    /** @type {HTMLElement|null} */ (stage.querySelector('button'))?.focus();
+    /** Draws the summary and the menu from a fresh closingMenu; "Can't talk right now" draws them again without the speaking round. */
+    const showMenu = () => {
+      const now = Date.now();
+      const options = closingMenu({
+        minutesToday: todayTotals(app.state.sessions, now).minutesToday,
+        settings,
+        lessonRemaining: lesson !== null && unmetItems(lesson, known(), app.allowPending) > 0,
+        mode,
+        moreAvailable: buildMoreRound({ now, states: known(), practised, missed, settings }).length > 0,
+      });
+      const onCantTalk = () => {
+        choose('talk');
+        showMenu();
+      };
+      mount(stage, h('article', { class: 'exercise closing' },
+        h('h2', { class: 'prompt' }, 'Session complete.'),
+        h('p', { class: 'en-text' }, `${summary.charAt(0).toUpperCase()}${summary.slice(1)}.`),
+        renderMenu(options, (option) => actions[option](), mode.cantTalk ? {} : { onCantTalk })));
+      /** @type {HTMLElement|null} */ (stage.querySelector('button'))?.focus();
+    };
+    showMenu();
   };
 
   const play = async () => {
     await buildQueue();
     if (!alive) return;
     if (queue.length === 0) {
-      end.hidden = true;
+      hideControls();
       showProgress(0);
       mount(stage, h('article', { class: 'exercise closing' },
         h('h2', { class: 'prompt' }, 'Nothing to practise right now.'),
@@ -360,6 +512,7 @@ export function renderSession(container, app, params = {}) {
     }
     for (let index = 0; index < queue.length; index += 1) {
       const entry = queue[index];
+      current = index;
       showProgress(index);
       if (entry.kind === 'fluency') {
         const typed = /** @type {import('../exercises/registry.js').ExerciseRender} */ (renderFor('typed_en_sl'));
@@ -370,9 +523,10 @@ export function renderSession(container, app, params = {}) {
           await settle(entry, index, outcome);
         }
       } else {
-        const render = /** @type {import('../exercises/registry.js').ExerciseRender} */ (renderFor(entry.kind));
-        const outcome = await render(stage, entry, contextFor(entry.itemId, entry));
+        const outcome = await draw(entry);
         if (!alive) return;
+        // A skipped entry counts for nothing: no outcome, no mark, not played.
+        if (outcome === null) continue;
         await settle(entry, index, outcome);
       }
       if (entry.itemId !== undefined) practised.add(entry.itemId);

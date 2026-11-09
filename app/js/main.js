@@ -34,6 +34,7 @@ import { renderOnboarding } from './ui/screens/onboarding.js';
 import { renderWords } from './ui/screens/words.js';
 import { renderSettings } from './ui/screens/settings.js';
 import { renderStats } from './ui/screens/stats.js';
+import { resetQuiet } from './ui/quiet.js';
 import { applyTheme } from './ui/theme.js';
 import { showToast, toastRegion } from './ui/components/toast.js';
 import { registerWorker } from './sw-client.js';
@@ -111,6 +112,9 @@ async function boot() {
   /** @param {string} path @param {Record<string, string>} params */
   const show = (path, params) => {
     leave?.();
+    // Leaving the session for any other screen ends the sitting and its quiet choices; a run the
+    // closing menu starts (`/session?mode=...`) keeps them.
+    if (path !== '/session') resetQuiet();
     leave = null;
     if (!app.state.settings.onboarded && path !== '/onboarding') return navigate('/onboarding', { replace: true });
     if (app.state.settings.onboarded && path === '/onboarding') return navigate('/today', { replace: true });
