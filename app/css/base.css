@@ -1,5 +1,8 @@
-/* Base: the page, type defaults, focus ring, and the motion rule. Motion lives only inside
-   (prefers-reduced-motion: no-preference) blocks, so it is off for anyone who asks for less. */
+/* Base: the page, type defaults, the focus ring, and the motion rule. The focus ring is this one
+   rule, honey on every focusable element and on inputs too, and no component rule takes it away.
+   Motion lives only inside (prefers-reduced-motion: no-preference) blocks, and the reduce block at
+   the end of components.css switches off any that would remain, so it is off for anyone who asks
+   for less. */
 
 *,
 *::before,
@@ -57,7 +60,7 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid var(--focus);
+  outline: 3px solid var(--honey);
   outline-offset: 2px;
 }
 

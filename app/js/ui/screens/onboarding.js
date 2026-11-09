@@ -2,9 +2,10 @@
 // learner's name, when they will practise (the clause that completes "I practise …", Ruling 52),
 // the theme (applied at once), and the add-to-home-screen card with the two ways in, from the
 // first hello (Today) or through a ten-minute placement check. The settings are saved once, at
-// the end, with `onboarded` set, so leaving the placement midway lands on Today. The step count
-// is plain text ("2 of 4"), no numbered markers. The settings it saves are built by a pure
-// function, exported for the tests.
+// the end, with `onboarded` set, so leaving the placement midway lands on Today; while they save,
+// the step's buttons wait, and a refused save says so and offers them again. The step count is
+// plain text ("2 of 4"), no numbered markers. The settings it saves are built by a pure function,
+// exported for the tests.
 
 import { h, mount } from '../../util/dom.js';
 import { navigate } from '../../router.js';
@@ -46,12 +47,29 @@ export function renderOnboarding(container, app) {
   let saving = false;
   mount(container, h('section', { class: 'screen screen-onboarding' }, stage));
 
-  /** @param {string} path */
-  const finish = async (path) => {
+  /**
+   * Saves the choices and goes on to `path`. The two ways in wait while the save runs; a refused
+   * save keeps the learner on the step with the notice, which takes the focus, and the buttons
+   * offered again, and the app's settings stay what the store holds.
+   * @param {string} path
+   * @param {{ buttons: HTMLButtonElement[], notice: HTMLElement }} step the last step's buttons and notice
+   */
+  const finish = async (path, { buttons, notice }) => {
     if (saving) return;
     saving = true;
-    app.state.settings = onboardingSettings(app.state.settings, draft);
-    await saveSettings(app.adapter, app.state.settings);
+    for (const button of buttons) button.disabled = true;
+    notice.hidden = true;
+    const settings = onboardingSettings(app.state.settings, draft);
+    try {
+      await saveSettings(app.adapter, settings);
+    } catch {
+      saving = false;
+      for (const button of buttons) button.disabled = false;
+      notice.hidden = false;
+      notice.focus();
+      return;
+    }
+    app.state.settings = settings;
     navigate(path, { replace: true });
   };
 
@@ -123,18 +141,28 @@ export function renderOnboarding(container, app) {
     nextButton());
 
   /** @returns {HTMLElement} */
-  const homeScreen = () => frame(4,
-    h('h1', { class: 'screen-title', tabindex: '-1' }, 'Add to home screen'),
-    [
-      h('p', { class: 'en-text' }, 'Open the browser menu and choose Add to Home screen. Slovelingo then opens like an app.'),
-      h('div', { class: 'actions actions-stack' },
-        h('button', { type: 'button', class: 'btn btn-primary btn-large', onclick: () => { void finish('/today'); } }, 'Start from the first hello')),
-      h('div', { class: 'card' },
-        h('h2', { class: 'section-title' }, 'Already know some Slovenian?'),
-        h('p', { class: 'en-text' }, 'A placement check finds where to start. Pass a unit and it is sealed in your hive.'),
-        h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => { void finish('/checkpoint?placement=1'); } }, 'Take a ten-minute placement check')),
-    ],
-    null);
+  const homeScreen = () => {
+    const notice = h('p', { class: 'notice', role: 'status', tabindex: '-1', hidden: true }, 'Your choices could not be saved. Try again.');
+    const start = /** @type {HTMLButtonElement} */ (h('button', {
+      type: 'button', class: 'btn btn-primary btn-large', onclick: () => { void finish('/today', step); },
+    }, 'Start from the first hello'));
+    const placement = /** @type {HTMLButtonElement} */ (h('button', {
+      type: 'button', class: 'btn btn-secondary', onclick: () => { void finish('/checkpoint?placement=1', step); },
+    }, 'Take a ten-minute placement check'));
+    const step = { buttons: [start, placement], notice };
+    return frame(4,
+      h('h1', { class: 'screen-title', tabindex: '-1' }, 'Add to home screen'),
+      [
+        h('p', { class: 'en-text' }, 'Open the browser menu and choose Add to Home screen. Slovelingo then opens like an app.'),
+        h('div', { class: 'actions actions-stack' }, start),
+        notice,
+        h('div', { class: 'card' },
+          h('h2', { class: 'section-title' }, 'Already know some Slovenian?'),
+          h('p', { class: 'en-text' }, 'A placement check finds where to start. Pass a unit and it is sealed in your hive.'),
+          placement),
+      ],
+      null);
+  };
 
   const steps = [welcome, intention, theme, homeScreen];
 

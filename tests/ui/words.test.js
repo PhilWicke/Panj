@@ -2,10 +2,17 @@
 // The Words screen's pure parts: wordRows lists the lesson items met so far (state past `new`) in
 // course order, the index's lesson order and then the item order in the lesson, each with its
 // phase or "mastered"; matchesWord filters on the Slovenian and the English, every word of the
-// query, ignoring case and diacritics. The screen itself runs in the browser check.
-import { test } from 'node:test';
+// query, ignoring case and diacritics; the top line counts the rows, "n items met" (Ruling 61),
+// checked on the screen rendered through tests/helpers/fake-dom.js. The rest of the screen runs in
+// the browser check.
+import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
-import { matchesWord, wordRows } from '../../app/js/ui/screens/words.js';
+import { installFakeDom } from '../helpers/fake-dom.js';
+import { matchesWord, metLine, renderWords, wordRows } from '../../app/js/ui/screens/words.js';
+
+before(() => {
+  installFakeDom();
+});
 
 /** @param {string} id @param {string} sl @param {string} en @param {string} [register] */
 const item = (id, sl, en, register = 'neutral') => ({
@@ -80,4 +87,18 @@ test('matchesWord: every word of the query in the Slovenian or the English, case
   assert.equal(matchesWord(caj, 'čaj tea'), true);
   assert.equal(matchesWord(caj, 'caj coffee'), false, 'every word must occur');
   assert.equal(matchesWord(L3.items[0], 'kava prosim'), true);
+});
+
+test('the top line counts the rows of the list, "n items met" (Ruling 61)', () => {
+  assert.equal(metLine(1), '1 item met');
+  assert.equal(metLine(5), '5 items met');
+  assert.equal(metLine(12), '12 items met');
+
+  const app = /** @type {any} */ ({ ...appWith(STATES), state: { items: STATES, settings: { mute: true } } });
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderWords(container, app);
+  const rows = wordRows(app, '');
+  assert.equal(rows.length, 5);
+  assert.equal(container.querySelector('.word-count').textContent, '5 items met', 'the line above the list counts the list');
+  assert.equal(container.querySelector('.word-list').childNodes.length, rows.length);
 });

@@ -12,6 +12,7 @@
 // except through the ordinary lapse.
 
 import { createState, recordRecall, skipAheadState } from './scheduler.js';
+import { practisable } from './course.js';
 import { localDateKey } from '../util/time.js';
 import { isRuleId } from '../util/ids.js';
 import { shuffle } from '../util/shuffle.js';
@@ -80,15 +81,6 @@ function ruleItem(rule) {
   return { itemId: rule.id, kind: 'rule', prompt_sl: check.prompt_sl, options: check.options.slice(), answer: check.answer, accept: [], explain_en: check.explain_en };
 }
 
-/**
- * The same predicate as unmetItems: an accepted item, or any item in a dev build.
- * @param {Item} item
- * @param {boolean} allowPending
- * @returns {boolean}
- */
-function practisable(item, allowPending) {
-  return allowPending || item.verification.status === 'accepted';
-}
 
 /**
  * The items of a unit's lessons, in lesson order.

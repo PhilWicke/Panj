@@ -3,14 +3,21 @@
 // (lessonFill), the link to the unit's checkpoint (`#/checkpoint?unit=uNN`, once the unit has an
 // item to check), and "Keep offline", which asks the service worker to cache the unit's clips in
 // the learner's voice (Task 19): it needs a recorded voice (the device voice downloads nothing)
-// and a worker controlling the page (which the first load lacks until one reload).
+// and a worker controlling the page (which the first load lacks until one reload). The page stops
+// waiting for the worker's reply when the learner leaves it (renderUnit returns the function
+// main.js calls then) or after a minute.
 
 import { h, mount } from '../../util/dom.js';
+import { formatDateEn } from '../../util/time.js';
 import { onlyKnown } from '../../content/loader.js';
 import { hiveFill, lessonFill } from '../../engine/progress.js';
+import { practisable } from '../../engine/course.js';
 import { voiceFor } from '../../audio/player.js';
 
 /** @typedef {import('../../app-types.js').App} App */
+
+/** How long "Keep offline" waits for the worker's reply before it offers the button again. */
+const KEEP_OFFLINE_WAIT_MS = 60_000;
 
 /**
  * A retention meter: the share of items recallable now, as a percent.
@@ -30,31 +37,27 @@ function meter(id, value) {
 }
 
 /**
- * An ISO date as the phone's locale writes it, "2 November 2026".
- * @param {string} isoDate `YYYY-MM-DD`
- * @returns {string}
- */
-function formatDate(isoDate) {
-  const date = new Date(`${isoDate}T12:00:00`);
-  if (Number.isNaN(date.getTime())) return isoDate;
-  return date.toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' });
-}
-
-/**
  * The "Keep offline" button and its quiet line. With a recorded voice and a controlling worker
  * the button posts `cache-unit-audio` and reads "Keeping offline…" until the worker's
  * `unit-audio-cached` reply, then "Kept offline" with how many of the unit's clips the phone
- * holds; a reply with `error` offers the button again. With the device voice, or without a
- * controller, the button looks disabled and the line says why.
+ * holds; a reply with `error` offers the button again, and so does a wait of a minute without a
+ * reply, with a quiet line. `stop` ends the wait without a word, for a learner leaving the page.
+ * With the device voice, or without a controller, the button looks disabled and the line says why.
  * @param {App} app
  * @param {string} unitId
- * @returns {{ button: HTMLElement, line: HTMLElement }}
+ * @returns {{ button: HTMLElement, line: HTMLElement, stop: () => void }}
  */
 function keepOffline(app, unitId) {
   const voice = voiceFor(app.state.settings.voice);
   const controller = navigator.serviceWorker?.controller ?? null;
   const button = h('button', { type: 'button', class: 'btn btn-secondary' }, 'Keep offline');
   const line = h('p', { class: 'quiet', hidden: true });
+  /** The wait for a reply in progress, ended by `stop`. @type {(() => void)|null} */
+  let waiting = null;
+  const stop = () => {
+    waiting?.();
+    waiting = null;
+  };
   /** @param {string} text */
   const say = (text) => {
     line.textContent = text;
@@ -71,32 +74,47 @@ function keepOffline(app, unitId) {
       if (button.getAttribute('aria-busy') === 'true') return;
       button.setAttribute('aria-busy', 'true');
       button.textContent = 'Keeping offline…';
+      /** Back to the button as it was, for another try. */
+      const offerAgain = () => {
+        button.removeAttribute('aria-busy');
+        button.textContent = 'Keep offline';
+      };
       /** @param {MessageEvent} event */
       const onReply = (event) => {
         const data = event.data;
         if (!data || data.type !== 'unit-audio-cached' || data.unitId !== unitId) return;
-        navigator.serviceWorker.removeEventListener('message', onReply);
-        button.removeAttribute('aria-busy');
+        stop();
         const kept = `${data.count} of ${data.total} ${data.total === 1 ? 'clip' : 'clips'} kept on this phone.`;
         if (data.error) {
-          button.textContent = 'Keep offline';
+          offerAgain();
           say(`${kept} The rest could not be fetched; try again later.`);
         } else {
+          button.removeAttribute('aria-busy');
           button.textContent = 'Kept offline';
           say(kept);
         }
+      };
+      const timer = setTimeout(() => {
+        stop();
+        offerAgain();
+        say('That took too long. Try again.');
+      }, KEEP_OFFLINE_WAIT_MS);
+      waiting = () => {
+        clearTimeout(timer);
+        navigator.serviceWorker.removeEventListener('message', onReply);
       };
       navigator.serviceWorker.addEventListener('message', onReply);
       controller.postMessage({ type: 'cache-unit-audio', unitId, voice });
     });
   }
-  return { button, line };
+  return { button, line, stop };
 }
 
 /**
  * @param {HTMLElement} container
  * @param {App} app
  * @param {Record<string, string>} [params] `id` is the unit, `u01`
+ * @returns {() => void} ends a "Keep offline" wait when the learner leaves the page
  */
 export function renderUnit(container, app, params = {}) {
   const id = params.id ?? '';
@@ -107,7 +125,7 @@ export function renderUnit(container, app, params = {}) {
       back,
       h('h1', { class: 'screen-title' }, 'Unit not found'),
       h('p', { class: 'en-text' }, 'This unit is not in the course.')));
-    return;
+    return () => {};
   }
   const now = Date.now();
   const retention = app.state.settings.desiredRetention;
@@ -118,7 +136,7 @@ export function renderUnit(container, app, params = {}) {
   const fill = content && lessons.length > 0 ? hiveFill(states, content, now, retention, options) : null;
   const sealedOn = app.state.meta.sealed?.[id];
   /** @param {import('../../content/types.js').Lesson} lesson @returns {number} the items that count */
-  const counted = (lesson) => lesson.items.filter((item) => app.allowPending || item.verification.status === 'accepted').length;
+  const counted = (lesson) => lesson.items.filter((item) => practisable(item, app.allowPending)).length;
   const checkable = lessons.some((lesson) => counted(lesson) > 0);
   const offline = keepOffline(app, unit.id);
 
@@ -128,7 +146,7 @@ export function renderUnit(container, app, params = {}) {
       h('p', { class: 'eyebrow' }, `Unit ${unit.order}`, sealedOn ? h('span', { class: 'tag' }, 'Sealed') : null),
       h('h1', { class: 'sl-display', lang: 'sl' }, unit.title_sl),
       h('p', { class: 'en-text' }, unit.title_en)),
-    sealedOn ? h('p', { class: 'quiet' }, `Checkpoint passed on ${formatDate(sealedOn)}.`) : null,
+    sealedOn ? h('p', { class: 'quiet' }, `Checkpoint passed on ${formatDateEn(sealedOn)}.`) : null,
     fill ? meter('unit-recall', fill.fill) : null,
     lessons.length === 0
       ? h('p', { class: 'en-text' }, "This unit's lessons are not in the course yet.")
@@ -146,4 +164,5 @@ export function renderUnit(container, app, params = {}) {
         : h('button', { type: 'button', class: 'btn btn-primary', 'aria-disabled': 'true' }, 'Take the checkpoint'),
       offline.button),
     offline.line));
+  return offline.stop;
 }

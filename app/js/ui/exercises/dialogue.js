@@ -3,14 +3,16 @@
 // its Slovenian large with the English under it and plays (unless muted), and the scene goes on
 // when the playback ends, or after the line's wait if it never does; a learner line shows the
 // English and the shared typed answer field, graded against the line's Slovenian with the
-// diacritic rule, with the feedback panel after it. Once the learner goes on, the line
-// stays in the transcript as it should be said. The outcome is one recall per item a learner line
-// practises, with that line's result, and one `aux` for the learner lines without items. Spoken
-// learner lines arrive with Task 14; this exercise types them whatever the speech setting says.
+// diacritic rule, with the feedback panel after it. The transcript is the scene's one live
+// region: the lines and the feedback inside it are read out as they arrive, and the feedback slot
+// is no live region of its own. Once the learner goes on, the line stays in the transcript as it
+// should be said. The outcome is one recall per item a learner line practises, with that line's
+// result, and one `aux` for the learner lines without items. Spoken learner lines arrive with
+// Task 14; this exercise types them whatever the speech setting says.
 
 import { h, mount } from '../../util/dom.js';
 import { grade } from '../../engine/grading.js';
-import { answerField, mountFeedback } from '../components/answer-field.js';
+import { answerField, feedbackSlot, mountFeedback } from '../components/answer-field.js';
 
 /** @typedef {import('./registry.js').ExerciseRender} ExerciseRender */
 /** @typedef {import('./registry.js').ExerciseOutcome} ExerciseOutcome */
@@ -142,14 +144,15 @@ export function render(container, entry, ctx) {
       }
 
       const card = h('li', { class: 'lesson-card' });
-      const feedbackSlot = h('div', { class: 'feedback-slot' });
+      // Inside the transcript, which is the live region already.
+      const feedback = feedbackSlot({ live: false });
       const { form, input } = answerField({
         id: `answer-${dialogue.id}-${index}`,
         label: 'Your line in Slovenian',
         onAnswer: (answer) => {
           const graded = grade(answer, line.sl, []);
           results[index] = graded.result;
-          mountFeedback(feedbackSlot, {
+          mountFeedback(feedback, {
             answer, graded, effective: lineEffective(line, graded.result, ctx.effective), target: line.sl, rule: ctx.rule,
             onDone: () => {
               card.replaceChildren(...said(line));
@@ -162,7 +165,7 @@ export function render(container, entry, ctx) {
         h('p', { class: 'eyebrow' }, speakerLabel(line.speaker)),
         h('p', { class: 'prompt-en' }, line.en),
         form,
-        feedbackSlot);
+        feedback);
       transcript.append(card);
       input.focus();
     };

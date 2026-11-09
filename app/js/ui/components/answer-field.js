@@ -2,8 +2,11 @@
 // typed recall, the slot production and the dialogue's learner lines (spec 4.5). answerField
 // builds the form: an input set up for Slovenian (no autocapitalise, autocomplete, autocorrect or
 // spellcheck), Enter or "Check" to submit, "I don't know" to submit nothing; it locks once
-// answered. mountFeedback puts the feedback panel in its slot and moves the focus to the action
-// the panel marks (Continue, or "Type it again" after a miss).
+// answered. feedbackSlot is where the feedback goes: an empty polite live region drawn with the
+// exercise, since a live region that arrives with its text is not read out (or a plain slot when
+// the exercise is inside a live region already, as a dialogue's lines are). mountFeedback puts the
+// feedback panel in that slot and moves the focus to the action the panel marks (Continue, or
+// "Type it again" after a miss).
 
 import { h } from '../../util/dom.js';
 import { renderFeedback } from './feedback.js';
@@ -45,8 +48,19 @@ export function answerField({ id, label, onAnswer }) {
 }
 
 /**
+ * The slot the feedback goes in, drawn with the exercise and empty until the answer: a polite live
+ * region, so the feedback is read out when it arrives. `live: false` makes a plain slot, for an
+ * exercise that sits inside a live region already (one live region, never one inside another).
+ * @param {{ live?: boolean }} [opts]
+ * @returns {HTMLElement}
+ */
+export function feedbackSlot({ live = true } = {}) {
+  return h('div', { class: 'feedback-slot', 'aria-live': live ? 'polite' : null });
+}
+
+/**
  * Shows the feedback panel for an answer in `slot` and focuses the action it marks.
- * @param {HTMLElement} slot the element the panel goes in, after the answer field
+ * @param {HTMLElement} slot the slot feedbackSlot made with the exercise, after the answer field
  * @param {Parameters<typeof renderFeedback>[0]} opts as renderFeedback takes them
  * @returns {HTMLElement} the panel
  */

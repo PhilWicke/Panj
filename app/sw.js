@@ -6,17 +6,19 @@
 // version waits until the learner taps Reload (Ruling 58). activate drops every other
 // slovelingo-* cache but the audio, claims the pages and tells them `{ type: 'updated' }`. fetch
 // follows js/sw-policy.js: network-first for the shell and the content with the cache behind it
-// (a navigation falls back to index.html), cache-first for fonts, icons and clips; a clip fetched
-// is kept in the audio cache under a 60 MB limit through a ledger entry, the oldest going first
-// (Ruling 57), and a media element's Range request is answered with the 206 it asked for.
-// Messages: `skip-waiting` from the Reload tap, and `cache-unit-audio` from the unit page's "Keep
-// offline", which fetches the clips of a unit's texts (js/util/audio-texts.js) that the audio
-// manifest lists, three at a time, and answers `unit-audio-cached` with the count. A module
-// worker, registered by js/sw-client.js with updateViaCache none under a URL that carries the
-// version (`sw.js?v=...`), so every version installs as a fresh worker.
+// (also when the host answers 5xx; a navigation falls back to index.html), cache-first for fonts,
+// icons and clips; a clip fetched is kept in the audio cache under a 60 MB limit through a ledger
+// entry, the oldest going first (Ruling 57), and a media element's Range request is answered with
+// the 206 it asked for. Messages: `skip-waiting` from the Reload tap, and `cache-unit-audio` from
+// the unit page's "Keep offline", which fetches the clips of a unit's texts
+// (js/util/audio-texts.js) that the audio manifest lists, three at a time, and answers
+// `unit-audio-cached` with the count, and with the reason when a clip could not be fetched, after
+// which it stores nothing more. A module worker, registered by js/sw-client.js with updateViaCache
+// none under a URL that carries the version (`sw.js?v=...`), so every version installs as a fresh
+// worker.
 
 import { SLOVELINGO_VERSION } from './version.js';
-import { byteRange, isAudio, policyFor, trimPlan } from './js/sw-policy.js';
+import { byteRange, fallsBackToCache, isAudio, policyFor, trimPlan } from './js/sw-policy.js';
 import { audioTexts } from './js/util/audio-texts.js';
 import { audioId } from './js/util/audio-id.js';
 
@@ -91,23 +93,28 @@ sw.addEventListener('fetch', (event) => {
 
 /**
  * The network, with the cache behind it: a fresh response replaces the cached copy; when the
- * network fails, the cached copy answers, and a navigation gets index.html when its own URL is
- * not cached.
+ * network fails, or the host answers with a server error (fallsBackToCache), the cached copy
+ * answers, and a navigation gets index.html when its own URL is not cached. A server error with
+ * nothing cached goes through as it is.
  * @param {FetchEvent} event
  * @param {Request} request
  * @returns {Promise<Response>}
  */
 async function networkFirst(event, request) {
   const cache = await caches.open(CACHE);
+  /** @returns {Promise<Response|undefined>} */
+  const cachedCopy = async () => (await cache.match(request)) ?? (request.mode === 'navigate' ? await cache.match(inScope('index.html')) : undefined);
+  let response;
   try {
-    const response = await fetch(request);
-    if (keepable(response)) event.waitUntil(cache.put(request, response.clone()));
-    return response;
+    response = await fetch(request);
   } catch (error) {
-    const cached = (await cache.match(request)) ?? (request.mode === 'navigate' ? await cache.match(inScope('index.html')) : undefined);
+    const cached = await cachedCopy();
     if (cached) return cached;
     throw error;
   }
+  if (fallsBackToCache(response.status)) return (await cachedCopy()) ?? response;
+  if (keepable(response)) event.waitUntil(cache.put(request, response.clone()));
+  return response;
 }
 
 /**
@@ -225,7 +232,8 @@ sw.addEventListener('message', (event) => {
 /**
  * Fetches the clips of a unit that the manifest lists and the cache lacks, UNIT_AUDIO_CONCURRENCY
  * at a time, and tells `client` how many of the unit's clips the phone now holds. A failure
- * answers with what was kept and `error: true`.
+ * answers at once with what was kept and `error`, the reason; the fetches still running then
+ * store nothing more, so the count the page shows stays true.
  * @param {Client} client the page that asked
  * @param {string} unitId `uNN`
  * @param {string} voice the recordings' voice, as the manifest names it
@@ -233,6 +241,12 @@ sw.addEventListener('message', (event) => {
 async function cacheUnitAudio(client, unitId, voice) {
   let count = 0;
   let total = 0;
+  let replied = false;
+  /** @param {{ error?: string }} [fields] */
+  const reply = (fields = {}) => {
+    replied = true;
+    client.postMessage({ type: 'unit-audio-cached', unitId, count, total, ...fields });
+  };
   try {
     const [unit, manifest] = await Promise.all([
       fetchJson(inScope(`content/dist/units/${encodeURIComponent(unitId)}.json`)),
@@ -250,19 +264,20 @@ async function cacheUnitAudio(client, unitId, voice) {
     }
     let next = 0;
     const fetchClips = async () => {
-      while (next < missing.length) {
+      while (!replied && next < missing.length) {
         const href = missing[next];
         next += 1;
         const response = await fetch(href);
+        if (replied) return;
         if (!keepable(response)) throw new Error(`${href} answered ${response.status}`);
         await storeClip(cache, href, response);
         count += 1;
       }
     };
     await Promise.all(Array.from({ length: Math.min(UNIT_AUDIO_CONCURRENCY, missing.length) }, fetchClips));
-    client.postMessage({ type: 'unit-audio-cached', unitId, count, total });
-  } catch {
-    client.postMessage({ type: 'unit-audio-cached', unitId, count, total, error: true });
+    reply();
+  } catch (error) {
+    if (!replied) reply({ error: error instanceof Error ? error.message : String(error) });
   }
 }
 

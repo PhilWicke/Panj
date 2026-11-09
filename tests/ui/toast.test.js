@@ -1,12 +1,14 @@
 // tests/ui/toast.test.js
-// The toast (Task 19), through tests/helpers/fake-dom.js: one fixed status bar on the body with
-// the text, an optional action button and a "Later" button that dismisses; a new toast replaces
-// the one showing; showToast returns a dismiss function that is safe to call twice and never
-// removes a toast that replaced the one it belongs to.
+// The toast (Task 19), through tests/helpers/fake-dom.js: one fixed bar with the text, an optional
+// action button and a "Later" button that dismisses, shown inside the one status region on the
+// body, which is there before any toast and stays when a toast goes (a live region that arrives
+// with its text is not read out, Task 20); a new toast replaces the one showing; showToast returns
+// a dismiss function that is safe to call twice and never removes a toast that replaced the one it
+// belongs to.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
-import { showToast } from '../../app/js/ui/components/toast.js';
+import { showToast, toastRegion } from '../../app/js/ui/components/toast.js';
 
 /** @type {any} */
 let document;
@@ -31,18 +33,30 @@ function elements(root) {
   return found;
 }
 
-/** The toasts on the body. @returns {any[]} */
-const toasts = () => document.body.childNodes.filter((/** @type {any} */ node) => node.classList?.contains('toast'));
+/** The status regions on the body. @returns {any[]} */
+const regions = () => document.body.childNodes.filter((/** @type {any} */ node) => node.classList?.contains('toast-region'));
+/** The toasts showing, inside the region. @returns {any[]} */
+const toasts = () => regions().flatMap((region) => elements(region).filter((el) => el.classList.contains('toast')));
 /** The button under `root` that reads `text`. @param {any} root @param {string} text */
 const button = (root, text) => elements(root).find((el) => el.tagName === 'BUTTON' && el.textContent === text);
 
-test('showToast puts one status bar on the body with the text, the action and a Later button', () => {
+test('toastRegion puts one empty status region on the body before any toast, and the same one on every call', () => {
+  const region = toastRegion();
+  assert.deepEqual(regions(), [region], 'one region, on the body');
+  assert.equal(region.getAttribute('role'), 'status');
+  assert.equal(region.childNodes.length, 0, 'empty until a toast shows');
+  assert.equal(toastRegion(), region);
+  assert.equal(regions().length, 1);
+});
+
+test('showToast puts one bar in the status region with the text, the action and a Later button', () => {
   let taps = 0;
   const dismiss = showToast({ text: 'A new version is ready. Reload when you have a moment.', action: { label: 'Reload', onTap: () => { taps += 1; } } });
   assert.equal(typeof dismiss, 'function');
   const [toast] = toasts();
   assert.equal(toasts().length, 1);
-  assert.equal(toast.getAttribute('role'), 'status');
+  assert.equal(toast.parentNode, toastRegion(), 'the toast lands in the region that was already there');
+  assert.equal(toast.getAttribute('role'), null, 'one live region, not one inside another');
   assert.equal(toast.querySelector('.toast-text').textContent, 'A new version is ready. Reload when you have a moment.');
   const reload = button(toast, 'Reload');
   const later = button(toast, 'Later');
@@ -58,6 +72,7 @@ test('showToast puts one status bar on the body with the text, the action and a 
 
   later.dispatch('click');
   assert.equal(toasts().length, 0, 'Later dismisses');
+  assert.equal(regions().length, 1, 'the region stays for the next toast');
   dismiss();
   assert.equal(toasts().length, 0, 'dismissing a dismissed toast is nothing');
 });

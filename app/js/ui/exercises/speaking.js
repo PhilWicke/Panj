@@ -8,6 +8,7 @@
 // refused microphone or speech service, a missing microphone or a recogniser without Slovenian
 // also keeps the later speaking exercises self-rated until the next session (recognitionBlocked in
 // speech.js); a lost connection or a recogniser that would not start affects this exercise only.
+// While the model line plays (Listen), Speak waits, so the recogniser never hears the model.
 // Self-rated (recognition off, unavailable or failed): the model plays, "Say it, then tap", and
 // "Matched" or "Not yet" report `aux` only, never a recall. A recogniser is never constructed
 // unless the learner has opted in.
@@ -88,15 +89,25 @@ export function render(container, entry, ctx) {
       resolve(outcome);
     };
 
-    /** The line, its English, and a button that plays the model (none when muted). */
-    const header = () => {
+    /**
+     * The line, its English, and a button that plays the model (none when muted). `onPlaying`
+     * hears when the model starts playing and when its play has settled.
+     * @param {(playing: boolean) => void} [onPlaying]
+     */
+    const header = (onPlaying) => {
       const line = h('h2', { class: 'sl-display', lang: 'sl', tabindex: '-1' }, item.sl);
       const voiceNote = h('p', { class: 'quiet', hidden: true }, 'Slovenian audio is not available on this device yet.');
       const listen = ctx.mode.mute ? null : /** @type {HTMLButtonElement} */ (h('button', {
         type: 'button', class: 'btn btn-secondary', onclick: () => { void model(); },
       }, 'Listen'));
       const model = async () => {
-        const how = await ctx.play(item.sl);
+        onPlaying?.(true);
+        let how;
+        try {
+          how = await ctx.play(item.sl);
+        } finally {
+          onPlaying?.(false);
+        }
         if (how === 'none' && listen) {
           listen.disabled = true;
           voiceNote.hidden = false;
@@ -128,10 +139,19 @@ export function render(container, entry, ctx) {
     };
 
     const recognised = () => {
-      const { listen, voiceNote, nodes } = header();
+      const speak = /** @type {HTMLButtonElement} */ (h('button', { type: 'button', class: 'btn btn-primary', onclick: () => { void attempt(); } }, 'Speak'));
+      let listening = false;
+      let playing = false;
+      /** Speak waits while the recogniser listens and while the model line plays. */
+      const syncSpeak = () => {
+        speak.disabled = listening || playing;
+      };
+      const { listen, voiceNote, nodes } = header((on) => {
+        playing = on;
+        syncSpeak();
+      });
       const status = h('div', { 'aria-live': 'polite' });
       const actions = h('div', { class: 'actions' });
-      const speak = /** @type {HTMLButtonElement} */ (h('button', { type: 'button', class: 'btn btn-primary', onclick: () => { void attempt(); } }, 'Speak'));
       let tries = 1;
       let silences = 0;
       /**
@@ -139,11 +159,13 @@ export function render(container, entry, ctx) {
        * @param {boolean} busy
        */
       const hold = (busy) => {
-        speak.disabled = busy;
+        listening = busy;
+        syncSpeak();
         if (listen && voiceNote.hidden) listen.disabled = busy;
       };
 
       const attempt = async () => {
+        if (speak.disabled) return;
         hold(true);
         status.replaceChildren(h('p', { class: 'quiet' }, 'Listening…'));
         const { transcript, error } = await recognizeOnce({ lang: 'sl-SI' });

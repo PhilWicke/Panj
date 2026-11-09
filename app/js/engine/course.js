@@ -1,7 +1,8 @@
 // The learner's position in the course, pure over the bundle, the item states and the session
 // records: which lesson is current, how many items it still has to introduce, and what today's
 // sessions have done so far. The session screen builds today's queue from these and the Today
-// screen words its primary action from the same inputs, so both agree.
+// screen words its primary action from the same inputs, so both agree. practisable is the one
+// place that says which items may be practised; every screen and engine module asks it.
 
 import { localDateKey } from '../util/time.js';
 
@@ -10,6 +11,18 @@ import { localDateKey } from '../util/time.js';
 /** @typedef {import('../content/types.js').Index} Index */
 /** @typedef {import('../content/types.js').UnitContent} UnitContent */
 /** @typedef {import('../content/types.js').Lesson} Lesson */
+/** @typedef {import('../content/types.js').Item} Item */
+
+/**
+ * Whether an item may be practised: an accepted one always, any other only in a dev build
+ * (allowPending, index.mode `dev`). Pending content never reaches practice in a strict build.
+ * @param {Item} item
+ * @param {boolean} allowPending
+ * @returns {boolean}
+ */
+export function practisable(item, allowPending) {
+  return allowPending || item.verification.status === 'accepted';
+}
 
 /**
  * The items met and the minutes practised in the sessions that started on today's local date,
@@ -40,8 +53,7 @@ export function todayTotals(sessions, now, tz) {
  * @returns {number}
  */
 export function unmetItems(lesson, states, allowPending) {
-  return lesson.items.filter((item) => (allowPending || item.verification.status === 'accepted')
-    && (states[item.id]?.phase ?? 'new') === 'new').length;
+  return lesson.items.filter((item) => practisable(item, allowPending) && (states[item.id]?.phase ?? 'new') === 'new').length;
 }
 
 /**

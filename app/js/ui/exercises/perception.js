@@ -3,7 +3,7 @@
 // small built-in list in content/perception-sets.js (Ruling 46: shared with the audio texts, so
 // every word has a recording). The entry carries no item: the set and the word to play are drawn
 // with ctx.rng. The outcome is `aux` only. When nothing can play the word, the drill says so and
-// resolves with no outcome.
+// resolves with no outcome, unless the learner has picked already.
 
 import { h, mount } from '../../util/dom.js';
 import { PERCEPTION_SETS } from '../../content/perception-sets.js';
@@ -27,11 +27,14 @@ export function pickPerception(rng) {
 export function render(container, entry, ctx) {
   const { words, target } = pickPerception(ctx.rng);
   return new Promise((resolve) => {
-    const { finish, listen } = audioExercise({ container, play: ctx.play, text: target, resolve });
+    const { finish, listen, answered } = audioExercise({ container, play: ctx.play, text: target, resolve });
     const question = h('h2', { class: 'prompt-en', tabindex: '-1' }, 'Which did you hear?');
     const { group, result, actions } = optionGroup({
       options: words, answer: target, label: 'Words', lang: 'sl', large: true,
-      onPick: (choice, correct) => !correct && h('p', null, 'It was ', h('span', { lang: 'sl', class: 'quick-check-answer' }, target), '.'),
+      onPick: (choice, correct) => {
+        answered();
+        return !correct && h('p', null, 'It was ', h('span', { lang: 'sl', class: 'quick-check-answer' }, target), '.');
+      },
       onContinue: (choice, correct) => finish({ aux: { kind: 'perception', correct } }),
     });
     mount(container, h('article', { class: 'exercise exercise-perception' },

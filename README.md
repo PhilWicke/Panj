@@ -21,7 +21,9 @@ npm run typecheck
 npm run lint:content
 ```
 
-`npm run typecheck` fetches TypeScript 5 through npx on first use; nothing is installed in the project. `npm run lint:content` checks the content as a deploy would, so it fails while practised items still await verification; `npm run lint:content -- --allow-pending` checks everything else.
+`npm run typecheck` fetches TypeScript 5 through npx on first use; nothing is installed in the project. `npm run lint:content` is the strict linter: it reports every practised item still awaiting verification, which a deploy strips from practice, so it fails until those items are verified; `npm run lint:content -- --allow-pending` checks everything else.
+
+`npm run test:e2e` runs the app end to end in a browser.
 
 ## Build
 

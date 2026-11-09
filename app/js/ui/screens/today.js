@@ -54,15 +54,19 @@ export function primaryAction(session) {
 
 /**
  * Whether the habit holds: the week target was met (the grace day counted) in each of the
- * HABIT_WEEKS weeks before the current one. The intention line shows until it does.
+ * HABIT_WEEKS weeks before the current one. The intention line shows until it does. The weeks are
+ * stepped on the calendar, as Stats' weeklyAccuracy does: from this week's Monday (weekSummary's
+ * weekStart), each earlier week is named by an instant at noon UTC on its Monday, which every zone
+ * reads as that Monday or the Tuesday, so a clock change in between never picks the wrong week.
  * @param {SessionRecord[]} sessions
  * @param {number} now epoch ms
  * @param {string} [tz] IANA zone, for tests; the phone's zone when omitted
  * @returns {boolean}
  */
 export function habitHolds(sessions, now, tz) {
+  const monday = Date.parse(`${weekSummary([], now, WEEK_TARGET, tz).weekStart}T12:00:00Z`);
   for (let k = 1; k <= HABIT_WEEKS; k += 1) {
-    if (!weekSummary(sessions, now, WEEK_TARGET, tz, now - k * WEEK_MS).met) return false;
+    if (!weekSummary(sessions, now, WEEK_TARGET, tz, monday - k * WEEK_MS).met) return false;
   }
   return true;
 }

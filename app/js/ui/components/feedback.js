@@ -77,7 +77,9 @@ export function renderFeedback({ answer, graded, effective, target, rule, onDone
   };
 
   const actions = h('div', { class: 'actions' });
-  const panel = h('section', { class: `feedback feedback-${tone}`, 'aria-live': 'polite' },
+  // The panel is no live region itself: it goes into the live slot the exercise drew before the
+  // answer (answer-field.js feedbackSlot), which reads it out when it arrives.
+  const panel = h('section', { class: `feedback feedback-${tone}` },
     h('p', { class: 'feedback-headline' }, headline(graded, effective)),
     graded.result !== 'correct' && h('div', { class: 'feedback-row' },
       h('span', { class: 'feedback-label' }, 'Your answer'),

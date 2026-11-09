@@ -5,8 +5,9 @@
 // player (Ruling 48); the speaking checks switch, off by default, with the Global Constraints'
 // description. Then the learner's data: export (shared as a file where the phone can, else
 // downloaded), import (validated, confirmed with its counts, then replacing everything) and reset
-// (only after typing the word). A link leads to the statistics. The pure parts are exported for
-// the tests.
+// (only after typing the word); whether an import or a reset finishes or fails half-way, the state
+// is read back from the store and the screen drawn from it, so it never shows what the store no
+// longer holds. A link leads to the statistics. The pure parts are exported for the tests.
 
 import { h, mount } from '../../util/dom.js';
 import { navigate } from '../../router.js';
@@ -318,17 +319,17 @@ function renderData(container, app, message) {
       if (!data) return;
       pending = null;
       replace.setAttribute('disabled', '');
+      let message = 'Progress imported.';
       try {
         await importState(app.adapter, data);
-        app.state = await loadState(app.adapter);
-        applySettings(app);
-        draw(container, app, 'Progress imported.');
-        /** @type {HTMLElement|null} */ (container.querySelector('.settings-notice'))?.focus();
       } catch {
-        replace.removeAttribute('disabled');
-        confirmCard.hidden = true;
-        say('The import did not work. Your progress may be incomplete: import the file again.');
+        message = 'The import did not work. Your progress may be incomplete: import the file again.';
+      } finally {
+        await reloadState(app);
       }
+      applySettings(app);
+      draw(container, app, message);
+      /** @type {HTMLElement|null} */ (container.querySelector('.settings-notice'))?.focus();
     },
   }, 'Replace');
   const confirmCard = h('div', { class: 'card', role: 'group', 'aria-labelledby': 'settings-import-question', hidden: true },
@@ -379,17 +380,23 @@ function renderData(container, app, message) {
     onclick: async () => {
       if (resetField.value !== RESET_WORD) return;
       resetConfirm.setAttribute('disabled', '');
+      let finished = false;
       try {
         for (const store of STORE_NAMES) await app.adapter.clear(store);
         await saveSettings(app.adapter, { ...DEFAULT_APP_SETTINGS });
-        app.state = await loadState(app.adapter);
+        finished = true;
       } catch {
-        resetConfirm.removeAttribute('disabled');
-        say('The reset did not finish. Try again.');
-        return;
+        // A store that refused a write: the screen says so below, drawn from what the store holds.
+      } finally {
+        await reloadState(app);
       }
       applySettings(app);
-      navigate('/onboarding', { replace: true });
+      if (finished) {
+        navigate('/onboarding', { replace: true });
+        return;
+      }
+      draw(container, app, 'The reset did not finish. Try again.');
+      /** @type {HTMLElement|null} */ (container.querySelector('.settings-notice'))?.focus();
     },
   }, 'Reset everything');
   const resetCard = h('div', { class: 'card', hidden: true },
@@ -455,6 +462,19 @@ async function exportProgress(app) {
   link.remove();
   setTimeout(() => URL.revokeObjectURL(url), 10_000);
   return `Backup saved as ${name}.`;
+}
+
+/**
+ * Reads the state back from the store after an import or a reset, finished or not, so the app
+ * holds what the store holds. When the store cannot be read either, the state in memory stays.
+ * @param {App} app
+ */
+async function reloadState(app) {
+  try {
+    app.state = await loadState(app.adapter);
+  } catch {
+    // The store cannot be read now either; the state in memory is the best there is.
+  }
 }
 
 /**

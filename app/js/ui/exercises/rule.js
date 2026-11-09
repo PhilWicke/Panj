@@ -33,8 +33,9 @@ export function render(container, entry, ctx) {
         next.focus();
       },
     });
+    // The eyebrow is the exercise's heading, so the card's own title (an h3) sits under it.
     mount(container, h('article', { class: 'exercise exercise-rule' },
-      h('p', { class: 'eyebrow' }, 'Rule card'),
+      h('h2', { class: 'eyebrow' }, 'Rule card'),
       card,
       actions));
     /** @type {HTMLElement|null} */ (card.querySelector('.rule-title'))?.focus();

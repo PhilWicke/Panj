@@ -1,13 +1,11 @@
 // The Words screen (Besede, spec 6): every lesson item met so far (its state past `new`), in course
 // order, each with its English, its register, its phase or "mastered", a play button (not in mute
 // mode) and "Report this", which keeps a one-line note as a flag; flags travel with the export and
-// feed the ask-a-native list. The top line counts the words met the way the hive does (wordsMet,
-// tokens over the items, their examples and the dialogues met). A search box filters on the
-// Slovenian and the English, ignoring case and diacritics. The pure parts are exported for the tests.
+// feed the ask-a-native list. The top line counts the rows below it, "n items met" (Ruling 61; the
+// hive's "Words met" is the lemma count). A search box filters on the Slovenian and the English,
+// ignoring case and diacritics. The pure parts are exported for the tests.
 
 import { h, mount, svg } from '../../util/dom.js';
-import { onlyKnown } from '../../content/loader.js';
-import { wordsMet } from '../../engine/progress.js';
 import { stripDiacritics } from '../../engine/grading.js';
 import { addFlag } from '../../store/state.js';
 
@@ -62,6 +60,15 @@ export function wordRows(app, query) {
     }
   }
   return rows;
+}
+
+/**
+ * The top line: how many items the list holds.
+ * @param {number} count the rows
+ * @returns {string} "1 item met", "12 items met"
+ */
+export function metLine(count) {
+  return `${count} ${count === 1 ? 'item' : 'items'} met`;
 }
 
 /** @returns {SVGElement} a small speaker */
@@ -156,7 +163,6 @@ export function renderWords(container, app) {
     return;
   }
 
-  const met = wordsMet(onlyKnown(app.state.items, app.known), app.units);
   const entries = rows.map((row) => ({ row, entry: renderEntry(row, app) }));
   const none = h('p', { class: 'en-text', hidden: true }, 'No word matches your search.');
   const search = /** @type {HTMLInputElement} */ (h('input', {
@@ -170,7 +176,7 @@ export function renderWords(container, app) {
 
   mount(container, h('section', { class: 'screen screen-words' },
     title,
-    h('p', { class: 'quiet' }, `${met} ${met === 1 ? 'word' : 'words'} met`),
+    h('p', { class: 'quiet word-count' }, metLine(rows.length)),
     h('div', { class: 'search' }, h('label', { class: 'visually-hidden', for: 'words-search' }, 'Search words'), search),
     h('ul', { class: 'word-list' }, entries.map(({ entry }) => entry)),
     none));

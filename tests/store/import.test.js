@@ -8,7 +8,9 @@
 // checks validateImport's reasons on their own. A valid file opens the confirmation card with its
 // counts and writes nothing until Replace (choosing it, Cancel, or a bad file chosen after it write
 // nothing); Replace writes exactly the records the file was exported from and puts the imported
-// settings to work. importSummary counts what a file holds, and importState round-trips an export.
+// settings to work. A Replace or a Reset that fails half-way reads the state back from the store,
+// so the screen shows what the store now holds and says what happened. importSummary counts what
+// a file holds, and importState round-trips an export.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
@@ -197,4 +199,80 @@ test('importSummary counts the item states and sessions a file holds, and the fi
   await saveItemState(fresh, createState('u02-l01-i01', T0));
   await importState(fresh, result.data, T0 + 3 * DAY);
   assert.deepEqual(await snapshot(fresh), await snapshot(adapter));
+});
+
+/**
+ * The populated store with one write that fails once armed: `arm(n)` lets n more puts through and
+ * refuses the one after, as a full disk refuses a write half-way through an import; later writes
+ * go through again.
+ * @returns {Promise<{ adapter: import('../../app/js/store/memory.js').StoreAdapter, arm: (after: number) => void }>}
+ */
+async function failing() {
+  const inner = await populated();
+  let left = Infinity;
+  const adapter = {
+    ...inner,
+    /** @type {typeof inner.put} */
+    async put(store, value) {
+      left -= 1;
+      if (left === -1) throw new Error('QuotaExceededError');
+      return inner.put(store, value);
+    },
+  };
+  return { adapter, arm: (after) => { left = after; } };
+}
+
+/** The value the Settings screen shows in a field. @param {any} container @param {string} id */
+const fieldValue = (container, id) => elements(container).find((el) => el.getAttribute('id') === id)?.getAttribute('value');
+
+test('a Replace that fails half-way reloads the state from the store, so the screen shows what the store holds', async () => {
+  const { adapter, arm } = await failing();
+  const other = createMemoryStore();
+  await saveItemState(other, createState('u02-l01-i01', T0));
+  await saveItemState(other, createState('u02-l01-i02', T0));
+  await appendSession(other, session('s-9', T0 + 5 * DAY));
+  await saveSettings(other, { ...DEFAULT_APP_SETTINGS, name: 'Eva', onboarded: true });
+  const file = await exportState(other, T0 + 6 * DAY);
+
+  const app = /** @type {any} */ ({ adapter, state: await loadState(adapter), player: { setMute: () => {}, setVoice: () => {} } });
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderSettings(container, app);
+  assert.equal(fieldValue(container, 'settings-name'), 'Ana');
+  const fileInput = elements(container).find((el) => el.getAttribute('type') === 'file');
+  fileInput.files = [{ name: 'backup.json', text: () => Promise.resolve(file) }];
+  fileInput.dispatch('change');
+  await settle();
+  arm(1);   // every store is cleared, the first item state is written, the second write fails
+  elements(container).find((el) => el.tagName === 'BUTTON' && el.textContent === 'Replace').dispatch('click');
+  await settle();
+
+  const stored = await loadState(adapter);
+  assert.deepEqual(Object.keys(stored.items), ['u02-l01-i01'], 'the store holds what the import got to');
+  assert.deepEqual(app.state, stored, 'app.state is read back from the store, not left as it was before');
+  assert.equal(container.querySelector('.settings-notice').textContent, 'The import did not work. Your progress may be incomplete: import the file again.');
+  assert.equal(container.querySelector('.settings-notice').hidden, false);
+  assert.equal(fieldValue(container, 'settings-name'), '', 'the screen is drawn from the state the store holds');
+  assert.equal(document.activeElement, container.querySelector('.settings-notice'), 'the notice takes the focus');
+});
+
+test('a Reset that fails half-way reloads the state from the store and stays on Settings with the notice', async () => {
+  const { adapter, arm } = await failing();
+  const app = /** @type {any} */ ({ adapter, state: await loadState(adapter), player: { setMute: () => {}, setVoice: () => {} } });
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderSettings(container, app);
+  elements(container).find((el) => el.classList.contains('settings-reset-open')).dispatch('click');
+  const word = elements(container).find((el) => el.getAttribute('id') === 'settings-reset-word');
+  word.value = 'reset';
+  word.dispatch('input');
+  arm(0);   // every store is cleared, then the default settings cannot be written
+  const confirm = elements(container).find((el) => el.tagName === 'BUTTON' && el.textContent === 'Reset everything' && !el.classList.contains('settings-reset-open'));
+  confirm.dispatch('click');
+  await settle();
+
+  const stored = await loadState(adapter);
+  assert.deepEqual(stored.items, {}, 'the stores were cleared before the failure');
+  assert.deepEqual(app.state, stored, 'app.state is the cleared store, not the progress the screen started with');
+  assert.equal(app.state.settings.name, '');
+  assert.equal(container.querySelector('.settings-notice').textContent, 'The reset did not finish. Try again.');
+  assert.equal(fieldValue(container, 'settings-name'), '', 'the screen shows the state the store holds');
 });

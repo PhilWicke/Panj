@@ -1,8 +1,9 @@
 /* Components: header, screens, buttons, the exercises, the feedback panel, the session bar, the
    rule card, the Rules screen, the Today screen with its calendar and hive, the unit page, the
    checkpoint and onboarding forms, the Words, Stats and Settings screens, the tab bar and the
-   toast. Every control is at least 44 px tall; motion only answers an action and sits in the
-   no-preference block at the end. */
+   toast. Every control is at least 44 by 44 px, through min-height and min-width or padding,
+   never by scaling text; the focus ring is base.css's alone; motion only answers an action, sits
+   in the no-preference block, and the reduce block at the very end switches all of it off. */
 
 /* Header */
 
@@ -429,10 +430,6 @@
   font-weight: 700;
 }
 
-.rule-title:focus {
-  outline: none;
-}
-
 .rule-card-compact .rule-title {
   font-size: var(--text-18);
 }
@@ -474,6 +471,7 @@
 }
 
 .segment {
+  min-width: var(--tap);
   min-height: var(--tap);
   padding: var(--space-8) var(--space-16);
   border: 2px solid var(--border);
@@ -915,11 +913,6 @@ button.rule-cell {
   cursor: pointer;
 }
 
-.hive-panel:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
-}
-
 .hive-board {
   fill: var(--hive-board);
   stroke: var(--hive-line);
@@ -1012,6 +1005,7 @@ button.rule-cell {
 .back-link {
   display: inline-flex;
   align-items: center;
+  min-width: var(--tap);
   min-height: var(--tap);
   color: var(--accent);
   font-weight: 600;
@@ -1072,12 +1066,6 @@ button.rule-cell {
 
 .checkpoint-result {
   font-size: var(--text-28);
-}
-
-/* The result and each step's heading take the focus for assistive technology, as the rule title does. */
-.screen-checkpoint .screen-title:focus,
-.onboarding-step h1:focus {
-  outline: none;
 }
 
 .field {
@@ -1235,10 +1223,6 @@ button.rule-cell {
 .word-report-row .text-input {
   flex: 1;
   min-width: 0;
-}
-
-.word-report-done:focus {
-  outline: none;
 }
 
 /* Stats */
@@ -1401,6 +1385,7 @@ button.rule-cell {
   justify-content: space-between;
   gap: var(--space-12);
   width: 100%;
+  min-width: var(--tap);
   min-height: 48px;
   padding: 0 var(--space-16);
   border: 1px solid var(--border);
@@ -1452,10 +1437,6 @@ button.rule-cell {
   border-radius: 0 var(--radius-10) var(--radius-10) 0;
   background: var(--surface);
   color: var(--text);
-}
-
-.settings-notice:focus {
-  outline: none;
 }
 
 .settings-reset-open {
@@ -1549,8 +1530,9 @@ button.rule-cell {
   box-shadow: 0 8px 24px rgb(0 0 0 / 18%);
 }
 
-/* The tab bar is 56 px plus the safe area; the toast sits above it. */
-.app-main.has-nav ~ .toast {
+/* The tab bar is 56 px plus the safe area; the toast sits above it. The toasts show inside the
+   status region (toast.js), which stays on the page, empty, between them. */
+.app-main.has-nav ~ .toast-region .toast {
   bottom: calc(56px + var(--space-16) + env(safe-area-inset-bottom));
 }
 
@@ -1593,7 +1575,8 @@ button.rule-cell {
     transition: transform 120ms ease-out, background-color 120ms ease-out;
   }
 
-  .btn:not([disabled]):active {
+  /* A button that looks disabled (aria-disabled) does not answer a press either. */
+  .btn:not([disabled], [aria-disabled='true']):active {
     transform: scale(0.97);
   }
 
@@ -1620,5 +1603,16 @@ button.rule-cell {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Reduced motion: no transition and no animation anywhere, also any an inline style or a later
+   rule would set. This stays the last rule of the file. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
   }
 }

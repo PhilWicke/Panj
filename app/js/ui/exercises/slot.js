@@ -9,7 +9,7 @@
 
 import { h, mount } from '../../util/dom.js';
 import { grade } from '../../engine/grading.js';
-import { answerField, mountFeedback } from '../components/answer-field.js';
+import { answerField, feedbackSlot, mountFeedback } from '../components/answer-field.js';
 
 /** @typedef {import('./registry.js').ExerciseRender} ExerciseRender */
 /** @typedef {import('./registry.js').ExerciseOutcome} ExerciseOutcome */
@@ -47,13 +47,13 @@ export function render(container, entry, ctx) {
   if (!exercise || !item) return Promise.resolve({});
   return new Promise((resolve) => {
     const base = slotBase(item, exercise);
-    const feedbackSlot = h('div', { class: 'feedback-slot' });
+    const feedback = feedbackSlot();
     const { form, input } = answerField({
       id: `answer-${exercise.id}`,
       label: 'Your answer in Slovenian',
       onAnswer: (answer) => {
         const graded = grade(answer, exercise.answer, exercise.accept ?? []);
-        mountFeedback(feedbackSlot, {
+        mountFeedback(feedback, {
           answer, graded, effective: ctx.effective(exercise.item, graded.result), target: exercise.answer, rule: ctx.rule,
           onDone: () => resolve(slotOutcome(exercise, graded.result)),
         });
@@ -69,7 +69,7 @@ export function render(container, entry, ctx) {
         base.labels.length > 0 && h('p', { class: 'eyebrow' }, base.labels.length === 1 ? 'Slot' : 'Slots',
           base.labels.map((label) => h('span', { class: 'tag' }, label)))),
       form,
-      feedbackSlot));
+      feedback));
     input.focus();
   });
 }

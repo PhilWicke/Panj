@@ -3,7 +3,7 @@
 // one at 00:05 belong to different days, and a due date snaps to a local midnight.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { localDateKey, startOfLocalDay, startOfNextLocalDay, daysBetween, formatterCacheSize } from '../../app/js/util/time.js';
+import { localDateKey, startOfLocalDay, startOfNextLocalDay, daysBetween, formatterCacheSize, formatDateEn } from '../../app/js/util/time.js';
 
 const TZ = 'Europe/Berlin';
 const HOUR = 3_600_000;
@@ -93,4 +93,14 @@ test('wallClock caches one formatter per zone', () => {
   assert.equal(localDateKey(Date.UTC(2026, 0, 1, 0), 'Asia/Tokyo'), '2026-01-01');
   assert.equal(localDateKey(Date.UTC(2026, 0, 1, 16), 'Asia/Tokyo'), '2026-01-02');
   assert.equal(startOfLocalDay(Date.UTC(2026, 0, 1, 16), 'Asia/Tokyo'), Date.UTC(2026, 0, 1, 15));
+});
+
+test('formatDateEn writes a date key in English, day, month name and year, whatever the phone\'s locale', () => {
+  assert.equal(formatDateEn('2026-11-02'), '2 November 2026');
+  assert.equal(formatDateEn('2027-01-31'), '31 January 2027');
+  assert.equal(formatDateEn('2026-05-09'), '9 May 2026', 'no leading zero on the day');
+  const months = Array.from({ length: 12 }, (_, i) => formatDateEn(`2026-${String(i + 1).padStart(2, '0')}-15`).split(' ')[1]);
+  assert.deepEqual(months, ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
+  assert.equal(formatDateEn('not a date'), 'not a date', 'anything that is not a date key is shown as it is');
+  assert.equal(formatDateEn('2026-13-01'), '2026-13-01', 'nor a month past December');
 });

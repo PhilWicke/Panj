@@ -3,7 +3,7 @@
 // Sunday, the weeks weekSummary counts), the hours practised against the hours an A1 course takes,
 // the items in each phase, the weekly checks' predictions against their results, this week's
 // honey, and the exercises done per kind (SessionRecord.kinds, Ruling 43). Counts, not scores.
-// The pure parts are exported for the tests.
+// The pure parts and the hours meter are exported for the tests.
 
 import { h, mount } from '../../util/dom.js';
 import { onlyKnown } from '../../content/loader.js';
@@ -149,15 +149,17 @@ function accuracyBars(weeks) {
 }
 
 /**
- * The hours practised on a meter whose end is the longest A1 course, with the shortest marked.
+ * The hours practised on a meter whose end is the longest A1 course, with the shortest marked;
+ * assistive technology gets the hours to one decimal, as the line under it shows them.
  * @param {number} hours
  * @returns {HTMLElement}
  */
-function hoursMeter(hours) {
+export function hoursMeter(hours) {
   const percent = Math.min(100, (hours / a1Hours.max) * 100);
+  const now = Math.round(Math.min(hours, a1Hours.max) * 10) / 10;
   return h('div', {
     class: 'meter hours-meter', role: 'meter', 'aria-label': 'Hours practised',
-    'aria-valuemin': '0', 'aria-valuemax': String(a1Hours.max), 'aria-valuenow': String(Math.min(hours, a1Hours.max)),
+    'aria-valuemin': '0', 'aria-valuemax': String(a1Hours.max), 'aria-valuenow': String(now),
     'aria-valuetext': `${hours.toFixed(1)} hours`,
   },
   h('div', { class: 'meter-fill', style: { width: `${percent}%` } }),

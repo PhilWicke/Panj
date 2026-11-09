@@ -4,12 +4,12 @@
 // plays at once and "Play again" repeats it; its text shows only once the learner has answered.
 // Listening never changes recall state: the outcome is `aux` only, and a dictation counts as
 // correct when grade calls it correct or a slip. When nothing can play the phrase, the exercise
-// says so and resolves with no outcome.
+// says so and resolves with no outcome, unless the learner has answered already.
 
 import { h, mount } from '../../util/dom.js';
 import { shuffle } from '../../util/shuffle.js';
 import { grade } from '../../engine/grading.js';
-import { answerField, mountFeedback } from '../components/answer-field.js';
+import { answerField, feedbackSlot, mountFeedback } from '../components/answer-field.js';
 import { audioExercise } from '../components/no-audio.js';
 import { optionGroup } from '../components/option-group.js';
 
@@ -47,18 +47,19 @@ export function render(container, entry, ctx) {
   const item = ctx.item;
   if (!item) return Promise.resolve({});
   return new Promise((resolve) => {
-    const { finish, listen } = audioExercise({ container, play: ctx.play, text: item.sl, resolve });
+    const { finish, listen, answered } = audioExercise({ container, play: ctx.play, text: item.sl, resolve });
     const again = h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => listen() }, 'Play again');
     const options = ctx.rng() < 0.5 ? null : meaningOptions(item, ctx.lesson, ctx.rng);
 
     if (!options) {
-      const feedbackSlot = h('div', { class: 'feedback-slot' });
+      const feedback = feedbackSlot();
       const { form, input } = answerField({
         id: `listening-${item.id}`,
         label: 'What you heard, in Slovenian',
         onAnswer: (answer) => {
+          answered();
           const graded = grade(answer, item.sl, item.accept ?? []);
-          mountFeedback(feedbackSlot, {
+          mountFeedback(feedback, {
             answer, graded, effective: graded.result, target: item.sl, rule: null,
             onDone: () => finish(listeningOutcome(graded.result !== 'wrong')),
           });
@@ -69,20 +70,23 @@ export function render(container, entry, ctx) {
         h('h2', { class: 'prompt-en' }, 'Write what you hear.'),
         h('div', { class: 'tools' }, again),
         form,
-        feedbackSlot));
+        feedback));
       input.focus();
     } else {
       const question = h('h2', { class: 'prompt-en', tabindex: '-1' }, 'What does it mean?');
       const { group, result, actions } = optionGroup({
         options, answer: item.en, label: 'Meanings', stacked: true,
-        onPick: () => [
-          h('div', { class: 'feedback-row' },
-            h('span', { class: 'feedback-label' }, 'You heard'),
-            h('span', { class: 'sl-display feedback-form', lang: 'sl' }, item.sl)),
-          h('div', { class: 'feedback-row' },
-            h('span', { class: 'feedback-label' }, 'It means'),
-            h('span', { class: 'en-text' }, item.en)),
-        ],
+        onPick: () => {
+          answered();
+          return [
+            h('div', { class: 'feedback-row' },
+              h('span', { class: 'feedback-label' }, 'You heard'),
+              h('span', { class: 'sl-display feedback-form', lang: 'sl' }, item.sl)),
+            h('div', { class: 'feedback-row' },
+              h('span', { class: 'feedback-label' }, 'It means'),
+              h('span', { class: 'en-text' }, item.en)),
+          ];
+        },
         onContinue: (choice, correct) => finish(listeningOutcome(correct)),
       });
       mount(container, h('article', { class: 'exercise exercise-listening' },

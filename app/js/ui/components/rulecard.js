@@ -2,10 +2,12 @@
 // the example; each toggle swaps the example live; "Show table" opens the paradigm with its rows
 // and cols, the dual column marked, and a tap on a form with a note shows the note under the
 // table; the German and English helpers share one helper line; the quick check at the bottom
-// offers its options as buttons, marks the right one, explains a wrong pick and reports through
-// onQuickCheck once. The compact card is the title and the card text, for lists.
+// offers its options through the shared option group (option-group.js), marks the right one,
+// explains a wrong pick and reports through onQuickCheck once. The compact card is the title and
+// the card text, for lists.
 
 import { h } from '../../util/dom.js';
+import { optionGroup } from './option-group.js';
 
 /** @typedef {import('../../content/types.js').Rule} Rule */
 /** @typedef {import('../../content/types.js').RuleCell} RuleCell */
@@ -151,8 +153,9 @@ function renderExample(rule) {
 }
 
 /**
- * The quick check: the prompt with its blank as a visible gap, the options as buttons, and the
- * feedback after a pick.
+ * The quick check: the prompt with its blank as a visible gap, the options through the shared
+ * option group in the order the content gives them, and the feedback after a pick. The group adds
+ * no Continue: the rule exercise adds its own, and the Rules screen needs none.
  * @param {Rule} rule
  * @param {(correct: boolean) => void} onQuickCheck
  * @returns {HTMLElement}
@@ -162,37 +165,20 @@ function renderQuickCheck(rule, onQuickCheck) {
   const [before, ...rest] = check.prompt_sl.split(BLANK);
   const blank = h('span', { class: 'blank' }, h('span', { class: 'visually-hidden' }, 'blank'));
   const prompt = h('p', { class: 'quick-check-prompt', lang: 'sl' }, before, rest.length > 0 && blank, rest.join(''));
-  const result = h('div', { class: 'quick-check-result', 'aria-live': 'polite' });
-  let answered = false;
-
-  /** @type {HTMLButtonElement[]} */
-  const options = check.options.map((option) => {
-    const button = /** @type {HTMLButtonElement} */ (h('button', {
-      type: 'button', class: 'btn btn-secondary option', lang: 'sl',
-      onclick: () => {
-        if (answered) return;
-        answered = true;
-        const correct = option === check.answer;
-        check.options.forEach((each, i) => {
-          options[i].disabled = true;
-          if (each === check.answer) options[i].classList.add('option-right');
-        });
-        if (!correct) button.classList.add('option-wrong');
-        blank.replaceChildren(check.answer);
-        blank.classList.add('blank-filled');
-        result.replaceChildren(h('div', { class: `feedback feedback-${correct ? 'correct' : 'wrong'}` },
-          h('p', { class: 'feedback-headline' }, correct ? 'Correct.' : 'Not quite.'),
-          !correct && h('p', null, 'The answer is ', h('span', { lang: 'sl', class: 'quick-check-answer' }, check.answer), '. ', check.explain_en)));
-        onQuickCheck(correct);
-      },
-    }, option));
-    return button;
+  const { group, result } = optionGroup({
+    options: check.options, answer: check.answer, label: 'Options', lang: 'sl',
+    onPick: (choice, correct) => {
+      blank.replaceChildren(check.answer);
+      blank.classList.add('blank-filled');
+      onQuickCheck(correct);
+      return !correct && h('p', null, 'The answer is ', h('span', { lang: 'sl', class: 'quick-check-answer' }, check.answer), '. ', check.explain_en);
+    },
   });
 
   return h('section', { class: 'quick-check', 'aria-label': 'Quick check' },
     h('p', { class: 'eyebrow' }, 'Quick check'),
     prompt,
-    h('div', { class: 'options' }, options),
+    group,
     result);
 }
 

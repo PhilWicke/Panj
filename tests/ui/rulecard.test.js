@@ -2,15 +2,17 @@
 // The pure parts of the rule card, the rule exercise and the Rules screen: the paradigm cells in
 // table order, the example a toggle option swaps in, the quick check's outcome and the state it
 // leads to (Rulings 21 and 30), which rules the Rules screen lists and in what groups, the mastery
-// meter's value and stage, and the search filter (case- and diacritic-insensitive). The card's DOM
-// runs in the browser check.
-import { test } from 'node:test';
+// meter's value and stage, and the search filter (case- and diacritic-insensitive). Through
+// tests/helpers/fake-dom.js, the quick check picks through the shared option group and reports
+// once; the rest of the card's DOM runs in the browser check.
+import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { installFakeDom } from '../helpers/fake-dom.js';
 import {
   DEFAULT_SETTINGS, MASTERY_SESSIONS, createState, recordRecall, retrievability, skipAheadState,
 } from '../../app/js/engine/scheduler.js';
-import { tableCellsFor, exampleForToggle } from '../../app/js/ui/components/rulecard.js';
+import { renderRuleCard, tableCellsFor, exampleForToggle } from '../../app/js/ui/components/rulecard.js';
 import { quickCheckOutcome } from '../../app/js/ui/exercises/rule.js';
 import { matchesRule, ruleMastery, rulesByUnit } from '../../app/js/ui/screens/rules.js';
 import { stateAfterRecall } from '../../app/js/ui/screens/session.js';
@@ -41,6 +43,26 @@ const rule = (fields) => ({
 /** @param {string} id @param {number} order @returns {Unit} */
 const unit = (id, order) => ({ id, order, title_sl: id, title_en: id, motif: 'flower', lessons: [] });
 
+before(() => {
+  installFakeDom();
+});
+
+/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
+function elements(root) {
+  /** @type {any[]} */
+  const found = [];
+  /** @param {any} node */
+  const walk = (node) => {
+    for (const child of node.childNodes) {
+      if (!child.tagName) continue;
+      found.push(child);
+      walk(child);
+    }
+  };
+  walk(root);
+  return found;
+}
+
 test('tableCellsFor lists the cells row by row, each with its row and col, and skips the missing ones', () => {
   const cells = tableCellsFor(biti);
   assert.equal(cells.length, 9);
@@ -65,6 +87,37 @@ test('exampleForToggle gives the example of the chosen option, and the card exam
   assert.deepEqual(exampleForToggle(biti, 0, 'trial'), biti.example, 'an option the toggle does not have');
   assert.deepEqual(exampleForToggle(biti, 3, 'dual'), biti.example, 'a toggle the rule does not have');
   assert.deepEqual(exampleForToggle(rule({}), 0, 'dual'), rule({}).example, 'a rule without toggles');
+});
+
+test('the quick check picks through the shared option group: the options in content order, one report, the gap filled, the reason on a miss', () => {
+  /** @type {boolean[]} */
+  const reports = [];
+  const card = /** @type {any} */ (renderRuleCard(biti, { onQuickCheck: (correct) => reports.push(correct) }));
+  const check = card.querySelector('.quick-check');
+  const group = elements(check).find((el) => el.getAttribute('role') === 'group');
+  assert.equal(group.className, 'options', 'the option group of option-group.js');
+  assert.deepEqual(group.childNodes.map((/** @type {any} */ b) => b.textContent), ['sem', 'sva', 'smo'], 'as the content orders them');
+  assert.ok(group.childNodes.every((/** @type {any} */ b) => b.className === 'btn btn-secondary option' && b.getAttribute('lang') === 'sl'));
+  const result = check.querySelector('.pick-result');
+  assert.equal(result.getAttribute('aria-live'), 'polite', 'the live region is there before the pick');
+  assert.equal(result.childNodes.length, 0);
+
+  const [sem, sva, smo] = group.childNodes;
+  sem.dispatch('click');
+  smo.dispatch('click');
+  assert.deepEqual(reports, [false], 'reported once, at the first pick');
+  assert.ok(sva.classList.contains('option-right') && sem.classList.contains('option-wrong'));
+  assert.ok([sem, sva, smo].every((b) => b.disabled === true));
+  assert.equal(check.querySelector('.blank').textContent, 'sva', 'the gap shows the answer');
+  assert.equal(result.textContent, `Not quite.The answer is sva. ${biti.quick_check.explain_en}`);
+  assert.equal(elements(card).filter((el) => el.tagName === 'BUTTON' && el.textContent === 'Continue').length, 0,
+    'no Continue in the card: the rule exercise adds its own, the Rules screen needs none');
+
+  const right = /** @type {any} */ (renderRuleCard(biti, { onQuickCheck: (correct) => reports.push(correct) }));
+  const rightGroup = elements(right.querySelector('.quick-check')).find((el) => el.getAttribute('role') === 'group');
+  rightGroup.childNodes[1].dispatch('click');
+  assert.deepEqual(reports, [false, true]);
+  assert.equal(right.querySelector('.pick-result').textContent, 'Correct.');
 });
 
 test('quickCheckOutcome records the quick check on the rule item: correct graduates it, wrong keeps it learning', () => {

@@ -16,11 +16,12 @@ import { onlyKnown } from '../../content/loader.js';
 import { navigate } from '../../router.js';
 import { grade } from '../../engine/grading.js';
 import { honeyFor } from '../../engine/progress.js';
+import { practisable } from '../../engine/course.js';
 import {
   WEEKLY_MIN_ITEMS, applyCheckpoint, buildUnitCheckpoint, buildWeeklyCheck, calibration, checkpointMinutes, scoreCheckpoint,
 } from '../../engine/checkpoint.js';
 import { appendSession, saveItemState, saveMeta } from '../../store/state.js';
-import { answerField, mountFeedback } from '../components/answer-field.js';
+import { answerField, feedbackSlot, mountFeedback } from '../components/answer-field.js';
 import { optionGroup } from '../components/option-group.js';
 import { promptWithBlank } from '../exercises/structured.js';
 
@@ -67,6 +68,29 @@ export function countLine(count) {
  */
 export function defaultPrediction(count) {
   return Math.round(PREDICTION_SHARE * count);
+}
+
+/**
+ * The prediction the learner typed: rounded to whole items and kept between none and all of them.
+ * An emptied field, or one a number input could not read (its value is then empty), gives the
+ * default, not zero.
+ * @param {string} value the field's value
+ * @param {number} count the items in the check
+ * @returns {number}
+ */
+export function predictionFrom(value, count) {
+  const typed = value.trim() === '' ? Number.NaN : Math.round(Number(value));
+  return Number.isFinite(typed) ? Math.min(count, Math.max(0, typed)) : defaultPrediction(count);
+}
+
+/**
+ * The error card's line: before the end card nothing is recorded, so a failure there loses
+ * nothing; a failure while the results are being saved may have saved some of them.
+ * @param {boolean} saving whether the results were being saved when it failed
+ * @returns {string}
+ */
+export function failureLine(saving) {
+  return saving ? 'Some results may not have been saved. Check your progress on Today.' : 'The check stopped and nothing was recorded.';
 }
 
 /**
@@ -119,7 +143,7 @@ const totalOf = (check) => check.blocks.reduce((sum, block) => sum + block.items
  * @returns {boolean}
  */
 function hasPractisable(app, content) {
-  return content.lessons.some((lesson) => lesson.items.some((item) => app.allowPending || item.verification.status === 'accepted'));
+  return content.lessons.some((lesson) => lesson.items.some((item) => practisable(item, app.allowPending)));
 }
 
 /**
@@ -187,6 +211,8 @@ function heading(check) {
 export function renderCheckpoint(container, app, params = {}) {
   const settings = app.state.settings;
   let alive = true;
+  /** Whether a check's results are being written, so a failure may have saved part of them. */
+  let saving = false;
 
   /** @param {...Child} children */
   const view = (...children) => {
@@ -213,10 +239,7 @@ export function renderCheckpoint(container, app, params = {}) {
       id: 'checkpoint-prediction', type: 'number', class: 'text-input number-input', min: '0', max: String(total), step: '1',
       inputmode: 'numeric', value: String(defaultPrediction(total)),
     })) : null;
-    const start = () => {
-      const typed = prediction ? Math.round(Number(prediction.value)) : 0;
-      onStart(Number.isFinite(typed) ? Math.min(total, Math.max(0, typed)) : defaultPrediction(total));
-    };
+    const start = () => onStart(prediction ? predictionFrom(prediction.value, total) : 0);
     view(h('form', { class: 'checkpoint-intro', onsubmit: (/** @type {SubmitEvent} */ event) => { event.preventDefault(); start(); } },
       heading(check),
       h('p', { class: 'en-text' }, aboutLine(check.mode)),
@@ -240,9 +263,13 @@ export function renderCheckpoint(container, app, params = {}) {
    * @returns {Promise<CheckpointResult>}
    */
   const ask = (check, item, label, n, total) => new Promise((resolve) => {
-    const head = h('div', { class: 'session-bar' },
-      h('a', { class: 'btn btn-quiet session-end', href: check.home.href }, 'End'),
-      h('p', { class: 'checkpoint-progress' }, `${n} of ${total}`));
+    // The check's title heads every item for assistive technology; the item's prompt sits under it.
+    const head = [
+      h('h1', { class: 'visually-hidden' }, check.title),
+      h('div', { class: 'session-bar' },
+        h('a', { class: 'btn btn-quiet session-end', href: check.home.href }, 'End'),
+        h('p', { class: 'checkpoint-progress' }, `${n} of ${total}`)),
+    ];
     const verb = item.kind === 'rule' ? 'choose the form' : 'write in Slovenian';
     const eyebrow = label ? `${label}: ${verb}` : `${verb.charAt(0).toUpperCase()}${verb.slice(1)}`;
     if (item.kind === 'rule') {
@@ -261,7 +288,7 @@ export function renderCheckpoint(container, app, params = {}) {
       prompt.focus();
       return;
     }
-    const slot = h('div', { class: 'feedback-slot' });
+    const slot = feedbackSlot();
     const { form, input } = answerField({
       id: `checkpoint-${item.itemId}`,
       label: 'Your answer in Slovenian',
@@ -287,6 +314,7 @@ export function renderCheckpoint(container, app, params = {}) {
    * @returns {Promise<CheckpointScore>}
    */
   const finish = async (check, results, predicted, startedAt) => {
+    saving = true;
     const now = Date.now();
     const score = scoreCheckpoint(results);
     const weekly = check.mode === 'weekly';
@@ -318,6 +346,7 @@ export function renderCheckpoint(container, app, params = {}) {
     };
     app.state.sessions.push(record);
     await appendSession(app.adapter, record);
+    saving = false;
     return score;
   };
 
@@ -370,7 +399,7 @@ export function renderCheckpoint(container, app, params = {}) {
       console.error(error);
       if (!alive) return;
       view(h('h1', { class: 'screen-title' }, 'Something went wrong.'),
-        h('p', { class: 'en-text' }, 'The check stopped and nothing was recorded.'),
+        h('p', { class: 'en-text' }, failureLine(saving)),
         h('div', { class: 'actions' }, h('a', { class: 'btn btn-primary', href: '#/today' }, 'Back to Today')));
     });
   };

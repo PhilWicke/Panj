@@ -6,7 +6,7 @@
 
 import { h, mount } from '../../util/dom.js';
 import { grade } from '../../engine/grading.js';
-import { answerField, mountFeedback } from '../components/answer-field.js';
+import { answerField, feedbackSlot, mountFeedback } from '../components/answer-field.js';
 
 /** @typedef {import('./registry.js').ExerciseRender} ExerciseRender */
 
@@ -15,13 +15,13 @@ export function render(container, entry, ctx) {
   const item = ctx.item;
   if (!item) return Promise.resolve({});
   return new Promise((resolve) => {
-    const feedbackSlot = h('div', { class: 'feedback-slot' });
+    const feedback = feedbackSlot();
     const { form, input } = answerField({
       id: `answer-${item.id}`,
       label: 'Your answer in Slovenian',
       onAnswer: (answer) => {
         const graded = grade(answer, item.sl, item.accept ?? []);
-        mountFeedback(feedbackSlot, {
+        mountFeedback(feedback, {
           answer, graded, effective: ctx.effective(item.id, graded.result), target: item.sl, rule: ctx.rule,
           onDone: () => resolve({ itemId: item.id, recall: graded.result }),
         });
@@ -32,7 +32,7 @@ export function render(container, entry, ctx) {
       h('p', { class: 'eyebrow' }, entry.kind === 'fluency' ? 'Quick round: write in Slovenian' : 'Write in Slovenian'),
       h('h2', { class: 'prompt-en' }, item.en),
       form,
-      feedbackSlot));
+      feedback));
     input.focus();
   });
 }

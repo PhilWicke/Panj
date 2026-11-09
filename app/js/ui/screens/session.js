@@ -156,7 +156,11 @@ export function renderSession(container, app, params = {}) {
   const bar = h('div', { class: 'progress', role: 'progressbar', 'aria-label': 'Session progress', 'aria-valuemin': '0' }, progress);
   const stage = h('div', { class: 'stage' });
   const end = h('button', { type: 'button', class: 'btn btn-quiet session-end', onclick: () => { void leave(); } }, 'End');
-  mount(container, h('section', { class: 'screen screen-session' }, h('div', { class: 'session-bar' }, end, bar), stage));
+  // The screen's heading is for assistive technology: each exercise's own heading sits under it.
+  mount(container, h('section', { class: 'screen screen-session' },
+    h('h1', { class: 'visually-hidden' }, 'Practice session'),
+    h('div', { class: 'session-bar' }, end, bar),
+    stage));
 
   /** @param {number} done */
   const showProgress = (done) => {

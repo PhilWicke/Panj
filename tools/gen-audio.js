@@ -31,7 +31,7 @@ import { audioTexts, drillTexts } from '../app/js/util/audio-texts.js';
 /** @typedef {{ text: string, voice: string, model: string, bytes: number }} ManifestEntry */
 /** @typedef {{ generated: number, skipped: number, failed: { text: string, error: string }[] }} GenerateResult */
 
-// The model the voice check ran on, so bulk clips match the approved voices.
+// The model the voice check ran on, so bulk clips come from the model the voice check approved.
 // gemini-3.8-flash-tts is not usable with this prompt: it answers audio/wav and
 // reads the "Say clearly in Slovenian" prefix aloud. Preview models can be
 // retired; a replacement needs a new voice check before any bulk run.

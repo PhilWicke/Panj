@@ -23,6 +23,7 @@
 // check is a scheduled item whose id is the rule id) and are never typed recalls.
 
 import { GRADUATE_AFTER, isDue, retrievability } from './scheduler.js';
+import { practisable as practisableItem } from './course.js';
 import { localDateKey } from '../util/time.js';
 import { isRuleId } from '../util/ids.js';
 
@@ -229,7 +230,7 @@ export function buildSession(input) {
   const practisable = (id) => {
     if (isRuleId(id)) return false;
     const entry = known.get(id);
-    return !entry || allowPending || entry.item.verification.status === 'accepted';
+    return !entry || practisableItem(entry.item, allowPending);
   };
   /** @param {string} id @returns {string|undefined} */
   const lessonOf = (id) => known.get(id)?.lesson.id;

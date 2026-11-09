@@ -4,14 +4,19 @@
 // of six. Through tests/helpers/fake-dom.js, renderHive draws one panel per unit with a hexagon
 // per lesson filled in proportion, the caption, the seal with the unit's motif, and a tap or Enter
 // on a panel reports the unit; a second render starts each cell where it was and moves it to the
-// new fill (motion in answer to a session). sealedUnits turns meta.sealed into the hive's flags.
-import { test, before } from 'node:test';
+// new fill (motion in answer to a session), and resetHiveMemory forgets what was shown, so each
+// test starts from a hive never drawn. sealedUnits turns meta.sealed into the hive's flags.
+import { test, before, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
-import { HIVE_WIDTH, hiveLayout, cellSize, cellCenters, renderHive, sealedUnits } from '../../app/js/ui/components/hive.js';
+import { HIVE_WIDTH, hiveLayout, cellSize, cellCenters, renderHive, resetHiveMemory, sealedUnits } from '../../app/js/ui/components/hive.js';
 
 before(() => {
   installFakeDom();
+});
+
+beforeEach(() => {
+  resetHiveMemory();
 });
 
 /** Every element under `root`, depth first. @param {any} root @returns {any[]} */
@@ -159,4 +164,14 @@ test('sealedUnits turns the dates of meta.sealed into flags by unit id', () => {
   assert.deepEqual(sealedUnits({ schemaVersion: 1, createdAt: 0 }), {});
   assert.deepEqual(sealedUnits({ schemaVersion: 1, createdAt: 0, sealed: {} }), {});
   assert.deepEqual(sealedUnits({ schemaVersion: 1, createdAt: 0, sealed: { u01: '2026-11-02', u02: '2026-11-08' } }), { u01: true, u02: true });
+});
+
+test('resetHiveMemory forgets the fills shown, so the next render draws each cell at its fill with nothing to move', () => {
+  const fills = [{ unitId: 'u01', cells: [{ lessonId: 'u01-l01', fill: 0.2 }], fill: 0.2 }];
+  renderHive(fills, /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: {} });
+  const remembered = renderHive([{ ...fills[0], cells: [{ lessonId: 'u01-l01', fill: 0.9 }] }], /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: {} });
+  assert.equal(withClass(remembered, 'hive-fill')[0].style.getPropertyValue('transform'), 'scaleY(0.2)', 'without a reset it starts where it was');
+  resetHiveMemory();
+  const fresh = renderHive([{ ...fills[0], cells: [{ lessonId: 'u01-l01', fill: 0.9 }] }], /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: {} });
+  assert.equal(withClass(fresh, 'hive-fill')[0].style.getPropertyValue('transform'), 'scaleY(0.9)', 'after a reset it is drawn at its fill');
 });

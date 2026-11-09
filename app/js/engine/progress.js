@@ -9,6 +9,7 @@
 // (the same tokeniser, util/tokens.js, over the same texts).
 
 import { retrievability } from './scheduler.js';
+import { practisable } from './course.js';
 import { localDateKey, daysBetween } from '../util/time.js';
 import { wordTokens } from '../util/tokens.js';
 import { isRuleId } from '../util/ids.js';
@@ -138,7 +139,7 @@ function tally(states, lesson, now, retention, allowPending) {
   let counted = 0;
   let recalled = 0;
   for (const item of lesson.items) {
-    if (!allowPending && item.verification.status !== 'accepted') continue;
+    if (!practisable(item, allowPending)) continue;
     counted += 1;
     if (recallable(states[item.id], now, retention)) recalled += 1;
   }

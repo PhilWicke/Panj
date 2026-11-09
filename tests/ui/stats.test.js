@@ -2,11 +2,18 @@
 // The Stats screen's pure parts: recall accuracy over the last twelve local weeks (Monday to
 // Sunday, as weekSummary counts them, through the clock changes), the items by phase (a mastered
 // item once, under mastered; rule states and new items left out), the weekly checks' calibration
-// lines newest first, the practice per kind from SessionRecord.kinds (Ruling 43) and the short
-// date the labels use. The screen itself runs in the browser check.
-import { test } from 'node:test';
+// lines newest first, the practice per kind from SessionRecord.kinds (Ruling 43), the short date
+// the labels use, and the hours meter's value for assistive technology, to one decimal (through
+// tests/helpers/fake-dom.js). The screen itself runs in the browser check.
+import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
-import { calibrationLines, phaseCounts, practiceByKind, shortDate, weeklyAccuracy } from '../../app/js/ui/screens/stats.js';
+import { installFakeDom } from '../helpers/fake-dom.js';
+import { a1Hours } from '../../app/js/engine/progress.js';
+import { calibrationLines, hoursMeter, phaseCounts, practiceByKind, shortDate, weeklyAccuracy } from '../../app/js/ui/screens/stats.js';
+
+before(() => {
+  installFakeDom();
+});
 
 const TZ = 'Europe/Berlin';
 const HOUR = 3_600_000;
@@ -113,4 +120,16 @@ test('shortDate writes a date key as day and short month', () => {
   assert.equal(shortDate('2026-11-03'), '3 Nov');
   assert.equal(shortDate('2026-01-31'), '31 Jan');
   assert.equal(shortDate('2026-12-01'), '1 Dec');
+});
+
+test('hoursMeter gives assistive technology the hours to one decimal, capped at the longest A1 course', () => {
+  /** @param {number} hours */
+  const meter = (hours) => /** @type {any} */ (hoursMeter(hours));
+  assert.equal(meter(1 / 3).getAttribute('aria-valuenow'), '0.3', 'never an unrounded float');
+  assert.equal(meter(2.25).getAttribute('aria-valuenow'), '2.3');
+  assert.equal(meter(12).getAttribute('aria-valuenow'), '12');
+  assert.equal(meter(0).getAttribute('aria-valuenow'), '0');
+  assert.equal(meter(a1Hours.max + 7.77).getAttribute('aria-valuenow'), String(a1Hours.max));
+  assert.equal(meter(1 / 3).getAttribute('aria-valuetext'), '0.3 hours');
+  assert.equal(meter(1 / 3).getAttribute('role'), 'meter');
 });

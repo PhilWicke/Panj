@@ -9,7 +9,8 @@
 // lists them (the one network-first file under assets/audio/). isAudio names the clips, which
 // live in their own cache that no update empties; trimPlan says which clips to evict when that
 // cache grows past its limit, the oldest first (Ruling 57); byteRange reads the Range header a
-// media element sends, so a cached clip can answer the 206 that iOS insists on.
+// media element sends, so a cached clip can answer the 206 that iOS insists on; fallsBackToCache
+// says when a network-first answer gives way to the cached copy.
 
 /** @typedef {'network-first'|'cache-first'|'network-only'} Policy */
 /** @typedef {{ url: string, bytes: number, at: number }} ClipEntry a clip in the audio cache: its URL, its size and when it was stored, epoch ms */
@@ -79,6 +80,17 @@ export function trimPlan(entries, limit) {
     total -= entry.bytes;
   }
   return evict;
+}
+
+/**
+ * Whether a network-first request takes its cached copy (when there is one) over the network's
+ * answer: on a server error, a 5xx, which says nothing about the file, while a 404 or any other
+ * answer is the host's real one and stands.
+ * @param {number} status the network answer's status
+ * @returns {boolean}
+ */
+export function fallsBackToCache(status) {
+  return status >= 500 && status <= 599;
 }
 
 /**

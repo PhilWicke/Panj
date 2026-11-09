@@ -6,7 +6,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { DEFAULT_SETTINGS, createState, recordRecall } from '../../app/js/engine/scheduler.js';
-import { currentLesson, todayTotals, unmetItems } from '../../app/js/engine/course.js';
+import { currentLesson, practisable, todayTotals, unmetItems } from '../../app/js/engine/course.js';
 
 const TZ = 'Europe/Berlin';
 const MINUTE = 60_000;
@@ -31,6 +31,15 @@ test("todayTotals sums the new items and minutes of the sessions that started on
   ];
   assert.deepEqual(todayTotals(sessions, T0, TZ), { newToday: 7, minutesToday: 10.5 });
   assert.deepEqual(todayTotals([], T0, TZ), { newToday: 0, minutesToday: 0 });
+});
+
+test('practisable: an accepted item always, any other item only in a dev build (allowPending)', () => {
+  const item = (/** @type {object} */ verification) => /** @type {any} */ ({ id: 'u01-l01-i01', verification });
+  assert.equal(practisable(item(accepted), false), true);
+  assert.equal(practisable(item(accepted), true), true);
+  assert.equal(practisable(item(pending), false), false, 'a strict build never practises pending content');
+  assert.equal(practisable(item(pending), true), true);
+  assert.equal(practisable(item({ ...pending, status: 'rejected' }), false), false);
 });
 
 test('unmetItems counts the practisable items not met yet: accepted ones, or every one with allowPending', () => {

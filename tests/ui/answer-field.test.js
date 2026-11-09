@@ -2,14 +2,21 @@
 // The typed answer field the typed recall, the slot production and the dialogue's learner lines
 // share: the input is set up for Slovenian, the label names it, Enter or "Check" submits a
 // non-blank answer as typed, "I don't know" submits an empty one, and the field answers once and
-// then locks. The feedback panel it leads to runs in the browser check.
+// then locks. The feedback goes into a slot that is a polite live region from the start (a region
+// that arrives with its text is not read out), or a plain slot inside a live region that is there
+// already; the panel is no live region of its own and its marked action takes the focus. The rest
+// of the panel runs in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
-import { answerField } from '../../app/js/ui/components/answer-field.js';
+import { grade } from '../../app/js/engine/grading.js';
+import { answerField, feedbackSlot, mountFeedback } from '../../app/js/ui/components/answer-field.js';
+
+/** @type {ReturnType<typeof installFakeDom>} */
+let document;
 
 before(() => {
-  installFakeDom();
+  document = installFakeDom();
 });
 
 /** The field's parts, through the fake DOM. @param {{ form: HTMLElement, input: HTMLInputElement }} field */
@@ -81,4 +88,29 @@ test('answerField\'s "I don\'t know" submits an empty answer and locks', () => {
   field.input.value = 'Hvala.';
   field.submit();
   assert.deepEqual(answers, ['']);
+});
+
+test('feedbackSlot is an empty polite live region, or a plain slot inside a live region that is there already', () => {
+  const slot = /** @type {any} */ (feedbackSlot());
+  assert.equal(slot.tagName, 'DIV');
+  assert.equal(slot.className, 'feedback-slot');
+  assert.equal(slot.getAttribute('aria-live'), 'polite');
+  assert.equal(slot.childNodes.length, 0);
+  const inner = /** @type {any} */ (feedbackSlot({ live: false }));
+  assert.equal(inner.className, 'feedback-slot');
+  assert.equal(inner.getAttribute('aria-live'), null);
+});
+
+test('mountFeedback fills the slot the exercise made, the panel is no live region of its own, and its action takes the focus', () => {
+  const slot = /** @type {any} */ (feedbackSlot());
+  let done = 0;
+  const panel = /** @type {any} */ (mountFeedback(slot, {
+    answer: 'xyz', graded: grade('xyz', 'Hvala.'), effective: 'wrong', target: 'Hvala.', rule: null, onDone: () => { done += 1; },
+  }));
+  assert.deepEqual(slot.childNodes, [panel], 'the panel goes into the slot that was there before the answer');
+  assert.equal(slot.getAttribute('aria-live'), 'polite');
+  assert.equal(panel.getAttribute('aria-live'), null, 'no live region inside the live region');
+  assert.equal(panel.className, 'feedback feedback-wrong');
+  assert.equal(document.activeElement?.textContent, 'Type it again', 'after a miss the retry takes the focus');
+  assert.equal(done, 0);
 });

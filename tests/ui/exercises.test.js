@@ -10,10 +10,13 @@
 // match gets one more try, and a recogniser error other than silence turns the exercise self-rated;
 // a spoken answer is compared with the item's form and its accepted variants; the perception sets
 // are two or three similar words. Through the fake DOM: an audio exercise turns into the no-audio
-// line when nothing plays and finishes once; structured input, the meaning pick and the perception
-// drill resolve their `aux` through the shared option group; a refused microphone keeps the later
-// speaking exercises self-rated until resetRecognition, a lost connection or a failed start only
-// the one exercise. The rest of the exercises' DOM runs in the browser check.
+// line when nothing plays and finishes once, and a `none` that arrives once the learner has
+// answered changes nothing; structured input, the meaning pick and the perception drill resolve
+// their `aux` through the shared option group; the typed recall's feedback lands in a live region
+// that was there before the answer, and the dialogue keeps one live region, its transcript; Speak
+// waits while the model line plays; a refused microphone keeps the later speaking exercises
+// self-rated until resetRecognition, a lost connection or a failed start only the one exercise.
+// The rest of the exercises' DOM runs in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -24,7 +27,8 @@ import { recognitionBlocked, resetRecognition } from '../../app/js/audio/speech.
 import { audioExercise } from '../../app/js/ui/components/no-audio.js';
 import { blankify, promptWithBlank, structuredOutcome, render as renderStructured } from '../../app/js/ui/exercises/structured.js';
 import { slotBase, slotOutcome } from '../../app/js/ui/exercises/slot.js';
-import { dialogueOutcome, lineEffective, speakerLabel, playWaitMs, playWithin } from '../../app/js/ui/exercises/dialogue.js';
+import { render as renderTyped } from '../../app/js/ui/exercises/typed.js';
+import { dialogueOutcome, lineEffective, speakerLabel, playWaitMs, playWithin, render as renderDialogue } from '../../app/js/ui/exercises/dialogue.js';
 import { meaningOptions, render as renderListening } from '../../app/js/ui/exercises/listening.js';
 import { attemptOutcome, recognitionFallsBack, spokenVerdict, render as renderSpeaking } from '../../app/js/ui/exercises/speaking.js';
 import { pickPerception, render as renderPerception } from '../../app/js/ui/exercises/perception.js';
@@ -376,6 +380,91 @@ test('audioExercise turns the exercise into the no-audio line when nothing plays
   late('none');
   await settle();
   assert.equal(stage.textContent, 'The next exercise', 'a none after the exercise finished does not draw over the next one');
+
+  /** @type {(how: 'none') => void} */
+  let slow = () => {};
+  const answeredStage = /** @type {any} */ (h('div', null, 'The feedback'));
+  const answering = audioExercise({ container: answeredStage, text: 'bil', resolve: () => {}, play: () => new Promise((resolve) => { slow = resolve; }) });
+  answering.listen();
+  answering.answered();
+  slow('none');
+  await settle();
+  assert.equal(answeredStage.textContent, 'The feedback', 'a none after the learner answered leaves the answer and its feedback in place');
+});
+
+test('listening and perception keep the answer showing when the sound reports none after the pick or the typed answer', async () => {
+  const evening = /** @type {Item} */ (lesson.items.find((each) => each.sl === 'Dober večer.'));
+  /** A play whose answer the test gives later. */
+  const delayed = () => {
+    /** @type {(how: 'none') => void} */
+    let answer = () => {};
+    return { play: () => new Promise((resolve) => { answer = resolve; }), none: () => answer('none') };
+  };
+
+  const meaning = delayed();
+  let first = true;
+  const draw = seeded(3);
+  const picking = /** @type {any} */ (h('div'));
+  const meant = renderListening(picking, { kind: 'listening', itemId: evening.id },
+    context({ item: evening, rng: () => (first ? ((first = false), 0.9) : draw()), play: meaning.play }));
+  button(picking, 'Good evening.').dispatch('click');
+  meaning.none();
+  await settle();
+  assert.ok(button(picking, 'Continue'), 'the pick and its feedback stay');
+  assert.ok(!picking.textContent.includes('No audio on this device.'));
+  button(picking, 'Continue').dispatch('click');
+  assert.deepEqual(await meant, { aux: { kind: 'listening', correct: true } });
+
+  const dictation = delayed();
+  const typing = /** @type {any} */ (h('div'));
+  const written = renderListening(typing, { kind: 'listening', itemId: evening.id }, context({ item: evening, rng: () => 0.1, play: dictation.play }));
+  button(typing, "I don't know").dispatch('click');
+  dictation.none();
+  await settle();
+  assert.ok(typing.querySelector('.feedback'), 'the typed answer and its feedback stay');
+  button(typing, 'Continue').dispatch('click');
+  assert.deepEqual(await written, { aux: { kind: 'listening', correct: false } });
+
+  const drill = delayed();
+  const perception = /** @type {any} */ (h('div'));
+  const drilled = renderPerception(perception, { kind: 'perception' }, context({ rng: () => 0, play: drill.play }));
+  button(perception, 'bil').dispatch('click');
+  drill.none();
+  await settle();
+  assert.equal(elements(perception).find((el) => el.tagName === 'SECTION').textContent, 'Correct.');
+  button(perception, 'Continue').dispatch('click');
+  assert.deepEqual(await drilled, { aux: { kind: 'perception', correct: true } });
+});
+
+test('the typed recall puts its feedback into a polite live region that is in the exercise before the answer', async () => {
+  const evening = /** @type {Item} */ (lesson.items.find((each) => each.sl === 'Dober večer.'));
+  const stage = /** @type {any} */ (h('div'));
+  const outcome = renderTyped(stage, { kind: 'typed_en_sl', itemId: evening.id }, context({ item: evening }));
+  const slot = stage.querySelector('.feedback-slot');
+  assert.ok(slot, 'the slot is drawn with the exercise');
+  assert.equal(slot.getAttribute('aria-live'), 'polite', 'and is a live region before anything is in it');
+  assert.equal(slot.childNodes.length, 0);
+  button(stage, "I don't know").dispatch('click');
+  assert.equal(stage.querySelector('.feedback-slot'), slot, 'the same slot');
+  assert.equal(slot.childNodes.length, 1);
+  assert.equal(slot.childNodes[0].className, 'feedback feedback-wrong');
+  assert.equal(elements(stage).filter((el) => el.getAttribute('aria-live') !== null).length, 1, 'one live region');
+  button(stage, 'Continue').dispatch('click');
+  assert.deepEqual(await outcome, { itemId: evening.id, recall: 'wrong' });
+});
+
+test('the dialogue keeps one live region, its transcript, with the feedback of a learner line inside it', async () => {
+  const stage = /** @type {any} */ (h('div'));
+  void renderDialogue(stage, { kind: 'dialogue', lessonId: lesson.id }, context({}));
+  await settle();
+  /** @returns {any[]} */
+  const live = () => elements(stage).filter((el) => el.getAttribute('aria-live') !== null);
+  assert.equal(live().length, 1, 'one live region while the learner line waits');
+  const [transcript] = live();
+  assert.equal(transcript.getAttribute('aria-label'), 'The scene');
+  button(stage, "I don't know").dispatch('click');
+  assert.ok(transcript.querySelector('.feedback'), 'the feedback is announced through the transcript');
+  assert.equal(live().length, 1, 'and adds no live region of its own');
 });
 
 test('structured input, the meaning pick and the perception drill resolve their aux through the shared option group', async () => {
@@ -506,4 +595,49 @@ test('speaking: a refused microphone keeps later speaking exercises self-rated u
     assert.equal(recognitionBlocked(), false, error);
     assert.ok(button(show().stage, 'Speak'), `${error}: the next speaking exercise offers Speak again`);
   }
+});
+
+test('speaking: Speak waits while the model line plays, so the recogniser never starts over it', async (t) => {
+  let started = 0;
+  class Listening {
+    constructor() {
+      /** @type {any} */ this.onerror = null;
+      /** @type {any} */ this.onresult = null;
+      /** @type {any} */ this.onend = null;
+    }
+
+    start() {
+      started += 1;
+      setTimeout(() => this.onerror?.({ error: 'no-speech' }), 0);
+    }
+
+    abort() {}
+  }
+  Object.defineProperty(globalThis, 'SpeechRecognition', { value: Listening, configurable: true, writable: true });
+  t.after(() => {
+    delete (/** @type {Record<string, unknown>} */ (globalThis)).SpeechRecognition;
+    resetRecognition();
+  });
+  resetRecognition();
+
+  const evening = /** @type {Item} */ (lesson.items.find((each) => each.sl === 'Dober večer.'));
+  /** @type {(how: 'device') => void} */
+  let ended = () => {};
+  const stage = /** @type {any} */ (h('div'));
+  void renderSpeaking(stage, { kind: 'speaking', itemId: evening.id }, context({
+    item: evening, settings: { speech: true }, mode: { mute: false, speech: true },
+    play: () => new Promise((resolve) => { ended = resolve; }),
+  }));
+  const speak = button(stage, 'Speak');
+  assert.ok(!speak.disabled, 'Speak is ready before anything plays');
+  button(stage, 'Listen').dispatch('click');
+  assert.equal(speak.disabled, true, 'while the model line plays, Speak waits');
+  speak.dispatch('click');
+  assert.equal(started, 0, 'and no recogniser starts');
+  ended('device');
+  await settle();
+  assert.ok(!speak.disabled, 'once the line has played, Speak is back');
+  speak.dispatch('click');
+  await settle();
+  assert.equal(started, 1);
 });

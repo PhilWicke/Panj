@@ -3,11 +3,13 @@
 // review is due from the start of a local day, mastery needs recalls on distinct local days, and
 // the week view groups sessions by local date. Every function takes an optional IANA zone for
 // tests; without it the phone's zone applies. The Intl formatter behind every reading is built
-// once per zone and kept, since a session reads the clock on every answer.
+// once per zone and kept, since a session reads the clock on every answer. formatDateEn writes a
+// date key for the English UI without asking the phone's locale.
 
 const HOUR_MS = 3_600_000;
 const DAY_MS = 86_400_000;
 const KEY_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
+const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 /** @type {Map<string, Intl.DateTimeFormat>} one formatter per zone, under '' for the phone's zone */
 const formatters = new Map();
@@ -114,6 +116,19 @@ export function startOfNextLocalDay(epochMs, tz) {
  */
 export function daysBetween(keyA, keyB) {
   return Math.round((keyToUtc(keyB) - keyToUtc(keyA)) / DAY_MS);
+}
+
+/**
+ * A date key as the English UI writes it, "2 November 2026", the same on every phone (no locale
+ * call). Anything that is not a date key is returned as it is.
+ * @param {string} dateKey `YYYY-MM-DD`
+ * @returns {string}
+ */
+export function formatDateEn(dateKey) {
+  const match = KEY_PATTERN.exec(dateKey);
+  const month = match ? MONTHS_EN[Number(match[2]) - 1] : undefined;
+  if (!match || month === undefined) return dateKey;
+  return `${Number(match[3])} ${month} ${Number(match[1])}`;
 }
 
 /**

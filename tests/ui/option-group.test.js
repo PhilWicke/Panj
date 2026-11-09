@@ -3,7 +3,8 @@
 // share, through the fake DOM: one button per option in the order given, classed and labelled as
 // asked; the first pick locks every button, marks the answer right and a wrong pick wrong, and
 // calls onPick once; the feedback shows "Correct." or "Not quite." above the exercise's own lines;
-// Continue takes the focus and hands the pick back.
+// Continue takes the focus and hands the pick back; without onContinue there is no Continue (the
+// rule card's quick check, whose exercise adds its own).
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
@@ -117,4 +118,19 @@ test('optionGroup: the right pick is marked right, nothing is marked wrong, and 
   assert.equal(panel.textContent, 'Correct.', 'onPick added nothing for a right pick');
   group.actions.childNodes[0].dispatch('click');
   assert.deepEqual(group.continues, [['si', true]]);
+});
+
+test('optionGroup without onContinue locks and marks the options and shows the feedback, with no Continue of its own', () => {
+  /** @type {[string, boolean][]} */
+  const picks = [];
+  const parts = /** @type {any} */ (optionGroup({
+    options: ['sem', 'si'], answer: 'sem', label: 'Options',
+    onPick: (choice, correct) => { picks.push([choice, correct]); return null; },
+  }));
+  const [, si] = parts.buttons;
+  si.dispatch('click');
+  assert.deepEqual(picks, [['si', false]]);
+  assert.ok(parts.buttons.every((/** @type {any} */ b) => b.disabled === true));
+  assert.equal(parts.result.childNodes[0].textContent, 'Not quite.');
+  assert.equal(parts.actions.childNodes.length, 0, 'no Continue');
 });

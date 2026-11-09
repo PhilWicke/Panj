@@ -2,10 +2,11 @@
 // The service worker's pure policy (Task 19): policyFor sorts a request by its URL against the
 // registration scope, with a GitHub Pages style scope and a localhost one; isAudio names the
 // clips; trimPlan evicts the oldest clips until the audio cache fits its limit (Ruling 57);
-// byteRange reads the Range header a media element sends, so a cached clip can answer with 206.
+// byteRange reads the Range header a media element sends, so a cached clip can answer with 206;
+// fallsBackToCache lets a network-first request take its cached copy when the host answers 5xx.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { byteRange, isAudio, policyFor, trimPlan } from '../../app/js/sw-policy.js';
+import { byteRange, fallsBackToCache, isAudio, policyFor, trimPlan } from '../../app/js/sw-policy.js';
 
 const PAGES = new URL('https://example.github.io/Slovelingo/');
 const LOCAL = new URL('http://localhost:4173/');
@@ -105,4 +106,9 @@ test('byteRange is null without a header, for a malformed one, and for a range b
   assert.equal(byteRange('bytes=200-100', 1000), null, 'ends before it starts');
   assert.equal(byteRange('bytes=-0', 1000), null, 'an empty suffix');
   assert.equal(byteRange('bytes=0-', 0), null, 'an empty body has no range');
+});
+
+test('fallsBackToCache: a server error (5xx) gives way to the cached copy; any other answer is the real one', () => {
+  for (const status of [500, 502, 503, 504, 599]) assert.equal(fallsBackToCache(status), true, String(status));
+  for (const status of [200, 204, 206, 304, 400, 404, 410, 499]) assert.equal(fallsBackToCache(status), false, String(status));
 });

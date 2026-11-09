@@ -1,9 +1,11 @@
-// The pick-one options that structured input, the listening meaning pick and the perception drill
-// share (spec 4.2): a group of buttons, one per option in the order given, a result slot and an
-// actions row. The first pick locks the group: every button is disabled, the answer is marked
+// The pick-one options that structured input, the listening meaning pick, the perception drill,
+// the checkpoint's rule items and the rule card's quick check share (spec 4.2): a group of
+// buttons, one per option in the order given, a result slot (a live region from the start) and
+// an actions row. The first pick locks the group: every button is disabled, the answer is marked
 // right and a wrong pick is marked wrong (struck through). The result slot then shows the
 // headline ("Correct." or "Not quite.") above the exercise's own lines, and a Continue button,
-// which takes the focus, hands the pick back to the exercise to resolve with.
+// which takes the focus, hands the pick back to the exercise to resolve with; without onContinue
+// there is no Continue (the rule card, whose exercise adds its own).
 
 import { h } from '../../util/dom.js';
 
@@ -19,7 +21,8 @@ import { h } from '../../util/dom.js';
  * @property {boolean} [stacked] one option per row, for long options such as English meanings
  * @property {(choice: string, correct: boolean) => Child} onPick called once, at the first pick
  *   and after the options lock; returns the exercise's own lines for the feedback under the headline
- * @property {(choice: string, correct: boolean) => void} onContinue called when Continue is tapped
+ * @property {(choice: string, correct: boolean) => void} [onContinue] called when Continue is
+ *   tapped; without it the group adds no Continue
  */
 
 /**
@@ -47,6 +50,7 @@ export function optionGroup({ options, answer, label, lang, large = false, stack
     result.replaceChildren(h('section', { class: `feedback feedback-${correct ? 'correct' : 'wrong'}` },
       h('p', { class: 'feedback-headline' }, correct ? 'Correct.' : 'Not quite.'),
       details));
+    if (!onContinue) return;
     const next = h('button', { type: 'button', class: 'btn btn-primary', onclick: () => onContinue(choice, correct) }, 'Continue');
     actions.append(next);
     next.focus();

@@ -76,6 +76,24 @@ test('habitHolds once the week target was met in each of the four past weeks', (
   assert.equal(habitHolds(four, berlin(40, 10), TZ), false, 'a week later, the empty week of 2 February counts and the week of 5 January has dropped out');
 });
 
+test('habitHolds steps back by calendar weeks, so the October clock change never counts one week twice', () => {
+  /** An instant of autumn 2026 in Berlin: summer time (UTC+2) until 03:00 on Sunday 25 October, winter time (UTC+1) after. */
+  const autumn = (/** @type {number} */ month, /** @type {number} */ day, /** @type {number} */ hour, minute = 0) => {
+    const summer = month < 10 || (month === 10 && (day < 25 || (day === 25 && hour < 3)));
+    return Date.UTC(2026, month - 1, day, hour, minute) - (summer ? 2 : 1) * HOUR;
+  };
+  /** Five sessions, Monday to Friday, of the week from the Monday `month`/`day`. */
+  const fullWeek = (/** @type {number} */ month, /** @type {number} */ day) => [0, 1, 2, 3, 4].map((d) => session(autumn(month, day + d, 8)));
+  // Sunday 1 November at 23:30, winter time: the four weeks before this one start on 19, 12 and 5 October and 28 September.
+  // Four times 168 hours back cross the change and land an hour later on the wall clock, Monday 00:30 from the second
+  // week on, so counting by hours would look at the week of 19 October twice and never at the week of 28 September.
+  const sunday = autumn(11, 1, 23, 30);
+  const october = [...fullWeek(10, 19), ...fullWeek(10, 12), ...fullWeek(10, 5)];
+  assert.equal(habitHolds(october, sunday, TZ), false, 'the week of 28 September is empty');
+  assert.equal(habitHolds([...october, ...fullWeek(9, 28)], sunday, TZ), true, 'with it met, all four weeks are');
+  assert.equal(habitHolds([...fullWeek(10, 19), ...fullWeek(10, 5), ...fullWeek(9, 28)], sunday, TZ), false, 'the week of 12 October is empty');
+});
+
 test('calendarLine: the week status, never a loss message', () => {
   const sessions = [5, 6, 8, 10].map((d) => session(berlin(d, 8)));   // Mon Tue Thu Sat
   assert.equal(calendarLine(weekSummary(sessions, berlin(10, 20), 5, TZ)), '4 of 5 days this week', 'Saturday evening with Sunday to come');

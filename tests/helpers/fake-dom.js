@@ -3,7 +3,7 @@
 // createElement, createElementNS (the tag name keeps its case and the element records its
 // namespace, as an SVG element does), createTextNode, className, classList, dataset, style,
 // setAttribute, removeAttribute, hidden (reflecting the attribute, as on an HTML element),
-// querySelector (one class selector only), appendChild, append, replaceChildren, remove,
+// querySelector (one class or attribute selector), appendChild, append, replaceChildren, remove,
 // addEventListener, focus (recorded as document.activeElement), textContent, a documentElement
 // for the theme and a body for the toast. It keeps dom.js and the small components honest
 // without a browser; the session itself runs in the end-to-end check.
@@ -125,20 +125,41 @@ class FakeElement extends FakeNode {
   }
 
   /**
-   * The first element under this one, depth first, that carries the class. Only a single class
-   * selector such as `.settings-notice` is understood; anything else throws, so a test never
-   * passes on a selector the fake cannot read.
+   * The value of an attribute as a selector reads it: `data-*` from dataset, where dom.js puts
+   * them, anything else from the attributes.
+   * @param {string} name
+   * @returns {string|null}
+   */
+  selectorValue(name) {
+    if (!name.startsWith('data-')) return this.getAttribute(name);
+    const key = name.slice(5).replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+    return Object.hasOwn(this.dataset, key) ? this.dataset[key] : null;
+  }
+
+  /**
+   * The first element under this one, depth first, that matches. Only a single class selector
+   * such as `.settings-notice` or a single attribute selector such as `[data-autofocus]` or
+   * `[tabindex="-1"]` is understood; anything else throws, so a test never passes on a selector
+   * the fake cannot read.
    * @param {string} selector
    * @returns {FakeElement|null}
    */
   querySelector(selector) {
-    const match = /^\.([\w-]+)$/.exec(selector);
-    if (!match) throw new Error(`The fake DOM's querySelector takes one class selector, not ${selector}`);
+    const byClass = /^\.([\w-]+)$/.exec(selector);
+    const byAttribute = /^\[([\w-]+)(?:="([^"]*)")?\]$/.exec(selector);
+    if (!byClass && !byAttribute) throw new Error(`The fake DOM's querySelector takes one class or attribute selector, not ${selector}`);
+    /** @param {FakeElement} el @returns {boolean} */
+    const matches = (el) => {
+      if (byClass) return el.classList.contains(byClass[1]);
+      const value = el.selectorValue(/** @type {RegExpExecArray} */ (byAttribute)[1]);
+      const wanted = /** @type {RegExpExecArray} */ (byAttribute)[2];
+      return value !== null && (wanted === undefined || value === wanted);
+    };
     /** @param {FakeNode} node @returns {FakeElement|null} */
     const find = (node) => {
       for (const child of node.childNodes) {
         if (!(child instanceof FakeElement)) continue;
-        if (child.classList.contains(match[1])) return child;
+        if (matches(child)) return child;
         const below = find(child);
         if (below) return below;
       }

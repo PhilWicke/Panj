@@ -6,9 +6,10 @@
 // checkpoint passed, meta.sealed) carries a seal on its frame with the unit's motif, a flat
 // folk-art shape. Nothing is numbered. Motion only answers an action: a render remembers the fills
 // it showed and the next render starts each cell where it was and lets CSS move it to the new fill
-// (300 ms, nothing under reduced motion), so cells fill after a session and sit still otherwise.
-// The layout is pure and tested: hiveLayout gives the boards, cellSize one hexagon width for the
-// whole hive, cellCenters a board's cells in rows of six.
+// (300 ms, nothing under reduced motion), so cells fill after a session and sit still otherwise;
+// resetHiveMemory forgets what was shown, for the tests. The layout is pure and tested: hiveLayout
+// gives the boards, cellSize one hexagon width for the whole hive, cellCenters a board's cells in
+// rows of six.
 
 import { svg } from '../../util/dom.js';
 
@@ -273,6 +274,11 @@ function renderSeal(motif, cx, cy) {
 let renders = 0;
 /** The fill each cell showed last, by lesson id: where the next render starts it. @type {Map<string, number>} */
 const shown = new Map();
+
+/** Forgets the fills shown, so the next render draws every cell at its fill with nothing to move. */
+export function resetHiveMemory() {
+  shown.clear();
+}
 
 /**
  * Runs `fn` on a later frame, once the current one has painted (so a transition has a start value).

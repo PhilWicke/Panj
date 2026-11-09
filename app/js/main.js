@@ -35,7 +35,7 @@ import { renderWords } from './ui/screens/words.js';
 import { renderSettings } from './ui/screens/settings.js';
 import { renderStats } from './ui/screens/stats.js';
 import { applyTheme } from './ui/theme.js';
-import { showToast } from './ui/components/toast.js';
+import { showToast, toastRegion } from './ui/components/toast.js';
 import { registerWorker } from './sw-client.js';
 
 /** @typedef {import('./app-types.js').App} App */
@@ -103,6 +103,7 @@ async function boot() {
 
   applyTheme(state.settings.theme);
   if (app.allowPending) document.querySelector('.app-header')?.append(h('span', { class: 'badge' }, 'Development build'));
+  toastRegion();
   void registerWorker({ onUpdate: ({ reload }) => showToast({ text: UPDATE_TEXT, action: { label: 'Reload', onTap: reload } }) });
 
   /** @type {(() => void)|null} */
@@ -119,7 +120,7 @@ async function boot() {
     else if (path === '/session') leave = renderSession(root, app, params);
     else if (path === '/checkpoint') leave = renderCheckpoint(root, app, params);
     else if (path === '/hive') renderHiveScreen(root, app);
-    else if (path === '/unit') renderUnit(root, app, params);
+    else if (path === '/unit') leave = renderUnit(root, app, params);
     else if (path === '/rules') renderRules(root, app);
     else if (path === '/words') renderWords(root, app);
     else if (path === '/settings') renderSettings(root, app);
