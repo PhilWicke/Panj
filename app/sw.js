@@ -12,16 +12,16 @@
 // a miss being kept; a clip fetched is kept in the audio cache under a 60 MB limit through a ledger
 // entry, the oldest going first (Ruling 57), and a media element's Range request is answered with
 // the 206 it asked for. Messages: `skip-waiting` from the Reload tap, and `cache-unit-audio` from
-// the unit page's "Keep offline", which fetches the clips of a unit's texts
-// (js/util/audio-texts.js) that the audio manifest lists, three at a time, and answers
-// `unit-audio-cached` with the count, and with the reason when a clip could not be fetched, after
-// which it stores nothing more. A module worker, registered by js/sw-client.js with updateViaCache
-// none under a URL that carries the version (`sw.js?v=...`), so every version installs as a fresh
-// worker.
+// the unit page's "Keep offline", which fetches the clips of a unit (js/util/audio-texts.js: its
+// texts in the learner's voice and its cast lines in theirs) that the audio manifest lists, three
+// at a time, and answers `unit-audio-cached` with the count, and with the reason when a clip could
+// not be fetched, after which it stores nothing more. A module worker, registered by
+// js/sw-client.js with updateViaCache none under a URL that carries the version (`sw.js?v=...`),
+// so every version installs as a fresh worker.
 
 import { SLOVELINGO_VERSION } from './version.js';
 import { byteRange, fallsBackToCache, isAudio, policyFor, trimPlan } from './js/sw-policy.js';
-import { audioTexts } from './js/util/audio-texts.js';
+import { unitClips } from './js/util/audio-texts.js';
 import { audioId } from './js/util/audio-id.js';
 
 /** @typedef {import('./js/sw-policy.js').ClipEntry} ClipEntry */
@@ -253,7 +253,7 @@ async function cacheUnitAudio(client, unitId, voice) {
       fetchJson(inScope(`content/dist/units/${encodeURIComponent(unitId)}.json`)),
       fetchJson(inScope('assets/audio/manifest.json')),
     ]);
-    const ids = await Promise.all(audioTexts(unit).map((text) => audioId(text, voice)));
+    const ids = await Promise.all(unitClips(unit, voice).map((clip) => audioId(clip.text, clip.voice)));
     const hrefs = ids.filter((id) => Object.hasOwn(manifest, id)).map((id) => inScope(`assets/audio/${id}.mp3`));
     total = hrefs.length;
     const cache = await caches.open(AUDIO_CACHE);

@@ -280,7 +280,7 @@ function draw(container, app, message) {
           void save({ voice }, (restored) => check(restored.voice));
           app.player.setVoice(voice);
         }),
-        h('p', { class: 'quiet' }, "Female and male are the course's recordings. The device voice is your phone's own Slovenian voice."),
+        h('p', { class: 'quiet' }, "Female and male are the course's recordings, and in a dialogue each speaker keeps a voice of their own. The device voice is your phone's own Slovenian voice."),
         renderSwitch({
           id: 'settings-mute', label: 'Mute', description: 'No sound at all: every exercise has a silent form.', checked: settings.mute,
           onChange: (mute, button) => {

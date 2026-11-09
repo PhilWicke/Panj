@@ -14,7 +14,8 @@
 // "Can't listen right now" beside an audio exercise skips it without a miss and prunes the rest,
 // beside a meet draws the meet again without sound, and silences every context of the sitting;
 // the Quiet control in the session bar holds both choices and reads "Quiet on" while one holds;
-// a dialogue on screen stays as it is after "Can't listen right now", its host lines silent; a run
+// a dialogue on screen stays as it is after "Can't listen right now", its host lines silent; a
+// speaker's voice reaches the player until that choice is made; a run
 // whose every entry a choice skipped says nothing was practised, with no minutes; the closing menu
 // offers "Can't talk right now" after "A speaking round", and a draw a choice leaves behind cannot
 // draw over the screen after it. The closing screen of a unit's last lesson (its consolidation lesson at the
@@ -598,6 +599,24 @@ test("a dialogue on screen stays as it is after \"Can't listen right now\", and 
   const before = plays;
   assert.equal(await contexts[0].play('Hvala.'), 'none');
   assert.equal(plays, before, 'the player was not called');
+});
+
+test("a dialogue line with a cast reaches the player with its voice, and not after \"Can't listen right now\"", async () => {
+  const container = /** @type {any} */ (document.createElement('main'));
+  const app = dialogueApp();
+  /** @type {unknown[][]} */
+  const calls = [];
+  app.player.play = async (/** @type {unknown[]} */ ...args) => { calls.push(args); return 'file'; };
+  renderSession(container, app);
+  await settle();
+  assert.deepEqual(shown.map((e) => e.kind), ['dialogue']);
+  assert.equal(await contexts[0].play('Dober dan.', { voice: 'male' }), 'file');
+  assert.deepEqual(calls, [['Dober dan.', { voice: 'male' }]], "the speaker's voice goes through to the player");
+  button(container.querySelector('.session-bar'), 'Quiet').dispatch('click');
+  button(container.querySelector('.quiet-panel'), "Can't listen right now").dispatch('click');
+  await settle();
+  assert.equal(await contexts[0].play('Hvala.', { voice: 'male' }), 'none');
+  assert.equal(calls.length, 1, 'the player was not called');
 });
 
 test("the closing menu puts \"Can't talk right now\" after \"A speaking round\", and a tap takes both away", async () => {

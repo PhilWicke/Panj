@@ -1,6 +1,7 @@
 // The audio player (spec 5). A line plays from its recording when the manifest lists one in the
-// learner's voice, else with the device's own Slovenian voice (one whose `lang` starts with `sl`)
-// through speechSynthesis, else not at all, and play() says which happened; audioAvailable() says
+// voice its speaker was given or else the learner's voice, else with the device's own Slovenian
+// voice (one whose `lang` starts with `sl`) through speechSynthesis, else not at all, and play()
+// says which happened; a learner who chose the device voice hears only that. audioAvailable() says
 // beforehand whether either source exists, so the session schedules no audio exercise nothing can
 // play (Ruling 81), and answers within AUDIO_CHECK_MS, a slower answer reading as available
 // (Ruling 95). Mute plays nothing.
@@ -12,9 +13,9 @@
 // but the app's own files.
 
 import { audioId } from '../util/audio-id.js';
+import { VOICES } from './voices.js';
 
-/** The Gemini voice of each voice preference, as the recordings are named; the one place to rename them. */
-export const VOICES = Object.freeze({ female: 'Kore', male: 'Puck' });
+export { VOICES };
 
 /**
  * How long audioAvailable() waits for its answer before it reads as available: a slow network
@@ -36,11 +37,13 @@ const CANCEL_SETTLE_MS = 150;
 
 /**
  * @typedef {object} Player
- * @property {(text: string) => Promise<PlaySource>} play plays `text` and resolves once it has
- *   played, or was cut short by a later play(), stop() or setMute(), with where the sound came
- *   from: `file`, `device`, or `none` when muted or when neither a recording nor a Slovenian
- *   device voice can play it. It awaits the manifest and audioId, which is async (Ruling 6), and
- *   never rejects.
+ * @property {(text: string, options?: { voice?: 'female'|'male' }) => Promise<PlaySource>} play
+ *   plays `text` and resolves once it has played, or was cut short by a later play(), stop() or
+ *   setMute(), with where the sound came from: `file`, `device`, or `none` when muted or when
+ *   neither a recording nor a Slovenian device voice can play it. `options.voice` is the speaker's
+ *   voice for this one line: its recording comes before the preferred voice's, and the preference
+ *   `device` ignores it. It awaits the manifest and audioId, which is async (Ruling 6), and never
+ *   rejects.
  * @property {() => void} stop ends whatever plays
  * @property {(mute: boolean) => void} setMute muted, play() plays nothing; also stops what plays
  * @property {(voicePref: VoicePref) => void} setVoice the voice of the recordings from now on, for
@@ -151,13 +154,14 @@ export function createPlayer({ manifestUrl, voicePref, mute }) {
   let released = Promise.resolve();
 
   /**
-   * The URL of the recording of `text` in the preferred voice, or null; also null when the id
-   * cannot be computed (Web Crypto is missing outside a secure context, such as a LAN address over http).
+   * The URL of the recording of `text` in `voice`, as the recordings are named, or null; also null
+   * without a voice and when the id cannot be computed (Web Crypto is missing outside a secure
+   * context, such as a LAN address over http).
    * @param {string} text
+   * @param {string|null} voice
    * @returns {Promise<string|null>}
    */
-  const recordingFor = async (text) => {
-    const voice = voiceFor(preferred);
+  const recordingIn = async (text, voice) => {
     if (!voice) return null;
     manifest ??= fetchManifest(manifestUrl);
     try {
@@ -166,6 +170,25 @@ export function createPlayer({ manifestUrl, voicePref, mute }) {
     } catch {
       return null;
     }
+  };
+
+  /**
+   * The URL of the recording of `text` in the preferred voice, or null.
+   * @param {string} text
+   * @returns {Promise<string|null>}
+   */
+  const recordingFor = (text) => recordingIn(text, voiceFor(preferred));
+
+  /**
+   * The URL of the recording a line plays from: in its speaker's voice when the manifest has that,
+   * else in the preferred voice. The preference `device` has no recordings, whoever speaks.
+   * @param {string} text
+   * @param {'female'|'male'} [speaker]
+   * @returns {Promise<string|null>}
+   */
+  const recordingOfLine = async (text, speaker) => {
+    if (!speaker || preferred === 'device') return recordingFor(text);
+    return (await recordingIn(text, VOICES[speaker])) ?? recordingFor(text);
   };
 
   /**
@@ -267,11 +290,11 @@ export function createPlayer({ manifestUrl, voicePref, mute }) {
   };
 
   return {
-    async play(text) {
+    async play(text, options) {
       halt();
       const mine = turn;
       if (muted) return 'none';
-      const url = await recordingFor(text);
+      const url = await recordingOfLine(text, options?.voice);
       if (url) {
         if (mine !== turn) return 'file';
         if (await playFile(url)) return 'file';

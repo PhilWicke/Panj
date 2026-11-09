@@ -2,10 +2,11 @@
 // The texts a unit records (Rulings 46 and 57): audioTexts takes the `sl` of every accepted item
 // and of its examples and every dialogue line of a lesson with at least one accepted item,
 // duplicates dropped, first occurrence first, which is bundleTexts's rule for one unit; drillTexts
-// is the perception drill's words in one flat list, so the audio tool records them too.
+// is the perception drill's words in one flat list, so the audio tool records them too; unitClips
+// is what "Keep offline" fetches: every text in the learner's voice, then the cast's lines in theirs.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { audioTexts, drillTexts } from '../../app/js/util/audio-texts.js';
+import { audioTexts, drillTexts, unitClips } from '../../app/js/util/audio-texts.js';
 import { PERCEPTION_SETS } from '../../app/js/content/perception-sets.js';
 
 /** @param {string} id @param {string} sl @param {string} status @param {string[]} examples */
@@ -46,6 +47,48 @@ test('audioTexts: a lesson without an accepted item contributes nothing, not eve
     assert.ok(!texts.includes(text), text);
   }
   assert.deepEqual(audioTexts(/** @type {any} */ ({ unit: { id: 'u02' }, lessons: [] })), []);
+});
+
+const castUnit = /** @type {any} */ ({
+  unit: { id: 'u02' },
+  lessons: [
+    {
+      id: 'u02-l01',
+      items: [item('u02-l01-i01', 'Živjo.', 'accepted', [])],
+      dialogue: {
+        cast: { host: 'male', guest: 'female' },
+        lines: [
+          { speaker: 'host', sl: 'Dober dan.' },
+          { speaker: 'you', sl: 'Živjo.' },
+          { speaker: 'guest', sl: 'Kar naprej.' },
+          { speaker: 'waiter', sl: 'Izvolite.' },
+          { speaker: 'host', sl: 'Dober dan.' },
+        ],
+      },
+    },
+    {
+      id: 'u02-l02',
+      items: [item('u02-l02-i01', 'teta', 'pending', [])],
+      dialogue: { cast: { host: 'male' }, lines: [{ speaker: 'host', sl: 'To je teta.' }] },
+    },
+  ],
+});
+
+/** @param {string} voice @param {string[]} texts */
+const inVoice = (voice, texts) => texts.map((text) => ({ text, voice }));
+
+test("unitClips: every text in the learner's voice, then each cast line in its speaker's voice, each pair once", () => {
+  const texts = ['Živjo.', 'Dober dan.', 'Kar naprej.', 'Izvolite.'];
+  assert.deepEqual(audioTexts(castUnit), texts);
+  assert.deepEqual(unitClips(castUnit, 'Kore'), [...inVoice('Kore', texts), { text: 'Dober dan.', voice: 'Puck' }],
+    'the guest speaks in the learner\'s voice: no second copy, and the waiter has no cast entry');
+  assert.deepEqual(unitClips(castUnit, 'Puck'), [...inVoice('Puck', texts), { text: 'Kar naprej.', voice: 'Kore' }]);
+});
+
+test('unitClips: a lesson without an accepted item contributes nothing, and with no cast it is audioTexts in that voice', () => {
+  for (const clip of unitClips(castUnit, 'Kore')) assert.notEqual(clip.text, 'To je teta.');
+  assert.deepEqual(unitClips(unit, 'Puck'), inVoice('Puck', audioTexts(unit)));
+  assert.deepEqual(unitClips(/** @type {any} */ ({ unit: { id: 'u03' }, lessons: [] }), 'Kore'), []);
 });
 
 test('drillTexts is the perception drill word list, flat and in order', () => {

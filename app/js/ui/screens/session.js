@@ -346,7 +346,7 @@ export function renderSession(container, app, params = {}) {
       // unless the learner can't listen right now.
       mode: { ...mode, mute: settings.mute || mode.cantListen },
       // Read at play time, so an exercise left behind or drawn again after the choice stays silent.
-      play: (text) => (quietChoices().cantListen ? Promise.resolve(/** @type {const} */ ('none')) : app.player.play(text)),
+      play: (text, options) => (quietChoices().cantListen ? Promise.resolve(/** @type {const} */ ('none')) : app.player.play(text, options)),
       rng: Math.random,
       allowPending: app.allowPending,
       effective: (id, recall) => effectiveResult(app.state.items[id] ?? createState(id, Date.now()), recall),

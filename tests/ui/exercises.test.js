@@ -13,7 +13,8 @@
 // line when nothing plays and finishes once, and a `none` that arrives once the learner has
 // answered changes nothing; structured input, the meaning pick and the perception drill resolve
 // their `aux` through the shared option group; the typed recall's feedback lands in a live region
-// that was there before the answer, and the dialogue keeps one live region, its transcript; Speak
+// that was there before the answer, the dialogue keeps one live region, its transcript, and plays
+// a line in the voice its cast gives the speaker; Speak
 // waits while the model line plays; a refused microphone keeps the later speaking exercises
 // self-rated until resetRecognition, a lost connection or a failed start only the one exercise.
 // The rest of the exercises' DOM runs in the browser check.
@@ -451,6 +452,40 @@ test('the dialogue keeps one live region, its transcript, with the feedback of a
   button(stage, "I don't know").dispatch('click');
   assert.ok(transcript.querySelector('.feedback'), 'the feedback is announced through the transcript');
   assert.equal(live().length, 1, 'and adds no live region of its own');
+});
+
+test("a dialogue plays each line in its speaker's voice, and with the text alone where the cast names nobody", async () => {
+  /** @param {Record<string, 'female'|'male'>} [cast] @returns {any} */
+  const scene = (cast) => ({
+    ...lesson,
+    dialogue: {
+      id: 'u01-l01-d', title_sl: 'Pogovor', title_en: 'A talk', setting_en: 'At a table.', ...(cast ? { cast } : {}),
+      lines: [
+        { speaker: 'host', sl: 'Dober dan.', en: 'Good day.' },
+        { speaker: 'waiter', sl: 'Izvolite.', en: 'Here you are.' },
+      ],
+    },
+  });
+  /** The arguments of every play as the scene runs through. @param {any} staged */
+  const played = async (staged) => {
+    /** @type {unknown[][]} */
+    const calls = [];
+    const stage = /** @type {any} */ (h('div'));
+    stage.isConnected = true;
+    const outcome = renderDialogue(stage, { kind: 'dialogue', lessonId: lesson.id }, context({
+      lesson: staged,
+      mode: { mute: false, speech: false },
+      play: async (/** @type {unknown[]} */ ...args) => { calls.push(args); return 'file'; },
+    }));
+    await settle();
+    button(stage, 'Continue').dispatch('click');
+    await outcome;
+    return calls;
+  };
+
+  assert.deepEqual(await played(scene({ host: 'female', waiter: 'male' })), [['Dober dan.', { voice: 'female' }], ['Izvolite.', { voice: 'male' }]]);
+  assert.deepEqual(await played(scene({ waiter: 'male' })), [['Dober dan.'], ['Izvolite.', { voice: 'male' }]], 'a speaker the cast does not name');
+  assert.deepEqual(await played(scene()), [['Dober dan.'], ['Izvolite.']], 'no cast: the text alone');
 });
 
 test('structured input, the meaning pick and the perception drill resolve their aux through the shared option group', async () => {

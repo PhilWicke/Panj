@@ -3,7 +3,8 @@
 // items per day and the target recall inside their ranges (spec 4.2), backupFilename names the
 // export by the local date, importQuestion words the confirmation card, the speaking checks'
 // description is the Global Constraints' text verbatim, and renderSwitch is a button with role
-// switch that flips aria-checked and reports the new value. Through tests/helpers/fake-dom.js, a
+// switch that flips aria-checked and reports the new value. Through tests/helpers/fake-dom.js, the
+// quiet line under the Voice choice reads as given, and a
 // change the store refuses is taken back: in the app's settings, in the player and in the control,
 // with "Not saved. Try again." The rest of the screen runs in the browser check.
 import { test, before } from 'node:test';
@@ -63,6 +64,14 @@ test('importQuestion names the items and sessions the file holds', () => {
 test('the speaking checks description is the Global Constraints text, word for word', () => {
   assert.equal(SPEECH_DESCRIPTION,
     "Speaking checks send your voice to Google's speech service while recognising. Off, your speaking is self-rated and nothing leaves the phone.");
+});
+
+test('the quiet line under the Voice choice says that each speaker keeps a voice of their own', () => {
+  const app = /** @type {any} */ ({ adapter: { put: async () => {} }, state: { settings: { ...DEFAULT_APP_SETTINGS, onboarded: true } }, player: { setMute() {}, setVoice() {} } });
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderSettings(container, app);
+  const [line] = elements(byId(container, 'settings-sound').parentNode).filter((el) => el.className === 'quiet');
+  assert.equal(line.textContent, "Female and male are the course's recordings, and in a dialogue each speaker keeps a voice of their own. The device voice is your phone's own Slovenian voice.");
 });
 
 test('a change the store refuses is taken back in the settings, the player and the control, with "Not saved. Try again."', async (t) => {

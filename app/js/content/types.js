@@ -84,6 +84,7 @@
  * @property {string} title_en
  * @property {string} setting_en the scene in English, in generic framing
  * @property {DialogueLine[]} lines
+ * @property {Record<string, 'female'|'male'>} [cast] the recorded voice of each speaker other than the learner
  */
 
 /**
