@@ -12,10 +12,15 @@
 //      for that rule, and only then the item's first recall. An item's slot production is its
 //      third recall.
 //   2. rule cards the lesson lists but no item introduces, until their quick check is recorded.
-//   3. with sound: listening over known items, then one perception drill.
+//   3. with sound, unless the learner can't listen right now: listening over known items, then one
+//      perception drill.
 //   4. the lesson's dialogue, once every item it practises has graduated.
-//   5. with speech recognition on: speaking over known items.
+//   5. with sound and speech recognition on, unless the learner can't talk right now: speaking over
+//      known items.
 //   6. one fluency pass over five review-phase items, when there are at least five.
+// The two quiet choices (Mode.cantListen, Mode.cantTalk) split the mute in two for one sitting and
+// are independent: can't listen keeps speaking, can't talk keeps listening and perception.
+// quietDrops names the kinds they leave out, for a caller that filters a queue already built.
 // A consolidation lesson (lessonRole) brings its unit's earlier lessons together. Its meets queue
 // no rule card and no structured exercise, and step 2 is left out. Its practice comes in groups of
 // one exercise: each structured exercise, after its rule's card when the bundle carries the rule,
@@ -66,7 +71,9 @@ import { isRuleId } from '../util/ids.js';
 /**
  * @typedef {object} Mode
  * @property {boolean} mute no sound: no listening, speaking or perception entries
- * @property {boolean} speech speech recognition is on, so speaking entries are added (unless muted)
+ * @property {boolean} speech speech recognition is on, so speaking entries are added (unless muted or the learner can't talk)
+ * @property {boolean} [cantListen] the learner can't listen right now, for this sitting: no listening or perception entries (false when omitted)
+ * @property {boolean} [cantTalk] the learner can't talk right now, for this sitting: no speaking entries, in the queue or the closing menu (false when omitted)
  */
 
 /**
@@ -147,9 +154,28 @@ export function forecastReviewMinutes(states, now, days = 1) {
 }
 
 /**
+ * The exercise kinds the sitting's quiet choices leave out: listening and perception when the
+ * learner can't listen right now, speaking when they can't talk right now. The mute is not a quiet
+ * choice and adds nothing here.
+ * @param {Mode} mode
+ * @returns {Set<ExerciseKind>}
+ */
+export function quietDrops(mode) {
+  /** @type {Set<ExerciseKind>} */
+  const drops = new Set();
+  if (mode.cantListen) {
+    drops.add('listening');
+    drops.add('perception');
+  }
+  if (mode.cantTalk) drops.add('speaking');
+  return drops;
+}
+
+/**
  * The options of the closing menu, in display order: stop always; three more minutes while a
  * round is available (buildMoreRound) and until the goal plus MORE_MINUTES_UNTIL minutes are done;
- * a speaking round when sound is on; continue the lesson when it has items left.
+ * a speaking round when sound is on and the learner can talk right now; continue the lesson when
+ * it has items left.
  * @param {{ minutesToday: number, settings: Settings, lessonRemaining: boolean, mode: Mode, moreAvailable: boolean }} input
  * @returns {('stop'|'more3'|'speaking'|'continue')[]}
  */
@@ -157,7 +183,7 @@ export function closingMenu({ minutesToday, settings, lessonRemaining, mode, mor
   /** @type {('stop'|'more3'|'speaking'|'continue')[]} */
   const options = ['stop'];
   if (moreAvailable && minutesToday < settings.dailyMinutes + MORE_MINUTES_UNTIL) options.push('more3');
-  if (!mode.mute) options.push('speaking');
+  if (!mode.mute && !mode.cantTalk) options.push('speaking');
   if (lessonRemaining) options.push('continue');
   return options;
 }
@@ -464,12 +490,12 @@ export function buildSession(input) {
     return picked.concat(sample(due, n - picked.length, rng)).map((state) => state.itemId);
   };
 
-  if (!mode.mute) {
+  if (!mode.mute && !mode.cantListen) {
     for (const itemId of pick(LISTENING_PER_SESSION)) queue.push({ kind: 'listening', itemId });
     queue.push({ kind: 'perception' });
   }
   if (dialogue) queue.push(dialogue);
-  if (!mode.mute && mode.speech) {
+  if (!mode.mute && !mode.cantTalk && mode.speech) {
     for (const itemId of pick(SPEAKING_PER_SESSION)) queue.push({ kind: 'speaking', itemId });
   }
   if (reviewPhase.length >= FLUENCY_ITEMS) queue.push({ kind: 'fluency', itemIds: pick(FLUENCY_ITEMS) });

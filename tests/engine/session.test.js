@@ -1,9 +1,10 @@
 // tests/engine/session.test.js
 // The daily session builder: due reviews interleaved with the lesson's new items under the per-day
 // and forecast caps, rule cards right after the meet that introduces them, slot production as the third
-// recall, the dialogue once its items have graduated, audio kinds by mode, one fluency pass to
-// close, the closing menu, the "Three more minutes" round (Ruling 80), and consolidation lessons,
-// whose structured and production exercises over the unit's earlier items fall between their new items.
+// recall, the dialogue once its items have graduated, audio kinds by mode and by the sitting's quiet
+// choices, one fluency pass to close, the closing menu, the "Three more minutes" round (Ruling 80),
+// and consolidation lessons, whose structured and production exercises over the unit's earlier
+// items fall between their new items.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
@@ -11,7 +12,7 @@ import {
 } from '../../app/js/engine/scheduler.js';
 import { localDateKey } from '../../app/js/util/time.js';
 import {
-  buildSession, forecastReviewMinutes, closingMenu, buildMoreRound, REVIEW_MINUTES, NEW_ITEM_MINUTES, MINUTES_PER_KIND, MORE_ITEMS, MORE_MIN,
+  buildSession, forecastReviewMinutes, closingMenu, buildMoreRound, quietDrops, REVIEW_MINUTES, NEW_ITEM_MINUTES, MINUTES_PER_KIND, MORE_ITEMS, MORE_MIN,
 } from '../../app/js/engine/session.js';
 
 const TZ = 'Europe/Berlin';
@@ -294,6 +295,16 @@ test('mute mode drops audio-only kinds; speech adds speaking only when on', () =
   assert.deepEqual(build({ states: pool, mode: SPEECH, rng: seeded(7) }).queue, build({ states: pool, mode: SPEECH, rng: seeded(7) }).queue);
 });
 
+test("cantListen drops listening and perception but keeps speaking; cantTalk drops speaking but keeps the rest", () => {
+  const states = byId(review('u01-l01-i01', T0 - DAY), review('u01-l01-i02', T0 + DAY), review('u01-l01-i03', T0 + DAY));
+  const kindsWith = (mode) => new Set(kinds(build({ lesson: null, states, mode }).queue));
+  const noListen = kindsWith({ ...SPEECH, cantListen: true });
+  assert.ok(noListen.has('speaking') && !noListen.has('listening') && !noListen.has('perception'));
+  const noTalk = kindsWith({ ...SPEECH, cantTalk: true });
+  assert.ok(!noTalk.has('speaking') && noTalk.has('listening') && noTalk.has('perception'));
+  assert.deepEqual([...kindsWith({ ...SPEECH, cantListen: true, cantTalk: true })], ['typed_en_sl']);
+});
+
 test('pending items are never queued even if present in the lesson', () => {
   const mixed = lesson({ items: [item('u01-l02-i01'), item('u01-l02-i02', ['r-b'], 'pending'), item('u01-l02-i03', [], 'rejected')] });
   // states of items that are not accepted, as a dev build could leave behind: in review and in learning
@@ -367,6 +378,18 @@ test('closing menu options follow the rules', () => {
   assert.deepEqual(closingMenu({ minutesToday: 19.9, settings: { ...S, dailyMinutes: 5 }, lessonRemaining: true, mode: MUTE, moreAvailable: true }), ['stop', 'more3', 'continue']);
   assert.deepEqual(closingMenu({ minutesToday: 10, settings: S, lessonRemaining: true, mode: SOUND, moreAvailable: false }), ['stop', 'speaking', 'continue'], 'no round to offer: no more3, whatever the minutes (Ruling 80)');
   assert.deepEqual(closingMenu({ minutesToday: 0, settings: S, lessonRemaining: false, mode: MUTE, moreAvailable: false }), ['stop']);
+});
+
+test('the closing menu leaves out the speaking round when the learner cannot talk, not when they cannot listen', () => {
+  const base = { minutesToday: 0, settings: S, lessonRemaining: false, moreAvailable: false };
+  assert.deepEqual(closingMenu({ ...base, mode: { ...SOUND, cantTalk: true } }), ['stop']);
+  assert.deepEqual(closingMenu({ ...base, mode: { ...SOUND, cantListen: true } }), ['stop', 'speaking']);
+});
+
+test('quietDrops names the kinds each choice drops', () => {
+  assert.deepEqual([...quietDrops(SOUND)], []);
+  assert.deepEqual([...quietDrops({ ...SOUND, cantListen: true })].sort(), ['listening', 'perception']);
+  assert.deepEqual([...quietDrops({ ...SOUND, cantTalk: true })], ['speaking']);
 });
 
 test('buildMoreRound: unpractised review items weakest first, capped at eight, filled from the misses below three, empty when nothing qualifies (Ruling 80)', () => {
