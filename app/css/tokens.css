@@ -78,11 +78,14 @@
   --error: var(--poppy);
   --error-surface: color-mix(in srgb, var(--poppy) 10%, var(--warm-white));
   --mark: color-mix(in srgb, var(--poppy) 20%, var(--warm-white));
-  /* The hive: the boards and their outline, the cells, the captions. Honey is the fill everywhere. */
-  --hive-line: var(--indigo);
-  --hive-board: var(--surface);
-  --hive-cell: var(--warm-white);
+  /* The hive: the cells' honey outline, the current lesson's rim, the captions, and a sealed
+     strip's paint, a translucent wash with its own rim that lets the honey show through. Honey is
+     the fill everywhere. */
+  --hive-line: var(--honey);
+  --hive-current: var(--poppy);
   --hive-text: var(--indigo);
+  --seal-line: var(--indigo);
+  --seal-paint: rgb(214 58 47 / 0.22);
   /* The motifs: --motif-line outlines the coloured parts, indigo in both themes. --motif-stroke
      draws the m-line parts, which have no fill and lie on whatever is behind the motif (an empty
      cell, the page, a card), so it turns warm white in the dark theme, where indigo would vanish. */
@@ -112,10 +115,10 @@
     --error: color-mix(in srgb, var(--poppy) 55%, var(--warm-white));
     --error-surface: color-mix(in srgb, var(--poppy) 24%, var(--indigo-deep));
     --mark: color-mix(in srgb, var(--poppy) 45%, var(--indigo-deep));
-    --hive-line: color-mix(in srgb, var(--warm-white) 72%, var(--indigo));
-    --hive-board: var(--indigo);
-    --hive-cell: var(--indigo-deep);
+    --hive-line: var(--honey);
     --hive-text: var(--warm-white);
+    --seal-line: var(--honey);
+    --seal-paint: rgb(240 179 35 / 0.18);
     --motif-stroke: var(--warm-white);
     --toast-bg: var(--indigo);
     --toast-border: color-mix(in srgb, var(--warm-white) 28%, transparent);
@@ -138,10 +141,10 @@
   --error: color-mix(in srgb, var(--poppy) 55%, var(--warm-white));
   --error-surface: color-mix(in srgb, var(--poppy) 24%, var(--indigo-deep));
   --mark: color-mix(in srgb, var(--poppy) 45%, var(--indigo-deep));
-  --hive-line: color-mix(in srgb, var(--warm-white) 72%, var(--indigo));
-  --hive-board: var(--indigo);
-  --hive-cell: var(--indigo-deep);
+  --hive-line: var(--honey);
   --hive-text: var(--warm-white);
+  --seal-line: var(--honey);
+  --seal-paint: rgb(240 179 35 / 0.18);
   --motif-stroke: var(--warm-white);
   --toast-bg: var(--indigo);
   --toast-border: color-mix(in srgb, var(--warm-white) 28%, transparent);

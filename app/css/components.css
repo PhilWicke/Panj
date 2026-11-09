@@ -905,37 +905,61 @@ button.rule-cell {
   font-size: var(--text-14);
 }
 
-/* Hive */
+/* Hive: honeycomb strips (hive.js), one per unit. A strip's tap target is a transparent rect, so
+   the whole row answers a tap; on focus its own stroke carries the ring's band, since an SVG group
+   has no box for base.css's shadow. The cells are outlines over the honey; a sealed strip is
+   painted over with a translucent board and the unit's motif. */
 
 .hive {
   display: block;
   width: 100%;
+  max-width: 358px;
   height: auto;
+  margin-inline: auto;
   overflow: visible;
 }
 
-.hive-panel {
+.hive-strip-large {
+  max-width: 358px;
+}
+
+.hive-level {
+  font-size: var(--text-18);
+  font-weight: 700;
+}
+
+.hive-strip {
   cursor: pointer;
 }
 
-/* A board has no box for the focus ring's indigo band (base.css), so on focus its own outline
-   thickens to carry the band. The honey ring follows the thicker stroke out (Chrome draws an SVG
-   outline around the stroke), keeping its 2px offset from it. */
-.hive-panel:focus-visible .hive-board {
+.hive-hit {
+  fill: transparent;
+}
+
+.hive-strip:focus-visible .hive-hit {
+  stroke: var(--accent);
   stroke-width: 4;
 }
 
-.hive-board {
-  fill: var(--hive-board);
+.hive-comb {
+  fill: transparent;
   stroke: var(--hive-line);
   stroke-width: 1.5;
+  stroke-linejoin: round;
 }
 
-.hive-comb {
-  fill: var(--hive-cell);
-  stroke: var(--hive-line);
-  stroke-width: 1.2;
-  stroke-linejoin: round;
+.is-learned .hive-comb {
+  stroke-width: 3;
+}
+
+.is-current .hive-comb {
+  stroke: var(--hive-current);
+  stroke-width: 2.5;
+}
+
+.is-placeholder .hive-comb {
+  stroke-dasharray: 3 3;
+  opacity: 0.6;
 }
 
 .hive-fill {
@@ -950,26 +974,10 @@ button.rule-cell {
   font-weight: 600;
 }
 
-.hive-seal-disc {
-  fill: var(--hive-board);
-  stroke: var(--hive-line);
-  stroke-width: 1.5;
-}
-
-.hive-motif {
-  fill: var(--hive-line);
-  stroke: var(--hive-line);
-  stroke-width: 0;
-}
-
-.hive-motif .m-cut {
-  fill: var(--hive-board);
-  stroke: none;
-}
-
-.hive-motif .m-cut-line {
-  fill: none;
-  stroke: var(--hive-board);
+.hive-seal-board {
+  fill: var(--seal-paint);
+  stroke: var(--seal-line);
+  stroke-width: 2;
 }
 
 /* Motifs: the parts of a motif symbol (motifs.js), flat in the folk colours, each filled part
@@ -1635,6 +1643,10 @@ button.rule-cell {
     transition: transform 300ms ease-out;
   }
 
+  .hive-seal.is-sealing {
+    animation: seal-paint 600ms ease-out;
+  }
+
   .feedback,
   .reveal:not([hidden]) {
     animation: settle 200ms ease-out;
@@ -1650,6 +1662,16 @@ button.rule-cell {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes seal-paint {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 
