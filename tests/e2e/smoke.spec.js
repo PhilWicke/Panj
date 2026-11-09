@@ -1,11 +1,15 @@
 // The end-to-end smoke test: the app in a browser, against the development build that
 // playwright.config.js builds and serves (nothing is accepted yet, so only the dev bundle has a
-// lesson to practise). Each test starts in a fresh context, with empty storage: onboarding to
-// Today; a full u01-l01 session answered right; a wrong typed answer, its diff, the retry and the
-// item's return after two entries; mute without listening; export with a flag; a malformed import;
-// a session with IndexedDB blocked; the service worker serving the app offline; and a new version
-// showing the update toast once and reloading only on Reload (it rebuilds the dev bundle with a
-// probe module to make the second version, and removes it again).
+// lesson to practise). Each test starts in a fresh context, with empty storage: onboarding's three
+// steps to Today, never asking when the learner will practise; a full u01-l01 session answered
+// right; a wrong typed answer, its diff, the retry and the item's return after two entries; mute
+// without listening; the quiet choices of one sitting, which carry through the closing menu and end
+// when the learner leaves the session; export with a flag; a malformed import; a session with
+// IndexedDB blocked; the service worker serving the app offline; a new version showing the update
+// toast once and reloading only on Reload (it rebuilds the dev bundle with a probe module to make
+// the second version, and removes it again); and the hive of a course of ten units with five
+// lessons each, which that test serves itself (course-fixture.js), so it does not depend on the
+// content written so far.
 //
 // The answers come from the bundle itself (app/content/dist/), read when a test asks for them,
 // after the web server has built it. Machines differ in their speech voices (a Mac may have a
@@ -19,6 +23,7 @@ import { fileURLToPath } from 'node:url';
 import { test, expect } from '@playwright/test';
 import { validateImport } from '../../app/js/store/state.js';
 import { localDateKey } from '../../app/js/util/time.js';
+import { COURSE_TITLES, tenByFive } from './course-fixture.js';
 
 /** @typedef {import('@playwright/test').Page} Page */
 /** @typedef {{ kind: string, key?: string|null }} Entry an exercise of the session, `key` its prompt where it has one */
@@ -98,27 +103,22 @@ const progress = (page) => page.getByRole('progressbar', { name: 'Session progre
 const tab = (page, label) => page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: label, exact: true });
 
 /**
- * Onboarding's four steps: the name, the intention as prefilled, the light theme, then "Start
- * from the first hello", which lands on Today.
+ * Onboarding's three steps: the name, the light theme (with no field for when the learner will
+ * practise), then "Start from the first hello", which lands on Today.
  * @param {Page} page
- * @returns {Promise<string>} the intention clause, as prefilled
  */
 async function onboard(page) {
   await page.goto('/');
-  await expect(page.getByText('1 of 4', { exact: true })).toBeVisible();
+  await expect(page.getByText('1 of 3', { exact: true })).toBeVisible();
   await page.getByRole('textbox', { name: 'What should we call you?' }).fill(NAME);
   await button(page, 'Next').click();
-  await expect(page.getByText('2 of 4', { exact: true })).toBeVisible();
-  const clause = await page.getByRole('textbox', { name: 'I practise …' }).inputValue();
-  expect(clause).not.toBe('');
-  await button(page, 'Next').click();
-  await expect(page.getByText('3 of 4', { exact: true })).toBeVisible();
+  await expect(page.getByText('2 of 3', { exact: true })).toBeVisible();
+  await expect(page.getByRole('textbox', { name: 'I practise …' })).toHaveCount(0);
   await page.getByRole('radio', { name: 'Light', exact: true }).check();
   await button(page, 'Next').click();
-  await expect(page.getByText('4 of 4', { exact: true })).toBeVisible();
+  await expect(page.getByText('3 of 3', { exact: true })).toBeVisible();
   await button(page, 'Start from the first hello').click();
   await expect(primaryAction(page)).toBeVisible();
-  return clause;
 }
 
 /**
@@ -257,12 +257,16 @@ async function wordsList(page) {
   return { count: await count.textContent(), rows: await page.getByRole('main').getByRole('listitem').allTextContents() };
 }
 
-test('onboarding leads to Today with the name, the intention and the session to start', async ({ page }) => {
-  const clause = await onboard(page);
+test('onboarding takes three steps, never asks when you will practise, and leads to Today', async ({ page }) => {
+  await onboard(page);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(new RegExp(`^(Dobro jutro|Dober dan|Dober večer), ${NAME}\\b`));
-  await expect(page.getByText(`I practise ${clause}.`, { exact: true })).toBeVisible();
+  await expect(page.getByText(/^I practise/)).toHaveCount(0);
   await expect(primaryAction(page)).toBeEnabled();
   expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe('light');
+
+  await tab(page, 'Settings').click();
+  await expect(page.getByRole('heading', { name: 'Settings', level: 1 })).toBeVisible();
+  await expect(page.getByRole('textbox', { name: 'I practise …' })).toHaveCount(0);
 });
 
 test('a full u01-l01 session answered right ends at the closing menu, and Today marks the day', async ({ page }) => {
@@ -339,11 +343,50 @@ test('with mute on, a session has no listening, no perception and no play button
     check: async () => {
       // A muted audio exercise would turn into the no-audio line at once, so that line counts too.
       await expect(page.getByText(/^(Write what you hear\.|Which did you hear\?|What does it mean\?|No audio on this device\.)$/)).toHaveCount(0);
-      await expect(page.getByRole('button', { name: /^(Listen|Play again)$/ })).toHaveCount(0);
+      await expect(page.getByRole('button', { name: /^(Listen|Play again|Can't listen right now)$/ })).toHaveCount(0);
     },
   });
   expect(played.length).toBeGreaterThan(0);
   expect(played.filter((entry) => entry.kind === 'perception' || entry.kind === 'listening')).toEqual([]);
+  await expect(page.getByRole('heading', { name: SESSION_DONE })).toBeVisible();
+  await expect(button(page, 'A speaking round')).toHaveCount(0);
+});
+
+test('quiet choices last for the sitting, carry through the closing menu and end when the learner leaves', async ({ page }) => {
+  await onboard(page);
+  await tab(page, 'Settings').click();
+  const perDay = page.getByRole('spinbutton', { name: 'New items per day' });
+  await perDay.fill('3');
+  await perDay.press('Tab');
+  await expect(page.getByRole('status').filter({ hasText: 'Saved' })).toBeVisible();
+  await tab(page, 'Today').click();
+
+  await primaryAction(page).click();
+  await expect(button(page, "I'm ready")).toBeVisible();
+  await expect(button(page, 'Listen')).toBeVisible();
+  await button(page, "Can't listen right now").click();
+  await expect(button(page, "I'm ready")).toBeVisible();
+  await expect(button(page, 'Listen')).toHaveCount(0);
+  await expect(button(page, "Can't listen right now")).toHaveCount(0);
+  await playSession(page, { check: async () => {
+    await expect(page.getByRole('button', { name: /^(Listen|Listen again|Can't listen right now)$/ })).toHaveCount(0);
+  } });
+
+  await button(page, 'Continue the lesson').click();
+  await expect(button(page, "I'm ready")).toBeVisible();
+  await expect(button(page, 'Listen')).toHaveCount(0);
+  await expect(button(page, "Can't listen right now")).toHaveCount(0);
+  await button(page, 'Quiet').click();
+  const panel = page.locator('#session-quiet-panel');
+  await expect(panel.getByRole('button', { name: "Can't listen right now" })).toHaveAttribute('aria-pressed', 'true');
+  await expect(panel.getByRole('button', { name: "Can't talk right now" })).toHaveAttribute('aria-pressed', 'false');
+
+  await button(page, 'End').click();
+  await expect(primaryAction(page).or(page.getByRole('button', { name: 'Nothing due right now' }))).toBeVisible();
+  await page.evaluate(() => { location.hash = '#/session?mode=speaking'; });
+  await expect(page.getByText('Say it in Slovenian', { exact: true })).toBeVisible();
+  await expect(button(page, 'Listen again')).toBeVisible();
+  await button(page, "Can't talk right now").click();
   await expect(page.getByRole('heading', { name: SESSION_DONE })).toBeVisible();
   await expect(button(page, 'A speaking round')).toHaveCount(0);
 });
@@ -477,4 +520,40 @@ test('a new version shows the update toast once and reloads only on Reload', asy
   } finally {
     removeProbe();
   }
+});
+
+test.describe('a ten-by-five course', () => {
+  test.use({ serviceWorkers: 'block' });
+  test('the hive draws fifty regular cells, five per strip, 52 px at 390 and 48 px at 360 with no sideways scroll', async ({ page }) => {
+    const course = tenByFive();
+    await page.route('**/content/dist/index.json', (route) => route.fulfill({ json: course.index }));
+    await page.route('**/content/dist/units/*.json', (route) => {
+      const id = /units\/(u\d{2})\.json$/.exec(route.request().url())?.[1] ?? '';
+      return route.fulfill({ json: course.units[id] });
+    });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await onboard(page);
+    const strip = page.getByRole('link', { name: /Open the hive$/ });
+    await expect(strip.locator('.hive-cell')).toHaveCount(5);
+    await strip.click();
+    await expect(page.getByRole('heading', { name: 'Hive', level: 1 })).toBeVisible();
+    await expect(page.locator('.hive-strip')).toHaveCount(10);
+    await expect(page.locator('.hive-cell')).toHaveCount(50);
+    for (let i = 0; i < 10; i += 1) await expect(page.locator('.hive-strip').nth(i).locator('.hive-cell')).toHaveCount(5);
+    await expect(page.locator('.hive-caption')).toHaveText(COURSE_TITLES);
+    /** The distance between the centres of the first strip's first two cells, in CSS px. */
+    const pitch = async () => {
+      const combs = page.locator('.hive-strip').first().locator('.hive-comb');
+      const [a, b] = [await combs.nth(0).boundingBox(), await combs.nth(1).boundingBox()];
+      if (!a || !b) throw new Error('no cells drawn');
+      return b.x + b.width / 2 - (a.x + a.width / 2);
+    };
+    expect(await pitch()).toBeCloseTo(52, 0);
+    const comb = await page.locator('.hive-strip').first().locator('.hive-comb').first().boundingBox();
+    if (!comb) throw new Error('no cell drawn');
+    expect(comb.height / comb.width).toBeCloseTo(2 / Math.sqrt(3), 1);
+    await page.setViewportSize({ width: 360, height: 640 });
+    expect(await pitch()).toBeCloseTo(48, 0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(360);
+  });
 });

@@ -1,6 +1,6 @@
 # Slovelingo
 
-Slovelingo is an installable web app for learning everyday Slovenian, aimed at someone who wants to talk with the people around them. Short daily sessions mix new words and phrases with spaced review, and the app runs offline on a phone once it has been added to the home screen. There is no account and no server: progress stays on the device.
+Slovelingo is an installable web app for learning everyday Slovenian, aimed at someone who wants to talk with the people around them. Short daily sessions mix new words and phrases with spaced review, and the app runs offline on a phone once it has been added to the home screen. A session can go quiet for the moment, without sound or without speaking, and the hive shows each unit as a row of cells that fill with what you can recall now. There is no account and no server: progress stays on the device.
 
 The project needs Node 24 or later and has no runtime dependencies. [docs/SPEC.md](docs/SPEC.md) summarises the design.
 
@@ -24,6 +24,8 @@ npm run lint:content
 `npm run typecheck` fetches TypeScript 5 through npx on first use; nothing is installed in the project. `npm run lint:content` is the strict linter: it reports every practised item still awaiting verification, which a deploy strips from practice, so it fails until those items are verified; `npm run lint:content -- --allow-pending` checks everything else.
 
 `npm run test:e2e` runs the app end to end in a phone-sized Chromium after `npm install --no-save @playwright/test@1.64.1`, which leaves `package.json` as it is; on a machine that already has Playwright's Chromium 1248, put `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` in front of that install, and elsewhere fetch the browser with `npx playwright install chromium`. The CI workflow runs the same test on every push and pull request with a browser it installs itself.
+
+The hive scenario serves its own course of ten units with five lessons each, so it does not depend on the content written so far.
 
 ## Build
 
