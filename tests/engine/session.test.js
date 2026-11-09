@@ -614,13 +614,19 @@ test('the extras leave out an earlier item that a consolidation production or th
   }
 });
 
-test('an earlier item still in learning from yesterday gets the recalls it needs, and no consolidation production', () => {
+test('an earlier item still in learning from yesterday plays its consolidation production as one of its GRADUATE_AFTER recalls, all while in learning', () => {
   const yesterday = T0 - DAY;
   const states = { ...unitStates(), 'u01-l01-i01': recall(createState('u01-l01-i01', yesterday), 'correct', yesterday) };
-  assert.equal(states['u01-l01-i01'].phase, 'learning');
   const q = buildC({ states }).queue;
-  assert.equal(q.filter((e) => e.kind === 'typed_en_sl' && e.itemId === 'u01-l01-i01').length, GRADUATE_AFTER);
-  assert.deepEqual(q.filter((e) => e.kind === 'slot' && e.lessonId === 'u01-l05' && e.itemId === 'u01-l01-i01'), [], 'p01 waits until the item has graduated');
+  const entries = q.filter((e) => e.itemId === 'u01-l01-i01' && (e.kind === 'typed_en_sl' || e.kind === 'slot'));
+  assert.equal(entries.length, GRADUATE_AFTER, 'GRADUATE_AFTER recalls in all');
+  assert.ok(entries.some((e) => e.kind === 'slot' && e.lessonId === 'u01-l05'), 'the consolidation production is one of them');
+  let state = states['u01-l01-i01'];
+  for (const [i, e] of entries.entries()) {
+    assert.equal(state.phase, 'learning', `recall ${i + 1} (${e.kind}) rates the item while it is still in learning`);
+    state = recall(state, 'correct', T0 + (i + 1) * 60_000);
+  }
+  assert.equal(state.phase, 'review', 'and the last one graduates it');
 });
 
 test("a consolidation group whose anchor was met on an earlier day, the run left before the group, comes with that item's next recall", () => {

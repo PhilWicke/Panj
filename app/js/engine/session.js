@@ -25,18 +25,21 @@
 // no rule card and no structured exercise, and step 2 is left out. Its practice comes in groups of
 // one exercise: each structured exercise, after its rule's card when the bundle carries the rule,
 // it has not faded and its card is not queued yet, and each production over a practisable item of
-// an earlier lesson of the unit that has graduated (in review or lapsed), taken in turn
+// an earlier lesson of the unit that the learner has met (for an item still in learning the
+// production is one of its GRADUATE_AFTER recalls), taken in turn
 // (structured 1, production 1, structured 2, ...), the rest of the longer list last. With N the
 // lesson's practisable items and G the groups, group g is anchored to N[floor(g * N.length / G)]
 // and comes right after that item's first recall in the run that meets it, so the groups fall
 // between the new items. An anchor still in learning from an earlier day (the run that met it was
 // left before the item graduated) brings its groups again, right after its first recall of
-// today's run: a group lost to a run left early comes back on a later day while its anchor is in
-// learning, and a group that did play before the learner left may play once more. A due review of
-// an earlier item whose production plays today is left out, the production being its recall, and
-// the extras (listening, speaking, the fluency pass) leave out the earlier items a production or
-// the dialogue of the consolidation lesson practises today. Production over the lesson's own
-// items stays their third recall; any other production is not queued.
+// today's run: a group lost to a run left early comes back on a later day while its anchor is
+// still in learning and the lesson is still current (a group anchored to the lesson's last item,
+// left after that item's first recall, does not come back, nor does one whose anchor graduates
+// later the same day), and a group that did play before the learner left may play once more.
+// A due review of an earlier item whose production plays today is left out, the production being
+// its recall, and the extras (listening, speaking, the fluency pass) leave out the earlier items
+// a production or the dialogue of the consolidation lesson practises today. Production over the
+// lesson's own items stays their third recall; any other production is not queued.
 // buildMoreRound plans the closing menu's "Three more minutes" (Ruling 80): typed recall over the
 // review-phase items the run did not practise, weakest first, filled up from the run's misses.
 // Items whose verification is not `accepted` never enter the queue (the compiler keeps them in the
@@ -369,7 +372,7 @@ export function buildSession(input) {
     }));
     /** @type {QueueEntry[]} */
     const production = consolidation.production
-      .filter((exercise) => earlier.has(exercise.item) && ['review', 'lapsed'].includes(states[exercise.item]?.phase ?? 'new'))
+      .filter((exercise) => earlier.has(exercise.item) && (states[exercise.item]?.phase ?? 'new') !== 'new')
       .map((exercise) => ({ kind: 'slot', exerciseId: exercise.id, itemId: exercise.item, lessonId: consolidation.id }));
     const groups = alternate(structured, production);
     const anchors = consolidation.items.filter((item) => practisable(item.id));
@@ -456,7 +459,8 @@ export function buildSession(input) {
   const units = [];
   for (const state of unfinished) {
     const done = state.sessionKey === todayKey ? state.correctInSession : 0;
-    const unit = unitFor(state.itemId, false, Math.max(1, GRADUATE_AFTER - done));
+    // An earlier item still in learning whose consolidation production plays today: the production is one of its recalls.
+    const unit = unitFor(state.itemId, false, Math.max(1, GRADUATE_AFTER - done - (produced.has(state.itemId) ? 1 : 0)));
     for (const group of anchored.get(state.itemId) ?? []) unit.intro.push(...withCard(group));
     units.push(unit);
   }
