@@ -1,11 +1,12 @@
 // The Rules screen (Pravila, spec 6): every rule card met so far, grouped by unit in course order.
-// Each entry shows the compact card and a mastery meter (the rule item's retrievability, honey);
+// Each entry shows the compact card and a mastery meter (honey): empty and marked "Learning" until
+// the rule's quick check graduates it, then its progress towards mastered times its retrievability;
 // a tap opens the full card with its table open, where the toggles and the quick check work as in
 // a session but record nothing. A search box filters by title and card text, ignoring case and
 // diacritics. The pure parts are exported for the tests.
 
 import { h, mount } from '../../util/dom.js';
-import { retrievability } from '../../engine/scheduler.js';
+import { MASTERY_SESSIONS, retrievability } from '../../engine/scheduler.js';
 import { stripDiacritics } from '../../engine/grading.js';
 import { renderRuleCard } from '../components/rulecard.js';
 
@@ -45,6 +46,25 @@ export function matchesRule(rule, query) {
   return words.every((word) => text.includes(word));
 }
 
+/**
+ * The mastery meter of a rule. While the rule is learning (no FSRS card yet) the meter is empty:
+ * retrievability says 1 there by convention, which is no prediction. From review on, the way to
+ * mastered (spec 4.2, correct recalls in MASTERY_SESSIONS later sessions on distinct local days) has
+ * MASTERY_SESSIONS + 1 steps: graduating is the first, each session counted towards mastery one more,
+ * mastered all of them. The value is the share of steps done times the retrievability now, so it dips
+ * as the rule fades and a rule that is not mastered never reaches 1. A lapse keeps the sessions
+ * counted (the rule is back in rotation, stage review), and mastered is a lifetime flag.
+ * @param {ItemState} state
+ * @param {number} now epoch ms
+ * @returns {{ stage: 'learning'|'review'|'mastered', value: number }} value 0 to 1
+ */
+export function ruleMastery(state, now) {
+  if (state.phase === 'new' || state.phase === 'learning' || !state.card) return { stage: 'learning', value: 0 };
+  const steps = MASTERY_SESSIONS + 1;
+  const done = state.mastered ? steps : Math.min(1 + state.masterySessions.length, MASTERY_SESSIONS);
+  return { stage: state.mastered ? 'mastered' : 'review', value: (done / steps) * retrievability(state, now) };
+}
+
 /** No-op: the quick check on the Rules screen is practice and records nothing. */
 const practice = () => {};
 
@@ -56,7 +76,9 @@ const practice = () => {};
  * @returns {HTMLElement}
  */
 function renderEntry(rule, state, now) {
-  const percent = Math.round(retrievability(state, now) * 100);
+  const { stage, value } = ruleMastery(state, now);
+  const percent = Math.round(value * 100);
+  const shown = stage === 'learning' ? 'Learning' : stage === 'mastered' ? 'Mastered' : `${percent}%`;
   const fullId = `rule-full-${rule.id}`;
   const labelId = `rule-mastery-${rule.id}`;
   const compact = renderRuleCard(rule, { compact: true, onQuickCheck: practice });
@@ -87,9 +109,10 @@ function renderEntry(rule, state, now) {
       h('span', { class: 'rule-mastery-label', id: labelId }, 'Mastery'),
       h('div', {
         class: 'meter', role: 'meter', 'aria-labelledby': labelId,
-        'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(percent), 'aria-valuetext': `${percent} percent`,
+        'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(percent),
+        'aria-valuetext': stage === 'review' ? `${percent} percent` : `${shown}, ${percent} percent`,
       }, h('div', { class: 'meter-fill', style: { width: `${percent}%` } })),
-      h('span', { class: 'rule-mastery-value' }, `${percent}%`),
+      h('span', { class: 'rule-mastery-value' }, shown),
       toggle));
 }
 

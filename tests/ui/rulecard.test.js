@@ -1,15 +1,18 @@
 // tests/ui/rulecard.test.js
 // The pure parts of the rule card, the rule exercise and the Rules screen: the paradigm cells in
 // table order, the example a toggle option swaps in, the quick check's outcome and the state it
-// leads to (Rulings 21 and 30), which rules the Rules screen lists and in what groups, and the
-// search filter (case- and diacritic-insensitive). The card's DOM runs in the browser check.
+// leads to (Rulings 21 and 30), which rules the Rules screen lists and in what groups, the mastery
+// meter's value and stage, and the search filter (case- and diacritic-insensitive). The card's DOM
+// runs in the browser check.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { DEFAULT_SETTINGS, createState, skipAheadState } from '../../app/js/engine/scheduler.js';
+import {
+  DEFAULT_SETTINGS, MASTERY_SESSIONS, createState, recordRecall, retrievability, skipAheadState,
+} from '../../app/js/engine/scheduler.js';
 import { tableCellsFor, exampleForToggle } from '../../app/js/ui/components/rulecard.js';
 import { quickCheckOutcome } from '../../app/js/ui/exercises/rule.js';
-import { matchesRule, rulesByUnit } from '../../app/js/ui/screens/rules.js';
+import { matchesRule, ruleMastery, rulesByUnit } from '../../app/js/ui/screens/rules.js';
 import { stateAfterRecall } from '../../app/js/ui/screens/session.js';
 
 /** @typedef {import('../../app/js/content/types.js').Rule} Rule */
@@ -20,6 +23,9 @@ const loadRule = (id) => JSON.parse(readFileSync(new URL(`../../content/rules/${
 const biti = loadRule('r-biti-present');
 const tiVi = loadRule('r-ti-vi');
 const T0 = Date.UTC(2026, 0, 5, 9, 0);
+const DAY = 86_400_000;
+/** @param {number} n @returns {number} n days after T0 */
+const day = (n) => T0 + n * DAY;
 
 /** @param {Partial<Rule>} fields @returns {Rule} */
 const rule = (fields) => ({
@@ -105,4 +111,42 @@ test('matchesRule filters by title and card text, ignoring case, diacritics and 
   assert.equal(matchesRule(kava, 'zeno'), true, 'a query without diacritics finds the word with them');
   assert.equal(matchesRule(kava, 'ŽENA'), true, 'diacritics and capitals in the query');
   assert.equal(matchesRule(rule({ card_en: 'Say kava.' }), 'káva'), true, 'diacritics in the query alone');
+});
+
+test('ruleMastery is empty while a rule is learning and fills with the sessions towards mastered, scaled by retrievability', () => {
+  const steps = MASTERY_SESSIONS + 1;
+  /** @param {import('../../app/js/engine/scheduler.js').ItemState} state @param {number} now */
+  const percent = (state, now) => Math.round(ruleMastery(state, now).value * 100);
+
+  const missed = stateAfterRecall({}, 'r-biti-present', 'wrong', T0, DEFAULT_SETTINGS).state;
+  assert.equal(missed.phase, 'learning');
+  assert.deepEqual(ruleMastery(missed, T0), { stage: 'learning', value: 0 }, 'a wrong first quick check reads empty, not 100 percent');
+  assert.deepEqual(ruleMastery(createState('r-biti-present', T0), T0), { stage: 'learning', value: 0 }, 'phase new');
+
+  // A correct first quick check graduates the rule through skipAheadState: the first of the steps.
+  const graduated = skipAheadState('r-biti-present', T0);
+  assert.deepEqual(ruleMastery(graduated, T0), { stage: 'review', value: retrievability(graduated, T0) / steps });
+  assert.equal(percent(graduated, T0), 25, 'a rule that has just graduated is a quarter of the way');
+  assert.ok(ruleMastery(graduated, day(30)).value < ruleMastery(graduated, T0).value, 'the meter dips as the rule fades');
+
+  // Each correct recall on a later local day counts one more step (Ruling 18).
+  const once = recordRecall(graduated, 'correct', day(8), DEFAULT_SETTINGS, 'UTC');
+  assert.equal(once.masterySessions.length, 1);
+  assert.deepEqual(ruleMastery(once, day(8)), { stage: 'review', value: (2 / steps) * retrievability(once, day(8)) });
+  const twice = recordRecall(once, 'correct', day(20), DEFAULT_SETTINGS, 'UTC');
+  assert.equal(twice.mastered, false);
+  assert.deepEqual(ruleMastery(twice, day(20)), { stage: 'review', value: (3 / steps) * retrievability(twice, day(20)) });
+  assert.ok(percent(twice, day(20)) < 100, 'a rule that is not mastered never reads 100 percent');
+
+  // A lapse keeps the sessions already counted; the rule is back in rotation, not back to learning.
+  const lapsed = recordRecall(once, 'wrong', day(9), DEFAULT_SETTINGS, 'UTC');
+  assert.equal(lapsed.phase, 'lapsed');
+  assert.deepEqual(ruleMastery(lapsed, day(9)), { stage: 'review', value: (2 / steps) * retrievability(lapsed, day(9)) });
+
+  const mastered = recordRecall(twice, 'correct', day(40), DEFAULT_SETTINGS, 'UTC');
+  assert.equal(mastered.mastered, true);
+  assert.deepEqual(ruleMastery(mastered, day(40)), { stage: 'mastered', value: retrievability(mastered, day(40)) });
+  assert.equal(percent(mastered, day(40)), 100);
+  const fadedLapse = recordRecall(mastered, 'wrong', day(200), DEFAULT_SETTINGS, 'UTC');
+  assert.equal(ruleMastery(fadedLapse, day(200)).stage, 'mastered', 'mastered is a lifetime flag, a lapse does not take it');
 });
