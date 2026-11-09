@@ -1,0 +1,58 @@
+# Tests on every push and pull request; a push to main that passes deploys app/ to GitHub Pages.
+# The end-to-end test runs against the development build (no content is accepted yet), so the dev
+# bundle is built before the typecheck and the spec need its version.js and precache.json; the
+# deploy runs the strict build, which keeps pending content out of practice (Rulings 10, 67, 68).
+name: CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm test
+      - run: node tools/lint-content.js --allow-pending
+      - run: node tools/build-content.js --check
+      - run: node tools/build-content.js --allow-pending
+      - run: npm run typecheck
+      - run: npm install --no-save @playwright/test@1.64.1
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test -c tests/e2e/playwright.config.js
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results/
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node tools/build-content.js
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: app
+      - id: deployment
+        uses: actions/deploy-pages@v4

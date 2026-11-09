@@ -23,7 +23,7 @@ npm run lint:content
 
 `npm run typecheck` fetches TypeScript 5 through npx on first use; nothing is installed in the project. `npm run lint:content` is the strict linter: it reports every practised item still awaiting verification, which a deploy strips from practice, so it fails until those items are verified; `npm run lint:content -- --allow-pending` checks everything else.
 
-`npm run test:e2e` runs the app end to end in a browser.
+`npm run test:e2e` runs the app end to end in a phone-sized Chromium after `npm install --no-save @playwright/test@1.64.1`, which leaves `package.json` as it is; on a machine that already has Playwright's Chromium 1248, put `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` in front of that install, and elsewhere fetch the browser with `npx playwright install chromium`. The CI workflow runs the same test on every push and pull request with a browser it installs itself.
 
 ## Build
 
@@ -55,7 +55,7 @@ This renders `app/assets/icon.svg` and `app/assets/icon-maskable.svg` into the P
 
 ## Deploy
 
-The repository's Pages workflow publishes the site to GitHub Pages from a strict content build.
+The repository's Pages workflow publishes the site to GitHub Pages from a strict content build. Every push to `main` deploys once the tests have passed: `.github/workflows/ci.yml` runs the strict build and publishes the `app/` folder.
 
 ## Licence
 
