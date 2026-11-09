@@ -216,7 +216,7 @@ test("a passed unit checkpoint's end card paints the unit's strip with its motif
   assert.ok(elements(passed).some((e) => e.textContent === 'Passed. The unit is sealed in your hive.'));
   const strip = elements(passed.querySelector('.checkpoint-seal')).find((e) => e.tagName === 'svg');
   assert.equal(strip.getAttribute('class'), 'hive hive-strip-large');
-  assert.equal(withClass(strip, 'hive-seal').length, 1);
+  assert.equal(withClass(strip, 'hive-seal').length, 2, 'the board under the cells and the motifs over them');
   assert.equal(elements(strip).filter((e) => e.tagName === 'use' && e.getAttribute('class') === 'hive-motif motif-sun').length, 5, 'one motif per cell of the unit');
   const failed = await unitCheckEnd('zvečer');
   assert.ok(elements(failed).some((e) => e.textContent === 'Not yet. Keep practising and take it again when you are ready.'));

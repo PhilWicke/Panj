@@ -1,15 +1,16 @@
 // The hive (concept section 3, Ruling 101): the course as a honeycomb, one strip per unit and one
 // cell per lesson. A cell is a regular pointy-top hexagon in a honey outline, filled with honey
 // from the bottom in proportion to the lesson's fill (hiveFill, engine/progress.js), the one bold
-// element on the page; a learned cell has a thicker rim, and a cell the bundle does not carry yet
-// is a dashed placeholder. Every other strip sits half a cell over, so the rows read as comb, and
-// the unit's Slovenian title is the caption under its cells. A unit has as many cells as its
-// lessonCount, and the levels of the course (levelGroups, engine/course.js) each get a heading
-// and an SVG of their own when there is more than one, so no constant here knows the course's
-// shape. A sealed unit (its checkpoint passed, meta.sealed) is painted over (Ruling 102): a
-// translucent board around its cells with the unit's motif (motifs.js) on every cell, the honey
-// still visible under it. renderStrip draws one unit's strip large, for the Today screen, the
-// unit page and the checkpoint's end card.
+// element on the page; a learned cell has a thicker, darker rim, and a cell the bundle does not
+// carry yet is a dashed placeholder. Every other strip sits half a cell over, so the rows read as
+// comb, and the unit's Slovenian title is the caption under its cells, in a band of its own that
+// a sealed strip's board leaves clear. A unit has as many cells as its lessonCount, and the levels
+// of the course (levelGroups, engine/course.js) each get a heading and an SVG of their own when
+// there is more than one, so no constant here knows the course's shape. A sealed unit (its
+// checkpoint passed, meta.sealed) is painted: an opaque board under its cells, flush with them top
+// and bottom, and the unit's motif (motifs.js) over every cell, the honey showing in the cells
+// between. renderStrip draws one unit's strip large, for the Today screen, the unit page and the
+// checkpoint's end card.
 // Motion only answers an action: the module remembers the fill each lesson's cell showed and the
 // seal each unit showed, so the next draw starts a cell where it was and lets CSS move it to the
 // new fill (300 ms), and a seal new since the unit was shown unsealed paints in (600 ms); nothing
@@ -38,15 +39,15 @@ export const CELL_W = 52;
 /** A cell's height at full size: a regular pointy-top hexagon 52 wide is 60 tall. */
 export const CELL_H = 60;
 /** The caption band under a strip's cells. */
-export const CAPTION_H = 18;
+export const CAPTION_H = 22;
 /** From one strip to the next: the cell band and the caption band. */
 export const STRIP_PITCH = CELL_H + CAPTION_H;
 /** From the cell band's top to the caption's baseline, below the cells. */
-const CAPTION_DROP = 13;
-const CAPTION_SIZE = 12;
+const CAPTION_DROP = 14;
+const CAPTION_SIZE = 13;
 /** The corner radius of the tap target and of the seal's board. */
 const CORNER = 10;
-/** How far the seal's board reaches out around the cells. */
+/** How far the seal's board reaches out left and right of the cells; top and bottom it is flush with them. */
 const SEAL_OUT = 3;
 /** A motif's side over the cell's width. */
 const MOTIF_SHARE = 0.7;
@@ -230,9 +231,29 @@ function renderCaption(unit, x, y) {
   return svg('text', { class: 'hive-caption', x: round(x), y: round(y), lang: 'sl', 'font-size': CAPTION_SIZE }, unit.title_sl);
 }
 
+/** @param {boolean} sealing whether the seal is new and paints in @returns {string} a seal group's class */
+const sealClass = (sealing) => (sealing ? 'hive-seal is-sealing' : 'hive-seal');
+
 /**
- * The paint over a sealed strip: a translucent board around its cells and the unit's motif on
- * each, the symbol placed once in the canvas's defs.
+ * A sealed strip's board, opaque paint drawn under its cells: SEAL_OUT out left and right, flush
+ * with the cells top and bottom, so the captions above and below stay clear.
+ * @param {Center[]} centers the strip's cells, at least one, left to right
+ * @param {number} width
+ * @param {boolean} sealing whether the seal is new and paints in
+ * @returns {SVGElement}
+ */
+function renderSealBoard(centers, width, sealing) {
+  const height = cellHeightOf(width);
+  const left = centers[0].cx - width / 2 - SEAL_OUT;
+  const right = centers[centers.length - 1].cx + width / 2 + SEAL_OUT;
+  const top = centers[0].cy - height / 2;
+  return svg('g', { class: sealClass(sealing) },
+    svg('rect', { class: 'hive-seal-board', x: round(left), y: round(top), width: round(right - left), height: round(height), rx: CORNER }));
+}
+
+/**
+ * A sealed strip's motifs, drawn over its cells: the unit's motif on each cell, the symbol placed
+ * once in the canvas's defs.
  * @param {Unit} unit
  * @param {Center[]} centers the strip's cells, at least one, left to right
  * @param {number} width
@@ -240,20 +261,15 @@ function renderCaption(unit, x, y) {
  * @param {boolean} sealing whether the seal is new and paints in
  * @returns {SVGElement}
  */
-function renderSeal(unit, centers, width, canvas, sealing) {
+function renderSealMotifs(unit, centers, width, canvas, sealing) {
   const name = motifName(unit.motif);
   const symbolId = `${canvas.prefix}-motif-${name}`;
   if (!canvas.motifs.has(name)) {
     canvas.motifs.add(name);
     canvas.defs.push(motifSymbol(unit.motif, symbolId));
   }
-  const height = cellHeightOf(width);
-  const left = centers[0].cx - width / 2 - SEAL_OUT;
-  const right = centers[centers.length - 1].cx + width / 2 + SEAL_OUT;
-  const top = centers[0].cy - height / 2 - SEAL_OUT;
   const side = MOTIF_SHARE * width;
-  return svg('g', { class: sealing ? 'hive-seal is-sealing' : 'hive-seal' },
-    svg('rect', { class: 'hive-seal-board', x: round(left), y: round(top), width: round(right - left), height: round(height + 2 * SEAL_OUT), rx: CORNER }),
+  return svg('g', { class: sealClass(sealing) },
     centers.map(({ cx, cy }) => svg('use', {
       class: `hive-motif motif-${name}`, href: `#${symbolId}`, x: round(cx - side / 2), y: round(cy - side / 2), width: round(side), height: round(side),
     })));
@@ -263,9 +279,9 @@ function renderSeal(unit, centers, width, canvas, sealing) {
  * The hive. One strip per unit of `units`, in that order, grouped by level: one SVG per level,
  * with the level as a heading when the course has more than one. `fills` carry the cells of the
  * units the bundle has lessons for; every other cell of a unit's lessonCount is a placeholder.
- * `sealed[unitId]` paints the strip with the unit's motif. A strip is a button: a tap, Enter or
- * Space calls `onUnit` with the unit id. Each SVG scales to its column and is as tall as its
- * strips.
+ * `sealed[unitId]` lays the board under the strip's cells and the unit's motif over them. A strip
+ * is a button: a tap, Enter or Space calls `onUnit` with the unit id. Each SVG scales to its
+ * column and is as tall as its strips.
  * @param {HiveFill[]} fills
  * @param {Unit[]} units
  * @param {{ onUnit: (unitId: string) => void, sealed: Record<string, boolean> }} opts
@@ -290,6 +306,7 @@ export function renderHive(fills, units, { onUnit, sealed }) {
     const centers = cellCenters(cells.length, width, row, maxCells);
     const isSealed = sealed[unit.id] === true;
     const sealing = noteSeal(unit.id, isSealed);
+    const painted = isSealed && centers.length > 0;
     const percent = Math.round((byUnit.get(unit.id)?.fill ?? 0) * 100);
     const status = cells.some((cell) => cell.lessonId !== null) ? `${percent} percent recalled now` : 'no lessons yet';
     const firstLeft = cellCenters(1, width, row, maxCells)[0].cx - width / 2;
@@ -305,9 +322,10 @@ export function renderHive(fills, units, { onUnit, sealed }) {
       },
     },
       svg('rect', { class: 'hive-hit', x: 0, y: row * STRIP_PITCH, width: HIVE_WIDTH, height: STRIP_PITCH, rx: CORNER }),
+      painted ? renderSealBoard(centers, width, sealing) : null,
       cells.map((cell, i) => renderCell(cell, centers[i], width, canvas)),
       renderCaption(unit, firstLeft, row * STRIP_PITCH + cellHeightOf(width) + CAPTION_DROP),
-      isSealed && centers.length > 0 ? renderSeal(unit, centers, width, canvas, sealing) : null);
+      painted ? renderSealMotifs(unit, centers, width, canvas, sealing) : null);
   };
 
   return h('div', { class: 'hive-wrap' }, groups.map((group) => {
@@ -325,7 +343,8 @@ export function renderHive(fills, units, { onUnit, sealed }) {
  * One unit's strip at full size, its cells 52 wide in a row from the left, with the caption under
  * them when `caption` is set. Decorative for assistive technology: the control around it names
  * it. `currentLessonId` rims that lesson's cell; `onCell` makes a tap on a bundled lesson's cell
- * report it (a placeholder does nothing); `sealed` paints the strip as a sealed strip of the hive.
+ * report it (a placeholder does nothing); `sealed` paints the strip as a sealed strip of the hive,
+ * the board under the cells and the motifs over them.
  * @param {HiveFill|undefined} fill
  * @param {Unit} unit
  * @param {{ sealed: boolean, currentLessonId?: string|null, caption?: boolean, onCell?: (lessonId: string) => void }} opts
@@ -336,10 +355,12 @@ export function renderStrip(fill, unit, { sealed, currentLessonId = null, captio
   const canvas = newCanvas();
   const centers = cells.map((_, i) => ({ cx: LARGE_MARGIN + CELL_W / 2 + i * CELL_W, cy: LARGE_MARGIN + CELL_H / 2 }));
   const sealing = noteSeal(unit.id, sealed);
+  const painted = sealed && centers.length > 0;
   const body = [
+    painted ? renderSealBoard(centers, CELL_W, sealing) : null,
     cells.map((cell, i) => renderCell(cell, centers[i], CELL_W, canvas, { currentLessonId, onCell })),
     caption ? renderCaption(unit, LARGE_MARGIN, LARGE_MARGIN + CELL_H + CAPTION_DROP) : null,
-    sealed && centers.length > 0 ? renderSeal(unit, centers, CELL_W, canvas, sealing) : null,
+    painted ? renderSealMotifs(unit, centers, CELL_W, canvas, sealing) : null,
   ];
   const height = CELL_H + 2 * LARGE_MARGIN + (caption ? CAPTION_H : 0);
   const strip = svg('svg', {

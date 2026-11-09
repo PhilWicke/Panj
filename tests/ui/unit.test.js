@@ -161,8 +161,8 @@ test('a sealed unit with due items keeps its seal and says how many are due', ()
   app.state.items = { 'u05-l01-i01': skipAheadState('u05-l01-i01', old), 'u05-l01-i02': skipAheadState('u05-l01-i02', old) };
   renderUnit(container, app, { id: 'u05' });
   const strip = elements(container).find((e) => e.tagName === 'svg' && e.getAttribute('class') === 'hive hive-strip-large');
-  assert.equal(withClass(strip, 'hive-seal').length, 1, 'the paint stays');
-  assert.equal(withClass(strip, 'hive-fill').length, 1, 'the honey shows under it');
+  assert.equal(withClass(strip, 'hive-seal').length, 2, 'the paint stays, the board and the motifs');
+  assert.equal(withClass(strip, 'hive-fill').length, 1, 'the honey shows on the board');
   assert.equal(container.querySelector('.unit-due').textContent, '2 items due for review');
   const fresh = document.createElement('main');
   renderUnit(fresh, appU5(), { id: 'u05' });

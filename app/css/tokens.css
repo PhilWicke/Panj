@@ -78,14 +78,15 @@
   --error: var(--poppy);
   --error-surface: color-mix(in srgb, var(--poppy) 10%, var(--warm-white));
   --mark: color-mix(in srgb, var(--poppy) 20%, var(--warm-white));
-  /* The hive: the cells' honey outline, the current lesson's rim, the captions, and a sealed
-     strip's paint, a translucent wash with its own rim that lets the honey show through. Honey is
-     the fill everywhere. */
-  --hive-line: var(--honey);
+  /* The hive: the cells' outline (a deeper honey in the light theme, 3.67:1 on warm white; honey
+     in the dark), a learned cell's rim (one fixed colour for every theme, darker than the honey
+     fill, so full cells keep their walls), the current lesson's rim, the captions, and a sealed
+     strip's board, opaque paint under the cells. Honey is the fill everywhere. */
+  --hive-line: #B07A0B;
+  --hive-rim: #9B7626;
   --hive-current: var(--poppy);
   --hive-text: var(--indigo);
-  --seal-line: var(--indigo);
-  --seal-paint: rgb(214 58 47 / 0.22);
+  --seal-board: var(--indigo);
   /* The motifs: --motif-line outlines the coloured parts, indigo in both themes. --motif-stroke
      draws the m-line parts, which have no fill and lie on whatever is behind the motif (an empty
      cell, the page, a card), so it turns warm white in the dark theme, where indigo would vanish. */
@@ -117,8 +118,7 @@
     --mark: color-mix(in srgb, var(--poppy) 45%, var(--indigo-deep));
     --hive-line: var(--honey);
     --hive-text: var(--warm-white);
-    --seal-line: var(--honey);
-    --seal-paint: rgb(240 179 35 / 0.18);
+    --seal-board: var(--poppy);
     --motif-stroke: var(--warm-white);
     --toast-bg: var(--indigo);
     --toast-border: color-mix(in srgb, var(--warm-white) 28%, transparent);
@@ -143,8 +143,7 @@
   --mark: color-mix(in srgb, var(--poppy) 45%, var(--indigo-deep));
   --hive-line: var(--honey);
   --hive-text: var(--warm-white);
-  --seal-line: var(--honey);
-  --seal-paint: rgb(240 179 35 / 0.18);
+  --seal-board: var(--poppy);
   --motif-stroke: var(--warm-white);
   --toast-bg: var(--indigo);
   --toast-border: color-mix(in srgb, var(--warm-white) 28%, transparent);
