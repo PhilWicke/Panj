@@ -1,0 +1,45 @@
+{
+  "id": "r-v-or-na",
+  "unit": "u06",
+  "title_en": "In or on: v or na",
+  "card_en": "Rooms and closed spaces take v: v sobi, v omari. Surfaces and open places take na: na mizi, na balkonu, na vrtu. Learn each place with its word: in the garden is na vrtu.",
+  "example": {
+    "sl": "Sem na vrtu.",
+    "en": "I'm in the garden."
+  },
+  "toggles": [
+    {
+      "label": "Place",
+      "options": [
+        "room",
+        "balcony",
+        "garden"
+      ],
+      "examples": {
+        "room": {
+          "sl": "Sem v sobi.",
+          "en": "I'm in the room."
+        },
+        "balcony": {
+          "sl": "Sem na balkonu.",
+          "en": "I'm on the balcony."
+        },
+        "garden": {
+          "sl": "Sem na vrtu.",
+          "en": "I'm in the garden."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Danes je ___ balkonu lepo.",
+    "options": [
+      "v",
+      "na"
+    ],
+    "answer": "na",
+    "explain_en": "A balcony is an open place, so it takes na: na balkonu."
+  },
+  "helper_de": "Often as in German: auf dem Balkon is na balkonu, in der Küche is v kuhinji. But im Garten is na vrtu.",
+  "helper_en": "English says in the garden but on the balcony. Slovenian says na for both: na vrtu, na balkonu."
+}

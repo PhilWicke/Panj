@@ -126,7 +126,7 @@ The app labels the table keys `1`, `2`, `3`, `sg`, `du` and `pl`; any other key 
 ## Dialogues
 
 - The number of lines per lesson role is in `SYLLABUS.md`.
-- Speakers: `you` (the learner), `host`, `waiter`, `clerk`, `passer-by`, `colleague`.
+- Speakers: `you` (the learner), `host`, `waiter`, `clerk`, `passer-by`, `colleague`, `neighbour`.
 - `setting_en` sets the scene in English, generically: "your hosts", "a café", "an older person".
 - Every line has at most 60 characters and 10 words, so it can be typed.
 - `new_items` on a line names the items that line practises.

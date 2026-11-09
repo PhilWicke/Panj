@@ -1,0 +1,435 @@
+{
+  "id": "u06-l04",
+  "unit": "u06",
+  "order": 4,
+  "role": "theme",
+  "title_sl": "Pri nas",
+  "title_en": "At our place",
+  "items": [
+    {
+      "id": "u06-l04-i01",
+      "type": "chunk",
+      "sl": "Kje stanuješ?",
+      "sl_colloquial": null,
+      "en": "Where do you live? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Živjo, kje stanuješ?",
+          "en": "Hi, where do you live?"
+        },
+        {
+          "sl": "Kje stanuješ? V centru?",
+          "en": "Where do you live? In the centre?"
+        }
+      ],
+      "helper": "Like German Wo wohnst du?: kje is wo, stanuješ is wohnst.",
+      "accept": [
+        "Kje živiš?"
+      ],
+      "rules": [
+        "r-kje-kam",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l04-i02",
+      "type": "chunk",
+      "sl": "Stanujem v centru.",
+      "sl_colloquial": null,
+      "en": "I live in the centre.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Stanujem v centru, kaj pa ti?",
+          "en": "I live in the centre, what about you?"
+        },
+        {
+          "sl": "Ne, stanujem v centru.",
+          "en": "No, I live in the centre."
+        }
+      ],
+      "helper": "Slovenian center is like German Zentrum; after v it takes -u: v centru.",
+      "accept": [
+        "Živim v centru."
+      ],
+      "rules": [
+        "r-locative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l04-i03",
+      "type": "chunk",
+      "sl": "Pri nas ni dvigala.",
+      "sl_colloquial": null,
+      "en": "There's no lift where we live.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Žal pri nas ni dvigala.",
+          "en": "Unfortunately there's no lift where we live."
+        },
+        {
+          "sl": "Stanujem v centru. Pri nas ni dvigala.",
+          "en": "I live in the centre. There's no lift where we live."
+        }
+      ],
+      "helper": "pri nas is German bei uns; after ni, dvigalo takes the genitive: ni dvigala.",
+      "accept": [
+        "Nimamo dvigala.",
+        "Pri nas nimamo dvigala."
+      ],
+      "rules": [
+        "r-pri",
+        "r-genitive-ni"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l04-i04",
+      "type": "chunk",
+      "sl": "Čevlje pusti pri vratih.",
+      "sl_colloquial": null,
+      "en": "Leave your shoes by the door. (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kar naprej. Čevlje pusti pri vratih.",
+          "en": "Come on in. Leave your shoes by the door."
+        },
+        {
+          "sl": "Čevlje pusti pri vratih, prosim.",
+          "en": "Leave your shoes by the door, please."
+        }
+      ],
+      "helper": "pusti is leave, from pustiti; vrata is plural only, so by the door is pri vratih.",
+      "accept": [
+        "Pusti čevlje pri vratih."
+      ],
+      "rules": [
+        "r-pri",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l04-i05",
+      "type": "word",
+      "sl": "hiša",
+      "sl_colloquial": null,
+      "en": "house",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "loc": "hiši"
+      },
+      "examples": [
+        {
+          "sl": "Hiša ima vrt.",
+          "en": "The house has a garden."
+        },
+        {
+          "sl": "Stanujem v hiši.",
+          "en": "I live in a house."
+        }
+      ],
+      "helper": "Like German Haus and English house.",
+      "accept": [],
+      "rules": [
+        "r-locative"
+      ],
+      "freq_rank": 314,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l04-i06",
+      "type": "word",
+      "sl": "stanovanje",
+      "sl_colloquial": null,
+      "en": "flat, apartment",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "forms": {
+        "loc": "stanovanju"
+      },
+      "examples": [
+        {
+          "sl": "Stanovanje je v centru.",
+          "en": "The flat is in the centre."
+        },
+        {
+          "sl": "Stanovanje ima dve sobi.",
+          "en": "The flat has two rooms."
+        }
+      ],
+      "helper": "From stanovati, to live somewhere, as German Wohnung comes from wohnen.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 487,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l04-i07",
+      "type": "word",
+      "sl": "vrata",
+      "sl_colloquial": null,
+      "en": "door",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "forms": {
+        "loc.pl": "vratih"
+      },
+      "examples": [
+        {
+          "sl": "Vrata so odprta, kar naprej.",
+          "en": "The door is open, come on in."
+        },
+        {
+          "sl": "Ključ je pri vratih.",
+          "en": "The key is by the door."
+        }
+      ],
+      "helper": "Always plural, even for one door: vrata so odprta.",
+      "accept": [],
+      "rules": [
+        "r-pri"
+      ],
+      "freq_rank": 800,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l04-i08",
+      "type": "word",
+      "sl": "sosed",
+      "sl_colloquial": null,
+      "en": "neighbour",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "loc": "sosedu"
+      },
+      "examples": [
+        {
+          "sl": "To je moj sosed.",
+          "en": "This is my neighbour."
+        },
+        {
+          "sl": "Moj sosed je zelo prijazen.",
+          "en": "My neighbour is very kind."
+        }
+      ],
+      "helper": "From so-, together, and sed-, sit, as in sedite: the one who sits beside you.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 844,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-pri"
+  ],
+  "structured": [
+    {
+      "id": "u06-l04-s01",
+      "prompt_sl": "Ključ je pri ___.",
+      "options": [
+        "sosed",
+        "sosedu"
+      ],
+      "answer": "sosedu",
+      "rule": "r-pri",
+      "en": "The key is at the neighbour's."
+    },
+    {
+      "id": "u06-l04-s02",
+      "prompt_sl": "Čevlji so pri ___.",
+      "options": [
+        "vrata",
+        "vratih"
+      ],
+      "answer": "vratih",
+      "rule": "r-pri",
+      "en": "The shoes are by the door."
+    },
+    {
+      "id": "u06-l04-s03",
+      "prompt_sl": "Danes je kosilo ___ nas.",
+      "options": [
+        "v",
+        "na",
+        "pri"
+      ],
+      "answer": "pri",
+      "rule": "r-pri",
+      "en": "Today lunch is at our place."
+    },
+    {
+      "id": "u06-l04-s04",
+      "prompt_sl": "Sosed stanuje v hiš_.",
+      "options": [
+        "a",
+        "i",
+        "o"
+      ],
+      "answer": "i",
+      "rule": "r-locative",
+      "en": "The neighbour lives in a house."
+    },
+    {
+      "id": "u06-l04-s05",
+      "prompt_sl": "Hiša je v centr_.",
+      "options": [
+        "u",
+        "a",
+        "i"
+      ],
+      "answer": "u",
+      "rule": "r-locative",
+      "en": "The house is in the centre."
+    },
+    {
+      "id": "u06-l04-s06",
+      "prompt_sl": "Sosed je ___ vrtu.",
+      "options": [
+        "v",
+        "na",
+        "pri"
+      ],
+      "answer": "na",
+      "rule": "r-v-or-na",
+      "en": "The neighbour is in the garden."
+    }
+  ],
+  "production": [
+    {
+      "id": "u06-l04-p01",
+      "en": "Ask a friend where they live.",
+      "answer": "Kje stanuješ?",
+      "accept": [
+        "Kje živiš?"
+      ],
+      "item": "u06-l04-i01"
+    },
+    {
+      "id": "u06-l04-p02",
+      "en": "Say you live in the centre.",
+      "answer": "Stanujem v centru.",
+      "accept": [
+        "Živim v centru."
+      ],
+      "item": "u06-l04-i02"
+    },
+    {
+      "id": "u06-l04-p03",
+      "en": "A friend visits you. Ask them to leave their shoes by the door.",
+      "answer": "Čevlje pusti pri vratih.",
+      "accept": [
+        "Pusti čevlje pri vratih.",
+        "Čevlje pusti pri vratih, prosim.",
+        "Pusti čevlje pri vratih, prosim.",
+        "Prosim, pusti čevlje pri vratih."
+      ],
+      "item": "u06-l04-i04"
+    },
+    {
+      "id": "u06-l04-p04",
+      "en": "Warn a visitor that there's no lift where you live.",
+      "answer": "Pri nas ni dvigala.",
+      "accept": [
+        "Nimamo dvigala.",
+        "Pri nas nimamo dvigala."
+      ],
+      "item": "u06-l04-i03"
+    }
+  ],
+  "dialogue": {
+    "id": "u06-l04-d",
+    "title_sl": "Čez ograjo",
+    "title_en": "Over the fence",
+    "setting_en": "Your hosts' neighbour, who says ti to you, chats with you over the garden fence and asks where you live in town.",
+    "lines": [
+      {
+        "speaker": "neighbour",
+        "sl": "Živjo. Kje stanuješ?",
+        "en": "Hi. Where do you live?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Stanujem v centru.",
+        "en": "I live in the centre.",
+        "new_items": [
+          "u06-l04-i02"
+        ]
+      },
+      {
+        "speaker": "neighbour",
+        "sl": "V hiši ali v stanovanju?",
+        "en": "In a house or a flat?"
+      },
+      {
+        "speaker": "you",
+        "sl": "V stanovanju. Pri nas ni dvigala.",
+        "en": "In a flat. There's no lift where we live.",
+        "new_items": [
+          "u06-l04-i06",
+          "u06-l04-i03"
+        ]
+      },
+      {
+        "speaker": "neighbour",
+        "sl": "Jaz pa stanujem tukaj, v hiši.",
+        "en": "And I live here, in a house."
+      }
+    ]
+  }
+}

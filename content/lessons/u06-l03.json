@@ -1,0 +1,430 @@
+{
+  "id": "u06-l03",
+  "unit": "u06",
+  "order": 3,
+  "role": "theme",
+  "title_sl": "Na balkonu",
+  "title_en": "On the balcony",
+  "items": [
+    {
+      "id": "u06-l03-i01",
+      "type": "chunk",
+      "sl": "Na balkonu je lepo.",
+      "sl_colloquial": null,
+      "en": "It's nice on the balcony.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Pridi, na balkonu je lepo.",
+          "en": "Come, it's nice on the balcony."
+        },
+        {
+          "sl": "Na balkonu je lepo, kar naprej.",
+          "en": "It's nice on the balcony, go ahead."
+        }
+      ],
+      "helper": "balkon is the German Balkon; a balcony takes na: na balkonu.",
+      "accept": [
+        "Lepo je na balkonu."
+      ],
+      "rules": [
+        "r-v-or-na",
+        "r-locative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l03-i02",
+      "type": "chunk",
+      "sl": "Sem na vrtu.",
+      "sl_colloquial": null,
+      "en": "I'm in the garden.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kje si? Sem na vrtu.",
+          "en": "Where are you? I'm in the garden."
+        },
+        {
+          "sl": "Sem na vrtu, pridi.",
+          "en": "I'm in the garden, come out."
+        }
+      ],
+      "helper": "English says in the garden, Slovenian says on it: na vrtu.",
+      "accept": [
+        "Na vrtu sem.",
+        "Jaz sem na vrtu."
+      ],
+      "rules": [
+        "r-v-or-na",
+        "r-locative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l03-i03",
+      "type": "chunk",
+      "sl": "Knjiga je na postelji.",
+      "sl_colloquial": null,
+      "en": "The book is on the bed.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Tvoja knjiga je na postelji.",
+          "en": "Your book is on the bed."
+        },
+        {
+          "sl": "Knjiga je na postelji, v sobi.",
+          "en": "The book is on the bed, in the room."
+        }
+      ],
+      "helper": "na postelji, on the bed: postelja takes -i after na.",
+      "accept": [],
+      "rules": [
+        "r-v-or-na",
+        "r-locative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l03-i04",
+      "type": "chunk",
+      "sl": "Okno je odprto.",
+      "sl_colloquial": null,
+      "en": "The window is open.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Okno v sobi je odprto.",
+          "en": "The window in the room is open."
+        },
+        {
+          "sl": "Okno v kopalnici je odprto.",
+          "en": "The window in the bathroom is open."
+        }
+      ],
+      "helper": "odprt, open, takes -o to match neuter okno.",
+      "accept": [],
+      "rules": [
+        "r-adjective-agreement"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l03-i05",
+      "type": "word",
+      "sl": "vrt",
+      "sl_colloquial": null,
+      "en": "garden",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "loc": "vrtu",
+        "gen": "vrta"
+      },
+      "examples": [
+        {
+          "sl": "Vrt je zelo lep.",
+          "en": "The garden is very nice."
+        },
+        {
+          "sl": "Otroci so na vrtu.",
+          "en": "The children are in the garden."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-v-or-na"
+      ],
+      "freq_rank": 1159,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l03-i06",
+      "type": "word",
+      "sl": "postelja",
+      "sl_colloquial": null,
+      "en": "bed",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "loc": "postelji"
+      },
+      "examples": [
+        {
+          "sl": "Postelja je v sobi.",
+          "en": "The bed is in the room."
+        },
+        {
+          "sl": "Tvoja postelja je tukaj.",
+          "en": "Your bed is here."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 1210,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l03-i07",
+      "type": "word",
+      "sl": "okno",
+      "sl_colloquial": null,
+      "en": "window",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "forms": {
+        "acc.pl": "okna"
+      },
+      "examples": [
+        {
+          "sl": "Soba ima eno okno.",
+          "en": "The room has one window."
+        }
+      ],
+      "helper": "Built on oko, eye; English window was once wind-eye too.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 1017,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l03-i08",
+      "type": "word",
+      "sl": "stol",
+      "sl_colloquial": null,
+      "en": "chair",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "loc": "stolu"
+      },
+      "examples": [
+        {
+          "sl": "Sedite, tukaj je stol.",
+          "en": "Sit down, here is a chair."
+        },
+        {
+          "sl": "Knjiga je na stolu.",
+          "en": "The book is on the chair."
+        }
+      ],
+      "helper": "Like German Stuhl.",
+      "accept": [],
+      "rules": [
+        "r-locative"
+      ],
+      "freq_rank": 1665,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-v-or-na"
+  ],
+  "structured": [
+    {
+      "id": "u06-l03-s01",
+      "prompt_sl": "Kosilo je ___ vrtu.",
+      "options": [
+        "v",
+        "na"
+      ],
+      "answer": "na",
+      "rule": "r-v-or-na",
+      "en": "Lunch is in the garden."
+    },
+    {
+      "id": "u06-l03-s02",
+      "prompt_sl": "Knjiga je ___ sobi.",
+      "options": [
+        "v",
+        "na"
+      ],
+      "answer": "v",
+      "rule": "r-v-or-na",
+      "en": "The book is in the room."
+    },
+    {
+      "id": "u06-l03-s03",
+      "prompt_sl": "Kozarec je ___ mizi.",
+      "options": [
+        "v",
+        "na"
+      ],
+      "answer": "na",
+      "rule": "r-v-or-na",
+      "en": "The glass is on the table."
+    },
+    {
+      "id": "u06-l03-s04",
+      "prompt_sl": "Sok je ___ omari.",
+      "options": [
+        "v",
+        "na"
+      ],
+      "answer": "v",
+      "rule": "r-v-or-na",
+      "en": "The juice is in the cupboard."
+    },
+    {
+      "id": "u06-l03-s05",
+      "prompt_sl": "Sem v kopalnic_.",
+      "options": [
+        "a",
+        "i",
+        "o"
+      ],
+      "answer": "i",
+      "rule": "r-locative",
+      "en": "I'm in the bathroom."
+    },
+    {
+      "id": "u06-l03-s06",
+      "prompt_sl": "Ključ je na stol_.",
+      "options": [
+        "u",
+        "a",
+        "i"
+      ],
+      "answer": "u",
+      "rule": "r-locative",
+      "en": "The key is on the chair."
+    },
+    {
+      "id": "u06-l03-s07",
+      "prompt_sl": "Okno v kuhinji je ___.",
+      "options": [
+        "odprt",
+        "odprta",
+        "odprto"
+      ],
+      "answer": "odprto",
+      "rule": "r-adjective-agreement",
+      "en": "The kitchen window is open."
+    }
+  ],
+  "production": [
+    {
+      "id": "u06-l03-p01",
+      "en": "A friend calls to ask where you are. Say you're in the garden.",
+      "answer": "Sem na vrtu.",
+      "accept": [
+        "Na vrtu sem.",
+        "Jaz sem na vrtu."
+      ],
+      "item": "u06-l03-i02"
+    },
+    {
+      "id": "u06-l03-p02",
+      "en": "Say the book is on the bed.",
+      "answer": "Knjiga je na postelji.",
+      "accept": [],
+      "item": "u06-l03-i03"
+    },
+    {
+      "id": "u06-l03-p03",
+      "en": "Say the window is open.",
+      "answer": "Okno je odprto.",
+      "accept": [],
+      "item": "u06-l03-i04"
+    },
+    {
+      "id": "u06-l03-p04",
+      "en": "Call your hosts outside: say it's nice on the balcony.",
+      "answer": "Na balkonu je lepo.",
+      "accept": [
+        "Lepo je na balkonu."
+      ],
+      "item": "u06-l03-i01"
+    }
+  ],
+  "dialogue": {
+    "id": "u06-l03-d",
+    "title_sl": "Kje si?",
+    "title_en": "Where are you?",
+    "setting_en": "In the afternoon one of your hosts, who says ti to you, makes coffee and looks for you around the house.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Živjo, kje si? V sobi?",
+        "en": "Hi, where are you? In your room?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ne, sem na vrtu.",
+        "en": "No, I'm in the garden.",
+        "new_items": [
+          "u06-l03-i02"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Pridi, kava je na balkonu.",
+        "en": "Come, the coffee is on the balcony."
+      },
+      {
+        "speaker": "you",
+        "sl": "Dobro. Na balkonu je lepo.",
+        "en": "Good. It's nice on the balcony.",
+        "new_items": [
+          "u06-l03-i01"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Ja, zelo. Tukaj je stol.",
+        "en": "Yes, very. Here's a chair."
+      }
+    ]
+  }
+}

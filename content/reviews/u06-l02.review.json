@@ -1,0 +1,335 @@
+{
+  "lesson": "u06-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u06-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Correct locative. Both examples are natural, and the accept variants Sem v kuhinji. and V kuhinji sem. are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural. The examples work (a note-style goodbye in the second), and the helper example 'večerja je na mizi' is idiomatic.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-i03": {
+          "verdict": "accepted",
+          "reason": "The plural kozarci with so and the locative omari are correct. The helper on kozarec/kozarci is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Correct locative hladilniku. The examples are natural. The helper simplifies to v only but is right for location.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-i05": {
+          "verdict": "accepted",
+          "reason": "Feminine, loc mizi is correct, and the examples are natural. The helper is right: Wiktionary traces miza to Latin mēnsa, and Spanish mesa has the same source.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/miza"
+        },
+        "u06-l02-i06": {
+          "verdict": "accepted",
+          "reason": "Feminine, loc omari is correct. The two-sense gloss matches the two examples.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Masculine, loc hladilniku is correct. The helper (hladiti, like Kühlschrank from kühl) is a true derivation.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Masculine. The accusative equals the nominative (inanimate), so the empty forms object is right, and both examples are natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u06-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Only -u gives the locative hladilniku.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-s02": {
+          "verdict": "accepted",
+          "reason": "Only -i gives the locative omari. Omaro (motion) is wrong with je.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Na mizi is correct, and the other endings are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-s04": {
+          "verdict": "accepted",
+          "reason": "Location with je needs hladilniku. The distractor is plausible but wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Kuhinji is the only locative option.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Motion with gremo takes the accusative kuhinjo, so this is a good contrast item.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-p01": {
+          "verdict": "accepted",
+          "reason": "The answer is correct and the instruction is clear.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-p02": {
+          "verdict": "accepted",
+          "reason": "The answer is correct and the instruction asks for the full sentence.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-p03": {
+          "verdict": "accepted",
+          "reason": "The answer is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-p04": {
+          "verdict": "accepted",
+          "reason": "The fragment answer is natural, and both variants with sem are listed.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural offer of help.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural reply. Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural, and the elliptical 'V hladilniku?' is idiomatic.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct. Repeating 'mleko' is slightly redundant but natural enough.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Plural agreement so (kozarci in mleko) is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "r-locative": {
+          "verdict": "accepted",
+          "reason": "Forms and notes are correct (feminine -a to -i, masculine/neuter -u, accusative for motion) and the card is under 40 words. Toggles, quick check (one blank, i) and both helpers are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u06-l02-i01": {
+          "verdict": "accepted",
+          "reason": "V kuhinji is the correct locative and a natural short answer. The examples are natural. The helper is accurate. Sem v kuhinji and V kuhinji sem are correct variants.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Ključ je na mizi is correct and natural. The examples are fine. Večerja je na mizi is an idiomatic and honest hook.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Kozarci so v omari is correct, and the plural kozarci of kozarec is right. The examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Mleko je v hladilniku is correct. The examples are natural. The helper's -u rule is right for masculines.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-i05": {
+          "verdict": "accepted",
+          "reason": "miza is feminine with locative mizi. The examples are natural. The helper is a true etymology: miza is borrowed from Latin mensa.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/miza"
+        },
+        "u06-l02-i06": {
+          "verdict": "accepted",
+          "reason": "omara is feminine with locative omari. The two-sense gloss is correct, and the examples use each sense correctly.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-i07": {
+          "verdict": "accepted",
+          "reason": "hladilnik is masculine with locative hladilniku. The examples are natural. The helper (from hladiti, as Kühlschrank from kühl) is a true derivation.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-i08": {
+          "verdict": "accepted",
+          "reason": "ključ is masculine, and the examples are natural and correctly translated.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u06-l02-s01": {
+          "verdict": "accepted",
+          "reason": "v hladilniku is the only correct locative. Hladilnika and hladilniki are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-s02": {
+          "verdict": "accepted",
+          "reason": "v omari is correct. Omaro would be direction and is wrong with je.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-s03": {
+          "verdict": "accepted",
+          "reason": "na mizi is the only correct option here.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-s04": {
+          "verdict": "accepted",
+          "reason": "Pivo je v hladilniku is correct. V hladilnik would be direction and is wrong with je.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Otroci so v kuhinji is correct, and the two distractors are plausible but wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Gremo v kuhinjo takes the accusative of direction. Correct, and the English is fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Correct answer for a clear instruction.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Kozarci so v omari is correct. A bare V omari. would also be a sensible reply, but the instruction reads as asking for the full sentence.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Mleko je v hladilniku is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-p04": {
+          "verdict": "accepted",
+          "reason": "V kuhinji, Sem v kuhinji and V kuhinji sem are all correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Lahko pomagam? is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Ja, hvala. Kozarci so v omari. is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Dobro. Kje je mleko? V hladilniku? is natural, and the English is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Ja, mleko je v hladilniku. is correct. Ja, v hladilniku would be a little more natural, but the line passes.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "A plural and a singular subject correctly take so: Kozarci in mleko so na mizi.",
+          "fix": "",
+          "source": ""
+        },
+        "r-locative": {
+          "verdict": "accepted",
+          "reason": "Feminine -a to -i and masculine and neuter to -u are correct (hladilniku, kuhinji, stanovanju, vrtu, mizi). The direction contrast with the accusative is right. The quick check has exactly one right option, and the German dative and English notes are accurate. The card is about 37 words.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u06-l02-i01": "8500f7174d1d3029",
+    "u06-l02-i02": "5d8df37ad3f3f8de",
+    "u06-l02-i03": "81da0e549f4048bf",
+    "u06-l02-i04": "bbf2b147160ca172",
+    "u06-l02-i05": "eeb326ac7ec20a47",
+    "u06-l02-i06": "1ef3f1d51eb1a8f9",
+    "u06-l02-i07": "0f14d739701d3124",
+    "u06-l02-i08": "d8e66ddeb1fe9f68",
+    "u06-l02-s01": "d17addfa70039423",
+    "u06-l02-s02": "615b31db851ae909",
+    "u06-l02-s03": "f2d57ef44f3eee12",
+    "u06-l02-s04": "8333a144abf5aaa4",
+    "u06-l02-s05": "0c1660707754a724",
+    "u06-l02-s06": "bb28ef79bad64282",
+    "u06-l02-p01": "59081a219bd06731",
+    "u06-l02-p02": "c4602ba8ea94df4b",
+    "u06-l02-p03": "40ad2debcdea40ab",
+    "u06-l02-p04": "0ebb902e8dea433b",
+    "u06-l02-d-01": "e2e62e8fbf0df799",
+    "u06-l02-d-02": "50f8fc31fb192125",
+    "u06-l02-d-03": "64e7008a16e6d8cd",
+    "u06-l02-d-04": "c70e42e5b1f82909",
+    "u06-l02-d-05": "eeaf1497a9104006",
+    "r-locative": "8ab1bae2b483ec1f"
+  }
+}

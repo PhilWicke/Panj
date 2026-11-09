@@ -87,7 +87,13 @@
     "title_sl": "Dom",
     "title_en": "Home",
     "motif": "house",
-    "lessons": []
+    "lessons": [
+      "u06-l01",
+      "u06-l02",
+      "u06-l03",
+      "u06-l04",
+      "u06-l05"
+    ]
   },
   {
     "id": "u07",

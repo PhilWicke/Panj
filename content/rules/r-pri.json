@@ -1,0 +1,46 @@
+{
+  "id": "r-pri",
+  "unit": "u06",
+  "title_en": "At someone's place: pri",
+  "card_en": "Pri means at someone's place or close by, and takes the locative: pri nas, at our place; pri sosedu, at the neighbour's; pri vratih, by the door.",
+  "example": {
+    "sl": "Čevlje pusti pri vratih.",
+    "en": "Leave your shoes by the door."
+  },
+  "toggles": [
+    {
+      "label": "Where",
+      "options": [
+        "at our place",
+        "at the neighbour's",
+        "by the door"
+      ],
+      "examples": {
+        "at our place": {
+          "sl": "Kosilo je pri nas.",
+          "en": "Lunch is at our place."
+        },
+        "at the neighbour's": {
+          "sl": "Sem pri sosedu.",
+          "en": "I'm at the neighbour's."
+        },
+        "by the door": {
+          "sl": "Čevlji so pri vratih.",
+          "en": "The shoes are by the door."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Danes smo ___ sosedu.",
+    "options": [
+      "v",
+      "na",
+      "pri"
+    ],
+    "answer": "pri",
+    "explain_en": "At someone's place is pri: pri sosedu, at the neighbour's."
+  },
+  "helper_de": "pri works like German bei: pri nas is bei uns, pri sosedu is beim Nachbarn.",
+  "helper_en": "English needs at our place or by the door. Slovenian says pri for both."
+}

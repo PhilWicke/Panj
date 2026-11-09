@@ -1,0 +1,348 @@
+{
+  "lesson": "u06-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u06-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Standard, natural question. Examples, accept variant and slot fillers (kuhinja, soba, stranišče) all fit 'Kje je ...?'. The helper is a usage hint rather than a cognate, but it is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural. Gloss marks the ti addressee; tvoja agrees with soba. Both examples and both accept variants (Tvoja soba je tukaj., Tu je tvoja soba.) are correct. Colloquial register follows the course's convention for ti forms.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Correct. Examples are natural (postrezite si is the right reflexive imperative), and 'Tam je kuhinja.' is a valid variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Established polite phrase. SSKJ records it as 'počutite se kakor doma', and kot is the usual modern equivalent. The German helper parallel is accurate and the gloss marks the vi addressee.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=počutiti"
+        },
+        "u06-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Feminine, loc kopalnici is correct. Natural example. The helper is a real derivation (kopati se, kopalnica).",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-i06": {
+          "verdict": "accepted",
+          "reason": "Feminine; acc kuhinjo and loc kuhinji are correct. The examples are fine, and Küche/kitchen is a genuine cognate hook.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-i07": {
+          "verdict": "accepted",
+          "reason": "Feminine. loc sobi, acc.du sobi (dve sobi) and gen.pl sob (koliko sob) are all correct. Examples are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-i08": {
+          "verdict": "accepted",
+          "reason": "Neuter, standard word for toilet (the room). Examples are natural. No inflected forms are used, so the empty forms object is right.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u06-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Location question with je, so kje is the only correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-s02": {
+          "verdict": "accepted",
+          "reason": "Kam with greš (motion) is correct, and the English marks the ti addressee.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Kje je kava? is correct, and kam is clearly wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Kam gremo jutri? is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Two coordinated singular subjects take the dual in standard Slovenian, so sta is right and je and so are wrong in the standard.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and the prosim variant are correct, and the instruction is clear.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Kje je stranišče? is correct, and the filler matches the slot form.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Kje je kuhinja? is correct, and the filler matches.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-p04": {
+          "verdict": "accepted",
+          "reason": "The instruction names a friend and spells out 'here is your room', so the answer and its variants cover what is expected.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-p05": {
+          "verdict": "accepted",
+          "reason": "'Older guest' points clearly to the vi form, and the answer is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-p06": {
+          "verdict": "accepted",
+          "reason": "The answer and the word-order variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural host greeting, and the English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Lepa agrees with soba. Natural line.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural contrastive 'pa'. Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural follow-up question.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Počuti se is the correct ti imperative and fits the ti host in the setting.",
+          "fix": "",
+          "source": ""
+        },
+        "r-kje-kam": {
+          "verdict": "accepted",
+          "reason": "Card text is accurate and under 40 words, and the kje/kam and doma/domov contrast is correct. Toggles, quick check (one blank, Kje) and the German wo/wohin helper are all right.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 2,
+      "items": {
+        "u06-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Kje je kopalnica? is correct and natural. The slot fillers kuhinja, soba and stranišče all fit the nominative slot. Both examples are natural and correctly translated. The helper is an honest hook. The accept variant with prosim is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural. The gloss names the ti addressee. Both examples are fine. Tvoja soba je tukaj and Tu je tvoja soba are correct variants. The language is standard Slovenian; the colloquial tag follows the course's convention for ti forms, which is defensible.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Kuhinja je tam is correct. The examples are natural, and postrezite si is the usual way to say help yourself. Tam je kuhinja is a correct variant. The helper about tam and tukaj is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-i04": {
+          "verdict": "accepted",
+          "reason": "A standard hospitality phrase. SSKJ lists počutite se kakor doma, and kot is the everyday equivalent of kakor. The vi gloss uses the course wording. The German helper (Fühlen Sie sich wie zu Hause) is an exact parallel. The examples are natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=počutiti"
+        },
+        "u06-l01-i05": {
+          "verdict": "accepted",
+          "reason": "kopalnica is feminine with locative kopalnici. The example is natural. The helper is a true derivation from kopati (se), to bathe.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-i06": {
+          "verdict": "accepted",
+          "reason": "Gender and the forms kuhinjo and kuhinji are correct. The examples are natural. The link to Küche and kitchen is a genuine one.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-i07": {
+          "verdict": "accepted",
+          "reason": "soba is feminine. Locative sobi, accusative dual sobi and genitive plural sob are all correct. The examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-i08": {
+          "verdict": "accepted",
+          "reason": "stranišče is neuter and standard with no register label. Its main sense is the room, which matches toilet as used here. The examples are natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=stranišče"
+        }
+      },
+      "lines": {
+        "u06-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Kje je moja soba? is the only correct option, since kam needs a verb of motion.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-s02": {
+          "verdict": "accepted",
+          "reason": "Kam greš zvečer? is correct and natural, and the English names the addressee.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Kje je kava? is the only correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Kam gremo jutri? is correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Two coordinated singular subjects take the dual: Kopalnica in kuhinja sta tam. Je and so are wrong in the standard language.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Correct answer, and the prosim variant is accepted.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Kje je stranišče? is correct, the filler is the nominative, and the variant is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Kje je kuhinja? is correct and the variant is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-p04": {
+          "verdict": "accepted",
+          "reason": "The instruction fixes ti and the wording, and the answer and both variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-p05": {
+          "verdict": "accepted",
+          "reason": "An older guest calls for vi: Počutite se kot doma. Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Kuhinja je tam and Tam je kuhinja are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Kar naprej. Tukaj je tvoja soba. is natural for a host who says ti, and the English is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Hvala, zelo je lepa is natural, and lepa agrees with soba. The question is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Kopalnica je tukaj, stranišče pa tam. Natural, with pa contrastive. The English is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "In kje je kuhinja? is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Počuti se kot doma is the correct ti imperative of počutiti se. It is natural and fits the host who says ti.",
+          "fix": "",
+          "source": ""
+        },
+        "r-kje-kam": {
+          "verdict": "accepted",
+          "reason": "The kje and kam split is correct. Tukaj, tam and doma answer kje; domov answers kam. The toggle examples, the quick check (one right option), the German wo/wohin parallel and the English note are all accurate. The card is under 40 words.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u06-l01-i01": "535c06ced6e36c4d",
+    "u06-l01-i02": "663530e25aba3317",
+    "u06-l01-i03": "3a75d0f22197a6a5",
+    "u06-l01-i04": "6b71340b001e3546",
+    "u06-l01-i05": "1fcce49584983138",
+    "u06-l01-i06": "59d314cceb4ea211",
+    "u06-l01-i07": "9d675686bd0928c4",
+    "u06-l01-i08": "7f3f8c834895f830",
+    "u06-l01-s01": "79514492327bdb8a",
+    "u06-l01-s02": "377150730e42daf7",
+    "u06-l01-s03": "830f51687dd26d8f",
+    "u06-l01-s04": "447757aec46b05c5",
+    "u06-l01-s05": "f3db4f04cc0ea32d",
+    "u06-l01-p01": "ec6c106530fadfaf",
+    "u06-l01-p02": "0918e55b4bc09c26",
+    "u06-l01-p03": "b138c5d787f3a4ff",
+    "u06-l01-p04": "2abf5e9e1a9a2f6b",
+    "u06-l01-p05": "67fc5b1496f45e93",
+    "u06-l01-p06": "85077aa9749273cf",
+    "u06-l01-d-01": "ca3c1fdf63abb2b6",
+    "u06-l01-d-02": "23edc00ff13608f4",
+    "u06-l01-d-03": "9b64c4d3354897f4",
+    "u06-l01-d-04": "240d661ca120d092",
+    "u06-l01-d-05": "b16d32b015280185",
+    "r-kje-kam": "b75ced145eb14b3e"
+  }
+}

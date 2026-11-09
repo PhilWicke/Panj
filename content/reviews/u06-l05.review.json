@@ -1,0 +1,374 @@
+{
+  "lesson": "u06-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {
+        "u06-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Genitive plural sob after koliko is correct. The elliptical answer 'Dve sobi in kuhinjo' keeps the accusative, and the accept variant is fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Natural impersonal sentence. 'Ima tri okna' uses the correct acc.pl, and the accept variant is fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural, and the helper (mir) is accurate. The second example is fine colloquially.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Pralni stroj is the standard term, and the helper (prati) is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Natural polite question. The ali and colloquial a variants are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Natural compliment, and lepo agrees with stanovanje. The accept variant is fine.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u06-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Kje is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Kopalnici is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-s03": {
+          "verdict": "accepted",
+          "reason": "Na balkonu is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Pri vratih matches 'by the door'. 'V vratih' (in the doorway) is excluded by the English.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-s05": {
+          "verdict": "accepted",
+          "reason": "Sobi is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Plural-only vrata takes so.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-s07": {
+          "verdict": "accepted",
+          "reason": "Motion 'grem na' takes the accusative vrt.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and the variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p02": {
+          "verdict": "doubtful",
+          "reason": "The answers are correct, but the instruction 'whether there is a garden as well' also invites 'Je tudi vrt?' or 'Ali je tudi vrt?', which are correct and not in accept. Rewording to 'whether they have a garden too' would point to imate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p03": {
+          "verdict": "doubtful",
+          "reason": "The answer is correct, but the instruction does not say whether the owner is addressed with vi. 'Lepo stanovanje imaš.' would also be correct, and the style guide asks for the addressee to be named, e.g. '(polite)' or 'an older owner'.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p04": {
+          "verdict": "doubtful",
+          "reason": "The answer is correct, but 'Show them their room' also fits 'To je tvoja soba.', which is equally natural and missing from accept.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p05": {
+          "verdict": "accepted",
+          "reason": "The answer is correct, and the instruction is worded differently from l02-p01.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p06": {
+          "verdict": "accepted",
+          "reason": "The answer and the variant are correct, and the instruction is worded differently from l04-p02.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural opening (the speaker label 'neighbour' is outside the style guide list, but the language is fine).",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Correct elliptical 'Dve sobi', within 60 characters.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Pridite (vi) suits an older speaker addressing you and the hosts, and 'na balkon' (motion) is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Correct, and it reuses the l03 chunk naturally.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Genitive of negation vrta is correct, and the line is idiomatic.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u06-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Koliko sob ima? correctly uses the genitive plural after koliko. In the examples, Dve sobi in kuhinjo is a correct elliptical accusative answer. The helper is accurate. Koliko sob ima stanovanje? is a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Zelo je svetlo is natural as an impersonal sentence. The examples pass (tri okna is a correct accusative plural). Tukaj je zelo svetlo is a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Tukaj je mirno is natural. The examples are grammatical; lahko dobro spim is slightly constructed but passes. The helper (from mir) is true. Tu je mirno is a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-i04": {
+          "verdict": "accepted",
+          "reason": "pralni stroj is the standard term. The examples are natural, and the helper (prati, stroj) is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Imate tudi vrt? is correct and natural, and the gloss uses the vi wording. The examples are fine. The variants with ali and a are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Lepo stanovanje imate is an idiomatic compliment, with lepo agreeing with neuter stanovanje. The examples are natural. Imate lepo stanovanje is a correct variant.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u06-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Kje je pralni stroj? is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-s02": {
+          "verdict": "accepted",
+          "reason": "v kopalnici is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-s03": {
+          "verdict": "accepted",
+          "reason": "Zajtrk je na balkonu is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Stol je pri vratih matches the English, by the door. V vratih (in the doorway) is grammatical, but the English rules it out.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-s05": {
+          "verdict": "accepted",
+          "reason": "Postelja je v sobi is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Plural-only vrata takes so: Kje so vrata? Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-s07": {
+          "verdict": "accepted",
+          "reason": "Grem na vrt takes the accusative of direction. Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and its variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p02": {
+          "verdict": "doubtful",
+          "reason": "Imate tudi vrt? and its variants are correct. The instruction, though, asks whether there is a garden as well, and Ali je tudi vrt? / A je tudi vrt? also answer it correctly but are not accepted. Better to word the instruction as whether they have a garden too, or to accept those forms.",
+          "fix": "Add to accept: Ali je tudi vrt?, A je tudi vrt?, Je tudi vrt?",
+          "source": ""
+        },
+        "u06-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Lepo stanovanje imate and Imate lepo stanovanje are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p04": {
+          "verdict": "doubtful",
+          "reason": "Show them their room does not ask for here is, unlike u06-l01-p04. To je tvoja soba., built from the taught To je moja soba, is just as correct but is not in accept.",
+          "fix": "Add to accept: To je tvoja soba.",
+          "source": ""
+        },
+        "u06-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Ključ je na mizi is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Stanujem v centru and Živim v centru are both correct, and the wording differs from u06-l04-p02.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Dober dan. Kar naprej, to je stanovanje. is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Dober dan. Koliko sob ima? is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Dve sobi (dual) is correct, and the line is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Zelo je svetlo. Kje je pralni stroj? is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Pridite na balkon suits an older speaker addressing a group (plural or polite imperative with the accusative of direction).",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Na balkonu je lepo. Imate tudi vrt? is natural and polite.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Žal ne, vrta ni. is natural, with the genitive after ni.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Lepo stanovanje imate. Tukaj je mirno. is natural.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u06-l05-i01": "7b34a1d1772317da",
+    "u06-l05-i02": "8658bd33cbe73eff",
+    "u06-l05-i03": "1723c31e19519a9f",
+    "u06-l05-i04": "21e3edc533a26a09",
+    "u06-l05-i05": "6258af889acaf1af",
+    "u06-l05-i06": "79acb87a18861d76",
+    "u06-l05-s01": "a5ce2f68181002f4",
+    "u06-l05-s02": "e211e9aac09bc12e",
+    "u06-l05-s03": "b1e68f7f51d17450",
+    "u06-l05-s04": "ba0ab850b52e48a7",
+    "u06-l05-s05": "1f93c017c32ce67f",
+    "u06-l05-s06": "d54749c8651fab4a",
+    "u06-l05-s07": "31ab8468273c95ba",
+    "u06-l05-p01": "5fa7f44edd17b8cd",
+    "u06-l05-p02": "fcc091f450b60bf4",
+    "u06-l05-p03": "ae7995a8d1f1864e",
+    "u06-l05-p04": "2abf5e9e1a9a2f6b",
+    "u06-l05-p05": "59081a219bd06731",
+    "u06-l05-p06": "3e4adab0f0548bb9",
+    "u06-l05-d-01": "a7a51fc89930678e",
+    "u06-l05-d-02": "aad7e2e7c931b672",
+    "u06-l05-d-03": "2befc4070b9ff2e1",
+    "u06-l05-d-04": "1e3c838fb734743c",
+    "u06-l05-d-05": "8c92570fefa73f0a",
+    "u06-l05-d-06": "e59406314cb5a2cd",
+    "u06-l05-d-07": "a396136fa8322f0c",
+    "u06-l05-d-08": "cba60c5456bce859"
+  }
+}

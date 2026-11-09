@@ -1,0 +1,34 @@
+{
+  "lesson": "u06-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u06-l04-p03": {
+          "verdict": "accepted",
+          "reason": "The instruction names a friend, so the ti imperative pusti (from pustiti) is right. Čevlje pusti pri vratih takes pri with the locative plural vratih of plural-only vrata and is what a host really says. All four accept variants are correct and natural, two with neutral word order and three with prosim. The instruction is clear and has a different wording from the item gloss. Optional: Prosim, čevlje pusti pri vratih. is also correct but is not listed.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u06-l04-p03": {
+          "verdict": "accepted",
+          "reason": "The instruction makes the ti form clear ('a friend'). Čevlje pusti pri vratih. is a correct and natural 2sg imperative of pustiti with pri + locative plural vratih, and it matches the item and the r-pri card example. All four accept variants are correct and natural; they cover both word orders and the placement of prosim. One gap that does not affect the verdict: a learner could also answer with the question Lahko pustiš čevlje pri vratih?, which only needs listing if pustiš has been taught.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u06-l04-p03": "2f85be7385f1f007"
+  }
+}

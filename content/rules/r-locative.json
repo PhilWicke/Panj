@@ -1,0 +1,75 @@
+{
+  "id": "r-locative",
+  "unit": "u06",
+  "title_en": "Where something is: the locative",
+  "card_en": "Where something is: after v, na and pri the noun takes the locative. Feminine -a becomes -i: v kuhinji. Masculine and neuter nouns take -u: v hladilniku, v stanovanju. Going somewhere keeps the accusative: grem v kuhinjo.",
+  "example": {
+    "sl": "Mleko je v hladilniku.",
+    "en": "The milk is in the fridge."
+  },
+  "table": {
+    "rows": [
+      "m",
+      "f",
+      "n"
+    ],
+    "cols": [
+      "nom",
+      "loc"
+    ],
+    "cells": {
+      "m.nom": {
+        "form": "hladilnik"
+      },
+      "m.loc": {
+        "form": "v hladilniku",
+        "note_en": "Most masculine nouns add -u: vrt, na vrtu."
+      },
+      "f.nom": {
+        "form": "kuhinja"
+      },
+      "f.loc": {
+        "form": "v kuhinji",
+        "note_en": "Every feminine noun in -a works the same way: miza, na mizi."
+      },
+      "n.nom": {
+        "form": "stanovanje"
+      },
+      "n.loc": {
+        "form": "v stanovanju",
+        "note_en": "Neuter -o or -e becomes -u."
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "Where or where to",
+      "options": [
+        "where it is",
+        "where to"
+      ],
+      "examples": {
+        "where it is": {
+          "sl": "Sem v kuhinji.",
+          "en": "I'm in the kitchen."
+        },
+        "where to": {
+          "sl": "Grem v kuhinjo.",
+          "en": "I'm going to the kitchen."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Kruh je v kuhinj_.",
+    "options": [
+      "a",
+      "i",
+      "o"
+    ],
+    "answer": "i",
+    "explain_en": "This says where the bread is, so kuhinja takes the locative: v kuhinji."
+  },
+  "helper_de": "German uses the dative for where: in der Küche. Slovenian has a case of its own for it, the locative: v kuhinji.",
+  "helper_en": "English changes the little word, in or into. Slovenian keeps v and changes the ending: v kuhinji, v kuhinjo."
+}

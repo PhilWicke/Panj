@@ -1,0 +1,434 @@
+{
+  "id": "u06-l01",
+  "unit": "u06",
+  "order": 1,
+  "role": "theme",
+  "title_sl": "Kje je kopalnica?",
+  "title_en": "Where is the bathroom?",
+  "items": [
+    {
+      "id": "u06-l01-i01",
+      "type": "chunk",
+      "sl": "Kje je kopalnica?",
+      "sl_colloquial": null,
+      "en": "Where is the bathroom?",
+      "register": "neutral",
+      "slots": [
+        {
+          "label": "room",
+          "fillers": [
+            "u06-l01-i06",
+            "u06-l01-i07",
+            "u06-l01-i08"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "sl": "Oprostite, kje je kopalnica?",
+          "en": "Excuse me, where is the bathroom?"
+        },
+        {
+          "sl": "Kje je kopalnica, prosim?",
+          "en": "Where is the bathroom, please?"
+        }
+      ],
+      "helper": "kje asks where something is, as in kje je sol.",
+      "accept": [
+        "Kje je kopalnica, prosim?"
+      ],
+      "rules": [
+        "r-kje-kam"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l01-i02",
+      "type": "chunk",
+      "sl": "Tukaj je tvoja soba.",
+      "sl_colloquial": null,
+      "en": "Here is your room. (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kar naprej, tukaj je tvoja soba.",
+          "en": "Come on in, here is your room."
+        },
+        {
+          "sl": "Tukaj je tvoja soba, tam je kopalnica.",
+          "en": "Here is your room, and there is the bathroom."
+        }
+      ],
+      "helper": "tvoja is your, for someone close, as moja is my: moja soba, tvoja soba.",
+      "accept": [
+        "Tvoja soba je tukaj.",
+        "Tu je tvoja soba."
+      ],
+      "rules": [
+        "r-kje-kam",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l01-i03",
+      "type": "chunk",
+      "sl": "Kuhinja je tam.",
+      "sl_colloquial": null,
+      "en": "The kitchen is over there.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kava? Kuhinja je tam.",
+          "en": "Coffee? The kitchen is over there."
+        },
+        {
+          "sl": "Kuhinja je tam, postrezite si.",
+          "en": "The kitchen is over there, help yourself."
+        }
+      ],
+      "helper": "tam is there, and its partner tukaj is here.",
+      "accept": [
+        "Tam je kuhinja."
+      ],
+      "rules": [
+        "r-kje-kam"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l01-i04",
+      "type": "chunk",
+      "sl": "Počutite se kot doma.",
+      "sl_colloquial": null,
+      "en": "Make yourself at home. (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dobrodošli. Počutite se kot doma.",
+          "en": "Welcome. Make yourself at home."
+        },
+        {
+          "sl": "Sedite, prosim. Počutite se kot doma.",
+          "en": "Please sit down. Make yourself at home."
+        }
+      ],
+      "helper": "Like German Fühlen Sie sich wie zu Hause: kot is wie, doma is zu Hause.",
+      "accept": [],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l01-i05",
+      "type": "word",
+      "sl": "kopalnica",
+      "sl_colloquial": null,
+      "en": "bathroom",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "loc": "kopalnici"
+      },
+      "examples": [
+        {
+          "sl": "Kopalnica je tukaj, stranišče pa tam.",
+          "en": "The bathroom is here, and the toilet over there."
+        }
+      ],
+      "helper": "From kopati se, to bathe: the room where you bathe.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 2595,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l01-i06",
+      "type": "word",
+      "sl": "kuhinja",
+      "sl_colloquial": null,
+      "en": "kitchen",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "kuhinjo",
+        "loc": "kuhinji"
+      },
+      "examples": [
+        {
+          "sl": "Kje je kuhinja?",
+          "en": "Where is the kitchen?"
+        },
+        {
+          "sl": "Kuhinja je zelo lepa.",
+          "en": "The kitchen is very nice."
+        }
+      ],
+      "helper": "Like German Küche and English kitchen.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 1592,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l01-i07",
+      "type": "word",
+      "sl": "soba",
+      "sl_colloquial": null,
+      "en": "room",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "loc": "sobi",
+        "acc.du": "sobi",
+        "gen.pl": "sob"
+      },
+      "examples": [
+        {
+          "sl": "To je moja soba.",
+          "en": "This is my room."
+        },
+        {
+          "sl": "Kje je moja soba?",
+          "en": "Where is my room?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 816,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l01-i08",
+      "type": "word",
+      "sl": "stranišče",
+      "sl_colloquial": null,
+      "en": "toilet",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "forms": {},
+      "examples": [
+        {
+          "sl": "Stranišče je tam.",
+          "en": "The toilet is over there."
+        },
+        {
+          "sl": "Kje je stranišče, prosim?",
+          "en": "Where is the toilet, please?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-kje-kam"
+  ],
+  "structured": [
+    {
+      "id": "u06-l01-s01",
+      "prompt_sl": "___ je moja soba?",
+      "options": [
+        "Kje",
+        "Kam"
+      ],
+      "answer": "Kje",
+      "rule": "r-kje-kam",
+      "en": "Where is my room?"
+    },
+    {
+      "id": "u06-l01-s02",
+      "prompt_sl": "___ greš zvečer?",
+      "options": [
+        "Kje",
+        "Kam"
+      ],
+      "answer": "Kam",
+      "rule": "r-kje-kam",
+      "en": "Where are you going this evening? (to someone close)"
+    },
+    {
+      "id": "u06-l01-s03",
+      "prompt_sl": "___ je kava?",
+      "options": [
+        "Kje",
+        "Kam"
+      ],
+      "answer": "Kje",
+      "rule": "r-kje-kam",
+      "en": "Where is the coffee?"
+    },
+    {
+      "id": "u06-l01-s04",
+      "prompt_sl": "___ gremo jutri?",
+      "options": [
+        "Kje",
+        "Kam"
+      ],
+      "answer": "Kam",
+      "rule": "r-kje-kam",
+      "en": "Where are we going tomorrow?"
+    },
+    {
+      "id": "u06-l01-s05",
+      "prompt_sl": "Kopalnica in kuhinja ___ tam.",
+      "options": [
+        "je",
+        "sta",
+        "so"
+      ],
+      "answer": "sta",
+      "rule": "r-biti-present",
+      "en": "The bathroom and the kitchen are over there."
+    }
+  ],
+  "production": [
+    {
+      "id": "u06-l01-p01",
+      "en": "Ask your hosts where the bathroom is.",
+      "answer": "Kje je kopalnica?",
+      "accept": [
+        "Kje je kopalnica, prosim?"
+      ],
+      "item": "u06-l01-i01"
+    },
+    {
+      "id": "u06-l01-p02",
+      "en": "Ask where the toilet is.",
+      "answer": "Kje je stranišče?",
+      "accept": [
+        "Kje je stranišče, prosim?"
+      ],
+      "item": "u06-l01-i01",
+      "filler": "stranišče"
+    },
+    {
+      "id": "u06-l01-p03",
+      "en": "Ask where the kitchen is.",
+      "answer": "Kje je kuhinja?",
+      "accept": [
+        "Kje je kuhinja, prosim?"
+      ],
+      "item": "u06-l01-i01",
+      "filler": "kuhinja"
+    },
+    {
+      "id": "u06-l01-p04",
+      "en": "A friend is staying with you. Show them to their room: here is your room.",
+      "answer": "Tukaj je tvoja soba.",
+      "accept": [
+        "Tvoja soba je tukaj.",
+        "Tu je tvoja soba."
+      ],
+      "item": "u06-l01-i02"
+    },
+    {
+      "id": "u06-l01-p05",
+      "en": "Tell an older guest to make themselves at home.",
+      "answer": "Počutite se kot doma.",
+      "accept": [],
+      "item": "u06-l01-i04"
+    },
+    {
+      "id": "u06-l01-p06",
+      "en": "Someone asks for the kitchen. Say it is over there.",
+      "answer": "Kuhinja je tam.",
+      "accept": [
+        "Tam je kuhinja."
+      ],
+      "item": "u06-l01-i03"
+    }
+  ],
+  "dialogue": {
+    "id": "u06-l01-d",
+    "title_sl": "Po hiši",
+    "title_en": "Round the house",
+    "setting_en": "You arrive to stay with your hosts. One of them, who says ti to you, shows you round the house.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Kar naprej. Tukaj je tvoja soba.",
+        "en": "Come on in. Here is your room."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala, zelo je lepa. Kje je kopalnica?",
+        "en": "Thank you, it's very nice. Where is the bathroom?",
+        "new_items": [
+          "u06-l01-i01"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kopalnica je tukaj, stranišče pa tam.",
+        "en": "The bathroom is here, and the toilet over there."
+      },
+      {
+        "speaker": "you",
+        "sl": "In kje je kuhinja?",
+        "en": "And where is the kitchen?",
+        "new_items": [
+          "u06-l01-i06"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kuhinja je tam. Počuti se kot doma.",
+        "en": "The kitchen is over there. Make yourself at home."
+      }
+    ]
+  }
+}

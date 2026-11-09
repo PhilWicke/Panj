@@ -1,0 +1,60 @@
+{
+  "lesson": "u06-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u06-l05-p02": {
+          "verdict": "accepted",
+          "reason": "The instruction says politely, so the vi form imate is the one asked for. Imate tudi vrt? is natural, and tudi sits correctly before vrt. The variants Ali imate tudi vrt? (written standard) and A imate tudi vrt? (the colloquial question particle the course teaches next to ali) are both correct. There is one right answer, and the English is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Lepo stanovanje imate. is an idiomatic compliment: neuter lepo agrees with stanovanje, and fronting the adjective and noun is the usual word order for this praise. The variant Imate lepo stanovanje. is also correct. The instruction names an older person, which the style guide allows in instructions and which makes vi the right choice.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p04": {
+          "verdict": "accepted",
+          "reason": "A friend means ti, so tvoja soba is right, and tvoja agrees with feminine soba. Tukaj je tvoja soba. is what one says when showing a guest their room. The variants Tvoja soba je tukaj., Tu je tvoja soba., Tvoja soba je tu. and To je tvoja soba. are all correct and natural (tu also appears in this lesson's accept for i03). The instruction is clear and its English is accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u06-l05-p02": {
+          "verdict": "accepted",
+          "reason": "'Politely' and 'the owner' clearly call for vi. Imate tudi vrt? is natural, and tudi correctly modifies vrt ('a garden too', besides the flat), as in the dialogue. The accept variants Ali imate tudi vrt? and A imate tudi vrt? are correct and fit the taught a/ali pair. The English is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p03": {
+          "verdict": "accepted",
+          "reason": "'An older person' makes vi clear. Lepo stanovanje imate. is a common, natural compliment, and lepo agrees with neuter stanovanje. The accept variant Imate lepo stanovanje. is equally correct. The English is accurate and fits the dialogue's older neighbour.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l05-p04": {
+          "verdict": "accepted",
+          "reason": "'A friend' makes ti and tvoja clear. Tukaj je tvoja soba. is what one naturally says when showing a guest their room. All accept variants are correct and natural: Tvoja soba je tukaj., Tu je tvoja soba., Tvoja soba je tu. and To je tvoja soba. The English is clear.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u06-l05-p02": "fcc091f450b60bf4",
+    "u06-l05-p03": "ae7995a8d1f1864e",
+    "u06-l05-p04": "0e7122a58eeeb9be"
+  }
+}

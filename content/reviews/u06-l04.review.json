@@ -1,0 +1,335 @@
+{
+  "lesson": "u06-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {
+        "u06-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Natural, and the gloss marks the ti addressee. The accept 'Kje živiš?' is correct, and the examples are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Center loses its fleeting e, so v centru is correct. The examples and 'Živim v centru.' are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Genitive of negation dvigala is correct, and the accept variants with nimamo are correct. The helper (bei uns, genitive after ni) is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Pri vratih (locative plural of a plural-only noun) is correct and the ti imperative is natural. The accept variant is fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i05": {
+          "verdict": "accepted",
+          "reason": "Feminine, loc hiši is correct, and the examples are natural. Haus/house is a genuine (borrowed) cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i06": {
+          "verdict": "accepted",
+          "reason": "Neuter, loc stanovanju is correct. 'Dve sobi' after ima is a correct dual accusative, and the helper (stanovati, like wohnen/Wohnung) is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i07": {
+          "verdict": "accepted",
+          "reason": "Fran gives vrata as neuter, plural only (s mn.), so loc.pl vratih is correct. Odprta agrees with it in the example.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=vrata"
+        },
+        "u06-l04-i08": {
+          "verdict": "accepted",
+          "reason": "Masculine, loc sosedu is correct, and the examples are natural. The helper is a genuine etymology: Proto-Slavic *sǫsědъ comes from *sǫ- (together) plus a verb meaning to sit.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/Reconstruction:Proto-Slavic/sǫsědъ"
+        }
+      },
+      "lines": {
+        "u06-l04-s01": {
+          "verdict": "accepted",
+          "reason": "Pri takes the locative sosedu.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-s02": {
+          "verdict": "accepted",
+          "reason": "Pri vratih is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Pri nas is the only correct option for 'at our place'.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Stanuje v hiši is correct, and hišo/hiša are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Centru is correct, and centra/centri are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Na vrtu matches 'in the garden'.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-p01": {
+          "verdict": "accepted",
+          "reason": "'A friend' marks ti, and both answers are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-p02": {
+          "verdict": "accepted",
+          "reason": "The answer and the variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-p03": {
+          "verdict": "accepted",
+          "reason": "'A friend' marks ti, and both word orders are listed.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-p04": {
+          "verdict": "accepted",
+          "reason": "The answer and the variants with nimamo are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural opener. The Slovenian and English are fine (the speaker label 'neighbour' is not in the style guide's speaker list, but that is not a language issue).",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural elliptical question, and both locatives are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct, and a plausible small-talk remark.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural contrastive 'Jaz pa'.",
+          "fix": "",
+          "source": ""
+        },
+        "r-pri": {
+          "verdict": "accepted",
+          "reason": "Pri with the locative is correctly described (pri nas, pri sosedu, pri vratih). The toggles, the quick check (one blank, pri) and the German bei parallel are correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 3,
+      "items": {
+        "u06-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Kje stanuješ? is common and natural, and the gloss names the ti addressee. The examples are natural. The Wo wohnst du parallel is exact. Kje živiš? is a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Stanujem v centru is correct (center, v centru, with the fleeting e). The examples are natural. Živim v centru is a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Pri nas ni dvigala correctly puts dvigalo in the genitive after ni. Natural, and the bei uns helper is accurate. Nimamo dvigala and Pri nas nimamo dvigala are correct variants.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Čevlje pusti pri vratih is a correct ti imperative and natural. The plural-only vrata with pri vratih is correct. The examples and the variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i05": {
+          "verdict": "accepted",
+          "reason": "hiša is feminine with locative hiši. The examples are natural. The helper is genuine: hiša is borrowed from Old High German hūs.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i06": {
+          "verdict": "accepted",
+          "reason": "stanovanje is neuter with locative stanovanju. The examples are natural (dve sobi is a correct dual). The derivation helper is true.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i07": {
+          "verdict": "accepted",
+          "reason": "vrata is a neuter plural-only noun with locative plural vratih. Vrata so odprta agrees correctly. The examples are natural and the helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-i08": {
+          "verdict": "accepted",
+          "reason": "sosed is masculine with locative sosedu. The examples are natural. The helper is the real etymology: Proto-Slavic *sǫsědъ from *sǫ- (together) plus a verb for sitting.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/Reconstruction:Proto-Slavic/sǫsědъ"
+        }
+      },
+      "lines": {
+        "u06-l04-s01": {
+          "verdict": "accepted",
+          "reason": "Ključ je pri sosedu is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-s02": {
+          "verdict": "accepted",
+          "reason": "Čevlji so pri vratih is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Danes je kosilo pri nas is natural. V nas and na nas are wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Sosed stanuje v hiši is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Hiša je v centru is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Sosed je na vrtu matches the English. Pri vrtu (near the garden) is grammatical but does not mean in the garden, so only one option fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Kje stanuješ? and Kje živiš? are both correct for a friend.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Stanujem v centru and Živim v centru are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-p03": {
+          "verdict": "doubtful",
+          "reason": "The answer and its variant are correct. But the instruction says ask them to, and the item's own example, Čevlje pusti pri vratih, prosim., is a correct answer that accept does not list. Other productions in this unit do accept prosim.",
+          "fix": "Add to accept: Čevlje pusti pri vratih, prosim. and Prosim, pusti čevlje pri vratih.",
+          "source": ""
+        },
+        "u06-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Pri nas ni dvigala, Nimamo dvigala and Pri nas nimamo dvigala are all correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Živjo. Kje stanuješ? is natural for a neighbour who says ti. Outside the language check: the speaker neighbour is not in the style guide's speaker list.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Stanujem v centru. is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "V hiši ali v stanovanju? is natural, with correct locatives.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "V stanovanju. Pri nas ni dvigala. is correct and plausible small talk, and the English is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Jaz pa stanujem tukaj, v hiši. is natural, with contrastive pa.",
+          "fix": "",
+          "source": ""
+        },
+        "r-pri": {
+          "verdict": "accepted",
+          "reason": "Pri always takes the locative (pri nas, pri sosedu, pri vratih). The toggles are correct, and the quick check Danes smo pri sosedu has one right option. The German bei parallel is accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u06-l04-i01": "8a6ca46f1f518157",
+    "u06-l04-i02": "34d6cf66f25166da",
+    "u06-l04-i03": "8c52bfc3d91d1911",
+    "u06-l04-i04": "d7b5012a5c8796ba",
+    "u06-l04-i05": "998039a983d8169a",
+    "u06-l04-i06": "efd569d0ce58cf1a",
+    "u06-l04-i07": "62bdb0485b8e222a",
+    "u06-l04-i08": "0686034053e5ad93",
+    "u06-l04-s01": "d7cc14e205d27ea7",
+    "u06-l04-s02": "f7670b0fee1f238f",
+    "u06-l04-s03": "aa4bb94282b6b366",
+    "u06-l04-s04": "9b89d1d4556bd690",
+    "u06-l04-s05": "19c4a65ff8ec0162",
+    "u06-l04-s06": "103a15707f20d479",
+    "u06-l04-p01": "cf988bc842477f89",
+    "u06-l04-p02": "3e4adab0f0548bb9",
+    "u06-l04-p03": "0e77b98c65093950",
+    "u06-l04-p04": "91f95702ef434839",
+    "u06-l04-d-01": "99d418042b7d51e2",
+    "u06-l04-d-02": "d32b42affb783e57",
+    "u06-l04-d-03": "f0e913f941f36be5",
+    "u06-l04-d-04": "c54c56887ef26f23",
+    "u06-l04-d-05": "93ecd90a6e12d927",
+    "r-pri": "ec939fafafd46cad"
+  }
+}

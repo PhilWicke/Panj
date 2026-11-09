@@ -1,0 +1,416 @@
+{
+  "id": "u06-l02",
+  "unit": "u06",
+  "order": 2,
+  "role": "theme",
+  "title_sl": "V kuhinji",
+  "title_en": "In the kitchen",
+  "items": [
+    {
+      "id": "u06-l02-i01",
+      "type": "chunk",
+      "sl": "V kuhinji.",
+      "sl_colloquial": null,
+      "en": "In the kitchen.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kje je kava? V kuhinji.",
+          "en": "Where is the coffee? In the kitchen."
+        },
+        {
+          "sl": "Otroci so v kuhinji.",
+          "en": "The children are in the kitchen."
+        }
+      ],
+      "helper": "After v, kuhinja becomes kuhinji: the locative, for where something is.",
+      "accept": [
+        "Sem v kuhinji.",
+        "V kuhinji sem."
+      ],
+      "rules": [
+        "r-locative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l02-i02",
+      "type": "chunk",
+      "sl": "Ključ je na mizi.",
+      "sl_colloquial": null,
+      "en": "The key is on the table.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ključ je na mizi, v kuhinji.",
+          "en": "The key is on the table, in the kitchen."
+        },
+        {
+          "sl": "Ključ je na mizi. Nasvidenje.",
+          "en": "The key is on the table. Goodbye."
+        }
+      ],
+      "helper": "na mizi, on the table, as in večerja je na mizi.",
+      "accept": [],
+      "rules": [
+        "r-locative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l02-i03",
+      "type": "chunk",
+      "sl": "Kozarci so v omari.",
+      "sl_colloquial": null,
+      "en": "The glasses are in the cupboard.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kozarci so v omari v kuhinji.",
+          "en": "The glasses are in the cupboard in the kitchen."
+        },
+        {
+          "sl": "Kozarci so v omari, voda pa v hladilniku.",
+          "en": "The glasses are in the cupboard, and the water in the fridge."
+        }
+      ],
+      "helper": "kozarci is the plural of kozarec, as in kozarec vode.",
+      "accept": [],
+      "rules": [
+        "r-locative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l02-i04",
+      "type": "chunk",
+      "sl": "Mleko je v hladilniku.",
+      "sl_colloquial": null,
+      "en": "The milk is in the fridge.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Mleko je v hladilniku, postrezite si.",
+          "en": "The milk is in the fridge, help yourself."
+        },
+        {
+          "sl": "Mleko je v hladilniku, kruh pa na mizi.",
+          "en": "The milk is in the fridge, and the bread on the table."
+        }
+      ],
+      "helper": "Masculine nouns add -u after v: hladilnik, v hladilniku.",
+      "accept": [],
+      "rules": [
+        "r-locative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l02-i05",
+      "type": "word",
+      "sl": "miza",
+      "sl_colloquial": null,
+      "en": "table",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "loc": "mizi"
+      },
+      "examples": [
+        {
+          "sl": "Miza je v kuhinji.",
+          "en": "The table is in the kitchen."
+        },
+        {
+          "sl": "Kozarci so na mizi.",
+          "en": "The glasses are on the table."
+        }
+      ],
+      "helper": "Goes back to Latin mensa, table, like Spanish mesa.",
+      "accept": [],
+      "rules": [
+        "r-locative"
+      ],
+      "freq_rank": 688,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l02-i06",
+      "type": "word",
+      "sl": "omara",
+      "sl_colloquial": null,
+      "en": "cupboard, wardrobe",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "loc": "omari"
+      },
+      "examples": [
+        {
+          "sl": "Kruh je v omari.",
+          "en": "The bread is in the cupboard."
+        },
+        {
+          "sl": "Omara je v sobi.",
+          "en": "The wardrobe is in the room."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-locative"
+      ],
+      "freq_rank": 2142,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l02-i07",
+      "type": "word",
+      "sl": "hladilnik",
+      "sl_colloquial": null,
+      "en": "fridge",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "loc": "hladilniku"
+      },
+      "examples": [
+        {
+          "sl": "Sok je v hladilniku.",
+          "en": "The juice is in the fridge."
+        },
+        {
+          "sl": "Hladilnik je v kuhinji.",
+          "en": "The fridge is in the kitchen."
+        }
+      ],
+      "helper": "From hladiti, to cool, as German Kühlschrank comes from kühl.",
+      "accept": [],
+      "rules": [
+        "r-locative"
+      ],
+      "freq_rank": 2759,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l02-i08",
+      "type": "word",
+      "sl": "ključ",
+      "sl_colloquial": null,
+      "en": "key",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {},
+      "examples": [
+        {
+          "sl": "Kje je moj ključ?",
+          "en": "Where is my key?"
+        },
+        {
+          "sl": "Imaš ključ?",
+          "en": "Do you have the key?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 1926,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-locative"
+  ],
+  "structured": [
+    {
+      "id": "u06-l02-s01",
+      "prompt_sl": "Mleko je v hladilnik_.",
+      "options": [
+        "u",
+        "a",
+        "i"
+      ],
+      "answer": "u",
+      "rule": "r-locative",
+      "en": "The milk is in the fridge."
+    },
+    {
+      "id": "u06-l02-s02",
+      "prompt_sl": "Kruh je v omar_.",
+      "options": [
+        "a",
+        "i",
+        "o"
+      ],
+      "answer": "i",
+      "rule": "r-locative",
+      "en": "The bread is in the cupboard."
+    },
+    {
+      "id": "u06-l02-s03",
+      "prompt_sl": "Kozarci so na miz_.",
+      "options": [
+        "a",
+        "i",
+        "o"
+      ],
+      "answer": "i",
+      "rule": "r-locative",
+      "en": "The glasses are on the table."
+    },
+    {
+      "id": "u06-l02-s04",
+      "prompt_sl": "Pivo je v ___.",
+      "options": [
+        "hladilnik",
+        "hladilniku"
+      ],
+      "answer": "hladilniku",
+      "rule": "r-locative",
+      "en": "The beer is in the fridge."
+    },
+    {
+      "id": "u06-l02-s05",
+      "prompt_sl": "Otroci so v ___.",
+      "options": [
+        "kuhinja",
+        "kuhinji",
+        "kuhinjo"
+      ],
+      "answer": "kuhinji",
+      "rule": "r-locative",
+      "en": "The children are in the kitchen."
+    },
+    {
+      "id": "u06-l02-s06",
+      "prompt_sl": "Gremo v ___.",
+      "options": [
+        "kuhinji",
+        "kuhinjo"
+      ],
+      "answer": "kuhinjo",
+      "rule": "r-grem-v-na",
+      "en": "Let's go to the kitchen."
+    }
+  ],
+  "production": [
+    {
+      "id": "u06-l02-p01",
+      "en": "Say the key is on the table.",
+      "answer": "Ključ je na mizi.",
+      "accept": [],
+      "item": "u06-l02-i02"
+    },
+    {
+      "id": "u06-l02-p02",
+      "en": "Tell your hosts where the glasses are: in the cupboard.",
+      "answer": "Kozarci so v omari.",
+      "accept": [],
+      "item": "u06-l02-i03"
+    },
+    {
+      "id": "u06-l02-p03",
+      "en": "Tell your hosts the milk is in the fridge.",
+      "answer": "Mleko je v hladilniku.",
+      "accept": [],
+      "item": "u06-l02-i04"
+    },
+    {
+      "id": "u06-l02-p04",
+      "en": "Someone calls out to ask where you are. Answer: in the kitchen.",
+      "answer": "V kuhinji.",
+      "accept": [
+        "Sem v kuhinji.",
+        "V kuhinji sem."
+      ],
+      "item": "u06-l02-i01"
+    }
+  ],
+  "dialogue": {
+    "id": "u06-l02-d",
+    "title_sl": "Kje so kozarci?",
+    "title_en": "Where are the glasses?",
+    "setting_en": "Your hosts are making lunch. You offer to help lay the table and ask where things are.",
+    "lines": [
+      {
+        "speaker": "you",
+        "sl": "Lahko pomagam?",
+        "en": "Can I help?"
+      },
+      {
+        "speaker": "host",
+        "sl": "Ja, hvala. Kozarci so v omari.",
+        "en": "Yes, thanks. The glasses are in the cupboard."
+      },
+      {
+        "speaker": "you",
+        "sl": "Dobro. Kje je mleko? V hladilniku?",
+        "en": "Fine. Where is the milk? In the fridge?",
+        "new_items": [
+          "u06-l02-i07"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Ja, mleko je v hladilniku.",
+        "en": "Yes, the milk is in the fridge."
+      },
+      {
+        "speaker": "you",
+        "sl": "Kozarci in mleko so na mizi.",
+        "en": "The glasses and the milk are on the table.",
+        "new_items": [
+          "u06-l02-i05"
+        ]
+      }
+    ]
+  }
+}

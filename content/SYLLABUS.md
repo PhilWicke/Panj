@@ -237,12 +237,12 @@ Checkpoint: up to 16 of the unit's accepted items and 2 to 4 from earlier units,
 Focus: rooms and things, the locative after v, na and pri, kje je, tukaj and tam.
 
 ### u06-l01 theme: Kje je kopalnica? / Where is the bathroom?
-- Situations: finding your way around your hosts' flat
+- Situations: finding your way around your hosts' house
 - Items (8): Kje je kopalnica? | Tukaj je tvoja soba. | Kuhinja je tam. | Počutite se kot doma. | kopalnica | kuhinja | soba | stranišče
 - Rules: r-kje-kam
 - Table keys: none
 - Slot: Kje je ___? with kuhinja, soba, stranišče
-- Dialogue (5 lines): your hosts show you round the flat when you arrive
+- Dialogue (5 lines): your hosts show you round the house when you arrive
 
 ### u06-l02 theme: V kuhinji / In the kitchen
 - Situations: saying where things are in the kitchen
@@ -267,7 +267,7 @@ Focus: rooms and things, the locative after v, na and pri, kje je, tukaj and tam
 
 ### u06-l05 consolidation: Novo stanovanje / A new flat
 - Situations: being shown round a flat: the rooms, where things are and what it is like
-- Items (6): Koliko sob ima? | Je zelo svetlo. | Tukaj je mirno. | Kje je pralni stroj? | Imate tudi vrt? | Lepo stanovanje imate.
+- Items (6): Koliko sob ima? | Zelo je svetlo. | Tukaj je mirno. | Kje je pralni stroj? | Imate tudi vrt? | Lepo stanovanje imate.
 - Rules: none
 - Table keys: none
 - Dialogue (8 lines): looking round a flat to rent with your hosts, room by room

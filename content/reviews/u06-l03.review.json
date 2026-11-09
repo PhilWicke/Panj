@@ -1,0 +1,348 @@
+{
+  "lesson": "u06-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {
+        "u06-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Natural impersonal sentence, and the accept variant is correct. The second example's 'kar naprej' as 'go ahead' is a little loose but passable. Balkon/Balkon is a true cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Na vrtu is the standard collocation, and a clitic-initial 'Sem ...' is fine in speech. The accept variants are correct and the helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-i03": {
+          "verdict": "accepted",
+          "reason": "The locative postelji is correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Neuter agreement odprto is correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Masculine. loc vrtu and gen vrta (used in the l05 dialogue) are correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-i06": {
+          "verdict": "accepted",
+          "reason": "Feminine, loc postelji is correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-i07": {
+          "verdict": "accepted",
+          "reason": "Neuter. acc.pl okna (tri okna) is correct. The helper holds: Proto-Slavic *okъno is built on *oko, and English window comes from wind-eye.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/okno"
+        },
+        "u06-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Masculine, loc stolu is correct, and the examples are natural. Slavic *stolъ and Germanic *stōlaz are parallel formations from the same 'stand' root, so 'Like German Stuhl' is an honest hook.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/Reconstruction:Proto-Slavic/stolъ"
+        }
+      },
+      "lines": {
+        "u06-l03-s01": {
+          "verdict": "accepted",
+          "reason": "Na vrtu is the only correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-s02": {
+          "verdict": "accepted",
+          "reason": "V sobi is correct, and na sobi is wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-s03": {
+          "verdict": "accepted",
+          "reason": "Na mizi matches the English 'on the table'.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-s04": {
+          "verdict": "accepted",
+          "reason": "V omari matches 'in the cupboard'. 'Na omari' (on top of it) is excluded by the English.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Only -i gives kopalnici.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-s06": {
+          "verdict": "accepted",
+          "reason": "Only -u gives stolu.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-s07": {
+          "verdict": "accepted",
+          "reason": "Neuter okno needs odprto, and the other two forms are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-p02": {
+          "verdict": "accepted",
+          "reason": "The answer is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-p03": {
+          "verdict": "accepted",
+          "reason": "The answer is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-p04": {
+          "verdict": "accepted",
+          "reason": "The answer and the word-order variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Correct. Calling 'Živjo' across the house is slightly phone-like ('Hej' would be likelier) but would pass, and 'In your room?' is a fair rendering.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural reply.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural, and the ti imperative pridi fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct and natural enough.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural, and 'Ja, zelo.' is idiomatic.",
+          "fix": "",
+          "source": ""
+        },
+        "r-v-or-na": {
+          "verdict": "accepted",
+          "reason": "Rule and examples are correct, and the German and English helpers are accurate (im Garten, na vrtu). The quick check has one blank and one right answer.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u06-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Na balkonu je lepo is correct and natural. The examples are fine, with kar naprej meaning go ahead. The German Balkon helper is genuine. Lepo je na balkonu is a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Sem na vrtu is correct. A clitic first in the sentence is normal in Slovenian. The examples are natural. The helper's in versus na contrast is accurate. All variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Knjiga je na postelji is correct. The examples are natural and the helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Okno je odprto shows correct neuter agreement. The examples are natural. The helper (odprt, odprto) is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-i05": {
+          "verdict": "accepted",
+          "reason": "vrt is masculine with locative vrtu and genitive vrta. The examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-i06": {
+          "verdict": "accepted",
+          "reason": "postelja is feminine with locative postelji. The examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-i07": {
+          "verdict": "accepted",
+          "reason": "okno is neuter, and okna (accusative plural, as in tri okna) is correct. The example is natural. The helper is a real etymology: *okъno is built on *oko, and window comes from Old Norse vindauga.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/okno"
+        },
+        "u06-l03-i08": {
+          "verdict": "accepted",
+          "reason": "stol is masculine with locative stolu. The examples are natural. Stuhl is a genuine cognate.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u06-l03-s01": {
+          "verdict": "accepted",
+          "reason": "Kosilo je na vrtu is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-s02": {
+          "verdict": "accepted",
+          "reason": "Knjiga je v sobi is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-s03": {
+          "verdict": "accepted",
+          "reason": "Kozarec je na mizi is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-s04": {
+          "verdict": "accepted",
+          "reason": "v omari matches the English, in the cupboard. Na omari (on top of the cupboard) is grammatical, but the English rules it out, so only one option fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Sem v kopalnici is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-s06": {
+          "verdict": "accepted",
+          "reason": "na stolu is correct. Stola and stoli are wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-s07": {
+          "verdict": "accepted",
+          "reason": "Okno v kuhinji je odprto shows correct neuter agreement, and the English is fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and all variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Knjiga je na postelji is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Okno je odprto is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Na balkonu je lepo and Lepo je na balkonu are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Živjo, kje si? V sobi? is natural for a host who says ti, and the English is fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Ne, sem na vrtu. is acceptable in speech (Ne, na vrtu sem is equally natural), and the English is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Pridi, kava je na balkonu. is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Dobro. Na balkonu je lepo. is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u06-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Ja, zelo. Tukaj je stol. is natural, and the English is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "r-v-or-na": {
+          "verdict": "accepted",
+          "reason": "The v and na distinction is correct, and na vrtu is rightly singled out. The toggles are correct. The quick check has exactly one right option. The German note (auf dem Balkon, but im Garten is na vrtu) and the English note are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u06-l03-i01": "5200a076834d4e85",
+    "u06-l03-i02": "2fd109e92a20e0a6",
+    "u06-l03-i03": "17df8045b9d8461a",
+    "u06-l03-i04": "a365a8628374dfcb",
+    "u06-l03-i05": "23babab28b15d6cb",
+    "u06-l03-i06": "da92778703ed0fba",
+    "u06-l03-i07": "87762e8409d5f422",
+    "u06-l03-i08": "bfbc15fe0bd4af26",
+    "u06-l03-s01": "fd7d8d12ab10e4a3",
+    "u06-l03-s02": "97202a72d6a7bf06",
+    "u06-l03-s03": "8db449b2109b3afe",
+    "u06-l03-s04": "82985c5ff4a6576c",
+    "u06-l03-s05": "ddd8bd564b0d9f80",
+    "u06-l03-s06": "9005d76da274e34d",
+    "u06-l03-s07": "c90c0a0e75c2a41b",
+    "u06-l03-p01": "5a4ac898eedac459",
+    "u06-l03-p02": "32c582d373ca5c43",
+    "u06-l03-p03": "b0df97a9826befb9",
+    "u06-l03-p04": "986ef5a18f3b5298",
+    "u06-l03-d-01": "6e0a4de8d89a3e83",
+    "u06-l03-d-02": "3641042d753a0b20",
+    "u06-l03-d-03": "1e03956b6321c906",
+    "u06-l03-d-04": "bce743c9412cf665",
+    "u06-l03-d-05": "b05343d5e6895920",
+    "r-v-or-na": "87b0c425146138dd"
+  }
+}

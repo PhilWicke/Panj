@@ -1,0 +1,406 @@
+{
+  "id": "u06-l05",
+  "unit": "u06",
+  "order": 5,
+  "role": "consolidation",
+  "title_sl": "Novo stanovanje",
+  "title_en": "A new flat",
+  "items": [
+    {
+      "id": "u06-l05-i01",
+      "type": "chunk",
+      "sl": "Koliko sob ima?",
+      "sl_colloquial": null,
+      "en": "How many rooms does it have?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Lepo stanovanje. Koliko sob ima?",
+          "en": "A lovely flat. How many rooms does it have?"
+        },
+        {
+          "sl": "Koliko sob ima? Dve sobi in kuhinjo.",
+          "en": "How many rooms does it have? Two rooms and a kitchen."
+        }
+      ],
+      "helper": "After koliko, soba takes the genitive plural sob, as in koliko evrov.",
+      "accept": [
+        "Koliko sob ima stanovanje?"
+      ],
+      "rules": [
+        "r-genitive-quantity"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l05-i02",
+      "type": "chunk",
+      "sl": "Zelo je svetlo.",
+      "sl_colloquial": null,
+      "en": "It's very bright.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kuhinja je lepa. Zelo je svetlo.",
+          "en": "The kitchen is nice. It's very bright."
+        },
+        {
+          "sl": "Zelo je svetlo, ima tri okna.",
+          "en": "It's very bright, it has three windows."
+        }
+      ],
+      "helper": "Built like zelo je dobro; svetlo is bright, full of light.",
+      "accept": [
+        "Tukaj je zelo svetlo."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l05-i03",
+      "type": "chunk",
+      "sl": "Tukaj je mirno.",
+      "sl_colloquial": null,
+      "en": "It's quiet here.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Tukaj je mirno in lepo.",
+          "en": "It's quiet and nice here."
+        },
+        {
+          "sl": "Tukaj je mirno, lahko dobro spim.",
+          "en": "It's quiet here, I can sleep well."
+        }
+      ],
+      "helper": "From mir, peace: calm and quiet.",
+      "accept": [
+        "Tu je mirno."
+      ],
+      "rules": [
+        "r-kje-kam"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l05-i04",
+      "type": "chunk",
+      "sl": "Kje je pralni stroj?",
+      "sl_colloquial": null,
+      "en": "Where is the washing machine?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, kje je pralni stroj?",
+          "en": "Excuse me, where is the washing machine?"
+        },
+        {
+          "sl": "Kje je pralni stroj? V kopalnici?",
+          "en": "Where is the washing machine? In the bathroom?"
+        }
+      ],
+      "helper": "pralni is for washing, from prati, to wash; stroj is a machine.",
+      "accept": [],
+      "rules": [
+        "r-kje-kam"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l05-i05",
+      "type": "chunk",
+      "sl": "Imate tudi vrt?",
+      "sl_colloquial": null,
+      "en": "Do you have a garden too? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Lepo stanovanje. Imate tudi vrt?",
+          "en": "A lovely flat. Do you have a garden too?"
+        },
+        {
+          "sl": "Hiša je lepa. Imate tudi vrt?",
+          "en": "The house is lovely. Do you have a garden too?"
+        }
+      ],
+      "helper": "tudi is also or too; imate is you have, polite or for several people.",
+      "accept": [
+        "Ali imate tudi vrt?",
+        "A imate tudi vrt?"
+      ],
+      "rules": [
+        "r-imeti-present",
+        "r-a-ali"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u06-l05-i06",
+      "type": "chunk",
+      "sl": "Lepo stanovanje imate.",
+      "sl_colloquial": null,
+      "en": "You have a lovely flat. (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Lepo stanovanje imate. Zelo je svetlo.",
+          "en": "You have a lovely flat. It's very bright."
+        },
+        {
+          "sl": "Hvala za kosilo. Lepo stanovanje imate.",
+          "en": "Thanks for lunch. You have a lovely flat."
+        }
+      ],
+      "helper": "lepo takes -o to match neuter stanovanje; imate is polite or for several people.",
+      "accept": [
+        "Imate lepo stanovanje."
+      ],
+      "rules": [
+        "r-adjective-agreement",
+        "r-imeti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [],
+  "structured": [
+    {
+      "id": "u06-l05-s01",
+      "prompt_sl": "___ je pralni stroj?",
+      "options": [
+        "Kje",
+        "Kam"
+      ],
+      "answer": "Kje",
+      "rule": "r-kje-kam",
+      "en": "Where's the washing machine?"
+    },
+    {
+      "id": "u06-l05-s02",
+      "prompt_sl": "Pralni stroj je v kopalnic_.",
+      "options": [
+        "a",
+        "i",
+        "o"
+      ],
+      "answer": "i",
+      "rule": "r-locative",
+      "en": "The washing machine is in the bathroom."
+    },
+    {
+      "id": "u06-l05-s03",
+      "prompt_sl": "Zajtrk je ___ balkonu.",
+      "options": [
+        "v",
+        "na"
+      ],
+      "answer": "na",
+      "rule": "r-v-or-na",
+      "en": "Breakfast is on the balcony."
+    },
+    {
+      "id": "u06-l05-s04",
+      "prompt_sl": "Stol je ___ vratih.",
+      "options": [
+        "v",
+        "na",
+        "pri"
+      ],
+      "answer": "pri",
+      "rule": "r-pri",
+      "en": "The chair is by the door."
+    },
+    {
+      "id": "u06-l05-s05",
+      "prompt_sl": "Postelja je v sob_.",
+      "options": [
+        "a",
+        "i",
+        "o"
+      ],
+      "answer": "i",
+      "rule": "r-locative",
+      "en": "The bed is in the room."
+    },
+    {
+      "id": "u06-l05-s06",
+      "prompt_sl": "Kje ___ vrata?",
+      "options": [
+        "je",
+        "sta",
+        "so"
+      ],
+      "answer": "so",
+      "rule": "r-biti-present",
+      "en": "Where is the door?"
+    },
+    {
+      "id": "u06-l05-s07",
+      "prompt_sl": "Grem na ___.",
+      "options": [
+        "vrt",
+        "vrtu"
+      ],
+      "answer": "vrt",
+      "rule": "r-grem-v-na",
+      "en": "I'm going out into the garden."
+    }
+  ],
+  "production": [
+    {
+      "id": "u06-l05-p01",
+      "en": "You're looking round a flat. Ask how many rooms it has.",
+      "answer": "Koliko sob ima?",
+      "accept": [
+        "Koliko sob ima stanovanje?"
+      ],
+      "item": "u06-l05-i01"
+    },
+    {
+      "id": "u06-l05-p02",
+      "en": "Ask the owner, politely, whether they have a garden too.",
+      "answer": "Imate tudi vrt?",
+      "accept": [
+        "Ali imate tudi vrt?",
+        "A imate tudi vrt?"
+      ],
+      "item": "u06-l05-i05"
+    },
+    {
+      "id": "u06-l05-p03",
+      "en": "Tell the owner, an older person, that they have a lovely flat.",
+      "answer": "Lepo stanovanje imate.",
+      "accept": [
+        "Imate lepo stanovanje."
+      ],
+      "item": "u06-l05-i06"
+    },
+    {
+      "id": "u06-l05-p04",
+      "en": "You've rented the flat and a friend comes to stay. Show them their room.",
+      "answer": "Tukaj je tvoja soba.",
+      "accept": [
+        "Tvoja soba je tukaj.",
+        "Tu je tvoja soba.",
+        "Tvoja soba je tu.",
+        "To je tvoja soba."
+      ],
+      "item": "u06-l01-i02"
+    },
+    {
+      "id": "u06-l05-p05",
+      "en": "Leaving the flat, tell the owner where the key is: on the table.",
+      "answer": "Ključ je na mizi.",
+      "accept": [],
+      "item": "u06-l02-i02"
+    },
+    {
+      "id": "u06-l05-p06",
+      "en": "The owner asks where you live at the moment. Say that you live in the centre.",
+      "answer": "Stanujem v centru.",
+      "accept": [
+        "Živim v centru."
+      ],
+      "item": "u06-l04-i02"
+    }
+  ],
+  "dialogue": {
+    "id": "u06-l05-d",
+    "title_sl": "Ogled stanovanja",
+    "title_en": "Viewing a flat",
+    "setting_en": "Another neighbour of your hosts, an older person, has a flat to rent. You look round it room by room, and your hosts come along.",
+    "lines": [
+      {
+        "speaker": "neighbour",
+        "sl": "Dober dan. Kar naprej, to je stanovanje.",
+        "en": "Good day. Come on in, this is the flat."
+      },
+      {
+        "speaker": "you",
+        "sl": "Dober dan. Koliko sob ima?",
+        "en": "Good day. How many rooms does it have?",
+        "new_items": [
+          "u06-l05-i01"
+        ]
+      },
+      {
+        "speaker": "neighbour",
+        "sl": "Dve sobi. Tukaj je kuhinja, tam je kopalnica.",
+        "en": "Two rooms. Here is the kitchen, and there is the bathroom."
+      },
+      {
+        "speaker": "you",
+        "sl": "Zelo je svetlo. Kje je pralni stroj?",
+        "en": "It's very bright. Where is the washing machine?",
+        "new_items": [
+          "u06-l05-i02",
+          "u06-l05-i04"
+        ]
+      },
+      {
+        "speaker": "neighbour",
+        "sl": "V kuhinji. Pridite na balkon.",
+        "en": "In the kitchen. Come out onto the balcony."
+      },
+      {
+        "speaker": "you",
+        "sl": "Na balkonu je lepo. Imate tudi vrt?",
+        "en": "It's nice on the balcony. Do you have a garden too?",
+        "new_items": [
+          "u06-l03-i01",
+          "u06-l05-i05"
+        ]
+      },
+      {
+        "speaker": "neighbour",
+        "sl": "Žal ne, vrta ni.",
+        "en": "I'm afraid not, there's no garden."
+      },
+      {
+        "speaker": "you",
+        "sl": "Lepo stanovanje imate. Tukaj je mirno.",
+        "en": "You have a lovely flat. It's quiet here.",
+        "new_items": [
+          "u06-l05-i06",
+          "u06-l05-i03"
+        ]
+      }
+    ]
+  }
+}

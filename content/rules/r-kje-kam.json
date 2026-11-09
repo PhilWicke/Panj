@@ -1,0 +1,40 @@
+{
+  "id": "r-kje-kam",
+  "unit": "u06",
+  "title_en": "Where: kje and kam",
+  "card_en": "Kje asks where something or someone is: kje je kopalnica? Kam asks where to, with a verb of going: kam greš? Tukaj, here, and tam, there, answer kje; so does doma, while domov answers kam.",
+  "example": {
+    "sl": "Kje je kopalnica?",
+    "en": "Where is the bathroom?"
+  },
+  "toggles": [
+    {
+      "label": "Question",
+      "options": [
+        "kje, where",
+        "kam, where to"
+      ],
+      "examples": {
+        "kje, where": {
+          "sl": "Kje si? Doma.",
+          "en": "Where are you? At home."
+        },
+        "kam, where to": {
+          "sl": "Kam greš? Domov.",
+          "en": "Where are you going? Home."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "___ je stranišče?",
+    "options": [
+      "Kje",
+      "Kam"
+    ],
+    "answer": "Kje",
+    "explain_en": "You ask where the toilet is, not where someone is going, so kje: kje je stranišče?"
+  },
+  "helper_de": "Kje is wo and kam is wohin, the same split as in German: wo bist du, wohin gehst du.",
+  "helper_en": "English where covers both. Slovenian splits them: kje for where something is, kam for where to."
+}
