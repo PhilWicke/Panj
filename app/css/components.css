@@ -1,6 +1,6 @@
-/* Components: header, screens, buttons, the exercises, the feedback panel and the session bar.
-   Every control is at least 44 px tall; motion only answers an action and sits in the
-   no-preference block at the end. */
+/* Components: header, screens, buttons, the exercises, the feedback panel, the session bar, the
+   rule card, the Rules screen and the tab bar. Every control is at least 44 px tall; motion only
+   answers an action and sits in the no-preference block at the end. */
 
 /* Header */
 
@@ -367,6 +367,8 @@
 }
 
 .rule-line {
+  display: grid;
+  gap: 2px;
   padding-top: var(--space-12);
   border-top: 1px solid var(--border);
   font-size: var(--text-14);
@@ -407,11 +409,436 @@
   background: var(--honey);
 }
 
+/* Rule card */
+
+.rule-card {
+  display: grid;
+  gap: var(--space-16);
+}
+
+.rule-card-compact {
+  gap: var(--space-4);
+}
+
+.rule-title {
+  font-size: var(--text-22);
+  font-weight: 700;
+}
+
+.rule-title:focus {
+  outline: none;
+}
+
+.rule-card-compact .rule-title {
+  font-size: var(--text-18);
+}
+
+.rule-card-compact .rule-text {
+  color: var(--text-muted);
+  font-size: var(--text-14);
+}
+
+.rule-example {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-16);
+  border-radius: var(--radius-16);
+  background: var(--surface);
+}
+
+.rule-example-sl {
+  font-size: var(--text-22);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.rule-toggle {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.rule-toggle-label {
+  color: var(--text-muted);
+  font-size: var(--text-14);
+  font-weight: 600;
+}
+
+.segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.segment {
+  min-height: var(--tap);
+  padding: var(--space-8) var(--space-16);
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  font-size: var(--text-16);
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.segment[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.rule-table-wrap {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.rule-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: var(--space-4);
+}
+
+.rule-table th {
+  padding: var(--space-4) 0;
+  color: var(--text-muted);
+  font-size: var(--text-14);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.rule-table tbody th {
+  width: 2.75rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.rule-table thead td {
+  width: 2.75rem;
+}
+
+.rule-table td {
+  padding: 0;
+}
+
+.rule-table th.rule-col-marked {
+  color: var(--text);
+  box-shadow: inset 0 -3px 0 var(--honey);
+}
+
+.rule-col-caption {
+  display: block;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.rule-cell {
+  position: relative;
+  display: grid;
+  place-content: center;
+  width: 100%;
+  min-height: 60px;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-10);
+  background: var(--bg);
+  text-align: center;
+}
+
+button.rule-cell {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.rule-col-marked .rule-cell {
+  border-color: color-mix(in srgb, var(--honey) 70%, transparent);
+  background: color-mix(in srgb, var(--honey) 16%, var(--bg));
+}
+
+.rule-cell-noted::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.rule-cell[aria-pressed='true'] {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+.rule-cell-pronoun {
+  color: var(--text-muted);
+  font-size: var(--text-14);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.rule-cell-form {
+  font-size: var(--text-18);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.rule-note {
+  min-height: var(--tap);
+  padding: var(--space-8) var(--space-12);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-10) var(--radius-10) 0;
+  background: var(--surface);
+}
+
+.rule-note-form {
+  font-weight: 700;
+}
+
+.quick-check {
+  display: grid;
+  gap: var(--space-12);
+  padding-top: var(--space-16);
+  border-top: 1px solid var(--border);
+}
+
+.quick-check-prompt {
+  font-size: var(--text-22);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.blank {
+  display: inline-block;
+  min-width: 3.5em;
+  margin: 0 2px;
+  border-bottom: 3px solid var(--accent);
+  text-align: center;
+}
+
+.blank-filled {
+  min-width: 0;
+  padding: 0 var(--space-4);
+  border-bottom-color: var(--correct);
+  font-weight: 700;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.option {
+  font-size: var(--text-18);
+}
+
+.option-right,
+.option-wrong {
+  color: var(--text);
+}
+
+.option-right {
+  border-color: var(--correct);
+  background: var(--correct-surface);
+}
+
+.option-wrong {
+  border-color: var(--error);
+  background: var(--error-surface);
+  text-decoration: line-through;
+}
+
+.btn.option-right[disabled],
+.btn.option-wrong[disabled] {
+  opacity: 1;
+}
+
+.quick-check-answer {
+  font-weight: 700;
+}
+
+/* Rules screen */
+
+.screen-title {
+  font-size: var(--text-28);
+  font-weight: 800;
+}
+
+.search-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 var(--space-16);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-10);
+  background: var(--bg);
+  font-size: var(--text-16);
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+}
+
+.rule-group {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.rule-group-title {
+  display: grid;
+  gap: 2px;
+  font-weight: 400;
+}
+
+.rule-list {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.rule-entry {
+  position: relative;
+  display: grid;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-16);
+  background: var(--surface);
+}
+
+/* The entry is a surface already, so the panels inside an opened card sit on the page colour. */
+.rule-entry .rule-example,
+.rule-entry .rule-note,
+.rule-entry .helper {
+  background: var(--bg);
+}
+
+.rule-entry-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.rule-mastery-label,
+.rule-mastery-value {
+  color: var(--text-muted);
+  font-size: var(--text-14);
+  font-weight: 600;
+}
+
+.rule-mastery-value {
+  min-width: 3ch;
+  text-align: right;
+}
+
+.meter {
+  flex: 1;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--surface-strong);
+}
+
+.meter-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--honey);
+}
+
+.rule-open {
+  margin-left: auto;
+}
+
+/* Collapsed, the whole entry is the button's target. The press transform would make the button
+   the containing block of the overlay and shrink it mid-tap, so this button does not scale. */
+.rule-open[aria-expanded='false']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-16);
+}
+
+.rule-entry .btn.rule-open:active {
+  transform: none;
+}
+
+/* Tab bar */
+
+.app-main.has-nav {
+  padding-bottom: calc(64px + var(--space-32) + env(safe-area-inset-bottom));
+}
+
+.tab-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--header-bg);
+  color: var(--header-text);
+  border-top: 1px solid color-mix(in srgb, var(--warm-white) 14%, transparent);
+}
+
+.tab-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 56px;
+  padding: 0 var(--space-4);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: var(--text-14);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.tab[aria-current='page'] {
+  color: var(--honey);
+  font-weight: 800;
+}
+
+.tab[aria-current='page']::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 22%;
+  left: 22%;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--honey);
+}
+
+.tab[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: default;
+}
+
 /* Motion, only in answer to an action */
 
 @media (prefers-reduced-motion: no-preference) {
   .btn {
     transition: transform 120ms ease-out, background-color 120ms ease-out;
+  }
+
+  .segment,
+  .rule-cell {
+    transition: background-color 120ms ease-out, border-color 120ms ease-out;
   }
 
   .btn:not([disabled]):active {

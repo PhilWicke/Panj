@@ -1,7 +1,8 @@
 // The app's entry point. Boot: open the store (IndexedDB, or memory with a notice), load the state
 // and the content bundle, register the exercises, then route: `#/onboarding` until the learner is
-// onboarded, `#/today` otherwise. Every screen gets the one App object, whose state the screens
-// update as they save.
+// onboarded, `#/today` otherwise, `#/session` and `#/rules`. Every screen gets the one App object,
+// whose state the screens update as they save; every screen but onboarding and the session has the
+// tab bar below it.
 
 import { h, mount } from './util/dom.js';
 import { openStore } from './store/db.js';
@@ -11,8 +12,11 @@ import { currentParams, currentPath, navigate, onRoute } from './router.js';
 import { register } from './ui/exercises/registry.js';
 import * as meet from './ui/exercises/meet.js';
 import * as typed from './ui/exercises/typed.js';
+import * as rule from './ui/exercises/rule.js';
+import { renderNav } from './ui/components/nav.js';
 import { renderToday } from './ui/screens/today.js';
 import { renderSession } from './ui/screens/session.js';
+import { renderRules } from './ui/screens/rules.js';
 
 /** @typedef {import('./store/memory.js').StoreAdapter} StoreAdapter */
 /** @typedef {import('./store/state.js').AppState} AppState */
@@ -39,8 +43,25 @@ import { renderSession } from './ui/screens/session.js';
 
 register('meet', meet.render);
 register('typed_en_sl', typed.render);
+register('rule', rule.render);
 
 const root = /** @type {HTMLElement} */ (document.getElementById('app'));
+/** Routes that hide the tab bar. */
+const WITHOUT_NAV = new Set(['/onboarding', '/session']);
+/** @type {HTMLElement|null} */
+let nav = null;
+
+/**
+ * Puts the tab bar below the main column, or takes it away on the routes without one; the column
+ * keeps room at the bottom so the bar never covers content.
+ * @param {string} path
+ */
+function showNav(path) {
+  nav?.remove();
+  nav = WITHOUT_NAV.has(path) ? null : renderNav(path);
+  if (nav) root.after(nav);
+  root.classList.toggle('has-nav', nav !== null);
+}
 
 /** @param {AppState['settings']['theme']} theme */
 function applyTheme(theme) {
@@ -109,7 +130,9 @@ async function boot() {
     if (path === '/onboarding') renderOnboarding(app);
     else if (path === '/today') renderToday(root, app);
     else if (path === '/session') leave = renderSession(root, app, params);
-    else navigate('/today', { replace: true });
+    else if (path === '/rules') renderRules(root, app);
+    else return navigate('/today', { replace: true });
+    showNav(path);
   };
   onRoute(show);
   show(currentPath(), currentParams());

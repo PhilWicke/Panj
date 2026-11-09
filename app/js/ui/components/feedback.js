@@ -82,8 +82,9 @@ export function renderFeedback({ answer, graded, effective, target, rule, onDone
     h('div', { class: 'feedback-row' },
       h('span', { class: 'feedback-label' }, graded.result === 'correct' ? 'In Slovenian' : 'Correct form'),
       h('span', { class: 'sl-display feedback-form', lang: 'sl' }, correctForm)),
-    missed && rule && h('p', { class: 'rule-line' },
-      h('span', { class: 'rule-line-title' }, rule.title_en), ' ', rule.card_en),
+    missed && rule && h('div', { class: 'rule-line' },
+      h('p', { class: 'rule-line-title' }, rule.title_en),
+      h('p', null, rule.card_en)),
     actions);
 
   const continueButton = h('button', { type: 'button', class: missed ? 'btn btn-secondary' : 'btn btn-primary', onclick: done }, 'Continue');
