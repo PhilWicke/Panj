@@ -972,6 +972,41 @@ button.rule-cell {
   stroke: var(--hive-board);
 }
 
+/* Motifs: the parts of a motif symbol (motifs.js), flat in the folk colours, each filled part
+   outlined in --motif-line; m-line parts are a stroke alone. */
+
+.motif .m-main {
+  fill: var(--poppy);
+}
+
+.motif .m-second {
+  fill: var(--leaf);
+}
+
+.motif .m-third {
+  fill: var(--honey);
+}
+
+.motif .m-cut {
+  fill: var(--warm-white);
+}
+
+.motif .m-main,
+.motif .m-second,
+.motif .m-third,
+.motif .m-cut {
+  stroke: var(--motif-line);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.motif .m-line {
+  fill: none;
+  stroke: var(--motif-line);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
 /* Hive screen */
 
 .glance {

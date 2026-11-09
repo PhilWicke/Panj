@@ -83,6 +83,8 @@
   --hive-board: var(--surface);
   --hive-cell: var(--warm-white);
   --hive-text: var(--indigo);
+  /* The motifs' outline: indigo in both themes, since it outlines coloured parts. */
+  --motif-line: var(--indigo);
   /* The toast: ink on the warm page, indigo on the deep indigo page; its text is warm white in both. */
   --toast-bg: var(--ink);
   --toast-border: color-mix(in srgb, var(--warm-white) 16%, transparent);
