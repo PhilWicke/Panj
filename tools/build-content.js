@@ -14,13 +14,15 @@
 // CLI: node tools/build-content.js [--allow-pending] [--check] [contentDir];
 // exit 1 on lint errors, 2 on a bad argument. --check builds into a temporary
 // folder, removes it and prints the summary only.
-// No dependencies: node:fs, node:os, node:path and node:url, plus the app's sha256Hex.
+// No dependencies: node:fs, node:os, node:path and node:url, plus the app's
+// sha256Hex and wordTokens (the tokeniser lemmasMet shares with the progress counters).
 import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { lintContent } from './lint-content.js';
 import { sha256Hex } from '../app/js/util/hash.js';
+import { wordTokens } from '../app/js/util/tokens.js';
 
 /** @typedef {import('./lint-content.js').LintIssue} LintIssue */
 /** @typedef {import('../app/js/content/types.js').Item} Item */
@@ -49,16 +51,6 @@ const DEFAULT_VERSION_FILE = fileURLToPath(new URL('../app/version.js', import.m
 const USAGE = 'Usage: node tools/build-content.js [--allow-pending] [--check] [contentDir]';
 const VERSION_LENGTH = 12;
 const UNIT_FILE = /^u\d{2}\.json$/;
-
-/**
- * Lowercase word tokens: runs of letters and digits, everything else separates.
- * `lemmasMet` counts the distinct tokens of the scheduled items' `sl`, their
- * examples and the dialogue lines; a progress counter that wants to be measured
- * against it tokenises the same way.
- * @param {string} text
- * @returns {string[]}
- */
-export const wordTokens = (text) => text.normalize('NFC').toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(Boolean);
 
 /** @param {unknown} err */
 const errorMessage = (err) => (err instanceof Error ? err.message : String(err));

@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { buildContent, wordTokens } from '../../tools/build-content.js';
+import { buildContent } from '../../tools/build-content.js';
 const fx = (n) => fileURLToPath(new URL(`../../tools/fixtures/${n}/`, import.meta.url));
 
 // Every temporary folder a test makes is removed once the file has run.
@@ -45,8 +45,9 @@ test('refuses to build when the linter reports errors', async () => {
 });
 
 // Beyond the brief: the index shape, the strict rules at their edges, the
-// version and the version module, the CLI contract and the tokeniser. A test
-// that needs edited content builds a temporary copy of a fixture.
+// version and the version module, and the CLI contract. The tokeniser's test
+// moved with the tokeniser to tests/util/tokens.test.js. A test that needs
+// edited content builds a temporary copy of a fixture.
 
 const tmp = () => mkdtemp(join(tmpdir(), 'slovelingo-build-test-'));
 
@@ -182,11 +183,6 @@ test('a stale unit file from an earlier build is removed', async () => {
   await buildContent({ contentDir: fx('content-valid'), outDir: out, allowPending: true });
   await missing(join(out, 'units/u99.json'));
   await stat(join(out, 'units/u01.json'));
-});
-
-test('wordTokens lowercases and splits on anything that is not a letter or digit', () => {
-  assert.deepEqual(wordTokens('Živjo, kako si? Dober dan. 12:30 (DOBRODOŠLI)'), ['živjo', 'kako', 'si', 'dober', 'dan', '12', '30', 'dobrodošli']);
-  assert.deepEqual(wordTokens(' ... '), []);
 });
 
 const run = promisify(execFile);
