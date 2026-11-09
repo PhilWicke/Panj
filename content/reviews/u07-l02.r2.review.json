@@ -1,0 +1,34 @@
+{
+  "lesson": "u07-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {},
+      "lines": {
+        "u07-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Ne morete ga zgrešiti. is correct and natural: morete for the polite address, clitic ga directly after the modal, and the genitive of the object under negation. SSKJ gives this sense of zgrešiti with an object in the negative (hiša stoji na samem, ne boste je zgrešili; tega človeka ne moreš zgrešiti), so the rewrite now has the attested pattern. The instruction names the polite address and fixes ga, which excludes je and leaves one right answer, so the empty accept list is fine.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=zgre%C5%A1iti"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {},
+      "lines": {
+        "u07-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Ne morete ga zgrešiti is correct and natural. It keeps the object that SSKJ shows for this sense of zgrešiti (hiša stoji na samem, ne boste je zgrešili; tega človeka ne moreš zgrešiti), and ga is right after negation, where accusative and genitive coincide. The clitic follows morete as expected. The English is accurate, says the address is polite, and 'Use ga for it' fixes the masculine object, so the bare form and je are correctly excluded and the empty accept list is justified.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=zgrešiti"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u07-l02-p03": "b17de3de0f9fc941"
+  }
+}

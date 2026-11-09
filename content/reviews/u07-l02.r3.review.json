@@ -1,0 +1,34 @@
+{
+  "lesson": "u07-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u07-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Do takes the genitive and trg has the genitive trga, so exactly one option is right. The distractors trg (nominative/accusative) and trgu (locative/dative) are wrong after do but plausible, since the learner has met trgu in na trgu. Naravnost do trga. is a natural elliptical direction, and the English is faithful.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {},
+      "lines": {
+        "u07-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Do takes the genitive, and trg has genitive trga, so exactly one option is right. Trg (nominative or accusative) and trgu (dative or locative) are wrong after do but plausible distractors. Naravnost do trga is a natural elliptical direction, and the English 'Straight on as far as the square.' is faithful.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/trg"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u07-l02-s01": "750fdc50730764b6"
+  }
+}

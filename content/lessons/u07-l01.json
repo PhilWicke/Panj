@@ -1,0 +1,445 @@
+{
+  "id": "u07-l01",
+  "unit": "u07",
+  "order": 1,
+  "role": "theme",
+  "title_sl": "Kako pridem do postaje?",
+  "title_en": "How do I get to the station?",
+  "items": [
+    {
+      "id": "u07-l01-i01",
+      "type": "chunk",
+      "sl": "Kako pridem do postaje?",
+      "sl_colloquial": null,
+      "en": "How do I get to the station?",
+      "register": "neutral",
+      "slots": [
+        {
+          "label": "place",
+          "fillers": [
+            "u07-l01-i07",
+            "u07-l01-i08"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "sl": "Oprostite, kako pridem do postaje?",
+          "en": "Excuse me, how do I get to the station?"
+        },
+        {
+          "sl": "Dober dan. Kako pridem do postaje?",
+          "en": "Good day. How do I get to the station?"
+        }
+      ],
+      "helper": "Word for word: how do I come as far as the station. After do, postaja becomes postaje.",
+      "accept": [
+        "Kako pridem na postajo?"
+      ],
+      "rules": [
+        "r-do-genitive"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l01-i02",
+      "type": "chunk",
+      "sl": "Je daleč?",
+      "sl_colloquial": null,
+      "en": "Is it far?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Je daleč do postaje?",
+          "en": "Is it far to the station?"
+        },
+        {
+          "sl": "Oprostite, je daleč do banke?",
+          "en": "Excuse me, is it far to the bank?"
+        }
+      ],
+      "helper": null,
+      "accept": [
+        "Ali je daleč?",
+        "A je daleč?"
+      ],
+      "rules": [
+        "r-a-ali"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l01-i03",
+      "type": "chunk",
+      "sl": "Ni daleč.",
+      "sl_colloquial": null,
+      "en": "It's not far.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Postaja ni daleč.",
+          "en": "The station isn't far."
+        },
+        {
+          "sl": "Ne, ni daleč. Naravnost in potem levo.",
+          "en": "No, it's not far. Straight on and then left."
+        }
+      ],
+      "helper": "ni is the not of je, as in ni problema.",
+      "accept": [],
+      "rules": [
+        "r-biti-negative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l01-i04",
+      "type": "chunk",
+      "sl": "Naravnost in potem levo.",
+      "sl_colloquial": null,
+      "en": "Straight on and then left.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Do banke? Naravnost in potem levo.",
+          "en": "To the bank? Straight on and then left."
+        },
+        {
+          "sl": "Naravnost in potem levo, ni daleč.",
+          "en": "Straight on and then left, it's not far."
+        }
+      ],
+      "helper": null,
+      "accept": [
+        "Naravnost, potem pa levo.",
+        "Naravnost in nato levo."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l01-i05",
+      "type": "word",
+      "sl": "levo",
+      "sl_colloquial": null,
+      "en": "left (the direction)",
+      "register": "neutral",
+      "pos": "adverb",
+      "examples": [
+        {
+          "sl": "Banka je levo.",
+          "en": "The bank is on the left."
+        },
+        {
+          "sl": "Levo ali desno?",
+          "en": "Left or right?"
+        }
+      ],
+      "helper": "Related to Latin laevus, left.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l01-i06",
+      "type": "word",
+      "sl": "desno",
+      "sl_colloquial": null,
+      "en": "right (the direction)",
+      "register": "neutral",
+      "pos": "adverb",
+      "examples": [
+        {
+          "sl": "Postaja je desno.",
+          "en": "The station is on the right."
+        },
+        {
+          "sl": "Naravnost in potem desno.",
+          "en": "Straight on and then right."
+        }
+      ],
+      "helper": "Related to Latin dexter, right, as in English dexterity.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l01-i07",
+      "type": "word",
+      "sl": "postaja",
+      "sl_colloquial": null,
+      "en": "station, stop",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "gen": "postaje",
+        "loc": "postaji"
+      },
+      "examples": [
+        {
+          "sl": "Postaja je tam.",
+          "en": "The station is over there."
+        },
+        {
+          "sl": "Kje je postaja?",
+          "en": "Where is the station?"
+        }
+      ],
+      "helper": "Used for a bus stop and for a railway station alike.",
+      "accept": [],
+      "rules": [
+        "r-do-genitive"
+      ],
+      "freq_rank": 1689,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l01-i08",
+      "type": "word",
+      "sl": "banka",
+      "sl_colloquial": null,
+      "en": "bank (for money)",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "gen": "banke",
+        "loc": "banki"
+      },
+      "examples": [
+        {
+          "sl": "Kje je banka?",
+          "en": "Where is the bank?"
+        },
+        {
+          "sl": "Banka je tam, levo.",
+          "en": "The bank is over there, on the left."
+        }
+      ],
+      "helper": "Like English bank and German Bank, the kind for money.",
+      "accept": [],
+      "rules": [
+        "r-do-genitive"
+      ],
+      "freq_rank": 924,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-do-genitive"
+  ],
+  "structured": [
+    {
+      "id": "u07-l01-s01",
+      "prompt_sl": "Kako pridem do postaj_?",
+      "options": [
+        "a",
+        "e",
+        "o"
+      ],
+      "answer": "e",
+      "rule": "r-do-genitive",
+      "en": "How do I get to the station?"
+    },
+    {
+      "id": "u07-l01-s02",
+      "prompt_sl": "Je daleč do bank_?",
+      "options": [
+        "a",
+        "e",
+        "o"
+      ],
+      "answer": "e",
+      "rule": "r-do-genitive",
+      "en": "Is it far to the bank?"
+    },
+    {
+      "id": "u07-l01-s03",
+      "prompt_sl": "Kako pridem do ___?",
+      "options": [
+        "center",
+        "centra",
+        "centru"
+      ],
+      "answer": "centra",
+      "rule": "r-do-genitive",
+      "en": "How do I get to the centre?"
+    },
+    {
+      "id": "u07-l01-s04",
+      "prompt_sl": "Je daleč do ___?",
+      "options": [
+        "trgovina",
+        "trgovino",
+        "trgovine"
+      ],
+      "answer": "trgovine",
+      "rule": "r-do-genitive",
+      "en": "Is it far to the shop?"
+    },
+    {
+      "id": "u07-l01-s05",
+      "prompt_sl": "Postaja ___ daleč.",
+      "options": [
+        "ni",
+        "nisem",
+        "niso"
+      ],
+      "answer": "ni",
+      "rule": "r-biti-negative",
+      "en": "The station isn't far."
+    },
+    {
+      "id": "u07-l01-s06",
+      "prompt_sl": "Banka je ___ postaji.",
+      "options": [
+        "v",
+        "pri"
+      ],
+      "answer": "pri",
+      "rule": "r-pri",
+      "en": "The bank is by the station."
+    }
+  ],
+  "production": [
+    {
+      "id": "u07-l01-p01",
+      "en": "Stop a passer-by and ask how to get to the station.",
+      "answer": "Kako pridem do postaje?",
+      "accept": [
+        "Oprostite, kako pridem do postaje?",
+        "Kako pridem na postajo?",
+        "Oprostite, kako pridem na postajo?"
+      ],
+      "item": "u07-l01-i01"
+    },
+    {
+      "id": "u07-l01-p02",
+      "en": "Now ask the way to the bank.",
+      "answer": "Kako pridem do banke?",
+      "accept": [
+        "Oprostite, kako pridem do banke?"
+      ],
+      "item": "u07-l01-i01",
+      "filler": "banke"
+    },
+    {
+      "id": "u07-l01-p03",
+      "en": "You have the directions. Ask whether it is far.",
+      "answer": "Je daleč?",
+      "accept": [
+        "Ali je daleč?",
+        "A je daleč?"
+      ],
+      "item": "u07-l01-i02"
+    },
+    {
+      "id": "u07-l01-p04",
+      "en": "Tell someone the way: straight on and then left.",
+      "answer": "Naravnost in potem levo.",
+      "accept": [
+        "Naravnost, potem pa levo.",
+        "Naravnost in nato levo."
+      ],
+      "item": "u07-l01-i04"
+    },
+    {
+      "id": "u07-l01-p05",
+      "en": "A tired visitor asks about the walk. Reassure them that it is not far.",
+      "answer": "Ni daleč.",
+      "accept": [
+        "Ne, ni daleč."
+      ],
+      "item": "u07-l01-i03"
+    }
+  ],
+  "dialogue": {
+    "id": "u07-l01-d",
+    "title_sl": "Do postaje",
+    "title_en": "To the station",
+    "setting_en": "You are in town and need the bus station. You stop a passer-by, an older person, and ask the way.",
+    "lines": [
+      {
+        "speaker": "you",
+        "sl": "Oprostite, kako pridem do postaje?",
+        "en": "Excuse me, how do I get to the station?",
+        "new_items": [
+          "u07-l01-i01"
+        ]
+      },
+      {
+        "speaker": "passer-by",
+        "sl": "Naravnost in potem levo.",
+        "en": "Straight on and then left."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala. Je daleč?",
+        "en": "Thank you. Is it far?",
+        "new_items": [
+          "u07-l01-i02"
+        ]
+      },
+      {
+        "speaker": "passer-by",
+        "sl": "Ne, ni daleč. Postaja je levo, pri banki.",
+        "en": "No, it's not far. The station is on the left, by the bank."
+      },
+      {
+        "speaker": "you",
+        "sl": "Naravnost in potem levo. Hvala lepa.",
+        "en": "Straight on and then left. Thank you very much.",
+        "new_items": [
+          "u07-l01-i04"
+        ]
+      }
+    ]
+  }
+}

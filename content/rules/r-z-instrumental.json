@@ -1,0 +1,56 @@
+{
+  "id": "r-z-instrumental",
+  "unit": "u07",
+  "title_en": "By bus: z with the instrumental",
+  "card_en": "Z means with or by and takes the instrumental: masculine and neuter -om (z avtobusom), or -em after c, č, š, ž, j (s čajem); feminine mostly -o. Before k, p, t and similar sounds it is s: s kartico.",
+  "example": {
+    "sl": "Grem z avtobusom.",
+    "en": "I'm going by bus."
+  },
+  "toggles": [
+    {
+      "label": "How",
+      "options": [
+        "by bus",
+        "by train",
+        "by car",
+        "with milk",
+        "by card"
+      ],
+      "examples": {
+        "by bus": {
+          "sl": "Grem z avtobusom.",
+          "en": "I'm going by bus."
+        },
+        "by train": {
+          "sl": "Grem z vlakom.",
+          "en": "I'm going by train."
+        },
+        "by car": {
+          "sl": "Grem z avtom.",
+          "en": "I'm going by car."
+        },
+        "with milk": {
+          "sl": "Kavo z mlekom, prosim.",
+          "en": "A coffee with milk, please."
+        },
+        "by card": {
+          "sl": "Plačam s kartico.",
+          "en": "I'll pay by card."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Danes grem z vlak_.",
+    "options": [
+      "a",
+      "om",
+      "u"
+    ],
+    "answer": "om",
+    "explain_en": "After z, vlak takes the instrumental: z vlakom."
+  },
+  "helper_de": "Like German mit: z avtobusom is mit dem Bus, and the ending of the noun changes.",
+  "helper_en": "English says by bus and by car; Slovenian uses the word for with: z avtobusom, z avtom."
+}

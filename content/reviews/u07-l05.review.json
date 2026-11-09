@@ -1,0 +1,374 @@
+{
+  "lesson": "u07-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u07-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Clitic-first yes/no question is everyday speech; variants correct; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-i02": {
+          "verdict": "doubtful",
+          "reason": "Headword, gender of smer and variants are fine, but the second example 'Do postaje, je to prava smer?' is a fronted fragment that may sound built. Je to prava smer do postaje? looks more natural. A native should check that example.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=smer"
+        },
+        "u07-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Natural; examples natural; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Correct neuter agreement; natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Natural; word-order variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Natural; variant correct.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u07-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Genitive trga.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Instrumental vlakom.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-s03": {
+          "verdict": "accepted",
+          "reason": "Prvi agrees with masculine vlak.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Locative cerkvi.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-s05": {
+          "verdict": "accepted",
+          "reason": "Smer is feminine in Fran, so prava is the one answer.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=smer"
+        },
+        "u07-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Neuter staro.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-s07": {
+          "verdict": "accepted",
+          "reason": "V center is the right preposition.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural counter opening.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Natural; enosmerno agrees with the understood karto.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural; ob šestih and na peronu correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u07-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Natural polite request; all variants correct; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-i02": {
+          "verdict": "doubtful",
+          "reason": "examples: Do postaje, je to prava smer? is a stilted left-dislocation, and a speaker would more likely say Je to prava smer do postaje? The headword, the other example and the variants are fine.",
+          "fix": "Je to prava smer do postaje?",
+          "source": ""
+        },
+        "u07-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Natural; examples grammatical and faithful; helper is an honest parallel with the German.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Correct agreement; natural; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Natural; word-order variants correct; examples fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Standard thanks; examples and variant correct.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u07-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Genitive trga after do.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Instrumental vlakom.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-s03": {
+          "verdict": "accepted",
+          "reason": "Masculine prvi agrees with vlak.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Locative cerkvi after pri.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-s05": {
+          "verdict": "accepted",
+          "reason": "Feminine prava agrees with smer.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Neuter staro agrees with mesto.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-s07": {
+          "verdict": "accepted",
+          "reason": "v center is the right preposition; translation faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural; within the length limit.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural polite directions.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural short questions.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural reply.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural thanks.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural counter opening.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Natural; enosmerno agrees with the accusative karto.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural in speech; ob šestih and na peronu correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u07-l05-i01": "ec60c8a51f5c4152",
+    "u07-l05-i02": "20451ef289f4365a",
+    "u07-l05-i03": "ed7475437e4486b1",
+    "u07-l05-i04": "400073c693d2ca95",
+    "u07-l05-i05": "cc53433bd9d5aecc",
+    "u07-l05-i06": "9b180af875595d03",
+    "u07-l05-s01": "8e678c3b77a479d4",
+    "u07-l05-s02": "6bf0c3fd2266e804",
+    "u07-l05-s03": "511413ed220e4cf4",
+    "u07-l05-s04": "9f14213c95407178",
+    "u07-l05-s05": "5a21cdd519c13e7c",
+    "u07-l05-s06": "5b42f4b0e633ee64",
+    "u07-l05-s07": "eebad72c7194a2de",
+    "u07-l05-p01": "93d349488b45a136",
+    "u07-l05-p02": "bc184ec48be0a849",
+    "u07-l05-p03": "d0bed5d9aeb99b2d",
+    "u07-l05-p04": "17393e27fa8cacce",
+    "u07-l05-p05": "bcefc9851f36dc56",
+    "u07-l05-p06": "6131be7434322c48",
+    "u07-l05-d-01": "9f26f4c03cffa769",
+    "u07-l05-d-02": "fd9c771147eda4e2",
+    "u07-l05-d-03": "3243fc1022e9d4dd",
+    "u07-l05-d-04": "b56da30d7cc88581",
+    "u07-l05-d-05": "8f302fe1837cdaff",
+    "u07-l05-d-06": "ede1b82281d371b6",
+    "u07-l05-d-07": "785c7162c20976c5",
+    "u07-l05-d-08": "b66dbdd05fe153aa"
+  }
+}

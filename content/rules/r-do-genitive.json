@@ -1,0 +1,51 @@
+{
+  "id": "r-do-genitive",
+  "unit": "u07",
+  "title_en": "As far as: do with the genitive",
+  "card_en": "Do means to or as far as, and the noun after it takes the genitive, as after ni: postaja becomes do postaje, center becomes do centra.",
+  "example": {
+    "sl": "Kako pridem do postaje?",
+    "en": "How do I get to the station?"
+  },
+  "toggles": [
+    {
+      "label": "Where to",
+      "options": [
+        "the station",
+        "the bank",
+        "the centre",
+        "the shop"
+      ],
+      "examples": {
+        "the station": {
+          "sl": "Kako pridem do postaje?",
+          "en": "How do I get to the station?"
+        },
+        "the bank": {
+          "sl": "Kako pridem do banke?",
+          "en": "How do I get to the bank?"
+        },
+        "the centre": {
+          "sl": "Kako pridem do centra?",
+          "en": "How do I get to the centre?"
+        },
+        "the shop": {
+          "sl": "Kako pridem do trgovine?",
+          "en": "How do I get to the shop?"
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Kako pridem do trgovin_?",
+    "options": [
+      "a",
+      "e",
+      "o"
+    ],
+    "answer": "e",
+    "explain_en": "After do, trgovina takes the genitive: do trgovine."
+  },
+  "helper_de": "do is close to German bis zu, but it takes the genitive: do postaje.",
+  "helper_en": "English to never changes the noun; after do, the noun changes: do postaje, do centra."
+}

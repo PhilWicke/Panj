@@ -1,0 +1,34 @@
+{
+  "lesson": "u07-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {},
+      "lines": {
+        "r-z-instrumental": {
+          "verdict": "accepted",
+          "reason": "Card text is accurate and 40 words, the limit: -om for masculine and neuter, -em after c, č, š, ž, j (s čajem), feminine mostly -o, which rightly leaves room for -jo in nouns like nočjo. Pravopis confirms s before voiceless consonants, and s čajem and s kartico follow it; SSKJ z² II.1 covers the means or instrument use. Example and all five toggles (Grem z avtobusom, z vlakom, z avtom; Kavo z mlekom, prosim; Plačam s kartico) are grammatical, natural and faithfully translated. Quick check has one blank and om is the answer. Option a forms z vlaka, the genitive sense off the train, which exists as a form but makes no sense with Danes grem, so it works as a distractor. helper_de reads correctly as a remark on Slovenian, since German changes the article rather than the noun.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=z"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {},
+      "lines": {
+        "r-z-instrumental": {
+          "verdict": "accepted",
+          "reason": "Card text is accurate at this level: -om for masculine and neuter, -em after c, č, š, ž, j (s čajem is right), feminine mostly -o, and s before voiceless consonants, which Pravopis confirms. It is exactly 40 words. All five toggle sentences are grammatical and natural with faithful English, with z and s chosen correctly (z avtobusom, z vlakom, z avtom, z mlekom, s kartico). The quick check has one blank and one right answer: z vlaka exists as 'off the train' but does not fit Danes grem as a complete sentence, and z vlaku is impossible. helper_en is correct. helper_de is slightly loose, since the noun ending changes in Slovenian and not in German, but the intended reading is clear and nothing in it is wrong.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=s"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "r-z-instrumental": "c10e406e78699334"
+  }
+}

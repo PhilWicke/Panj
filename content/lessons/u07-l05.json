@@ -1,0 +1,411 @@
+{
+  "id": "u07-l05",
+  "unit": "u07",
+  "order": 5,
+  "role": "consolidation",
+  "title_sl": "Izlet v mesto",
+  "title_en": "A trip into town",
+  "items": [
+    {
+      "id": "u07-l05-i01",
+      "type": "chunk",
+      "sl": "Mi lahko pomagate?",
+      "sl_colloquial": null,
+      "en": "Can you help me? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, mi lahko pomagate?",
+          "en": "Excuse me, can you help me?"
+        },
+        {
+          "sl": "Mi lahko pomagate? Kje je postaja?",
+          "en": "Can you help me? Where is the station?"
+        }
+      ],
+      "helper": "mi is to me, as in ime mi je; pomagate is from pomagati, as in lahko pomagam.",
+      "accept": [
+        "Lahko mi pomagate?",
+        "Ali mi lahko pomagate?",
+        "A mi lahko pomagate?"
+      ],
+      "rules": [
+        "r-lahko",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l05-i02",
+      "type": "chunk",
+      "sl": "Je to prava smer?",
+      "sl_colloquial": null,
+      "en": "Is this the right way?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, je to prava smer?",
+          "en": "Excuse me, is this the right way?"
+        },
+        {
+          "sl": "Do postaje, je to prava smer?",
+          "en": "To the station, is this the right way?"
+        }
+      ],
+      "helper": "smer is direction; prava is right in the sense of correct, not the opposite of left.",
+      "accept": [
+        "Ali je to prava smer?",
+        "A je to prava smer?"
+      ],
+      "rules": [
+        "r-a-ali",
+        "r-adjective-agreement"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "doubtful",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review1 doubtful: Headword, gender of smer and variants are fine, but the second example 'Do postaje, je to prava smer?' is a fronted fragment that may sound built. Je to prava smer do postaje? looks more natural. A native should check that example.; review2 doubtful: examples: Do postaje, je to prava smer? is a stilted left-dislocation, and a speaker would more likely say Je to prava smer do postaje? The headword, the other example and the variants are fine. Fix: Je to prava smer do postaje?"
+      }
+    },
+    {
+      "id": "u07-l05-i03",
+      "type": "chunk",
+      "sl": "Kako dolgo traja?",
+      "sl_colloquial": null,
+      "en": "How long does it take?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kako dolgo traja z avtobusom?",
+          "en": "How long does it take by bus?"
+        },
+        {
+          "sl": "Kako dolgo traja do centra?",
+          "en": "How long does it take to the centre?"
+        }
+      ],
+      "helper": "Built like German Wie lange dauert es?: dolgo is long, traja is lasts.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l05-i04",
+      "type": "chunk",
+      "sl": "Kje je staro mesto?",
+      "sl_colloquial": null,
+      "en": "Where is the old town?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, kje je staro mesto?",
+          "en": "Excuse me, where is the old town?"
+        },
+        {
+          "sl": "Kje je staro mesto? Je daleč?",
+          "en": "Where is the old town? Is it far?"
+        }
+      ],
+      "helper": "mesto is town or city; staro is old, with -o to match neuter mesto.",
+      "accept": [],
+      "rules": [
+        "r-adjective-agreement",
+        "r-kje-kam"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l05-i05",
+      "type": "chunk",
+      "sl": "Nazaj grem z vlakom.",
+      "sl_colloquial": null,
+      "en": "I'm going back by train.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Nazaj grem z vlakom, ob osmih.",
+          "en": "I'm going back by train, at eight."
+        },
+        {
+          "sl": "Ne, nazaj grem z vlakom.",
+          "en": "No, I'm going back by train."
+        }
+      ],
+      "helper": "nazaj is back; z vlakom is by train, as in grem z avtobusom.",
+      "accept": [
+        "Grem nazaj z vlakom.",
+        "Z vlakom grem nazaj."
+      ],
+      "rules": [
+        "r-z-instrumental",
+        "r-iti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l05-i06",
+      "type": "chunk",
+      "sl": "Hvala za pomoč.",
+      "sl_colloquial": null,
+      "en": "Thanks for the help.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala za pomoč, nasvidenje.",
+          "en": "Thanks for the help, goodbye."
+        },
+        {
+          "sl": "Hvala lepa za pomoč.",
+          "en": "Thank you very much for the help."
+        }
+      ],
+      "helper": "Built like hvala za vse: za is for, pomoč is help.",
+      "accept": [
+        "Hvala lepa za pomoč."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [],
+  "structured": [
+    {
+      "id": "u07-l05-s01",
+      "prompt_sl": "Kako pridem do trg_?",
+      "options": [
+        "a",
+        "u"
+      ],
+      "answer": "a",
+      "rule": "r-do-genitive",
+      "en": "How do I get to the square?"
+    },
+    {
+      "id": "u07-l05-s02",
+      "prompt_sl": "Nazaj grem z vlak_.",
+      "options": [
+        "a",
+        "om",
+        "u"
+      ],
+      "answer": "om",
+      "rule": "r-z-instrumental",
+      "en": "I'm going back by train."
+    },
+    {
+      "id": "u07-l05-s03",
+      "prompt_sl": "Kdaj gre ___ vlak?",
+      "options": [
+        "prvi",
+        "prva",
+        "prvo"
+      ],
+      "answer": "prvi",
+      "rule": "r-ordinals",
+      "en": "When does the first train leave?"
+    },
+    {
+      "id": "u07-l05-s04",
+      "prompt_sl": "Banka je pri cerkv_.",
+      "options": [
+        "e",
+        "i"
+      ],
+      "answer": "i",
+      "rule": "r-pri",
+      "en": "The bank is by the church."
+    },
+    {
+      "id": "u07-l05-s05",
+      "prompt_sl": "Je to prav_ smer?",
+      "options": [
+        "i",
+        "a",
+        "o"
+      ],
+      "answer": "a",
+      "rule": "r-adjective-agreement",
+      "en": "Is this the right way?"
+    },
+    {
+      "id": "u07-l05-s06",
+      "prompt_sl": "Kje je star_ mesto?",
+      "options": [
+        "i",
+        "a",
+        "o"
+      ],
+      "answer": "o",
+      "rule": "r-adjective-agreement",
+      "en": "Where is the old town?"
+    },
+    {
+      "id": "u07-l05-s07",
+      "prompt_sl": "Grem ___ center.",
+      "options": [
+        "v",
+        "na"
+      ],
+      "answer": "v",
+      "rule": "r-grem-v-na",
+      "en": "I'm going into the centre."
+    }
+  ],
+  "production": [
+    {
+      "id": "u07-l05-p01",
+      "en": "Stop someone in the street, politely, and ask if they can help you.",
+      "answer": "Mi lahko pomagate?",
+      "accept": [
+        "Lahko mi pomagate?",
+        "Ali mi lahko pomagate?",
+        "A mi lahko pomagate?",
+        "Oprostite, mi lahko pomagate?"
+      ],
+      "item": "u07-l05-i01"
+    },
+    {
+      "id": "u07-l05-p02",
+      "en": "You need the station. Ask a passer-by how to get there.",
+      "answer": "Kako pridem do postaje?",
+      "accept": [
+        "Oprostite, kako pridem do postaje?",
+        "Kako pridem na postajo?",
+        "Oprostite, kako pridem na postajo?"
+      ],
+      "item": "u07-l01-i01"
+    },
+    {
+      "id": "u07-l05-p03",
+      "en": "Someone looking for the bank asks you. Tell them it's round the corner.",
+      "answer": "Je za vogalom.",
+      "accept": [
+        "Za vogalom je.",
+        "Banka je za vogalom."
+      ],
+      "item": "u07-l02-i04"
+    },
+    {
+      "id": "u07-l05-p04",
+      "en": "Tell a passer-by you'll take the bus.",
+      "answer": "Grem z avtobusom.",
+      "accept": [],
+      "item": "u07-l03-i01"
+    },
+    {
+      "id": "u07-l05-p05",
+      "en": "It's time to go home. Buy one ticket to Ljubljana.",
+      "answer": "Eno karto za Ljubljano, prosim.",
+      "accept": [
+        "Eno vozovnico za Ljubljano, prosim.",
+        "Karto za Ljubljano, prosim."
+      ],
+      "item": "u07-l04-i01"
+    },
+    {
+      "id": "u07-l05-p06",
+      "en": "Tell your hosts how you are getting back: by train.",
+      "answer": "Nazaj grem z vlakom.",
+      "accept": [
+        "Grem nazaj z vlakom.",
+        "Z vlakom grem nazaj."
+      ],
+      "item": "u07-l05-i05"
+    }
+  ],
+  "dialogue": {
+    "id": "u07-l05-d",
+    "title_sl": "Dan v mestu",
+    "title_en": "A day in town",
+    "setting_en": "A day trip into town. You ask a passer-by, an older person, the way to the old town. Later, at the station, you buy a ticket home from a clerk.",
+    "lines": [
+      {
+        "speaker": "you",
+        "sl": "Oprostite, mi lahko pomagate? Kje je staro mesto?",
+        "en": "Excuse me, can you help me? Where is the old town?",
+        "new_items": [
+          "u07-l05-i01",
+          "u07-l05-i04"
+        ]
+      },
+      {
+        "speaker": "passer-by",
+        "sl": "Pojdite naravnost, pri cerkvi levo.",
+        "en": "Go straight on, left at the church."
+      },
+      {
+        "speaker": "you",
+        "sl": "Je to prava smer? Kako dolgo traja?",
+        "en": "Is this the right way? How long does it take?",
+        "new_items": [
+          "u07-l05-i02",
+          "u07-l05-i03"
+        ]
+      },
+      {
+        "speaker": "passer-by",
+        "sl": "Ja. Peš je deset minut.",
+        "en": "Yes. It's ten minutes on foot."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala za pomoč.",
+        "en": "Thanks for the help.",
+        "new_items": [
+          "u07-l05-i06"
+        ]
+      },
+      {
+        "speaker": "clerk",
+        "sl": "Dober dan. Kaj želite?",
+        "en": "Good day. What would you like?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Eno karto za Ljubljano, prosim. Enosmerno.",
+        "en": "One ticket to Ljubljana, please. One way.",
+        "new_items": [
+          "u07-l04-i01"
+        ]
+      },
+      {
+        "speaker": "clerk",
+        "sl": "Izvolite. Vlak gre ob šestih, na peronu 1.",
+        "en": "Here you are. The train leaves at six, on platform 1."
+      }
+    ]
+  }
+}

@@ -1,0 +1,432 @@
+{
+  "id": "u07-l04",
+  "unit": "u07",
+  "order": 4,
+  "role": "theme",
+  "title_sl": "Eno karto, prosim",
+  "title_en": "One ticket, please",
+  "items": [
+    {
+      "id": "u07-l04-i01",
+      "type": "chunk",
+      "sl": "Eno karto za Ljubljano, prosim.",
+      "sl_colloquial": null,
+      "en": "One ticket to Ljubljana, please.",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Dober dan. Eno karto za Ljubljano, prosim.",
+          "en": "Good day. One ticket to Ljubljana, please."
+        },
+        {
+          "sl": "Eno karto za Ljubljano, prosim. Povratno.",
+          "en": "One ticket to Ljubljana, please. A return."
+        }
+      ],
+      "helper": "za, for, with the accusative: Ljubljana becomes za Ljubljano, karta becomes karto.",
+      "accept": [
+        "Eno vozovnico za Ljubljano, prosim."
+      ],
+      "rules": [
+        "r-accusative-feminine"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l04-i02",
+      "type": "chunk",
+      "sl": "Enosmerno ali povratno?",
+      "sl_colloquial": null,
+      "en": "One way or return?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan. Enosmerno ali povratno?",
+          "en": "Good day. One way or return?"
+        },
+        {
+          "sl": "Za Ljubljano? Enosmerno ali povratno?",
+          "en": "To Ljubljana? One way or return?"
+        }
+      ],
+      "helper": "enosmerno is one way, from en, one, and smer, direction; povratno is there and back.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l04-i03",
+      "type": "chunk",
+      "sl": "Kdaj gre naslednji vlak?",
+      "sl_colloquial": null,
+      "en": "When does the next train leave?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, kdaj gre naslednji vlak?",
+          "en": "Excuse me, when does the next train leave?"
+        },
+        {
+          "sl": "Kdaj gre naslednji vlak? Na peronu 2?",
+          "en": "When does the next train leave? On platform 2?"
+        }
+      ],
+      "helper": "gre, goes, is the everyday verb for trains and buses leaving: vlak gre ob osmih.",
+      "accept": [
+        "Kdaj pelje naslednji vlak?",
+        "Kdaj odpelje naslednji vlak?"
+      ],
+      "rules": [
+        "r-iti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review2 doubtful: register and helper: tagged neutral, and the helper presents gre as the verb for trains leaving, but SSKJ labels this use colloquial (pog. kdaj gre vlak, standard odpelje). The chunk is natural in speech and the accept variants are correct, but the tag and helper need a native's confirmation."
+      }
+    },
+    {
+      "id": "u07-l04-i04",
+      "type": "chunk",
+      "sl": "Vlak zamuja.",
+      "sl_colloquial": null,
+      "en": "The train is late.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Vlak zamuja deset minut.",
+          "en": "The train is ten minutes late."
+        },
+        {
+          "sl": "Prvi vlak zamuja.",
+          "en": "The first train is late."
+        }
+      ],
+      "helper": "zamuja is from zamujati, to be late, as in malo zamujam.",
+      "accept": [],
+      "rules": [
+        "r-verb-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l04-i05",
+      "type": "word",
+      "sl": "karta",
+      "sl_colloquial": null,
+      "en": "ticket",
+      "register": "colloquial",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "karto"
+      },
+      "examples": [
+        {
+          "sl": "Imate karto?",
+          "en": "Do you have a ticket? (polite)"
+        },
+        {
+          "sl": "Karta stane deset evrov.",
+          "en": "The ticket costs ten euros."
+        }
+      ],
+      "helper": "Like German Karte; on signs and machines the word is vozovnica.",
+      "accept": [],
+      "rules": [
+        "r-accusative-feminine"
+      ],
+      "freq_rank": 673,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l04-i06",
+      "type": "word",
+      "sl": "peron",
+      "sl_colloquial": null,
+      "en": "platform (at a station)",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "loc": "peronu"
+      },
+      "examples": [
+        {
+          "sl": "Kateri peron, prosim?",
+          "en": "Which platform, please?"
+        },
+        {
+          "sl": "Vlak za Ljubljano je na peronu 1.",
+          "en": "The train to Ljubljana is on platform 1."
+        }
+      ],
+      "helper": "Swiss German says Perron too; in Germany it is Bahnsteig.",
+      "accept": [],
+      "rules": [
+        "r-locative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l04-i07",
+      "type": "word",
+      "sl": "prvi",
+      "sl_colloquial": null,
+      "en": "first",
+      "register": "neutral",
+      "pos": "numeral",
+      "forms": {
+        "f": "prva"
+      },
+      "examples": [
+        {
+          "sl": "Prvi vlak gre ob šestih.",
+          "en": "The first train leaves at six."
+        },
+        {
+          "sl": "Prva ulica desno.",
+          "en": "The first street on the right."
+        }
+      ],
+      "helper": "Changes with the noun like an adjective: prvi vlak, prva ulica.",
+      "accept": [],
+      "rules": [
+        "r-ordinals"
+      ],
+      "freq_rank": 95,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l04-i08",
+      "type": "word",
+      "sl": "minuta",
+      "sl_colloquial": null,
+      "en": "minute (of time)",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "minuto",
+        "gen.pl": "minut"
+      },
+      "examples": [
+        {
+          "sl": "Še pet minut.",
+          "en": "Five more minutes."
+        },
+        {
+          "sl": "Eno minuto, prosim.",
+          "en": "One minute, please."
+        }
+      ],
+      "helper": "Like German Minute and English minute.",
+      "accept": [],
+      "rules": [
+        "r-numbers-5-plus"
+      ],
+      "freq_rank": 170,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-ordinals"
+  ],
+  "structured": [
+    {
+      "id": "u07-l04-s01",
+      "prompt_sl": "Prv_ ulica levo.",
+      "options": [
+        "i",
+        "a",
+        "o"
+      ],
+      "answer": "a",
+      "rule": "r-ordinals",
+      "en": "The first street on the left."
+    },
+    {
+      "id": "u07-l04-s02",
+      "prompt_sl": "Naslednj_ vlak gre ob osmih.",
+      "options": [
+        "i",
+        "a",
+        "e"
+      ],
+      "answer": "i",
+      "rule": "r-ordinals",
+      "en": "The next train leaves at eight."
+    },
+    {
+      "id": "u07-l04-s03",
+      "prompt_sl": "Eno kart_ za Ljubljano, prosim.",
+      "options": [
+        "a",
+        "o",
+        "e"
+      ],
+      "answer": "o",
+      "rule": "r-accusative-feminine",
+      "en": "One ticket to Ljubljana, please."
+    },
+    {
+      "id": "u07-l04-s04",
+      "prompt_sl": "Vlak je na peron_ 2.",
+      "options": [
+        "a",
+        "u"
+      ],
+      "answer": "u",
+      "rule": "r-locative",
+      "en": "The train is on platform 2."
+    },
+    {
+      "id": "u07-l04-s05",
+      "prompt_sl": "Vlak zamuja deset ___.",
+      "options": [
+        "minuta",
+        "minute",
+        "minut"
+      ],
+      "answer": "minut",
+      "rule": "r-numbers-5-plus",
+      "en": "The train is ten minutes late."
+    },
+    {
+      "id": "u07-l04-s06",
+      "prompt_sl": "Kdaj ___ naslednji vlak?",
+      "options": [
+        "grem",
+        "gre",
+        "gredo"
+      ],
+      "answer": "gre",
+      "rule": "r-iti-present",
+      "en": "When does the next train leave?"
+    }
+  ],
+  "production": [
+    {
+      "id": "u07-l04-p01",
+      "en": "At the counter, ask for one ticket to Ljubljana.",
+      "answer": "Eno karto za Ljubljano, prosim.",
+      "accept": [
+        "Eno vozovnico za Ljubljano, prosim.",
+        "Karto za Ljubljano, prosim."
+      ],
+      "item": "u07-l04-i01"
+    },
+    {
+      "id": "u07-l04-p02",
+      "en": "Ask when the next train leaves.",
+      "answer": "Kdaj gre naslednji vlak?",
+      "accept": [
+        "Kdaj pelje naslednji vlak?",
+        "Kdaj odpelje naslednji vlak?"
+      ],
+      "item": "u07-l04-i03"
+    },
+    {
+      "id": "u07-l04-p03",
+      "en": "Tell someone waiting with you that the train is late.",
+      "answer": "Vlak zamuja.",
+      "accept": [],
+      "item": "u07-l04-i04"
+    },
+    {
+      "id": "u07-l04-p04",
+      "en": "You need the platform number. Ask the clerk: which platform, please?",
+      "answer": "Kateri peron, prosim?",
+      "accept": [
+        "Kateri peron?"
+      ],
+      "item": "u07-l04-i06"
+    }
+  ],
+  "dialogue": {
+    "id": "u07-l04-d",
+    "title_sl": "Na blagajni",
+    "title_en": "At the ticket office",
+    "setting_en": "At the railway station you buy a train ticket from a clerk at the counter.",
+    "lines": [
+      {
+        "speaker": "clerk",
+        "sl": "Dober dan. Kaj želite?",
+        "en": "Good day. What would you like?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Eno karto za Ljubljano, prosim.",
+        "en": "One ticket to Ljubljana, please.",
+        "new_items": [
+          "u07-l04-i01"
+        ]
+      },
+      {
+        "speaker": "clerk",
+        "sl": "Enosmerno ali povratno?",
+        "en": "One way or return?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Povratno. Kdaj gre naslednji vlak?",
+        "en": "Return. When does the next train leave?",
+        "new_items": [
+          "u07-l04-i03"
+        ]
+      },
+      {
+        "speaker": "clerk",
+        "sl": "Ob osmih, na peronu 2. Žal malo zamuja.",
+        "en": "At eight, on platform 2. I'm afraid it's a little late."
+      },
+      {
+        "speaker": "you",
+        "sl": "Ni problema. Hvala lepa.",
+        "en": "No problem. Thank you very much."
+      }
+    ]
+  }
+}

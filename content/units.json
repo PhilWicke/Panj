@@ -103,7 +103,13 @@
     "title_sl": "Po mestu",
     "title_en": "Around town",
     "motif": "bird",
-    "lessons": []
+    "lessons": [
+      "u07-l01",
+      "u07-l02",
+      "u07-l03",
+      "u07-l04",
+      "u07-l05"
+    ]
   },
   {
     "id": "u08",

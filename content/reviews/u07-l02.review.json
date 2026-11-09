@@ -1,0 +1,335 @@
+{
+  "lesson": "u07-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 4,
+      "items": {
+        "u07-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Pojdite is the correct imperative of iti; examples natural; recognition register fits the card.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-i02": {
+          "verdict": "accepted",
+          "reason": "SSKJ confirms zaviti as to turn, change direction. Imperative zavij, zavijte follows from zavijem; the page does not list it. Examples natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=zaviti"
+        },
+        "u07-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Natural elliptical direction; locative cerkvi correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Correct instrumental after za; natural; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-i05": {
+          "verdict": "doubtful",
+          "reason": "Fields sl, examples, helper. Zgrešiti for missing a place is transitive in SSKJ, whose closest examples keep the object: ne boste je zgrešili, tega človeka ne moreš zgrešiti. The object-free headword may read as a calque or as 'you can't go wrong', and the example 'Cerkev je na trgu, ne morete zgrešiti' would more naturally have je. The helper says it is built like the English, but the English has 'it'. The listed variants Ne morete ga zgrešiti and Ne morete je zgrešiti are fine. A native should say whether the bare form is heard.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=zgrešiti"
+        },
+        "u07-l02-i06": {
+          "verdict": "accepted",
+          "reason": "Gender, forms and examples correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Gen trga, loc trgu correct; SSKJ gives both the market and the town square sense, so the helper holds.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=trg"
+        },
+        "u07-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Forms correct; Fran traces it to Germanic *kirka, the ancestor of Kirche, so the helper holds.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=cerkev"
+        }
+      },
+      "lines": {
+        "u07-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Genitive trga after do; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-s02": {
+          "verdict": "accepted",
+          "reason": "Locative cerkvi after pri; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Locative trgu.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-s04": {
+          "verdict": "accepted",
+          "reason": "Na trgu is the right preposition for a square.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Genitive cerkve; sentence natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-p03": {
+          "verdict": "doubtful",
+          "reason": "The answer is the object-free Ne morete zgrešiti, doubtful for the reason given on u07-l02-i05; the two accepted variants with ga and je are fine.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=zgrešiti"
+        },
+        "u07-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural; genitive cerkve correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural checking question.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural; imperative correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural repeat-back.",
+          "fix": "",
+          "source": ""
+        },
+        "r-imperative-recognition": {
+          "verdict": "accepted",
+          "reason": "Forms pojdite, zavijte, pojdi, zavij correct; quick check has one right answer since sin would take pojdi.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 4,
+      "items": {
+        "u07-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Correct imperative of iti, recognition register fits the card; examples natural; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-i02": {
+          "verdict": "accepted",
+          "reason": "zaviti is the standard verb for turning (SSKJ: zaviti na levo, v levo); zavijte and zavij correct; examples natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=zaviti"
+        },
+        "u07-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Natural clipped direction; cerkvi correct locative; variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Natural; za vogalom correct instrumental; gloss and variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-i05": {
+          "verdict": "doubtful",
+          "reason": "sl: SSKJ gives this sense of zgrešiti only with an object (ne boste je zgrešili, tega človeka ne moreš zgrešiti). Without one it may be heard in speech, but a native should confirm it as the headword, since the accept variants with ga and je are the attested pattern. helper: Built like English you can't miss it is not quite so, as the headword has no it.",
+          "fix": "Ne morete ga zgrešiti.",
+          "source": "https://fran.si/iskanje?View=1&Query=zgre%C5%A1iti"
+        },
+        "u07-l02-i06": {
+          "verdict": "accepted",
+          "reason": "Feminine, acc ulico and gen ulice correct; examples grammatical and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Masculine, gen trga and loc trgu correct; helper is honest, SSKJ lists both the marketplace and the square senses.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=trg"
+        },
+        "u07-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Feminine, cerkev cerkve per SSKJ, loc cerkvi correct; helper is a true shared origin.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=cerkev"
+        }
+      },
+      "lines": {
+        "u07-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Only trga is right after do.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-s02": {
+          "verdict": "accepted",
+          "reason": "Only the locative cerkvi is right after pri.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Locative trgu is the single right ending.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-s04": {
+          "verdict": "accepted",
+          "reason": "na trgu is the idiomatic preposition; v trgu is wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Genitive cerkve after do; natural sentence.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-p03": {
+          "verdict": "doubtful",
+          "reason": "The target answer has no object, while SSKJ shows this sense with one (ne boste je zgrešili). The two accept variants are the attested pattern; a native should confirm the bare form as the main answer.",
+          "fix": "Ne morete ga zgrešiti.",
+          "source": "https://fran.si/iskanje?View=1&Query=zgre%C5%A1iti"
+        },
+        "u07-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural polite question.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural direction; genitive correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural check-back.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural; zavijte fits the polite address to an older person.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural repeat-back and thanks.",
+          "fix": "",
+          "source": ""
+        },
+        "r-imperative-recognition": {
+          "verdict": "accepted",
+          "reason": "Forms pojdite, zavijte, pojdi, zavij correct; card text accurate; quick check has one right option; German comparison sound.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u07-l02-i01": "afef5fcdf59bba97",
+    "u07-l02-i02": "35bf29c007adf2a3",
+    "u07-l02-i03": "e0f2a71e37b278b4",
+    "u07-l02-i04": "1e48539b6d46ed18",
+    "u07-l02-i05": "c6fec8c7468e0dfa",
+    "u07-l02-i06": "13ef96b5d3096aa0",
+    "u07-l02-i07": "7360a652d88de6c3",
+    "u07-l02-i08": "fe4a4022d4da9895",
+    "u07-l02-s01": "3aa56c1ae8fd57c1",
+    "u07-l02-s02": "766f86793a7fe024",
+    "u07-l02-s03": "26d889043a1e541f",
+    "u07-l02-s04": "9795cadbf7c478a7",
+    "u07-l02-s05": "ca86d531f9bac40a",
+    "u07-l02-p01": "71c0570acb6487d6",
+    "u07-l02-p02": "27bacdbc80e382af",
+    "u07-l02-p03": "c237298683fce505",
+    "u07-l02-p04": "6c79b7995e85be68",
+    "u07-l02-p05": "0dd0b221b5d5330c",
+    "u07-l02-d-01": "8464c82847107ce8",
+    "u07-l02-d-02": "4d75c16f144659fc",
+    "u07-l02-d-03": "0a68d6ab49e468f8",
+    "u07-l02-d-04": "c443725d1d842751",
+    "u07-l02-d-05": "c70bec0d9cd403f9",
+    "r-imperative-recognition": "034c813a3f9c165b"
+  }
+}

@@ -1,0 +1,374 @@
+{
+  "lesson": "u07-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {
+        "u07-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Natural; instrumental correct; helper fair.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Natural question; accusative center correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Natural; variant correct; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Natural; genitive plural minut correct; word-order variant acceptable.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Gender, form and examples correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-i06": {
+          "verdict": "accepted",
+          "reason": "Forms correct; eSSKJ confirms the helper: from vleči, a calque of German Zug from ziehen.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=vlak"
+        },
+        "u07-l03-i07": {
+          "verdict": "accepted",
+          "reason": "SSKJ gives avto -a m, unmarked for register; instrumental avtom follows from that.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=avto"
+        },
+        "u07-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Forms with fleeting e correct; examples natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u07-l03-s01": {
+          "verdict": "accepted",
+          "reason": "Instrumental -om; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-s02": {
+          "verdict": "accepted",
+          "reason": "Instrumental avtom; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-s03": {
+          "verdict": "accepted",
+          "reason": "S before voiceless k is the one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Z before voiced m is the one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Accusative center for direction.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-s06": {
+          "verdict": "accepted",
+          "reason": "Genitive plural minut after deset.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural short answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural; present used for an immediate plan, and the English renders that fairly.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Language fine. Note: speaker driver is not in the style guide's speaker list.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural. Note: speaker driver is not in the style guide's speaker list.",
+          "fix": "",
+          "source": ""
+        },
+        "r-z-instrumental": {
+          "verdict": "doubtful",
+          "reason": "Card text: '-om for masculine and neuter' is true only of hard stems. After soft consonants the ending is -em, as in s čajem (Pravopis: čaj, s -em), so a learner following the card would produce s čajom. Possibly acceptable as a beginner simplification, but the note as written overgeneralises. Example, toggles, quick check and the z/s note are correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=čaj"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 4,
+      "items": {
+        "u07-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Everyday way to say it; z avtobusom correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-i02": {
+          "verdict": "doubtful",
+          "reason": "register: tagged neutral, but SSKJ labels iti for a vehicle's route as colloquial (pog. ta vlak gre na Jesenice, standard bo peljal). The sentence itself is natural in speech. The course tags karta colloquial on the same kind of evidence, so neutral needs a native's confirmation.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=iti"
+        },
+        "u07-l03-i03": {
+          "verdict": "accepted",
+          "reason": "izstopiti is the standard verb for leaving a bus or train; examples natural; variant correct; helper is an honest parallel.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=izstopiti"
+        },
+        "u07-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Natural; genitive plural minut correct after deset; the reordered variant is correct if slightly marked.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Masculine, ins avtobusom correct; examples grammatical and faithful; true cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-i06": {
+          "verdict": "accepted",
+          "reason": "Masculine, vlakom correct; helper confirmed, eSSKJ derives vlak from vleči as a calque of German Zug.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=vlak"
+        },
+        "u07-l03-i07": {
+          "verdict": "accepted",
+          "reason": "Masculine, ins avtom correct; examples natural; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Masculine, centra and centru correct with the fleeting e; gloss disambiguated.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u07-l03-s01": {
+          "verdict": "accepted",
+          "reason": "Only -om gives the instrumental.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-s02": {
+          "verdict": "accepted",
+          "reason": "Only avtom is right after z.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-s03": {
+          "verdict": "accepted",
+          "reason": "s before the voiceless k of kartico; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-s04": {
+          "verdict": "accepted",
+          "reason": "z before voiced m; natural order.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Accusative center after v for direction; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-s06": {
+          "verdict": "accepted",
+          "reason": "Genitive plural minut after deset.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct and natural in speech.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural question at a stop.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural short reply; translation faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural; translation faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural greeting. Note only: speaker driver is not in the style guide's speaker list.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural; za center fits; translation faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l03-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural short reply; locatives correct. Note only: speaker driver is not in the style guide's speaker list.",
+          "fix": "",
+          "source": ""
+        },
+        "r-z-instrumental": {
+          "verdict": "doubtful",
+          "reason": "Card text: -om for masculine and neuter is stated without exception, but soft stems take -em (čaj gives s čajem, likewise z morjem), so a learner following the card would write s čajom. All forms, toggles and the quick check are correct, and the card has room for a short exception within 40 words.",
+          "fix": "-om for masculine and neuter (-em after c, č, š, ž, j)",
+          "source": "https://en.wiktionary.org/wiki/%C4%8Daj"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u07-l03-i01": "a3c63a7a28ba3fbe",
+    "u07-l03-i02": "3f99eb159bdfbd2e",
+    "u07-l03-i03": "782c3af7a75b37ad",
+    "u07-l03-i04": "34579e6c1b20e5d7",
+    "u07-l03-i05": "aceff4e0c8ce4231",
+    "u07-l03-i06": "edcd116bda7e9656",
+    "u07-l03-i07": "1088c08abbeda0f6",
+    "u07-l03-i08": "0ad27a4fa1821019",
+    "u07-l03-s01": "641c258fd4f57267",
+    "u07-l03-s02": "671bae506fe89fb2",
+    "u07-l03-s03": "ccf37c5deb09856d",
+    "u07-l03-s04": "5adb02b66ebe0a85",
+    "u07-l03-s05": "308361284802183d",
+    "u07-l03-s06": "be77d9da181f3f66",
+    "u07-l03-p01": "17393e27fa8cacce",
+    "u07-l03-p02": "6b2e3919b3fc3779",
+    "u07-l03-p03": "6bd8875f6294fe4c",
+    "u07-l03-p04": "0fc3310d68e6c1fe",
+    "u07-l03-p05": "76de98a8db43b39c",
+    "u07-l03-p06": "2662202a5db11bf0",
+    "u07-l03-d-01": "4050290d6f8a2fde",
+    "u07-l03-d-02": "4a5634f3eabade37",
+    "u07-l03-d-03": "fdac66883712d80e",
+    "u07-l03-d-04": "cb5e209048a8eca0",
+    "u07-l03-d-05": "516dab06c8d21b17",
+    "u07-l03-d-06": "46a278063cc8ee35",
+    "r-z-instrumental": "c10e406e78699334"
+  }
+}

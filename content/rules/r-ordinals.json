@@ -1,0 +1,46 @@
+{
+  "id": "r-ordinals",
+  "unit": "u07",
+  "title_en": "First, second, third",
+  "card_en": "Ordinal numbers say which one: prvi, first; drugi, second; tretji, third; četrti, fourth; peti, fifth. They change like adjectives: prvi vlak, prva ulica. Naslednji, next, works the same way.",
+  "example": {
+    "sl": "Kdaj gre prvi vlak?",
+    "en": "When does the first train leave?"
+  },
+  "toggles": [
+    {
+      "label": "Which street",
+      "options": [
+        "first",
+        "second",
+        "third"
+      ],
+      "examples": {
+        "first": {
+          "sl": "Prva ulica desno.",
+          "en": "The first street on the right."
+        },
+        "second": {
+          "sl": "Druga ulica desno.",
+          "en": "The second street on the right."
+        },
+        "third": {
+          "sl": "Tretja ulica desno.",
+          "en": "The third street on the right."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Kdaj gre prv_ vlak?",
+    "options": [
+      "i",
+      "a",
+      "o"
+    ],
+    "answer": "i",
+    "explain_en": "Vlak is masculine, so the ordinal is prvi: prvi vlak."
+  },
+  "helper_de": "As with erste, zweite, dritte in German, the ending follows the noun: prvi vlak, prva ulica.",
+  "helper_en": "English first never changes; Slovenian prvi becomes prva with a feminine noun: prva ulica."
+}

@@ -1,0 +1,419 @@
+{
+  "id": "u07-l02",
+  "unit": "u07",
+  "order": 2,
+  "role": "theme",
+  "title_sl": "Pojdite naravnost",
+  "title_en": "Go straight on",
+  "items": [
+    {
+      "id": "u07-l02-i01",
+      "type": "chunk",
+      "sl": "Pojdite naravnost.",
+      "sl_colloquial": null,
+      "en": "Go straight on. (polite, or to several people)",
+      "register": "recognition",
+      "examples": [
+        {
+          "sl": "Pojdite naravnost do cerkve.",
+          "en": "Go straight on as far as the church."
+        },
+        {
+          "sl": "Pojdite naravnost, potem levo.",
+          "en": "Go straight on, then left."
+        }
+      ],
+      "helper": "pojdite is the polite go, from iti; to someone close it is pojdi.",
+      "accept": [],
+      "rules": [
+        "r-imperative-recognition"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l02-i02",
+      "type": "chunk",
+      "sl": "Zavijte desno.",
+      "sl_colloquial": null,
+      "en": "Turn right. (polite, or to several people)",
+      "register": "recognition",
+      "examples": [
+        {
+          "sl": "Pri banki zavijte desno.",
+          "en": "Turn right at the bank."
+        },
+        {
+          "sl": "Zavijte desno v to ulico.",
+          "en": "Turn right into this street."
+        }
+      ],
+      "helper": "From zaviti, to turn; to someone close it is zavij.",
+      "accept": [],
+      "rules": [
+        "r-imperative-recognition"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l02-i03",
+      "type": "chunk",
+      "sl": "Pri cerkvi levo.",
+      "sl_colloquial": null,
+      "en": "Left at the church.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Pojdite naravnost, pri cerkvi levo.",
+          "en": "Go straight on, left at the church."
+        },
+        {
+          "sl": "Do trga? Pri cerkvi levo.",
+          "en": "To the square? Left at the church."
+        }
+      ],
+      "helper": "pri takes the locative, as in pri vratih: cerkev becomes cerkvi.",
+      "accept": [
+        "Levo pri cerkvi."
+      ],
+      "rules": [
+        "r-pri"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l02-i04",
+      "type": "chunk",
+      "sl": "Je za vogalom.",
+      "sl_colloquial": null,
+      "en": "It's round the corner.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Banka? Je za vogalom.",
+          "en": "The bank? It's round the corner."
+        },
+        {
+          "sl": "Postaja je za vogalom.",
+          "en": "The station is round the corner."
+        }
+      ],
+      "helper": "vogal is a corner; after za, behind, it ends in -om: za vogalom.",
+      "accept": [
+        "Za vogalom je."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l02-i05",
+      "type": "chunk",
+      "sl": "Ne morete zgrešiti.",
+      "sl_colloquial": null,
+      "en": "You can't miss it. (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Cerkev je na trgu, ne morete zgrešiti.",
+          "en": "The church is on the square, you can't miss it."
+        },
+        {
+          "sl": "Je za vogalom. Ne morete zgrešiti.",
+          "en": "It's round the corner. You can't miss it."
+        }
+      ],
+      "helper": "ne morete is you can't, zgrešiti is to miss.",
+      "accept": [
+        "Ne morete ga zgrešiti.",
+        "Ne morete je zgrešiti."
+      ],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "doubtful",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review1 doubtful: Fields sl, examples, helper. Zgrešiti for missing a place is transitive in SSKJ, whose closest examples keep the object: ne boste je zgrešili, tega človeka ne moreš zgrešiti. The object-free headword may read as a calque or as 'you can't go wrong', and the example 'Cerkev je na trgu, ne morete zgrešiti' would more naturally have je. The helper says it is built like the English, but the English has 'it'. The listed variants Ne morete ga zgrešiti and Ne morete je zgrešiti are fine. A native should say whether the bare form is heard.; review2 doubtful: sl: SSKJ gives this sense of zgrešiti only with an object (ne boste je zgrešili, tega človeka ne moreš zgrešiti). Without one it may be heard in speech, but a native should confirm it as the headword, since the accept variants with ga and je are the attested pattern. helper: Built like English you can't miss it is not quite so, as the headword has no it. Fix: Ne morete ga zgrešiti."
+      }
+    },
+    {
+      "id": "u07-l02-i06",
+      "type": "word",
+      "sl": "ulica",
+      "sl_colloquial": null,
+      "en": "street",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "ulico",
+        "gen": "ulice"
+      },
+      "examples": [
+        {
+          "sl": "Ulica je tam, pri cerkvi.",
+          "en": "The street is over there, by the church."
+        },
+        {
+          "sl": "Kako pridem do te ulice?",
+          "en": "How do I get to this street?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 876,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l02-i07",
+      "type": "word",
+      "sl": "trg",
+      "sl_colloquial": null,
+      "en": "square (in a town)",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "gen": "trga",
+        "loc": "trgu"
+      },
+      "examples": [
+        {
+          "sl": "Banka je na trgu.",
+          "en": "The bank is on the square."
+        },
+        {
+          "sl": "Kako pridem do trga?",
+          "en": "How do I get to the square?"
+        }
+      ],
+      "helper": "trg also means market: the town square was the market place.",
+      "accept": [],
+      "rules": [
+        "r-do-genitive",
+        "r-locative"
+      ],
+      "freq_rank": 866,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l02-i08",
+      "type": "word",
+      "sl": "cerkev",
+      "sl_colloquial": null,
+      "en": "church",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "gen": "cerkve",
+        "loc": "cerkvi"
+      },
+      "examples": [
+        {
+          "sl": "Cerkev je za vogalom.",
+          "en": "The church is round the corner."
+        },
+        {
+          "sl": "Banka je pri cerkvi.",
+          "en": "The bank is by the church."
+        }
+      ],
+      "helper": "From the same old word as German Kirche and English church.",
+      "accept": [],
+      "rules": [
+        "r-pri"
+      ],
+      "freq_rank": 1344,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-imperative-recognition"
+  ],
+  "structured": [
+    {
+      "id": "u07-l02-s01",
+      "prompt_sl": "Naravnost do ___.",
+      "options": [
+        "trg",
+        "trga",
+        "trgu"
+      ],
+      "answer": "trga",
+      "rule": "r-do-genitive",
+      "en": "Straight on as far as the square."
+    },
+    {
+      "id": "u07-l02-s02",
+      "prompt_sl": "Pri ___ levo.",
+      "options": [
+        "cerkev",
+        "cerkve",
+        "cerkvi"
+      ],
+      "answer": "cerkvi",
+      "rule": "r-pri",
+      "en": "Left at the church."
+    },
+    {
+      "id": "u07-l02-s03",
+      "prompt_sl": "Cerkev je na trg_.",
+      "options": [
+        "a",
+        "u"
+      ],
+      "answer": "u",
+      "rule": "r-locative",
+      "en": "The church is on the square."
+    },
+    {
+      "id": "u07-l02-s04",
+      "prompt_sl": "Banka je ___ trgu.",
+      "options": [
+        "v",
+        "na"
+      ],
+      "answer": "na",
+      "rule": "r-v-or-na",
+      "en": "The bank is on the square."
+    },
+    {
+      "id": "u07-l02-s05",
+      "prompt_sl": "Do cerkv_ ni daleč.",
+      "options": [
+        "e",
+        "i"
+      ],
+      "answer": "e",
+      "rule": "r-do-genitive",
+      "en": "It's not far to the church."
+    }
+  ],
+  "production": [
+    {
+      "id": "u07-l02-p01",
+      "en": "A visitor asks where the square is. Say it's round the corner.",
+      "answer": "Je za vogalom.",
+      "accept": [
+        "Za vogalom je.",
+        "Trg je za vogalom."
+      ],
+      "item": "u07-l02-i04"
+    },
+    {
+      "id": "u07-l02-p02",
+      "en": "Give the short direction: left at the church.",
+      "answer": "Pri cerkvi levo.",
+      "accept": [
+        "Levo pri cerkvi."
+      ],
+      "item": "u07-l02-i03"
+    },
+    {
+      "id": "u07-l02-p03",
+      "en": "Tell a visitor, politely, that they can't miss it. Use ga for it.",
+      "answer": "Ne morete ga zgrešiti.",
+      "accept": [],
+      "item": "u07-l02-i05"
+    },
+    {
+      "id": "u07-l02-p04",
+      "en": "Ask how to get to the square.",
+      "answer": "Kako pridem do trga?",
+      "accept": [
+        "Oprostite, kako pridem do trga?",
+        "Kako pridem na trg?"
+      ],
+      "item": "u07-l02-i07"
+    },
+    {
+      "id": "u07-l02-p05",
+      "en": "Say the church is on the square.",
+      "answer": "Cerkev je na trgu.",
+      "accept": [],
+      "item": "u07-l02-i08"
+    }
+  ],
+  "dialogue": {
+    "id": "u07-l02-d",
+    "title_sl": "Do trga",
+    "title_en": "To the square",
+    "setting_en": "You want to see the old town and its square. You ask a passer-by, an older person, the way.",
+    "lines": [
+      {
+        "speaker": "you",
+        "sl": "Oprostite, kako pridem do trga?",
+        "en": "Excuse me, how do I get to the square?",
+        "new_items": [
+          "u07-l02-i07"
+        ]
+      },
+      {
+        "speaker": "passer-by",
+        "sl": "Pojdite naravnost do cerkve.",
+        "en": "Go straight on as far as the church."
+      },
+      {
+        "speaker": "you",
+        "sl": "Pri cerkvi levo?",
+        "en": "Left at the church?",
+        "new_items": [
+          "u07-l02-i03"
+        ]
+      },
+      {
+        "speaker": "passer-by",
+        "sl": "Ne, zavijte desno. Trg je za vogalom.",
+        "en": "No, turn right. The square is round the corner."
+      },
+      {
+        "speaker": "you",
+        "sl": "Desno in za vogalom. Hvala lepa.",
+        "en": "Right and round the corner. Thank you very much."
+      }
+    ]
+  }
+}

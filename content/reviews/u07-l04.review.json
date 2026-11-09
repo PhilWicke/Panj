@@ -1,0 +1,348 @@
+{
+  "lesson": "u07-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 4,
+      "items": {
+        "u07-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Natural at a counter; colloquial register matches SSKJ pog. for karta as vozovnica; variant correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=karta"
+        },
+        "u07-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Standard counter question; feminine accusative agreeing with the understood karto. SSKJ has povratna vozovnica.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=povraten"
+        },
+        "u07-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Natural; variants with pelje and odpelje correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Natural; examples correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-i05": {
+          "verdict": "accepted",
+          "reason": "SSKJ marks karta in the ticket sense as pog., so the colloquial tag is right; forms, examples and helper correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=karta"
+        },
+        "u07-l04-i06": {
+          "verdict": "accepted",
+          "reason": "SSKJ peron -a m, a railway platform. Wiktionary marks German Perron as current in Austria and Switzerland, so the helper holds.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/Perron"
+        },
+        "u07-l04-i07": {
+          "verdict": "accepted",
+          "reason": "Forms and examples correct; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-i08": {
+          "verdict": "accepted",
+          "reason": "Gender, forms and examples correct.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u07-l04-s01": {
+          "verdict": "accepted",
+          "reason": "Prva agrees with feminine ulica.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-s02": {
+          "verdict": "accepted",
+          "reason": "Naslednji agrees with masculine vlak.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Accusative karto.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Locative peronu.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Genitive plural minut.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Third singular gre; distractors wrong person.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural counter opening.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural; ob osmih and na peronu correct; English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-ordinals": {
+          "verdict": "accepted",
+          "reason": "Ordinals prvi to peti correct; toggles and quick check correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 7,
+      "items": {
+        "u07-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Natural at a counter; colloquial tag fits, SSKJ marks karta for ticket pog.; vozovnica variant correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=karta"
+        },
+        "u07-l04-i02": {
+          "verdict": "accepted",
+          "reason": "SSKJ attests enosmerna and povratna vozovnica; the forms here are the feminine accusative with karta understood; natural clerk's question.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=povraten"
+        },
+        "u07-l04-i03": {
+          "verdict": "doubtful",
+          "reason": "register and helper: tagged neutral, and the helper presents gre as the verb for trains leaving, but SSKJ labels this use colloquial (pog. kdaj gre vlak, standard odpelje). The chunk is natural in speech and the accept variants are correct, but the tag and helper need a native's confirmation.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=iti"
+        },
+        "u07-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Natural; deset minut correct as duration; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-i05": {
+          "verdict": "accepted",
+          "reason": "SSKJ sense 3 labels the ticket sense pog., matching the colloquial tag; acc karto correct; helper honest.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=karta"
+        },
+        "u07-l04-i06": {
+          "verdict": "accepted",
+          "reason": "Masculine, loc peronu correct; helper holds, Perron is dated only outside Austria and Switzerland.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/Perron"
+        },
+        "u07-l04-i07": {
+          "verdict": "accepted",
+          "reason": "Correct forms and examples; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-i08": {
+          "verdict": "accepted",
+          "reason": "Feminine, acc minuto and gen.pl minut correct; examples natural; gloss disambiguated.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u07-l04-s01": {
+          "verdict": "accepted",
+          "reason": "Feminine ulica needs prva; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-s02": {
+          "verdict": "accepted",
+          "reason": "Masculine vlak needs naslednji.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Accusative karto is the single right ending.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Locative peronu.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Genitive plural minut after deset.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Only the third person singular gre agrees with vlak.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Answer natural in speech; pelje and odpelje variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural counter opening.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural request.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural clerk's question.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural; translation faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural; ob osmih and na peronu correct; žal rendered well.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural everyday reply.",
+          "fix": "",
+          "source": ""
+        },
+        "r-ordinals": {
+          "verdict": "accepted",
+          "reason": "Ordinals prvi to peti, feminine forms and naslednji correct; example, toggles and quick check right; German comparison sound.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u07-l04-i01": "33e6a9e5423cdaae",
+    "u07-l04-i02": "450c1140285bbced",
+    "u07-l04-i03": "bcfee1a871500b5e",
+    "u07-l04-i04": "990745dccafd2242",
+    "u07-l04-i05": "7cab1fb472f50732",
+    "u07-l04-i06": "c954408b52519f23",
+    "u07-l04-i07": "5c29d6f1fb4a9dc8",
+    "u07-l04-i08": "d3d5469e25373218",
+    "u07-l04-s01": "e0a10330d3f517eb",
+    "u07-l04-s02": "db025b6e318bc07b",
+    "u07-l04-s03": "d8648b7d10e6eae3",
+    "u07-l04-s04": "c106736fe6427d02",
+    "u07-l04-s05": "97c9cf48f265339d",
+    "u07-l04-s06": "e956293bcba8f66b",
+    "u07-l04-p01": "bcefc9851f36dc56",
+    "u07-l04-p02": "2a3f9623e1603a5a",
+    "u07-l04-p03": "6d262266ba732473",
+    "u07-l04-p04": "c5db82a7509d1f48",
+    "u07-l04-d-01": "ede1b82281d371b6",
+    "u07-l04-d-02": "c3744fd691ec7f03",
+    "u07-l04-d-03": "6c91a5acfbe21e8a",
+    "u07-l04-d-04": "d26d2d906ea79b75",
+    "u07-l04-d-05": "02bfe136a33b63e9",
+    "u07-l04-d-06": "b60c5833218fbc48",
+    "r-ordinals": "8dc4f7b688c21ca8"
+  }
+}

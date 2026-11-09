@@ -24,6 +24,8 @@ Production targets standard Slovenian plus the general colloquial standard heard
 - `formal`: polite or official settings.
 - `recognition`: understood, never asked for in production. `ful`, `kul`, `okej` and `fajn` are recognition only.
 
+Where SSKJ or Pravopis labels a word, or the use of it in the item, `pog.` or `knj. pog.`, the item is `colloquial`, as `karta` and `vikend` are. An item tagged `neutral` despite such a label is doubtful until a native speaker has confirmed the tag.
+
 Some pairs are taught together because learners hear both from the first day: `ja` and `da`, `a` and `ali`, `živjo` and `čau` next to `dober dan`, `adijo` next to `nasvidenje`. The short colloquial infinitive is heard next to the written one: `delat` is the `sl_colloquial` of `delati`.
 
 ## Chunks and slots

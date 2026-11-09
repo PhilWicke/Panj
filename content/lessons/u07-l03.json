@@ -1,0 +1,448 @@
+{
+  "id": "u07-l03",
+  "unit": "u07",
+  "order": 3,
+  "role": "theme",
+  "title_sl": "Z avtobusom",
+  "title_en": "By bus",
+  "items": [
+    {
+      "id": "u07-l03-i01",
+      "type": "chunk",
+      "sl": "Grem z avtobusom.",
+      "sl_colloquial": null,
+      "en": "I'm going by bus.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Danes grem z avtobusom.",
+          "en": "Today I'm going by bus."
+        },
+        {
+          "sl": "Ne grem z vlakom, grem z avtobusom.",
+          "en": "I'm not going by train, I'm going by bus."
+        }
+      ],
+      "helper": "z with the ending -om is by: like German mit dem Bus.",
+      "accept": [],
+      "rules": [
+        "r-z-instrumental",
+        "r-iti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l03-i02",
+      "type": "chunk",
+      "sl": "Kateri avtobus gre v center?",
+      "sl_colloquial": null,
+      "en": "Which bus goes to the centre?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, kateri avtobus gre v center?",
+          "en": "Excuse me, which bus goes to the centre?"
+        },
+        {
+          "sl": "Kateri avtobus gre v center, prosim?",
+          "en": "Which bus goes to the centre, please?"
+        }
+      ],
+      "helper": "v with the accusative for where to, as in grem v trgovino.",
+      "accept": [],
+      "rules": [
+        "r-grem-v-na",
+        "r-iti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review2 doubtful: register: tagged neutral, but SSKJ labels iti for a vehicle's route as colloquial (pog. ta vlak gre na Jesenice, standard bo peljal). The sentence itself is natural in speech. The course tags karta colloquial on the same kind of evidence, so neutral needs a native's confirmation."
+      }
+    },
+    {
+      "id": "u07-l03-i03",
+      "type": "chunk",
+      "sl": "Kje izstopim?",
+      "sl_colloquial": null,
+      "en": "Where do I get off?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, kje izstopim za center?",
+          "en": "Excuse me, where do I get off for the centre?"
+        },
+        {
+          "sl": "Kje izstopim? Pri cerkvi?",
+          "en": "Where do I get off? At the church?"
+        }
+      ],
+      "helper": "izstopiti is to step out, iz and stopiti, like German aussteigen.",
+      "accept": [
+        "Kje naj izstopim?"
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l03-i04",
+      "type": "chunk",
+      "sl": "Peš je deset minut.",
+      "sl_colloquial": null,
+      "en": "It's ten minutes on foot.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ni daleč. Peš je deset minut.",
+          "en": "It's not far. It's ten minutes on foot."
+        },
+        {
+          "sl": "Peš je deset minut, z avtom pet.",
+          "en": "It's ten minutes on foot, five by car."
+        }
+      ],
+      "helper": "After deset, minuta takes the genitive plural minut, as in deset evrov.",
+      "accept": [
+        "Deset minut je peš."
+      ],
+      "rules": [
+        "r-numbers-5-plus"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l03-i05",
+      "type": "word",
+      "sl": "avtobus",
+      "sl_colloquial": null,
+      "en": "bus",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "ins": "avtobusom"
+      },
+      "examples": [
+        {
+          "sl": "Avtobus gre v center.",
+          "en": "The bus goes to the centre."
+        },
+        {
+          "sl": "Avtobus je pri banki.",
+          "en": "The bus is by the bank."
+        }
+      ],
+      "helper": "Like German Autobus and English bus.",
+      "accept": [],
+      "rules": [
+        "r-z-instrumental"
+      ],
+      "freq_rank": 1880,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l03-i06",
+      "type": "word",
+      "sl": "vlak",
+      "sl_colloquial": null,
+      "en": "train",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "ins": "vlakom"
+      },
+      "examples": [
+        {
+          "sl": "Danes grem z vlakom.",
+          "en": "Today I'm going by train."
+        },
+        {
+          "sl": "Vlak gre ob osmih.",
+          "en": "The train leaves at eight."
+        }
+      ],
+      "helper": "From vleči, to pull, as German Zug comes from ziehen.",
+      "accept": [],
+      "rules": [
+        "r-z-instrumental"
+      ],
+      "freq_rank": 2012,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l03-i07",
+      "type": "word",
+      "sl": "avto",
+      "sl_colloquial": null,
+      "en": "car",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "ins": "avtom"
+      },
+      "examples": [
+        {
+          "sl": "Grem z avtom.",
+          "en": "I'm going by car."
+        },
+        {
+          "sl": "Imate avto?",
+          "en": "Do you have a car? (polite)"
+        }
+      ],
+      "helper": "Short for avtomobil, like German Auto.",
+      "accept": [],
+      "rules": [
+        "r-z-instrumental"
+      ],
+      "freq_rank": 398,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u07-l03-i08",
+      "type": "word",
+      "sl": "center",
+      "sl_colloquial": null,
+      "en": "centre (of a town)",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "gen": "centra",
+        "loc": "centru"
+      },
+      "examples": [
+        {
+          "sl": "Grem v center.",
+          "en": "I'm going into the centre."
+        },
+        {
+          "sl": "Center ni daleč.",
+          "en": "The centre isn't far."
+        }
+      ],
+      "helper": "Like German Zentrum; in the other forms the e drops: do centra, v centru.",
+      "accept": [],
+      "rules": [
+        "r-grem-v-na"
+      ],
+      "freq_rank": 379,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-z-instrumental"
+  ],
+  "structured": [
+    {
+      "id": "u07-l03-s01",
+      "prompt_sl": "Grem z avtobus_.",
+      "options": [
+        "a",
+        "om",
+        "u"
+      ],
+      "answer": "om",
+      "rule": "r-z-instrumental",
+      "en": "I'm going by bus."
+    },
+    {
+      "id": "u07-l03-s02",
+      "prompt_sl": "Danes grem z ___.",
+      "options": [
+        "avto",
+        "avtom",
+        "avta"
+      ],
+      "answer": "avtom",
+      "rule": "r-z-instrumental",
+      "en": "Today I'm going by car."
+    },
+    {
+      "id": "u07-l03-s03",
+      "prompt_sl": "Plačam ___ kartico.",
+      "options": [
+        "z",
+        "s"
+      ],
+      "answer": "s",
+      "rule": "r-z-instrumental",
+      "en": "I'll pay by card."
+    },
+    {
+      "id": "u07-l03-s04",
+      "prompt_sl": "Kavo ___ mlekom, prosim.",
+      "options": [
+        "z",
+        "s"
+      ],
+      "answer": "z",
+      "rule": "r-z-instrumental",
+      "en": "A coffee with milk, please."
+    },
+    {
+      "id": "u07-l03-s05",
+      "prompt_sl": "Kateri avtobus gre v ___?",
+      "options": [
+        "center",
+        "centru",
+        "centra"
+      ],
+      "answer": "center",
+      "rule": "r-grem-v-na",
+      "en": "Which bus goes to the centre?"
+    },
+    {
+      "id": "u07-l03-s06",
+      "prompt_sl": "Peš je deset ___.",
+      "options": [
+        "minuta",
+        "minut",
+        "minute"
+      ],
+      "answer": "minut",
+      "rule": "r-numbers-5-plus",
+      "en": "It's ten minutes on foot."
+    }
+  ],
+  "production": [
+    {
+      "id": "u07-l03-p01",
+      "en": "Say you're going by bus.",
+      "answer": "Grem z avtobusom.",
+      "accept": [],
+      "item": "u07-l03-i01"
+    },
+    {
+      "id": "u07-l03-p02",
+      "en": "On the bus, ask the driver where you get off.",
+      "answer": "Kje izstopim?",
+      "accept": [
+        "Kje naj izstopim?"
+      ],
+      "item": "u07-l03-i03"
+    },
+    {
+      "id": "u07-l03-p03",
+      "en": "At the stop, ask which bus goes to the centre.",
+      "answer": "Kateri avtobus gre v center?",
+      "accept": [
+        "Oprostite, kateri avtobus gre v center?"
+      ],
+      "item": "u07-l03-i02"
+    },
+    {
+      "id": "u07-l03-p04",
+      "en": "A visitor asks how long the walk is. Say it's ten minutes on foot.",
+      "answer": "Peš je deset minut.",
+      "accept": [
+        "Deset minut je peš."
+      ],
+      "item": "u07-l03-i04"
+    },
+    {
+      "id": "u07-l03-p05",
+      "en": "Say you're going by train.",
+      "answer": "Grem z vlakom.",
+      "accept": [],
+      "item": "u07-l03-i06"
+    },
+    {
+      "id": "u07-l03-p06",
+      "en": "Say you're going by car.",
+      "answer": "Grem z avtom.",
+      "accept": [],
+      "item": "u07-l03-i07"
+    }
+  ],
+  "dialogue": {
+    "id": "u07-l03-d",
+    "title_sl": "Na avtobusu",
+    "title_en": "On the bus",
+    "setting_en": "You take the bus into town. At the stop you ask a passer-by which bus to take, and on board you ask the driver where to get off.",
+    "lines": [
+      {
+        "speaker": "you",
+        "sl": "Oprostite, kateri avtobus gre v center?",
+        "en": "Excuse me, which bus goes to the centre?",
+        "new_items": [
+          "u07-l03-i02"
+        ]
+      },
+      {
+        "speaker": "passer-by",
+        "sl": "Avtobus 6. Peš je deset minut.",
+        "en": "Bus 6. It's ten minutes on foot."
+      },
+      {
+        "speaker": "you",
+        "sl": "Grem z avtobusom. Hvala.",
+        "en": "I'll go by bus. Thank you.",
+        "new_items": [
+          "u07-l03-i01"
+        ]
+      },
+      {
+        "speaker": "driver",
+        "sl": "Dober dan.",
+        "en": "Good day."
+      },
+      {
+        "speaker": "you",
+        "sl": "Dober dan. Kje izstopim za center?",
+        "en": "Good day. Where do I get off for the centre?",
+        "new_items": [
+          "u07-l03-i03"
+        ]
+      },
+      {
+        "speaker": "driver",
+        "sl": "Na trgu, pri cerkvi.",
+        "en": "At the square, by the church."
+      }
+    ]
+  }
+}

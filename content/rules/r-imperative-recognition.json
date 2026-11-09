@@ -1,0 +1,40 @@
+{
+  "id": "r-imperative-recognition",
+  "unit": "u07",
+  "title_en": "Directions: pojdite, zavijte",
+  "card_en": "Directions come in the imperative, the form that tells someone what to do. The polite form, also for several people, ends in -te: pojdite, go; zavijte, turn. You only need to understand it.",
+  "example": {
+    "sl": "Pojdite naravnost in zavijte levo.",
+    "en": "Go straight on and turn left."
+  },
+  "toggles": [
+    {
+      "label": "Who you are talking to",
+      "options": [
+        "polite",
+        "to someone close"
+      ],
+      "examples": {
+        "polite": {
+          "sl": "Pojdite naravnost in zavijte levo.",
+          "en": "Go straight on and turn left. (polite, or to several people)"
+        },
+        "to someone close": {
+          "sl": "Pojdi naravnost in zavij levo.",
+          "en": "Go straight on and turn left. (to someone close)"
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Pojdite naravnost, ___.",
+    "options": [
+      "gospa",
+      "sin"
+    ],
+    "answer": "gospa",
+    "explain_en": "Pojdite ends in -te, so it is polite, as for gospa; to someone close it is pojdi."
+  },
+  "helper_de": "Like German gehen Sie and geh: pojdite is polite or for several people, pojdi is for someone close.",
+  "helper_en": "English go and turn never change; Slovenian adds -te for polite speech or several people."
+}

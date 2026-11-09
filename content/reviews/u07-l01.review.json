@@ -1,0 +1,348 @@
+{
+  "lesson": "u07-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {
+        "u07-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Standard way to ask directions; do + genitive correct; accept variant na postajo is correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Natural spoken question without ali; variants with ali and a correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Natural direction; both accept variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Correct adverb, gloss disambiguated. Latin laevus is the standard cognate of Slavic *levъ; the Wiktionary page had no Slovene etymology, so the helper rests on my own knowledge.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-i06": {
+          "verdict": "accepted",
+          "reason": "Correct adverb, gloss disambiguated. Latin dexter is the standard cognate of Slavic *desьnъ; my lookup returned 404, so the helper rests on my own knowledge.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-i07": {
+          "verdict": "accepted",
+          "reason": "Gender and forms correct. SSKJ covers both avtobusna and železniška postaja, so gloss and helper hold.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=postaja"
+        },
+        "u07-l01-i08": {
+          "verdict": "accepted",
+          "reason": "Gender, forms, examples and helper correct.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u07-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Genitive postaje; one right ending, distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-s02": {
+          "verdict": "accepted",
+          "reason": "Genitive banke; one right ending.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Genitive centra with fleeting e; distractors plausible and wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Genitive trgovine; distractors plausible and wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Third person singular ni; distractors wrong person.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-s06": {
+          "verdict": "accepted",
+          "reason": "The English 'by the station' makes pri the one answer; v would mean inside.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and all variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Correct filler form banke; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural polite opener; English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural short direction.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural; pri banki correct locative.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural repeat-back and thanks.",
+          "fix": "",
+          "source": ""
+        },
+        "r-do-genitive": {
+          "verdict": "accepted",
+          "reason": "Card, example, toggles and quick check correct; German contrast with bis zu is fair.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 3,
+      "items": {
+        "u07-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Standard, natural way to ask directions; do + genitive correct; the na postajo variant is also correct; helper is an honest literal gloss.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Natural spoken question; examples grammatical and faithful; a and ali variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural; examples and helper fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Natural direction-giving phrase; both accept variants are correct Slovenian.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Correct adverb and gloss; helper is a true cognate, Latin laevus is listed for Proto-Slavic *levъ.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/Reconstruction:Proto-Slavic/l%C4%9Bv%D1%8A"
+        },
+        "u07-l01-i06": {
+          "verdict": "accepted",
+          "reason": "Correct adverb and gloss; helper holds, Latin dexter goes back to PIE *deks- and its entry compares OCS desnu.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/dexter"
+        },
+        "u07-l01-i07": {
+          "verdict": "accepted",
+          "reason": "Feminine, gen postaje and loc postaji correct; gloss covers both senses; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-i08": {
+          "verdict": "accepted",
+          "reason": "Feminine, gen banke and loc banki correct; gloss disambiguated; helper is a true cognate.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u07-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Only e gives the genitive postaje; a and o are plausible wrong endings.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-s02": {
+          "verdict": "accepted",
+          "reason": "Only banke is right after do; natural sentence.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-s03": {
+          "verdict": "accepted",
+          "reason": "centra is the genitive with the fleeting e; distractors are wrong after do.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-s04": {
+          "verdict": "accepted",
+          "reason": "trgovine is the only correct form after do.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Third person singular ni is the only agreeing option.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-s06": {
+          "verdict": "accepted",
+          "reason": "The English by the station selects pri; v postaji would mean inside it, so one option is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and all variants correct; instruction clear.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Correct genitive; instruction clear; filler recorded.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and a, ali variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct; instruction leads to it.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural polite opening; translation faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural short directions.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural; translation faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural; pri banki correct locative; translation faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u07-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural repeat-back and thanks.",
+          "fix": "",
+          "source": ""
+        },
+        "r-do-genitive": {
+          "verdict": "accepted",
+          "reason": "Card text accurate; example, toggles and quick check correct; exactly one right option; German and English contrasts sound.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u07-l01-i01": "b30bdf195b5ba0f9",
+    "u07-l01-i02": "7cdfadd654c3fb55",
+    "u07-l01-i03": "ca237dcfbacbd772",
+    "u07-l01-i04": "4a55db5fde97d84d",
+    "u07-l01-i05": "fe40498f56d9e148",
+    "u07-l01-i06": "f331994f903f96da",
+    "u07-l01-i07": "42136f0d99245b7c",
+    "u07-l01-i08": "187cd6600cd6e6cc",
+    "u07-l01-s01": "f29cdb19883d79b2",
+    "u07-l01-s02": "cd77b55289def54b",
+    "u07-l01-s03": "6b8720ef298a66f1",
+    "u07-l01-s04": "a7b65274bdbb1cad",
+    "u07-l01-s05": "8fea073e376d6ab0",
+    "u07-l01-s06": "61f4c15f2f14f384",
+    "u07-l01-p01": "bc184ec48be0a849",
+    "u07-l01-p02": "d86ce573f7e58b72",
+    "u07-l01-p03": "a4fe4af74c2f2e5f",
+    "u07-l01-p04": "80f4834a94dd7769",
+    "u07-l01-p05": "2d444194cf5b4a40",
+    "u07-l01-d-01": "b197bef527226ccf",
+    "u07-l01-d-02": "3f00f85bfc27fbdf",
+    "u07-l01-d-03": "34112139d5eb5a87",
+    "u07-l01-d-04": "5936248fdc638612",
+    "u07-l01-d-05": "1e2d963314c4abe6",
+    "r-do-genitive": "752891a336172916"
+  }
+}
