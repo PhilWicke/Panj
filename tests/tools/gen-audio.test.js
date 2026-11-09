@@ -11,7 +11,7 @@ import { mkdir, mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { audioId } from '../../app/js/util/audio-id.js';
-import { DEFAULT_MODEL, MAX_TAKES, bundleTexts, generateAll, pcmToMp3, readKey, synthesize } from '../../tools/gen-audio.js';
+import { DEFAULT_MODEL, MAX_TAKES, bundleTexts, generateAll, highLine, pcmToMp3, readKey, synthesize } from '../../tools/gen-audio.js';
 import { medianPitch } from '../../tools/pitch.js';
 
 const hasFfmpeg = spawnSync('ffmpeg', ['-version'], { stdio: 'ignore' }).status === 0;
@@ -280,14 +280,40 @@ test('a Kore job at 260 Hz makes one request and is not measured', needsFfmpeg, 
   assert.ok(entry && !('pitchHz' in entry), JSON.stringify(entry));
 });
 
-test('a Puck job whose second take fails keeps the first and is not in failed', needsFfmpeg, async (t) => {
+test('a Puck job whose second take fails keeps the first, is not in failed and says why in high', needsFfmpeg, async (t) => {
   const { result, requests, entry, file } = await generateTakes(t, 'Puck', [260, clientError]);
   assert.equal(requests(), 2);
   assert.equal(result.generated, 1);
   assert.deepEqual(result.failed, []);
-  assert.deepEqual(result.high, [{ text: SENTENCE, voice: 'Puck', hz: entry.pitchHz }]);
+  assert.deepEqual(result.high, [
+    { text: SENTENCE, voice: 'Puck', hz: entry.pitchHz, error: `take 2 of ${MAX_TAKES} failed: tts-model answered 400: not this time` },
+  ]);
   assertNearHz(entry.pitchHz, 260);
   assertNearHz(clipPitch(file), 260);
+});
+
+test('a Puck job cut short by a later take keeps the lowest so far and names the take that failed', needsFfmpeg, async (t) => {
+  const { result, requests, entry } = await generateTakes(t, 'Puck', [300, 230, 280, clientError]);
+  assert.equal(requests(), 4);
+  assert.deepEqual(result.high, [
+    { text: SENTENCE, voice: 'Puck', hz: entry.pitchHz, error: `take 4 of ${MAX_TAKES} failed: tts-model answered 400: not this time` },
+  ]);
+  assertNearHz(entry.pitchHz, 230);
+});
+
+test('the reason a job was cut short never carries the key', needsFfmpeg, async (t) => {
+  const echoesKey = () => Response.json({ error: { message: 'refused fake-key' } }, { status: 403 });
+  const { result } = await generateTakes(t, 'Puck', [260, echoesKey]);
+  assert.match(String(result.high[0]?.error), /refused \[key\]/);
+  assert.ok(!JSON.stringify(result).includes('fake-key'), JSON.stringify(result));
+});
+
+test('highLine is the HIGH line of a clip, with the reason only when its takes were cut short', () => {
+  assert.equal(highLine({ text: SENTENCE, voice: 'Puck', hz: 260 }), `HIGH 260 Puck ${SENTENCE}`);
+  assert.equal(
+    highLine({ text: SENTENCE, voice: 'Puck', hz: 260, error: 'take 2 of 5 failed: quota' }),
+    `HIGH 260 Puck ${SENTENCE} (take 2 of 5 failed: quota)`,
+  );
 });
 
 test('a Puck job with no successful take goes to failed', async (t) => {
