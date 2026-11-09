@@ -32,7 +32,9 @@
 // reaches the exercise on screen: one whose kind it drops is skipped without an outcome, and a
 // meet, dialogue or speaking exercise is drawn again without sound after "Can't listen right now".
 // Every interruptible draw has its own element in the stage, so one left behind cannot draw over
-// what follows, and once the learner can't listen no exercise context plays anything.
+// what follows, and once the learner can't listen no exercise context plays anything. Once a
+// speaking exercise is skipped or drawn again, or the screen is left, no recogniser listens
+// (stopRecognition).
 
 import { h, mount } from '../../util/dom.js';
 import { buildMoreRound, buildSession, closingMenu, quietDrops } from '../../engine/session.js';
@@ -47,7 +49,7 @@ import { renderFor } from '../exercises/registry.js';
 import { renderMenu } from '../components/menu.js';
 import { OFFER_KINDS, QUIET_LABELS, chooseQuiet, offerQuiet, quietChoices } from '../quiet.js';
 import { navigate } from '../../router.js';
-import { resetRecognition } from '../../audio/speech.js';
+import { resetRecognition, stopRecognition } from '../../audio/speech.js';
 
 /** @typedef {import('../../app-types.js').App} App */
 /** @typedef {import('../../engine/session.js').QueueEntry} QueueEntry */
@@ -393,6 +395,7 @@ export function renderSession(container, app, params = {}) {
       const interrupted = new Promise((resolve) => { interrupt = resolve; });
       const drawn = await Promise.race([render(host, entry, contextFor(entry.itemId, entry)), interrupted]);
       interrupt = null;
+      if (drawn === 'skip' || drawn === 'redraw') stopRecognition();
       if (drawn === 'redraw') continue;
       mount(offer);
       return drawn === 'skip' ? null : drawn;
@@ -569,6 +572,7 @@ export function renderSession(container, app, params = {}) {
   return () => {
     alive = false;
     app.player.stop();
+    stopRecognition();
     record().catch((error) => console.error(error));
   };
 }

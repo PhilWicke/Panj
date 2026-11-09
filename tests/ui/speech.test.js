@@ -4,7 +4,9 @@
 // the line (diacritics aside) is close, anything else a miss. recognizeOnce never rejects: it
 // resolves transcript null when the API is missing, on an error, on an end without a result and
 // on its timeout; a refused microphone or service, no microphone or no Slovenian is remembered as
-// recognitionBlocked until resetRecognition, and no other error is. createPlayer plays the recording first, the device's Slovenian voice second and
+// recognitionBlocked until resetRecognition, and no other error is. stopRecognition aborts the
+// recogniser listening now (recognizeOnce resolves `aborted`), and a second recognizeOnce stops the
+// first, so one recogniser listens at a time. createPlayer plays the recording first, the device's Slovenian voice second and
 // resolves 'none' when neither exists; a missing manifest reads as empty without a console error,
 // and a missing Web Crypto as no recording; mute plays nothing; setVoice changes the voice of later lookups and stops what
 // plays; a new play waits for the cancelled utterance to let go before it speaks; audioAvailable
@@ -12,7 +14,7 @@
 // within AUDIO_CHECK_MS, a slower answer reading as available (Ruling 95).
 import { test, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { compareSpoken, recognitionBlocked, recognizeOnce, resetRecognition, speechAvailable } from '../../app/js/audio/speech.js';
+import { compareSpoken, recognitionBlocked, recognizeOnce, resetRecognition, speechAvailable, stopRecognition } from '../../app/js/audio/speech.js';
 import { AUDIO_CHECK_MS, createPlayer, voiceFor, VOICES } from '../../app/js/audio/player.js';
 import { audioId } from '../../app/js/util/audio-id.js';
 
@@ -264,6 +266,31 @@ test('recognizeOnce remembers a failure that does not pass by itself until reset
   stub('SpeechRecognition', undefined);
   assert.equal((await recognizeOnce()).error, 'unavailable');
   assert.equal(recognitionBlocked(), false, 'a missing API is speechAvailable\'s to say');
+});
+
+test('stopRecognition aborts the recogniser listening now, recognizeOnce resolves aborted, a second recognizeOnce stops the first, and with none listening it does nothing', async () => {
+  const { FakeRecognition, made } = fakeRecognition(() => {});
+  stub('SpeechRecognition', FakeRecognition);
+  stopRecognition();
+  assert.equal(made.length, 0, 'with none listening it does nothing');
+
+  const first = recognizeOnce({ timeoutMs: 10_000 });
+  assert.deepEqual([made[0].started, made[0].aborted], [1, 0], 'listening');
+  stopRecognition();
+  assert.equal(made[0].aborted, 1, 'the recogniser is aborted at once');
+  assert.deepEqual(await first, { transcript: null, error: 'aborted' });
+  assert.equal(recognitionBlocked(), false, 'an abort is for that attempt only');
+  stopRecognition();
+  assert.equal(made[0].aborted, 1, 'once it has ended, stopRecognition does nothing');
+
+  const second = recognizeOnce({ timeoutMs: 10_000 });
+  const third = recognizeOnce({ timeoutMs: 10_000 });
+  assert.equal(made[1].aborted, 1, 'a second recognizeOnce stops the first');
+  assert.deepEqual(await second, { transcript: null, error: 'aborted' });
+  assert.deepEqual([made[2].started, made[2].aborted], [1, 0], 'and listens itself');
+  stopRecognition();
+  assert.equal(made[2].aborted, 1);
+  assert.deepEqual(await third, { transcript: null, error: 'aborted' });
 });
 
 test('voiceFor maps the voice preference to the recordings\' voice, none for the device voice', () => {
