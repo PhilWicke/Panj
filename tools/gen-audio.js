@@ -12,10 +12,11 @@
 // Library: readKey, synthesize, pcmToMp3, generateAll, bundleTexts, textsFromFile.
 // CLI: node tools/gen-audio.js (--from-bundle | --texts <file>) [--voice <name> ...]
 //   [--model <model>] [--limit <n>] [--out <dir>]
-// --from-bundle reads app/content/dist (run a content build first), --texts
-// reads one text per line, --limit keeps the first n texts (each in every
-// voice), --out replaces app/assets/audio/. Exit 1 when a text failed or the
-// run could not start, 2 on a bad argument.
+// --from-bundle reads app/content/dist (run a content build first) and appends
+// the perception drill's words (Ruling 46), --texts reads one text per line,
+// --limit keeps the first n texts (each in every voice), --out replaces
+// app/assets/audio/. Exit 1 when a text failed or the run could not start, 2 on
+// a bad argument.
 import { spawn } from 'node:child_process';
 import { mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
@@ -23,6 +24,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { audioId } from '../app/js/util/audio-id.js';
+import { audioTexts, drillTexts } from '../app/js/util/audio-texts.js';
 
 /** @typedef {import('../app/js/content/types.js').Index} Index */
 /** @typedef {import('../app/js/content/types.js').UnitContent} UnitContent */
@@ -268,9 +270,9 @@ export async function generateAll({ texts, outDir, model, concurrency = 2 }) {
 }
 
 /**
- * The texts a bundle records: the `sl` of every accepted item and of its examples, and every
- * dialogue line of a lesson with at least one accepted item (the lessons a strict build keeps).
- * Duplicates are dropped, first occurrence first.
+ * The texts a bundle records: audioTexts of every unit file (the `sl` of every accepted item and
+ * of its examples, and every dialogue line of a lesson with at least one accepted item, the
+ * lessons a strict build keeps), in course order. Duplicates are dropped, first occurrence first.
  * @param {string} distDir a folder written by tools/build-content.js
  * @returns {Promise<string[]>}
  */
@@ -282,15 +284,7 @@ export async function bundleTexts(distDir) {
   for (const { id } of index.units) {
     /** @type {UnitContent} */
     const unit = JSON.parse(await readFile(path.join(distDir, 'units', `${id}.json`), 'utf8'));
-    for (const lesson of unit.lessons) {
-      const accepted = lesson.items.filter((item) => item.verification.status === 'accepted');
-      if (accepted.length === 0) continue;
-      for (const item of accepted) {
-        texts.add(item.sl);
-        for (const example of item.examples) texts.add(example.sl);
-      }
-      for (const line of lesson.dialogue?.lines ?? []) texts.add(line.sl);
-    }
+    for (const text of audioTexts(unit)) texts.add(text);
   }
   return [...texts];
 }
@@ -347,7 +341,18 @@ async function main(argv) {
     else console.error(`ERROR ${errorMessage(err)}`);
     return 1;
   }
+  // A bundle run also records the perception drill's words (Ruling 46), after the bundle's texts.
+  const bundleCount = texts.length;
+  if (fromBundle) {
+    const known = new Set(texts);
+    for (const text of drillTexts()) {
+      if (known.has(text)) continue;
+      known.add(text);
+      texts.push(text);
+    }
+  }
   texts = texts.slice(0, limit);
+  const drill = fromBundle ? ` drill=${Math.max(0, texts.length - bundleCount)}` : '';
 
   let result;
   try {
@@ -358,7 +363,7 @@ async function main(argv) {
   }
   for (const { text, error } of result.failed) console.error(`FAILED ${JSON.stringify(text)} ${error}`);
   console.log(
-    `texts=${texts.length} voices=${voices.join(',')} model=${model} generated=${result.generated} skipped=${result.skipped} failed=${result.failed.length}`,
+    `texts=${texts.length}${drill} voices=${voices.join(',')} model=${model} generated=${result.generated} skipped=${result.skipped} failed=${result.failed.length}`,
   );
   console.log(`wrote ${rel(outDir)}`);
   return result.failed.length > 0 ? 1 : 0;

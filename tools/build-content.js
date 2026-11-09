@@ -1,6 +1,7 @@
 // Content bundle compiler: compiles units.json, lessons/*.json and rules/*.json
 // under content/ into app/content/dist/ (index.json and units/uNN.json) and
-// writes app/version.js, the module the service worker names its cache after.
+// writes app/version.js, the module the service worker names its cache after,
+// and app/precache.json, the list of shell files the worker installs (Task 19).
 //
 // The linter runs first and any error stops the build, with one exception: in a
 // strict build (no --allow-pending) the linter's pending-practised findings are
@@ -10,13 +11,13 @@
 // them) but leave `production` and the dialogue's `new_items`; a lesson without
 // a single accepted item is left out of the bundle. A dev build keeps everything.
 //
-// Library: buildContent({ contentDir, outDir, allowPending, versionFile }).
+// Library: buildContent({ contentDir, outDir, allowPending, versionFile, appDir }).
 // CLI: node tools/build-content.js [--allow-pending] [--check] [contentDir];
 // exit 1 on lint errors, 2 on a bad argument. --check builds into a temporary
-// folder, removes it and prints the summary only.
+// folder, removes it and prints the summary only (no version.js, no precache.json).
 // No dependencies: node:fs, node:os, node:path and node:url, plus the app's
 // sha256Hex and wordTokens (the tokeniser lemmasMet shares with the progress counters).
-import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -48,9 +49,18 @@ import { wordTokens } from '../app/js/util/tokens.js';
 const DEFAULT_CONTENT_DIR = fileURLToPath(new URL('../content/', import.meta.url));
 const DEFAULT_OUT_DIR = fileURLToPath(new URL('../app/content/dist/', import.meta.url));
 const DEFAULT_VERSION_FILE = fileURLToPath(new URL('../app/version.js', import.meta.url));
+const DEFAULT_APP_DIR = fileURLToPath(new URL('../app/', import.meta.url));
 const USAGE = 'Usage: node tools/build-content.js [--allow-pending] [--check] [contentDir]';
 const VERSION_LENGTH = 12;
 const UNIT_FILE = /^u\d{2}\.json$/;
+/** The shell files precache.json names one by one, in this order after `./`; each must exist. */
+const SHELL_FILES = ['index.html', 'manifest.webmanifest', 'version.js'];
+/** The folders under app/ whose every file precache.json lists, in this order. */
+const SHELL_FOLDERS = ['css', 'js', 'assets/fonts', 'assets/icons'];
+/** Single assets precache.json lists after the folders. */
+const SHELL_ASSETS = ['assets/icon.svg', 'assets/audio/manifest.json'];
+/** The worker itself is never precached, wherever it sits. */
+const NOT_PRECACHED = new Set(['sw.js']);
 
 /** @param {unknown} err */
 const errorMessage = (err) => (err instanceof Error ? err.message : String(err));
@@ -124,13 +134,55 @@ function compileLesson(doc, scheduled) {
 }
 
 /**
+ * Every file under `dir`, recursively, as sorted paths relative to `dir` with forward slashes;
+ * hidden files are left out.
+ * @param {string} dir
+ * @returns {Promise<string[]>}
+ */
+async function filesUnder(dir) {
+  const entries = await readdir(dir, { withFileTypes: true, recursive: true });
+  return entries
+    .filter((entry) => entry.isFile() && !entry.name.startsWith('.'))
+    .map((entry) => path.relative(dir, path.join(entry.parentPath, entry.name)).split(path.sep).join('/'))
+    .sort();
+}
+
+/**
+ * Writes `<appDir>/precache.json`, the shell the service worker installs for this version
+ * (Task 19): `{ version, files }` with paths relative to the app folder, in order: the start URL
+ * `./`, index.html, the web manifest, version.js, every file under css/ and js/ (never sw.js),
+ * every font and icon, the app icon, the audio manifest, then the content index and every unit
+ * file this build wrote. precache.json itself is not listed. A listed file missing from the app
+ * folder fails the build, since the worker's install would fail on it later.
+ * @param {string} appDir the app folder, with content/dist/ and version.js already written
+ * @param {string} version
+ * @param {string[]} unitIds the unit files written, `uNN`
+ */
+async function writePrecache(appDir, version, unitIds) {
+  const files = ['./', ...SHELL_FILES];
+  for (const folder of SHELL_FOLDERS) {
+    for (const file of await filesUnder(path.join(appDir, folder))) {
+      if (!NOT_PRECACHED.has(path.basename(file))) files.push(`${folder}/${file}`);
+    }
+  }
+  files.push(...SHELL_ASSETS, 'content/dist/index.json', ...unitIds.map((id) => `content/dist/units/${id}.json`));
+  for (const file of files) {
+    const info = await stat(path.join(appDir, file === './' ? 'index.html' : file)).catch(() => null);
+    if (!info?.isFile()) throw new Error(`precache.json needs ${file}, which is missing in ${appDir}`);
+  }
+  await writeJson(path.join(appDir, 'precache.json'), { version, files });
+}
+
+/**
  * Compiles the content directory into `outDir` (index.json and units/uNN.json)
- * and, when `versionFile` is given, writes the version module there. Rejects
- * when the linter finds errors; see the header for what a strict build strips.
- * @param {{ contentDir: string, outDir: string, allowPending?: boolean, versionFile?: string|null }} options
+ * and, when `versionFile` is given, writes the version module there; when
+ * `appDir` is given, writes its precache.json too (outDir is then its
+ * content/dist/ and versionFile its version.js). Rejects when the linter finds
+ * errors; see the header for what a strict build strips.
+ * @param {{ contentDir: string, outDir: string, allowPending?: boolean, versionFile?: string|null, appDir?: string|null }} options
  * @returns {Promise<BuildResult>}
  */
-export async function buildContent({ contentDir, outDir, allowPending = false, versionFile = null }) {
+export async function buildContent({ contentDir, outDir, allowPending = false, versionFile = null, appDir = null }) {
   if (typeof contentDir !== 'string' || contentDir === '') throw new Error('buildContent needs a contentDir');
   if (typeof outDir !== 'string' || outDir === '') throw new Error('buildContent needs an outDir');
   const mode = allowPending ? 'dev' : 'strict';
@@ -208,6 +260,7 @@ export async function buildContent({ contentDir, outDir, allowPending = false, v
     await mkdir(path.dirname(versionFile), { recursive: true });
     await writeFile(versionFile, versionModule(corpus.version));
   }
+  if (appDir) await writePrecache(appDir, corpus.version, unitFiles.map((unitFile) => unitFile.unit.id));
 
   return {
     version: corpus.version,
@@ -252,7 +305,7 @@ async function main(argv) {
         await rm(scratch, { recursive: true, force: true });
       }
     } else {
-      result = await buildContent({ contentDir: dir, outDir: DEFAULT_OUT_DIR, allowPending, versionFile: DEFAULT_VERSION_FILE });
+      result = await buildContent({ contentDir: dir, outDir: DEFAULT_OUT_DIR, allowPending, versionFile: DEFAULT_VERSION_FILE, appDir: DEFAULT_APP_DIR });
     }
   } catch (err) {
     console.error(`ERROR ${errorMessage(err)}`);
@@ -262,7 +315,7 @@ async function main(argv) {
   for (const issue of result.stripped) console.error(`STRIPPED ${issue.file} ${issue.path}: ${issue.message}`);
   for (const id of result.omittedLessons) console.error(`OMITTED lessons/${id}.json: no item is accepted, so the strict build leaves the lesson out`);
   console.log(summary(result));
-  if (!check) console.log(`wrote ${rel(DEFAULT_OUT_DIR)} and ${rel(DEFAULT_VERSION_FILE)}`);
+  if (!check) console.log(`wrote ${rel(DEFAULT_OUT_DIR)}, ${rel(DEFAULT_VERSION_FILE)} and ${rel(path.join(DEFAULT_APP_DIR, 'precache.json'))}`);
   return 0;
 }
 

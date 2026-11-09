@@ -1,8 +1,8 @@
 /* Components: header, screens, buttons, the exercises, the feedback panel, the session bar, the
    rule card, the Rules screen, the Today screen with its calendar and hive, the unit page, the
-   checkpoint and onboarding forms, the Words, Stats and Settings screens and the tab bar. Every
-   control is at least 44 px tall; motion only answers an action and sits in the no-preference
-   block at the end. */
+   checkpoint and onboarding forms, the Words, Stats and Settings screens, the tab bar and the
+   toast. Every control is at least 44 px tall; motion only answers an action and sits in the
+   no-preference block at the end. */
 
 /* Header */
 
@@ -1527,11 +1527,61 @@ button.rule-cell {
   cursor: default;
 }
 
+/* Toast: one fixed bar at the bottom, above the tab bar when a screen has one. */
+
+.toast {
+  position: fixed;
+  right: var(--space-16);
+  bottom: calc(var(--space-16) + env(safe-area-inset-bottom));
+  left: var(--space-16);
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-8);
+  max-width: calc(34rem - 2 * var(--space-16));
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-8) var(--space-8) var(--space-16);
+  border: 1px solid var(--toast-border);
+  border-radius: var(--radius-16);
+  background: var(--toast-bg);
+  color: var(--warm-white);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 18%);
+}
+
+/* The tab bar is 56 px plus the safe area; the toast sits above it. */
+.app-main.has-nav ~ .toast {
+  bottom: calc(56px + var(--space-16) + env(safe-area-inset-bottom));
+}
+
+.toast-text {
+  flex: 1 1 14rem;
+  font-weight: 500;
+}
+
+.toast-actions {
+  display: flex;
+  gap: var(--space-4);
+  margin-left: auto;
+}
+
+.toast .btn-quiet {
+  color: var(--honey);
+}
+
+.toast .toast-action {
+  font-weight: 750;
+}
+
 /* Motion, only in answer to an action */
 
 @media (prefers-reduced-motion: no-preference) {
   .btn {
     transition: transform 120ms ease-out, background-color 120ms ease-out;
+  }
+
+  .toast {
+    animation: settle 200ms ease-out;
   }
 
   .segment,

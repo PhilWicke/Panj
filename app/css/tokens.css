@@ -79,6 +79,9 @@
   --hive-board: var(--surface);
   --hive-cell: var(--warm-white);
   --hive-text: var(--indigo);
+  /* The toast: ink on the warm page, indigo on the deep indigo page; its text is warm white in both. */
+  --toast-bg: var(--ink);
+  --toast-border: color-mix(in srgb, var(--warm-white) 16%, transparent);
 }
 
 /* Dark theme: indigo stays the surface and honey becomes the accent. The system setting applies
@@ -104,6 +107,8 @@
     --hive-board: var(--indigo);
     --hive-cell: var(--indigo-deep);
     --hive-text: var(--warm-white);
+    --toast-bg: var(--indigo);
+    --toast-border: color-mix(in srgb, var(--warm-white) 28%, transparent);
   }
 }
 
@@ -127,4 +132,6 @@
   --hive-board: var(--indigo);
   --hive-cell: var(--indigo-deep);
   --hive-text: var(--warm-white);
+  --toast-bg: var(--indigo);
+  --toast-border: color-mix(in srgb, var(--warm-white) 28%, transparent);
 }

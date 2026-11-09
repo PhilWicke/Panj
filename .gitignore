@@ -10,3 +10,4 @@ playwright-report/
 # Build outputs of tools/build-content.js
 app/content/dist/
 app/version.js
+app/precache.json

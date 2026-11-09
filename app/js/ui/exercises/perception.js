@@ -1,26 +1,17 @@
 // The perception drill (spec 4.2): one of two or three similar words plays, and the learner picks
-// the one that was said from the words written out (labels, not pictures). The sets are a small
-// built-in list for the sounds that trip German and English speakers: a final l (bil, bila), s
-// against š (vas, vaš), s, z and ž (kosa, koza, koža), an s before t (peti, pesti) and v before a
-// consonant (v šoli, šoli). The entry carries no item: the set and the word to play are drawn with
-// ctx.rng. The outcome is `aux` only. When nothing can play the word, the drill says so and
+// the one that was said from the words written out (labels, not pictures). The sets are the
+// small built-in list in content/perception-sets.js (Ruling 46: shared with the audio texts, so
+// every word has a recording). The entry carries no item: the set and the word to play are drawn
+// with ctx.rng. The outcome is `aux` only. When nothing can play the word, the drill says so and
 // resolves with no outcome.
 
 import { h, mount } from '../../util/dom.js';
+import { PERCEPTION_SETS } from '../../content/perception-sets.js';
 import { audioExercise } from '../components/no-audio.js';
 import { optionGroup } from '../components/option-group.js';
 
 /** @typedef {import('./registry.js').ExerciseRender} ExerciseRender */
 /** @typedef {import('./registry.js').ExerciseOutcome} ExerciseOutcome */
-
-/** The drill's sets of similar words, each shown in this order. */
-export const PERCEPTION_SETS = Object.freeze([
-  Object.freeze(['bil', 'bila']),
-  Object.freeze(['vas', 'vaš']),
-  Object.freeze(['kosa', 'koza', 'koža']),
-  Object.freeze(['peti', 'pesti']),
-  Object.freeze(['v šoli', 'šoli']),
-]);
 
 /**
  * A set and the word of it to play, drawn with `rng`.

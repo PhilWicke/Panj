@@ -3,10 +3,10 @@
 // createElement, createElementNS (the tag name keeps its case and the element records its
 // namespace, as an SVG element does), createTextNode, className, classList, dataset, style,
 // setAttribute, removeAttribute, hidden (reflecting the attribute, as on an HTML element),
-// querySelector (one class selector only), appendChild, append, replaceChildren, addEventListener,
-// focus (recorded as document.activeElement), textContent and a documentElement for the theme. It
-// keeps dom.js and the small components honest without a browser; the session itself runs in the
-// end-to-end check.
+// querySelector (one class selector only), appendChild, append, replaceChildren, remove,
+// addEventListener, focus (recorded as document.activeElement), textContent, a documentElement
+// for the theme and a body for the toast. It keeps dom.js and the small components honest
+// without a browser; the session itself runs in the end-to-end check.
 
 /** The document installFakeDom put on globalThis, which focus() reports to. @type {{ activeElement: FakeElement|null }|null} */
 let installed = null;
@@ -37,6 +37,14 @@ class FakeNode {
     for (const child of this.childNodes) child.parentNode = null;
     this.childNodes = [];
     this.append(...nodes);
+  }
+
+  /** Takes the node out of its parent, as the DOM's remove does; nothing when it has none. */
+  remove() {
+    const parent = this.parentNode;
+    if (!parent) return;
+    parent.childNodes = parent.childNodes.filter((child) => child !== this);
+    this.parentNode = null;
   }
 
   get textContent() {
@@ -173,7 +181,7 @@ class FakeElement extends FakeNode {
 
 /**
  * Puts a fake `document` on globalThis and returns it.
- * @returns {{ createElement(tag: string): FakeElement, createElementNS(namespace: string, tag: string): FakeElement, createTextNode(data: string): FakeText, documentElement: FakeElement, activeElement: FakeElement|null }}
+ * @returns {{ createElement(tag: string): FakeElement, createElementNS(namespace: string, tag: string): FakeElement, createTextNode(data: string): FakeText, documentElement: FakeElement, body: FakeElement, activeElement: FakeElement|null }}
  */
 export function installFakeDom() {
   const document = {
@@ -182,6 +190,8 @@ export function installFakeDom() {
     createTextNode: (/** @type {string} */ data) => new FakeText(String(data)),
     /** The root element, whose dataset carries the theme. */
     documentElement: new FakeElement('html'),
+    /** The body, which the toast appends to. */
+    body: new FakeElement('body'),
     /** @type {FakeElement|null} */
     activeElement: null,
   };

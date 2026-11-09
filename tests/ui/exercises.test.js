@@ -27,7 +27,8 @@ import { slotBase, slotOutcome } from '../../app/js/ui/exercises/slot.js';
 import { dialogueOutcome, lineEffective, speakerLabel, playWaitMs, playWithin } from '../../app/js/ui/exercises/dialogue.js';
 import { meaningOptions, render as renderListening } from '../../app/js/ui/exercises/listening.js';
 import { attemptOutcome, recognitionFallsBack, spokenVerdict, render as renderSpeaking } from '../../app/js/ui/exercises/speaking.js';
-import { PERCEPTION_SETS, pickPerception, render as renderPerception } from '../../app/js/ui/exercises/perception.js';
+import { pickPerception, render as renderPerception } from '../../app/js/ui/exercises/perception.js';
+import { PERCEPTION_SETS } from '../../app/js/content/perception-sets.js';
 
 /** @typedef {import('../../app/js/content/types.js').Lesson} Lesson */
 /** @typedef {import('../../app/js/content/types.js').Item} Item */

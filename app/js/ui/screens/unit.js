@@ -1,11 +1,14 @@
 // The unit page (spec 6), reached from a hive board: the unit's titles, whether its checkpoint
 // sealed it and when, how much of it can be recalled now, its lessons each with a retention meter
 // (lessonFill), the link to the unit's checkpoint (`#/checkpoint?unit=uNN`, once the unit has an
-// item to check), and keeping the unit's audio offline, a placeholder until Task 19.
+// item to check), and "Keep offline", which asks the service worker to cache the unit's clips in
+// the learner's voice (Task 19): it needs a recorded voice (the device voice downloads nothing)
+// and a worker controlling the page (which the first load lacks until one reload).
 
 import { h, mount } from '../../util/dom.js';
 import { onlyKnown } from '../../content/loader.js';
 import { hiveFill, lessonFill } from '../../engine/progress.js';
+import { voiceFor } from '../../audio/player.js';
 
 /** @typedef {import('../../app-types.js').App} App */
 
@@ -38,6 +41,59 @@ function formatDate(isoDate) {
 }
 
 /**
+ * The "Keep offline" button and its quiet line. With a recorded voice and a controlling worker
+ * the button posts `cache-unit-audio` and reads "Keeping offline…" until the worker's
+ * `unit-audio-cached` reply, then "Kept offline" with how many of the unit's clips the phone
+ * holds; a reply with `error` offers the button again. With the device voice, or without a
+ * controller, the button looks disabled and the line says why.
+ * @param {App} app
+ * @param {string} unitId
+ * @returns {{ button: HTMLElement, line: HTMLElement }}
+ */
+function keepOffline(app, unitId) {
+  const voice = voiceFor(app.state.settings.voice);
+  const controller = navigator.serviceWorker?.controller ?? null;
+  const button = h('button', { type: 'button', class: 'btn btn-secondary' }, 'Keep offline');
+  const line = h('p', { class: 'quiet', hidden: true });
+  /** @param {string} text */
+  const say = (text) => {
+    line.textContent = text;
+    line.hidden = false;
+  };
+  if (!voice) {
+    button.setAttribute('aria-disabled', 'true');
+    say('The device voice needs no download.');
+  } else if (!controller) {
+    button.setAttribute('aria-disabled', 'true');
+    say('Offline audio needs one more reload.');
+  } else {
+    button.addEventListener('click', () => {
+      if (button.getAttribute('aria-busy') === 'true') return;
+      button.setAttribute('aria-busy', 'true');
+      button.textContent = 'Keeping offline…';
+      /** @param {MessageEvent} event */
+      const onReply = (event) => {
+        const data = event.data;
+        if (!data || data.type !== 'unit-audio-cached' || data.unitId !== unitId) return;
+        navigator.serviceWorker.removeEventListener('message', onReply);
+        button.removeAttribute('aria-busy');
+        const kept = `${data.count} of ${data.total} ${data.total === 1 ? 'clip' : 'clips'} kept on this phone.`;
+        if (data.error) {
+          button.textContent = 'Keep offline';
+          say(`${kept} The rest could not be fetched; try again later.`);
+        } else {
+          button.textContent = 'Kept offline';
+          say(kept);
+        }
+      };
+      navigator.serviceWorker.addEventListener('message', onReply);
+      controller.postMessage({ type: 'cache-unit-audio', unitId, voice });
+    });
+  }
+  return { button, line };
+}
+
+/**
  * @param {HTMLElement} container
  * @param {App} app
  * @param {Record<string, string>} [params] `id` is the unit, `u01`
@@ -64,6 +120,7 @@ export function renderUnit(container, app, params = {}) {
   /** @param {import('../../content/types.js').Lesson} lesson @returns {number} the items that count */
   const counted = (lesson) => lesson.items.filter((item) => app.allowPending || item.verification.status === 'accepted').length;
   const checkable = lessons.some((lesson) => counted(lesson) > 0);
+  const offline = keepOffline(app, unit.id);
 
   mount(container, h('section', { class: 'screen screen-unit' },
     back,
@@ -87,6 +144,6 @@ export function renderUnit(container, app, params = {}) {
       checkable
         ? h('a', { class: 'btn btn-primary', href: `#/checkpoint?unit=${unit.id}` }, 'Take the checkpoint')
         : h('button', { type: 'button', class: 'btn btn-primary', 'aria-disabled': 'true' }, 'Take the checkpoint'),
-      h('button', { type: 'button', class: 'btn btn-secondary', 'aria-disabled': 'true' }, 'Keep offline')),
-    h('p', { class: 'quiet' }, 'Offline audio arrives with a later update.')));
+      offline.button),
+    offline.line));
 }

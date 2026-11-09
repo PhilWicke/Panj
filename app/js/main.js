@@ -3,7 +3,9 @@
 // onboarded, `#/today` otherwise, `#/session`, `#/hive`, `#/unit?id=uNN`, `#/rules`, `#/words`,
 // `#/settings`, `#/stats` and `#/checkpoint` (a unit's, the weekly check or the placement). Every
 // screen gets the one App object (app-types.js), whose state the screens update as they save;
-// every screen but onboarding, the session and a checkpoint has the tab bar below it.
+// every screen but onboarding, the session and a checkpoint has the tab bar below it. After boot
+// the service worker is registered (sw-client.js); a new version shows a toast and takes effect
+// only when the learner taps its Reload (Ruling 58).
 
 import { h, mount } from './util/dom.js';
 import { openStore } from './store/db.js';
@@ -33,6 +35,8 @@ import { renderWords } from './ui/screens/words.js';
 import { renderSettings } from './ui/screens/settings.js';
 import { renderStats } from './ui/screens/stats.js';
 import { applyTheme } from './ui/theme.js';
+import { showToast } from './ui/components/toast.js';
+import { registerWorker } from './sw-client.js';
 
 /** @typedef {import('./app-types.js').App} App */
 
@@ -54,6 +58,8 @@ let nav = null;
 
 /** Routes shown under another route's tab: the unit page belongs to the Hive tab, Stats to Settings. */
 const TAB_OF = new Map([['/unit', '/hive'], ['/stats', '/settings']]);
+/** What the toast says when a new version is installed and waiting. */
+const UPDATE_TEXT = 'A new version is ready. Reload when you have a moment.';
 
 /**
  * Puts the tab bar below the main column, or takes it away on the routes without one; the column
@@ -97,7 +103,7 @@ async function boot() {
 
   applyTheme(state.settings.theme);
   if (app.allowPending) document.querySelector('.app-header')?.append(h('span', { class: 'badge' }, 'Development build'));
-  // Task 19 registers the service worker here.
+  void registerWorker({ onUpdate: ({ reload }) => showToast({ text: UPDATE_TEXT, action: { label: 'Reload', onTap: reload } }) });
 
   /** @type {(() => void)|null} */
   let leave = null;
