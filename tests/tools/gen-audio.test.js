@@ -10,7 +10,7 @@ import { mkdir, mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { audioId } from '../../app/js/util/audio-id.js';
-import { bundleTexts, generateAll, pcmToMp3, readKey, synthesize } from '../../tools/gen-audio.js';
+import { DEFAULT_MODEL, bundleTexts, generateAll, pcmToMp3, readKey, synthesize } from '../../tools/gen-audio.js';
 
 const hasFfmpeg = spawnSync('ffmpeg', ['-version'], { stdio: 'ignore' }).status === 0;
 const API = 'https://generativelanguage.googleapis.com/v1beta/models';
@@ -126,6 +126,24 @@ test('synthesize refuses audio that is not raw 24 kHz mono PCM', async (t) => {
   for (const mime of mimes.slice(1)) {
     await assert.rejects(run(), (err) => err instanceof Error && err.message.includes(`returned ${mime},`));
   }
+});
+
+// gemini-3.8-flash-tts answers audio/wav and reads the prompt prefix aloud, so the
+// voice check ran on 3.1-preview; bulk generation must use the model the voice check approved.
+test('the default model is the voice-check model and its answer passes the PCM guard', async (t) => {
+  assert.equal(DEFAULT_MODEL, 'gemini-3.1-flash-tts-preview');
+  const pcm = Buffer.from([1, 0, 2, 0]);
+  /** @type {string[]} */
+  const urls = [];
+  t.mock.method(globalThis, 'fetch', async (/** @type {string} */ url) => {
+    urls.push(url);
+    // the answer shape recorded from gemini-3.1-flash-tts-preview during the voice check
+    return Response.json({
+      candidates: [{ content: { parts: [{ inlineData: { mimeType: 'audio/l16; rate=24000; channels=1', data: pcm.toString('base64') } }] } }],
+    });
+  });
+  assert.deepEqual(await synthesize({ text: 'Dober dan.', voice: 'Kore', model: DEFAULT_MODEL, key: 'fake-key' }), pcm);
+  assert.deepEqual(urls, [`${API}/gemini-3.1-flash-tts-preview:generateContent`]);
 });
 
 test('pcmToMp3 converts one second of silence to a small mp3', { skip: !hasFfmpeg && 'ffmpeg not found' }, async () => {

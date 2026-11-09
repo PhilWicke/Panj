@@ -29,7 +29,11 @@ import { audioId } from '../app/js/util/audio-id.js';
 /** @typedef {{ text: string, voice: string, model: string, bytes: number }} ManifestEntry */
 /** @typedef {{ generated: number, skipped: number, failed: { text: string, error: string }[] }} GenerateResult */
 
-export const DEFAULT_MODEL = 'gemini-3.8-flash-tts';
+// The model the voice check ran on, so bulk clips match the approved voices.
+// gemini-3.8-flash-tts is not usable with this prompt: it answers audio/wav and
+// reads the "Say clearly in Slovenian" prefix aloud. Preview models can be
+// retired; a replacement needs a new voice check before any bulk run.
+export const DEFAULT_MODEL = 'gemini-3.1-flash-tts-preview';
 /** Kore is a female voice, Puck a male one. */
 export const DEFAULT_VOICES = ['Kore', 'Puck'];
 const API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models';
