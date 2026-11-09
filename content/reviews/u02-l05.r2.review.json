@@ -1,0 +1,47 @@
+{
+  "lesson": "u02-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {},
+      "lines": {
+        "u02-l05-p06": {
+          "verdict": "accepted",
+          "reason": "This is identical to u02-l04-p02. Imava dva otroka. is natural and correct, and the variants Midva imava dva otroka. and Medve imava dva otroka. are both correct (Pravopis gives medve as the feminine/neuter form of midva, written as one word). The instruction is clear.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=midva"
+        },
+        "u02-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Tukaj sta. To sta sin in hčerka. correctly switches to the dual for the two children after Kje so otroci?, and To sta with a mixed pair is correct. Leaving out the possessive with family nouns is natural in Slovenian. SSKJ and Pravopis give hčerka without a colloquial label (SSKJ notes it is used especially in the family). The line is 32 characters and 7 words. The English adds 'our', which is a fair idiomatic rendering in a host's mouth.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=hčerka"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {},
+      "lines": {
+        "u02-l05-p06": {
+          "verdict": "accepted",
+          "reason": "This is the same as u02-l04-p02. Imava dva otroka. is correct, and Midva imava and Medve imava dva otroka. are correct variants (Pravopis gives medve, also midve). The instruction matches the dual.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=midva"
+        },
+        "u02-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Tukaj sta. To sta sin in hčerka. is correct: dual sta for a son and a daughter together, and hčerka is standard (SSKJ and Pravopis, no register label). The line is natural and short. Leaving out the possessive with kinship nouns is normal when people mean their own family. That makes our son and daughter a fair English rendering, and Tukaj sta answering Kje so otroci? is natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=hčerka"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u02-l05-p06": "5dcb2759c9727656",
+    "u02-l05-d-04": "e146c391b1e84946"
+  }
+}

@@ -1,0 +1,481 @@
+{
+  "id": "u02-l01",
+  "unit": "u02",
+  "order": 1,
+  "role": "theme",
+  "title_sl": "Imam brata",
+  "title_en": "I have a brother",
+  "items": [
+    {
+      "id": "u02-l01-i01",
+      "type": "chunk",
+      "sl": "Imam brata.",
+      "sl_colloquial": null,
+      "en": "I have a brother.",
+      "register": "neutral",
+      "slots": [
+        {
+          "label": "family member",
+          "fillers": [
+            "u02-l01-i06",
+            "u02-l01-i07",
+            "u02-l01-i08"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "sl": "Imam brata in sestro.",
+          "en": "I have a brother and a sister."
+        },
+        {
+          "sl": "Ja, imam brata.",
+          "en": "Yes, I have a brother."
+        }
+      ],
+      "helper": "After imam, I have, brat takes -a: imam brata.",
+      "accept": [
+        "Jaz imam brata."
+      ],
+      "rules": [
+        "r-imeti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l01-i02",
+      "type": "chunk",
+      "sl": "Imaš brate ali sestre?",
+      "sl_colloquial": null,
+      "en": "Do you have brothers or sisters? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Živjo. Imaš brate ali sestre?",
+          "en": "Hi. Do you have brothers or sisters?"
+        },
+        {
+          "sl": "Imaš brate ali sestre? Jaz imam sestro.",
+          "en": "Do you have brothers or sisters? I have a sister."
+        }
+      ],
+      "helper": "Here ali means or: brate ali sestre, brothers or sisters.",
+      "accept": [
+        "A imaš brate ali sestre?",
+        "Imaš brate in sestre?"
+      ],
+      "rules": [
+        "r-imeti-present",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l01-i03",
+      "type": "chunk",
+      "sl": "Imate otroke?",
+      "sl_colloquial": null,
+      "en": "Do you have children? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Gospa, imate otroke?",
+          "en": "Madam, do you have children?"
+        },
+        {
+          "sl": "Imate otroke? Jaz nimam otrok.",
+          "en": "Do you have children? I don't have any."
+        }
+      ],
+      "helper": "No do in the question: imate otroke is literally you have children?",
+      "accept": [
+        "A imate otroke?",
+        "Ali imate otroke?"
+      ],
+      "rules": [
+        "r-imeti-present",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l01-i04",
+      "type": "chunk",
+      "sl": "Nimam otrok.",
+      "sl_colloquial": null,
+      "en": "I have no children.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ne, nimam otrok.",
+          "en": "No, I have no children."
+        },
+        {
+          "sl": "Jaz nimam otrok. In vi?",
+          "en": "I don't have children. And you?"
+        }
+      ],
+      "helper": "nimam is imam with n- in front, as nisem is sem with ni- in front.",
+      "accept": [
+        "Jaz nimam otrok."
+      ],
+      "rules": [
+        "r-imeti-negative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l01-i05",
+      "type": "chunk",
+      "sl": "To je moja družina.",
+      "sl_colloquial": null,
+      "en": "This is my family.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan. To je moja družina.",
+          "en": "Good day. This is my family."
+        },
+        {
+          "sl": "Ja, to je moja družina.",
+          "en": "Yes, this is my family."
+        }
+      ],
+      "helper": "Built like German Das ist meine Familie.",
+      "accept": [],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l01-i06",
+      "type": "word",
+      "sl": "brat",
+      "sl_colloquial": null,
+      "en": "brother",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "acc": "brata",
+        "du": "brata",
+        "acc.du": "brata",
+        "pl": "bratje",
+        "acc.pl": "brate"
+      },
+      "examples": [
+        {
+          "sl": "Brat je na obisku.",
+          "en": "My brother is visiting."
+        },
+        {
+          "sl": "Brat in sestra sta tukaj.",
+          "en": "My brother and sister are here."
+        }
+      ],
+      "helper": "Like German Bruder and English brother.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 527,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l01-i07",
+      "type": "word",
+      "sl": "sestra",
+      "sl_colloquial": null,
+      "en": "sister",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "sestro",
+        "du": "sestri",
+        "acc.du": "sestri",
+        "pl": "sestre",
+        "acc.pl": "sestre"
+      },
+      "examples": [
+        {
+          "sl": "Ali imaš sestro?",
+          "en": "Do you have a sister?"
+        },
+        {
+          "sl": "Sestra je iz Nemčije.",
+          "en": "My sister is from Germany."
+        }
+      ],
+      "helper": "Like German Schwester and English sister.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 903,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l01-i08",
+      "type": "word",
+      "sl": "otrok",
+      "sl_colloquial": null,
+      "en": "child",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "acc": "otroka",
+        "acc.du": "otroka",
+        "pl": "otroci",
+        "acc.pl": "otroke",
+        "gen.pl": "otrok"
+      },
+      "examples": [
+        {
+          "sl": "Imam otroka.",
+          "en": "I have a child."
+        },
+        {
+          "sl": "Ali imaš otroka?",
+          "en": "Do you have a child?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 195,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-imeti-present",
+    "r-imeti-negative"
+  ],
+  "structured": [
+    {
+      "id": "u02-l01-s01",
+      "prompt_sl": "Jaz ___ brata.",
+      "options": [
+        "imam",
+        "imaš",
+        "ima"
+      ],
+      "answer": "imam",
+      "rule": "r-imeti-present",
+      "en": "I have a brother."
+    },
+    {
+      "id": "u02-l01-s02",
+      "prompt_sl": "A ___ brate ali sestre?",
+      "options": [
+        "imam",
+        "imaš",
+        "imate"
+      ],
+      "answer": "imaš",
+      "rule": "r-imeti-present",
+      "en": "Do you have brothers or sisters? (to a friend)"
+    },
+    {
+      "id": "u02-l01-s03",
+      "prompt_sl": "Ona ___ sestro.",
+      "options": [
+        "imam",
+        "ima",
+        "imajo"
+      ],
+      "answer": "ima",
+      "rule": "r-imeti-present",
+      "en": "She has a sister."
+    },
+    {
+      "id": "u02-l01-s04",
+      "prompt_sl": "Gospa, ___ otroke?",
+      "options": [
+        "imaš",
+        "imate",
+        "ima"
+      ],
+      "answer": "imate",
+      "rule": "r-ti-vi",
+      "en": "Madam, do you have children?"
+    },
+    {
+      "id": "u02-l01-s05",
+      "prompt_sl": "Jaz ___ otrok.",
+      "options": [
+        "nimam",
+        "nimaš",
+        "nima"
+      ],
+      "answer": "nimam",
+      "rule": "r-imeti-negative",
+      "en": "I have no children."
+    },
+    {
+      "id": "u02-l01-s06",
+      "prompt_sl": "Ona ___ otrok.",
+      "options": [
+        "nimam",
+        "nima",
+        "nimajo"
+      ],
+      "answer": "nima",
+      "rule": "r-imeti-negative",
+      "en": "She has no children."
+    },
+    {
+      "id": "u02-l01-s07",
+      "prompt_sl": "Midva ___ otrok.",
+      "options": [
+        "nimava",
+        "nimamo",
+        "nimata"
+      ],
+      "answer": "nimava",
+      "rule": "r-imeti-negative",
+      "en": "The two of us have no children."
+    }
+  ],
+  "production": [
+    {
+      "id": "u02-l01-p01",
+      "en": "Say you have a brother.",
+      "answer": "Imam brata.",
+      "accept": [
+        "Jaz imam brata."
+      ],
+      "item": "u02-l01-i01",
+      "filler": "brata"
+    },
+    {
+      "id": "u02-l01-p02",
+      "en": "Say you have a sister.",
+      "answer": "Imam sestro.",
+      "accept": [
+        "Jaz imam sestro."
+      ],
+      "item": "u02-l01-i01",
+      "filler": "sestro"
+    },
+    {
+      "id": "u02-l01-p03",
+      "en": "Ask a friend if they have brothers or sisters.",
+      "answer": "Imaš brate ali sestre?",
+      "accept": [
+        "A imaš brate ali sestre?",
+        "Imaš brate in sestre?"
+      ],
+      "item": "u02-l01-i02"
+    },
+    {
+      "id": "u02-l01-p04",
+      "en": "Ask an older person if they have children.",
+      "answer": "Imate otroke?",
+      "accept": [
+        "A imate otroke?",
+        "Ali imate otroke?"
+      ],
+      "item": "u02-l01-i03"
+    },
+    {
+      "id": "u02-l01-p05",
+      "en": "Say you have no children.",
+      "answer": "Nimam otrok.",
+      "accept": [
+        "Jaz nimam otrok."
+      ],
+      "item": "u02-l01-i04"
+    },
+    {
+      "id": "u02-l01-p06",
+      "en": "Show someone a photo and say this is your family.",
+      "answer": "To je moja družina.",
+      "accept": [],
+      "item": "u02-l01-i05"
+    }
+  ],
+  "dialogue": {
+    "id": "u02-l01-d",
+    "title_sl": "Za mizo",
+    "title_en": "At the table",
+    "setting_en": "At the table, an older relative of your hosts asks about your family. They say ti to you, and you say vi back.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Imaš brate ali sestre?",
+        "en": "Do you have brothers or sisters?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, imam brata in sestro.",
+        "en": "Yes, I have a brother and a sister.",
+        "new_items": [
+          "u02-l01-i01"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "In otroke?",
+        "en": "And children?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ne, nimam otrok. Imate otroke?",
+        "en": "No, I don't have children. Do you have children?",
+        "new_items": [
+          "u02-l01-i04",
+          "u02-l01-i03"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Ja. To je moja družina.",
+        "en": "Yes. This is my family."
+      }
+    ]
+  }
+}

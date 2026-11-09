@@ -1,0 +1,81 @@
+{
+  "id": "r-dual-nouns",
+  "unit": "u02",
+  "title_en": "The dual: exactly two",
+  "card_en": "With exactly two, a noun takes the dual: dva brata, dve sestri. With three or four, the plural: trije bratje, tri sestre. The two of them is onadva, with sta: onadva sta brata.",
+  "example": {
+    "sl": "Onadva sta brata.",
+    "en": "The two of them are brothers."
+  },
+  "table": {
+    "rows": [
+      "m",
+      "f"
+    ],
+    "cols": [
+      "sg",
+      "du",
+      "pl"
+    ],
+    "cells": {
+      "m.sg": {
+        "form": "brat"
+      },
+      "m.du": {
+        "form": "brata",
+        "note_en": "dva brata, onadva sta brata."
+      },
+      "m.pl": {
+        "form": "bratje",
+        "note_en": "With three or four: trije bratje."
+      },
+      "f.sg": {
+        "form": "sestra"
+      },
+      "f.du": {
+        "form": "sestri",
+        "note_en": "dve sestri."
+      },
+      "f.pl": {
+        "form": "sestre",
+        "note_en": "tri sestre, štiri sestre."
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "How many",
+      "options": [
+        "one",
+        "two",
+        "three"
+      ],
+      "examples": {
+        "one": {
+          "sl": "Imam brata.",
+          "en": "I have a brother."
+        },
+        "two": {
+          "sl": "Imam dva brata.",
+          "en": "I have two brothers."
+        },
+        "three": {
+          "sl": "Imam tri brate.",
+          "en": "I have three brothers."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Onadva imata dva ___.",
+    "options": [
+      "otrok",
+      "otroka",
+      "otroci"
+    ],
+    "answer": "otroka",
+    "explain_en": "With exactly two, the noun takes the dual: dva otroka, two children."
+  },
+  "helper_de": "German goes from one to many: ein Bruder, zwei Brüder. Slovenian has its own form for exactly two: dva brata.",
+  "helper_en": "English has singular and plural only. Slovenian keeps a third number for pairs: brat, brata, bratje."
+}

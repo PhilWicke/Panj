@@ -23,7 +23,13 @@
     "title_sl": "Družina in ljudje",
     "title_en": "Family and people",
     "motif": "heart",
-    "lessons": []
+    "lessons": [
+      "u02-l01",
+      "u02-l02",
+      "u02-l03",
+      "u02-l04",
+      "u02-l05"
+    ]
   },
   {
     "id": "u03",

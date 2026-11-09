@@ -1,0 +1,435 @@
+{
+  "id": "u02-l02",
+  "unit": "u02",
+  "order": 2,
+  "role": "theme",
+  "title_sl": "Kdo je to?",
+  "title_en": "Who is this?",
+  "items": [
+    {
+      "id": "u02-l02-i01",
+      "type": "chunk",
+      "sl": "Kdo je to?",
+      "sl_colloquial": null,
+      "en": "Who is this?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kdo je to? To je moj brat.",
+          "en": "Who is this? This is my brother."
+        },
+        {
+          "sl": "Oprostite, kdo je to?",
+          "en": "Excuse me, who is this?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l02-i02",
+      "type": "chunk",
+      "sl": "To je moj oče.",
+      "sl_colloquial": null,
+      "en": "This is my father.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan, to je moj oče.",
+          "en": "Good day, this is my father."
+        },
+        {
+          "sl": "To je moj oče, on je iz Avstrije.",
+          "en": "This is my father, he's from Austria."
+        }
+      ],
+      "helper": "moj, not moja: oče is masculine although it ends in -e.",
+      "accept": [],
+      "rules": [
+        "r-gender-endings"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l02-i03",
+      "type": "chunk",
+      "sl": "To je moja mama.",
+      "sl_colloquial": null,
+      "en": "This is my mum.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Živjo, to je moja mama.",
+          "en": "Hi, this is my mum."
+        },
+        {
+          "sl": "Ja, to je moja mama.",
+          "en": "Yes, this is my mum."
+        }
+      ],
+      "helper": "mama ends in -a, so it is feminine and takes moja.",
+      "accept": [],
+      "rules": [
+        "r-gender-endings"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l02-i04",
+      "type": "chunk",
+      "sl": "Imata sina in hčerko.",
+      "sl_colloquial": null,
+      "en": "They have a son and a daughter. (the two of them)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Onadva imata sina in hčerko.",
+          "en": "The two of them have a son and a daughter."
+        },
+        {
+          "sl": "Ja, imata sina in hčerko.",
+          "en": "Yes, they have a son and a daughter."
+        }
+      ],
+      "helper": "imata is the dual: the two of them have.",
+      "accept": [
+        "Onadva imata sina in hčerko.",
+        "Imata sina in hčer."
+      ],
+      "rules": [
+        "r-imeti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l02-i05",
+      "type": "word",
+      "sl": "oče",
+      "sl_colloquial": null,
+      "en": "father",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "examples": [
+        {
+          "sl": "Moj oče je iz Slovenije.",
+          "en": "My father is from Slovenia."
+        },
+        {
+          "sl": "Oče in mama sta tukaj.",
+          "en": "My father and mother are here."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-gender-endings"
+      ],
+      "freq_rank": 401,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l02-i06",
+      "type": "word",
+      "sl": "mama",
+      "sl_colloquial": null,
+      "en": "mum",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "examples": [
+        {
+          "sl": "Moja mama je iz Avstrije.",
+          "en": "My mum is from Austria."
+        },
+        {
+          "sl": "Mama ni tukaj.",
+          "en": "Mum isn't here."
+        }
+      ],
+      "helper": "Like German Mama and English mama.",
+      "accept": [],
+      "rules": [
+        "r-gender-endings"
+      ],
+      "freq_rank": 357,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l02-i07",
+      "type": "word",
+      "sl": "sin",
+      "sl_colloquial": null,
+      "en": "son",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "acc": "sina"
+      },
+      "examples": [
+        {
+          "sl": "To je moj sin.",
+          "en": "This is my son."
+        },
+        {
+          "sl": "Imam sina.",
+          "en": "I have a son."
+        }
+      ],
+      "helper": "Like German Sohn and English son.",
+      "accept": [],
+      "rules": [
+        "r-gender-endings"
+      ],
+      "freq_rank": 843,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l02-i08",
+      "type": "word",
+      "sl": "hčerka",
+      "sl_colloquial": null,
+      "en": "daughter",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "hčerko"
+      },
+      "examples": [
+        {
+          "sl": "To je moja hčerka.",
+          "en": "This is my daughter."
+        },
+        {
+          "sl": "Imam hčerko.",
+          "en": "I have a daughter."
+        }
+      ],
+      "helper": "You will also hear hči, the shorter word; both mean daughter.",
+      "accept": [
+        "hči"
+      ],
+      "rules": [
+        "r-gender-endings"
+      ],
+      "freq_rank": 1889,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-gender-endings"
+  ],
+  "structured": [
+    {
+      "id": "u02-l02-s01",
+      "prompt_sl": "To je ___ oče.",
+      "options": [
+        "moj",
+        "moja",
+        "moje"
+      ],
+      "answer": "moj",
+      "rule": "r-gender-endings",
+      "en": "This is my father."
+    },
+    {
+      "id": "u02-l02-s02",
+      "prompt_sl": "To je ___ sestra.",
+      "options": [
+        "moj",
+        "moja",
+        "moje"
+      ],
+      "answer": "moja",
+      "rule": "r-gender-endings",
+      "en": "This is my sister."
+    },
+    {
+      "id": "u02-l02-s03",
+      "prompt_sl": "To je ___ sin.",
+      "options": [
+        "moj",
+        "moja",
+        "moje"
+      ],
+      "answer": "moj",
+      "rule": "r-gender-endings",
+      "en": "This is my son."
+    },
+    {
+      "id": "u02-l02-s04",
+      "prompt_sl": "To je ___ hčerka.",
+      "options": [
+        "moj",
+        "moja",
+        "moje"
+      ],
+      "answer": "moja",
+      "rule": "r-gender-endings",
+      "en": "This is my daughter."
+    },
+    {
+      "id": "u02-l02-s05",
+      "prompt_sl": "To je moje ___.",
+      "options": [
+        "ime",
+        "brat",
+        "mama"
+      ],
+      "answer": "ime",
+      "rule": "r-gender-endings",
+      "en": "This is my name."
+    },
+    {
+      "id": "u02-l02-s06",
+      "prompt_sl": "Onadva ___ sina in hčerko.",
+      "options": [
+        "imam",
+        "imata",
+        "imajo"
+      ],
+      "answer": "imata",
+      "rule": "r-imeti-present",
+      "en": "The two of them have a son and a daughter."
+    }
+  ],
+  "production": [
+    {
+      "id": "u02-l02-p01",
+      "en": "Ask who someone is.",
+      "answer": "Kdo je to?",
+      "accept": [],
+      "item": "u02-l02-i01"
+    },
+    {
+      "id": "u02-l02-p02",
+      "en": "Point at a photo and say this is your father.",
+      "answer": "To je moj oče.",
+      "accept": [],
+      "item": "u02-l02-i02"
+    },
+    {
+      "id": "u02-l02-p03",
+      "en": "Say this is your mum.",
+      "answer": "To je moja mama.",
+      "accept": [],
+      "item": "u02-l02-i03"
+    },
+    {
+      "id": "u02-l02-p04",
+      "en": "Say the two of them have a son and a daughter.",
+      "answer": "Imata sina in hčerko.",
+      "accept": [
+        "Onadva imata sina in hčerko.",
+        "Imata sina in hčer."
+      ],
+      "item": "u02-l02-i04"
+    },
+    {
+      "id": "u02-l02-p05",
+      "en": "Say this is your son.",
+      "answer": "To je moj sin.",
+      "accept": [],
+      "item": "u02-l02-i07"
+    },
+    {
+      "id": "u02-l02-p06",
+      "en": "Say this is your daughter.",
+      "answer": "To je moja hčerka.",
+      "accept": [
+        "To je moja hči."
+      ],
+      "item": "u02-l02-i08"
+    }
+  ],
+  "dialogue": {
+    "id": "u02-l02-d",
+    "title_sl": "Družinske slike",
+    "title_en": "Family photos",
+    "setting_en": "After dinner, your hosts show you photos of their family on the phone.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "To je moja družina.",
+        "en": "This is my family."
+      },
+      {
+        "speaker": "you",
+        "sl": "Kdo je to?",
+        "en": "Who is this?",
+        "new_items": [
+          "u02-l02-i01"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "To je moj oče. In to je moja mama.",
+        "en": "This is my father. And this is my mum."
+      },
+      {
+        "speaker": "you",
+        "sl": "In to? Sin in hčerka?",
+        "en": "And this? Your son and daughter?",
+        "new_items": [
+          "u02-l02-i07",
+          "u02-l02-i08"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Ja, to sta moj sin in moja hčerka.",
+        "en": "Yes, these are my son and my daughter."
+      }
+    ]
+  }
+}

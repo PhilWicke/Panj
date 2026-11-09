@@ -1,0 +1,34 @@
+{
+  "lesson": "u02-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u02-l01-s06": {
+          "verdict": "accepted",
+          "reason": "Ona nima otrok. is correct and natural: nima is the 3sg negative of imeti and otrok is the genitive plural that negation requires, as the r-imeti-negative card states. Exactly one option fits: nimam is 1sg and nimajo is 3pl, both wrong with ona, both plausible distractors from the card's table. Ona could in theory be the rare neuter plural pronoun, but the English line She has no children rules that reading out. The English is faithful.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u02-l01-s06": {
+          "verdict": "accepted",
+          "reason": "Ona nima otrok. is correct and natural: 3sg nima with ona, and genitive plural otrok after the negated verb, as the r-imeti-negative card teaches. The distractors nimam (1sg) and nimajo (3pl) are plausible and wrong. Ona is also the rare neuter plural pronoun, which would take nimajo, but the English \"She has no children.\" rules that reading out, so only one option is right. The English is accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u02-l01-s06": "3fb8cb4c2d894856"
+  }
+}

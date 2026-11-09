@@ -1,0 +1,348 @@
+{
+  "lesson": "u02-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {
+        "u02-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Kakšen je? natural; examples and accept variant correct; was für ein is a fair hook.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Clitic je in second position correct; helper accurate; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Correct ti question; accept Koliko si stara? right for a girl or woman; helper honest literal gloss.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Standard vikanje takes masculine plural stari; examples grammatical; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural; accept Še je mlada correct; helper links še to lep dan še naprej, a fair hook.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i06": {
+          "verdict": "accepted",
+          "reason": "Forms stara (f) and stari (m.pl) correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i07": {
+          "verdict": "accepted",
+          "reason": "mlad/mlada correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Forms prijazna (f, m.du) correct; helper true: prijazen (via *prijaznь) and prijatelj (via *prijateľь) both derive from *prijati, PIE *preyH-.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/Reconstruction:Proto-Slavic/prijaznь"
+        }
+      },
+      "lines": {
+        "u02-l03-s01": {
+          "verdict": "accepted",
+          "reason": "mlada; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-s02": {
+          "verdict": "accepted",
+          "reason": "prijazen; prijazna and prijazno wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-s03": {
+          "verdict": "accepted",
+          "reason": "Plural otroci takes stari; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-s04": {
+          "verdict": "accepted",
+          "reason": "prijazna; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Two people take sta with masculine dual prijazna; so would need prijazni.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-s06": {
+          "verdict": "accepted",
+          "reason": "Ona je; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Correct ti to a child; both genders accepted.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Correct plural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-adjective-agreement": {
+          "verdict": "accepted",
+          "reason": "All nine nominative forms of star correct (star/stara/stari, stara/stari/stare, staro/stari/stara); fleeting-e and polite-vi notes correct; toggles, quick check and helpers accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u02-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Correct and natural. The examples are fine, the was für ein hook is fair, and the variant is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Correct clitic placement. The examples are natural and the variant is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Correct, and the stara variant is right for a female addressee. The literal-gloss helper is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Correct. Polite vi takes masculine plural stari, which is the standard usage. The examples are grammatical.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Correct, with a correct variant. Je še mlada, probably the most natural short form, could be added to accept.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i06": {
+          "verdict": "accepted",
+          "reason": "star: forms stara and stari are correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i07": {
+          "verdict": "accepted",
+          "reason": "mlad with f mlada is correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Forms prijazna (f) and prijazna (m.du) are confirmed. The prijatelj link is a genuine shared root (*prijati).",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/prijazen"
+        }
+      },
+      "lines": {
+        "u02-l03-s01": {
+          "verdict": "accepted",
+          "reason": "mlada, one correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-s02": {
+          "verdict": "accepted",
+          "reason": "prijazen.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-s03": {
+          "verdict": "accepted",
+          "reason": "stari for plural otroci.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-s04": {
+          "verdict": "accepted",
+          "reason": "prijazna.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Mixed pair takes sta with masculine dual prijazna, which is correct. so would need prijazni.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-s06": {
+          "verdict": "accepted",
+          "reason": "ona je.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct, with a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Correct, with a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Correct for a boy, and the variant covers a girl.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Correct for a mixed group.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct. Consider adding Je še mlada. to accept.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural, if slightly evasive.",
+          "fix": "",
+          "source": ""
+        },
+        "r-adjective-agreement": {
+          "verdict": "accepted",
+          "reason": "All nine nominative forms are correct (star, stara, stari / stara, stari, stare / staro, stari, stara). The notes on the fleeting e, the mixed dual and polite vi are right, and the toggles and quick check are correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u02-l03-i01": "916b59e0c3fd8aef",
+    "u02-l03-i02": "01b60cfa1f9fe5ff",
+    "u02-l03-i03": "5853845b764374b3",
+    "u02-l03-i04": "de906ca1ff0ebc2d",
+    "u02-l03-i05": "6d330543871632cc",
+    "u02-l03-i06": "be125043346354c2",
+    "u02-l03-i07": "ba147a8c8569b7ce",
+    "u02-l03-i08": "f6202842663ab1df",
+    "u02-l03-s01": "c04498c8d23c721c",
+    "u02-l03-s02": "b39a3b840bb3ac99",
+    "u02-l03-s03": "e3684e56f7b4cb9f",
+    "u02-l03-s04": "0ca0952d62744e3d",
+    "u02-l03-s05": "cbf1a5c46e36fe86",
+    "u02-l03-s06": "f720a8f0671402df",
+    "u02-l03-p01": "8c179fd9be040e65",
+    "u02-l03-p02": "1cdd2a06a1357483",
+    "u02-l03-p03": "3bdc37838708a039",
+    "u02-l03-p04": "e7862e9cd90840ad",
+    "u02-l03-p05": "8020eb66cc67e7f4",
+    "u02-l03-d-01": "61251dbb33dcda78",
+    "u02-l03-d-02": "bd9336ea6e224ff4",
+    "u02-l03-d-03": "1a55670106ea05a9",
+    "u02-l03-d-04": "d8121ed90d2b73c0",
+    "u02-l03-d-05": "620b506639732bb2",
+    "r-adjective-agreement": "ab8f289d559031cf"
+  }
+}

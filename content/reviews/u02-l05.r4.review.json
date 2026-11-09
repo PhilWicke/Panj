@@ -1,0 +1,34 @@
+{
+  "lesson": "u02-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u02-l05-s03": {
+          "verdict": "accepted",
+          "reason": "To je moj otrok. is correct and natural. Otrok is masculine, even when the child is a girl, so moj is the only fitting option. Moja (feminine) and moje (neuter) cannot go with otrok but are plausible traps, moje especially for German speakers thinking of das Kind. The prompt has one blank and the English This is my child is accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u02-l05-s03": {
+          "verdict": "accepted",
+          "reason": "To je moj otrok. is correct and natural. Otrok is masculine, so moj is the only right option. Moja (feminine) and moje (neuter) are wrong but plausible, and moje is a good trap for learners who think of German das Kind. The English \"This is my child.\" is accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u02-l05-s03": "4e2f343724d1a70b"
+  }
+}

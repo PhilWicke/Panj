@@ -1,0 +1,382 @@
+{
+  "id": "u02-l05",
+  "unit": "u02",
+  "order": 5,
+  "role": "consolidation",
+  "title_sl": "Obisk pri sorodnikih",
+  "title_en": "Visiting relatives",
+  "items": [
+    {
+      "id": "u02-l05-i01",
+      "type": "chunk",
+      "sl": "Lepo te je videti.",
+      "sl_colloquial": null,
+      "en": "It's good to see you. (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Živjo. Lepo te je videti.",
+          "en": "Hi. It's good to see you."
+        },
+        {
+          "sl": "Lepo te je videti. Kako si?",
+          "en": "It's good to see you. How are you?"
+        }
+      ],
+      "helper": "Literally it is lovely to see you: lepo, as in lep dan.",
+      "accept": [],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l05-i02",
+      "type": "chunk",
+      "sl": "Kako so vsi?",
+      "sl_colloquial": null,
+      "en": "How is everyone?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kako so vsi doma?",
+          "en": "How is everyone at home?"
+        },
+        {
+          "sl": "Živjo. Kako so vsi?",
+          "en": "Hi. How is everyone?"
+        }
+      ],
+      "helper": "vsi, everyone, comes from the same word as vse in hvala za vse.",
+      "accept": [],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l05-i03",
+      "type": "chunk",
+      "sl": "Vsi so zdravi.",
+      "sl_colloquial": null,
+      "en": "Everyone is well.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Vsi so zdravi, hvala.",
+          "en": "Everyone is well, thank you."
+        },
+        {
+          "sl": "Ja, vsi so zdravi.",
+          "en": "Yes, everyone is well."
+        }
+      ],
+      "helper": "zdravi is healthy, as in the toast na zdravje, to your health.",
+      "accept": [],
+      "rules": [
+        "r-adjective-agreement",
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l05-i04",
+      "type": "chunk",
+      "sl": "Kje so otroci?",
+      "sl_colloquial": null,
+      "en": "Where are the children?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, kje so otroci?",
+          "en": "Excuse me, where are the children?"
+        },
+        {
+          "sl": "Kje so otroci? Tukaj sta.",
+          "en": "Where are the children? Here they are, both of them."
+        }
+      ],
+      "helper": "otroci is the plural of otrok: the k turns into c.",
+      "accept": [],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l05-i05",
+      "type": "chunk",
+      "sl": "Pozdravi vse doma.",
+      "sl_colloquial": null,
+      "en": "Say hello to everyone at home. (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Hvala za vse. Pozdravi vse doma.",
+          "en": "Thanks for everything. Say hello to everyone at home."
+        },
+        {
+          "sl": "Adijo. Pozdravi vse doma.",
+          "en": "Bye. Say hello to everyone at home."
+        }
+      ],
+      "helper": "Built like German Grüß alle zu Hause.",
+      "accept": [],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l05-i06",
+      "type": "chunk",
+      "sl": "Pridite spet.",
+      "sl_colloquial": null,
+      "en": "Come again. (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Nasvidenje in pridite spet.",
+          "en": "Goodbye, and come again."
+        },
+        {
+          "sl": "Hvala, pridite spet.",
+          "en": "Thank you, come again."
+        }
+      ],
+      "helper": "pridite is the vi form of pridi, as in pridi naprej.",
+      "accept": [
+        "Pridite še kaj."
+      ],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [],
+  "structured": [
+    {
+      "id": "u02-l05-s01",
+      "prompt_sl": "Mi ___ tri otroke.",
+      "options": [
+        "imamo",
+        "imate",
+        "imajo"
+      ],
+      "answer": "imamo",
+      "rule": "r-imeti-present",
+      "en": "We have three children."
+    },
+    {
+      "id": "u02-l05-s02",
+      "prompt_sl": "Oni ___ otrok.",
+      "options": [
+        "nimajo",
+        "nima",
+        "nimamo"
+      ],
+      "answer": "nimajo",
+      "rule": "r-imeti-negative",
+      "en": "They have no children."
+    },
+    {
+      "id": "u02-l05-s03",
+      "prompt_sl": "To je ___ otrok.",
+      "options": [
+        "moj",
+        "moja",
+        "moje"
+      ],
+      "answer": "moj",
+      "rule": "r-gender-endings",
+      "en": "This is my child."
+    },
+    {
+      "id": "u02-l05-s04",
+      "prompt_sl": "Vsi so ___.",
+      "options": [
+        "zdrav",
+        "zdrava",
+        "zdravi"
+      ],
+      "answer": "zdravi",
+      "rule": "r-adjective-agreement",
+      "en": "Everyone is well."
+    },
+    {
+      "id": "u02-l05-s05",
+      "prompt_sl": "Imam ___ sestri.",
+      "options": [
+        "dva",
+        "dve",
+        "tri"
+      ],
+      "answer": "dve",
+      "rule": "r-numbers-1-4",
+      "en": "I have two sisters."
+    },
+    {
+      "id": "u02-l05-s06",
+      "prompt_sl": "Tukaj sta dva ___.",
+      "options": [
+        "brat",
+        "brata",
+        "bratje"
+      ],
+      "answer": "brata",
+      "rule": "r-dual-nouns",
+      "en": "Two brothers are here."
+    }
+  ],
+  "production": [
+    {
+      "id": "u02-l05-p01",
+      "en": "Ask a friend to say hello to everyone at home.",
+      "answer": "Pozdravi vse doma.",
+      "accept": [],
+      "item": "u02-l05-i05"
+    },
+    {
+      "id": "u02-l05-p02",
+      "en": "Invite your guests to come again.",
+      "answer": "Pridite spet.",
+      "accept": [
+        "Pridite še kaj."
+      ],
+      "item": "u02-l05-i06"
+    },
+    {
+      "id": "u02-l05-p03",
+      "en": "Show an older relative a photo and say this is your family.",
+      "answer": "To je moja družina.",
+      "accept": [],
+      "item": "u02-l01-i05"
+    },
+    {
+      "id": "u02-l05-p04",
+      "en": "Ask who someone in a photo is.",
+      "answer": "Kdo je to?",
+      "accept": [],
+      "item": "u02-l02-i01"
+    },
+    {
+      "id": "u02-l05-p05",
+      "en": "Tell your hosts he is very kind.",
+      "answer": "Zelo je prijazen.",
+      "accept": [
+        "On je zelo prijazen."
+      ],
+      "item": "u02-l03-i02"
+    },
+    {
+      "id": "u02-l05-p06",
+      "en": "Tell a neighbour you and one other person have two children.",
+      "answer": "Imava dva otroka.",
+      "accept": [
+        "Midva imava dva otroka.",
+        "Medve imava dva otroka."
+      ],
+      "item": "u02-l04-i02"
+    }
+  ],
+  "dialogue": {
+    "id": "u02-l05-d",
+    "title_sl": "V nedeljo popoldne",
+    "title_en": "On a Sunday afternoon",
+    "setting_en": "On a Sunday afternoon you visit relatives of your hosts on your own. One of them, who says ti to you, opens the door and later sees you off.",
+    "lines": [
+      {
+        "speaker": "you",
+        "sl": "Živjo. Lepo te je videti.",
+        "en": "Hi. It's good to see you.",
+        "new_items": [
+          "u02-l05-i01"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Živjo. Kar naprej. Kako so vsi doma?",
+        "en": "Hi. Come on in. How is everyone at home?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Vsi so zdravi, hvala. Kje so otroci?",
+        "en": "Everyone is well, thank you. Where are the children?",
+        "new_items": [
+          "u02-l05-i03",
+          "u02-l05-i04"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Tukaj sta. To sta sin in hčerka.",
+        "en": "Here they are. These are our son and daughter."
+      },
+      {
+        "speaker": "you",
+        "sl": "Živjo. Koliko si star? Štiri?",
+        "en": "Hi. How old are you? Four?",
+        "new_items": [
+          "u02-l03-i03",
+          "u02-l04-i08"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Ja, štiri. In ti? Imaš otroke?",
+        "en": "Yes, four. And you? Do you have children?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ne, nimam otrok. Imam dve sestri.",
+        "en": "No, I don't have children. I have two sisters.",
+        "new_items": [
+          "u02-l01-i04",
+          "u02-l04-i03"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Lepo. Pozdravi vse doma. Pridite spet.",
+        "en": "Lovely. Say hello to everyone at home. Come again, all of you."
+      }
+    ]
+  }
+}

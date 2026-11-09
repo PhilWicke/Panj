@@ -1,0 +1,470 @@
+{
+  "id": "u02-l04",
+  "unit": "u02",
+  "order": 4,
+  "role": "theme",
+  "title_sl": "Dva otroka",
+  "title_en": "Two children",
+  "items": [
+    {
+      "id": "u02-l04-i01",
+      "type": "chunk",
+      "sl": "Onadva sta brata.",
+      "sl_colloquial": null,
+      "en": "The two of them are brothers.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kdo je to? Onadva sta brata.",
+          "en": "Who is this? The two of them are brothers."
+        },
+        {
+          "sl": "Onadva sta brata. Zelo sta prijazna.",
+          "en": "The two of them are brothers. They are very kind."
+        }
+      ],
+      "helper": "brata here is the dual, for exactly two brothers.",
+      "accept": [
+        "Sta brata."
+      ],
+      "rules": [
+        "r-dual-nouns",
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review2 doubtful: accept: 'Sta brata.' opens with the clitic sta and reads as the question Sta brata?; the natural short statement is Brata sta. examples: 'Kdo je to? Onadva sta brata.' answers a singular question about two people; To sta brata. would be the natural answer. Fix: accept: Brata sta.; example: Kdo je to? To sta brata."
+      }
+    },
+    {
+      "id": "u02-l04-i02",
+      "type": "chunk",
+      "sl": "Imava dva otroka.",
+      "sl_colloquial": null,
+      "en": "We have two children. (the two of us)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Imava dva otroka, sina in hčerko.",
+          "en": "We have two children, a son and a daughter."
+        },
+        {
+          "sl": "Midva imava dva otroka.",
+          "en": "The two of us have two children."
+        }
+      ],
+      "helper": "imava, the two of us have, as sva is the two of us are.",
+      "accept": [
+        "Midva imava dva otroka."
+      ],
+      "rules": [
+        "r-numbers-1-4",
+        "r-dual-nouns",
+        "r-imeti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l04-i03",
+      "type": "chunk",
+      "sl": "Imam dve sestri.",
+      "sl_colloquial": null,
+      "en": "I have two sisters.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Imam dve sestri. Ena je še mlada.",
+          "en": "I have two sisters. One is still young."
+        },
+        {
+          "sl": "Imam dve sestri in brata.",
+          "en": "I have two sisters and a brother."
+        }
+      ],
+      "helper": "dve, not dva, because sestra is feminine.",
+      "accept": [
+        "Jaz imam dve sestri."
+      ],
+      "rules": [
+        "r-numbers-1-4",
+        "r-dual-nouns"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l04-i04",
+      "type": "chunk",
+      "sl": "Imajo tri otroke.",
+      "sl_colloquial": null,
+      "en": "They have three children.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Imajo tri otroke, mi imamo štiri.",
+          "en": "They have three children, we have four."
+        },
+        {
+          "sl": "Oni imajo tri otroke.",
+          "en": "They have three children."
+        }
+      ],
+      "helper": "With three or four, the plural: tri otroke.",
+      "accept": [
+        "Oni imajo tri otroke."
+      ],
+      "rules": [
+        "r-numbers-1-4",
+        "r-imeti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l04-i05",
+      "type": "word",
+      "sl": "ena",
+      "sl_colloquial": null,
+      "en": "one",
+      "register": "neutral",
+      "pos": "numeral",
+      "forms": {
+        "m": "en",
+        "n": "eno",
+        "acc": "eno"
+      },
+      "examples": [
+        {
+          "sl": "Ena, dva, tri, štiri.",
+          "en": "One, two, three, four."
+        },
+        {
+          "sl": "Imam eno sestro in dva brata.",
+          "en": "I have one sister and two brothers."
+        }
+      ],
+      "helper": "Related to German ein and eins: en, ena, eno.",
+      "accept": [],
+      "rules": [
+        "r-numbers-1-4"
+      ],
+      "freq_rank": 307,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l04-i06",
+      "type": "word",
+      "sl": "dva",
+      "sl_colloquial": null,
+      "en": "two",
+      "register": "neutral",
+      "pos": "numeral",
+      "forms": {
+        "f": "dve",
+        "n": "dve"
+      },
+      "examples": [
+        {
+          "sl": "Imam dva brata.",
+          "en": "I have two brothers."
+        },
+        {
+          "sl": "Onadva imata dva otroka.",
+          "en": "The two of them have two children."
+        }
+      ],
+      "helper": "Like German zwei and English two.",
+      "accept": [],
+      "rules": [
+        "r-numbers-1-4",
+        "r-dual-nouns"
+      ],
+      "freq_rank": 59,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l04-i07",
+      "type": "word",
+      "sl": "tri",
+      "sl_colloquial": null,
+      "en": "three",
+      "register": "neutral",
+      "pos": "numeral",
+      "forms": {
+        "m": "trije"
+      },
+      "examples": [
+        {
+          "sl": "Imam tri sestre.",
+          "en": "I have three sisters."
+        },
+        {
+          "sl": "Imamo tri otroke.",
+          "en": "We have three children."
+        }
+      ],
+      "helper": "Like German drei and English three.",
+      "accept": [],
+      "rules": [
+        "r-numbers-1-4"
+      ],
+      "freq_rank": 106,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l04-i08",
+      "type": "word",
+      "sl": "štiri",
+      "sl_colloquial": null,
+      "en": "four",
+      "register": "neutral",
+      "pos": "numeral",
+      "forms": {
+        "m": "štirje"
+      },
+      "examples": [
+        {
+          "sl": "Imajo štiri otroke.",
+          "en": "They have four children."
+        },
+        {
+          "sl": "Imam štiri brate.",
+          "en": "I have four brothers."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-numbers-1-4"
+      ],
+      "freq_rank": 168,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-numbers-1-4",
+    "r-dual-nouns"
+  ],
+  "structured": [
+    {
+      "id": "u02-l04-s01",
+      "prompt_sl": "Imam ___ brata.",
+      "options": [
+        "dva",
+        "dve",
+        "trije"
+      ],
+      "answer": "dva",
+      "rule": "r-numbers-1-4",
+      "en": "I have two brothers."
+    },
+    {
+      "id": "u02-l04-s02",
+      "prompt_sl": "Imava ___ otroka.",
+      "options": [
+        "dva",
+        "dve",
+        "tri"
+      ],
+      "answer": "dva",
+      "rule": "r-numbers-1-4",
+      "en": "The two of us have two children."
+    },
+    {
+      "id": "u02-l04-s03",
+      "prompt_sl": "___ bratje so tukaj.",
+      "options": [
+        "Trije",
+        "Tri",
+        "Dva"
+      ],
+      "answer": "Trije",
+      "rule": "r-numbers-1-4",
+      "en": "Three brothers are here."
+    },
+    {
+      "id": "u02-l04-s04",
+      "prompt_sl": "Onadva sta ___.",
+      "options": [
+        "brat",
+        "brata",
+        "bratje"
+      ],
+      "answer": "brata",
+      "rule": "r-dual-nouns",
+      "en": "The two of them are brothers."
+    },
+    {
+      "id": "u02-l04-s05",
+      "prompt_sl": "Imam dve ___.",
+      "options": [
+        "sestra",
+        "sestri",
+        "sestre"
+      ],
+      "answer": "sestri",
+      "rule": "r-dual-nouns",
+      "en": "I have two sisters."
+    },
+    {
+      "id": "u02-l04-s06",
+      "prompt_sl": "Imajo tri ___.",
+      "options": [
+        "otroka",
+        "otroke",
+        "otroci"
+      ],
+      "answer": "otroke",
+      "rule": "r-dual-nouns",
+      "en": "They have three children."
+    },
+    {
+      "id": "u02-l04-s07",
+      "prompt_sl": "Midva ___ dva otroka.",
+      "options": [
+        "imava",
+        "imata",
+        "imamo"
+      ],
+      "answer": "imava",
+      "rule": "r-imeti-present",
+      "en": "The two of us have two children."
+    }
+  ],
+  "production": [
+    {
+      "id": "u02-l04-p01",
+      "en": "Say the two of them are brothers.",
+      "answer": "Onadva sta brata.",
+      "accept": [
+        "Brata sta."
+      ],
+      "item": "u02-l04-i01"
+    },
+    {
+      "id": "u02-l04-p02",
+      "en": "Say you and one other person have two children.",
+      "answer": "Imava dva otroka.",
+      "accept": [
+        "Midva imava dva otroka.",
+        "Medve imava dva otroka."
+      ],
+      "item": "u02-l04-i02"
+    },
+    {
+      "id": "u02-l04-p03",
+      "en": "Say you have two sisters.",
+      "answer": "Imam dve sestri.",
+      "accept": [
+        "Jaz imam dve sestri."
+      ],
+      "item": "u02-l04-i03"
+    },
+    {
+      "id": "u02-l04-p04",
+      "en": "Say they have three children.",
+      "answer": "Imajo tri otroke.",
+      "accept": [
+        "Oni imajo tri otroke."
+      ],
+      "item": "u02-l04-i04"
+    },
+    {
+      "id": "u02-l04-p05",
+      "en": "Say you have three sisters.",
+      "answer": "Imam tri sestre.",
+      "accept": [
+        "Jaz imam tri sestre."
+      ],
+      "item": "u02-l04-i07"
+    },
+    {
+      "id": "u02-l04-p06",
+      "en": "Say they have four children.",
+      "answer": "Imajo štiri otroke.",
+      "accept": [
+        "Oni imajo štiri otroke."
+      ],
+      "item": "u02-l04-i08"
+    }
+  ],
+  "dialogue": {
+    "id": "u02-l04-d",
+    "title_sl": "Na ulici",
+    "title_en": "In the street",
+    "setting_en": "A neighbour of your hosts stops you in the street and asks about your family.",
+    "lines": [
+      {
+        "speaker": "passer-by",
+        "sl": "Imate brate ali sestre?",
+        "en": "Do you have brothers or sisters?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, imam dve sestri in brata.",
+        "en": "Yes, I have two sisters and a brother.",
+        "new_items": [
+          "u02-l04-i03"
+        ]
+      },
+      {
+        "speaker": "passer-by",
+        "sl": "In otroke? Imate otroke?",
+        "en": "And children? Do you have children?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, imava dva otroka. Še mlada sta.",
+        "en": "Yes, we have two children. They are still young.",
+        "new_items": [
+          "u02-l04-i02"
+        ]
+      },
+      {
+        "speaker": "passer-by",
+        "sl": "Dva? Mi imamo štiri otroke.",
+        "en": "Two? We have four children."
+      }
+    ]
+  }
+}

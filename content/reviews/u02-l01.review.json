@@ -1,0 +1,387 @@
+{
+  "lesson": "u02-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u02-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Imam brata is correct (masculine animate accusative brata); examples natural and contain the headword; helper is an honest hook; accept variant Jaz imam brata is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Natural ti-form question; ali as 'or' explained honestly in the helper; both accept variants (A imaš..., Imaš brate in sestre?) are correct; colloquial tag fits informal address.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Imate otroke? is correct and natural with polite or plural vi; accusative plural otroke correct; examples and accept variants fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Genitive plural otrok after negated imeti is correct; helper (ne + imam gives nimam, as ne + sem gives nisem) is accurate; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural; German parallel das ist meine Familie is a fair helper.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i06": {
+          "verdict": "accepted",
+          "reason": "Gender m correct; forms brata (acc, du, acc.du), bratje (pl), brate (acc.pl) all correct; examples natural; Bruder/brother is a true cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i07": {
+          "verdict": "accepted",
+          "reason": "Gender f correct; sestro, sestri, sestre correct under their labels; examples natural; Schwester/sister true cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i08": {
+          "verdict": "accepted",
+          "reason": "Gender m correct; otroka, otroci, otroke and gen.pl otrok are right; examples correct.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u02-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Only imam fits jaz; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-s02": {
+          "verdict": "accepted",
+          "reason": "The English (to a friend) rules out imate; imaš is the one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Ona ima sestro; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Gospa requires polite imate; imaš and ima wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Jaz nimam otrok correct; single right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-s06": {
+          "verdict": "accepted",
+          "reason": "On nima brata, genitive brata correct; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-s07": {
+          "verdict": "accepted",
+          "reason": "Midva nimava otrok correct; nimamo and nimata wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and accept variant correct; filler brata is recorded.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Imam sestro correct; filler sestro recorded in forms.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Correct ti-form question; variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Polite question correct; variants A/Ali imate otroke? correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Nimam otrok correct; variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-p06": {
+          "verdict": "accepted",
+          "reason": "To je moja družina correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural ti question from the older relative, as the setting says.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Elliptical In otroke? is natural enough at the table (Pa otroke? is an equally common alternative).",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct genitive after negation; vi back to the older relative as the setting says.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-imeti-present": {
+          "verdict": "accepted",
+          "reason": "All nine forms and pronouns correct (incl. medve note); toggles, quick check and helpers accurate; card under 40 words.",
+          "fix": "",
+          "source": ""
+        },
+        "r-imeti-negative": {
+          "verdict": "doubtful",
+          "reason": "Forms, toggles and quick check are correct, but card_en says 'put n- in front of imeti', which suggests a fused infinitive *nimeti; the negated infinitive stays two words (ne imeti) and only the present forms fuse. Suggest: 'put n- in front of the present forms of imeti'.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=nimam"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u02-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Imam brata is correct, with animate masculine acc brata. Both examples are natural, the helper is an honest hook, the accept variant is correct and the slot fillers fit.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Natural ti question with the acc.pl forms brate and sestre. The accept variants (A imaš..., ...brate in sestre?) are correct. The ali = or helper is honest, and colloquial fits the course's use of the tag for ti speech among friends and family.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Imate otroke? is correct and natural. The examples and their English are faithful, and A/Ali imate otroke? are correct variants.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Correct genitive of negation (gen.pl otrok). The examples are natural, and the helper comparing nimam with nisem is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural. The German parallel das ist meine Familie is apt.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i06": {
+          "verdict": "accepted",
+          "reason": "brat m. All forms are correct: acc/du/acc.du brata, pl bratje, acc.pl brate. Brat je na obisku works for 'my brother is visiting' in context. The cognate with Bruder and brother is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i07": {
+          "verdict": "accepted",
+          "reason": "sestra f. Forms sestro, sestri, sestri, sestre, sestre are correct, the examples are natural and the cognate is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-i08": {
+          "verdict": "accepted",
+          "reason": "otrok m. Forms otroka, otroka, otroci, otroke and gen.pl otrok are correct. Ali imaš otroka? is grammatical, though Imaš otroke? is the more usual question.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u02-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Only imam fits jaz.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-s02": {
+          "verdict": "accepted",
+          "reason": "imaš is correct, and the (to a friend) note rules out imate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-s03": {
+          "verdict": "accepted",
+          "reason": "ona ima is correct and the distractors are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Gospa calls for polite imate. imaš and ima do not fit.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-s05": {
+          "verdict": "accepted",
+          "reason": "jaz nimam otrok is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-s06": {
+          "verdict": "accepted",
+          "reason": "on nima brata is correct, and gen brata equals acc.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-s07": {
+          "verdict": "accepted",
+          "reason": "midva nimava is correct, and the distractors are plausible but wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Correct answer, variant and filler brata.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Imam sestro is correct, with filler sestro recorded as acc.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and both variants are correct ti questions.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Polite Imate otroke? with correct variants.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, as is the variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural ti question from the older relative.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural elliptical follow-up (Pa otroke? would be equally common).",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct, and polite imate is consistent with the setting. Pa vi? would be the shorter natural return question, but this passes.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural when gesturing at the family at the table.",
+          "fix": "",
+          "source": ""
+        },
+        "r-imeti-present": {
+          "verdict": "accepted",
+          "reason": "All nine forms and pronouns are correct, including the note on medve. The toggles and quick check (ona ima) are correct, and the helpers are accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "r-imeti-negative": {
+          "verdict": "accepted",
+          "reason": "Forms nimam to nimajo are correct, as are the toggle Nimam brata and the quick check. One small wording point: 'put n- in front of imeti' means the present forms, since the negated infinitive is ne imeti; 'in front of imam, imaš, ima' would be more exact.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u02-l01-i01": "168fa5e72f80de27",
+    "u02-l01-i02": "7c20bc3997a29cfc",
+    "u02-l01-i03": "d8ab8c917b90cfb7",
+    "u02-l01-i04": "35d1d0a1cbd5a256",
+    "u02-l01-i05": "2f5049d6f403828b",
+    "u02-l01-i06": "23321ef0bdaca980",
+    "u02-l01-i07": "f64036c8f6c6c5f6",
+    "u02-l01-i08": "85193f92f518e890",
+    "u02-l01-s01": "364765bc406e37f5",
+    "u02-l01-s02": "be6e5e2e1e1e8910",
+    "u02-l01-s03": "e59b2850372a0c93",
+    "u02-l01-s04": "f98859b6b60e02b8",
+    "u02-l01-s05": "a99e90c571db5e62",
+    "u02-l01-s06": "564650b6d6738cd1",
+    "u02-l01-s07": "0c9e64f008a20641",
+    "u02-l01-p01": "83f8c90799f870c9",
+    "u02-l01-p02": "bb47b32d7e056227",
+    "u02-l01-p03": "b79d1a2a9fb4158c",
+    "u02-l01-p04": "5ff47e2bc5de2bbc",
+    "u02-l01-p05": "241764b1ed981538",
+    "u02-l01-p06": "891f51b0d5d4a59f",
+    "u02-l01-d-01": "c3c70170d54ce32a",
+    "u02-l01-d-02": "f54757fb143e525c",
+    "u02-l01-d-03": "93f9adaf961e83d9",
+    "u02-l01-d-04": "5395ab5dd6212c6e",
+    "u02-l01-d-05": "465f969c8ec65c8b",
+    "r-imeti-present": "9e1fb552549e5e74",
+    "r-imeti-negative": "924573eff38c9dd5"
+  }
+}

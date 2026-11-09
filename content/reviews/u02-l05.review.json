@@ -1,0 +1,361 @@
+{
+  "lesson": "u02-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u02-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Lepo te je videti is common in everyday speech; examples natural; helper honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Kako so vsi (doma)? natural; helper (vsi and vse forms of ves) accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Vsi so zdravi natural reply; zdrav linked to na zdravje is a true hook.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Correct; generic otroci with an answer in the dual (Tukaj sta) is acceptable; k to c helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Pozdravi vse doma is the usual farewell; accusative vse correct; German parallel fair.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Pridite spet is correct and heard; accept Pridite še kaj is the more idiomatic farewell and is listed; helper fine.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u02-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Mi imamo; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Oni nimajo otrok; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-s03": {
+          "verdict": "accepted",
+          "reason": "moja hčerka; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Vsi takes zdravi; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-s05": {
+          "verdict": "accepted",
+          "reason": "dve sestri; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-s06": {
+          "verdict": "accepted",
+          "reason": "dva brata; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Correct ti imperative.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-p06": {
+          "verdict": "doubtful",
+          "reason": "Same instruction as u02-l04-p02: 'the two of you' can be read as 'you two' (vidva imata) rather than 'you and another person' (midva imava). The Slovenian answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural greeting.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural; Kar naprej idiomatic.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-04": {
+          "verdict": "doubtful",
+          "reason": "Tukaj sta is natural, but Onadva sta brata right after it has a redundant subject pronoun, and telling a visiting relative that the two children are brothers is odd; Tukaj sta. Sta brata. or Dva fanta would sound more natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural ti to a child; elliptical Štiri? fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Correct genitive after negation; natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "ti for the visitor plus plural Pridite for the whole household is natural; English makes 'all of you' explicit.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u02-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Heard in everyday speech, and the examples are natural. The colloquial infinitive form Lepo te je videt. could go in sl_colloquial, as the style guide does for delat.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Natural. The helper linking vsi and vse is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Natural answer, with correct m.pl zdravi. The na zdravje hook is genuine.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Correct. The k to c palatalisation helper is accurate, and the dual Tukaj sta for two children is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Natural farewell, and the German parallel is apt.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Grammatical; SSKJ attests spet with priti (kdaj spet prideš). The more idiomatic Pridite še kaj is already in accept.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=spet"
+        }
+      },
+      "lines": {
+        "u02-l05-s01": {
+          "verdict": "accepted",
+          "reason": "mi imamo, one correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-s02": {
+          "verdict": "accepted",
+          "reason": "oni nimajo otrok.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-s03": {
+          "verdict": "accepted",
+          "reason": "moja hčerka.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-s04": {
+          "verdict": "accepted",
+          "reason": "vsi so zdravi.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-s05": {
+          "verdict": "accepted",
+          "reason": "dve sestri.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-s06": {
+          "verdict": "accepted",
+          "reason": "dva brata, correct dual.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Correct ti imperative.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct, and Pridite še kaj is a good variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, with a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Slovenian is correct. The same 'the two of you' ambiguity as u02-l04-p02 applies; '(you and one other person)' would help.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural greeting at the door.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural: Kar naprej and the question about home.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct dual, and natural enough when pointing the two boys out.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural way to ask a small child, and a bare Štiri? as an age guess is common.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Switching from ti (pozdravi) to plural pridite for the whole household is natural, and the English says 'all of you'. Pridite še kaj would be slightly more idiomatic.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u02-l05-i01": "c004249bfc51eb30",
+    "u02-l05-i02": "981da7854d8dce6a",
+    "u02-l05-i03": "0537f862d7419499",
+    "u02-l05-i04": "6bb544df19225ceb",
+    "u02-l05-i05": "55b412991ea89b62",
+    "u02-l05-i06": "2f02304414c7d957",
+    "u02-l05-s01": "587eeb90dfd3cd88",
+    "u02-l05-s02": "6fcea13c5c264247",
+    "u02-l05-s03": "dab75db1e5925bea",
+    "u02-l05-s04": "edfa6c661ea13147",
+    "u02-l05-s05": "4787885b1a796b4f",
+    "u02-l05-s06": "c9bea67698decb8c",
+    "u02-l05-p01": "cc0cc9f1e6583379",
+    "u02-l05-p02": "67fedcd3d88f69b4",
+    "u02-l05-p03": "891f51b0d5d4a59f",
+    "u02-l05-p04": "235e55aefa2f8b74",
+    "u02-l05-p05": "1cdd2a06a1357483",
+    "u02-l05-p06": "c349bca65990b709",
+    "u02-l05-d-01": "1765f90756c80783",
+    "u02-l05-d-02": "4ac24119c4a7619c",
+    "u02-l05-d-03": "615972a44456336f",
+    "u02-l05-d-04": "3d56852f6160a865",
+    "u02-l05-d-05": "f106e5853e7ecaf1",
+    "u02-l05-d-06": "942bb4dfcfd34911",
+    "u02-l05-d-07": "077b526885767168",
+    "u02-l05-d-08": "0abeff1c99131002"
+  }
+}

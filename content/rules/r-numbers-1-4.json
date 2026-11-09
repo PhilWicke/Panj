@@ -1,0 +1,96 @@
+{
+  "id": "r-numbers-1-4",
+  "unit": "u02",
+  "title_en": "One to four: dva or dve",
+  "card_en": "One to four change with the noun's gender: en brat, ena sestra; dva brata, dve sestri; trije bratje, tri sestre; štirje bratje, štiri sestre. To count, say ena, dva, tri, štiri.",
+  "example": {
+    "sl": "Imam dva brata in dve sestri.",
+    "en": "I have two brothers and two sisters."
+  },
+  "table": {
+    "rows": [
+      "one",
+      "two",
+      "three",
+      "four"
+    ],
+    "cols": [
+      "m",
+      "f",
+      "n"
+    ],
+    "cells": {
+      "one.m": {
+        "form": "en",
+        "note_en": "en before a noun, eden when it stands alone."
+      },
+      "one.f": {
+        "form": "ena",
+        "note_en": "Also the word for counting: ena, dva, tri."
+      },
+      "one.n": {
+        "form": "eno"
+      },
+      "two.m": {
+        "form": "dva"
+      },
+      "two.f": {
+        "form": "dve"
+      },
+      "two.n": {
+        "form": "dve"
+      },
+      "three.m": {
+        "form": "trije",
+        "note_en": "After imeti, to have, it is tri: imajo tri otroke."
+      },
+      "three.f": {
+        "form": "tri"
+      },
+      "three.n": {
+        "form": "tri"
+      },
+      "four.m": {
+        "form": "štirje",
+        "note_en": "After imeti, to have, it is štiri: imam štiri brate."
+      },
+      "four.f": {
+        "form": "štiri"
+      },
+      "four.n": {
+        "form": "štiri"
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "Brothers or sisters",
+      "options": [
+        "brothers",
+        "sisters"
+      ],
+      "examples": {
+        "brothers": {
+          "sl": "Imam dva brata.",
+          "en": "I have two brothers."
+        },
+        "sisters": {
+          "sl": "Imam dve sestri.",
+          "en": "I have two sisters."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "___ sestri sta tukaj.",
+    "options": [
+      "Dva",
+      "Dve",
+      "Tri"
+    ],
+    "answer": "Dve",
+    "explain_en": "Sestra is feminine, so two is dve: dve sestri sta tukaj, two sisters are here."
+  },
+  "helper_de": "German drei and vier never change. Slovenian two to four have their own masculine forms: dva, trije, štirje.",
+  "helper_en": "English two never changes. Slovenian says dva for masculine nouns and dve for feminine and neuter ones."
+}

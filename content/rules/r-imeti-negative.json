@@ -1,0 +1,93 @@
+{
+  "id": "r-imeti-negative",
+  "unit": "u02",
+  "title_en": "Not to have: nimam, nima, nimajo",
+  "card_en": "To say you do not have something, put n- in front of the present forms of imeti: nimam, nimaš, nima. It is one word, never ne imam. The noun after it changes too: imam otroke, nimam otrok.",
+  "example": {
+    "sl": "Nimam otrok.",
+    "en": "I have no children."
+  },
+  "table": {
+    "rows": [
+      "1",
+      "2",
+      "3"
+    ],
+    "cols": [
+      "sg",
+      "du",
+      "pl"
+    ],
+    "cells": {
+      "1.sg": {
+        "form": "nimam",
+        "pronoun": "jaz"
+      },
+      "2.sg": {
+        "form": "nimaš",
+        "pronoun": "ti"
+      },
+      "3.sg": {
+        "form": "nima",
+        "pronoun": "on/ona"
+      },
+      "1.du": {
+        "form": "nimava",
+        "pronoun": "midva"
+      },
+      "2.du": {
+        "form": "nimata",
+        "pronoun": "vidva"
+      },
+      "3.du": {
+        "form": "nimata",
+        "pronoun": "onadva",
+        "note_en": "Same form as for vidva."
+      },
+      "1.pl": {
+        "form": "nimamo",
+        "pronoun": "mi"
+      },
+      "2.pl": {
+        "form": "nimate",
+        "pronoun": "vi",
+        "note_en": "Also the polite you: vi nimate."
+      },
+      "3.pl": {
+        "form": "nimajo",
+        "pronoun": "oni"
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "Statement",
+      "options": [
+        "positive",
+        "negative"
+      ],
+      "examples": {
+        "positive": {
+          "sl": "Imam brata.",
+          "en": "I have a brother."
+        },
+        "negative": {
+          "sl": "Nimam brata.",
+          "en": "I don't have a brother."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "On ___ brata.",
+    "options": [
+      "nimam",
+      "nima",
+      "nimajo"
+    ],
+    "answer": "nima",
+    "explain_en": "For he or she, not to have is nima: on nima brata, he has no brother."
+  },
+  "helper_de": "German says ich habe keine Kinder. Slovenian puts the no into the verb: nimam otrok.",
+  "helper_en": "English says I do not have or I have no. Slovenian has one word for both: nimam."
+}

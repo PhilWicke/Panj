@@ -1,0 +1,34 @@
+{
+  "lesson": "u02-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "r-imeti-negative": {
+          "verdict": "accepted",
+          "reason": "The card text is 37 words and correct: nimam is ne + imam written as one word, never ne imam, and the noun moves to the genitive (imam otroke, nimam otrok). Example Nimam otrok. / I have no children. is right. All nine table forms are correct (nimam, nimaš, nima, nimava, nimata, nimata, nimamo, nimate, nimajo) and so are their pronouns, with sound notes on onadva and polite vi. The toggle Imam brata. / Nimam brata. is correct, since the genitive brata equals the accusative. In the quick check On ___ brata., only nima fits, and the explanation is accurate. helper_de (ich habe keine Kinder) and helper_en are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "r-imeti-negative": {
+          "verdict": "accepted",
+          "reason": "All the forms in the table are correct (nimam, nimaš, nima, nimava, nimata, nimata, nimamo, nimate, nimajo), and so are the pronouns, including the vi note. card_en is right that the negative is one word and never ne imam. It is right that the noun changes after the negative (imam otroke, nimam otrok, genitive of negation), and it stays under 40 words. Example, toggle (Imam brata / Nimam brata, where brata is also the genitive) and quick check are all correct; the quick check has one blank and exactly one right option (nima). The German and English helpers are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "r-imeti-negative": "924573eff38c9dd5"
+  }
+}

@@ -1,0 +1,361 @@
+{
+  "lesson": "u02-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u02-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Kdo je to? correct and natural; examples fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Correct; helper on oče being masculine despite -e is accurate; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Dual imata with accusatives sina, hčerko correct; accept variants incl. hčer (acc of hči) correct; English note clarifies the dual.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i05": {
+          "verdict": "accepted",
+          "reason": "oče m correct; examples natural (sta for two people).",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i06": {
+          "verdict": "accepted",
+          "reason": "mama f, gloss mum fine; helper is a true parallel; examples correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i07": {
+          "verdict": "accepted",
+          "reason": "sin m, acc sina correct; Sohn/son true cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i08": {
+          "verdict": "accepted",
+          "reason": "hčerka is a standard headword in SSKJ and Pravopis (family use), synonym of hči; acc hčerko correct; accept hči is correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=hčerka"
+        }
+      },
+      "lines": {
+        "u02-l02-s01": {
+          "verdict": "accepted",
+          "reason": "moj oče; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-s02": {
+          "verdict": "accepted",
+          "reason": "moja sestra; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-s03": {
+          "verdict": "accepted",
+          "reason": "moj sin; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-s04": {
+          "verdict": "accepted",
+          "reason": "moja hčerka; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Only neuter ime fits moje.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Onadva imata; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and both variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-p06": {
+          "verdict": "accepted",
+          "reason": "Correct; variant with hči correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Short elliptical question, natural in context (Pa to? equally possible).",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Dual sta for son and daughter correct; natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-gender-endings": {
+          "verdict": "accepted",
+          "reason": "Endings, examples (moj sin, moja hčerka, moje ime), oče exception, quick check and helpers all correct; 39 words.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u02-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Correct and natural, with natural examples.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Correct. The helper on masculine oče is accurate. 'on je iz Avstrije' is a little emphatic but natural in speech.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural. The helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Dual imata with acc sina and hčerko is correct. Variant Imata sina in hčer uses the correct acc of hči.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i05": {
+          "verdict": "accepted",
+          "reason": "oče m, with correct and natural examples. Oče in mama sta takes the dual correctly.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i06": {
+          "verdict": "accepted",
+          "reason": "mama f is neutral in everyday use. The examples are natural and the Mama cognate is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i07": {
+          "verdict": "accepted",
+          "reason": "sin m with acc sina. The examples are correct and the Sohn/son cognate is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-i08": {
+          "verdict": "accepted",
+          "reason": "hčerka is a standard headword (SSKJ, no qualifier) with acc hčerko. hči is a correct variant, and the helper is accurate.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=hčerka"
+        }
+      },
+      "lines": {
+        "u02-l02-s01": {
+          "verdict": "accepted",
+          "reason": "moj oče, one correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-s02": {
+          "verdict": "accepted",
+          "reason": "moja sestra.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-s03": {
+          "verdict": "accepted",
+          "reason": "moj sin.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-s04": {
+          "verdict": "accepted",
+          "reason": "moja hčerka.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-s05": {
+          "verdict": "accepted",
+          "reason": "moje ime is the only neuter option. The distractors are wrong by gender.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-s06": {
+          "verdict": "accepted",
+          "reason": "onadva imata is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and both variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-p06": {
+          "verdict": "accepted",
+          "reason": "Correct. To je moja hči is a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural, telegraphic pointing at photos (Pa to? is equally common).",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "to sta with dual for two people is correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-gender-endings": {
+          "verdict": "accepted",
+          "reason": "Card text is correct (39 words), as are the example, the toggles moj sin, moja hčerka and moje ime, and the quick check moja družina. The helpers are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u02-l02-i01": "b497763f0a654894",
+    "u02-l02-i02": "39281780e0014f64",
+    "u02-l02-i03": "09237fb5c9589d83",
+    "u02-l02-i04": "3ef7812cc8a51245",
+    "u02-l02-i05": "b2132198966c08f7",
+    "u02-l02-i06": "8d7123f131a4b074",
+    "u02-l02-i07": "848ea3922582afee",
+    "u02-l02-i08": "15f8dc88ab55f448",
+    "u02-l02-s01": "1e6381bde2b74a18",
+    "u02-l02-s02": "14968d3fd530fab4",
+    "u02-l02-s03": "4e7b4dd92dfe3052",
+    "u02-l02-s04": "dab75db1e5925bea",
+    "u02-l02-s05": "81e9825309c92e1a",
+    "u02-l02-s06": "703b269140f14d56",
+    "u02-l02-p01": "235e55aefa2f8b74",
+    "u02-l02-p02": "85586f42dbb4e433",
+    "u02-l02-p03": "6bf12f84db698238",
+    "u02-l02-p04": "624da26015898c3f",
+    "u02-l02-p05": "c4a07db5042edc93",
+    "u02-l02-p06": "65d0ea46d760270f",
+    "u02-l02-d-01": "8ce19875763d2b20",
+    "u02-l02-d-02": "e16fbf483ab03996",
+    "u02-l02-d-03": "b9a7b13830cd2658",
+    "u02-l02-d-04": "00a7e1be0641699e",
+    "u02-l02-d-05": "d22c293770bd8a51",
+    "r-gender-endings": "1f12394bf3098e75"
+  }
+}

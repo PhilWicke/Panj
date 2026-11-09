@@ -1,0 +1,387 @@
+{
+  "lesson": "u02-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u02-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Onadva sta brata correct as a chunk; nominative dual brata; examples grammatical; variant Sta brata correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Imava dva otroka correct (dual accusative otroka); examples and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-i03": {
+          "verdict": "accepted",
+          "reason": "dve sestri correct; helper accurate; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-i04": {
+          "verdict": "accepted",
+          "reason": "tri otroke (accusative plural) correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-i05": {
+          "verdict": "accepted",
+          "reason": "ena as the counting form; en, eno, acc eno correct; helper true: en/eden from Proto-Slavic *(j)edinъ, PIE *óynos, the same root as German ein.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/eden"
+        },
+        "u02-l04-i06": {
+          "verdict": "accepted",
+          "reason": "dva, dve (f, n) correct; true cognates; examples correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-i07": {
+          "verdict": "accepted",
+          "reason": "tri, masculine nominative trije correct; examples correct; true cognates.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-i08": {
+          "verdict": "accepted",
+          "reason": "štiri, masculine nominative štirje correct; accusative štiri brate correct.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u02-l04-s01": {
+          "verdict": "accepted",
+          "reason": "dva brata; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-s02": {
+          "verdict": "accepted",
+          "reason": "dva otroka; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Trije bratje; Tri bratje is a plausible but wrong distractor.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Dual brata; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-s05": {
+          "verdict": "accepted",
+          "reason": "dve sestri; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-s06": {
+          "verdict": "accepted",
+          "reason": "tri otroke; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-s07": {
+          "verdict": "accepted",
+          "reason": "Midva imava; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p02": {
+          "verdict": "doubtful",
+          "reason": "The Slovenian is correct, but the instruction 'Say the two of you have two children' can be read as 'you two' (vidva imata), so a learner may type Imata dva otroka and be marked wrong. Suggest wording such as 'Say that you and one other person have two children'.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Imam tri sestre correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Imajo štiri otroke correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural polite question to a stranger.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Slightly repetitive but natural spoken follow-up.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-d-04": {
+          "verdict": "doubtful",
+          "reason": "Grammatical, but Onadva sta brata after imava dva otroka sounds stiff: the subject pronoun is redundant, and calling one's own two children 'brothers' is odd; a native would say Sta fanta or Dva fanta.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-numbers-1-4": {
+          "verdict": "accepted",
+          "reason": "All twelve forms correct (en/ena/eno, dva/dve/dve, trije/tri/tri, štirje/štiri/štiri); eden note correct; accusative notes tri otroke and štiri brate correct; quick check and helpers fine.",
+          "fix": "",
+          "source": ""
+        },
+        "r-dual-nouns": {
+          "verdict": "accepted",
+          "reason": "brat/brata/bratje and sestra/sestri/sestre correct; toggles (Imam brata, dva brata, tri brate) and quick check (dva otroka) correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u02-l04-i01": {
+          "verdict": "doubtful",
+          "reason": "accept: 'Sta brata.' opens with the clitic sta and reads as the question Sta brata?; the natural short statement is Brata sta. examples: 'Kdo je to? Onadva sta brata.' answers a singular question about two people; To sta brata. would be the natural answer.",
+          "fix": "accept: Brata sta.; example: Kdo je to? To sta brata.",
+          "source": ""
+        },
+        "u02-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Correct dual verb and dual noun. The examples are natural, and the helper linking it to sva is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-i03": {
+          "verdict": "accepted",
+          "reason": "dve sestri, acc dual, is correct. The examples are natural and the helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-i04": {
+          "verdict": "accepted",
+          "reason": "tri otroke, acc pl, is correct. The examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-i05": {
+          "verdict": "accepted",
+          "reason": "ena as the counting form is fine. Forms en, eno and acc (f) eno are correct, the examples are natural and the ein/eins cognate is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-i06": {
+          "verdict": "accepted",
+          "reason": "dva with f/n dve is correct. The examples are correct and the cognate is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-i07": {
+          "verdict": "accepted",
+          "reason": "tri with m trije is correct, the examples are correct and the cognate is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-i08": {
+          "verdict": "accepted",
+          "reason": "štiri with m štirje is correct. Examples use acc štiri otroke and štiri brate correctly.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u02-l04-s01": {
+          "verdict": "accepted",
+          "reason": "dva brata, one correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-s02": {
+          "verdict": "accepted",
+          "reason": "dva otroka.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Trije bratje so tukaj is correct, and Tri and Dva do not fit bratje.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-s04": {
+          "verdict": "accepted",
+          "reason": "dual brata.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-s05": {
+          "verdict": "accepted",
+          "reason": "dve sestri.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-s06": {
+          "verdict": "accepted",
+          "reason": "tri otroke (acc pl). The distractors are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-s07": {
+          "verdict": "accepted",
+          "reason": "midva imava.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p01": {
+          "verdict": "doubtful",
+          "reason": "The answer is correct, but the accept variant 'Sta brata.' starts with the clitic and reads as a question. Brata sta. is the natural short statement.",
+          "fix": "accept: Brata sta.",
+          "source": ""
+        },
+        "u02-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Slovenian is correct. Minor point: 'the two of you' can be read as addressing two others (vidva imata). '(you and one other person)' would remove the ambiguity.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Imam tri sestre is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Imajo štiri otroke is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural polite question.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-d-04": {
+          "verdict": "doubtful",
+          "reason": "Grammatical, but 'Onadva sta brata' with the stressed pronoun sounds stiff when a parent describes absent children; a native would more likely say Sta fanta / Dva sinova. Unit-level clash: in l01 and l05 the learner says nimam otrok, here imava dva otroka.",
+          "fix": "Ja, imava dva otroka, dva sinova.",
+          "source": ""
+        },
+        "u02-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-numbers-1-4": {
+          "verdict": "accepted",
+          "reason": "The table forms (en/ena/eno, dva/dve/dve, trije/tri/tri, štirje/štiri/štiri), the en/eden note, the counting sequence, the example, the toggles and the quick check (dve sestri sta) are all correct. The 'After imam' notes really mean the accusative, which their examples show.",
+          "fix": "",
+          "source": ""
+        },
+        "r-dual-nouns": {
+          "verdict": "accepted",
+          "reason": "brat/brata/bratje and sestra/sestri/sestre are correct. The toggles Imam brata / dva brata / tri brate and the quick check dva otroka are correct, and the card text is accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u02-l04-i01": "5559fc4a6b1e70cd",
+    "u02-l04-i02": "506013e886090dd6",
+    "u02-l04-i03": "94b2b7ee56c69dd0",
+    "u02-l04-i04": "dc00be4333ea59f2",
+    "u02-l04-i05": "8210c328aded4829",
+    "u02-l04-i06": "3e0dfa688b41e533",
+    "u02-l04-i07": "3128fec18d9551c6",
+    "u02-l04-i08": "c3f3649ffdd690bc",
+    "u02-l04-s01": "c0782302e486ee9b",
+    "u02-l04-s02": "e5042cab4554cd3b",
+    "u02-l04-s03": "d76015431d683729",
+    "u02-l04-s04": "24c3358a2321d026",
+    "u02-l04-s05": "9e8dcabaddfc4640",
+    "u02-l04-s06": "9eb432aaecd93cf5",
+    "u02-l04-s07": "629fb7d534053507",
+    "u02-l04-p01": "e7d43fdefa298300",
+    "u02-l04-p02": "c349bca65990b709",
+    "u02-l04-p03": "4b68863de33a6853",
+    "u02-l04-p04": "77ea4bd8a702e44c",
+    "u02-l04-p05": "39a4d3dc05c5a03c",
+    "u02-l04-p06": "856391407db543dc",
+    "u02-l04-d-01": "2784a2446375a000",
+    "u02-l04-d-02": "2c4a28338dc86dbd",
+    "u02-l04-d-03": "4772f9a85b666e05",
+    "u02-l04-d-04": "9193e208e4623d63",
+    "u02-l04-d-05": "753eba1b15ade26a",
+    "r-numbers-1-4": "4909ad129282f722",
+    "r-dual-nouns": "21e3444f0c597efd"
+  }
+}

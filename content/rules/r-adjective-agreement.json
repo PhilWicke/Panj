@@ -1,0 +1,90 @@
+{
+  "id": "r-adjective-agreement",
+  "unit": "u02",
+  "title_en": "Adjectives match the noun",
+  "card_en": "An adjective takes the gender and number of the person or thing it describes: brat je star, sestra je stara. With polite vi it takes the plural: koliko ste stari?",
+  "example": {
+    "sl": "Moja hčerka je še mlada.",
+    "en": "My daughter is still young."
+  },
+  "table": {
+    "rows": [
+      "m",
+      "f",
+      "n"
+    ],
+    "cols": [
+      "sg",
+      "du",
+      "pl"
+    ],
+    "cells": {
+      "m.sg": {
+        "form": "star",
+        "note_en": "Some adjectives drop an e before an ending: prijazen, prijazna."
+      },
+      "m.du": {
+        "form": "stara",
+        "note_en": "Also for a man and a woman together."
+      },
+      "m.pl": {
+        "form": "stari",
+        "note_en": "Also with polite vi: koliko ste stari?"
+      },
+      "f.sg": {
+        "form": "stara"
+      },
+      "f.du": {
+        "form": "stari"
+      },
+      "f.pl": {
+        "form": "stare"
+      },
+      "n.sg": {
+        "form": "staro"
+      },
+      "n.du": {
+        "form": "stari"
+      },
+      "n.pl": {
+        "form": "stara"
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "Asking about",
+      "options": [
+        "a man or a boy",
+        "a woman or a girl",
+        "you, politely"
+      ],
+      "examples": {
+        "a man or a boy": {
+          "sl": "Koliko je star?",
+          "en": "How old is he?"
+        },
+        "a woman or a girl": {
+          "sl": "Koliko je stara?",
+          "en": "How old is she?"
+        },
+        "you, politely": {
+          "sl": "Koliko ste stari?",
+          "en": "How old are you?"
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Moj oče je zelo ___.",
+    "options": [
+      "prijazen",
+      "prijazna",
+      "prijazno"
+    ],
+    "answer": "prijazen",
+    "explain_en": "Oče is masculine, though it ends in -e, so the adjective takes no ending: prijazen."
+  },
+  "helper_de": "A German adjective after ist never changes: er ist alt, sie ist alt. A Slovenian one always does: star, stara.",
+  "helper_en": "English old stays old. In Slovenian it changes: star for him, stara for her, stari for polite vi."
+}

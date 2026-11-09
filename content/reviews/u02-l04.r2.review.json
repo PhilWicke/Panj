@@ -1,0 +1,60 @@
+{
+  "lesson": "u02-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {},
+      "lines": {
+        "u02-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Onadva sta brata. is correct: onadva is the masculine 3rd-person dual, with sta and the dual brata. The accept variant Brata sta. is the natural short statement, with the clitic sta correctly in second position. The instruction matches the answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Imava dva otroka. is natural and correct, with the dual otroka after dva. Midva imava dva otroka. is correct. Medve imava dva otroka. is also correct: Pravopis lists midva, medve (also midve) as one word, with medve the feminine/neuter form. The instruction matches the answer.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=midva"
+        },
+        "u02-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Ja, imava dva otroka. Brata sta. is grammatical and answers the polite Imate otroke? naturally. The rewrite fixes the earlier clitic-first Sta brata. so that sta sits in second position. The line is 32 characters and 6 words. The English is faithful. Minor note, not an error: a parent might more often say dva sinova or dva fanta than brata sta.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 4,
+      "items": {},
+      "lines": {
+        "u02-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Onadva sta brata. is correct: masculine dual pronoun, dual verb and dual noun. The rewritten variant Brata sta. now has the clitic after the stressed word, which makes it the natural short statement rather than a question. The instruction matches.",
+          "fix": "",
+          "source": ""
+        },
+        "u02-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Imava dva otroka. is correct (dual verb, dva with the masculine dual otroka). Midva imava and Medve imava are both correct. Pravopis gives medve as the main feminine form, with midve also allowed. The instruction you and one other person matches the dual.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=midva"
+        },
+        "u02-l04-d-04": {
+          "verdict": "doubtful",
+          "reason": "The grammar is correct now: Brata sta. has the clitic in the right place, and the line is short with a faithful English. The doubt is pragmatic. A parent describing their own two children as brata (they are brothers) is odd, because they are obviously siblings. A native would more likely say what the children are, such as Dva sinova. or Oba sta fanta. Let a native speaker judge whether it passes unnoticed.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u02-l04-p01": "d5b9a7e1fb6d39df",
+    "u02-l04-p02": "5dcb2759c9727656",
+    "u02-l04-d-04": "ef22f323d131766c"
+  }
+}

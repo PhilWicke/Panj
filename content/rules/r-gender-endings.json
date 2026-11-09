@@ -1,0 +1,46 @@
+{
+  "id": "r-gender-endings",
+  "unit": "u02",
+  "title_en": "Gender: the ending shows it",
+  "card_en": "A noun's ending usually shows its gender: a consonant for masculine (brat, sin), -a for feminine (sestra, mama), -o or -e for neuter (jutro, ime). Moj, my, follows: moj sin, moja hčerka, moje ime. Oče is an exception: masculine.",
+  "example": {
+    "sl": "To je moja hčerka.",
+    "en": "This is my daughter."
+  },
+  "toggles": [
+    {
+      "label": "Gender",
+      "options": [
+        "masculine",
+        "feminine",
+        "neuter"
+      ],
+      "examples": {
+        "masculine": {
+          "sl": "To je moj sin.",
+          "en": "This is my son."
+        },
+        "feminine": {
+          "sl": "To je moja hčerka.",
+          "en": "This is my daughter."
+        },
+        "neuter": {
+          "sl": "To je moje ime.",
+          "en": "This is my name."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "To je ___ družina.",
+    "options": [
+      "moj",
+      "moja",
+      "moje"
+    ],
+    "answer": "moja",
+    "explain_en": "Družina ends in -a, so it is feminine and takes moja: moja družina."
+  },
+  "helper_de": "German shows gender on der, die, das. Slovenian has no article, so the ending of the noun shows it.",
+  "helper_en": "English nouns have no gender. Every Slovenian noun has one, and moj, my, changes with it."
+}

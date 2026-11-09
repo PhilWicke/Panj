@@ -76,6 +76,8 @@ A filled example, a chunk with one slot:
 
 The English gloss must be unambiguous across the course. A word with several senses gets a note in brackets: `orange (the fruit)`, `orange (the colour)`. The linter refuses two items with the same gloss.
 
+English "you" hides what Slovenian marks: `ti` or `vi`, and for two people whether the speaker is one of them (`midva` or `vidva`). Wherever the answer turns on it, the English of a gloss, a structured line or a production instruction says who is meant: "(to a friend)", "(to an older person)", or "you and one other person" rather than "the two of you", which also reads as `vidva`.
+
 ## Example sentences
 
 - One or two per item, at most eight words each.

@@ -1,0 +1,34 @@
+{
+  "lesson": "u02-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u02-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Ja, imava dva otroka. Še mlada sta. is correct and natural. imava is the 1st person dual of imeti and takes the dual object dva otroka. In Še mlada sta, mlada is the masculine dual agreeing with otroka, and the clitic sta sits correctly after the phrase še mlada. Še majhna sta would be slightly more typical for small children, but mlada would pass with a native speaker. The English matches. The line has 35 characters and 7 words, so it is short enough to type. Side note, not a language issue: new_items lists u02-l04-i01 (Onadva sta brata.), but the line does not contain that chunk. It only reuses the dual sta.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {},
+      "lines": {
+        "u02-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Ja, imava dva otroka. Še mlada sta. is correct and natural. The dual imava fits two speakers and dva otroka is the right dual after dva. Mlada is the masculine dual, which agrees with otrok and is also used for a mixed pair. Fronting še mlada before the clitic sta is normal second-position order, a natural variant of Sta še mlada. SSKJ uses še mlad for people's age (njeni starši so še mladi). A native might more often say še majhna sta about small children, but mlada would not stand out. The English matches. The line has 35 characters and 7 words. Še and mlada are known from the i03 example Ena je še mlada. A side note outside the Slovenian and English: new_items lists u02-l04-i01 (Onadva sta brata.), but the line only reuses sta.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=mlad"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u02-l04-d-04": "d264929426781313"
+  }
+}

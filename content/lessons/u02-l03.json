@@ -1,0 +1,436 @@
+{
+  "id": "u02-l03",
+  "unit": "u02",
+  "order": 3,
+  "role": "theme",
+  "title_sl": "Kakšen je?",
+  "title_en": "What is he like?",
+  "items": [
+    {
+      "id": "u02-l03-i01",
+      "type": "chunk",
+      "sl": "Kakšen je?",
+      "sl_colloquial": null,
+      "en": "What is he like?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kakšen je? Je prijazen?",
+          "en": "What is he like? Is he kind?"
+        },
+        {
+          "sl": "In brat? Kakšen je?",
+          "en": "And your brother? What is he like?"
+        }
+      ],
+      "helper": "kakšen asks what kind, like German was für ein.",
+      "accept": [
+        "Kakšen je on?"
+      ],
+      "rules": [
+        "r-adjective-agreement"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l03-i02",
+      "type": "chunk",
+      "sl": "Zelo je prijazen.",
+      "sl_colloquial": null,
+      "en": "He is very kind.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Moj oče? Zelo je prijazen.",
+          "en": "My father? He is very kind."
+        },
+        {
+          "sl": "Kakšen je sin? Zelo je prijazen.",
+          "en": "What is your son like? He is very kind."
+        }
+      ],
+      "helper": "je comes second in the sentence: zelo je prijazen.",
+      "accept": [
+        "On je zelo prijazen."
+      ],
+      "rules": [
+        "r-adjective-agreement"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l03-i03",
+      "type": "chunk",
+      "sl": "Koliko si star?",
+      "sl_colloquial": null,
+      "en": "How old are you? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Živjo. Koliko si star?",
+          "en": "Hi. How old are you?"
+        },
+        {
+          "sl": "In ti, koliko si star?",
+          "en": "And you, how old are you?"
+        }
+      ],
+      "helper": "Literally how much are you old: koliko, how much, and star, old.",
+      "accept": [
+        "Koliko si stara?"
+      ],
+      "rules": [
+        "r-adjective-agreement",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l03-i04",
+      "type": "chunk",
+      "sl": "Koliko ste stari?",
+      "sl_colloquial": null,
+      "en": "How old are you? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Otroci, koliko ste stari?",
+          "en": "Children, how old are you?"
+        },
+        {
+          "sl": "Oprostite, koliko ste stari?",
+          "en": "Excuse me, how old are you?"
+        }
+      ],
+      "helper": "Polite vi takes the plural, so stari, not star.",
+      "accept": [],
+      "rules": [
+        "r-adjective-agreement",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l03-i05",
+      "type": "chunk",
+      "sl": "Ona je še mlada.",
+      "sl_colloquial": null,
+      "en": "She is still young.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Moja sestra? Ona je še mlada.",
+          "en": "My sister? She is still young."
+        },
+        {
+          "sl": "Ne, ona je še mlada.",
+          "en": "No, she is still young."
+        }
+      ],
+      "helper": "še is still, as in lep dan še naprej.",
+      "accept": [
+        "Še je mlada."
+      ],
+      "rules": [
+        "r-adjective-agreement"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l03-i06",
+      "type": "word",
+      "sl": "star",
+      "sl_colloquial": null,
+      "en": "old",
+      "register": "neutral",
+      "pos": "adjective",
+      "forms": {
+        "f": "stara",
+        "m.pl": "stari"
+      },
+      "examples": [
+        {
+          "sl": "Moj oče je star.",
+          "en": "My father is old."
+        },
+        {
+          "sl": "Moja mama ni stara.",
+          "en": "My mum isn't old."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-adjective-agreement"
+      ],
+      "freq_rank": 161,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l03-i07",
+      "type": "word",
+      "sl": "mlad",
+      "sl_colloquial": null,
+      "en": "young",
+      "register": "neutral",
+      "pos": "adjective",
+      "forms": {
+        "f": "mlada"
+      },
+      "examples": [
+        {
+          "sl": "Moj brat je še mlad.",
+          "en": "My brother is still young."
+        },
+        {
+          "sl": "Mama je še mlada.",
+          "en": "Mum is still young."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-adjective-agreement"
+      ],
+      "freq_rank": 292,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u02-l03-i08",
+      "type": "word",
+      "sl": "prijazen",
+      "sl_colloquial": null,
+      "en": "kind, friendly",
+      "register": "neutral",
+      "pos": "adjective",
+      "forms": {
+        "f": "prijazna",
+        "m.du": "prijazna"
+      },
+      "examples": [
+        {
+          "sl": "Moja sestra je zelo prijazna.",
+          "en": "My sister is very kind."
+        },
+        {
+          "sl": "Sin je zelo prijazen.",
+          "en": "My son is very kind."
+        }
+      ],
+      "helper": "Same root as prijatelj, friend: think friendly.",
+      "accept": [],
+      "rules": [
+        "r-adjective-agreement"
+      ],
+      "freq_rank": 1310,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-adjective-agreement"
+  ],
+  "structured": [
+    {
+      "id": "u02-l03-s01",
+      "prompt_sl": "Moja mama je ___.",
+      "options": [
+        "mlad",
+        "mlada",
+        "mlado"
+      ],
+      "answer": "mlada",
+      "rule": "r-adjective-agreement",
+      "en": "My mum is young."
+    },
+    {
+      "id": "u02-l03-s02",
+      "prompt_sl": "Sin je zelo ___.",
+      "options": [
+        "prijazen",
+        "prijazna",
+        "prijazno"
+      ],
+      "answer": "prijazen",
+      "rule": "r-adjective-agreement",
+      "en": "My son is very kind."
+    },
+    {
+      "id": "u02-l03-s03",
+      "prompt_sl": "Otroci, koliko ste ___?",
+      "options": [
+        "star",
+        "stara",
+        "stari"
+      ],
+      "answer": "stari",
+      "rule": "r-adjective-agreement",
+      "en": "Children, how old are you?"
+    },
+    {
+      "id": "u02-l03-s04",
+      "prompt_sl": "Sestra je zelo ___.",
+      "options": [
+        "prijazen",
+        "prijazna",
+        "prijazni"
+      ],
+      "answer": "prijazna",
+      "rule": "r-adjective-agreement",
+      "en": "My sister is very kind."
+    },
+    {
+      "id": "u02-l03-s05",
+      "prompt_sl": "Brat in sestra ___ prijazna.",
+      "options": [
+        "sta",
+        "sva",
+        "so"
+      ],
+      "answer": "sta",
+      "rule": "r-biti-present",
+      "en": "My brother and sister are kind."
+    },
+    {
+      "id": "u02-l03-s06",
+      "prompt_sl": "Ona ___ še mlada.",
+      "options": [
+        "je",
+        "sem",
+        "si"
+      ],
+      "answer": "je",
+      "rule": "r-biti-present",
+      "en": "She is still young."
+    }
+  ],
+  "production": [
+    {
+      "id": "u02-l03-p01",
+      "en": "Ask what he is like.",
+      "answer": "Kakšen je?",
+      "accept": [
+        "Kakšen je on?"
+      ],
+      "item": "u02-l03-i01"
+    },
+    {
+      "id": "u02-l03-p02",
+      "en": "Say he is very kind.",
+      "answer": "Zelo je prijazen.",
+      "accept": [
+        "On je zelo prijazen."
+      ],
+      "item": "u02-l03-i02"
+    },
+    {
+      "id": "u02-l03-p03",
+      "en": "Ask a child how old they are.",
+      "answer": "Koliko si star?",
+      "accept": [
+        "Koliko si stara?"
+      ],
+      "item": "u02-l03-i03"
+    },
+    {
+      "id": "u02-l03-p04",
+      "en": "Ask a group of children how old they are.",
+      "answer": "Koliko ste stari?",
+      "accept": [],
+      "item": "u02-l03-i04"
+    },
+    {
+      "id": "u02-l03-p05",
+      "en": "Say she is still young.",
+      "answer": "Ona je še mlada.",
+      "accept": [
+        "Še je mlada."
+      ],
+      "item": "u02-l03-i05"
+    }
+  ],
+  "dialogue": {
+    "id": "u02-l03-d",
+    "title_sl": "Kdo pride jutri?",
+    "title_en": "Who is coming tomorrow?",
+    "setting_en": "Your hosts tell you about a relative of theirs who is coming to visit tomorrow.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Jutri pride moj brat.",
+        "en": "My brother is coming tomorrow."
+      },
+      {
+        "speaker": "you",
+        "sl": "Kakšen je? Je prijazen?",
+        "en": "What is he like? Is he kind?",
+        "new_items": [
+          "u02-l03-i01",
+          "u02-l03-i08"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Ja, zelo je prijazen.",
+        "en": "Yes, he is very kind."
+      },
+      {
+        "speaker": "you",
+        "sl": "Koliko je star?",
+        "en": "How old is he?",
+        "new_items": [
+          "u02-l03-i06"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Ni star, še je mlad.",
+        "en": "He isn't old, he's still young."
+      }
+    ]
+  }
+}
