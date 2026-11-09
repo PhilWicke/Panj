@@ -5,15 +5,22 @@
 // recall of the exercise's item, and a dialogue's learner lines to one recall per item they
 // practise plus one `aux` for the lines without items; a slot hides a base chunk that would give
 // the answer away; a dialogue line counts as a miss when any of its items would; a line's playback
-// holds the scene until it settles or for the line's wait at most; speaker labels.
-// The exercises' DOM runs in the browser check.
+// holds the scene until it settles or for the line's wait at most; speaker labels. Listening
+// offers the meaning among three other meanings of the lesson; a spoken attempt that does not
+// match gets one more try, and a recogniser that cannot run turns the exercise self-rated; a
+// spoken answer is compared with the item's form and its accepted variants; the perception sets
+// are two or three similar words. The exercises' DOM runs in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
-import { blankify, shuffle, promptWithBlank, structuredOutcome } from '../../app/js/ui/exercises/structured.js';
+import { shuffle } from '../../app/js/util/shuffle.js';
+import { blankify, promptWithBlank, structuredOutcome } from '../../app/js/ui/exercises/structured.js';
 import { slotBase, slotOutcome } from '../../app/js/ui/exercises/slot.js';
 import { dialogueOutcome, lineEffective, speakerLabel, playWaitMs, playWithin } from '../../app/js/ui/exercises/dialogue.js';
+import { meaningOptions } from '../../app/js/ui/exercises/listening.js';
+import { attemptOutcome, recognitionFallsBack, spokenVerdict } from '../../app/js/ui/exercises/speaking.js';
+import { PERCEPTION_SETS, pickPerception } from '../../app/js/ui/exercises/perception.js';
 
 /** @typedef {import('../../app/js/content/types.js').Lesson} Lesson */
 /** @typedef {import('../../app/js/content/types.js').Item} Item */
@@ -215,4 +222,77 @@ test('playWithin goes on when the playback settles, however it settles, and afte
   endLate('device');
   await flush();
   assert.ok(stalled.settled && !stalled.rejected, 'an end after the wait changes nothing');
+});
+
+test('meaningOptions puts the meaning among three other meanings of the lesson, shuffled, or gives null when there are too few', () => {
+  const evening = /** @type {Item} */ (lesson.items.find((each) => each.sl === 'Dober večer.'));
+  const others = new Set(lesson.items.filter((each) => each.id !== evening.id).map((each) => each.en));
+  const options = /** @type {string[]} */ (meaningOptions(evening, lesson, seeded(3)));
+  assert.equal(options.length, 4);
+  assert.equal(new Set(options).size, 4, 'four different meanings');
+  assert.equal(options.filter((option) => option === evening.en).length, 1);
+  for (const option of options) if (option !== evening.en) assert.ok(others.has(option), `${option} is another item of the lesson`);
+  assert.deepEqual(meaningOptions(evening, lesson, seeded(3)), options, 'the same seed gives the same options');
+
+  const places = new Set();
+  const seen = new Set();
+  for (let seed = 1; seed <= 40; seed += 1) {
+    const each = /** @type {string[]} */ (meaningOptions(evening, lesson, seeded(seed)));
+    places.add(each.indexOf(evening.en));
+    for (const option of each) seen.add(option);
+  }
+  assert.equal(places.size, 4, 'the meaning takes every place');
+  assert.equal(seen.size, lesson.items.length, 'every other meaning of the lesson is drawn as a distractor');
+
+  const twin = item({ id: 'u01-l01-i90', en: evening.en });
+  const small = { ...lesson, items: [evening, twin, item({ id: 'u01-l01-i91', en: 'Hi.' }), item({ id: 'u01-l01-i92', en: 'Bye.' })] };
+  assert.equal(meaningOptions(evening, small, seeded(1)), null, 'another item with the same meaning is no distractor, so two are left');
+  assert.equal(meaningOptions(evening, null, seeded(1)), null, 'no lesson');
+});
+
+test('attemptOutcome: a match is a correct recall; anything else gets one more try, then counts as a miss', () => {
+  assert.equal(attemptOutcome('match', 1), 'correct');
+  assert.equal(attemptOutcome('match', 2), 'correct');
+  assert.equal(attemptOutcome('close', 1), 'retry');
+  assert.equal(attemptOutcome('miss', 1), 'retry');
+  assert.equal(attemptOutcome('close', 2), 'wrong');
+  assert.equal(attemptOutcome('miss', 2), 'wrong');
+});
+
+test('recognitionFallsBack: a refusal or a recogniser that cannot run turns the exercise self-rated; silence and the timeout do not', () => {
+  for (const error of ['not-allowed', 'service-not-allowed', 'audio-capture', 'network', 'language-not-supported', 'unavailable', 'start-failed']) {
+    assert.equal(recognitionFallsBack(error), true, error);
+  }
+  for (const error of ['no-speech', 'timeout', 'aborted']) assert.equal(recognitionFallsBack(error), false, error);
+});
+
+test('spokenVerdict compares the transcript with the item form and its accepted variants, the best one counting', () => {
+  const thanks = item({ sl: 'Hvala.', accept: ['Hvala lepa.'] });
+  assert.equal(spokenVerdict('Hvala', thanks), 'match');
+  assert.equal(spokenVerdict('hvala lepa', thanks), 'match', 'an accepted variant');
+  assert.equal(spokenVerdict('hvala lep', thanks), 'close', 'close to the variant');
+  assert.equal(spokenVerdict('nasvidenje', thanks), 'miss');
+  assert.equal(spokenVerdict('dober vecer', item({ sl: 'Dober večer.' })), 'match', 'an item without variants');
+});
+
+test('PERCEPTION_SETS hold two or three similar words each, and pickPerception draws a set and the word to play from it', () => {
+  assert.ok(PERCEPTION_SETS.length >= 5);
+  for (const words of PERCEPTION_SETS) {
+    assert.ok(words.length === 2 || words.length === 3, words.join('/'));
+    assert.equal(new Set(words).size, words.length, `${words.join('/')}: different words`);
+  }
+  const joined = PERCEPTION_SETS.map((words) => words.join('/'));
+  for (const pair of ['bil/bila', 'vas/vaš', 'peti/pesti', 'v šoli/šoli']) assert.ok(joined.includes(pair), pair);
+  assert.ok(PERCEPTION_SETS.some((words) => words.includes('kosa') && words.includes('koza')), 'kosa/koza');
+
+  assert.deepEqual(pickPerception(() => 0), { words: PERCEPTION_SETS[0], target: PERCEPTION_SETS[0][0] });
+  const last = PERCEPTION_SETS[PERCEPTION_SETS.length - 1];
+  assert.deepEqual(pickPerception(() => 0.999), { words: last, target: last[last.length - 1] });
+  const targets = new Set();
+  for (let seed = 1; seed <= 200; seed += 1) {
+    const { words, target } = pickPerception(seeded(seed));
+    assert.ok(words.includes(target));
+    targets.add(target);
+  }
+  assert.equal(targets.size, PERCEPTION_SETS.flat().length, 'every word gets played');
 });

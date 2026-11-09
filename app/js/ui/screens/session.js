@@ -15,7 +15,6 @@ import { localDateKey } from '../../util/time.js';
 import { isRuleId } from '../../util/ids.js';
 import { onlyKnown } from '../../content/loader.js';
 import { saveItemState, appendSession } from '../../store/state.js';
-import { speak } from '../../audio/player.js';
 import { renderFor } from '../exercises/registry.js';
 import { navigate } from '../../router.js';
 
@@ -167,7 +166,7 @@ function playable(app, entry) {
  * @param {HTMLElement} container
  * @param {App} app
  * @param {Record<string, string>} [params]
- * @returns {() => void} stops the session when the screen is left; work done so far is recorded
+ * @returns {() => void} stops the session and its sound when the screen is left; work done so far is recorded
  */
 export function renderSession(container, app, params = {}) {
   const settings = app.state.settings;
@@ -231,7 +230,7 @@ export function renderSession(container, app, params = {}) {
       rules: app.index.rules,
       settings,
       mode,
-      play: (text) => speak(text, { mute: settings.mute }),
+      play: (text) => app.player.play(text),
       rng: Math.random,
       allowPending: app.allowPending,
       effective: (id, recall) => effectiveResult(app.state.items[id] ?? createState(id, Date.now()), recall),
@@ -364,6 +363,7 @@ export function renderSession(container, app, params = {}) {
 
   return () => {
     alive = false;
+    app.player.stop();
     record().catch((error) => console.error(error));
   };
 }

@@ -1,0 +1,376 @@
+// tests/ui/speech.test.js
+// The audio player and speech recognition under Node, with the browser APIs stubbed per test.
+// compareSpoken: a correct or slipped transcript is a match, one within 2 edits or 20 percent of
+// the line (diacritics aside) is close, anything else a miss. recognizeOnce never rejects: it
+// resolves transcript null when the API is missing, on an error, on an end without a result and
+// on its timeout. createPlayer plays the recording first, the device's Slovenian voice second and
+// resolves 'none' when neither exists; a missing manifest reads as empty without a console error,
+// and a missing Web Crypto as no recording; mute plays nothing; a new play waits for the cancelled
+// utterance to let go before it speaks.
+import { test, afterEach } from 'node:test';
+import assert from 'node:assert/strict';
+import { compareSpoken, recognizeOnce, speechAvailable } from '../../app/js/audio/speech.js';
+import { createPlayer, voiceFor, VOICES } from '../../app/js/audio/player.js';
+import { audioId } from '../../app/js/util/audio-id.js';
+
+const MANIFEST_URL = 'assets/audio/manifest.json';
+const STUBBED = ['fetch', 'crypto', 'Audio', 'speechSynthesis', 'SpeechSynthesisUtterance', 'SpeechRecognition', 'webkitSpeechRecognition'];
+const originals = new Map(STUBBED.map((name) => [name, Object.getOwnPropertyDescriptor(globalThis, name)]));
+
+/** @param {string} name @param {unknown} value */
+function stub(name, value) {
+  Object.defineProperty(globalThis, name, { value, configurable: true, writable: true });
+}
+
+afterEach(() => {
+  for (const [name, descriptor] of originals) {
+    if (descriptor) Object.defineProperty(globalThis, name, descriptor);
+    else delete (/** @type {Record<string, unknown>} */ (globalThis))[name];
+  }
+});
+
+/** A fetch that answers 404 for everything, counting its calls. */
+function notFound() {
+  const calls = /** @type {string[]} */ ([]);
+  const fetch = async (/** @type {string} */ url) => {
+    calls.push(url);
+    return { ok: false, status: 404, json: async () => { throw new SyntaxError('no JSON in a 404 page'); } };
+  };
+  return { fetch, calls };
+}
+
+/** A fetch that serves `manifest` at any URL, counting its calls. @param {Record<string, unknown>} manifest */
+function serving(manifest) {
+  const calls = /** @type {string[]} */ ([]);
+  const fetch = async (/** @type {string} */ url) => {
+    calls.push(url);
+    return { ok: true, status: 200, json: async () => manifest };
+  };
+  return { fetch, calls };
+}
+
+/** An HTMLAudioElement stand-in: play() ends the clip on the next turn, or fails it when `fail` is set. */
+function fakeAudio({ fail = false } = {}) {
+  const made = /** @type {any[]} */ ([]);
+  class FakeAudio {
+    /** @param {string} src */
+    constructor(src) {
+      this.src = src;
+      this.paused = true;
+      /** @type {(() => void)|null} */ this.onended = null;
+      /** @type {(() => void)|null} */ this.onerror = null;
+      made.push(this);
+    }
+
+    play() {
+      this.paused = false;
+      setTimeout(() => (fail ? this.onerror?.() : this.onended?.()), 0);
+      return Promise.resolve();
+    }
+
+    pause() {
+      this.paused = true;
+    }
+  }
+  return { FakeAudio, made };
+}
+
+/**
+ * A speechSynthesis stand-in with the given voices. speak() ends the utterance after `speakMs`;
+ * cancel() fails the current one with `interrupted` after `cancelMs`, or never when `cancelMs`
+ * is null. Every call is logged in `log`.
+ * @param {{ voices?: { lang: string, name: string }[], speakMs?: number, cancelMs?: number|null }} [opts]
+ */
+function fakeSynth({ voices = [{ lang: 'sl-SI', name: 'Lado' }], speakMs = 0, cancelMs = 10 } = {}) {
+  const log = /** @type {string[]} */ ([]);
+  /** @type {any} */
+  let current = null;
+  const synth = {
+    getVoices: () => voices,
+    addEventListener() {},
+    removeEventListener() {},
+    /** @param {any} utterance */
+    speak(utterance) {
+      log.push(`speak ${utterance.text}`);
+      current = utterance;
+      setTimeout(() => {
+        if (current !== utterance) return;
+        current = null;
+        log.push(`end ${utterance.text}`);
+        utterance.onend?.({});
+      }, speakMs);
+    },
+    cancel() {
+      log.push('cancel');
+      const cancelled = current;
+      current = null;
+      if (cancelled && cancelMs !== null) {
+        setTimeout(() => {
+          log.push(`error ${cancelled.text}`);
+          cancelled.onerror?.({ error: 'interrupted' });
+        }, cancelMs);
+      }
+    },
+  };
+  class FakeUtterance {
+    /** @param {string} text */
+    constructor(text) {
+      this.text = text;
+      /** @type {any} */ this.voice = null;
+      this.lang = '';
+      /** @type {((event: any) => void)|null} */ this.onend = null;
+      /** @type {((event: any) => void)|null} */ this.onerror = null;
+    }
+  }
+  return { synth, FakeUtterance, log };
+}
+
+/**
+ * A SpeechRecognition stand-in; `behave(recognition)` runs on start() and drives its events.
+ * @param {(recognition: any) => void} behave
+ */
+function fakeRecognition(behave) {
+  const made = /** @type {any[]} */ ([]);
+  class FakeRecognition {
+    constructor() {
+      this.lang = '';
+      this.interimResults = true;
+      this.continuous = true;
+      this.maxAlternatives = 0;
+      this.started = 0;
+      this.aborted = 0;
+      /** @type {any} */ this.onresult = null;
+      /** @type {any} */ this.onerror = null;
+      /** @type {any} */ this.onend = null;
+      made.push(this);
+    }
+
+    start() {
+      this.started += 1;
+      behave(this);
+    }
+
+    abort() {
+      this.aborted += 1;
+    }
+  }
+  return { FakeRecognition, made };
+}
+
+test('compareSpoken: a correct transcript, or one that differs only in diacritics or punctuation, is a match', () => {
+  assert.equal(compareSpoken('Dober večer', 'Dober večer.'), 'match');
+  assert.equal(compareSpoken('dober vecer', 'Dober večer.'), 'match', 'what grade calls a slip');
+  assert.equal(compareSpoken('Dober večer!', 'Dober večer.'), 'match', 'the recogniser\'s own punctuation and case');
+});
+
+test('compareSpoken: within 2 edits or 20 percent of the line, diacritics aside, is close; beyond is a miss', () => {
+  assert.equal(compareSpoken('dober vece', 'Dober večer.'), 'close', '1 edit');
+  assert.equal(compareSpoken('dober več', 'Dober večer.'), 'close', '2 edits');
+  assert.equal(compareSpoken('dobro večer', 'Dober večer.'), 'close', '2 edits, a swap');
+  assert.equal(compareSpoken('hvla', 'Hvala.'), 'close', 'a short line still allows 2 edits');
+  assert.equal(compareSpoken('pro', 'Prosim.'), 'miss', '3 edits on a line of 6 letters');
+  // "lahko dobim kavo prosim" has 23 characters: 20 percent allows 4 edits.
+  assert.equal(compareSpoken('lahk dobi kava prosi', 'Lahko dobim kavo, prosim?'), 'close', '4 edits on 23');
+  assert.equal(compareSpoken('lah dobi kava prosi', 'Lahko dobim kavo, prosim?'), 'miss', '5 edits on 23');
+  assert.equal(compareSpoken('nasvidenje', 'Dober večer.'), 'miss');
+  assert.equal(compareSpoken('', 'Hvala.'), 'miss', 'nothing heard');
+});
+
+test('recognizeOnce resolves transcript null when the API is missing, and speechAvailable says so', async () => {
+  stub('SpeechRecognition', undefined);
+  stub('webkitSpeechRecognition', undefined);
+  assert.equal(speechAvailable(), false);
+  assert.deepEqual(await recognizeOnce(), { transcript: null, error: 'unavailable' });
+  assert.deepEqual(await recognizeOnce({ lang: 'sl-SI', timeoutMs: 10 }), { transcript: null, error: 'unavailable' });
+});
+
+test('recognizeOnce listens once in Slovenian, through the prefixed API too, and resolves the trimmed transcript', async () => {
+  const { FakeRecognition, made } = fakeRecognition((recognition) => setTimeout(() => {
+    recognition.onresult?.({ results: [[{ transcript: ' Dober večer ' }]] });
+    recognition.onend?.();
+  }, 0));
+  stub('SpeechRecognition', undefined);
+  stub('webkitSpeechRecognition', FakeRecognition);
+  assert.equal(speechAvailable(), true, 'the webkit prefix counts');
+  assert.equal(made.length, 0, 'checking availability constructs nothing');
+
+  assert.deepEqual(await recognizeOnce(), { transcript: 'Dober večer', error: null });
+  assert.equal(made.length, 1);
+  const [recognition] = made;
+  assert.equal(recognition.lang, 'sl-SI');
+  assert.equal(recognition.interimResults, false);
+  assert.equal(recognition.continuous, false);
+  assert.equal(recognition.started, 1);
+});
+
+test('recognizeOnce never rejects: a refusal, no speech, an end without a result, a failed start and the timeout resolve null', async () => {
+  /** @param {(recognition: any) => void} behave @param {number} [timeoutMs] */
+  const run = (behave, timeoutMs) => {
+    const { FakeRecognition, made } = fakeRecognition(behave);
+    stub('SpeechRecognition', FakeRecognition);
+    return { result: recognizeOnce({ timeoutMs }), made };
+  };
+
+  const refused = run((r) => setTimeout(() => { r.onerror?.({ error: 'not-allowed' }); r.onend?.(); }, 0));
+  assert.deepEqual(await refused.result, { transcript: null, error: 'not-allowed' });
+
+  const silent = run((r) => setTimeout(() => { r.onerror?.({ error: 'no-speech' }); r.onend?.(); }, 0));
+  assert.deepEqual(await silent.result, { transcript: null, error: 'no-speech' });
+
+  const ended = run((r) => setTimeout(() => r.onend?.(), 0));
+  assert.deepEqual(await ended.result, { transcript: null, error: 'no-speech' }, 'an end without a result');
+
+  const blank = run((r) => setTimeout(() => r.onresult?.({ results: [[{ transcript: '  ' }]] }), 0));
+  assert.deepEqual(await blank.result, { transcript: null, error: 'no-speech' }, 'a blank transcript');
+
+  const broken = run(() => { throw new Error('InvalidStateError'); });
+  assert.deepEqual(await broken.result, { transcript: null, error: 'start-failed' });
+
+  const hung = run(() => {}, 20);
+  assert.deepEqual(await hung.result, { transcript: null, error: 'timeout' });
+  assert.equal(hung.made[0].aborted, 1, 'the timeout stops the recogniser');
+});
+
+test('voiceFor maps the voice preference to the recordings\' voice, none for the device voice', () => {
+  assert.deepEqual(VOICES, { female: 'Kore', male: 'Puck' });
+  assert.equal(voiceFor('female'), 'Kore');
+  assert.equal(voiceFor('male'), 'Puck');
+  assert.equal(voiceFor('device'), null);
+});
+
+test('createPlayer resolves none with an empty manifest and no device voice, without a console error', async (t) => {
+  const { fetch, calls } = notFound();
+  stub('fetch', fetch);
+  stub('speechSynthesis', undefined);
+  const errors = t.mock.method(console, 'error');
+  const player = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false });
+
+  assert.equal(await player.play('Dober dan.'), 'none');
+  assert.equal(await player.hasAudioFor('Dober dan.'), false);
+  assert.equal(player.deviceVoiceAvailable(), false);
+  assert.deepEqual(calls, [MANIFEST_URL], 'the manifest is fetched once');
+
+  stub('fetch', async () => { throw new TypeError('Failed to fetch'); });
+  const offline = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false });
+  assert.equal(await offline.play('Dober dan.'), 'none', 'a network error reads as an empty manifest');
+  assert.equal(errors.mock.callCount(), 0);
+});
+
+test('createPlayer never rejects: without Web Crypto (an insecure context) there is no recording to find', async () => {
+  const id = await audioId('Dober dan.', 'Kore');
+  stub('fetch', serving({ [id]: { text: 'Dober dan.', voice: 'Kore', model: 'm', bytes: 1 } }).fetch);
+  stub('crypto', {});
+  stub('speechSynthesis', undefined);
+  const player = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false });
+  assert.equal(await player.play('Dober dan.'), 'none');
+  assert.equal(await player.hasAudioFor('Dober dan.'), false);
+});
+
+test('createPlayer plays the recording in the preferred voice from beside the manifest', async () => {
+  const id = await audioId('Dober dan.', 'Kore');
+  const { fetch, calls } = serving({ [id]: { text: 'Dober dan.', voice: 'Kore', model: 'm', bytes: 1 } });
+  const { FakeAudio, made } = fakeAudio();
+  stub('fetch', fetch);
+  stub('Audio', FakeAudio);
+  stub('speechSynthesis', undefined);
+  const player = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false });
+
+  assert.equal(await player.hasAudioFor('Dober dan.'), true);
+  assert.equal(await player.play('Dober dan.'), 'file');
+  assert.equal(made.length, 1);
+  assert.equal(made[0].src, `assets/audio/${id}.mp3`);
+  assert.equal(await player.play('Dober dan.'), 'file');
+  assert.equal(calls.length, 1, 'the manifest is fetched once for every lookup');
+
+  const male = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'male', mute: false });
+  assert.equal(await male.hasAudioFor('Dober dan.'), false, 'the recording is in the other voice');
+  assert.equal(await male.play('Dober dan.'), 'none');
+});
+
+test('createPlayer falls back to a Slovenian device voice when there is no recording, or the recording fails', async () => {
+  const id = await audioId('Hvala.', 'Kore');
+  stub('fetch', serving({ [id]: { text: 'Hvala.', voice: 'Kore', model: 'm', bytes: 1 } }).fetch);
+  stub('Audio', fakeAudio({ fail: true }).FakeAudio);
+  const { synth, FakeUtterance, log } = fakeSynth({ voices: [{ lang: 'de-DE', name: 'Anna' }, { lang: 'sl-SI', name: 'Lado' }] });
+  stub('speechSynthesis', synth);
+  stub('SpeechSynthesisUtterance', FakeUtterance);
+  const player = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false });
+
+  assert.equal(player.deviceVoiceAvailable(), true);
+  assert.equal(await player.play('Prosim.'), 'device', 'no recording');
+  assert.equal(await player.play('Hvala.'), 'device', 'the recording failed to play');
+  assert.deepEqual(log, ['speak Prosim.', 'end Prosim.', 'speak Hvala.', 'end Hvala.']);
+
+  const { fetch, calls } = notFound();
+  stub('fetch', fetch);
+  const device = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'device', mute: false });
+  assert.equal(await device.play('Hvala.'), 'device');
+  assert.equal(calls.length, 0, 'the device preference never looks for recordings');
+
+  stub('speechSynthesis', fakeSynth({ voices: [{ lang: 'de-DE', name: 'Anna' }] }).synth);
+  const german = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'device', mute: false });
+  assert.equal(german.deviceVoiceAvailable(), false);
+  assert.equal(await german.play('Hvala.'), 'none', 'a voice that is not Slovenian does not count');
+});
+
+test('createPlayer plays nothing when muted, and setMute stops what plays', async () => {
+  const id = await audioId('Dober dan.', 'Kore');
+  const { fetch, calls } = serving({ [id]: { text: 'Dober dan.', voice: 'Kore', model: 'm', bytes: 1 } });
+  stub('fetch', fetch);
+  stub('speechSynthesis', undefined);
+  /** An audio element that plays until it is paused. */
+  const made = /** @type {any[]} */ ([]);
+  stub('Audio', class {
+    /** @param {string} src */
+    constructor(src) { this.src = src; this.paused = true; made.push(this); }
+    play() { this.paused = false; return Promise.resolve(); }
+    pause() { this.paused = true; }
+  });
+
+  const player = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: true });
+  assert.equal(await player.play('Dober dan.'), 'none');
+  assert.equal(calls.length, 0, 'muted, nothing is fetched');
+
+  player.setMute(false);
+  const playing = player.play('Dober dan.');
+  await new Promise((resolve) => setTimeout(resolve, 20));
+  assert.equal(made.length, 1);
+  assert.equal(made[0].paused, false);
+  player.setMute(true);
+  assert.equal(made[0].paused, true, 'setMute stops the playback');
+  assert.equal(await playing, 'file', 'the stopped play still says where the sound came from');
+  assert.equal(await player.play('Dober dan.'), 'none');
+});
+
+test('a new play cancels the utterance before it and waits for its end, or 150 ms, before speaking', async () => {
+  stub('fetch', notFound().fetch);
+  const slow = fakeSynth({ speakMs: 1000, cancelMs: 20 });
+  stub('speechSynthesis', slow.synth);
+  stub('SpeechSynthesisUtterance', slow.FakeUtterance);
+  const player = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'device', mute: false });
+
+  const first = player.play('Dober dan.');
+  await new Promise((resolve) => setTimeout(resolve, 10));
+  const second = player.play('Hvala.');
+  assert.equal(await first, 'device', 'the cut-short utterance had a voice');
+  player.stop();
+  assert.equal(await second, 'device');
+  assert.deepEqual(slow.log.slice(0, 4), ['speak Dober dan.', 'cancel', 'error Dober dan.', 'speak Hvala.'],
+    'the next utterance is spoken only after the cancelled one reported its error');
+
+  const mute = fakeSynth({ speakMs: 1000, cancelMs: null });
+  stub('speechSynthesis', mute.synth);
+  stub('SpeechSynthesisUtterance', mute.FakeUtterance);
+  const quiet = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'device', mute: false });
+  void quiet.play('Dober dan.');
+  await new Promise((resolve) => setTimeout(resolve, 10));
+  const cancelledAt = Date.now();
+  const next = quiet.play('Hvala.');
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  assert.deepEqual(mute.log, ['speak Dober dan.', 'cancel'], 'no event from the cancelled utterance: still waiting at 100 ms');
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  assert.deepEqual(mute.log, ['speak Dober dan.', 'cancel', 'speak Hvala.'], 'spoken after 150 ms');
+  assert.ok(Date.now() - cancelledAt >= 150);
+  quiet.stop();
+  assert.equal(await next, 'device');
+});

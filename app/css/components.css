@@ -637,6 +637,11 @@ button.rule-cell {
   font-size: var(--text-18);
 }
 
+/* A Slovenian option under an English question (the perception drill): set larger than the question. */
+.option-sl {
+  font-size: var(--text-22);
+}
+
 .option-right,
 .option-wrong {
   color: var(--text);

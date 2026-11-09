@@ -5,6 +5,7 @@
 // structured input keeps its own counter and never changes recall state.
 
 import { h, mount } from '../../util/dom.js';
+import { shuffle } from '../../util/shuffle.js';
 
 /** @typedef {import('./registry.js').ExerciseRender} ExerciseRender */
 /** @typedef {import('./registry.js').ExerciseOutcome} ExerciseOutcome */
@@ -22,22 +23,6 @@ export function blankify(prompt) {
   const match = BLANK.exec(prompt);
   if (!match) return { before: prompt, after: '' };
   return { before: prompt.slice(0, match.index), after: prompt.slice(match.index + match[0].length) };
-}
-
-/**
- * A shuffled copy of `items` (Fisher-Yates from the end), drawn from `rng`.
- * @template T
- * @param {readonly T[]} items
- * @param {() => number} rng a generator in [0, 1)
- * @returns {T[]}
- */
-export function shuffle(items, rng) {
-  const copy = items.slice();
-  for (let i = copy.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(rng() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
 }
 
 /**

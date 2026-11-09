@@ -8,6 +8,7 @@ import { h, mount } from './util/dom.js';
 import { openStore } from './store/db.js';
 import { loadState, saveSettings } from './store/state.js';
 import { loadIndex, loadUnit, knownIds } from './content/loader.js';
+import { createPlayer } from './audio/player.js';
 import { currentParams, currentPath, navigate, onRoute } from './router.js';
 import { register } from './ui/exercises/registry.js';
 import * as meet from './ui/exercises/meet.js';
@@ -16,6 +17,9 @@ import * as rule from './ui/exercises/rule.js';
 import * as structured from './ui/exercises/structured.js';
 import * as slot from './ui/exercises/slot.js';
 import * as dialogue from './ui/exercises/dialogue.js';
+import * as listening from './ui/exercises/listening.js';
+import * as speaking from './ui/exercises/speaking.js';
+import * as perception from './ui/exercises/perception.js';
 import { renderNav } from './ui/components/nav.js';
 import { renderToday } from './ui/screens/today.js';
 import { renderSession } from './ui/screens/session.js';
@@ -28,6 +32,7 @@ import { renderRules } from './ui/screens/rules.js';
 /** @typedef {import('./content/types.js').Item} Item */
 /** @typedef {import('./content/types.js').Lesson} Lesson */
 /** @typedef {import('./content/types.js').Rule} Rule */
+/** @typedef {import('./audio/player.js').Player} Player */
 
 /**
  * Everything the screens work with.
@@ -42,6 +47,7 @@ import { renderRules } from './ui/screens/rules.js';
  * @property {Map<string, Lesson>} lessons by id
  * @property {Map<string, Rule>} rules by id
  * @property {boolean} allowPending a dev build practises pending items (Ruling 20)
+ * @property {Player} player the one audio player: recordings, else the device's Slovenian voice
  */
 
 register('meet', meet.render);
@@ -50,6 +56,9 @@ register('rule', rule.render);
 register('structured', structured.render);
 register('slot', slot.render);
 register('dialogue', dialogue.render);
+register('listening', listening.render);
+register('speaking', speaking.render);
+register('perception', perception.render);
 
 const root = /** @type {HTMLElement} */ (document.getElementById('app'));
 /** Routes that hide the tab bar. */
@@ -112,6 +121,7 @@ async function boot() {
     known: knownIds(index, units),
     items: new Map(), lessons: new Map(), rules: new Map(index.rules.map((rule) => [rule.id, rule])),
     allowPending: index.mode === 'dev',
+    player: createPlayer({ manifestUrl: 'assets/audio/manifest.json', voicePref: state.settings.voice, mute: state.settings.mute }),
   };
   for (const unit of units) {
     for (const lesson of unit.lessons) {
