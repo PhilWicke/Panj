@@ -1,0 +1,34 @@
+{
+  "lesson": "u05-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u05-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Greva skupaj? is the natural way to ask a friend whether the two of you go together, and the dual greva is right because the instruction says you and one friend. The variants A greva skupaj? (colloquial question particle a) and Ali greva skupaj? (standard ali) are both correct Slovenian. The English is clear and avoids 'the two of you'. The instruction asks 'will go', but the present greva is the usual way to put this, and the future (Bova šla skupaj?) is unlikely to have been taught yet, so one answer still stands.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u05-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Greva skupaj? is the correct 1st person dual of iti and the natural way to propose going together. The variants A greva skupaj? (colloquial question particle) and Ali greva skupaj? (standard) are both correct. The instruction 'whether you and they will go together' makes the speaker one of the two, so it points to midva/greva and rules out gremo and vidva. The English is a little stiff, since 'will go' reads more like a factual question than a proposal, but Greva skupaj? covers both readings, so the answer is unambiguous.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u05-l02-p05": "54ccd3abbb97c15b"
+  }
+}

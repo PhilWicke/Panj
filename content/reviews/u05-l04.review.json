@@ -1,0 +1,387 @@
+{
+  "lesson": "u05-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {
+        "u05-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Perfective present vstanem is normal for daily routine; vstajam variant also correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-i02": {
+          "verdict": "accepted",
+          "reason": "do + genitive petih correct; helper accurate; variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Supine spat after grem correct (Pravopis lists spát); schlafen gehen parallel apt.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=spati"
+        },
+        "u05-l04-i05": {
+          "verdict": "accepted",
+          "reason": "Natural; helper's two senses (now / for work) are real.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-i06": {
+          "verdict": "accepted",
+          "reason": "All present forms correct; delat colloquial; examples natural; nedelja link real.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-i07": {
+          "verdict": "accepted",
+          "reason": "Forms correct (berejo is the default 3pl, beró elevated); brat/brat homophone hook is honest, Pravopis gives (bràt).",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=brati"
+        },
+        "u05-l04-i08": {
+          "verdict": "accepted",
+          "reason": "Forms correct; SSKJ example otroci že spijo; examples natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=spati"
+        }
+      },
+      "lines": {
+        "u05-l04-s01": {
+          "verdict": "accepted",
+          "reason": "bereš with ti; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-s02": {
+          "verdict": "accepted",
+          "reason": "delam with jaz.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-s03": {
+          "verdict": "accepted",
+          "reason": "spijo with plural otroci.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-s04": {
+          "verdict": "accepted",
+          "reason": "beremo with mi.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-s05": {
+          "verdict": "accepted",
+          "reason": "delate with vi.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Dual otroka takes spita; English marks two children.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-s07": {
+          "verdict": "accepted",
+          "reason": "ob sedmih correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and all variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Correct ti form; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural ti question.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Do kdaj delaš? natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural, under limits.",
+          "fix": "",
+          "source": ""
+        },
+        "r-verb-present": {
+          "verdict": "doubtful",
+          "reason": "Table forms are correct, but two notes mislead. The 3.pl note says you also hear bero and spe: Pravopis marks beró as privzdignjeno (elevated), and spe is not given as a 3pl of spati in Pravopis, so these are not heard in everyday speech. helper_de reads as if German also drops the pronoun (it does not: ich arbeite). Suggest 3.pl note 'In writing you may see beró.' and helper_de 'The ending shows who, as in German, but the pronoun is usually left out: delam, ich arbeite.'",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=brati"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u05-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Vstanem ob sedmih natural; variants including imperfective Vstajam ob sedmih are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-i02": {
+          "verdict": "accepted",
+          "reason": "do + genitive petih correct; helper accurate; variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Zvečer berem natural; examples correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Grem spat with the supine spat is correct; schlafen gehen parallel apt.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-i05": {
+          "verdict": "accepted",
+          "reason": "Kaj delaš? natural, also for plans and job; Kaj pa delaš? correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-i06": {
+          "verdict": "accepted",
+          "reason": "delati with colloquial delat; all nine forms correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-i07": {
+          "verdict": "accepted",
+          "reason": "brati: berem ... berejo correct; colloquial brat; homophone hook with brat is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-i08": {
+          "verdict": "accepted",
+          "reason": "spati: spim ... spijo correct; examples natural; null helper fine.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u05-l04-s01": {
+          "verdict": "accepted",
+          "reason": "Ti bereš; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-s02": {
+          "verdict": "accepted",
+          "reason": "Jaz delam; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Otroci spijo; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Mi beremo; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Vi delate; English names the older person.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Dual otroka takes spita; English marks two children.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-s07": {
+          "verdict": "accepted",
+          "reason": "ob sedmih correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and all variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Grem spat. natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Kaj delaš? with Kaj pa delaš?; friend named.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-p06": {
+          "verdict": "accepted",
+          "reason": "V nedeljo ne delam. with reordered variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural question about plans.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Do kdaj delaš? natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Kaj pa zvečer? natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural; ob desetih correct.",
+          "fix": "",
+          "source": ""
+        },
+        "r-verb-present": {
+          "verdict": "accepted",
+          "reason": "Endings and all table forms correct; bero and spe are real alternative 3pl forms; toggles and quick check (delajo) correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u05-l04-i01": "f84c541272773ca0",
+    "u05-l04-i02": "691544d431ad0f68",
+    "u05-l04-i03": "857ce2ab332e128f",
+    "u05-l04-i04": "d59286873b7df2dc",
+    "u05-l04-i05": "3d7d14b001f1fbb3",
+    "u05-l04-i06": "e810789f50eb625d",
+    "u05-l04-i07": "5a947c696e6a879b",
+    "u05-l04-i08": "bb0f5ed009745d2b",
+    "u05-l04-s01": "36b2b87641eb25e1",
+    "u05-l04-s02": "516bc2daca80e955",
+    "u05-l04-s03": "6eb7ced3df0e0dad",
+    "u05-l04-s04": "b987781b4f30ce35",
+    "u05-l04-s05": "4e6a7eb0323f3e92",
+    "u05-l04-s06": "7e4d6ed3a91ac26f",
+    "u05-l04-s07": "23687d23ef683f5e",
+    "u05-l04-p01": "fd47a81b31919b9b",
+    "u05-l04-p02": "65da8c2923b9b531",
+    "u05-l04-p03": "8c4d8412fa2b7d05",
+    "u05-l04-p04": "afb83019b85cf403",
+    "u05-l04-p05": "d6e7671e5cd26bf1",
+    "u05-l04-p06": "36065e2d53c12cd7",
+    "u05-l04-d-01": "45e487b85e5faa37",
+    "u05-l04-d-02": "6b277e968f029665",
+    "u05-l04-d-03": "dbedf07da7326939",
+    "u05-l04-d-04": "1104aeadb823ce1d",
+    "u05-l04-d-05": "0927d081e8d82985",
+    "u05-l04-d-06": "ea850175fcc748d4",
+    "r-verb-present": "b9970872950bc787"
+  }
+}

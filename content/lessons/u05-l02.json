@@ -1,0 +1,437 @@
+{
+  "id": "u05-l02",
+  "unit": "u05",
+  "order": 2,
+  "role": "theme",
+  "title_sl": "Grem v trgovino",
+  "title_en": "I am going to the shop",
+  "items": [
+    {
+      "id": "u05-l02-i01",
+      "type": "chunk",
+      "sl": "Kam greš?",
+      "sl_colloquial": null,
+      "en": "Where are you going? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Živjo, kam greš?",
+          "en": "Hi, where are you going?"
+        },
+        {
+          "sl": "Kam greš zvečer?",
+          "en": "Where are you going in the evening?"
+        }
+      ],
+      "helper": "kam asks where to, like German wohin; kje asks where something is.",
+      "accept": [
+        "Kam pa greš?"
+      ],
+      "rules": [
+        "r-iti-present",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l02-i02",
+      "type": "chunk",
+      "sl": "Kam greste?",
+      "sl_colloquial": null,
+      "en": "Where are you going? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan, kam greste?",
+          "en": "Good day, where are you going?"
+        },
+        {
+          "sl": "Kam greste jutri?",
+          "en": "Where are you going tomorrow?"
+        }
+      ],
+      "helper": "greste is the vi form of iti: polite, or for several people.",
+      "accept": [
+        "Kam pa greste?"
+      ],
+      "rules": [
+        "r-iti-present",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l02-i03",
+      "type": "chunk",
+      "sl": "Grem v trgovino.",
+      "sl_colloquial": null,
+      "en": "I'm going to the shop.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Grem v trgovino. Rabim kruh.",
+          "en": "I'm going to the shop. I need bread."
+        },
+        {
+          "sl": "Popoldne grem v trgovino.",
+          "en": "In the afternoon I'm going to the shop."
+        }
+      ],
+      "helper": "After grem v, trgovina becomes trgovino: the place takes the accusative.",
+      "accept": [
+        "Jaz grem v trgovino."
+      ],
+      "rules": [
+        "r-iti-present",
+        "r-grem-v-na"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l02-i04",
+      "type": "chunk",
+      "sl": "Grem na kavo.",
+      "sl_colloquial": null,
+      "en": "I'm going for a coffee.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Grem na kavo, kaj pa ti?",
+          "en": "I'm going for a coffee, what about you?"
+        },
+        {
+          "sl": "Zjutraj grem na kavo.",
+          "en": "In the morning I go for a coffee."
+        }
+      ],
+      "helper": "Like German auf einen Kaffee gehen: out for a coffee.",
+      "accept": [
+        "Jaz grem na kavo."
+      ],
+      "rules": [
+        "r-iti-present",
+        "r-grem-v-na"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l02-i05",
+      "type": "chunk",
+      "sl": "Grem domov.",
+      "sl_colloquial": null,
+      "en": "I'm going home.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ura je deset, grem domov.",
+          "en": "It's ten, I'm going home."
+        },
+        {
+          "sl": "Hvala za vse, grem domov.",
+          "en": "Thanks for everything, I'm going home."
+        }
+      ],
+      "helper": "domov is homewards, like German nach Hause; doma is at home, like zu Hause.",
+      "accept": [
+        "Jaz grem domov."
+      ],
+      "rules": [
+        "r-iti-present",
+        "r-grem-v-na"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l02-i06",
+      "type": "chunk",
+      "sl": "Greva skupaj?",
+      "sl_colloquial": null,
+      "en": "Shall we go together? (the two of us)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Grem v trgovino. Greva skupaj?",
+          "en": "I'm going to the shop. Shall we go together?"
+        },
+        {
+          "sl": "Greva skupaj na kavo?",
+          "en": "Shall we go for a coffee together?"
+        }
+      ],
+      "helper": "greva is the dual: exactly the two of us.",
+      "accept": [
+        "A greva skupaj?",
+        "Ali greva skupaj?"
+      ],
+      "rules": [
+        "r-iti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l02-i07",
+      "type": "chunk",
+      "sl": "Gremo.",
+      "sl_colloquial": null,
+      "en": "Let's go. (three or more of us)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Gremo domov.",
+          "en": "Let's go home."
+        },
+        {
+          "sl": "Ura je osem, gremo.",
+          "en": "It's eight, let's go."
+        }
+      ],
+      "helper": "Like German gehen wir: gremo is we go, and also let's go.",
+      "accept": [],
+      "rules": [
+        "r-iti-present"
+      ],
+      "freq_rank": 27,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l02-i08",
+      "type": "chunk",
+      "sl": "Pridem takoj.",
+      "sl_colloquial": null,
+      "en": "I'll be right back, or right there.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Grem v trgovino. Pridem takoj.",
+          "en": "I'm going to the shop. I'll be right back."
+        },
+        {
+          "sl": "Kosilo je na mizi? Pridem takoj.",
+          "en": "Lunch is on the table? I'll be right there."
+        }
+      ],
+      "helper": "pridem is I come, as in pridite spet; takoj is right away.",
+      "accept": [
+        "Takoj pridem."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-iti-present",
+    "r-grem-v-na"
+  ],
+  "structured": [
+    {
+      "id": "u05-l02-s01",
+      "prompt_sl": "Jaz ___ domov.",
+      "options": [
+        "grem",
+        "greš",
+        "gre"
+      ],
+      "answer": "grem",
+      "rule": "r-iti-present",
+      "en": "I'm going home."
+    },
+    {
+      "id": "u05-l02-s02",
+      "prompt_sl": "Kam ___, gospa?",
+      "options": [
+        "greš",
+        "greste",
+        "gredo"
+      ],
+      "answer": "greste",
+      "rule": "r-iti-present",
+      "en": "Where are you going, madam?"
+    },
+    {
+      "id": "u05-l02-s03",
+      "prompt_sl": "Oni ___ na kavo.",
+      "options": [
+        "gre",
+        "gredo",
+        "greste"
+      ],
+      "answer": "gredo",
+      "rule": "r-iti-present",
+      "en": "They are going for a coffee."
+    },
+    {
+      "id": "u05-l02-s04",
+      "prompt_sl": "Grem ___ kavo.",
+      "options": [
+        "v",
+        "na"
+      ],
+      "answer": "na",
+      "rule": "r-grem-v-na",
+      "en": "I'm going for a coffee."
+    },
+    {
+      "id": "u05-l02-s05",
+      "prompt_sl": "Popoldne grem ___ trgovino.",
+      "options": [
+        "v",
+        "na"
+      ],
+      "answer": "v",
+      "rule": "r-grem-v-na",
+      "en": "In the afternoon I'm going to the shop."
+    },
+    {
+      "id": "u05-l02-s06",
+      "prompt_sl": "Grem v ___.",
+      "options": [
+        "trgovina",
+        "trgovino"
+      ],
+      "answer": "trgovino",
+      "rule": "r-grem-v-na",
+      "en": "I'm going to the shop."
+    }
+  ],
+  "production": [
+    {
+      "id": "u05-l02-p01",
+      "en": "Ask a friend where they're going.",
+      "answer": "Kam greš?",
+      "accept": [
+        "Kam pa greš?"
+      ],
+      "item": "u05-l02-i01"
+    },
+    {
+      "id": "u05-l02-p02",
+      "en": "Ask an older neighbour where they're going.",
+      "answer": "Kam greste?",
+      "accept": [
+        "Kam pa greste?"
+      ],
+      "item": "u05-l02-i02"
+    },
+    {
+      "id": "u05-l02-p03",
+      "en": "Tell your hosts you're going to the shop.",
+      "answer": "Grem v trgovino.",
+      "accept": [
+        "Jaz grem v trgovino."
+      ],
+      "item": "u05-l02-i03"
+    },
+    {
+      "id": "u05-l02-p04",
+      "en": "Say you're going home.",
+      "answer": "Grem domov.",
+      "accept": [
+        "Jaz grem domov."
+      ],
+      "item": "u05-l02-i05"
+    },
+    {
+      "id": "u05-l02-p05",
+      "en": "Ask a friend if you and they should go together.",
+      "answer": "Greva skupaj?",
+      "accept": [
+        "A greva skupaj?",
+        "Ali greva skupaj?"
+      ],
+      "item": "u05-l02-i06"
+    },
+    {
+      "id": "u05-l02-p06",
+      "en": "Your hosts are ready to leave with you. Say let's go.",
+      "answer": "Gremo.",
+      "accept": [],
+      "item": "u05-l02-i07"
+    }
+  ],
+  "dialogue": {
+    "id": "u05-l02-d",
+    "title_sl": "Na hitro v trgovino",
+    "title_en": "A quick trip to the shop",
+    "setting_en": "You put on your coat to go out. One of your hosts, who says ti to you, asks where you are going.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Kam greš?",
+        "en": "Where are you going?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Grem v trgovino. Rabim kruh.",
+        "en": "I'm going to the shop. I need bread.",
+        "new_items": [
+          "u05-l02-i03"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Greva skupaj?",
+        "en": "Shall we go together?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ni treba. Pridem takoj.",
+        "en": "There's no need. I'll be right back.",
+        "new_items": [
+          "u05-l02-i08"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Dobro, se vidimo.",
+        "en": "All right, see you."
+      }
+    ]
+  }
+}

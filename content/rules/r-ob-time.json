@@ -1,0 +1,50 @@
+{
+  "id": "r-ob-time",
+  "unit": "u05",
+  "title_en": "At a clock time: ob osmih",
+  "card_en": "At a clock time, say ob and change the number: ob eni, ob dveh, ob treh, ob štirih, and from five on it ends in -ih: ob petih, ob osmih. Ob kateri uri? asks at what time.",
+  "example": {
+    "sl": "Zajtrk je ob osmih.",
+    "en": "Breakfast is at eight."
+  },
+  "toggles": [
+    {
+      "label": "Time",
+      "options": [
+        "2",
+        "6",
+        "8",
+        "10"
+      ],
+      "examples": {
+        "2": {
+          "sl": "Kosilo je ob dveh.",
+          "en": "Lunch is at two."
+        },
+        "6": {
+          "sl": "Večerja je ob šestih.",
+          "en": "Dinner is at six."
+        },
+        "8": {
+          "sl": "Zajtrk je ob osmih.",
+          "en": "Breakfast is at eight."
+        },
+        "10": {
+          "sl": "Ob desetih pijemo kavo.",
+          "en": "At ten we have coffee."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Večerja je ob ___.",
+    "options": [
+      "sedem",
+      "sedmih"
+    ],
+    "answer": "sedmih",
+    "explain_en": "After ob, a clock time changes: sedem becomes ob sedmih."
+  },
+  "helper_de": "ob works like German um: um acht, ob osmih. German leaves the number as it is; Slovenian changes it.",
+  "helper_en": "Telling the time needs no ob and no change: ura je osem. Only at a time takes ob: ob osmih."
+}

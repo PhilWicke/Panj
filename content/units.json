@@ -71,7 +71,13 @@
     "title_sl": "Dan in čas",
     "title_en": "Day and time",
     "motif": "sun",
-    "lessons": []
+    "lessons": [
+      "u05-l01",
+      "u05-l02",
+      "u05-l03",
+      "u05-l04",
+      "u05-l05"
+    ]
   },
   {
     "id": "u06",

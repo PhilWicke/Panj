@@ -1,0 +1,416 @@
+{
+  "id": "u05-l03",
+  "unit": "u05",
+  "order": 3,
+  "role": "theme",
+  "title_sl": "V soboto",
+  "title_en": "On Saturday",
+  "items": [
+    {
+      "id": "u05-l03-i01",
+      "type": "chunk",
+      "sl": "Kateri dan je danes?",
+      "sl_colloquial": null,
+      "en": "What day is it today?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, kateri dan je danes?",
+          "en": "Excuse me, what day is it today?"
+        },
+        {
+          "sl": "Kateri dan je danes? Sobota.",
+          "en": "What day is it today? Saturday."
+        }
+      ],
+      "helper": "kateri is which, as in ob kateri uri; danes is today.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l03-i02",
+      "type": "chunk",
+      "sl": "Danes je ponedeljek.",
+      "sl_colloquial": null,
+      "en": "Today is Monday.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ja, danes je ponedeljek.",
+          "en": "Yes, today is Monday."
+        },
+        {
+          "sl": "Danes je ponedeljek, ne nedelja.",
+          "en": "Today is Monday, not Sunday."
+        }
+      ],
+      "helper": "Day names take no capital letter: ponedeljek.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l03-i03",
+      "type": "chunk",
+      "sl": "V soboto imam čas.",
+      "sl_colloquial": null,
+      "en": "I'm free on Saturday.",
+      "register": "neutral",
+      "slots": [
+        {
+          "label": "day",
+          "fillers": [
+            "u05-l03-i06",
+            "u05-l03-i07",
+            "u05-l03-i05"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "sl": "V soboto imam čas, v nedeljo pa ne.",
+          "en": "I'm free on Saturday, but not on Sunday."
+        },
+        {
+          "sl": "Greva na kavo? V soboto imam čas.",
+          "en": "Shall we go for a coffee? I'm free on Saturday."
+        }
+      ],
+      "helper": "Like German Am Samstag habe ich Zeit: literally on Saturday I have time.",
+      "accept": [
+        "Imam čas v soboto."
+      ],
+      "rules": [
+        "r-days",
+        "r-imeti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l03-i04",
+      "type": "chunk",
+      "sl": "Jutri ne morem.",
+      "sl_colloquial": null,
+      "en": "I can't make it tomorrow.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Žal, jutri ne morem.",
+          "en": "I'm afraid I can't make it tomorrow."
+        },
+        {
+          "sl": "Jutri ne morem. V soboto?",
+          "en": "I can't make it tomorrow. On Saturday?"
+        }
+      ],
+      "helper": "ne morem is I can't, as in ne morem več.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l03-i05",
+      "type": "word",
+      "sl": "ponedeljek",
+      "sl_colloquial": null,
+      "en": "Monday",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "acc": "ponedeljek"
+      },
+      "examples": [
+        {
+          "sl": "Jutri je ponedeljek.",
+          "en": "Tomorrow is Monday."
+        },
+        {
+          "sl": "V ponedeljek grem v trgovino.",
+          "en": "On Monday I'm going to the shop."
+        }
+      ],
+      "helper": "po nedelji, after Sunday: the day after the day of rest.",
+      "accept": [],
+      "rules": [
+        "r-days"
+      ],
+      "freq_rank": 637,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l03-i06",
+      "type": "word",
+      "sl": "sobota",
+      "sl_colloquial": null,
+      "en": "Saturday",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "soboto"
+      },
+      "examples": [
+        {
+          "sl": "Danes je sobota.",
+          "en": "Today is Saturday."
+        },
+        {
+          "sl": "V soboto grem na kavo.",
+          "en": "On Saturday I'm going for a coffee."
+        }
+      ],
+      "helper": "From Sabbath, like German Samstag.",
+      "accept": [],
+      "rules": [
+        "r-days"
+      ],
+      "freq_rank": 614,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l03-i07",
+      "type": "word",
+      "sl": "nedelja",
+      "sl_colloquial": null,
+      "en": "Sunday",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "nedeljo"
+      },
+      "examples": [
+        {
+          "sl": "Jutri je nedelja.",
+          "en": "Tomorrow is Sunday."
+        },
+        {
+          "sl": "V nedeljo je kosilo ob dveh.",
+          "en": "On Sunday lunch is at two."
+        }
+      ],
+      "helper": "ne delati, not working: the day of rest.",
+      "accept": [],
+      "rules": [
+        "r-days"
+      ],
+      "freq_rank": 803,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l03-i08",
+      "type": "word",
+      "sl": "jutri",
+      "sl_colloquial": null,
+      "en": "tomorrow",
+      "register": "neutral",
+      "pos": "adverb",
+      "forms": {},
+      "examples": [
+        {
+          "sl": "Se vidimo jutri.",
+          "en": "See you tomorrow."
+        },
+        {
+          "sl": "Jutri zjutraj grem na kavo.",
+          "en": "Tomorrow morning I'm going for a coffee."
+        }
+      ],
+      "helper": "Like German morgen: jutro is morning, jutri is tomorrow.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 339,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-days"
+  ],
+  "structured": [
+    {
+      "id": "u05-l03-s01",
+      "prompt_sl": "V ___ grem v trgovino.",
+      "options": [
+        "sobota",
+        "soboto"
+      ],
+      "answer": "soboto",
+      "rule": "r-days",
+      "en": "On Saturday I'm going to the shop."
+    },
+    {
+      "id": "u05-l03-s02",
+      "prompt_sl": "V ___ imam čas.",
+      "options": [
+        "nedelja",
+        "nedeljo"
+      ],
+      "answer": "nedeljo",
+      "rule": "r-days",
+      "en": "I'm free on Sunday."
+    },
+    {
+      "id": "u05-l03-s03",
+      "prompt_sl": "V ___ sem doma.",
+      "options": [
+        "ponedeljek",
+        "ponedeljka"
+      ],
+      "answer": "ponedeljek",
+      "rule": "r-days",
+      "en": "On Monday I'm at home."
+    },
+    {
+      "id": "u05-l03-s04",
+      "prompt_sl": "Danes je ___.",
+      "options": [
+        "nedelja",
+        "nedeljo"
+      ],
+      "answer": "nedelja",
+      "rule": "r-days",
+      "en": "Today is Sunday."
+    },
+    {
+      "id": "u05-l03-s05",
+      "prompt_sl": "Kateri dan ___ danes?",
+      "options": [
+        "je",
+        "sem",
+        "so"
+      ],
+      "answer": "je",
+      "rule": "r-biti-present",
+      "en": "What day is it today?"
+    }
+  ],
+  "production": [
+    {
+      "id": "u05-l03-p01",
+      "en": "Ask what day it is today.",
+      "answer": "Kateri dan je danes?",
+      "accept": [],
+      "item": "u05-l03-i01"
+    },
+    {
+      "id": "u05-l03-p02",
+      "en": "Say that today is Monday.",
+      "answer": "Danes je ponedeljek.",
+      "accept": [],
+      "item": "u05-l03-i02"
+    },
+    {
+      "id": "u05-l03-p03",
+      "en": "Tell a friend you're free on Sunday.",
+      "answer": "V nedeljo imam čas.",
+      "accept": [
+        "Imam čas v nedeljo."
+      ],
+      "item": "u05-l03-i03",
+      "filler": "nedeljo"
+    },
+    {
+      "id": "u05-l03-p04",
+      "en": "Tell a friend you're free on Monday.",
+      "answer": "V ponedeljek imam čas.",
+      "accept": [
+        "Imam čas v ponedeljek."
+      ],
+      "item": "u05-l03-i03",
+      "filler": "ponedeljek"
+    },
+    {
+      "id": "u05-l03-p05",
+      "en": "Say you can't make it tomorrow.",
+      "answer": "Jutri ne morem.",
+      "accept": [],
+      "item": "u05-l03-i04"
+    }
+  ],
+  "dialogue": {
+    "id": "u05-l03-d",
+    "title_sl": "Načrt za vikend",
+    "title_en": "Plans for the weekend",
+    "setting_en": "On a Friday your hosts want to go out for lunch at the weekend, and you find a day that suits you.",
+    "lines": [
+      {
+        "speaker": "you",
+        "sl": "Kateri dan je danes?",
+        "en": "What day is it today?",
+        "new_items": [
+          "u05-l03-i01"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Danes je petek. Jutri gremo na kosilo.",
+        "en": "Today is Friday. Tomorrow we're going out for lunch."
+      },
+      {
+        "speaker": "you",
+        "sl": "Jutri ne morem. V nedeljo imam čas.",
+        "en": "I can't make it tomorrow. I'm free on Sunday.",
+        "new_items": [
+          "u05-l03-i04",
+          "u05-l03-i03"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Dobro, v nedeljo. Ob kateri uri?",
+        "en": "All right, on Sunday. At what time?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ob dveh popoldne?",
+        "en": "At two in the afternoon?"
+      }
+    ]
+  }
+}

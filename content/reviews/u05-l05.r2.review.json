@@ -1,0 +1,34 @@
+{
+  "lesson": "u05-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u05-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Ob kateri uri? is the natural short way to ask at what time. Both accepted variants are correct: Ob kateri uri se dobiva? is the dual for you and the neighbour, and Ob kateri uri se dobimo? fits when the plans include others, as in this lesson's dialogue, and is also often heard between two people. The English 'Ask at what time' points to ob kateri uri rather than kdaj, so it does not compete with Kdaj se dobimo?. No ti/vi distinction is involved.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u05-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Ob kateri uri? is the standard, natural way to ask 'at what time', and the locative after ob is correct. The variants are both grammatical. Ob kateri uri se dobimo? fits a group, and the dialogue's plans include your hosts. Ob kateri uri se dobiva? fits just you and the neighbour. The instruction does not fix the number of people, so listing both is right. The instruction asks for the time, not just 'when', which rules out Kdaj se dobimo?.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u05-l05-p06": "7e28fa490e987122"
+  }
+}

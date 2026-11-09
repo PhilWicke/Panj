@@ -1,0 +1,348 @@
+{
+  "lesson": "u05-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u05-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Standard question for the time; examples natural; German Wie viel Uhr ist es? is a true structural parallel.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Ura je osem is the normal way to tell the time; both examples natural and correctly translated.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Ob kateri uri? is correct (ob + locative uri); examples natural; um/ob parallel is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Ob osmih is the correct locative after ob; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Feminine noun, loc uri correct (ob kateri uri); gloss names both senses; ura is a loan from German Uhr, so the helper is a true cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-i06": {
+          "verdict": "accepted",
+          "reason": "Correct adverb and gloss; examples natural; derivation from jutro is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-i07": {
+          "verdict": "accepted",
+          "reason": "popoldne correct; accept variant popoldan is a standard time adverb in SSKJ and Pravopis with no style label; po + poldne helper is accurate.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=popoldan"
+        },
+        "u05-l01-i08": {
+          "verdict": "accepted",
+          "reason": "Correct adverb; examples natural; link to večer is real.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u05-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Only osmih fits after ob; osem is a plausible distractor.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-s02": {
+          "verdict": "accepted",
+          "reason": "Telling the time takes the plain number; osmih is wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-s03": {
+          "verdict": "accepted",
+          "reason": "ob dveh correct; dva wrong but plausible.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-s04": {
+          "verdict": "accepted",
+          "reason": "ob šestih correct; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-s05": {
+          "verdict": "accepted",
+          "reason": "kateri agrees with locative uri; katera is the nominative distractor.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-s06": {
+          "verdict": "accepted",
+          "reason": "Only je fits with ura; sem and so are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Clear instruction with one natural answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Correct answer for the instruction.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Short and full question both listed and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Ob osmih is the right answer to when.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Zvečer sem doma is natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural question.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural reply, correct English.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural, correct locative.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural elliptical answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural closing; lahko noč fits the late evening.",
+          "fix": "",
+          "source": ""
+        },
+        "r-ob-time": {
+          "verdict": "accepted",
+          "reason": "Forms ob eni, ob dveh, ob treh, ob štirih, ob petih, ob osmih are standard; toggles and quick check correct with one right option; German um parallel and English note are accurate; card under 40 words.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u05-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Standard question for the time; examples natural and faithfully translated; the German parallel is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Ura je osem is the usual way to tell the time; both examples are natural and contain the chunk.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Ob kateri uri with locative uri is correct; examples natural (the second is a plausible follow-up fragment); um/ob hook is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Ob osmih is the correct locative after ob; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-i05": {
+          "verdict": "accepted",
+          "reason": "ura f, loc uri correct; gloss lists both senses; ura is a real loan from German Uhr, so the helper is a true cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-i06": {
+          "verdict": "accepted",
+          "reason": "zjutraj adverb correct; examples natural; derivation from jutro is true.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-i07": {
+          "verdict": "accepted",
+          "reason": "popoldne adverb correct; po + poldne is the real formation; the accept variant popoldan is listed as a time adverb in SSKJ2 and Pravopis.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=popoldan"
+        },
+        "u05-l01-i08": {
+          "verdict": "accepted",
+          "reason": "zvečer adverb correct; examples natural; link to večer is true.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u05-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Only osmih fits after ob; osem is a plausible wrong choice.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-s02": {
+          "verdict": "accepted",
+          "reason": "Telling the time takes the bare numeral osem; one correct answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-s03": {
+          "verdict": "accepted",
+          "reason": "ob dveh correct; dva is the plausible distractor.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-s04": {
+          "verdict": "accepted",
+          "reason": "ob šestih correct; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Locative kateri after ob; katera is wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-s06": {
+          "verdict": "accepted",
+          "reason": "Koliko je ura; sem and so are clearly wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Koliko je ura? is the one standard answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Ura je osem. matches the instruction.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Ob kateri uri? with the fuller Ob kateri uri je zajtrk? accepted; instruction is clear.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Ob osmih. is the expected short answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Zvečer sem doma. is natural; word order variants are marginal.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural opening question.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Ura je deset zvečer. natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural question.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Jutri zjutraj ob osmih. natural elliptical answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural confirmation and leave-taking; lahko noč fits late evening.",
+          "fix": "",
+          "source": ""
+        },
+        "r-ob-time": {
+          "verdict": "accepted",
+          "reason": "ob eni, ob dveh, ob treh, ob štirih, ob petih, ob osmih all correct; toggles, quick check (sedmih) and German/English contrasts are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u05-l01-i01": "79d2a0cde067ebbf",
+    "u05-l01-i02": "c31762cff6a4ad88",
+    "u05-l01-i03": "e7cb6ba7321b360e",
+    "u05-l01-i04": "05f4a25a2ea93bec",
+    "u05-l01-i05": "2b31deb46780490f",
+    "u05-l01-i06": "360afc82b69bc823",
+    "u05-l01-i07": "99f0b62ed3f57f6d",
+    "u05-l01-i08": "4567afae20a39e96",
+    "u05-l01-s01": "8f5a88c053acbf44",
+    "u05-l01-s02": "a54a08e0370ebd5e",
+    "u05-l01-s03": "d3904ec6ca2f2e41",
+    "u05-l01-s04": "062377f0330091f2",
+    "u05-l01-s05": "e3e3e980d22e63e2",
+    "u05-l01-s06": "aa88880233c4446d",
+    "u05-l01-p01": "9121aadc428325a2",
+    "u05-l01-p02": "8b8a603d86c3811f",
+    "u05-l01-p03": "1a1f57e87773ecac",
+    "u05-l01-p04": "0905ebda133eabe7",
+    "u05-l01-p05": "145b08fe6a1d6295",
+    "u05-l01-d-01": "204cdeb83d0377e5",
+    "u05-l01-d-02": "8bab4b11df2b80e4",
+    "u05-l01-d-03": "cda80227b9f6d127",
+    "u05-l01-d-04": "f7a5e983234c72b1",
+    "u05-l01-d-05": "d2b26d5356583376",
+    "r-ob-time": "2a3b188f48e2874d"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "lesson": "u05-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {},
+      "lines": {
+        "r-verb-present": {
+          "verdict": "accepted",
+          "reason": "Every table form is correct and sits under the right pronoun (delam/berem/spim through delajo/berejo/spijo), and the 2du and 3du forms are rightly the same. Pravopis gives berem with bero only as an elevated 3pl, so berejo is the default form, and SSKJ and Pravopis both have spijo in examples (otroci že spijo). The card text is 33 words. It gives the endings correctly (-m, -š, zero; -va, -ta, -ta; -mo, -te, -jo) and says a vowel comes first, which is a fair simplification. The example, the toggles (Kaj delaš?, Kaj bereš?, Še spiš?), the quick check (Oni delajo do petih, one blank, only one option right) and both helpers are natural and accurate. One small optional point: the toggle option reads 'delati, to work' but its example means 'What are you doing?'. 'delati, to work or do' would match the item gloss.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=brati"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 2,
+      "items": {},
+      "lines": {
+        "r-verb-present": {
+          "verdict": "accepted",
+          "reason": "All 27 table forms are correct: delam/delaš/dela, delava/delata/delata, delamo/delate/delajo; berem/bereš/bere, bereva/bereta/bereta, beremo/berete/berejo; spim/spiš/spi, spiva/spita/spita, spimo/spite/spijo. Fran confirms berejo (beró is only the elevated variant) and spijo. The pronouns jaz, ti, on/ona, midva, vidva, onadva, mi, vi and oni are right, and so are the notes: berem shows the stem change, vidva and onadva share a form, and vi delate is also the polite form. The card text has 33 words and states the endings correctly, with 'most verbs' leaving room for grem/gredo and similar. The example Zjutraj delam, zvečer berem. is natural. The toggle examples Kaj delaš?, Kaj bereš? and Še spiš? are natural and correctly glossed. The quick check Oni ___ do petih. has exactly one right option, delajo. One small point, not an error: the toggle label 'delati, to work' sits next to the gloss 'What are you doing?'. That is correct because delati means both, but 'delati, to work, to do' would match the item gloss.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=brati"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "r-verb-present": "b9970872950bc787"
+  }
+}

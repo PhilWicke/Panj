@@ -1,0 +1,369 @@
+{
+  "id": "u05-l05",
+  "unit": "u05",
+  "order": 5,
+  "role": "consolidation",
+  "title_sl": "Kdaj se dobimo?",
+  "title_en": "When shall we meet?",
+  "items": [
+    {
+      "id": "u05-l05-i01",
+      "type": "chunk",
+      "sl": "Kdaj se dobimo?",
+      "sl_colloquial": null,
+      "en": "When shall we meet? (three or more of us)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Gremo jutri na kavo? Kdaj se dobimo?",
+          "en": "Shall we go for a coffee tomorrow? When shall we meet?"
+        },
+        {
+          "sl": "Kdaj se dobimo? Ob osmih?",
+          "en": "When shall we meet? At eight?"
+        }
+      ],
+      "helper": "kdaj is when, as in kdaj je večerja; se dobimo is we meet.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l05-i02",
+      "type": "chunk",
+      "sl": "Velja.",
+      "sl_colloquial": null,
+      "en": "Deal.",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Ob petih? Velja.",
+          "en": "At five? Deal."
+        },
+        {
+          "sl": "Velja, se vidimo jutri.",
+          "en": "Deal, see you tomorrow."
+        }
+      ],
+      "helper": "From veljati, to be valid: it holds.",
+      "accept": [
+        "Dogovorjeno."
+      ],
+      "rules": [],
+      "freq_rank": 664,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l05-i03",
+      "type": "chunk",
+      "sl": "Malo zamujam.",
+      "sl_colloquial": null,
+      "en": "I'm running a little late.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, malo zamujam.",
+          "en": "Excuse me, I'm running a little late."
+        },
+        {
+          "sl": "Malo zamujam, pridem takoj.",
+          "en": "I'm running a little late, I'll be right there."
+        }
+      ],
+      "helper": "malo is a little, as in še malo; zamujam is I'm late.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l05-i04",
+      "type": "chunk",
+      "sl": "Ni problema.",
+      "sl_colloquial": null,
+      "en": "No problem.",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Malo zamujam. Ni problema.",
+          "en": "I'm running a little late. No problem."
+        },
+        {
+          "sl": "Hvala lepa. Ni problema.",
+          "en": "Thank you very much. No problem."
+        }
+      ],
+      "helper": "Like English no problem; ni takes the genitive, as in ni več kruha.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l05-i05",
+      "type": "chunk",
+      "sl": "Se slišimo.",
+      "sl_colloquial": null,
+      "en": "Talk soon.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala, se slišimo.",
+          "en": "Thanks, talk soon."
+        },
+        {
+          "sl": "Velja. Se slišimo jutri.",
+          "en": "Deal. Talk to you tomorrow."
+        }
+      ],
+      "helper": "Built like se vidimo: literally we will hear each other.",
+      "accept": [
+        "Se slišiva."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l05-i06",
+      "type": "chunk",
+      "sl": "Do jutri.",
+      "sl_colloquial": null,
+      "en": "Until tomorrow.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Lahko noč, do jutri.",
+          "en": "Good night, see you tomorrow."
+        },
+        {
+          "sl": "Hvala za vse. Do jutri.",
+          "en": "Thanks for everything. See you tomorrow."
+        }
+      ],
+      "helper": "Like German bis morgen: do is until, as in delam do petih.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [],
+  "structured": [
+    {
+      "id": "u05-l05-s01",
+      "prompt_sl": "Se dobimo ob ___?",
+      "options": [
+        "pet",
+        "petih"
+      ],
+      "answer": "petih",
+      "rule": "r-ob-time",
+      "en": "Shall we meet at five?"
+    },
+    {
+      "id": "u05-l05-s02",
+      "prompt_sl": "Se vidimo v ___.",
+      "options": [
+        "sobota",
+        "soboto"
+      ],
+      "answer": "soboto",
+      "rule": "r-days",
+      "en": "See you on Saturday."
+    },
+    {
+      "id": "u05-l05-s03",
+      "prompt_sl": "Jutri vsi ___ na kavo.",
+      "options": [
+        "grem",
+        "greva",
+        "gremo"
+      ],
+      "answer": "gremo",
+      "rule": "r-iti-present",
+      "en": "Tomorrow we're all going for a coffee."
+    },
+    {
+      "id": "u05-l05-s04",
+      "prompt_sl": "Zvečer gremo ___ večerjo.",
+      "options": [
+        "v",
+        "na"
+      ],
+      "answer": "na",
+      "rule": "r-grem-v-na",
+      "en": "In the evening we're going out for dinner."
+    },
+    {
+      "id": "u05-l05-s05",
+      "prompt_sl": "Do kdaj ___ jutri, gospa?",
+      "options": [
+        "delaš",
+        "delate",
+        "delajo"
+      ],
+      "answer": "delate",
+      "rule": "r-verb-present",
+      "en": "Until when are you working tomorrow, madam?"
+    },
+    {
+      "id": "u05-l05-s06",
+      "prompt_sl": "Midva ___ do petih.",
+      "options": [
+        "delam",
+        "delava",
+        "delamo"
+      ],
+      "answer": "delava",
+      "rule": "r-verb-present",
+      "en": "The two of us work until five."
+    }
+  ],
+  "production": [
+    {
+      "id": "u05-l05-p01",
+      "en": "A neighbour suggests a time that suits you. Agree in one word: deal.",
+      "answer": "Velja.",
+      "accept": [
+        "Dogovorjeno."
+      ],
+      "item": "u05-l05-i02"
+    },
+    {
+      "id": "u05-l05-p02",
+      "en": "Phone ahead to say you're running a little late.",
+      "answer": "Malo zamujam.",
+      "accept": [],
+      "item": "u05-l05-i03"
+    },
+    {
+      "id": "u05-l05-p03",
+      "en": "Someone apologises for being late. Tell them it's no problem.",
+      "answer": "Ni problema.",
+      "accept": [],
+      "item": "u05-l05-i04"
+    },
+    {
+      "id": "u05-l05-p04",
+      "en": "End a phone call with a neighbour: talk soon.",
+      "answer": "Se slišimo.",
+      "accept": [
+        "Se slišiva."
+      ],
+      "item": "u05-l05-i05"
+    },
+    {
+      "id": "u05-l05-p05",
+      "en": "A neighbour asks about the weekend. Say you're free on Saturday.",
+      "answer": "V soboto imam čas.",
+      "accept": [
+        "Imam čas v soboto."
+      ],
+      "item": "u05-l03-i03"
+    },
+    {
+      "id": "u05-l05-p06",
+      "en": "You are making plans with a neighbour. Ask at what time.",
+      "answer": "Ob kateri uri?",
+      "accept": [
+        "Ob kateri uri se dobimo?",
+        "Ob kateri uri se dobiva?"
+      ],
+      "item": "u05-l01-i03"
+    }
+  ],
+  "dialogue": {
+    "id": "u05-l05-d",
+    "title_sl": "Jutri na kavo",
+    "title_en": "Coffee tomorrow",
+    "setting_en": "In the evening a neighbour, who says ti to you, asks you and your hosts out for coffee the next day. The next day you are running late.",
+    "lines": [
+      {
+        "speaker": "neighbour",
+        "sl": "Živjo. Gremo jutri vsi na kavo?",
+        "en": "Hi. Shall we all go for a coffee tomorrow?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, dobro. Kdaj se dobimo?",
+        "en": "Yes, fine. When shall we meet?",
+        "new_items": [
+          "u05-l05-i01"
+        ]
+      },
+      {
+        "speaker": "neighbour",
+        "sl": "Ob desetih zjutraj?",
+        "en": "At ten in the morning?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Jutri delam do petih. Ob šestih?",
+        "en": "Tomorrow I work until five. At six?",
+        "new_items": [
+          "u05-l04-i02"
+        ]
+      },
+      {
+        "speaker": "neighbour",
+        "sl": "Ni problema. Ob šestih.",
+        "en": "No problem. At six."
+      },
+      {
+        "speaker": "you",
+        "sl": "Velja. Do jutri.",
+        "en": "Deal. Until tomorrow.",
+        "new_items": [
+          "u05-l05-i02",
+          "u05-l05-i06"
+        ]
+      },
+      {
+        "speaker": "neighbour",
+        "sl": "Živjo, kje si? Kava je na mizi.",
+        "en": "Hi, where are you? The coffee is on the table."
+      },
+      {
+        "speaker": "you",
+        "sl": "Malo zamujam. Pridem takoj.",
+        "en": "I'm running a little late. I'll be right there.",
+        "new_items": [
+          "u05-l05-i03",
+          "u05-l02-i08"
+        ]
+      }
+    ]
+  }
+}

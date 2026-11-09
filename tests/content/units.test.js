@@ -17,7 +17,7 @@ const lessonOf = (itemId) => itemId.slice(0, itemId.lastIndexOf('-'));
 /** @param {number} n @param {number[]} range inclusive, [min, max] */
 const within = (n, [min, max]) => n >= min && n <= max;
 
-const READY = ['u01', 'u02', 'u03', 'u04']; // each unit task appends its id, in course order
+const READY = ['u01', 'u02', 'u03', 'u04', 'u05']; // each unit task appends its id, in course order
 
 for (const id of READY) {
   /** The unit as units.json lists it, its syllabus section, its lesson files in that order, and its level's shape. */

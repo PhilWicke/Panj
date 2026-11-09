@@ -1,0 +1,101 @@
+{
+  "id": "r-iti-present",
+  "unit": "u05",
+  "title_en": "To go: iti in the present",
+  "card_en": "Iti, to go, has its own forms: grem, greš, gre in the singular, greva, gresta, gresta in the dual, gremo, greste, gredo in the plural. Gremo also means let's go.",
+  "example": {
+    "sl": "Kam greš? Grem domov.",
+    "en": "Where are you going? I'm going home."
+  },
+  "table": {
+    "rows": [
+      "1",
+      "2",
+      "3"
+    ],
+    "cols": [
+      "sg",
+      "du",
+      "pl"
+    ],
+    "cells": {
+      "1.sg": {
+        "form": "grem",
+        "pronoun": "jaz"
+      },
+      "2.sg": {
+        "form": "greš",
+        "pronoun": "ti"
+      },
+      "3.sg": {
+        "form": "gre",
+        "pronoun": "on/ona"
+      },
+      "1.du": {
+        "form": "greva",
+        "pronoun": "midva",
+        "note_en": "Greva? on its own also means shall we two go?"
+      },
+      "2.du": {
+        "form": "gresta",
+        "pronoun": "vidva"
+      },
+      "3.du": {
+        "form": "gresta",
+        "pronoun": "onadva",
+        "note_en": "Same form as for vidva."
+      },
+      "1.pl": {
+        "form": "gremo",
+        "pronoun": "mi",
+        "note_en": "Gremo on its own also means let's go."
+      },
+      "2.pl": {
+        "form": "greste",
+        "pronoun": "vi",
+        "note_en": "Also the polite you: kam greste?"
+      },
+      "3.pl": {
+        "form": "gredo",
+        "pronoun": "oni",
+        "note_en": "gredo, like jedo from jesti."
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "Who goes",
+      "options": [
+        "just me",
+        "the two of us",
+        "three or more of us"
+      ],
+      "examples": {
+        "just me": {
+          "sl": "Grem na kavo.",
+          "en": "I'm going for a coffee."
+        },
+        "the two of us": {
+          "sl": "Greva na kavo.",
+          "en": "The two of us are going for a coffee."
+        },
+        "three or more of us": {
+          "sl": "Gremo na kavo.",
+          "en": "We're going for a coffee."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Midva ___ domov.",
+    "options": [
+      "grem",
+      "greva",
+      "gremo"
+    ],
+    "answer": "greva",
+    "explain_en": "Midva means exactly the two of us, so iti takes the dual: greva."
+  },
+  "helper_de": "German gehen has no dual, so greva and gresta are new. Like gehen wir, gremo is also a suggestion.",
+  "helper_en": "Slovenian has no -ing form: grem is both I go and I'm going."
+}

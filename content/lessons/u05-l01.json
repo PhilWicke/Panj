@@ -1,0 +1,406 @@
+{
+  "id": "u05-l01",
+  "unit": "u05",
+  "order": 1,
+  "role": "theme",
+  "title_sl": "Koliko je ura?",
+  "title_en": "What time is it?",
+  "items": [
+    {
+      "id": "u05-l01-i01",
+      "type": "chunk",
+      "sl": "Koliko je ura?",
+      "sl_colloquial": null,
+      "en": "What time is it?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dobro jutro. Koliko je ura?",
+          "en": "Good morning. What time is it?"
+        },
+        {
+          "sl": "Oprostite, koliko je ura?",
+          "en": "Excuse me, what time is it?"
+        }
+      ],
+      "helper": "Like German Wie viel Uhr ist es?: literally how much is the clock.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l01-i02",
+      "type": "chunk",
+      "sl": "Ura je osem.",
+      "sl_colloquial": null,
+      "en": "It's eight o'clock.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ura je osem zjutraj.",
+          "en": "It's eight in the morning."
+        },
+        {
+          "sl": "Ura je osem. Zajtrk je na mizi.",
+          "en": "It's eight o'clock. Breakfast is on the table."
+        }
+      ],
+      "helper": "Literally the clock is eight: ura comes first, and the number stays as it is.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l01-i03",
+      "type": "chunk",
+      "sl": "Ob kateri uri?",
+      "sl_colloquial": null,
+      "en": "At what time?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ob kateri uri je zajtrk?",
+          "en": "At what time is breakfast?"
+        },
+        {
+          "sl": "Ob kateri uri popoldne?",
+          "en": "At what time in the afternoon?"
+        }
+      ],
+      "helper": "Like German Um wie viel Uhr?: ob does the work of um.",
+      "accept": [],
+      "rules": [
+        "r-ob-time"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l01-i04",
+      "type": "chunk",
+      "sl": "Ob osmih.",
+      "sl_colloquial": null,
+      "en": "At eight.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kdaj je zajtrk? Ob osmih.",
+          "en": "When is breakfast? At eight."
+        },
+        {
+          "sl": "Večerja je ob osmih zvečer.",
+          "en": "Dinner is at eight in the evening."
+        }
+      ],
+      "helper": "Like German um acht, but osem changes after ob: ob osmih.",
+      "accept": [],
+      "rules": [
+        "r-ob-time"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l01-i05",
+      "type": "word",
+      "sl": "ura",
+      "sl_colloquial": null,
+      "en": "hour, clock",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "loc": "uri"
+      },
+      "examples": [
+        {
+          "sl": "Ura je deset zvečer.",
+          "en": "It's ten in the evening."
+        },
+        {
+          "sl": "Koliko je ura, prosim?",
+          "en": "What time is it, please?"
+        }
+      ],
+      "helper": "Like German Uhr: ura is the clock and the hour.",
+      "accept": [],
+      "rules": [
+        "r-ob-time"
+      ],
+      "freq_rank": 127,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l01-i06",
+      "type": "word",
+      "sl": "zjutraj",
+      "sl_colloquial": null,
+      "en": "in the morning",
+      "register": "neutral",
+      "pos": "adverb",
+      "forms": {},
+      "examples": [
+        {
+          "sl": "Zjutraj pijem kavo.",
+          "en": "In the morning I drink coffee."
+        },
+        {
+          "sl": "Zajtrk je ob osmih zjutraj.",
+          "en": "Breakfast is at eight in the morning."
+        }
+      ],
+      "helper": "From jutro, morning, as in dobro jutro.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 306,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l01-i07",
+      "type": "word",
+      "sl": "popoldne",
+      "sl_colloquial": null,
+      "en": "in the afternoon",
+      "register": "neutral",
+      "pos": "adverb",
+      "forms": {},
+      "examples": [
+        {
+          "sl": "Popoldne pijem čaj.",
+          "en": "In the afternoon I drink tea."
+        },
+        {
+          "sl": "Kosilo je ob dveh popoldne.",
+          "en": "Lunch is at two in the afternoon."
+        }
+      ],
+      "helper": "po poldne, after noon: built like afternoon and German Nachmittag.",
+      "accept": [
+        "popoldan"
+      ],
+      "rules": [],
+      "freq_rank": 859,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l01-i08",
+      "type": "word",
+      "sl": "zvečer",
+      "sl_colloquial": null,
+      "en": "in the evening",
+      "register": "neutral",
+      "pos": "adverb",
+      "forms": {},
+      "examples": [
+        {
+          "sl": "Zvečer sem doma.",
+          "en": "In the evening I'm at home."
+        },
+        {
+          "sl": "Večerja je ob šestih zvečer.",
+          "en": "Dinner is at six in the evening."
+        }
+      ],
+      "helper": "From večer, evening, as in dober večer.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 587,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-ob-time"
+  ],
+  "structured": [
+    {
+      "id": "u05-l01-s01",
+      "prompt_sl": "Zajtrk je ob ___.",
+      "options": [
+        "osem",
+        "osmih"
+      ],
+      "answer": "osmih",
+      "rule": "r-ob-time",
+      "en": "Breakfast is at eight."
+    },
+    {
+      "id": "u05-l01-s02",
+      "prompt_sl": "Ura je ___.",
+      "options": [
+        "osem",
+        "osmih"
+      ],
+      "answer": "osem",
+      "rule": "r-ob-time",
+      "en": "It's eight o'clock."
+    },
+    {
+      "id": "u05-l01-s03",
+      "prompt_sl": "Kosilo je ob ___.",
+      "options": [
+        "dva",
+        "dveh"
+      ],
+      "answer": "dveh",
+      "rule": "r-ob-time",
+      "en": "Lunch is at two."
+    },
+    {
+      "id": "u05-l01-s04",
+      "prompt_sl": "Večerja je ob ___.",
+      "options": [
+        "šest",
+        "šestih"
+      ],
+      "answer": "šestih",
+      "rule": "r-ob-time",
+      "en": "Dinner is at six."
+    },
+    {
+      "id": "u05-l01-s05",
+      "prompt_sl": "Ob ___ uri je zajtrk?",
+      "options": [
+        "kateri",
+        "katera"
+      ],
+      "answer": "kateri",
+      "rule": "r-ob-time",
+      "en": "At what time is breakfast?"
+    },
+    {
+      "id": "u05-l01-s06",
+      "prompt_sl": "Koliko ___ ura?",
+      "options": [
+        "je",
+        "sem",
+        "so"
+      ],
+      "answer": "je",
+      "rule": "r-biti-present",
+      "en": "What time is it?"
+    }
+  ],
+  "production": [
+    {
+      "id": "u05-l01-p01",
+      "en": "Ask what time it is.",
+      "answer": "Koliko je ura?",
+      "accept": [],
+      "item": "u05-l01-i01"
+    },
+    {
+      "id": "u05-l01-p02",
+      "en": "Tell someone it's eight o'clock.",
+      "answer": "Ura je osem.",
+      "accept": [],
+      "item": "u05-l01-i02"
+    },
+    {
+      "id": "u05-l01-p03",
+      "en": "Your hosts mention breakfast. Ask at what time.",
+      "answer": "Ob kateri uri?",
+      "accept": [
+        "Ob kateri uri je zajtrk?"
+      ],
+      "item": "u05-l01-i03"
+    },
+    {
+      "id": "u05-l01-p04",
+      "en": "Someone asks when. Answer: at eight.",
+      "answer": "Ob osmih.",
+      "accept": [],
+      "item": "u05-l01-i04"
+    },
+    {
+      "id": "u05-l01-p05",
+      "en": "Say that in the evening you're at home.",
+      "answer": "Zvečer sem doma.",
+      "accept": [],
+      "item": "u05-l01-i08"
+    }
+  ],
+  "dialogue": {
+    "id": "u05-l01-d",
+    "title_sl": "Kdaj je zajtrk?",
+    "title_en": "When is breakfast?",
+    "setting_en": "It is late in the evening at your hosts' house. You ask the time, and one of them tells you when breakfast is.",
+    "lines": [
+      {
+        "speaker": "you",
+        "sl": "Koliko je ura?",
+        "en": "What time is it?",
+        "new_items": [
+          "u05-l01-i01"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Ura je deset zvečer.",
+        "en": "It's ten in the evening."
+      },
+      {
+        "speaker": "you",
+        "sl": "Ob kateri uri je zajtrk?",
+        "en": "At what time is breakfast?",
+        "new_items": [
+          "u05-l01-i03"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Jutri zjutraj ob osmih.",
+        "en": "Tomorrow morning at eight."
+      },
+      {
+        "speaker": "you",
+        "sl": "Ob osmih. Hvala, lahko noč.",
+        "en": "At eight. Thank you, good night.",
+        "new_items": [
+          "u05-l01-i04"
+        ]
+      }
+    ]
+  }
+}

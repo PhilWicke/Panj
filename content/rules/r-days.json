@@ -1,0 +1,65 @@
+{
+  "id": "r-days",
+  "unit": "u05",
+  "title_en": "On a day: v soboto",
+  "card_en": "On a day: v and the day in the accusative: v ponedeljek, v soboto, v nedeljo. Days ending in -a change to -o; the others stay the same. Danes, today, and jutri, tomorrow, need no v.",
+  "example": {
+    "sl": "V nedeljo sem doma.",
+    "en": "On Sunday I'm at home."
+  },
+  "toggles": [
+    {
+      "label": "Day",
+      "options": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "examples": {
+        "Monday": {
+          "sl": "V ponedeljek sem doma.",
+          "en": "On Monday I'm at home."
+        },
+        "Tuesday": {
+          "sl": "V torek sem doma.",
+          "en": "On Tuesday I'm at home."
+        },
+        "Wednesday": {
+          "sl": "V sredo sem doma.",
+          "en": "On Wednesday I'm at home."
+        },
+        "Thursday": {
+          "sl": "V četrtek sem doma.",
+          "en": "On Thursday I'm at home."
+        },
+        "Friday": {
+          "sl": "V petek sem doma.",
+          "en": "On Friday I'm at home."
+        },
+        "Saturday": {
+          "sl": "V soboto sem doma.",
+          "en": "On Saturday I'm at home."
+        },
+        "Sunday": {
+          "sl": "V nedeljo sem doma.",
+          "en": "On Sunday I'm at home."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Se vidimo v ___.",
+    "options": [
+      "nedelja",
+      "nedeljo"
+    ],
+    "answer": "nedeljo",
+    "explain_en": "On a day takes v and the accusative: nedelja becomes v nedeljo."
+  },
+  "helper_de": "Like am Samstag, but with v and the accusative: v soboto. Day names take no capital letter.",
+  "helper_en": "On Saturday is v soboto, and the day takes no capital letter."
+}

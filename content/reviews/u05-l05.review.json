@@ -1,0 +1,361 @@
+{
+  "lesson": "u05-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 4,
+      "items": {
+        "u05-l05-i01": {
+          "verdict": "accepted",
+          "reason": "dobiti se = meet is SSKJ pog., so colloquial register is right; examples natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=dobiti"
+        },
+        "u05-l05-i02": {
+          "verdict": "accepted",
+          "reason": "SSKJ/Pravopis record velja as confirmation (velja, jutri se vidiva); Dogovorjeno is a correct variant; examples natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=veljati"
+        },
+        "u05-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Natural; examples correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Ni problema with genitive is correct and common speech (SSKJ also shows colloquial ni problem); helper on genitive accurate.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=problem"
+        },
+        "u05-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Pravopis records slišati se for keeping in touch by phone (knj. pog., popoldne se slišiva); usable with colleagues too, so neutral is defensible; dual variant correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=slišati"
+        },
+        "u05-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Natural; bis morgen parallel accurate.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u05-l05-s01": {
+          "verdict": "accepted",
+          "reason": "ob petih correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-s02": {
+          "verdict": "accepted",
+          "reason": "v soboto correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-s03": {
+          "verdict": "accepted",
+          "reason": "vsi requires gremo; natural enough.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-s04": {
+          "verdict": "accepted",
+          "reason": "na večerjo correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-s05": {
+          "verdict": "accepted",
+          "reason": "Polite delate to gospa.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Dual delava with midva.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Velja and Dogovorjeno both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Both plural and dual accepted; plural with one person passes in speech.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-p06": {
+          "verdict": "doubtful",
+          "reason": "Answer correct, but the natural full question Ob kateri uri se dobimo? (built from this unit's chunks) is not in accept, while u05-l01-p03 accepts its full form. Consider adding it.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural invitation. Side note: speaker neighbour is not in the style guide's speaker list.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Natural phone line.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u05-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Kdaj se dobimo? is the everyday colloquial way to arrange a meeting; plural gloss note correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Velja as deal is natural colloquial; Dogovorjeno correct variant; veljati hook true.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Malo zamujam natural; examples correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Ni problema with genitive is common colloquial; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Se slišimo is the usual sign-off; dual Se slišiva correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Do jutri natural; bis morgen parallel exact.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u05-l05-s01": {
+          "verdict": "accepted",
+          "reason": "ob petih; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-s02": {
+          "verdict": "accepted",
+          "reason": "v soboto; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-s03": {
+          "verdict": "accepted",
+          "reason": "vsi signals three or more: gremo.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-s04": {
+          "verdict": "accepted",
+          "reason": "na večerjo correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-s05": {
+          "verdict": "accepted",
+          "reason": "gospa calls for delate; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Midva delava; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Velja. with Dogovorjeno.; instruction specifies deal.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Malo zamujam. matches.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Ni problema. matches.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Se slišimo. with dual Se slišiva.; both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct; wording differs from l03.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-p06": {
+          "verdict": "doubtful",
+          "reason": "Ob kateri uri? is correct, but in the context of making plans a learner may write the fuller Ob kateri uri se dobimo? (or se dobiva for two), which is right and is missing from accept; compare l01-p03, which accepts the full question.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural invitation. Speaker label neighbour is not in the style guide's speaker list.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural; plural dobimo fits the group.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural counter-proposal.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural agreement.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Velja. Do jutri. natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Natural phone line; Kava je že na mizi would be slightly more idiomatic but this passes.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u05-l05-i01": "960b99b3447d2388",
+    "u05-l05-i02": "557cc069d9774d6a",
+    "u05-l05-i03": "853f7169bf04768d",
+    "u05-l05-i04": "10fc6820dd2aa74a",
+    "u05-l05-i05": "3708590511809ef1",
+    "u05-l05-i06": "b89ec2ba090307b8",
+    "u05-l05-s01": "45ca30023942f3d8",
+    "u05-l05-s02": "ef8dc3e6ce0a9015",
+    "u05-l05-s03": "7b9d187d79cccb47",
+    "u05-l05-s04": "603b36a4b943ceae",
+    "u05-l05-s05": "3c5eca8eebe055de",
+    "u05-l05-s06": "6d1e9e5ffa870795",
+    "u05-l05-p01": "6c368bf7485355f4",
+    "u05-l05-p02": "d2134affb48494b0",
+    "u05-l05-p03": "1476b14ca0dc8f90",
+    "u05-l05-p04": "05c35a8a14df7904",
+    "u05-l05-p05": "b1d6c14ffff131ed",
+    "u05-l05-p06": "61b3906a595335b9",
+    "u05-l05-d-01": "44253770d5276016",
+    "u05-l05-d-02": "698701c39d107826",
+    "u05-l05-d-03": "f246452ca75857c3",
+    "u05-l05-d-04": "0a94fba857ff6358",
+    "u05-l05-d-05": "2ff978caa742c5a7",
+    "u05-l05-d-06": "48ae1eb4083aecdd",
+    "u05-l05-d-07": "bd62ebf9c198823d",
+    "u05-l05-d-08": "1961b54982ac82d5"
+  }
+}

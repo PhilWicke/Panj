@@ -1,0 +1,495 @@
+{
+  "id": "u05-l04",
+  "unit": "u05",
+  "order": 4,
+  "role": "theme",
+  "title_sl": "Moj dan",
+  "title_en": "My day",
+  "items": [
+    {
+      "id": "u05-l04-i01",
+      "type": "chunk",
+      "sl": "Vstanem ob sedmih.",
+      "sl_colloquial": null,
+      "en": "I get up at seven.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Zjutraj vstanem ob sedmih.",
+          "en": "In the morning I get up at seven."
+        },
+        {
+          "sl": "Vstanem ob sedmih in pijem kavo.",
+          "en": "I get up at seven and drink coffee."
+        }
+      ],
+      "helper": "vstanem is I get up; after ob, sedem becomes sedmih.",
+      "accept": [
+        "Jaz vstanem ob sedmih.",
+        "Ob sedmih vstanem.",
+        "Vstajam ob sedmih."
+      ],
+      "rules": [
+        "r-ob-time"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l04-i02",
+      "type": "chunk",
+      "sl": "Delam do petih.",
+      "sl_colloquial": null,
+      "en": "I work until five.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Jutri delam do petih.",
+          "en": "Tomorrow I work until five."
+        },
+        {
+          "sl": "V ponedeljek delam do petih.",
+          "en": "On Monday I work until five."
+        }
+      ],
+      "helper": "do is until, and pet becomes petih after it, as after ob.",
+      "accept": [
+        "Jaz delam do petih.",
+        "Do petih delam."
+      ],
+      "rules": [
+        "r-verb-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l04-i03",
+      "type": "chunk",
+      "sl": "Zvečer berem.",
+      "sl_colloquial": null,
+      "en": "In the evening I read.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Zvečer berem in pijem čaj.",
+          "en": "In the evening I read and drink tea."
+        },
+        {
+          "sl": "Zvečer berem doma.",
+          "en": "In the evening I read at home."
+        }
+      ],
+      "helper": "berem is I read, from brati.",
+      "accept": [
+        "Berem zvečer."
+      ],
+      "rules": [
+        "r-verb-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l04-i04",
+      "type": "chunk",
+      "sl": "Grem spat.",
+      "sl_colloquial": null,
+      "en": "I'm going to bed.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ura je deset, grem spat.",
+          "en": "It's ten, I'm going to bed."
+        },
+        {
+          "sl": "Lahko noč, grem spat.",
+          "en": "Good night, I'm going to bed."
+        }
+      ],
+      "helper": "Like German schlafen gehen: grem with spat, the form of spati after going.",
+      "accept": [
+        "Jaz grem spat."
+      ],
+      "rules": [
+        "r-iti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l04-i05",
+      "type": "chunk",
+      "sl": "Kaj delaš?",
+      "sl_colloquial": null,
+      "en": "What are you doing? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Živjo, kaj delaš?",
+          "en": "Hi, what are you doing?"
+        },
+        {
+          "sl": "Kaj delaš v soboto?",
+          "en": "What are you doing on Saturday?"
+        }
+      ],
+      "helper": "It asks what someone is doing now, or what they do for work.",
+      "accept": [
+        "Kaj pa delaš?"
+      ],
+      "rules": [
+        "r-verb-present",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l04-i06",
+      "type": "word",
+      "sl": "delati",
+      "sl_colloquial": "delat",
+      "en": "to work, to do",
+      "register": "neutral",
+      "pos": "verb",
+      "forms": {
+        "1sg": "delam",
+        "2sg": "delaš",
+        "3sg": "dela",
+        "1du": "delava",
+        "2du": "delata",
+        "3du": "delata",
+        "1pl": "delamo",
+        "2pl": "delate",
+        "3pl": "delajo"
+      },
+      "examples": [
+        {
+          "sl": "V nedeljo ne delam.",
+          "en": "I don't work on Sunday."
+        },
+        {
+          "sl": "Kje delate?",
+          "en": "Where do you work? (polite)"
+        }
+      ],
+      "helper": "Found in nedelja, Sunday: ne delati, not working.",
+      "accept": [],
+      "rules": [
+        "r-verb-present"
+      ],
+      "freq_rank": 82,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l04-i07",
+      "type": "word",
+      "sl": "brati",
+      "sl_colloquial": "brat",
+      "en": "to read",
+      "register": "neutral",
+      "pos": "verb",
+      "forms": {
+        "1sg": "berem",
+        "2sg": "bereš",
+        "3sg": "bere",
+        "1du": "bereva",
+        "2du": "bereta",
+        "3du": "bereta",
+        "1pl": "beremo",
+        "2pl": "berete",
+        "3pl": "berejo"
+      },
+      "examples": [
+        {
+          "sl": "Kaj bereš?",
+          "en": "What are you reading?"
+        },
+        {
+          "sl": "Otroci berejo.",
+          "en": "The children are reading."
+        }
+      ],
+      "helper": "Its short form brat sounds just like brat, brother; the sentence tells them apart.",
+      "accept": [],
+      "rules": [
+        "r-verb-present"
+      ],
+      "freq_rank": 541,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u05-l04-i08",
+      "type": "word",
+      "sl": "spati",
+      "sl_colloquial": "spat",
+      "en": "to sleep",
+      "register": "neutral",
+      "pos": "verb",
+      "forms": {
+        "1sg": "spim",
+        "2sg": "spiš",
+        "3sg": "spi",
+        "1du": "spiva",
+        "2du": "spita",
+        "3du": "spita",
+        "1pl": "spimo",
+        "2pl": "spite",
+        "3pl": "spijo"
+      },
+      "examples": [
+        {
+          "sl": "Otroci še spijo.",
+          "en": "The children are still asleep."
+        },
+        {
+          "sl": "Ali še spiš?",
+          "en": "Are you still asleep?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-verb-present"
+      ],
+      "freq_rank": 389,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-verb-present"
+  ],
+  "structured": [
+    {
+      "id": "u05-l04-s01",
+      "prompt_sl": "Ti ___ zvečer?",
+      "options": [
+        "berem",
+        "bereš",
+        "bere"
+      ],
+      "answer": "bereš",
+      "rule": "r-verb-present",
+      "en": "Do you read in the evening? (to a friend)"
+    },
+    {
+      "id": "u05-l04-s02",
+      "prompt_sl": "Jaz ___ do petih.",
+      "options": [
+        "delam",
+        "delaš",
+        "dela"
+      ],
+      "answer": "delam",
+      "rule": "r-verb-present",
+      "en": "I work until five."
+    },
+    {
+      "id": "u05-l04-s03",
+      "prompt_sl": "Otroci še ___.",
+      "options": [
+        "spi",
+        "spijo",
+        "spimo"
+      ],
+      "answer": "spijo",
+      "rule": "r-verb-present",
+      "en": "The children are still asleep."
+    },
+    {
+      "id": "u05-l04-s04",
+      "prompt_sl": "Mi zvečer ___.",
+      "options": [
+        "beremo",
+        "berete",
+        "berejo"
+      ],
+      "answer": "beremo",
+      "rule": "r-verb-present",
+      "en": "We read in the evening."
+    },
+    {
+      "id": "u05-l04-s05",
+      "prompt_sl": "Vi ___ do petih?",
+      "options": [
+        "delaš",
+        "delate",
+        "delajo"
+      ],
+      "answer": "delate",
+      "rule": "r-verb-present",
+      "en": "Do you work until five? (to an older person)"
+    },
+    {
+      "id": "u05-l04-s06",
+      "prompt_sl": "Otroka še ___.",
+      "options": [
+        "spi",
+        "spita",
+        "spijo"
+      ],
+      "answer": "spita",
+      "rule": "r-verb-present",
+      "en": "The two children are still asleep."
+    },
+    {
+      "id": "u05-l04-s07",
+      "prompt_sl": "Vstanem ob ___.",
+      "options": [
+        "sedem",
+        "sedmih"
+      ],
+      "answer": "sedmih",
+      "rule": "r-ob-time",
+      "en": "I get up at seven."
+    }
+  ],
+  "production": [
+    {
+      "id": "u05-l04-p01",
+      "en": "Say you get up at seven.",
+      "answer": "Vstanem ob sedmih.",
+      "accept": [
+        "Jaz vstanem ob sedmih.",
+        "Ob sedmih vstanem.",
+        "Vstajam ob sedmih."
+      ],
+      "item": "u05-l04-i01"
+    },
+    {
+      "id": "u05-l04-p02",
+      "en": "Say you work until five.",
+      "answer": "Delam do petih.",
+      "accept": [
+        "Jaz delam do petih.",
+        "Do petih delam."
+      ],
+      "item": "u05-l04-i02"
+    },
+    {
+      "id": "u05-l04-p03",
+      "en": "Say that you read in the evening.",
+      "answer": "Zvečer berem.",
+      "accept": [
+        "Berem zvečer."
+      ],
+      "item": "u05-l04-i03"
+    },
+    {
+      "id": "u05-l04-p04",
+      "en": "It's late. Tell your hosts you're going to bed.",
+      "answer": "Grem spat.",
+      "accept": [
+        "Jaz grem spat."
+      ],
+      "item": "u05-l04-i04"
+    },
+    {
+      "id": "u05-l04-p05",
+      "en": "Ask a friend what they are doing.",
+      "answer": "Kaj delaš?",
+      "accept": [
+        "Kaj pa delaš?"
+      ],
+      "item": "u05-l04-i05"
+    },
+    {
+      "id": "u05-l04-p06",
+      "en": "Say you don't work on Sunday.",
+      "answer": "V nedeljo ne delam.",
+      "accept": [
+        "Ne delam v nedeljo."
+      ],
+      "item": "u05-l04-i06"
+    }
+  ],
+  "dialogue": {
+    "id": "u05-l04-d",
+    "title_sl": "Navaden dan",
+    "title_en": "An ordinary day",
+    "setting_en": "One of your hosts, who says ti to you, asks about your working day on Monday.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Kaj delaš v ponedeljek?",
+        "en": "What are you doing on Monday?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Delam. Vstanem ob sedmih.",
+        "en": "I work. I get up at seven.",
+        "new_items": [
+          "u05-l04-i01"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Do kdaj delaš?",
+        "en": "Until when do you work?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Delam do petih.",
+        "en": "I work until five.",
+        "new_items": [
+          "u05-l04-i02"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kaj pa zvečer?",
+        "en": "And in the evening?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Zvečer berem. Ob desetih grem spat.",
+        "en": "In the evening I read. At ten I go to bed.",
+        "new_items": [
+          "u05-l04-i03",
+          "u05-l04-i04"
+        ]
+      }
+    ]
+  }
+}

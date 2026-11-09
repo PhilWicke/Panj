@@ -1,0 +1,50 @@
+{
+  "id": "r-grem-v-na",
+  "unit": "u05",
+  "title_en": "Going somewhere: grem v, grem na",
+  "card_en": "Going somewhere: grem v or grem na, and the place takes the accusative: grem v trgovino. Going out for a drink or a meal takes na: grem na kavo, na kosilo. Domov, home, takes neither.",
+  "example": {
+    "sl": "Grem v trgovino.",
+    "en": "I'm going to the shop."
+  },
+  "toggles": [
+    {
+      "label": "Where to",
+      "options": [
+        "to the shop",
+        "for a coffee",
+        "for lunch",
+        "home"
+      ],
+      "examples": {
+        "to the shop": {
+          "sl": "Grem v trgovino.",
+          "en": "I'm going to the shop."
+        },
+        "for a coffee": {
+          "sl": "Grem na kavo.",
+          "en": "I'm going for a coffee."
+        },
+        "for lunch": {
+          "sl": "Grem na kosilo.",
+          "en": "I'm going out for lunch."
+        },
+        "home": {
+          "sl": "Grem domov.",
+          "en": "I'm going home."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Danes grem ___ kosilo.",
+    "options": [
+      "v",
+      "na"
+    ],
+    "answer": "na",
+    "explain_en": "Going out for a meal takes na: grem na kosilo."
+  },
+  "helper_de": "As in German, direction takes the accusative: grem v trgovino, in den Laden; grem na kavo, auf einen Kaffee.",
+  "helper_en": "English says to the shop, for a coffee and home; Slovenian says v trgovino, na kavo and domov."
+}

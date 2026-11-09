@@ -1,0 +1,335 @@
+{
+  "lesson": "u05-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {
+        "u05-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Natural question; examples correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Correct; lower-case day name rule is right; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i03": {
+          "verdict": "accepted",
+          "reason": "v + accusative day, imam čas = I'm free; accept order correct; German parallel accurate; fillers are the three day items.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Natural refusal; examples natural and faithfully translated.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Masculine, acc = nom ponedeljek correct; po + nedelja derivation is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i06": {
+          "verdict": "accepted",
+          "reason": "Feminine, acc soboto correct; sobota and Samstag both go back to Sabbath.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i07": {
+          "verdict": "accepted",
+          "reason": "Feminine, acc nedeljo correct; ne + delati etymology is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Correct adverb; jutro/jutri like Morgen/morgen is an honest hook.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u05-l03-s01": {
+          "verdict": "accepted",
+          "reason": "v soboto correct; sobota plausible distractor.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-s02": {
+          "verdict": "accepted",
+          "reason": "v nedeljo correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-s03": {
+          "verdict": "accepted",
+          "reason": "v ponedeljek correct; genitive ponedeljka is wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Nominative after je; nedeljo wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Only je fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-p01": {
+          "verdict": "accepted",
+          "reason": "One natural answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Correct with filler nedeljo; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Correct with filler ponedeljek; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural; petek is in the r-days toggle.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural, consistent with Friday setting.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural suggestion.",
+          "fix": "",
+          "source": ""
+        },
+        "r-days": {
+          "verdict": "accepted",
+          "reason": "v + accusative of days correct; -a days to -o, others unchanged; all seven toggles correct; quick check has one right option.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u05-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Kateri dan je danes? standard; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Correct; lowercase day name is right; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i03": {
+          "verdict": "accepted",
+          "reason": "V soboto imam čas idiomatic for I'm free on Saturday; slot fillers in accusative; variant order correct; German parallel exact.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Jutri ne morem natural; examples fine (the comma after Žal is usually omitted, but the grader ignores punctuation).",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i05": {
+          "verdict": "accepted",
+          "reason": "ponedeljek m, acc same as nominative; po + nedelja derivation is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i06": {
+          "verdict": "accepted",
+          "reason": "sobota f, acc soboto; Sabbath origin shared with Samstag is true.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i07": {
+          "verdict": "accepted",
+          "reason": "nedelja f, acc nedeljo; ne + delati etymology is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-i08": {
+          "verdict": "accepted",
+          "reason": "jutri adverb correct; jutro/jutri parallel to German Morgen/morgen is accurate.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u05-l03-s01": {
+          "verdict": "accepted",
+          "reason": "v soboto; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-s02": {
+          "verdict": "accepted",
+          "reason": "v nedeljo; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-s03": {
+          "verdict": "accepted",
+          "reason": "v ponedeljek; genitive ponedeljka is a plausible wrong choice.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Nominative after je; nedeljo wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-s05": {
+          "verdict": "accepted",
+          "reason": "je is the only correct form.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Kateri dan je danes? matches.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Danes je ponedeljek. matches.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-p03": {
+          "verdict": "accepted",
+          "reason": "V nedeljo imam čas. with reordered variant; filler nedeljo correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-p04": {
+          "verdict": "accepted",
+          "reason": "V ponedeljek imam čas. with variant; filler correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Jutri ne morem. is the natural answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural question.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural; gremo na kosilo idiomatic.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural refusal and counter-offer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural confirmation and question.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Ob dveh popoldne? correct.",
+          "fix": "",
+          "source": ""
+        },
+        "r-days": {
+          "verdict": "accepted",
+          "reason": "v + accusative of all seven days correct (v torek, v sredo, v četrtek, v petek...); -a to -o note accurate; quick check v nedeljo correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u05-l03-i01": "c89dbfda3b1d64bd",
+    "u05-l03-i02": "c5ffc10ed75fab94",
+    "u05-l03-i03": "585710fd7db9d290",
+    "u05-l03-i04": "43790ddd423414cf",
+    "u05-l03-i05": "2388e63533e83ac5",
+    "u05-l03-i06": "517d93e8445ec567",
+    "u05-l03-i07": "5dbeded6a1b573c8",
+    "u05-l03-i08": "8b4f0a51731cea22",
+    "u05-l03-s01": "56904931f0222d1e",
+    "u05-l03-s02": "6192fb4aa67a9554",
+    "u05-l03-s03": "d1143ed7e3528b3d",
+    "u05-l03-s04": "14bfb4466374bdbc",
+    "u05-l03-s05": "b6091fef1f78ab0f",
+    "u05-l03-p01": "3f38cafb2bbfe512",
+    "u05-l03-p02": "a5134280028d2f0b",
+    "u05-l03-p03": "3fb6cd7f8eab6828",
+    "u05-l03-p04": "65176a679fc96b0b",
+    "u05-l03-p05": "e7ba0f03aec2bde8",
+    "u05-l03-d-01": "ec87503c8668a184",
+    "u05-l03-d-02": "b8132b7c2197341e",
+    "u05-l03-d-03": "85ac81ccf9083ec4",
+    "u05-l03-d-04": "a9d8de9dc728d64f",
+    "u05-l03-d-05": "bf928284c298b2f6",
+    "r-days": "d30e1f269140c128"
+  }
+}

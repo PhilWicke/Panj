@@ -1,0 +1,374 @@
+{
+  "lesson": "u05-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {
+        "u05-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Kam greš? natural ti question; accept Kam pa greš? is very common; kam/wohin and kje helper is accurate; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Correct vi form; gloss marks polite or plural; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i03": {
+          "verdict": "accepted",
+          "reason": "v + accusative trgovino correct; Rabim kruh is knjižni pogovorni (Ljubljana colloquial standard), acceptable in an everyday example.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=rabiti"
+        },
+        "u05-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Grem na kavo is the idiomatic phrase; German auf einen Kaffee gehen is a real parallel.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i05": {
+          "verdict": "accepted",
+          "reason": "Correct; domov/doma vs nach Hause/zu Hause helper accurate; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i06": {
+          "verdict": "accepted",
+          "reason": "Dual greva correct and natural; a/ali variants correct; gloss marks the two of us.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Gremo as let's go is natural; gloss marks three or more; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Correct; SSKJ has takoj pridem (počakaj malo, takoj pridem), and the more usual order Takoj pridem is in accept. Using it for I'll be right back when leaving briefly is common speech.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=takoj"
+        }
+      },
+      "lines": {
+        "u05-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Only grem fits jaz.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-s02": {
+          "verdict": "accepted",
+          "reason": "greste is the polite form to gospa; greš and gredo wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-s03": {
+          "verdict": "accepted",
+          "reason": "gredo with oni; others wrong but plausible.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-s04": {
+          "verdict": "accepted",
+          "reason": "na kavo correct; v kavo wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-s05": {
+          "verdict": "accepted",
+          "reason": "v trgovino correct; na trgovino wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Accusative trgovino after v of direction.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Ti form for a friend; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Polite vi form for an older neighbour; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-p05": {
+          "verdict": "doubtful",
+          "reason": "Slovenian answer and variants are correct, but the instruction says the two of you, which the style guide bars because it also reads as vidva (Gresta skupaj?). Reword the English, e.g. Ask a friend whether you and they will go together.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-p06": {
+          "verdict": "accepted",
+          "reason": "Hosts plus you make three or more, so Gremo is the one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural ti question from a host.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural; rabim is colloquial standard.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural dual offer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Ni treba and Pridem takoj are natural in this context.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural farewell; plural se vidimo to one person passes in speech.",
+          "fix": "",
+          "source": ""
+        },
+        "r-iti-present": {
+          "verdict": "accepted",
+          "reason": "All nine forms of iti correct (grem, greš, gre; greva, gresta, gresta; gremo, greste, gredo); notes, toggle, quick check and helpers accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "r-grem-v-na": {
+          "verdict": "accepted",
+          "reason": "v/na + accusative of direction and domov stated correctly; toggles and quick check correct; German comparison accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u05-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Kam greš? correct ti form; Kam pa greš? is a natural variant; kam/kje and wohin hook accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i02": {
+          "verdict": "accepted",
+          "reason": "greste is the vi form, correct for polite or plural; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Grem v trgovino with accusative correct; examples natural (rabim is everyday Ljubljana speech).",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Grem na kavo is the idiomatic phrase; German auf einen Kaffee parallel is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i05": {
+          "verdict": "accepted",
+          "reason": "domov vs doma contrast and nach Hause/zu Hause parallel accurate; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i06": {
+          "verdict": "accepted",
+          "reason": "Dual greva correct for two; A/Ali variants correct; gloss names the two of us.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Gremo as let's go is natural; examples correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Pridem takoj covers both I'm coming right away and, when stepping out, I'll be right back (SSKJ2 has počakaj malo, takoj pridem); Takoj pridem is a correct variant.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=takoj"
+        }
+      },
+      "lines": {
+        "u05-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Jaz grem; one right answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-s02": {
+          "verdict": "accepted",
+          "reason": "gospa signals the polite vi form greste; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Oni gredo correct; gre and greste wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-s04": {
+          "verdict": "accepted",
+          "reason": "na kavo is the only correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-s05": {
+          "verdict": "accepted",
+          "reason": "v trgovino correct; na is wrong for a shop.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Accusative trgovino after v of direction; nominative is the plausible error.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Kam greš? with Kam pa greš? accepted; instruction names a friend.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Older neighbour signals vi: Kam greste?",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Grem v trgovino. correct with pronoun variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Grem domov. correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-p05": {
+          "verdict": "rejected",
+          "reason": "The Slovenian is correct, but the instruction says the two of you, which the style guide bans because it also reads as vidva: asking a friend whether the two of you (the friend and someone else) go together would be Gresta skupaj? The answer turns on this, so the English must say you and the friend.",
+          "fix": "Greva skupaj? (Slovenian unchanged; reword the instruction: Ask a friend whether you and they will go together.)",
+          "source": ""
+        },
+        "u05-l02-p06": {
+          "verdict": "accepted",
+          "reason": "Hosts plus you make three or more, so Gremo. is the one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural ti question from a host.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural answer; rabim is everyday speech.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Dual greva fits host and learner.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Ni treba. Pridem takoj. natural when stepping out briefly.",
+          "fix": "",
+          "source": ""
+        },
+        "u05-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Se vidimo is the frozen farewell used even between two people.",
+          "fix": "",
+          "source": ""
+        },
+        "r-iti-present": {
+          "verdict": "accepted",
+          "reason": "All nine forms correct (grem, greš, gre, greva, gresta, gresta, gremo, greste, gredo); notes, toggles and quick check (greva) correct.",
+          "fix": "",
+          "source": ""
+        },
+        "r-grem-v-na": {
+          "verdict": "accepted",
+          "reason": "v/na plus accusative and domov without preposition correct; toggles natural; quick check na kosilo has one answer.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u05-l02-i01": "07865a941a46da4e",
+    "u05-l02-i02": "644a2276de855647",
+    "u05-l02-i03": "c066c63451df9897",
+    "u05-l02-i04": "ac951ea5e6c0104d",
+    "u05-l02-i05": "9b022c2d05dfa27d",
+    "u05-l02-i06": "f594feefdb7bbb20",
+    "u05-l02-i07": "6c982edebf6d4e68",
+    "u05-l02-i08": "b5dbbe91b81c7487",
+    "u05-l02-s01": "d22ea67b911d10c7",
+    "u05-l02-s02": "2f04086a257922f0",
+    "u05-l02-s03": "4bd0ab594e85d6dd",
+    "u05-l02-s04": "2d7fa3692944c268",
+    "u05-l02-s05": "6acf2aafa479d5fd",
+    "u05-l02-s06": "d29531de3f2e4732",
+    "u05-l02-p01": "be0444cd5ddcd655",
+    "u05-l02-p02": "9b1b3d8935635519",
+    "u05-l02-p03": "eece99aae48a48f7",
+    "u05-l02-p04": "5df6bb4bc573e332",
+    "u05-l02-p05": "54ccd3abbb97c15b",
+    "u05-l02-p06": "f589e68932f3ae66",
+    "u05-l02-d-01": "b72e7371f85ebe97",
+    "u05-l02-d-02": "c992019745c0c9b8",
+    "u05-l02-d-03": "ead28e67f1483db3",
+    "u05-l02-d-04": "15aac741eb21798a",
+    "u05-l02-d-05": "f096b633aef492f0",
+    "r-iti-present": "6f62be19dce9b6d0",
+    "r-grem-v-na": "8509ca08d989d97c"
+  }
+}
