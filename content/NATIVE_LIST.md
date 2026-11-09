@@ -8,71 +8,76 @@ For each row, add one line to native-confirmations.tsv: the id, a tab, then `con
 
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
-| u01-l04-i02 | Kako ti je ime? | What is your name? (informal: to a child or a peer) | review2 doubtful: The Slovenian and the examples are correct. The doubt is in the en field: '(to someone close)' is an odd note for asking a name, since you already know the name of someone close. The lesson's own s01 and p02 frame it as 'to a child'. The note would be clearer as '(informal: to a child or a peer)'. |  |
+| u01-l04-i02 | Kako ti je ime? | What is your name? (informal: to a child or a peer) | Is this how you would ask a child, or someone your own age, for their name? |  |
 
 ## Unit 02
 
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
-| u02-l04-i01 | Onadva sta brata. | The two of them are brothers. | review2 doubtful: accept: 'Sta brata.' opens with the clitic sta and reads as the question Sta brata?; the natural short statement is Brata sta. examples: 'Kdo je to? Onadva sta brata.' answers a singular question about two people; To sta brata. would be the natural answer. Fix: accept: Brata sta.; example: Kdo je to? To sta brata. | accept: Brata sta.; example: Kdo je to? To sta brata. |
+| u02-l04-i01 | Onadva sta brata. | The two of them are brothers. | Would you say "Onadva sta brata." about two people, for example looking at a photo? If you answer "Who is this?" about two people, is "To sta brata." more natural? And can "Sta brata." stand alone as a statement, or does it only sound like a question? | If "Sta brata." sounds like a question, we stop counting it as correct and count "Brata sta." instead. If "To sta brata." is more natural, the example becomes: Kdo je to? To sta brata. |
 
 ## Unit 03
 
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
-| u03-l02-i08 | riba | fish | review2 doubtful: examples: Riba ali meso? glossed Fish or meat? As an offer (the sense this unit trains with Kavo ali čaj?) a native says Ribo ali meso?; the nominative only fits the reading Is it fish or meat? Other fields correct. |  |
+| u03-l02-i08 | riba | fish | The word is fine. Does the example "Riba ali meso?" work for "Is it fish or meat?" When you offer someone a choice at the table, do you say "Ribo ali meso?" instead? | If "Riba ali meso?" sounds odd, the example changes to "Ribo ali meso?" with the English "Fish or meat?" |
 
 ## Unit 04
 
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
-| u04-l05-i06 | Lep vikend. | Have a nice weekend. | review1 doubtful: The Slovenian, examples and helper are correct. But register is tagged neutral, while SSKJ marks vikend in the weekend sense pog. and Pravopis marks it knj. pog. That is the course's colloquial, as this unit itself tags kilo (knj. pog.) colloquial. Lep konec tedna. is the neutral form, so the register should probably be colloquial. |  |
+| u04-l05-i06 | Lep vikend. | Have a nice weekend. | Would you say "Lep vikend." as a goodbye on a Friday? It is marked as everyday speech, not formal. |  |
+| question:u04-l04-p02 | Ni več kruha. | There's no more bread. | Is "Kruha ni več" just as natural as "Ni več kruha" for "There's no more bread"? Should we count both as correct? | If yes, "Kruha ni več." counts as correct too, in this exercise and wherever the phrase is practised. |
 
 ## Unit 07
 
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
-| u07-l02-i05 | Ne morete zgrešiti. | You can't miss it. (polite, or to several people) | review1 doubtful: Fields sl, examples, helper. Zgrešiti for missing a place is transitive in SSKJ, whose closest examples keep the object: ne boste je zgrešili, tega človeka ne moreš zgrešiti. The object-free headword may read as a calque or as 'you can't go wrong', and the example 'Cerkev je na trgu, ne morete zgrešiti' would more naturally have je. The helper says it is built like the English, but the English has 'it'. The listed variants Ne morete ga zgrešiti and Ne morete je zgrešiti are fine. A native should say whether the bare form is heard.; review2 doubtful: sl: SSKJ gives this sense of zgrešiti only with an object (ne boste je zgrešili, tega človeka ne moreš zgrešiti). Without one it may be heard in speech, but a native should confirm it as the headword, since the accept variants with ga and je are the attested pattern. helper: Built like English you can't miss it is not quite so, as the headword has no it. Fix: Ne morete ga zgrešiti. | Ne morete ga zgrešiti. |
-| u07-l03-i02 | Kateri avtobus gre v center? | Which bus goes to the centre? | review2 doubtful: register: tagged neutral, but SSKJ labels iti for a vehicle's route as colloquial (pog. ta vlak gre na Jesenice, standard bo peljal). The sentence itself is natural in speech. The course tags karta colloquial on the same kind of evidence, so neutral needs a native's confirmation. |  |
-| u07-l04-i03 | Kdaj gre naslednji vlak? | When does the next train leave? | review2 doubtful: register and helper: tagged neutral, and the helper presents gre as the verb for trains leaving, but SSKJ labels this use colloquial (pog. kdaj gre vlak, standard odpelje). The chunk is natural in speech and the accept variants are correct, but the tag and helper need a native's confirmation. |  |
-| u07-l05-i02 | Je to prava smer? | Is this the right way? | review1 doubtful: Headword, gender of smer and variants are fine, but the second example 'Do postaje, je to prava smer?' is a fronted fragment that may sound built. Je to prava smer do postaje? looks more natural. A native should check that example.; review2 doubtful: examples: Do postaje, je to prava smer? is a stilted left-dislocation, and a speaker would more likely say Je to prava smer do postaje? The headword, the other example and the variants are fine. Fix: Je to prava smer do postaje? | Je to prava smer do postaje? |
+| u07-l02-i05 | Ne morete zgrešiti. | You can't miss it. (polite, or to several people) | Giving directions, do people say "Ne morete zgrešiti." with nothing after it, or do they always say which thing, as in "Ne morete ga zgrešiti." or "Ne morete je zgrešiti."? | If the short form is fine, it stays and also counts as correct where the exercise asks for "ga". If not, the phrase becomes "Ne morete ga zgrešiti." |
+| u07-l03-i02 | Kateri avtobus gre v center? | Which bus goes to the centre? | Would you ask a stranger at the stop with "gre", or is that too casual for a bus? Is "Kateri avtobus pelje v center?" what you would say? | If it is only for friends, it gets marked as everyday speech. The sentence stays. |
+| u07-l04-i03 | Kdaj gre naslednji vlak? | When does the next train leave? | The same for trains: is "Kdaj gre naslednji vlak?" natural to ask at a station, or do you say "Kdaj odpelje naslednji vlak?"? | If it is only for friends, it gets marked as everyday speech. The sentence stays, and both others count as correct too. |
+| u07-l05-i02 | Je to prava smer? | Is this the right way? | The sentence is fine. Is the example "Do postaje, je to prava smer?" natural, or would you say "Je to prava smer do postaje?"? | The example becomes "Je to prava smer do postaje?" if that is what you would say. |
+| question:u07-l03-p01 | Grem z avtobusom. | I'm going by bus. | If someone starts with "Jaz", as in "Jaz grem z avtobusom.", is that normal, or only when stressing who? Should we count it as correct everywhere? | If it is normal, the version with "Jaz" counts as correct in every exercise of this kind. |
+| question:u07-numbers | Avtobus 6. / na peronu 2 / na peronu 1 | Bus 6. / on platform 2 / on platform 1 | Please listen to the recordings with numbers written as figures, such as "na peronu 2" and "Avtobus 6.". Are they read the way you would say them? |  |
 
 ## Unit 08
 
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
-| u08-l03-i03 | Dežuje. | It's raining. | review2 doubtful: Dežuje is fine, but the accept variant Dež gre is labelled pog. in SSKJ and neknj. pog. in Pravopis, so it is below the written standard on an item tagged neutral. It is widely heard, so a native speaker should confirm whether it stays as an accepted answer. |  |
-| u08-l03-i06 | dež | rain | review1 doubtful: Field examples and register: the example Danes gre dež uses dež gre, labelled pog. in SSKJ and neknj. pog. in Pravopis, while the item is tagged neutral. The style guide makes a neutral tag despite a label on the use in the item doubtful. The sentence itself is common speech, so a native speaker should decide the tag or the example.; review2 doubtful: Headword and gender are right, but the example Danes gre dež uses the construction SSKJ labels pog. and Pravopis neknj. pog., on an item tagged neutral. A native speaker should confirm the tag or the example. |  |
+| u08-l03-i03 | Dežuje. | It's raining. | "Dežuje." is fine. We also count "Dež gre." as correct for "It's raining." Do people say that, and should we count it? | If it is too casual to teach, "Dež gre." stops counting as correct. |
+| u08-l03-i06 | dež | rain | The word is fine. Is the example "Danes gre dež." ("It's raining today") ordinary speech, or too casual? | If too casual, the example changes to "Danes dežuje." or the item gets marked as everyday speech, whichever you think is right. |
 
 ## Unit 09
 
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
-| u09-l01-i04 | Boli me grlo. | I have a sore throat. | review1 doubtful: Slovenian, English, accept and examples are fine. The doubt is the helper. grlo comes from Proto-Slavic *gъrdlo, PIE *gʷerh₃-, and the lookup names Latin gurges among its cognates, so German Gurgel can only be a distant link through Latin, which the Gurgel page does not confirm. English gargle is traced by Wiktionary to French gargouiller and is not shown as related, so offering it as a comparison looks like forced resemblance. Keep Gurgel only if a native or etymology source confirms it, otherwise set helper to null.; review2 doubtful: Slovenian, gloss, examples and accept are fine. The doubt is the helper: Gurgel is a real but remote relative (PIE *gwerh3- through Latin gurgulio), while the lookup traces gargle only to Old French gargouille and shows no link to grlo, so that half may be forced resemblance. Fix: grlo, throat: distantly related to German Gurgel. | grlo, throat: distantly related to German Gurgel. |
-| u09-l01-i07 | noga | leg, foot | review1 doubtful: Headword, gender and form pl noge are right, and the first example is natural. The doubt is the second example, Moja noga je v redu: Slovenian normally leaves out the possessive with one's own body part, so moja reads as a calque of my leg and as a sentence built to show the word. Noga je v redu would be the natural form. Fix: Noga je v redu.; review2 doubtful: Headword, gender and pl form are correct. The doubt is the second example: 'Moja noga je v redu.' sounds translated, since Slovenian normally drops the possessive with a body part unless there is a contrast. Fix: Noga je v redu. | Noga je v redu.; Noga je v redu. |
-| u09-l04-i05 | Pokličite rešilca. | Call an ambulance. (polite, or to several people) | review1 doubtful: Register. SSKJ labels rešilec pog. in the sense of ambulance, and the style guide makes an item tagged neutral despite such a label doubtful until a native confirms the tag. The form itself is right: Pravopis marks the noun živ., and SSKJ gives poklicali so rešilca, so the accusative rešilca stands. Examples and helper are fine.; review2 doubtful: The form is right: Pravopis marks rešilec živ., and SSKJ gives 'poklicali so rešilca'. The doubt is register: SSKJ labels the ambulance sense pog., and the item is tagged neutral, which the style guide holds as doubtful until a native confirms the tag. |  |
-| u09-l04-i08 | pomoč | help | review2 doubtful: Noun, gender and examples are fine. The doubt is the helper's 'From pomagati': Wiktionary derives pomoč from the verb *pomoťi, so pomoč and pomagati look like relatives rather than one coming from the other. Fix: Related to pomagati, to help: Lahko pomagam? | Related to pomagati, to help: Lahko pomagam? |
+| u09-l01-i04 | Boli me grlo. | I have a sore throat. | Is this what you would say? |  |
+| u09-l01-i07 | noga | leg, foot | The word is fine. Does the example "Moja noga je v redu." ("My leg is fine") sound translated? Would you say "Noga je v redu." without "moja"? | The example becomes "Noga je v redu." if that is more natural. |
+| u09-l04-i05 | Pokličite rešilca. | Call an ambulance. (polite, or to several people) | Would you say "rešilca" for an ambulance, even to a stranger in an emergency? It is marked as everyday speech. If you would use another word, which one? |  |
+| u09-l04-i08 | pomoč | help | Are the word and its examples fine? ("Potrebujem pomoč.", "Rabim pomoč, prosim.") |  |
 
 ## Unit 10
 
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
-| u10-l01-i05 | služba | job, place of work | review1 doubtful: Register. The gloss 'place of work' and the example 'Danes sem v službi' use the sense SSKJ labels pog. ('// pog. stavba, prostor, kjer se opravlja tako delo ... to sem slišal v službi'), and Pravopis has knj. pog. for 'čakati koga pred službo'. The item is tagged neutral, so by the style guide it waits for a native to confirm the tag. The job sense itself carries no label; forms and helper are fine. |  |
-| u10-l04-i02 | Učim se slovensko. | I am learning Slovenian. | review1 doubtful: The accept variants are confirmed: Pravopis gives učiti se kaj, česa, so slovenščine and slovenščino both stand. The headword with the adverb slovensko is the doubt: Fran shows the adverb only with govoriti and no attestation of učiti se slovensko. It sounds natural in speech to me, but I cannot source it and the neutral tag rests on it.; review2 doubtful: sl and examples use the adverb slovensko with učiti se. SSKJ and Pravopis show that adverb only with govoriti, the same holds for angleško, and Pravopis gives učiti se the government kaj, česa (fiziko, kuhanja). So the accept variants Učim se slovenščine and Učim se slovenščino are supported, while the headword form, heard in speech as far as I know, is not attested in the dictionaries. A native should confirm it, or the headword should move to slovenščino or slovenščine. Slovensko se učim shares the doubt. Fix: Učim se slovenščino. | Učim se slovenščino. |
-| u10-l05-i01 | Kako je bilo v službi? | How was work? | review1 doubtful: Natural, but register: 'v službi' for the workplace is the sense SSKJ labels pog. ('to sem slišal v službi'), and the chunk is tagged neutral. By the style guide it waits for a native to confirm the tag. |  |
+| u10-l01-i05 | služba | job, place of work | "služba" for a job is fine. Do you also use it for the place where you work, as in "Danes sem v službi." ("I'm at work today"), and is that neutral or only for friends? | If it is only for friends, the word gets marked as everyday speech; nothing else changes. |
+| u10-l04-i02 | Učim se slovensko. | I am learning Slovenian. | How do you say "I am learning Slovenian"? Which of these do people say: "Učim se slovensko.", "Učim se slovenščino.", "Učim se slovenščine."? Is any of them wrong? | If "Učim se slovensko." is fine, it stays and also counts as correct in the exercises. If not, the phrase becomes "Učim se slovenščino." |
+| u10-l05-i01 | Kako je bilo v službi? | How was work? | Natural to ask a friend or family member? Is it neutral or only for friends? | Same answer as for "služba" above. |
+| question:u10-l05-p02 | Se vidimo v ponedeljek. | See you on Monday. | Talking to one colleague, could you also say "Se vidiva v ponedeljek." instead of "Se vidimo v ponedeljek."? | If yes, "Se vidiva v ponedeljek." counts as correct too, in this exercise and wherever the phrase is practised. |
+| question:u10-l05-p01 | Bilo je naporno. | It was tiring. | Is "Naporno je bilo." just as natural as "Bilo je naporno."? | If yes, "Naporno je bilo." counts as correct too, in this exercise and wherever the phrase is practised. |
 
 ## Drill words
 
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
-| drill:bil | bil | was (he) | drill word: is the clip clear, and told apart from bila? |  |
-| drill:bila | bila | was (she) | drill word: is the clip clear, and told apart from bil? |  |
-| drill:vas | vas | village; you (plural or polite, as object) | drill word: is the clip clear, and told apart from vaš? |  |
-| drill:vaš | vaš | your (plural or polite) | drill word: is the clip clear, and told apart from vas? |  |
-| drill:kosa | kosa | scythe | drill word: is the clip clear, and told apart from koza and koža? |  |
-| drill:koza | koza | goat | drill word: is the clip clear, and told apart from kosa and koža? |  |
-| drill:koža | koža | skin | drill word: is the clip clear, and told apart from kosa and koza? |  |
-| drill:peti | peti | to sing; fifth | drill word: is the clip clear, and told apart from pesti? |  |
-| drill:pesti | pesti | fists | drill word: is the clip clear, and told apart from peti? |  |
-| drill:v šoli | v šoli | at school | drill word: is the clip clear, and told apart from šoli? |  |
-| drill:šoli | šoli | school (dative or locative) | drill word: is the clip clear, and told apart from v šoli? |  |
+| drill:bil | bil | was (he) | Please listen to the recording. Is the word clear, and does it sound different from bila? |  |
+| drill:bila | bila | was (she) | Please listen to the recording. Is the word clear, and does it sound different from bil? |  |
+| drill:vas | vas | village; you (plural or polite, as object) | Please listen to the recording. Is the word clear, and does it sound different from vaš? |  |
+| drill:vaš | vaš | your (plural or polite) | Please listen to the recording. Is the word clear, and does it sound different from vas? |  |
+| drill:kosa | kosa | scythe | Please listen to the recording. Is the word clear, and does it sound different from koza and koža? |  |
+| drill:koza | koza | goat | Please listen to the recording. Is the word clear, and does it sound different from kosa and koža? |  |
+| drill:koža | koža | skin | Please listen to the recording. Is the word clear, and does it sound different from kosa and koza? |  |
+| drill:peti | peti | to sing; fifth | Please listen to the recording. Is the word clear, and does it sound different from pesti? |  |
+| drill:pesti | pesti | fists | Please listen to the recording. Is the word clear, and does it sound different from peti? |  |
+| drill:v šoli | v šoli | at school | Please listen to the recording. Is it clear, and does it sound different from šoli? |  |
+| drill:šoli | šoli | school (dative or locative) | Please listen to the recording. Is it clear, and does it sound different from v šoli? |  |

@@ -40,12 +40,13 @@ test('every lesson after the first meets the known-word shares', async () => {
 
 test('NATIVE_LIST.md has one row per doubted item and no row for an accepted or unknown item', async () => {
   const list = await readFile(new URL('NATIVE_LIST.md', CONTENT_URL), 'utf8');
-  // Rows: table lines whose first cell is neither the header nor the rule; drill words and audio
-  // checks are rows of their own sections, not lesson items.
+  // Rows: table lines whose first cell is neither the header nor the rule; drill words, audio
+  // checks and questions on accepted lines (question:...) are not lesson items, so they are left
+  // out of this check.
   const rowIds = list.split('\n')
     .filter((line) => line.startsWith('| '))
     .map((line) => line.split('|')[1].trim())
-    .filter((id) => id !== 'id' && !id.startsWith('---') && !id.startsWith('drill:') && !id.startsWith('audio:'));
+    .filter((id) => id !== 'id' && !id.startsWith('---') && !id.startsWith('drill:') && !id.startsWith('audio:') && !id.startsWith('question:'));
   const lessonsDir = new URL('lessons/', CONTENT_URL);
   const doubtedIds = [];
   for (const file of (await readdir(lessonsDir)).filter((f) => f.endsWith('.json'))) {

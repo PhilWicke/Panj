@@ -93,6 +93,15 @@ test('a correction replaces the old text across the corpus, refreshes the finger
   assert.equal(tsv, 'id\tverdict\tcorrection\n');
 });
 
+test('a question line is not a lesson item: it is reported and kept, and changes nothing', async () => {
+  const dir = await fixture();
+  const r = await confirm(dir, 'id\tverdict\tcorrection\nquestion:u01-l01-p01\tconfirmed\n');
+  assert.deepEqual(r.unmatched, [{ id: 'question:u01-l01-p01', reason: 'not a lesson item' }]);
+  assert.equal(r.confirmed, 0);
+  const { tsv } = await state(dir);
+  assert.equal(tsv, 'id\tverdict\tcorrection\nquestion:u01-l01-p01\tconfirmed\n');
+});
+
 test('a hand-filled tsv reads through a BOM, CRLF, spaces, blank lines, capitals and decomposed letters; an unknown id or verdict is reported and its line kept', async () => {
   const dir = await fixture();
   const decomposed = 'bratček';

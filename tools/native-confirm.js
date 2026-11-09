@@ -47,7 +47,7 @@ import { latestJudging, readJson, reviewFilesFor, slFingerprint } from './review
 const DEFAULT_CONTENT_DIR = fileURLToPath(new URL('../content/', import.meta.url));
 const USAGE = 'Usage: node tools/native-confirm.js [contentDir]';
 const TSV_HEADER = 'id\tverdict\tcorrection';
-const NOT_LESSON_ITEMS = ['drill:', 'audio:'];
+const NOT_LESSON_ITEMS = ['drill:', 'audio:', 'question:'];
 
 /** @param {unknown} v @returns {v is Record<string, unknown>} */
 const isObject = (v) => typeof v === 'object' && v !== null && !Array.isArray(v);
