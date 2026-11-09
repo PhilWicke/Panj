@@ -59,9 +59,16 @@ a {
   color: var(--accent);
 }
 
+/* The ring is honey with an indigo band between it and the element (--focus-band). Honey alone is
+   about 1.85:1 against the warm white page, under the 3:1 a focus indicator needs; the band, 11.7:1
+   against the page and 6.3:1 against the honey, carries the ring on light surfaces, and the honey
+   carries it on the indigo header and tab bar and in the dark theme. A component whose own
+   box-shadow would replace the band adds the band to it on focus (the pressed rule cell); the
+   hive's SVG boards, which have no box for a shadow, draw it with their stroke (components.css). */
 :focus-visible {
   outline: 3px solid var(--honey);
   outline-offset: 2px;
+  box-shadow: var(--focus-band);
 }
 
 [hidden] {

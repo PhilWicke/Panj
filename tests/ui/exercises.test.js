@@ -28,7 +28,8 @@ import { audioExercise } from '../../app/js/ui/components/no-audio.js';
 import { blankify, promptWithBlank, structuredOutcome, render as renderStructured } from '../../app/js/ui/exercises/structured.js';
 import { slotBase, slotOutcome } from '../../app/js/ui/exercises/slot.js';
 import { render as renderTyped } from '../../app/js/ui/exercises/typed.js';
-import { dialogueOutcome, lineEffective, speakerLabel, playWaitMs, playWithin, render as renderDialogue } from '../../app/js/ui/exercises/dialogue.js';
+import { dialogueOutcome, lineEffective, speakerLabel, render as renderDialogue } from '../../app/js/ui/exercises/dialogue.js';
+import { playWaitMs, playWithin } from '../../app/js/audio/play-within.js';
 import { meaningOptions, render as renderListening } from '../../app/js/ui/exercises/listening.js';
 import { attemptOutcome, recognitionFallsBack, spokenVerdict, render as renderSpeaking } from '../../app/js/ui/exercises/speaking.js';
 import { pickPerception, render as renderPerception } from '../../app/js/ui/exercises/perception.js';
@@ -634,10 +635,60 @@ test('speaking: Speak waits while the model line plays, so the recogniser never 
   assert.equal(speak.disabled, true, 'while the model line plays, Speak waits');
   speak.dispatch('click');
   assert.equal(started, 0, 'and no recogniser starts');
+  await settle();
+  assert.equal(speak.disabled, true, 'nor while the play has begun and not ended');
   ended('device');
   await settle();
   assert.ok(!speak.disabled, 'once the line has played, Speak is back');
   speak.dispatch('click');
   await settle();
   assert.equal(started, 1);
+});
+
+test('speaking: a model line whose play never settles holds Speak for the line\'s wait at most', async (t) => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const flush = () => new Promise((resolve) => setImmediate(resolve));
+  let started = 0;
+  class Listening {
+    constructor() {
+      /** @type {any} */ this.onerror = null;
+      /** @type {any} */ this.onresult = null;
+      /** @type {any} */ this.onend = null;
+    }
+
+    start() {
+      started += 1;
+    }
+
+    abort() {}
+  }
+  Object.defineProperty(globalThis, 'SpeechRecognition', { value: Listening, configurable: true, writable: true });
+  t.after(() => {
+    delete (/** @type {Record<string, unknown>} */ (globalThis)).SpeechRecognition;
+    resetRecognition();
+  });
+  resetRecognition();
+
+  const evening = /** @type {Item} */ (lesson.items.find((each) => each.sl === 'Dober večer.'));
+  const wait = playWaitMs(evening.sl);
+  const stage = /** @type {any} */ (h('div'));
+  void renderSpeaking(stage, { kind: 'speaking', itemId: evening.id }, context({
+    item: evening, settings: { speech: true }, mode: { mute: false, speech: true },
+    play: () => new Promise(() => {}),
+  }));
+  const speak = button(stage, 'Speak');
+  button(stage, 'Listen').dispatch('click');
+  await flush();
+  assert.equal(speak.disabled, true, 'while the model line plays, Speak waits');
+  t.mock.timers.tick(wait - 1);
+  await flush();
+  assert.equal(speak.disabled, true, 'until the line\'s wait is up');
+  speak.dispatch('click');
+  assert.equal(started, 0, 'and no recogniser starts in the meantime');
+  t.mock.timers.tick(1);
+  await flush();
+  assert.ok(!speak.disabled, 'a play that never reports its end gives Speak back after the line\'s wait');
+  speak.dispatch('click');
+  await flush();
+  assert.equal(started, 1, 'and Speak listens again');
 });

@@ -54,6 +54,11 @@
   --radius-16: 16px;
   --tap: 44px;
 
+  /* Focus: the indigo band base.css draws under the honey ring, in both themes. It reaches as far
+     as the outline (offset 2px plus width 3px), so the outline paints honey over its outer 3px
+     and the 2px between the element and the honey read indigo. */
+  --focus-band: 0 0 0 5px var(--indigo);
+
   /* Roles, light theme */
   color-scheme: light;
   --bg: var(--warm-white);

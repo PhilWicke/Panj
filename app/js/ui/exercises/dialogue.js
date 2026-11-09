@@ -13,6 +13,7 @@
 import { h, mount } from '../../util/dom.js';
 import { grade } from '../../engine/grading.js';
 import { answerField, feedbackSlot, mountFeedback } from '../components/answer-field.js';
+import { playWaitMs, playWithin } from '../../audio/play-within.js';
 
 /** @typedef {import('./registry.js').ExerciseRender} ExerciseRender */
 /** @typedef {import('./registry.js').ExerciseOutcome} ExerciseOutcome */
@@ -24,10 +25,6 @@ const LEARNER = 'you';
 /** Labels of the roles the content uses; any other role shows as written, capitalised. */
 /** @type {Record<string, string>} */
 const SPEAKERS = { you: 'You', host: 'Your host' };
-// The longest a line's playback holds the scene: an allowance for loading the voice or the file,
-// plus the line at a slow speaking rate (about ten characters a second).
-const PLAY_WAIT_BASE_MS = 3000;
-const PLAY_WAIT_PER_CHAR_MS = 100;
 
 /**
  * @param {string} speaker
@@ -35,34 +32,6 @@ const PLAY_WAIT_PER_CHAR_MS = 100;
  */
 export function speakerLabel(speaker) {
   return SPEAKERS[speaker] ?? `${speaker.charAt(0).toUpperCase()}${speaker.slice(1)}`;
-}
-
-/**
- * How long the scene waits for a line to play before it goes on without the end of the playback.
- * @param {string} text the line's Slovenian
- * @returns {number} milliseconds
- */
-export function playWaitMs(text) {
-  return PLAY_WAIT_BASE_MS + PLAY_WAIT_PER_CHAR_MS * text.length;
-}
-
-/**
- * Starts `play` and settles once it settles or after `ms`, whichever comes first; it never
- * rejects, also when `play` throws. A playback whose promise never settles (a browser that drops
- * the utterance's `end`, a stalled load) so holds the scene for `ms` at most.
- * @param {() => Promise<unknown>} play
- * @param {number} ms
- * @returns {Promise<void>}
- */
-export function playWithin(play, ms) {
-  return new Promise((resolve) => {
-    const timer = setTimeout(resolve, ms);
-    const done = () => {
-      clearTimeout(timer);
-      resolve();
-    };
-    Promise.resolve().then(play).then(done, done);
-  });
 }
 
 /**

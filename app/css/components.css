@@ -2,7 +2,8 @@
    rule card, the Rules screen, the Today screen with its calendar and hive, the unit page, the
    checkpoint and onboarding forms, the Words, Stats and Settings screens, the tab bar and the
    toast. Every control is at least 44 by 44 px, through min-height and min-width or padding,
-   never by scaling text; the focus ring is base.css's alone; motion only answers an action, sits
+   never by scaling text; the focus ring is base.css's, and a component only adds its indigo band
+   where its own box-shadow or an SVG shape would leave it out; motion only answers an action, sits
    in the no-preference block, and the reduce block at the very end switches all of it off. */
 
 /* Header */
@@ -576,6 +577,10 @@ button.rule-cell {
   box-shadow: inset 0 0 0 2px var(--accent);
 }
 
+.rule-cell[aria-pressed='true']:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--accent), var(--focus-band);
+}
+
 .rule-cell-pronoun {
   color: var(--text-muted);
   font-size: var(--text-14);
@@ -911,6 +916,13 @@ button.rule-cell {
 
 .hive-panel {
   cursor: pointer;
+}
+
+/* A board has no box for the focus ring's indigo band (base.css), so on focus its own outline
+   thickens to carry the band. The honey ring follows the thicker stroke out (Chrome draws an SVG
+   outline around the stroke), keeping its 2px offset from it. */
+.hive-panel:focus-visible .hive-board {
+  stroke-width: 4;
 }
 
 .hive-board {

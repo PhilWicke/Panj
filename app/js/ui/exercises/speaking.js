@@ -8,13 +8,15 @@
 // refused microphone or speech service, a missing microphone or a recogniser without Slovenian
 // also keeps the later speaking exercises self-rated until the next session (recognitionBlocked in
 // speech.js); a lost connection or a recogniser that would not start affects this exercise only.
-// While the model line plays (Listen), Speak waits, so the recogniser never hears the model.
+// While the model line plays (Listen), Speak waits, so the recogniser never hears the model; a play
+// that never reports its end holds Speak for the line's wait at most (playWithin, Ruling 42).
 // Self-rated (recognition off, unavailable or failed): the model plays, "Say it, then tap", and
 // "Matched" or "Not yet" report `aux` only, never a recall. A recogniser is never constructed
 // unless the learner has opted in.
 
 import { h, mount } from '../../util/dom.js';
 import { compareSpoken, recognitionBlocked, recognizeOnce, speechAvailable } from '../../audio/speech.js';
+import { playWaitMs, playWithin } from '../../audio/play-within.js';
 
 /** @typedef {import('./registry.js').ExerciseRender} ExerciseRender */
 /** @typedef {import('./registry.js').ExerciseOutcome} ExerciseOutcome */
@@ -91,7 +93,8 @@ export function render(container, entry, ctx) {
 
     /**
      * The line, its English, and a button that plays the model (none when muted). `onPlaying`
-     * hears when the model starts playing and when its play has settled.
+     * hears when the model starts playing and when its play has settled, or its wait is up when
+     * the play never settles. A `none` turns Listen off whenever it arrives.
      * @param {(playing: boolean) => void} [onPlaying]
      */
     const header = (onPlaying) => {
@@ -102,16 +105,14 @@ export function render(container, entry, ctx) {
       }, 'Listen'));
       const model = async () => {
         onPlaying?.(true);
-        let how;
-        try {
-          how = await ctx.play(item.sl);
-        } finally {
-          onPlaying?.(false);
-        }
-        if (how === 'none' && listen) {
-          listen.disabled = true;
-          voiceNote.hidden = false;
-        }
+        await playWithin(async () => {
+          const how = await ctx.play(item.sl);
+          if (how === 'none' && listen) {
+            listen.disabled = true;
+            voiceNote.hidden = false;
+          }
+        }, playWaitMs(item.sl));
+        onPlaying?.(false);
       };
       const nodes = [
         h('p', { class: 'eyebrow' }, 'Say it in Slovenian'),
