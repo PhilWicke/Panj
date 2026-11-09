@@ -4,13 +4,15 @@
 // intention line, the week calendar (Ruling 25: active days in honey, grace as text, a fresh start
 // instead of a loss message, honey as a quiet line) and the closing menu. Through
 // tests/helpers/fake-dom.js, the screen on a course without lessons says the first lessons are
-// still being checked and shows no primary action, while a course with lessons and nothing due
-// keeps the disabled action. The rest of the screen runs in the browser check.
+// still being checked and shows no primary action and no strip, a course with lessons and nothing
+// due keeps the disabled action, and the current unit's strip sits under the primary action with
+// the current lesson's cell marked, linking to the Hive. The rest of the screen runs in the
+// browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
-import { skipAheadState } from '../../app/js/engine/scheduler.js';
+import { createState, skipAheadState } from '../../app/js/engine/scheduler.js';
 import { weekSummary } from '../../app/js/engine/progress.js';
 import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
 import { greetingFor, primaryAction, habitHolds, renderToday } from '../../app/js/ui/screens/today.js';
@@ -48,6 +50,9 @@ function elements(root) {
   walk(root);
   return found;
 }
+
+/** @param {any} root @param {string} className */
+const withClass = (root, className) => elements(root).filter((e) => e.classList.contains(className));
 
 test('greetingFor: Dobro jutro before 10, Dober dan until 18, Dober večer after', () => {
   for (const hour of [0, 5, 9]) assert.equal(greetingFor(hour), 'Dobro jutro', `hour ${hour}`);
@@ -173,6 +178,7 @@ test('Today on a course without lessons says the first lessons are still being c
   assert.equal(all.some((el) => el.classList.contains('btn-session')), false, 'no primary action');
   assert.equal(all.some((el) => el.textContent === 'Come back later today or tomorrow.'), false, 'not the nothing-due line');
   assert.ok(all.some((el) => el.tagName === 'H1'), 'the greeting is still there');
+  assert.equal(all.some((el) => el.classList.contains('today-strip')), false, 'no strip without lessons');
 });
 
 test('Today with lessons and nothing due keeps the disabled primary action and its line', () => {
@@ -194,6 +200,37 @@ test('Today with lessons and nothing due keeps the disabled primary action and i
   assert.equal(action.getAttribute('aria-disabled'), 'true');
   assert.ok(all.some((el) => el.textContent === 'Come back later today or tomorrow.'));
   assert.equal(all.some((el) => el.textContent === 'Nothing to practise yet'), false);
+});
+
+/** @param {string} id @param {string} sl @param {string} en */
+const stripItem = (id, sl, en) => ({
+  id, type: 'chunk', sl, en, register: 'neutral', examples: [],
+  verification: { review1: 'accepted', review2: 'accepted', native: null, status: 'accepted' },
+});
+const STRIP_UNIT = { id: 'u01', order: 1, title_sl: 'Prvi stik', title_en: 'First contact', motif: 'flower', lessonCount: 5, lessons: ['u01-l01'] };
+const STRIP_LESSON = {
+  id: 'u01-l01', unit: 'u01', order: 1, title_sl: 'Prvi pozdrav', title_en: 'First hello', rules: [], structured: [], production: [],
+  items: [stripItem('u01-l01-i01', 'Dober dan.', 'Good day.'), stripItem('u01-l01-i02', 'Hvala.', 'Thank you.')],
+};
+
+test("Today draws the current unit's strip under the primary action, the current cell marked, linking to the hive", () => {
+  const index = {
+    version: 't', mode: 'dev', generated: '', units: [STRIP_UNIT], rules: [], counts: { scheduledItems: 2, lemmasMet: 3 },
+    lessonIndex: [{ id: STRIP_LESSON.id, unit: 'u01', order: 1, title_sl: STRIP_LESSON.title_sl, title_en: STRIP_LESSON.title_en, itemCount: 2 }],
+  };
+  // both items new: the lesson is the current one and the session would meet them
+  const states = Object.fromEntries(STRIP_LESSON.items.map((entry) => [entry.id, createState(entry.id, Date.now())]));
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderToday(container, todayApp({ index, units: [{ unit: STRIP_UNIT, lessons: [STRIP_LESSON] }], states }));
+  const all = elements(container);
+  const link = all.find((el) => el.tagName === 'A' && el.classList.contains('today-strip'));
+  assert.ok(link);
+  assert.equal(link.getAttribute('href'), '#/hive');
+  assert.equal(link.getAttribute('aria-label'), 'Unit 1, Prvi stik. Open the hive');
+  assert.ok(all.indexOf(link) > all.indexOf(all.find((el) => el.classList.contains('actions-stack'))), 'under the primary action');
+  assert.equal(withClass(link, 'hive-cell').length, 5);
+  assert.equal(withClass(link, 'is-current').length, 1);
+  assert.equal(all.some((el) => el.textContent === 'Your hive'), false, 'the full hive has left Today');
 });
 
 test('renderMenu offers the closing options in order with their labels, the first as the primary action, and reports the pick', () => {

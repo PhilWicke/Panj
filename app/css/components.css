@@ -840,9 +840,11 @@ button.rule-cell {
   font-weight: 700;
 }
 
-.hive-section {
-  display: grid;
-  gap: var(--space-12);
+/* The unit in focus as one large strip under the primary action, a link to the Hive; the focus
+   ring is base.css's, round with the link. */
+.today-strip {
+  display: block;
+  border-radius: var(--radius-16);
 }
 
 /* Calendar */
