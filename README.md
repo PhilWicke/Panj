@@ -45,7 +45,7 @@ npm run audio -- --limit 5
 npm run voice-check -- --out <dir>
 ```
 
-`npm run audio` generates clips for the accepted content of the last build into `app/assets/audio/`, and `--limit 5` keeps a trial run to the first five texts in each voice. `npm run voice-check -- --out <dir>` writes sample lines in three voices and a page to compare them into the folder you name.
+`npm run audio` generates clips for the accepted content of the last build into `app/assets/audio/`, and `--limit 5` keeps a trial run to the first five texts in each voice. The male voice's clips are measured and re-taken up to five times when they come out too high, and clips still high are listed as `HIGH`. `npm run voice-check -- --out <dir>` writes sample lines in three voices and a page to compare them into the folder you name.
 
 ## Icons
 
