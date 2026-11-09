@@ -7,7 +7,8 @@ import { join } from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
-import { lintContent } from '../../tools/lint-content.js';
+import { lintContent, statusFor } from '../../tools/lint-content.js';
+import { addSlot } from './helpers.js';
 const fx = (name) => fileURLToPath(new URL(`../../tools/fixtures/${name}/`, import.meta.url));
 
 test('valid fixture lints clean', async () => {
@@ -46,13 +47,14 @@ const RULE = 'rules/r-biti-present.json';
 /**
  * Lints a temporary copy of the valid fixture after `mutate` has edited it.
  * @param {(dir: string) => Promise<void>} mutate
+ * @param {{ allowPending?: boolean }} [options] passed to lintContent
  */
-async function lintMutated(mutate) {
+async function lintMutated(mutate, { allowPending = false } = {}) {
   const dir = await mkdtemp(join(tmpdir(), 'slovelingo-lint-'));
   try {
     await cp(fx('content-valid'), dir, { recursive: true });
     await mutate(dir);
-    return await lintContent({ contentDir: dir });
+    return await lintContent({ contentDir: dir, allowPending });
   } finally {
     await rm(dir, { recursive: true, force: true });
   }
@@ -173,6 +175,44 @@ test('a missing content directory is a clear error, not a crash', async () => {
     lintContent({ contentDir: join(tmpdir(), 'slovelingo-no-such-dir') }),
     /^Error: Content directory not found: .*slovelingo-no-such-dir$/,
   );
+});
+
+test('status must follow from the verdicts', async () => {
+  const r = await lintMutated((dir) => editJson(dir, LESSON, (doc) => { doc.items[0].verification = { review1: 'accepted', review2: 'doubtful', native: null, status: 'accepted' }; }));
+  assert.deepEqual(byRule(r.errors, 'status-consistency').map(describe), ['lessons/u01-l01.json items/u01-l01-i01/verification/status: is "accepted", but the verdicts give "pending"']);
+  assert.equal(statusFor({ review1: 'accepted', review2: 'accepted', native: null }), 'accepted');
+  assert.equal(statusFor({ review1: 'rejected', review2: 'accepted', native: null }), 'rejected');
+  assert.equal(statusFor({ review1: null, review2: 'accepted', native: null }), 'pending');
+  assert.equal(statusFor({ review1: 'rejected', review2: 'doubtful', native: 'corrected' }), 'accepted');
+});
+
+test("slot fillers: a production filler must be a slot filler's text or form, and a pending filler is an error unless pending is allowed", async () => {
+  const pending = await lintMutated((dir) => addSlot(dir, { fillerStatus: 'pending', filler: 'večer' }));
+  assert.deepEqual(byRule(pending.errors, 'pending-filler').map(describe), [
+    'lessons/u01-l01.json items/u01-l01-i02/slots/0/fillers/0: uses filler item "u01-l01-i04" whose verification status is "pending"',
+    'lessons/u01-l01.json production/u01-l01-p03/filler: uses filler item "u01-l01-i04" whose verification status is "pending"',
+  ]);
+  const allowed = await lintMutated((dir) => addSlot(dir, { fillerStatus: 'pending', filler: 'večer' }), { allowPending: true });
+  assert.deepEqual(byRule(allowed.errors, 'pending-filler'), []);
+  const unresolved = await lintMutated((dir) => addSlot(dir, { fillerStatus: 'accepted', filler: 'jutro' }));
+  assert.deepEqual(byRule(unresolved.errors, 'reference').map(describe), ['lessons/u01-l01.json production/u01-l01-p03/filler: "jutro" is not the text or a form of a slot filler of "u01-l01-i02"']);
+  const resolved = await lintMutated((dir) => addSlot(dir, { fillerStatus: 'accepted', filler: 'Večer.' }));
+  assert.deepEqual(resolved.errors, [], 'case and a final full stop are ignored');
+});
+
+test('two items with the same English gloss are an error; a note in brackets tells them apart', async () => {
+  const same = await lintMutated((dir) => editJson(dir, LESSON, (doc) => { doc.items[1].en = 'hi.'; }));
+  assert.deepEqual(byRule(same.errors, 'ambiguous-gloss').map(describe), ['lessons/u01-l01.json items/u01-l01-i02/en: "hi." is also the gloss of "u01-l01-i01"']);
+  const noted = await lintMutated((dir) => editJson(dir, LESSON, (doc) => { doc.items[1].en = 'Hi. (polite)'; }));
+  assert.deepEqual(byRule(noted.errors, 'ambiguous-gloss'), []);
+});
+
+test('an example with an unrecorded form of a word item is a warning', async () => {
+  const r = await lintMutated((dir) => editJson(dir, LESSON, (doc) => { doc.items[2].forms = {}; doc.items[2].examples = [{ sl: 'Imam dva brata.', en: 'I have two brothers.' }]; }));
+  assert.deepEqual(byRule(r.warnings, 'form-unrecorded').map(describe), ['lessons/u01-l01.json items/u01-l01-i03/examples/0/sl: uses "brata", a form of "brat" missing from forms']);
+  assert.deepEqual(r.errors, []);
+  const recorded = await lintMutated((dir) => editJson(dir, LESSON, (doc) => { doc.items[2].examples = [{ sl: 'Imam dva brata.', en: 'I have two brothers.' }]; }));
+  assert.deepEqual(byRule(recorded.warnings, 'form-unrecorded'), [], 'brata is recorded under du');
 });
 
 const run = promisify(execFile);

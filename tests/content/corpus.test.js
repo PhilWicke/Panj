@@ -1,11 +1,14 @@
 // tests/content/corpus.test.js
 // The real content under content/ against the linter: the two gate behaviours
-// the content plan relies on, and the unit list the hive draws.
+// the content plan relies on, the review guard, the known-word shares, the
+// native list, and the unit list the hive draws.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { lintContent } from '../../tools/lint-content.js';
+import { reviewGuard } from '../../tools/review-guard.js';
+import { DIALOGUE_SHARE, EXAMPLE_SHARE, knownShares } from '../../tools/known-words.js';
 import { normalize, stripDiacritics } from '../../app/js/engine/grading.js';
 
 const CONTENT_URL = new URL('../../content/', import.meta.url);
@@ -17,9 +20,41 @@ test('the content lints clean in development mode (pending items allowed)', asyn
   assert.deepEqual(r.errors, []);
 });
 
-test('in strict mode the only errors are practised items that are not yet accepted', async () => {
+test('in strict mode the only errors are practised items and slot fillers that are not yet accepted', async () => {
   const r = await lintContent({ contentDir });
-  assert.deepEqual(r.errors.filter((e) => e.rule !== 'pending-practised'), []);
+  assert.deepEqual(r.errors.filter((e) => e.rule !== 'pending-practised' && e.rule !== 'pending-filler'), []);
+});
+
+test('the real content passes the review guard', async () => {
+  assert.deepEqual(await reviewGuard({ contentDir }), []);
+});
+
+test('every lesson after the first meets the known-word shares', async () => {
+  for (const s of await knownShares({ contentDir })) {
+    if (s.exempt) continue;
+    assert.ok(s.examples >= EXAMPLE_SHARE, `${s.lesson} examples ${s.examples}`);
+    if (s.dialogue !== null) assert.ok(s.dialogue >= DIALOGUE_SHARE, `${s.lesson} dialogue ${s.dialogue}`);
+  }
+});
+
+test('NATIVE_LIST.md has one row per doubted item and no row for an accepted or unknown item', async () => {
+  const list = await readFile(new URL('NATIVE_LIST.md', CONTENT_URL), 'utf8');
+  // Rows: table lines whose first cell is neither the header nor the rule; drill words and audio
+  // checks are rows of their own sections, not lesson items.
+  const rowIds = list.split('\n')
+    .filter((line) => line.startsWith('| '))
+    .map((line) => line.split('|')[1].trim())
+    .filter((id) => id !== 'id' && !id.startsWith('---') && !id.startsWith('drill:') && !id.startsWith('audio:'));
+  const lessonsDir = new URL('lessons/', CONTENT_URL);
+  const doubtedIds = [];
+  for (const file of (await readdir(lessonsDir)).filter((f) => f.endsWith('.json'))) {
+    const lesson = JSON.parse(await readFile(new URL(file, lessonsDir), 'utf8'));
+    for (const { id, verification: v } of lesson.items) {
+      if (v.status === 'pending' && (v.review1 === 'doubtful' || v.review2 === 'doubtful')) doubtedIds.push(id);
+    }
+  }
+  assert.deepEqual([...rowIds].sort(), [...doubtedIds].sort());
+  assert.equal(new Set(rowIds).size, rowIds.length);
 });
 
 test('units.json lists the ten units of the syllabus in order, each with its own motif', async () => {

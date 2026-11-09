@@ -1,13 +1,15 @@
 // Content linter: checks the JSON under content/ against the shapes in
 // app/js/content/types.js and the content rules of the plan.
-// Library: lintContent({ contentDir, allowPending }).
+// Library: lintContent({ contentDir, allowPending }), statusFor(verdicts), and resolveFiller,
+// the slot-filler match the bundle compiler shares.
 // CLI: node tools/lint-content.js [--allow-pending] [contentDir]; exit 1 on any error.
-// No dependencies beyond Node's own modules (node:fs, node:path, node:url) and the app's
-// util/ids.js, the one place the rule-id pattern lives.
+// No dependencies beyond Node's own modules (node:fs, node:path, node:url), the app's
+// util/ids.js, the one place the rule-id pattern lives, and util/tokens.js, the word tokeniser.
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { RULE_ID } from '../app/js/util/ids.js';
+import { wordTokens } from '../app/js/util/tokens.js';
 
 /**
  * One finding. `file` is relative to the content directory. `path` locates the
@@ -21,13 +23,14 @@ import { RULE_ID } from '../app/js/util/ids.js';
 /** @typedef {(value: unknown, at: string, report: Report) => void} Check */
 /** @typedef {{ check: Check, required: boolean }} Field */
 /** @typedef {Record<string, unknown>} Doc */
+/** @typedef {'accepted'|'doubtful'|'rejected'} Verdict */
 
 const DEFAULT_CONTENT_DIR = fileURLToPath(new URL('../content/', import.meta.url));
 const COGNATES_FILE = fileURLToPath(new URL('./fixtures/cognates.txt', import.meta.url));
 const USAGE = 'Usage: node tools/lint-content.js [--allow-pending] [contentDir]';
 
 // Rules that produce warnings; every other rule produces errors.
-const WARNING_RULES = new Set(['helper-missing']);
+const WARNING_RULES = new Set(['helper-missing', 'form-unrecorded']);
 
 const UNIT_ID = /^u\d{2}$/;
 const LESSON_ID = /^u\d{2}-l\d{2}$/;
@@ -50,6 +53,8 @@ const PERSONAL_PHRASES = ['girlfriend', 'boyfriend', 'my partner', 'her parents'
 // English copy the learner sees. Verification notes are internal and not checked.
 const PERSONAL_FIELDS = new Set(['en', 'title_en', 'setting_en', 'card_en', 'explain_en', 'note_en', 'helper', 'helper_en', 'helper_de', 'label']);
 const CARD_WORD_LIMIT = 40;
+// form-unrecorded looks at word items whose headword has at least this many letters.
+const FORM_HEADWORD_LETTERS = 4;
 
 const REVIEW_VERDICTS = ['accepted', 'doubtful', 'rejected'];
 const NATIVE_VERDICTS = ['confirmed', 'corrected'];
@@ -104,6 +109,47 @@ const normalizeSl = (s) => s.normalize('NFC').toLowerCase().replace(/\s+/g, ' ')
 const wordsOf = (s) => normalizeSl(s).replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 /** The first four letters without diacritics, for the cognate heuristic. @param {string} s */
 const firstLetters = (s) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z]/g, '').slice(0, 4);
+/** A production filler as it is matched: lower case, without a trailing `.`, `!` or `?`. @param {string} s */
+const fillerKey = (s) => s.normalize('NFC').trim().toLowerCase().replace(/[.!?]$/, '');
+
+/**
+ * The status an item's verdicts give: a native verdict accepts it; two accepting reviews accept
+ * it; a rejecting review rejects it; anything else (a review still missing, or a doubt) leaves
+ * it pending.
+ * @param {{ review1: Verdict|null, review2: Verdict|null, native: 'confirmed'|'corrected'|null }} verdicts
+ * @returns {'accepted'|'pending'|'rejected'}
+ */
+export function statusFor({ review1, review2, native }) {
+  if (native) return 'accepted';
+  if (review1 === 'accepted' && review2 === 'accepted') return 'accepted';
+  if (review1 === 'rejected' || review2 === 'rejected') return 'rejected';
+  return 'pending';
+}
+
+/**
+ * The slot filler a production's `filler` names: the first filler of `item`'s slots whose `sl`
+ * or one of whose `forms` values equals `filler`, ignoring case and a trailing `.`, `!` or `?`.
+ * The linter (rules reference and pending-filler) and the bundle compiler resolve fillers here,
+ * so both judge the same filler item.
+ * @param {unknown} filler the production's `filler`
+ * @param {unknown} item the production's item
+ * @param {(id: string) => unknown} lookup the item of an id anywhere in the corpus
+ * @returns {string|null} the filler item's id, or null when no slot filler matches
+ */
+export function resolveFiller(filler, item, lookup) {
+  if (typeof filler !== 'string' || !isObject(item) || !Array.isArray(item.slots)) return null;
+  const key = fillerKey(filler);
+  for (const slot of item.slots) {
+    if (!isObject(slot) || !Array.isArray(slot.fillers)) continue;
+    for (const id of slot.fillers) {
+      const candidate = typeof id === 'string' ? lookup(id) : undefined;
+      if (!isObject(candidate)) continue;
+      const texts = [candidate.sl, ...(isObject(candidate.forms) ? Object.values(candidate.forms) : [])];
+      if (texts.some((text) => typeof text === 'string' && fillerKey(text) === key)) return id;
+    }
+  }
+  return null;
+}
 
 // ---------------------------------------------------------------------------
 // Shape checks (lint rule schema), written against the typedefs by hand
@@ -398,8 +444,57 @@ function checkCardLength(rule, report) {
   if (words > CARD_WORD_LIMIT) report('card_en', `has ${words} words, the limit is ${CARD_WORD_LIMIT}`);
 }
 
+/**
+ * Lint rule status-consistency: an item's status is the one its verdicts give (statusFor). A
+ * record with a field outside its values is left to the schema rule.
+ * @param {Doc} lesson @param {Report} report
+ */
+function checkStatus(lesson, report) {
+  /** @param {unknown} v */
+  const review = (v) => v === null || (typeof v === 'string' && REVIEW_VERDICTS.includes(v));
+  eachObject(lesson.items, 'items', (x, at) => {
+    const v = x.verification;
+    if (!isObject(v)) return;
+    const { review1, review2, native, status } = v;
+    if (!review(review1) || !review(review2) || !(native === null || (typeof native === 'string' && NATIVE_VERDICTS.includes(native)))) return;
+    if (typeof status !== 'string' || !STATUSES.includes(status)) return;
+    const derived = statusFor(/** @type {any} */ ({ review1, review2, native }));
+    if (status !== derived) report(`${at}/verification/status`, `is ${quote(status)}, but the verdicts give ${quote(derived)}`);
+  });
+}
+
+/**
+ * Lint rule form-unrecorded (warning): an example of a word item uses a form of it that `forms`
+ * does not record. Applies to word items whose `sl` is one token of at least four letters; a
+ * form is an example token that starts with the stem (the token without a final a, e, i, o or u)
+ * and is neither the headword nor a token of a `forms` value, all in lower case.
+ * @param {Doc} lesson @param {Report} report
+ */
+function checkFormsRecorded(lesson, report) {
+  eachObject(lesson.items, 'items', (x, at) => {
+    if (x.type !== 'word' || typeof x.sl !== 'string') return;
+    const head = wordTokens(x.sl);
+    if (head.length !== 1 || (head[0].match(/\p{L}/gu)?.length ?? 0) < FORM_HEADWORD_LETTERS) return;
+    const stem = head[0].replace(/[aeiou]$/, '');
+    const recorded = new Set(head);
+    if (isObject(x.forms)) {
+      for (const form of Object.values(x.forms)) if (typeof form === 'string') for (const token of wordTokens(form)) recorded.add(token);
+    }
+    eachObject(x.examples, sub(at, 'examples'), (example, exampleAt) => {
+      if (typeof example.sl !== 'string') return;
+      const reported = new Set();
+      for (const token of wordTokens(example.sl)) {
+        if (!token.startsWith(stem) || recorded.has(token) || reported.has(token)) continue;
+        reported.add(token);
+        report(sub(exampleAt, 'sl'), `uses ${quote(token)}, a form of ${quote(x.sl)} missing from forms`);
+      }
+    });
+  });
+}
+
 // ---------------------------------------------------------------------------
-// Corpus checks: duplicate, reference, pending-practised, register, helper-missing
+// Corpus checks: duplicate, ambiguous-gloss, reference, pending-practised, pending-filler,
+// register, helper-missing
 
 /**
  * @param {{ units: unknown, lessons: { file: string, doc: unknown }[], rules: { file: string, doc: unknown }[] }} corpus
@@ -468,6 +563,22 @@ function checkCorpus(corpus, allowPending, cognates, issues) {
     });
   }
 
+  // ambiguous-gloss: no two items share an English gloss once trimmed and lowercased; a note in
+  // brackets tells two senses apart ("orange (the fruit)", "orange (the colour)").
+  /** @type {Map<string, string>} */
+  const glosses = new Map();
+  for (const { file, doc } of corpus.lessons) {
+    if (!isObject(doc)) continue;
+    eachObject(doc.items, 'items', (x, at) => {
+      if (typeof x.en !== 'string' || typeof x.id !== 'string') return;
+      const key = x.en.trim().toLowerCase();
+      if (key === '') return;
+      const first = glosses.get(key);
+      if (first) add(file, 'ambiguous-gloss', sub(at, 'en'), `${quote(x.en)} is also the gloss of ${quote(first)}`);
+      else glosses.set(key, x.id);
+    });
+  }
+
   // reference: every id that points somewhere exists, and units and lessons list each other.
   eachObject(corpus.units, '', (unit, at) => {
     if (!Array.isArray(unit.lessons)) return;
@@ -505,6 +616,16 @@ function checkCorpus(corpus, allowPending, cognates, issues) {
         add(file, 'pending-practised', at, `practises item ${quote(id)} whose verification status is ${status === undefined ? 'missing' : quote(status)}`);
       }
     };
+    /** pending-filler: a slot filler, or the filler a production swaps in, must be accepted, unless allowPending. @param {unknown} id @param {string} at */
+    const acceptedFiller = (id, at) => {
+      if (allowPending || typeof id !== 'string') return;
+      const target = items.get(id);
+      if (!target) return;
+      const status = isObject(target.item.verification) ? target.item.verification.status : undefined;
+      if (status !== 'accepted') {
+        add(file, 'pending-filler', at, `uses filler item ${quote(id)} whose verification status is ${status === undefined ? 'missing' : quote(status)}`);
+      }
+    };
     /** register: a typed answer never contains a recognition-only item. @param {unknown} answer @param {string} at */
     const producible = (answer, at) => {
       if (typeof answer !== 'string') return;
@@ -525,7 +646,11 @@ function checkCorpus(corpus, allowPending, cognates, issues) {
     eachObject(doc.items, 'items', (x, at) => {
       if (Array.isArray(x.rules)) x.rules.forEach((id, i) => knownRule(id, `${at}/rules/${i}`));
       eachObject(x.slots, sub(at, 'slots'), (slot, slotAt) => {
-        if (Array.isArray(slot.fillers)) slot.fillers.forEach((id, i) => knownItem(id, `${slotAt}/fillers/${i}`));
+        if (!Array.isArray(slot.fillers)) return;
+        slot.fillers.forEach((id, i) => {
+          knownItem(id, `${slotAt}/fillers/${i}`);
+          acceptedFiller(id, `${slotAt}/fillers/${i}`);
+        });
       });
     });
     eachObject(doc.structured, 'structured', (x, at) => {
@@ -536,6 +661,12 @@ function checkCorpus(corpus, allowPending, cognates, issues) {
       knownItem(x.item, sub(at, 'item'));
       practised(x.item, sub(at, 'item'));
       const target = typeof x.item === 'string' ? items.get(x.item) : undefined;
+      // reference: a filler is the text or a form of a slot filler of the production's item.
+      if (typeof x.filler === 'string' && target) {
+        const filler = resolveFiller(x.filler, target.item, (id) => items.get(id)?.item);
+        if (filler === null) add(file, 'reference', sub(at, 'filler'), `${quote(x.filler)} is not the text or a form of a slot filler of ${quote(x.item)}`);
+        else acceptedFiller(filler, sub(at, 'filler'));
+      }
       if (target && target.item.register === 'recognition') {
         add(file, 'register', sub(at, 'item'), `item ${quote(x.item)} is recognition-only and is never produced`);
       } else {
@@ -700,6 +831,8 @@ export async function lintContent({ contentDir, allowPending = false }) {
     checkLessonConsistency(doc, schema);
     checkLessonAlphabet(doc, reporter(file, 'alphabet'));
     checkPersonal(doc, reporter(file, 'personal'));
+    checkStatus(doc, reporter(file, 'status-consistency'));
+    checkFormsRecorded(doc, reporter(file, 'form-unrecorded'));
   }
   for (const { file, doc } of rules) {
     const schema = reporter(file, 'schema');

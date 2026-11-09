@@ -8,6 +8,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { buildContent } from '../../tools/build-content.js';
+import { addLesson, addSlot } from './helpers.js';
 const fx = (n) => fileURLToPath(new URL(`../../tools/fixtures/${n}/`, import.meta.url));
 
 // Every temporary folder a test makes is removed once the file has run.
@@ -122,7 +123,7 @@ test('strict build keeps pending items in items without their notes, drops them 
 
 test('strict build leaves a lesson without an accepted item out of the index, the unit and the unit file', async () => {
   const content = await copyFixture('content-pending-mixed', (dir) => editJson(dir, 'lessons/u01-l01.json', (doc) => {
-    for (const item of doc.items) item.verification.status = 'pending';
+    for (const item of doc.items) item.verification = { review1: null, review2: null, native: null, status: 'pending' };
   }));
   const out = await tmp();
   const strict = await buildContent({ contentDir: content, outDir: out });
@@ -221,7 +222,7 @@ test('CLI --check builds into a temporary folder, prints the summary line only a
   assert.ok(lines.includes('STRIPPED lessons/u01-l01.json dialogue/lines/2/new_items/0: practises item "u01-l01-i03" whose verification status is "pending"'), strict.stderr);
 
   const allPending = await copyFixture('content-pending-mixed', (dir) => editJson(dir, 'lessons/u01-l01.json', (doc) => {
-    for (const item of doc.items) item.verification.status = 'pending';
+    for (const item of doc.items) item.verification = { review1: null, review2: null, native: null, status: 'pending' };
   }));
   const omitted = await cli('--check', allPending);
   assert.equal(omitted.code, 0, omitted.stderr);
@@ -240,5 +241,57 @@ test('CLI exits 1 on lint errors or a missing directory without a stack trace, a
   assert.match(notFound.stderr, /^ERROR Content directory not found: .*slovelingo-no-such-dir\n$/);
   const unknown = await cli('--nope');
   assert.equal(unknown.code, 2);
-  assert.equal(unknown.stderr, 'Unexpected argument --nope\nUsage: node tools/build-content.js [--allow-pending] [--check] [contentDir]\n');
+  assert.equal(unknown.stderr, 'Unexpected argument --nope\nUsage: node tools/build-content.js [--allow-pending] [--check] [--known-check] [contentDir]\n');
+});
+
+test('a strict build drops a pending slot filler and the production that uses it, and agrees with the linter', async () => {
+  const content = await copyFixture('content-valid', (dir) => addSlot(dir, { fillerStatus: 'pending', filler: 'večer' }));
+  const out = await tmp();
+  const strict = await buildContent({ contentDir: content, outDir: out });
+  const { lessons: [lesson] } = await readJson(join(out, 'units/u01.json'));
+  assert.deepEqual(lesson.items.find((i) => i.id === 'u01-l01-i02').slots, [{ label: 'time of day', fillers: [] }]);
+  assert.deepEqual(lesson.production.map((p) => p.id), ['u01-l01-p01', 'u01-l01-p02']);
+  assert.deepEqual(strict.stripped.map((s) => s.rule), ['pending-filler', 'pending-filler']);
+  assert.equal(lesson.items.find((i) => i.id === 'u01-l01-i04').verification.status, 'pending', 'the pending filler stays in items');
+
+  await buildContent({ contentDir: content, outDir: out, allowPending: true });
+  const { lessons: [devLesson] } = await readJson(join(out, 'units/u01.json'));
+  assert.deepEqual(devLesson.items.find((i) => i.id === 'u01-l01-i02').slots, [{ label: 'time of day', fillers: ['u01-l01-i04'] }]);
+  assert.deepEqual(devLesson.production.map((p) => p.id), ['u01-l01-p01', 'u01-l01-p02', 'u01-l01-p03']);
+});
+
+test('a strict build strips a pending filler that lives in another lesson, as the corpus-wide linter reports it', async () => {
+  const content = await copyFixture('content-valid', async (dir) => {
+    await addLesson(dir, 'u01-l02');
+    await editJson(dir, 'lessons/u01-l02.json', (doc) => { doc.items[0].verification = { review1: 'accepted', review2: 'doubtful', native: null, status: 'pending' }; });
+    await editJson(dir, 'lessons/u01-l01.json', (doc) => {
+      doc.items[1].slots = [{ label: 'parting', fillers: ['u01-l02-i01'] }];
+      doc.production.push({ id: 'u01-l01-p03', en: 'Say goodbye instead.', answer: 'Nasvidenje.', item: 'u01-l01-i02', filler: 'nasvidenje' });
+    });
+  });
+  const out = await tmp();
+  const strict = await buildContent({ contentDir: content, outDir: out });
+  const lesson = (await readJson(join(out, 'units/u01.json'))).lessons.find((l) => l.id === 'u01-l01');
+  assert.deepEqual(lesson.items.find((i) => i.id === 'u01-l01-i02').slots, [{ label: 'parting', fillers: [] }]);
+  assert.deepEqual(lesson.production.map((p) => p.id), ['u01-l01-p01', 'u01-l01-p02']);
+  assert.deepEqual(strict.stripped.map((s) => s.rule), ['pending-filler', 'pending-filler']);
+  assert.deepEqual(strict.omittedLessons, ['u01-l02']);
+});
+
+test('a production whose item and filler are both pending is stripped once and counted once per linter finding', async () => {
+  const content = await copyFixture('content-valid', async (dir) => {
+    await addSlot(dir, { fillerStatus: 'pending', filler: 'večer' });
+    await editJson(dir, 'lessons/u01-l01.json', (doc) => { doc.items[1].verification = { review1: 'doubtful', review2: 'accepted', native: null, status: 'pending' }; });
+  });
+  const out = await tmp();
+  const strict = await buildContent({ contentDir: content, outDir: out });
+  const { lessons: [lesson] } = await readJson(join(out, 'units/u01.json'));
+  assert.deepEqual(lesson.production.map((p) => p.id), ['u01-l01-p01']);
+  assert.deepEqual(strict.stripped.map((s) => `${s.rule} ${s.path}`), [
+    'pending-practised dialogue/lines/1/new_items/0',
+    'pending-filler items/u01-l01-i02/slots/0/fillers/0',
+    'pending-practised production/u01-l01-p02/item',
+    'pending-filler production/u01-l01-p03/filler',
+    'pending-practised production/u01-l01-p03/item',
+  ]);
 });
