@@ -2,9 +2,11 @@
 // A minimal stand-in for the browser's document, enough to run app/js/util/dom.js under Node:
 // createElement, createElementNS (the tag name keeps its case and the element records its
 // namespace, as an SVG element does), createTextNode, className, classList, dataset, style,
-// setAttribute, appendChild, append, replaceChildren, addEventListener, focus (recorded as
-// document.activeElement) and textContent. It keeps dom.js and the small components honest without
-// a browser; the session itself runs in the end-to-end check.
+// setAttribute, removeAttribute, hidden (reflecting the attribute, as on an HTML element),
+// querySelector (one class selector only), appendChild, append, replaceChildren, addEventListener,
+// focus (recorded as document.activeElement), textContent and a documentElement for the theme. It
+// keeps dom.js and the small components honest without a browser; the session itself runs in the
+// end-to-end check.
 
 /** The document installFakeDom put on globalThis, which focus() reports to. @type {{ activeElement: FakeElement|null }|null} */
 let installed = null;
@@ -98,6 +100,45 @@ class FakeElement extends FakeNode {
     return this.attributes.has(name) ? this.attributes.get(name) : null;
   }
 
+  /** @param {string} name */
+  removeAttribute(name) {
+    this.attributes.delete(name);
+    if (name === 'class') this.className = '';
+  }
+
+  /** The `hidden` attribute as a boolean, as HTMLElement reflects it. */
+  get hidden() {
+    return this.attributes.has('hidden');
+  }
+
+  set hidden(value) {
+    if (value) this.attributes.set('hidden', '');
+    else this.attributes.delete('hidden');
+  }
+
+  /**
+   * The first element under this one, depth first, that carries the class. Only a single class
+   * selector such as `.settings-notice` is understood; anything else throws, so a test never
+   * passes on a selector the fake cannot read.
+   * @param {string} selector
+   * @returns {FakeElement|null}
+   */
+  querySelector(selector) {
+    const match = /^\.([\w-]+)$/.exec(selector);
+    if (!match) throw new Error(`The fake DOM's querySelector takes one class selector, not ${selector}`);
+    /** @param {FakeNode} node @returns {FakeElement|null} */
+    const find = (node) => {
+      for (const child of node.childNodes) {
+        if (!(child instanceof FakeElement)) continue;
+        if (child.classList.contains(match[1])) return child;
+        const below = find(child);
+        if (below) return below;
+      }
+      return null;
+    };
+    return find(this);
+  }
+
   /** @param {string} type @param {Function} listener */
   addEventListener(type, listener) {
     const list = this.listeners.get(type) ?? [];
@@ -132,13 +173,15 @@ class FakeElement extends FakeNode {
 
 /**
  * Puts a fake `document` on globalThis and returns it.
- * @returns {{ createElement(tag: string): FakeElement, createElementNS(namespace: string, tag: string): FakeElement, createTextNode(data: string): FakeText, activeElement: FakeElement|null }}
+ * @returns {{ createElement(tag: string): FakeElement, createElementNS(namespace: string, tag: string): FakeElement, createTextNode(data: string): FakeText, documentElement: FakeElement, activeElement: FakeElement|null }}
  */
 export function installFakeDom() {
   const document = {
     createElement: (/** @type {string} */ tag) => new FakeElement(tag),
     createElementNS: (/** @type {string} */ namespace, /** @type {string} */ tag) => new FakeElement(tag, namespace),
     createTextNode: (/** @type {string} */ data) => new FakeText(String(data)),
+    /** The root element, whose dataset carries the theme. */
+    documentElement: new FakeElement('html'),
     /** @type {FakeElement|null} */
     activeElement: null,
   };
