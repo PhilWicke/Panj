@@ -1,9 +1,10 @@
 // The Words screen (Besede, spec 6): every lesson item met so far (its state past `new`), in course
-// order, each with its English, its register, its phase or "mastered", a play button (not in mute
-// mode) and "Report this", which keeps a one-line note as a flag; flags travel with the export and
-// feed the ask-a-native list. The top line counts the rows below it, "n items met" (Ruling 61; the
-// hive's "Words met" is the lemma count). A search box filters on the Slovenian and the English,
-// ignoring case and diacritics. The pure parts are exported for the tests.
+// order, each with its English, its helper line and first example when it has them, its register,
+// its phase or "mastered", a play button (not in mute mode) and "Report this", which keeps a
+// one-line note as a flag; flags travel with the export and feed the ask-a-native list. The top
+// line counts the rows below it, "n items met" (Ruling 61; the hive's "Words met" is the lemma
+// count). A search box filters on the Slovenian and the English, ignoring case and diacritics. The
+// pure parts are exported for the tests.
 
 import { h, mount, svg } from '../../util/dom.js';
 import { stripDiacritics } from '../../engine/grading.js';
@@ -60,6 +61,17 @@ export function wordRows(app, query) {
     }
   }
   return rows;
+}
+
+/**
+ * What a row shows under the word: the item's helper line when it is a non-empty string, and its
+ * first example when it has one; null for either it lacks.
+ * @param {Item} item
+ * @returns {{ helper: string|null, example: { sl: string, en: string }|null }}
+ */
+export function wordDetails(item) {
+  const helper = typeof item.helper === 'string' && item.helper !== '' ? item.helper : null;
+  return { helper, example: item.examples[0] ?? null };
 }
 
 /**
@@ -134,6 +146,7 @@ function renderReport(item, app) {
  * @returns {HTMLElement}
  */
 function renderEntry({ item, status }, app) {
+  const { helper, example } = wordDetails(item);
   const play = !app.state.settings.mute && h('button', {
     type: 'button', class: 'btn btn-quiet word-play', 'aria-label': `Play ${item.sl}`,
     onclick: () => { void app.player.play(item.sl); },
@@ -144,6 +157,10 @@ function renderEntry({ item, status }, app) {
         h('p', { class: 'sl-title', lang: 'sl' }, item.sl),
         h('p', { class: 'en-text' }, item.en)),
       play),
+    helper && h('p', { class: 'helper word-helper' }, helper),
+    example && h('p', { class: 'word-example' },
+      h('span', { class: 'sl-text', lang: 'sl' }, example.sl),
+      h('span', { class: 'en-text' }, example.en)),
     h('p', { class: 'word-meta' },
       h('span', { class: 'tag' }, REGISTER[item.register] ?? item.register),
       h('span', { class: `word-status word-status-${status}` }, STATUS[status])),

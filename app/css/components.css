@@ -1323,6 +1323,28 @@ button.rule-cell {
   stroke: currentColor;
 }
 
+/* The helper line and the first example under the word: the English muted at 14 px, the example's
+   Slovenian at 16 px. The entry is a surface already, so the helper panel sits on the page colour. */
+.word-helper {
+  padding: var(--space-8) var(--space-12);
+  background: var(--bg);
+  color: var(--text-muted);
+  font-size: var(--text-14);
+}
+
+.word-example {
+  display: grid;
+  gap: 2px;
+}
+
+.word-example .sl-text {
+  font-size: var(--text-16);
+}
+
+.word-example .en-text {
+  font-size: var(--text-14);
+}
+
 .word-meta {
   display: flex;
   flex-wrap: wrap;
