@@ -1,0 +1,117 @@
+/* Design tokens: the palette (spec 7), the colour roles for the light and the dark theme, the type
+   scale, spacing, radius and the self-hosted Bricolage Grotesque (latin and latin-ext subsets,
+   variable in weight, width and optical size; OFL, see assets/fonts/LICENSE-OFL.txt). */
+
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  src: url('../assets/fonts/bricolage-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  src: url('../assets/fonts/bricolage-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  /* Palette */
+  --indigo: #22307A;
+  --indigo-deep: #161F5C;
+  --honey: #F0B323;
+  --poppy: #D63A2F;
+  --leaf: #3B7A3C;
+  --warm-white: #FFFDF9;
+  --ink: #1B1B2A;
+
+  /* Type */
+  --font: 'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --text-14: 14px;
+  --text-16: 16px;
+  --text-18: 18px;
+  --text-22: 22px;
+  --text-28: 28px;
+  --text-34: 34px;
+  --size-sl: var(--text-28);   /* Slovenian content, always larger than the English beside it */
+  --size-en: var(--text-16);
+
+  /* Spacing, radius, tap target */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --radius-10: 10px;
+  --radius-16: 16px;
+  --tap: 44px;
+
+  /* Roles, light theme */
+  color-scheme: light;
+  --bg: var(--warm-white);
+  --surface: color-mix(in srgb, var(--indigo) 5%, var(--warm-white));
+  --surface-strong: color-mix(in srgb, var(--indigo) 10%, var(--warm-white));
+  --text: var(--ink);
+  --text-muted: color-mix(in srgb, var(--ink) 72%, var(--warm-white));
+  --border: color-mix(in srgb, var(--indigo) 22%, var(--warm-white));
+  --accent: var(--indigo);
+  --primary: var(--poppy);
+  --on-primary: var(--warm-white);
+  --focus: var(--honey);
+  --header-bg: var(--indigo);
+  --header-text: var(--warm-white);
+  --correct: var(--leaf);
+  --correct-surface: color-mix(in srgb, var(--leaf) 10%, var(--warm-white));
+  --slip-surface: color-mix(in srgb, var(--honey) 18%, var(--warm-white));
+  --error: var(--poppy);
+  --error-surface: color-mix(in srgb, var(--poppy) 10%, var(--warm-white));
+  --mark: color-mix(in srgb, var(--poppy) 20%, var(--warm-white));
+}
+
+/* Dark theme: indigo stays the surface and honey becomes the accent. The system setting applies
+   unless the learner chose light; [data-theme=dark] forces it. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: var(--indigo-deep);
+    --surface: var(--indigo);
+    --surface-strong: color-mix(in srgb, var(--warm-white) 10%, var(--indigo));
+    --text: var(--warm-white);
+    --text-muted: color-mix(in srgb, var(--warm-white) 76%, var(--indigo-deep));
+    --border: color-mix(in srgb, var(--warm-white) 24%, var(--indigo-deep));
+    --accent: var(--honey);
+    --header-bg: var(--indigo-deep);
+    --correct: color-mix(in srgb, var(--leaf) 45%, var(--warm-white));
+    --correct-surface: color-mix(in srgb, var(--leaf) 28%, var(--indigo-deep));
+    --slip-surface: color-mix(in srgb, var(--honey) 22%, var(--indigo-deep));
+    --error: color-mix(in srgb, var(--poppy) 55%, var(--warm-white));
+    --error-surface: color-mix(in srgb, var(--poppy) 24%, var(--indigo-deep));
+    --mark: color-mix(in srgb, var(--poppy) 45%, var(--indigo-deep));
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: var(--indigo-deep);
+  --surface: var(--indigo);
+  --surface-strong: color-mix(in srgb, var(--warm-white) 10%, var(--indigo));
+  --text: var(--warm-white);
+  --text-muted: color-mix(in srgb, var(--warm-white) 76%, var(--indigo-deep));
+  --border: color-mix(in srgb, var(--warm-white) 24%, var(--indigo-deep));
+  --accent: var(--honey);
+  --header-bg: var(--indigo-deep);
+  --correct: color-mix(in srgb, var(--leaf) 45%, var(--warm-white));
+  --correct-surface: color-mix(in srgb, var(--leaf) 28%, var(--indigo-deep));
+  --slip-surface: color-mix(in srgb, var(--honey) 22%, var(--indigo-deep));
+  --error: color-mix(in srgb, var(--poppy) 55%, var(--warm-white));
+  --error-surface: color-mix(in srgb, var(--poppy) 24%, var(--indigo-deep));
+  --mark: color-mix(in srgb, var(--poppy) 45%, var(--indigo-deep));
+}

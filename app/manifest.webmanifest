@@ -1,3 +1,12 @@
 {
-  "name": "Slovelingo"
+  "name": "Slovelingo",
+  "short_name": "Slovelingo",
+  "description": "Learn Slovenian a few minutes a day.",
+  "lang": "en",
+  "start_url": "./#/today",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFFDF9",
+  "theme_color": "#22307A"
 }
