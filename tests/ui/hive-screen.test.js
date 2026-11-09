@@ -8,6 +8,7 @@ import { test, before, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
 import { elements, withClass } from '../helpers/dom-query.js';
+import { acceptedChunk } from '../helpers/items.js';
 import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
 import { renderHiveScreen } from '../../app/js/ui/screens/hive.js';
 
@@ -23,15 +24,9 @@ beforeEach(() => {
   container = document.createElement('main');
 });
 
-/** @param {string} id @param {string} sl @param {string} en */
-const item = (id, sl, en) => ({
-  id, type: 'chunk', sl, en, register: 'neutral', examples: [],
-  verification: { review1: 'accepted', review2: 'accepted', native: null, status: 'accepted' },
-});
-
 const LESSON = {
   id: 'u01-l01', unit: 'u01', order: 1, title_sl: 'Prvi pozdrav', title_en: 'First hello', rules: [], structured: [], production: [],
-  items: [item('u01-l01-i01', 'Dober dan.', 'Good day.'), item('u01-l01-i02', 'Hvala.', 'Thank you.')],
+  items: [acceptedChunk('u01-l01-i01', 'Dober dan.', 'Good day.'), acceptedChunk('u01-l01-i02', 'Hvala.', 'Thank you.')],
 };
 const UNITS = [
   { id: 'u01', order: 1, title_sl: 'Prvi stik', title_en: 'First contact', motif: 'flower', lessonCount: 5, lessons: ['u01-l01'] },

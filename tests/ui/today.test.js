@@ -13,6 +13,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
 import { elements, withClass } from '../helpers/dom-query.js';
+import { acceptedChunk } from '../helpers/items.js';
 import { createState, skipAheadState } from '../../app/js/engine/scheduler.js';
 import { weekSummary } from '../../app/js/engine/progress.js';
 import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
@@ -184,15 +185,10 @@ test('Today with lessons and nothing due keeps the disabled primary action and i
   assert.equal(all.some((el) => el.textContent === 'Nothing to practise yet'), false);
 });
 
-/** @param {string} id @param {string} sl @param {string} en */
-const stripItem = (id, sl, en) => ({
-  id, type: 'chunk', sl, en, register: 'neutral', examples: [],
-  verification: { review1: 'accepted', review2: 'accepted', native: null, status: 'accepted' },
-});
 const STRIP_UNIT = { id: 'u01', order: 1, title_sl: 'Prvi stik', title_en: 'First contact', motif: 'flower', lessonCount: 5, lessons: ['u01-l01'] };
 const STRIP_LESSON = {
   id: 'u01-l01', unit: 'u01', order: 1, title_sl: 'Prvi pozdrav', title_en: 'First hello', rules: [], structured: [], production: [],
-  items: [stripItem('u01-l01-i01', 'Dober dan.', 'Good day.'), stripItem('u01-l01-i02', 'Hvala.', 'Thank you.')],
+  items: [acceptedChunk('u01-l01-i01', 'Dober dan.', 'Good day.'), acceptedChunk('u01-l01-i02', 'Hvala.', 'Thank you.')],
 };
 
 test("Today draws the current unit's strip under the primary action, the current cell marked, linking to the hive", () => {
