@@ -8,15 +8,17 @@
 // checkpoint seals the unit in meta.sealed; the weekly check appends to meta.weeklyChecks and
 // shows the calibration line; each check appends one SessionRecord. The placement runs the first
 // unit's checkpoint and goes on to the next units while passing, each pass sealing its unit; the
-// chain of units is read from the content (placementUnits, engine/course.js). The pure wording
-// helpers are exported for the tests.
+// chain of units is read from the content (placementUnits, engine/course.js). The end card after
+// a pass, of a unit or of the last unit the placement passed, paints the unit's strip sealed
+// (renderStrip), filled from the states the results left. The pure wording helpers are exported
+// for the tests.
 
 import { h, mount } from '../../util/dom.js';
 import { localDateKey } from '../../util/time.js';
 import { onlyKnown } from '../../content/loader.js';
 import { navigate } from '../../router.js';
 import { grade } from '../../engine/grading.js';
-import { honeyFor } from '../../engine/progress.js';
+import { hiveFill, honeyFor } from '../../engine/progress.js';
 import { placementUnits, practisable } from '../../engine/course.js';
 import {
   WEEKLY_MIN_ITEMS, applyCheckpoint, buildUnitCheckpoint, buildWeeklyCheck, calibration, checkpointMinutes, scoreCheckpoint,
@@ -24,6 +26,7 @@ import {
 import { appendSession, saveItemState, saveMeta } from '../../store/state.js';
 import { answerField, feedbackSlot, mountFeedback } from '../components/answer-field.js';
 import { optionGroup } from '../components/option-group.js';
+import { renderStrip } from '../components/hive.js';
 import { promptWithBlank } from '../exercises/structured.js';
 
 /** @typedef {import('../../app-types.js').App} App */
@@ -375,7 +378,22 @@ export function renderCheckpoint(container, app, params = {}) {
   };
 
   /**
-   * The end card: the result, the verdict or the calibration line, and the way on.
+   * The strip of a unit a check has just sealed, painted, for the pass card: its fill is taken
+   * now, after the results were applied. Null when the course lacks the unit.
+   * @param {string} unitId
+   * @returns {HTMLElement|null}
+   */
+  const sealStrip = (unitId) => {
+    const unit = app.index.units.find((candidate) => candidate.id === unitId);
+    const content = app.units.find((candidate) => candidate.unit.id === unitId);
+    if (!unit || !content) return null;
+    const fill = hiveFill(onlyKnown(app.state.items, app.known), content, Date.now(), settings.desiredRetention, { allowPending: app.allowPending });
+    return h('div', { class: 'checkpoint-seal' }, renderStrip(fill, unit, { sealed: true }));
+  };
+
+  /**
+   * The end card: the result, the verdict or the calibration line, the sealed unit's strip after
+   * a pass, and the way on.
    * @param {Check} check
    * @param {CheckpointScore} score
    * @param {number|null} predicted the weekly check's prediction
@@ -388,6 +406,7 @@ export function renderCheckpoint(container, app, params = {}) {
     view(heading(check),
       h('p', { class: 'prompt checkpoint-result' }, resultLine(score)),
       weekly ? h('p', { class: 'en-text' }, calibrationLine(predicted ?? 0, score.correct)) : h('p', { class: 'en-text' }, verdictLine(score.passed)),
+      check.unitId !== null && score.passed ? sealStrip(check.unitId) : null,
       h('div', { class: 'actions actions-stack' }, h('a', { class: 'btn btn-primary btn-large', href: onward.href }, onward.label)));
     /** @type {HTMLElement|null} */ (container.querySelector('.screen-title'))?.focus();
   };

@@ -8,12 +8,15 @@
 // counts three steps and never asks when the learner will practise, and its last step holds its
 // buttons while it saves and, when the save is refused, says so and offers them again. The
 // placement check takes its chain of units from the content, and an empty chain reaches the
-// not-found card. The checkpoint flow itself runs in the browser check.
+// not-found card. A unit checkpoint run to its end card: a pass paints the unit's strip sealed,
+// one motif per cell of the unit and filled from the states the check left, and a miss draws no
+// strip. The rest of the checkpoint flow runs in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
-import { elements } from '../helpers/dom-query.js';
+import { elements, withClass } from '../helpers/dom-query.js';
 import { grade } from '../../app/js/engine/grading.js';
+import { createMemoryStore } from '../../app/js/store/memory.js';
 import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
 import { renderFeedback } from '../../app/js/ui/components/feedback.js';
 import {
@@ -185,4 +188,43 @@ test('the placement check takes its units from the content', () => {
   const empty = placement([]);
   assert.equal(empty.querySelector('.checkpoint-intro'), null);
   assert.ok(elements(empty).some((e) => e.tagName === 'H1' && e.textContent === 'Checkpoint not found'), 'an empty chain reaches the not-found card');
+});
+
+const SUN = { id: 'u05', order: 5, title_sl: 'Dan in čas', title_en: 'Day and time', motif: 'sun', level: 'A1', lessonCount: 5, lessons: ['u05-l01'] };
+const MORNING = { id: 'u05-l01', unit: 'u05', order: 1, title_sl: 'Moj dan', title_en: 'My day', rules: [], structured: [], production: [],
+  items: [{ id: 'u05-l01-i01', type: 'word', sl: 'zjutraj', en: 'in the morning', register: 'neutral', examples: [],
+    verification: { review1: 'accepted', review2: 'accepted', native: null, status: 'accepted' } }] };
+/** Runs the u05 checkpoint, one item answered with `answer`, to its end card. @param {string} answer */
+async function unitCheckEnd(answer) {
+  const app = /** @type {any} */ ({
+    adapter: createMemoryStore(), index: { units: [SUN], rules: [] }, units: [{ unit: SUN, lessons: [MORNING] }],
+    known: new Set(['u05-l01-i01']), allowPending: false,
+    state: { items: {}, sessions: [], settings: { ...DEFAULT_APP_SETTINGS }, meta: { schemaVersion: 1, createdAt: 0 } },
+  });
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderCheckpoint(container, app, { unit: 'u05' });
+  container.querySelector('.checkpoint-intro').dispatch('submit');
+  container.querySelector('input').value = answer;
+  container.querySelector('.answer-form').dispatch('submit');
+  elements(container).find((e) => e.tagName === 'BUTTON' && e.textContent === 'Continue').dispatch('click');
+  await new Promise((resolve) => setTimeout(resolve, 5));
+  return container;
+}
+
+test("a passed unit checkpoint's end card paints the unit's strip with its motif, a failed one draws no strip", async () => {
+  const passed = await unitCheckEnd('zjutraj');
+  assert.ok(elements(passed).some((e) => e.textContent === 'Passed. The unit is sealed in your hive.'));
+  const strip = elements(passed.querySelector('.checkpoint-seal')).find((e) => e.tagName === 'svg');
+  assert.equal(strip.getAttribute('class'), 'hive hive-strip-large');
+  assert.equal(withClass(strip, 'hive-seal').length, 1);
+  assert.equal(elements(strip).filter((e) => e.tagName === 'use' && e.getAttribute('class') === 'hive-motif motif-sun').length, 5, 'one motif per cell of the unit');
+  const failed = await unitCheckEnd('zvečer');
+  assert.ok(elements(failed).some((e) => e.textContent === 'Not yet. Keep practising and take it again when you are ready.'));
+  assert.equal(failed.querySelector('.checkpoint-seal'), null);
+});
+
+test("the pass card's strip is filled from the states the check left", async () => {
+  const passed = await unitCheckEnd('zjutraj');
+  const [cell] = withClass(passed.querySelector('.checkpoint-seal'), 'hive-cell');
+  assert.equal(cell.getAttribute('class'), 'hive-cell is-learned', 'the item the check passed is recallable now, so its lesson is learned');
 });

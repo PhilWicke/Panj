@@ -15,7 +15,10 @@
 // beside a meet draws the meet again without sound, and silences every context of the sitting;
 // the Quiet control in the session bar holds both choices; the closing menu offers "Can't talk
 // right now" after "A speaking round", and a draw a choice leaves behind cannot draw over the
-// screen after it.
+// screen after it. The closing screen of a unit's last lesson (its consolidation lesson at the
+// unit's lessonCount, or the role alone without one) offers the unit's checkpoint between the
+// summary and the menu once the run has met the lesson's last item, and keeps it when "Can't talk
+// right now" draws the menu again; an earlier lesson's closing screen does not.
 import { test, before, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
@@ -144,6 +147,38 @@ function lessonApp({ settings = {}, audio = false }) {
     known: new Set(ids),
     items: new Map(LESSON.items.map((item) => [item.id, { item, lesson: LESSON }])),
     lessons: new Map([[LESSON.id, LESSON]]),
+    rules: new Map(),
+    allowPending: false,
+    player: player(audio),
+  });
+}
+
+/**
+ * An app over a memory store with one unit u01 of `lessonCount` lessons whose one bundled lesson,
+ * u01-l0<order>, sits at that order with that role and holds `items` accepted items
+ * u01-l0<order>-i0<k>, and no states; otherwise as lessonApp.
+ * @param {{ order: number, role: string, lessonCount?: number, items?: number, settings?: Record<string, unknown>, audio?: boolean }} parts
+ */
+function unitEndApp({ order, role, lessonCount, items = 1, settings = {}, audio = false }) {
+  const lessonId = `u01-l0${order}`;
+  const unit = { ...UNIT, lessonCount, lessons: [lessonId] };
+  const lesson = {
+    id: lessonId, unit: 'u01', order, role, title_sl: `Lekcija ${order}`, title_en: `Lesson ${order}`, rules: [], structured: [], production: [],
+    items: Array.from({ length: items }, (_, k) => acceptedChunk(`${lessonId}-i0${k + 1}`, `sl ${lessonId}-i0${k + 1}`, `en ${lessonId}-i0${k + 1}`)),
+  };
+  const ids = lesson.items.map((item) => item.id);
+  return /** @type {any} */ ({
+    adapter: createMemoryStore(),
+    persistent: true,
+    state: { items: {}, sessions: [], settings: { ...DEFAULT_APP_SETTINGS, mute: true, onboarded: true, ...settings }, flags: [], meta: { schemaVersion: 1, createdAt: T0 } },
+    index: {
+      version: 't', mode: 'dev', generated: '', units: [unit], rules: [], counts: { scheduledItems: ids.length, lemmasMet: 0 },
+      lessonIndex: [{ id: lessonId, unit: 'u01', order, title_sl: lesson.title_sl, title_en: lesson.title_en, itemCount: ids.length }],
+    },
+    units: [{ unit, lessons: [lesson] }],
+    known: new Set(ids),
+    items: new Map(lesson.items.map((item) => [item.id, { item, lesson }])),
+    lessons: new Map([[lessonId, lesson]]),
     rules: new Map(),
     allowPending: false,
     player: player(audio),
@@ -522,4 +557,66 @@ test('an exercise a choice skips draws into its own element, so a late draw of i
   hosts[1].replaceChildren(document.createElement('article'));
   assert.ok(container.querySelector('.closing-menu'), 'the closing menu stays');
   assert.equal(elements(container).includes(hosts[1]), false, 'its element has left the screen');
+});
+
+/** Answers every entry right until the run reaches its closing menu. @param {any} root */
+async function playToEnd(root) {
+  for (let n = 0; n < 50 && !root.querySelector('.closing-menu'); n += 1) {
+    const entry = shown.at(-1);
+    await answer(entry.kind === 'meet' ? { itemId: entry.itemId }
+      : entry.itemId === undefined ? { aux: { kind: entry.kind, correct: true } } : { itemId: entry.itemId, recall: 'correct' });
+  }
+}
+
+test("the closing screen of the unit's last lesson offers its checkpoint, an earlier lesson's does not", async () => {
+  const cases = [
+    [{ order: 5, role: 'consolidation', lessonCount: 5 }, true, 'the last of five lessons'],
+    [{ order: 3, role: 'consolidation', lessonCount: 3 }, true, 'the last of three: no constant five'],
+    [{ order: 4, role: 'theme', lessonCount: 5 }, false, 'an earlier lesson'],
+    [{ order: 5, role: 'consolidation', lessonCount: 5, items: 2, settings: { newPerDay: 1 } }, false, 'the last lesson, not finished in this run'],
+  ];
+  for (const [parts, offered, why] of cases) {
+    const container = /** @type {any} */ (document.createElement('main'));
+    renderSession(container, unitEndApp(parts));
+    await settle();
+    await playToEnd(container);
+    assert.ok(container.querySelector('.closing-menu'), `${why}: the run closed`);
+    const link = elements(container).find((e) => e.tagName === 'A' && e.textContent === 'Take the unit checkpoint');
+    assert.equal(Boolean(link), offered, why);
+    if (link) {
+      assert.equal(link.getAttribute('href'), '#/checkpoint?unit=u01');
+      assert.equal(link.className, 'btn btn-secondary');
+    }
+  }
+});
+
+test("the unit checkpoint sits between the summary and the menu, stays when \"Can't talk right now\" draws the menu again, and the menu's first button takes the focus", async () => {
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderSession(container, unitEndApp({ order: 5, role: 'consolidation', lessonCount: 5, settings: { mute: false }, audio: true }));
+  await settle();
+  await playToEnd(container);
+  const closing = () => container.querySelector('.closing');
+  const parts = () => closing().childNodes.map((/** @type {any} */ e) => e.className);
+  assert.deepEqual(parts(), ['prompt', 'en-text', 'actions closing-checkpoint', 'actions actions-stack closing-menu']);
+  assert.equal(document.activeElement, button(container.querySelector('.closing-menu'), 'Stop here'));
+  button(container.querySelector('.closing-menu'), "Can't talk right now").dispatch('click');
+  assert.equal(button(container.querySelector('.closing-menu'), 'A speaking round'), undefined, 'the menu is drawn again');
+  assert.deepEqual(parts(), ['prompt', 'en-text', 'actions closing-checkpoint', 'actions actions-stack closing-menu'], 'the link stays');
+  assert.equal(elements(container.querySelector('.closing-checkpoint')).find((e) => e.tagName === 'A').textContent, 'Take the unit checkpoint');
+  assert.equal(document.activeElement, button(container.querySelector('.closing-menu'), 'Stop here'), 'the focus still goes to the menu');
+});
+
+test('without lessonCount the consolidation role alone marks the last lesson, and a theme lesson is never the last', async () => {
+  const cases = [
+    [{ order: 2, role: 'consolidation', lessonCount: undefined }, true, 'no lessonCount: the consolidation lesson'],
+    [{ order: 5, role: 'theme', lessonCount: 5 }, false, 'a theme lesson at the unit\'s count'],
+  ];
+  for (const [parts, offered, why] of cases) {
+    const container = /** @type {any} */ (document.createElement('main'));
+    renderSession(container, unitEndApp(parts));
+    await settle();
+    await playToEnd(container);
+    assert.ok(container.querySelector('.closing-menu'), `${why}: the run closed`);
+    assert.equal(Boolean(container.querySelector('.closing-checkpoint')), offered, why);
+  }
 });

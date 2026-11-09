@@ -436,6 +436,11 @@
   display: none;
 }
 
+/* The unit's checkpoint on the closing screen of its last lesson, set apart from the menu under it. */
+.closing-checkpoint {
+  margin-block-end: var(--space-16);
+}
+
 /* Rule card */
 
 .rule-card {
@@ -1209,6 +1214,11 @@ button.rule-cell {
 
 .checkpoint-result {
   font-size: var(--text-28);
+}
+
+/* The pass card's strip of the unit just sealed; the strip keeps .hive's centring. */
+.checkpoint-seal {
+  margin-block: var(--space-16);
 }
 
 .field {

@@ -18,7 +18,10 @@
 // review-phase items this run did not practise, weakest first, filled up from its misses, and the
 // option is left out when that round would be empty (Ruling 80). A speaking round
 // (`?mode=speaking`) plays the speaking entries buildSession planned when speech recognition is
-// on, else the self-rated speaking exercise over up to five review-phase items. Each session
+// on, else the self-rated speaking exercise over up to five review-phase items. The run that meets
+// the last item of a unit's last lesson (its consolidation lesson, at the unit's lessonCount) also
+// offers the unit's checkpoint between the summary and the menu; currentLesson names only a lesson
+// with an unmet item, so this happens once, and later the unit page offers it. Each session
 // starts with speech recognition offered again, even if it was refused in an earlier one
 // (resetRecognition). The pure parts are exported for the tests.
 // Quiet choices (ui/quiet.js) hold for the sitting: a run starts from the choices made so far, and
@@ -35,7 +38,7 @@ import { h, mount } from '../../util/dom.js';
 import { buildMoreRound, buildSession, closingMenu, quietDrops } from '../../engine/session.js';
 import { createState, effectiveResult, recordRecall, skipAheadState } from '../../engine/scheduler.js';
 import { creditedMinutes, honeyFor } from '../../engine/progress.js';
-import { currentLesson, todayTotals, unmetItems } from '../../engine/course.js';
+import { currentLesson, lessonRole, todayTotals, unmetItems } from '../../engine/course.js';
 import { isRuleId } from '../../util/ids.js';
 import { shuffle } from '../../util/shuffle.js';
 import { onlyKnown } from '../../content/loader.js';
@@ -475,7 +478,18 @@ export function renderSession(container, app, params = {}) {
     if (tally.newItems > 0) parts.push(`${tally.newItems} new ${tally.newItems === 1 ? 'item' : 'items'}`);
     parts.push(`about ${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`);
     const summary = parts.join(', ');
-    /** Draws the summary and the menu from a fresh closingMenu; "Can't talk right now" draws them again without the speaking round. */
+    const unit = lesson === null ? undefined : app.index.units.find((candidate) => candidate.id === lesson.unit);
+    /**
+     * The unit whose checkpoint the closing screen offers: the run's lesson is the unit's last (a
+     * consolidation lesson at the unit's lessonCount, or the role alone without one) and has no item
+     * left to meet. Null otherwise.
+     */
+    const checkpointUnit = lesson !== null && unit !== undefined && lessonRole(lesson) === 'consolidation'
+      && lesson.order === (unit.lessonCount ?? lesson.order) && unmetItems(lesson, known(), app.allowPending) === 0 ? unit : null;
+    /**
+     * Draws the summary, the unit's checkpoint when it is offered and the menu from a fresh
+     * closingMenu; "Can't talk right now" draws them again without the speaking round.
+     */
     const showMenu = () => {
       const now = Date.now();
       const options = closingMenu({
@@ -489,11 +503,14 @@ export function renderSession(container, app, params = {}) {
         choose('talk');
         showMenu();
       };
+      const menu = renderMenu(options, (option) => actions[option](), mode.cantTalk ? {} : { onCantTalk });
       mount(stage, h('article', { class: 'exercise closing' },
         h('h2', { class: 'prompt' }, 'Session complete.'),
         h('p', { class: 'en-text' }, `${summary.charAt(0).toUpperCase()}${summary.slice(1)}.`),
-        renderMenu(options, (option) => actions[option](), mode.cantTalk ? {} : { onCantTalk })));
-      /** @type {HTMLElement|null} */ (stage.querySelector('button'))?.focus();
+        checkpointUnit && h('div', { class: 'actions closing-checkpoint' },
+          h('a', { class: 'btn btn-secondary', href: `#/checkpoint?unit=${checkpointUnit.id}` }, 'Take the unit checkpoint')),
+        menu));
+      /** @type {HTMLElement|null} */ (menu.querySelector('button'))?.focus();
     };
     showMenu();
   };
