@@ -325,12 +325,20 @@ test('a Puck job with no successful take goes to failed', async (t) => {
   assert.equal(entry, undefined);
 });
 
-test('a Puck take that cannot be measured is kept at once and not retaken', needsFfmpeg, async (t) => {
+test('a take that cannot be measured after a measured one is passed over, so the measured clip stays', needsFfmpeg, async (t) => {
   const silence = () => audioResponse(Buffer.alloc(48000));
-  const { result, requests, entry } = await generateTakes(t, 'Puck', [260, silence]);
-  assert.equal(requests(), 2);
-  assert.deepEqual(result, { generated: 1, skipped: 0, failed: [], high: [] });
-  assert.equal(entry.pitchHz, null);
+  const { result, requests, entry } = await generateTakes(t, 'Puck', [260, silence, 140]);
+  assert.equal(requests(), 3);
+  assertNearHz(entry.pitchHz, 140);
+  assert.deepEqual(result.high, []);
+});
+
+test('takes that cannot be measured after a high one leave the high one, listed', needsFfmpeg, async (t) => {
+  const silence = () => audioResponse(Buffer.alloc(48000));
+  const { result, requests, entry } = await generateTakes(t, 'Puck', [260, silence, silence, silence, silence]);
+  assert.equal(requests(), MAX_TAKES);
+  assertNearHz(entry.pitchHz, 260);
+  assert.equal(result.high.length, 1);
 });
 
 test('bundleTexts collects the accepted items, their examples and the dialogue lines of lessons with an accepted item', async () => {

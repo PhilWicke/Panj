@@ -244,8 +244,8 @@ const exists = (file) => stat(file).then(() => true, () => false);
 
 /**
  * Takes a text in a voice with a pitch ceiling and returns the take to keep with its pitch: the
- * first at or under the ceiling, or one that cannot be measured (null, never retaken), or else
- * the lowest of MAX_TAKES. A failure after a successful take ends the taking and keeps the lowest
+ * first at or under the ceiling, or a first take that cannot be measured (null, never retaken),
+ * or else the lowest of MAX_TAKES; a later take that cannot be measured is passed over. A failure after a successful take ends the taking and keeps the lowest
  * so far with the reason in `error`, so only a failed first take throws.
  * @param {{ text: string, voice: string, model: string, key: string }} request
  * @param {number} ceiling
@@ -263,6 +263,7 @@ async function lowestTake(request, ceiling) {
       return { ...lowest, error: `take ${take + 1} of ${MAX_TAKES} failed: ${redact(errorMessage(err), request.key)}` };
     }
     const hz = medianPitch(pcm, SAMPLE_RATE);
+    if (hz === null && lowest) continue;
     if (hz === null || hz <= ceiling) return { pcm, hz };
     if (!lowest || hz < lowest.hz) lowest = { pcm, hz };
   }
