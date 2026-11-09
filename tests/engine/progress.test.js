@@ -1,16 +1,16 @@
 // tests/engine/progress.test.js
 // Progress counters over the item states and the session records: the items the learner can recall
-// now, the words met, the hive fill per lesson and unit with each lesson's cell state, the
-// Monday-based week with its one grace day, honey, the hours practised and the credited minutes of
-// a session (the gaps between its marks, each capped, Ruling 79). Every function is pure and
-// counts in the learner's local days.
+// now, the words met, the hive fill per lesson and unit with each lesson's cell state, the unit's
+// reviews that are due, the Monday-based week with its one grace day, honey, the hours practised
+// and the credited minutes of a session (the gaps between its marks, each capped, Ruling 79).
+// Every function is pure and counts in the learner's local days.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { DEFAULT_SETTINGS, createState, recordRecall, skipAheadState, retrievability } from '../../app/js/engine/scheduler.js';
 import { localDateKey } from '../../app/js/util/time.js';
 import {
-  recallNow, wordsMet, lessonFill, cellState, hiveFill, weekSummary, honeyFor, hoursPracticed, a1Hours, creditedMinutes, MAX_GAP_MS,
+  recallNow, wordsMet, lessonFill, cellState, hiveFill, unitDue, weekSummary, honeyFor, hoursPracticed, a1Hours, creditedMinutes, MAX_GAP_MS,
 } from '../../app/js/engine/progress.js';
 
 const TZ = 'Europe/Berlin';
@@ -385,6 +385,19 @@ test('cellState: not started until an item is met, in progress while a counted i
   assert.equal(cellState(states, at([1], 'pending'), T0, R), 'not-started', 'a strict build counts accepted items only');
   assert.equal(cellState(states, at([1], 'pending'), T0, R, { allowPending: true }), 'learned');
   assert.equal(cellState(states, at([]), T0, R), 'not-started');
+});
+
+test("unitDue counts the unit's due items, accepted only in a strict build", () => {
+  const states = byId({ ...fresh, due: T0 - DAY }, { ...edge, due: T0 + DAY }, { ...lapsed, due: T0 - HOUR }, learning, unmet,
+    { ...mastered, due: T0 - DAY }, { ...reviewed('u01-l02-i01', 8), due: T0 - DAY }, { ...reviewed('u02-l01-i01', 8), due: T0 - DAY });
+  const lessons = [
+    lesson('u01-l01', [1, 2, 5, 6, 7, 8].map((n) => item(`u01-l01-i0${n}`, String(n)))),
+    lesson('u01-l02', [item('u01-l02-i01', 'p', [], 'pending')]),
+  ];
+  const content = { unit: unit('u01', lessons), lessons };
+  assert.equal(unitDue(states, content, T0), 3, 'fresh, lapsed and mastered; edge is not due yet, learning and unmet are no reviews, u02 is another unit');
+  assert.equal(unitDue(states, content, T0, { allowPending: true }), 4, 'the pending item counts in a dev build');
+  assert.equal(unitDue({}, content, T0), 0);
 });
 
 test('honey is one per correct recall and A1 courses budget 120 to 180 hours', () => {

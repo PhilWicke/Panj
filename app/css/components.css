@@ -1080,18 +1080,85 @@ button.rule-cell {
   gap: var(--space-4);
 }
 
-.lesson-list {
+/* The unit's strip, its lesson titles and the due line, as wide as the strip so each title sits
+   under its cell: one grid column per cell (--cells, set inline). */
+.unit-strip {
+  display: grid;
+  gap: var(--space-8);
+  width: 100%;
+  max-width: 358px;
+  margin-inline: auto;
+}
+
+.strip-titles {
+  display: grid;
+  grid-template-columns: repeat(var(--cells), minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.strip-titles > li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  text-align: center;
+}
+
+.strip-title {
+  width: 100%;
+  min-height: var(--tap);
+  padding: var(--space-4);
+  border: 0;
+  border-radius: var(--radius-10);
+  background: transparent;
+  color: var(--accent);
+  font-size: var(--text-14);
+  font-weight: 600;
+  line-height: 1.2;
+  hyphens: auto;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.unit-due {
+  color: var(--text-muted);
+  font-size: var(--text-14);
+}
+
+/* A lesson's sheet: a card with a honey top edge. It is a surface already, so a rule's example
+   sits on the page colour. */
+.lesson-sheet {
+  display: grid;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--honey);
+  border-radius: var(--radius-16);
+  background: var(--surface);
+}
+
+.sheet-items,
+.sheet-rules {
   display: grid;
   gap: var(--space-12);
 }
 
-.lesson-entry {
-  display: grid;
-  gap: var(--space-4);
-  padding: var(--space-16);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-16);
-  background: var(--surface);
+.sheet-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.sheet-rules .rule-title {
+  margin: 0;
+}
+
+.lesson-sheet .rule-example {
+  background: var(--bg);
 }
 
 .lesson-meter {

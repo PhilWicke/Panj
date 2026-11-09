@@ -1,14 +1,15 @@
 // Progress counters: pure functions over the item states (scheduler.js), the compiled content
 // (content/types.js) and the session records the session screen appends. They feed the Today
-// screen, the hive, the weekly calendar and the Stats and Words screens. Nothing here reads the
-// clock or writes to its inputs, and the days are the learner's local days (util/time.js).
+// screen, the hive, the unit page, the weekly calendar and the Stats and Words screens. Nothing
+// here reads the clock or writes to its inputs, and the days are the learner's local days
+// (util/time.js).
 //
 // Two counters are shown against the bundle's totals and count the way the compiler does:
 // recallNow against index.counts.scheduledItems (lesson items, so the rule quick-check items that
 // share the states are left out, as in session.js) and wordsMet against index.counts.lemmasMet
 // (the same tokeniser, util/tokens.js, over the same texts).
 
-import { retrievability } from './scheduler.js';
+import { retrievability, isDue } from './scheduler.js';
 import { practisable } from './course.js';
 import { localDateKey, daysBetween } from '../util/time.js';
 import { wordTokens } from '../util/tokens.js';
@@ -229,6 +230,30 @@ export function hiveFill(states, unitContent, now, retention, options = {}) {
     return { lessonId: lesson.id, order: lesson.order, fill: share(t), state: stateOf(t) };
   });
   return { unitId: unitContent.unit.id, cells, fill: share(total) };
+}
+
+/**
+ * How many of the unit's items are due for review now, for the unit page's due line: the items of
+ * its lessons that count (the accepted ones, or every item with `options.allowPending`, as
+ * hiveFill counts them) whose state is in review or lapsed and due. New and learning items are no
+ * reviews, so a drained unit, sealed or not, says what it needs and nothing else.
+ * @param {Record<string, ItemState>} states by item id
+ * @param {UnitContent} unitContent
+ * @param {number} now epoch ms
+ * @param {FillOptions} [options]
+ * @returns {number}
+ */
+export function unitDue(states, unitContent, now, options = {}) {
+  const allowPending = options.allowPending === true;
+  let due = 0;
+  for (const lesson of unitContent.lessons) {
+    for (const item of lesson.items) {
+      if (!practisable(item, allowPending)) continue;
+      const state = states[item.id];
+      if (state && (state.phase === 'review' || state.phase === 'lapsed') && isDue(state, now)) due += 1;
+    }
+  }
+  return due;
 }
 
 /**
