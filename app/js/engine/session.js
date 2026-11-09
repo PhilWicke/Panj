@@ -25,13 +25,18 @@
 // no rule card and no structured exercise, and step 2 is left out. Its practice comes in groups of
 // one exercise: each structured exercise, after its rule's card when the bundle carries the rule,
 // it has not faded and its card is not queued yet, and each production over a practisable item of
-// an earlier lesson of the unit that the learner has met, taken in turn (structured 1, production
-// 1, structured 2, ...), the rest of the longer list last. With N the lesson's practisable items
-// and G the groups, group g is anchored to N[floor(g * N.length / G)] and comes right after that
-// item's first recall in the run that meets it, so the groups fall between the new items and each
-// plays once over the lesson. A due review of an earlier item whose production plays today is left
-// out, the production being its recall. Production over the lesson's own items stays their third
-// recall; any other production is not queued.
+// an earlier lesson of the unit that has graduated (in review or lapsed), taken in turn
+// (structured 1, production 1, structured 2, ...), the rest of the longer list last. With N the
+// lesson's practisable items and G the groups, group g is anchored to N[floor(g * N.length / G)]
+// and comes right after that item's first recall in the run that meets it, so the groups fall
+// between the new items. An anchor still in learning from an earlier day (the run that met it was
+// left before the item graduated) brings its groups again, right after its first recall of
+// today's run: a group lost to a run left early comes back on a later day while its anchor is in
+// learning, and a group that did play before the learner left may play once more. A due review of
+// an earlier item whose production plays today is left out, the production being its recall, and
+// the extras (listening, speaking, the fluency pass) leave out the earlier items a production or
+// the dialogue of the consolidation lesson practises today. Production over the lesson's own
+// items stays their third recall; any other production is not queued.
 // buildMoreRound plans the closing menu's "Three more minutes" (Ruling 80): typed recall over the
 // review-phase items the run did not practise, weakest first, filled up from the run's misses.
 // Items whose verification is not `accepted` never enter the queue (the compiler keeps them in the
@@ -348,7 +353,8 @@ export function buildSession(input) {
   const budget = Math.floor((settings.dailyMinutes - forecastReviewMinutes(states, now, 1)) / NEW_ITEM_MINUTES);
   const fresh = remaining.slice(0, Math.max(0, Math.min(settings.newPerDay - newToday, remaining.length, budget)));
 
-  // A consolidation lesson's groups (see the module comment), kept only when their anchor is new today.
+  // A consolidation lesson's groups (see the module comment), kept only when their anchor is new
+  // today or still in learning from an earlier day.
   /** @type {Map<string, QueueEntry[]>} the groups queued today by the id of their anchor item, in group order */
   const anchored = new Map();
   /** @type {Set<string>} earlier items whose production is queued today */
@@ -363,14 +369,17 @@ export function buildSession(input) {
     }));
     /** @type {QueueEntry[]} */
     const production = consolidation.production
-      .filter((exercise) => earlier.has(exercise.item) && (states[exercise.item]?.phase ?? 'new') !== 'new')
+      .filter((exercise) => earlier.has(exercise.item) && ['review', 'lapsed'].includes(states[exercise.item]?.phase ?? 'new'))
       .map((exercise) => ({ kind: 'slot', exerciseId: exercise.id, itemId: exercise.item, lessonId: consolidation.id }));
     const groups = alternate(structured, production);
     const anchors = consolidation.items.filter((item) => practisable(item.id));
-    const freshIds = new Set(fresh.map((item) => item.id));
+    const anchorIds = new Set([
+      ...fresh.map((item) => item.id),
+      ...unfinished.filter((state) => state.sessionKey !== todayKey).map((state) => state.itemId),
+    ]);
     groups.forEach((group, g) => {
       const anchor = anchors[Math.floor((g * anchors.length) / groups.length)];
-      if (!anchor || !freshIds.has(anchor.id)) return;
+      if (!anchor || !anchorIds.has(anchor.id)) return;
       anchored.set(anchor.id, [...(anchored.get(anchor.id) ?? []), group]);
       if (group.itemId !== undefined) produced.add(group.itemId);
     });
@@ -447,7 +456,9 @@ export function buildSession(input) {
   const units = [];
   for (const state of unfinished) {
     const done = state.sessionKey === todayKey ? state.correctInSession : 0;
-    units.push(unitFor(state.itemId, false, Math.max(1, GRADUATE_AFTER - done)));
+    const unit = unitFor(state.itemId, false, Math.max(1, GRADUATE_AFTER - done));
+    for (const group of anchored.get(state.itemId) ?? []) unit.intro.push(...withCard(group));
+    units.push(unit);
   }
   for (const item of fresh) {
     const unit = unitFor(item.id, true, GRADUATE_AFTER);
@@ -482,8 +493,12 @@ export function buildSession(input) {
   if (queue.length === 0 && !dialogue) return { queue: [], newCount: 0, reviewCount: 0, estimatedMinutes: 0 };
 
   // Known material for the extras: review-phase items, those not reviewed today first.
-  const notDue = reviewPhase.filter((state) => !isDue(state, now));
-  const due = reviewPhase.filter((state) => isDue(state, now));
+  // Not an earlier item a consolidation production or the consolidation dialogue practises today.
+  const usedToday = new Set(produced);
+  if (consolidation && dialogue) for (const line of consolidation.dialogue?.lines ?? []) for (const id of line.new_items ?? []) usedToday.add(id);
+  const extras = reviewPhase.filter((state) => !usedToday.has(state.itemId));
+  const notDue = extras.filter((state) => !isDue(state, now));
+  const due = extras.filter((state) => isDue(state, now));
   /** @param {number} n @returns {string[]} */
   const pick = (n) => {
     const picked = sample(notDue, n, rng);
@@ -498,7 +513,7 @@ export function buildSession(input) {
   if (!mode.mute && !mode.cantTalk && mode.speech) {
     for (const itemId of pick(SPEAKING_PER_SESSION)) queue.push({ kind: 'speaking', itemId });
   }
-  if (reviewPhase.length >= FLUENCY_ITEMS) queue.push({ kind: 'fluency', itemIds: pick(FLUENCY_ITEMS) });
+  if (extras.length >= FLUENCY_ITEMS) queue.push({ kind: 'fluency', itemIds: pick(FLUENCY_ITEMS) });
 
   return {
     queue,

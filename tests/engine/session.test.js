@@ -590,6 +590,56 @@ test('production over an earlier item never met, or pending in a strict build, i
   assert.ok(q.length > 0, 'the session still builds');
 });
 
+test('the extras leave out an earlier item that a consolidation production or the consolidation dialogue practises today', () => {
+  const produced = ['u01-l01-i01', 'u01-l02-i01'];
+  for (let seed = 1; seed <= 50; seed += 1) {
+    const q = buildC({ mode: SPEECH, rng: seeded(seed) }).queue;
+    assert.deepEqual(q.filter((e) => e.kind === 'slot' && produced.includes(e.itemId)).map((e) => e.exerciseId), ['u01-l05-p01', 'u01-l05-p03']);
+    const extras = q.filter((e) => ['listening', 'speaking', 'fluency'].includes(e.kind));
+    assert.deepEqual([...new Set(extras.map((e) => e.kind))], ['listening', 'speaking', 'fluency'], `seed ${seed}: every extra is queued`);
+    for (const e of extras) {
+      for (const id of [e.itemId, ...(e.itemIds ?? [])]) assert.ok(!produced.includes(id), `seed ${seed}: ${e.kind} names ${id}, which p01 or p03 practises`);
+    }
+  }
+  const dialogue = {
+    id: 'u01-l05-d', title_sl: 'Pogovor', title_en: 'Talk', setting_en: 'At the door.',
+    lines: [{ speaker: 'host', sl: 'sl', en: 'en' }, { speaker: 'you', sl: 'sl u01-l03-i01', en: 'en', new_items: ['u01-l03-i01'] }],
+  };
+  const withDialogue = consolidation({ dialogue });
+  for (let seed = 1; seed <= 50; seed += 1) {
+    const q = buildC({ lesson: withDialogue, unitLessons: [...THEMES, withDialogue], mode: SPEECH, rng: seeded(seed) }).queue;
+    assert.equal(q.filter((e) => e.kind === 'dialogue').length, 1);
+    const extras = q.filter((e) => ['listening', 'speaking', 'fluency'].includes(e.kind));
+    for (const e of extras) assert.ok(![e.itemId, ...(e.itemIds ?? [])].includes('u01-l03-i01'), `seed ${seed}: ${e.kind} names the dialogue's item`);
+  }
+});
+
+test('an earlier item still in learning from yesterday gets the recalls it needs, and no consolidation production', () => {
+  const yesterday = T0 - DAY;
+  const states = { ...unitStates(), 'u01-l01-i01': recall(createState('u01-l01-i01', yesterday), 'correct', yesterday) };
+  assert.equal(states['u01-l01-i01'].phase, 'learning');
+  const q = buildC({ states }).queue;
+  assert.equal(q.filter((e) => e.kind === 'typed_en_sl' && e.itemId === 'u01-l01-i01').length, GRADUATE_AFTER);
+  assert.deepEqual(q.filter((e) => e.kind === 'slot' && e.lessonId === 'u01-l05' && e.itemId === 'u01-l01-i01'), [], 'p01 waits until the item has graduated');
+});
+
+test("a consolidation group whose anchor was met on an earlier day, the run left before the group, comes with that item's next recall", () => {
+  // u01-l05-i01 anchors s01 and p01; the learner left right after its first recall.
+  const met = recall(createState('u01-l05-i01', T0), 'correct', T0);
+  const states = { ...unitStates(), 'u01-l05-i01': met };
+  const q = buildC({ now: T0 + DAY, states }).queue;
+  const firstRecall = q.findIndex((e) => e.kind === 'typed_en_sl' && e.itemId === 'u01-l05-i01');
+  assert.ok(firstRecall >= 0, "the item's recalls are queued");
+  for (const id of ['u01-l05-s01', 'u01-l05-p01']) {
+    const at = q.findIndex((e) => e.exerciseId === id);
+    assert.equal(q.filter((e) => e.exerciseId === id).length, 1, `${id} is queued once`);
+    assert.ok(at > firstRecall, `${id} comes after the item's first recall of the run`);
+  }
+  for (const id of ['u01-l05-s02', 'u01-l05-p03']) assert.equal(q.filter((e) => e.exerciseId === id).length, 1, `${id} with the new item`);
+  const sameDay = buildC({ states, newToday: 1 }).queue.map((e) => e.exerciseId).filter(Boolean);
+  assert.deepEqual(sameDay.filter((id) => GROUP_IDS.includes(id)), ['u01-l05-s02', 'u01-l05-p03'], 'the same day, the groups are not queued again');
+});
+
 test('a theme lesson, or one without a role, is built as in v1', () => {
   assert.deepEqual(build({ lesson: lesson({ role: 'theme' }) }), build({ lesson: lesson() }));
 });
