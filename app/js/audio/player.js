@@ -1,7 +1,8 @@
 // The audio player (spec 5). A line plays from its recording when the manifest lists one in the
 // learner's voice, else with the device's own Slovenian voice (one whose `lang` starts with `sl`)
 // through speechSynthesis, else not at all, and play() says which happened. Mute plays nothing.
-// One sound at a time: play(), stop() and setMute() end whatever plays. The manifest is the one
+// One sound at a time: play(), stop(), setMute() and setVoice() end whatever plays; setVoice()
+// changes the learner's voice for every later lookup (Ruling 48). The manifest is the one
 // tools/gen-audio.js writes ({ id: { text, voice, model, bytes } }, id = audioId(text, voice)),
 // with the MP3 files beside it; it is fetched once, on first use, and a 404 or a network error
 // means there are no recordings yet and reads as an empty manifest. The player fetches nothing
@@ -33,6 +34,8 @@ const CANCEL_SETTLE_MS = 150;
  *   never rejects.
  * @property {() => void} stop ends whatever plays
  * @property {(mute: boolean) => void} setMute muted, play() plays nothing; also stops what plays
+ * @property {(voicePref: VoicePref) => void} setVoice the voice of the recordings from now on, for
+ *   every later play() and hasAudioFor(); also stops what plays
  * @property {(text: string) => Promise<boolean>} hasAudioFor whether a recording of `text` in the
  *   preferred voice exists; a promise, since it awaits the manifest and audioId
  * @property {() => boolean} deviceVoiceAvailable whether the device has a Slovenian voice, from
@@ -116,9 +119,11 @@ function within(promise, ms) {
 export function createPlayer({ manifestUrl, voicePref, mute }) {
   const folder = manifestUrl.slice(0, manifestUrl.lastIndexOf('/') + 1);
   let muted = mute;
+  /** The learner's voice preference, which setVoice() changes. */
+  let preferred = voicePref;
   /** @type {Promise<Record<string, ManifestEntry>>|null} */
   let manifest = null;
-  /** Counts play(), stop() and setMute(); a play whose turn has passed plays nothing more. */
+  /** Counts play(), stop(), setMute() and setVoice(); a play whose turn has passed plays nothing more. */
   let turn = 0;
   /** The recording being played. @type {{ audio: HTMLAudioElement, cut: () => void }|null} */
   let clip = null;
@@ -138,7 +143,7 @@ export function createPlayer({ manifestUrl, voicePref, mute }) {
    * @returns {Promise<string|null>}
    */
   const recordingFor = async (text) => {
-    const voice = voiceFor(voicePref);
+    const voice = voiceFor(preferred);
     if (!voice) return null;
     manifest ??= fetchManifest(manifestUrl);
     try {
@@ -248,6 +253,10 @@ export function createPlayer({ manifestUrl, voicePref, mute }) {
     stop: halt,
     setMute(value) {
       muted = value;
+      halt();
+    },
+    setVoice(value) {
+      preferred = value;
       halt();
     },
     async hasAudioFor(text) {

@@ -1,7 +1,8 @@
 /* Components: header, screens, buttons, the exercises, the feedback panel, the session bar, the
    rule card, the Rules screen, the Today screen with its calendar and hive, the unit page, the
-   checkpoint and onboarding forms and the tab bar. Every control is at least 44 px tall; motion
-   only answers an action and sits in the no-preference block at the end. */
+   checkpoint and onboarding forms, the Words, Stats and Settings screens and the tab bar. Every
+   control is at least 44 px tall; motion only answers an action and sits in the no-preference
+   block at the end. */
 
 /* Header */
 
@@ -1147,6 +1148,321 @@ button.rule-cell {
   background: var(--surface);
 }
 
+/* Words */
+
+.word-list {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.word-entry {
+  display: grid;
+  gap: var(--space-8);
+  padding: var(--space-16);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-16);
+  background: var(--surface);
+}
+
+.word-head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+}
+
+.word-text {
+  display: grid;
+  flex: 1;
+  gap: 2px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.word-play {
+  flex: none;
+  width: var(--tap);
+  margin: calc(-1 * var(--space-4)) calc(-1 * var(--space-8)) 0 0;
+  padding: 0;
+}
+
+.word-play-icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.word-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--text-14);
+}
+
+.word-status {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.word-status-mastered {
+  color: var(--accent);
+}
+
+/* No gap: the empty status line under the form stays in place for assistive technology without
+   adding space. */
+.word-report-wrap {
+  display: grid;
+  justify-items: start;
+}
+
+.word-report-open {
+  margin-left: calc(-1 * var(--space-12));
+}
+
+.word-report {
+  display: grid;
+  gap: var(--space-8);
+  justify-self: stretch;
+  margin-top: var(--space-4);
+}
+
+.word-report-row {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.word-report-row .text-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.word-report-done:focus {
+  outline: none;
+}
+
+/* Stats */
+
+.stats-section {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.bar-list {
+  display: grid;
+  gap: var(--space-8);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr) 7rem;
+  align-items: center;
+  gap: var(--space-12);
+  font-size: var(--text-14);
+}
+
+.bar-label {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.bar {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--surface-strong);
+}
+
+.bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--honey);
+}
+
+.bar-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.hours-meter {
+  position: relative;
+  flex: none;
+  height: 10px;
+  margin-top: var(--space-4);
+}
+
+.meter-mark {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--text-muted);
+}
+
+.stats-line {
+  font-weight: 600;
+}
+
+.stats-value {
+  font-size: var(--text-22);
+  font-weight: 700;
+}
+
+.stats-list {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.stats-kinds {
+  display: grid;
+  margin: 0;
+}
+
+.stats-kind {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-12);
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-kind dd {
+  margin: 0;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Settings */
+
+.settings-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.settings-saved {
+  color: var(--text-muted);
+  font-size: var(--text-14);
+  font-weight: 600;
+}
+
+.settings-form {
+  display: grid;
+  gap: var(--space-32);
+}
+
+.settings-group {
+  display: grid;
+  gap: var(--space-16);
+}
+
+.choice-list {
+  min-width: 0;
+}
+
+.choice-list > legend {
+  margin-bottom: var(--space-8);
+  padding: 0;
+}
+
+.range-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.range-value {
+  font-size: var(--text-18);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.range-input {
+  width: 100%;
+  min-height: var(--tap);
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.switch-row {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+  width: 100%;
+  min-height: 48px;
+  padding: 0 var(--space-16);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-10);
+  background: var(--surface);
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.switch[aria-checked='true'] {
+  border-color: var(--accent);
+}
+
+.switch-track {
+  position: relative;
+  flex: none;
+  width: 44px;
+  height: 26px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-strong);
+}
+
+.switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.switch[aria-checked='true'] .switch-track {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.switch[aria-checked='true'] .switch-thumb {
+  background: var(--bg);
+  transform: translateX(18px);
+}
+
+.settings-notice {
+  padding: var(--space-8) var(--space-12);
+  border-left: 3px solid var(--honey);
+  border-radius: 0 var(--radius-10) var(--radius-10) 0;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.settings-notice:focus {
+  outline: none;
+}
+
+.settings-reset-open {
+  justify-self: start;
+  margin-left: calc(-1 * var(--space-12));
+}
+
 /* Tab bar */
 
 .app-main.has-nav {
@@ -1221,6 +1537,10 @@ button.rule-cell {
   .segment,
   .rule-cell {
     transition: background-color 120ms ease-out, border-color 120ms ease-out;
+  }
+
+  .switch-thumb {
+    transition: transform 120ms ease-out, background-color 120ms ease-out;
   }
 
   .btn:not([disabled]):active {

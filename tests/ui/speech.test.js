@@ -6,8 +6,8 @@
 // on its timeout; a refused microphone or service, no microphone or no Slovenian is remembered as
 // recognitionBlocked until resetRecognition, and no other error is. createPlayer plays the recording first, the device's Slovenian voice second and
 // resolves 'none' when neither exists; a missing manifest reads as empty without a console error,
-// and a missing Web Crypto as no recording; mute plays nothing; a new play waits for the cancelled
-// utterance to let go before it speaks.
+// and a missing Web Crypto as no recording; mute plays nothing; setVoice changes the voice of later lookups and stops what
+// plays; a new play waits for the cancelled utterance to let go before it speaks.
 import { test, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { compareSpoken, recognitionBlocked, recognizeOnce, resetRecognition, speechAvailable } from '../../app/js/audio/speech.js';
@@ -373,6 +373,38 @@ test('createPlayer plays nothing when muted, and setMute stops what plays', asyn
   assert.equal(made[0].paused, true, 'setMute stops the playback');
   assert.equal(await playing, 'file', 'the stopped play still says where the sound came from');
   assert.equal(await player.play('Dober dan.'), 'none');
+});
+
+test('setVoice switches the voice of the recordings for later lookups and stops what plays (Ruling 48)', async () => {
+  const kore = await audioId('Dober dan.', 'Kore');
+  const { fetch, calls } = serving({ [kore]: { text: 'Dober dan.', voice: 'Kore', model: 'm', bytes: 1 } });
+  stub('fetch', fetch);
+  stub('speechSynthesis', undefined);
+  /** An audio element that plays until it is paused. */
+  const made = /** @type {any[]} */ ([]);
+  stub('Audio', class {
+    /** @param {string} src */
+    constructor(src) { this.src = src; this.paused = true; made.push(this); }
+    play() { this.paused = false; return Promise.resolve(); }
+    pause() { this.paused = true; }
+  });
+
+  const player = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'male', mute: false });
+  assert.equal(await player.hasAudioFor('Dober dan.'), false, 'the recording is in the female voice');
+  player.setVoice('female');
+  assert.equal(await player.hasAudioFor('Dober dan.'), true, 'the next lookup uses the new voice');
+  const playing = player.play('Dober dan.');
+  await new Promise((resolve) => setTimeout(resolve, 20));
+  assert.equal(made.length, 1);
+  assert.equal(made[0].src, `assets/audio/${kore}.mp3`);
+  assert.equal(made[0].paused, false);
+  player.setVoice('device');
+  assert.equal(made[0].paused, true, 'setVoice stops the playback');
+  assert.equal(await playing, 'file');
+  assert.equal(await player.hasAudioFor('Dober dan.'), false, 'the device voice has no recordings');
+  assert.equal(await player.play('Dober dan.'), 'none', 'and no Slovenian device voice here');
+  assert.equal(made.length, 1, 'nothing more was played from a file');
+  assert.equal(calls.length, 1, 'the manifest is fetched once, whatever the voice');
 });
 
 test('a new play cancels the utterance before it and waits for its end, or 150 ms, before speaking', async () => {

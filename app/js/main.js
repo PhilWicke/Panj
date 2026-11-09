@@ -1,9 +1,9 @@
 // The app's entry point. Boot: open the store (IndexedDB, or memory with a notice), load the state
 // and the content bundle, register the exercises, then route: `#/onboarding` until the learner is
-// onboarded, `#/today` otherwise, `#/session`, `#/hive`, `#/unit?id=uNN`, `#/rules` and
-// `#/checkpoint` (a unit's, the weekly check or the placement). Every screen gets the one App
-// object (app-types.js), whose state the screens update as they save; every screen but
-// onboarding, the session and a checkpoint has the tab bar below it.
+// onboarded, `#/today` otherwise, `#/session`, `#/hive`, `#/unit?id=uNN`, `#/rules`, `#/words`,
+// `#/settings`, `#/stats` and `#/checkpoint` (a unit's, the weekly check or the placement). Every
+// screen gets the one App object (app-types.js), whose state the screens update as they save;
+// every screen but onboarding, the session and a checkpoint has the tab bar below it.
 
 import { h, mount } from './util/dom.js';
 import { openStore } from './store/db.js';
@@ -29,6 +29,9 @@ import { renderUnit } from './ui/screens/unit.js';
 import { renderRules } from './ui/screens/rules.js';
 import { renderCheckpoint } from './ui/screens/checkpoint.js';
 import { renderOnboarding } from './ui/screens/onboarding.js';
+import { renderWords } from './ui/screens/words.js';
+import { renderSettings } from './ui/screens/settings.js';
+import { renderStats } from './ui/screens/stats.js';
 import { applyTheme } from './ui/theme.js';
 
 /** @typedef {import('./app-types.js').App} App */
@@ -49,8 +52,8 @@ const WITHOUT_NAV = new Set(['/onboarding', '/session', '/checkpoint']);
 /** @type {HTMLElement|null} */
 let nav = null;
 
-/** Routes shown under another route's tab: the unit page belongs to the Hive tab. */
-const TAB_OF = new Map([['/unit', '/hive']]);
+/** Routes shown under another route's tab: the unit page belongs to the Hive tab, Stats to Settings. */
+const TAB_OF = new Map([['/unit', '/hive'], ['/stats', '/settings']]);
 
 /**
  * Puts the tab bar below the main column, or takes it away on the routes without one; the column
@@ -112,6 +115,9 @@ async function boot() {
     else if (path === '/hive') renderHiveScreen(root, app);
     else if (path === '/unit') renderUnit(root, app, params);
     else if (path === '/rules') renderRules(root, app);
+    else if (path === '/words') renderWords(root, app);
+    else if (path === '/settings') renderSettings(root, app);
+    else if (path === '/stats') renderStats(root, app);
     else return navigate('/today', { replace: true });
     showNav(path);
   };
