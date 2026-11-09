@@ -2,14 +2,24 @@
 // browser's Web Speech recogniser streams the learner's voice to its speech service while it
 // listens. So the exercises call recognizeOnce only after the learner has switched recognition on
 // (settings.speech, off by default); speechAvailable only checks that the API exists and never
-// constructs a recogniser. compareSpoken judges a transcript against the line coarsely: a match,
-// close, or a miss, never a score.
+// constructs a recogniser. A failure that does not pass by itself (a refused microphone or speech
+// service, no microphone, a recogniser without Slovenian) is remembered until resetRecognition,
+// which the session screen calls as each session starts and the Settings switch when recognition
+// is turned on; recognitionBlocked tells the exercises so they do not ask again in the meantime.
+// Any other failure (no connection, a recogniser that would not start, an error the browser names
+// otherwise) is reported for the one attempt only. compareSpoken judges a transcript against the
+// line coarsely: a match, close, or a miss, never a score.
 
 import { grade, levenshtein, normalize, stripDiacritics } from '../engine/grading.js';
 
 /** Edits a transcript may be off by and still count as close, or this share of the line's length if that is more. */
 const CLOSE_EDITS = 2;
 const CLOSE_SHARE = 0.2;
+/** Recogniser errors that stay until the learner or the browser changes something. */
+const LASTING_ERRORS = new Set(['not-allowed', 'service-not-allowed', 'audio-capture', 'language-not-supported']);
+
+/** Set by a lasting error, cleared by resetRecognition. */
+let blocked = false;
 
 /**
  * The part of the Web Speech recogniser used here. The DOM typings leave the interface out (it is
@@ -45,11 +55,30 @@ export function speechAvailable() {
 }
 
 /**
+ * Whether recognition failed in a way that does not pass by itself (`not-allowed`,
+ * `service-not-allowed`, `audio-capture`, `language-not-supported`) since the last
+ * resetRecognition. Other errors never set it.
+ * @returns {boolean}
+ */
+export function recognitionBlocked() {
+  return blocked;
+}
+
+/**
+ * Forgets a lasting failure, so the next speaking exercise offers recognition again. The session
+ * screen calls it as a session starts; Settings calls it when recognition is switched on.
+ */
+export function resetRecognition() {
+  blocked = false;
+}
+
+/**
  * Listens once and resolves with what was heard. It never rejects: `transcript` is null with
  * `error` naming why when the API is missing (`unavailable`), when the recogniser cannot start
  * (`start-failed`), on the recogniser's own errors (`not-allowed` when the microphone is refused,
  * `no-speech`, `network` and the others, as the browser names them), when it ends without a
- * result (`no-speech`) and after `timeoutMs` (`timeout`, and the recogniser is stopped).
+ * result (`no-speech`) and after `timeoutMs` (`timeout`, and the recogniser is stopped). A lasting
+ * error sets recognitionBlocked.
  * @param {{ lang?: string, timeoutMs?: number }} [options]
  * @returns {Promise<Recognised>}
  */
@@ -65,6 +94,7 @@ export function recognizeOnce({ lang = 'sl-SI', timeoutMs = 6000 } = {}) {
       if (done) return;
       done = true;
       clearTimeout(timer);
+      if (error !== null && LASTING_ERRORS.has(error)) blocked = true;
       if (recognition) {
         recognition.onresult = null;
         recognition.onerror = null;

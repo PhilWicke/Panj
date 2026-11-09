@@ -5,7 +5,8 @@
 // recordRecall (or skipAheadState for a rule's correct quick check, Ruling 21) gives the next
 // state, which is saved at once. A typed recall that counts as a miss comes back after the next
 // two entries until it is right or a slip. At the end a SessionRecord is appended and the closing
-// menu is offered. The pure parts are exported for the tests.
+// menu is offered. Each session starts with speech recognition offered again, even if it was
+// refused in an earlier one (resetRecognition). The pure parts are exported for the tests.
 
 import { h, mount } from '../../util/dom.js';
 import { buildSession, closingMenu } from '../../engine/session.js';
@@ -17,6 +18,7 @@ import { onlyKnown } from '../../content/loader.js';
 import { saveItemState, appendSession } from '../../store/state.js';
 import { renderFor } from '../exercises/registry.js';
 import { navigate } from '../../router.js';
+import { resetRecognition } from '../../audio/speech.js';
 
 /** @typedef {import('../../main.js').App} App */
 /** @typedef {import('../../engine/session.js').QueueEntry} QueueEntry */
@@ -172,6 +174,7 @@ export function renderSession(container, app, params = {}) {
   const settings = app.state.settings;
   const mode = { mute: settings.mute, speech: settings.speech };
   const startedAt = Date.now();
+  resetRecognition();
   /** @type {Record<string, number>} exercises played per kind */
   const kinds = {};
   const tally = { played: 0, recalls: 0, correct: 0, newItems: 0, kinds };

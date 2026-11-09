@@ -3,13 +3,14 @@
 // compareSpoken: a correct or slipped transcript is a match, one within 2 edits or 20 percent of
 // the line (diacritics aside) is close, anything else a miss. recognizeOnce never rejects: it
 // resolves transcript null when the API is missing, on an error, on an end without a result and
-// on its timeout. createPlayer plays the recording first, the device's Slovenian voice second and
+// on its timeout; a refused microphone or service, no microphone or no Slovenian is remembered as
+// recognitionBlocked until resetRecognition, and no other error is. createPlayer plays the recording first, the device's Slovenian voice second and
 // resolves 'none' when neither exists; a missing manifest reads as empty without a console error,
 // and a missing Web Crypto as no recording; mute plays nothing; a new play waits for the cancelled
 // utterance to let go before it speaks.
 import { test, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { compareSpoken, recognizeOnce, speechAvailable } from '../../app/js/audio/speech.js';
+import { compareSpoken, recognitionBlocked, recognizeOnce, resetRecognition, speechAvailable } from '../../app/js/audio/speech.js';
 import { createPlayer, voiceFor, VOICES } from '../../app/js/audio/player.js';
 import { audioId } from '../../app/js/util/audio-id.js';
 
@@ -23,6 +24,7 @@ function stub(name, value) {
 }
 
 afterEach(() => {
+  resetRecognition();
   for (const [name, descriptor] of originals) {
     if (descriptor) Object.defineProperty(globalThis, name, descriptor);
     else delete (/** @type {Record<string, unknown>} */ (globalThis))[name];
@@ -229,6 +231,37 @@ test('recognizeOnce never rejects: a refusal, no speech, an end without a result
   const hung = run(() => {}, 20);
   assert.deepEqual(await hung.result, { transcript: null, error: 'timeout' });
   assert.equal(hung.made[0].aborted, 1, 'the timeout stops the recogniser');
+});
+
+test('recognizeOnce remembers a failure that does not pass by itself until resetRecognition, and no other', async () => {
+  /** @param {(recognition: any) => void} behave @param {number} [timeoutMs] */
+  const run = (behave, timeoutMs) => {
+    stub('SpeechRecognition', fakeRecognition(behave).FakeRecognition);
+    return recognizeOnce({ timeoutMs });
+  };
+  /** @param {string} error */
+  const failing = (error) => run((r) => setTimeout(() => { r.onerror?.({ error }); r.onend?.(); }, 0));
+
+  assert.equal(recognitionBlocked(), false, 'nothing is remembered before the first attempt');
+  for (const error of ['not-allowed', 'service-not-allowed', 'audio-capture', 'language-not-supported']) {
+    resetRecognition();
+    assert.deepEqual(await failing(error), { transcript: null, error });
+    assert.equal(recognitionBlocked(), true, `${error} stays`);
+    resetRecognition();
+    assert.equal(recognitionBlocked(), false, `resetRecognition forgets ${error}`);
+  }
+
+  for (const error of ['network', 'no-speech', 'aborted', 'bad-grammar', 'a-code-from-a-later-browser']) {
+    assert.deepEqual(await failing(error), { transcript: null, error });
+    assert.equal(recognitionBlocked(), false, `${error} is for that attempt only`);
+  }
+  assert.equal((await run(() => { throw new Error('InvalidStateError'); })).error, 'start-failed');
+  assert.equal(recognitionBlocked(), false, 'a recogniser that would not start once may start the next time');
+  assert.equal((await run(() => {}, 10)).error, 'timeout');
+  assert.equal(recognitionBlocked(), false, 'nor does the timeout');
+  stub('SpeechRecognition', undefined);
+  assert.equal((await recognizeOnce()).error, 'unavailable');
+  assert.equal(recognitionBlocked(), false, 'a missing API is speechAvailable\'s to say');
 });
 
 test('voiceFor maps the voice preference to the recordings\' voice, none for the device voice', () => {

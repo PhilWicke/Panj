@@ -1,8 +1,12 @@
 // tests/helpers/fake-dom.js
 // A minimal stand-in for the browser's document, enough to run app/js/util/dom.js under Node:
-// createElement, createTextNode, className, dataset, setAttribute, appendChild, addEventListener
-// and textContent. It keeps dom.js honest without a browser; the session itself runs in the
-// end-to-end check.
+// createElement, createTextNode, className, classList, dataset, setAttribute, appendChild, append,
+// replaceChildren, addEventListener, focus (recorded as document.activeElement) and textContent.
+// It keeps dom.js and the small components honest without a browser; the session itself runs in
+// the end-to-end check.
+
+/** The document installFakeDom put on globalThis, which focus() reports to. @type {{ activeElement: FakeElement|null }|null} */
+let installed = null;
 
 class FakeNode {
   constructor() {
@@ -18,6 +22,18 @@ class FakeNode {
     child.parentNode = this;
     this.childNodes.push(child);
     return child;
+  }
+
+  /** Appends nodes, and strings as text, as the DOM's append does. @param {...(FakeNode|string)} nodes */
+  append(...nodes) {
+    for (const node of nodes) this.appendChild(typeof node === 'string' ? new FakeText(node) : node);
+  }
+
+  /** @param {...(FakeNode|string)} nodes */
+  replaceChildren(...nodes) {
+    for (const child of this.childNodes) child.parentNode = null;
+    this.childNodes = [];
+    this.append(...nodes);
   }
 
   get textContent() {
@@ -81,17 +97,34 @@ class FakeElement extends FakeNode {
   dispatch(type) {
     for (const listener of this.listeners.get(type) ?? []) listener({ type, target: this });
   }
+
+  /** The class names, over className, as the DOM's classList keeps them. */
+  get classList() {
+    const names = () => this.className.split(/\s+/).filter(Boolean);
+    return {
+      add: (/** @type {string[]} */ ...tokens) => { this.className = [...new Set([...names(), ...tokens])].join(' '); },
+      remove: (/** @type {string[]} */ ...tokens) => { this.className = names().filter((name) => !tokens.includes(name)).join(' '); },
+      contains: (/** @type {string} */ token) => names().includes(token),
+    };
+  }
+
+  focus() {
+    if (installed) installed.activeElement = this;
+  }
 }
 
 /**
  * Puts a fake `document` on globalThis and returns it.
- * @returns {{ createElement(tag: string): FakeElement, createTextNode(data: string): FakeText }}
+ * @returns {{ createElement(tag: string): FakeElement, createTextNode(data: string): FakeText, activeElement: FakeElement|null }}
  */
 export function installFakeDom() {
   const document = {
     createElement: (/** @type {string} */ tag) => new FakeElement(tag),
     createTextNode: (/** @type {string} */ data) => new FakeText(String(data)),
+    /** @type {FakeElement|null} */
+    activeElement: null,
   };
+  installed = document;
   Object.defineProperty(globalThis, 'document', { value: document, configurable: true, writable: true });
   return document;
 }

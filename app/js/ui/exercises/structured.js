@@ -6,6 +6,7 @@
 
 import { h, mount } from '../../util/dom.js';
 import { shuffle } from '../../util/shuffle.js';
+import { optionGroup } from '../components/option-group.js';
 
 /** @typedef {import('./registry.js').ExerciseRender} ExerciseRender */
 /** @typedef {import('./registry.js').ExerciseOutcome} ExerciseOutcome */
@@ -53,45 +54,26 @@ export function render(container, entry, ctx) {
   const rule = ctx.rules.find((each) => each.id === exercise.rule) ?? ctx.rule;
   return new Promise((resolve) => {
     const { prompt, blank } = promptWithBlank(exercise.prompt_sl);
-    const result = h('div', { class: 'quick-check-result', 'aria-live': 'polite' });
-    const actions = h('div', { class: 'actions' });
-    const order = shuffle(exercise.options, ctx.rng);
-    let answered = false;
-
-    /** @param {string} choice */
-    const pick = (choice) => {
-      if (answered) return;
-      answered = true;
-      const outcome = structuredOutcome(exercise, choice);
-      const correct = outcome.aux?.correct === true;
-      order.forEach((option, i) => {
-        options[i].disabled = true;
-        if (option === exercise.answer) options[i].classList.add('option-right');
-        else if (option === choice) options[i].classList.add('option-wrong');
-      });
-      blank.replaceChildren(exercise.answer);
-      blank.classList.add('blank-filled');
-      result.replaceChildren(h('section', { class: `feedback feedback-${correct ? 'correct' : 'wrong'}` },
-        h('p', { class: 'feedback-headline' }, correct ? 'Correct.' : 'Not quite.'),
-        !correct && h('p', null, 'The answer is ', h('span', { lang: 'sl', class: 'quick-check-answer' }, exercise.answer), '.'),
-        !correct && rule && h('div', { class: 'rule-line' },
-          h('p', { class: 'rule-line-title' }, rule.title_en),
-          h('p', null, rule.card_en))));
-      const next = h('button', { type: 'button', class: 'btn btn-primary', onclick: () => resolve(outcome) }, 'Continue');
-      actions.append(next);
-      next.focus();
-    };
-
-    /** @type {HTMLButtonElement[]} */
-    const options = order.map((option) => /** @type {HTMLButtonElement} */ (h('button', {
-      type: 'button', class: 'btn btn-secondary option', lang: 'sl', onclick: () => pick(option),
-    }, option)));
+    const { group, result, actions } = optionGroup({
+      options: shuffle(exercise.options, ctx.rng), answer: exercise.answer, label: 'Options', lang: 'sl',
+      onPick: (choice, correct) => {
+        blank.replaceChildren(exercise.answer);
+        blank.classList.add('blank-filled');
+        return [
+          !correct && h('p', null, 'The answer is ', h('span', { lang: 'sl', class: 'quick-check-answer' }, exercise.answer), '.'),
+          !correct && rule && h('div', { class: 'rule-line' },
+            h('p', { class: 'rule-line-title' }, rule.title_en),
+            h('p', null, rule.card_en)),
+        ];
+      },
+      onContinue: (choice) => resolve(structuredOutcome(exercise, choice)),
+    });
 
     mount(container, h('article', { class: 'exercise exercise-structured' },
       h('p', { class: 'eyebrow' }, 'Choose the form'),
       prompt,
       h('p', { class: 'en-text' }, exercise.en),
-      h('div', { class: 'options', role: 'group', 'aria-label': 'Options' }, options),
+      group,
       result,
       actions));
     // The sentence takes the focus, so a screen reader reads it before the options.

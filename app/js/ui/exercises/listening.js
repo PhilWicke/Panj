@@ -10,7 +10,8 @@ import { h, mount } from '../../util/dom.js';
 import { shuffle } from '../../util/shuffle.js';
 import { grade } from '../../engine/grading.js';
 import { answerField, mountFeedback } from '../components/answer-field.js';
-import { showNoAudio } from '../components/no-audio.js';
+import { audioExercise } from '../components/no-audio.js';
+import { optionGroup } from '../components/option-group.js';
 
 /** @typedef {import('./registry.js').ExerciseRender} ExerciseRender */
 /** @typedef {import('./registry.js').ExerciseOutcome} ExerciseOutcome */
@@ -46,18 +47,8 @@ export function render(container, entry, ctx) {
   const item = ctx.item;
   if (!item) return Promise.resolve({});
   return new Promise((resolve) => {
-    let done = false;
-    /** @param {ExerciseOutcome} outcome */
-    const finish = (outcome) => {
-      if (done) return;
-      done = true;
-      resolve(outcome);
-    };
-    const listen = async () => {
-      const how = await ctx.play(item.sl);
-      if (how === 'none' && !done) showNoAudio(container, () => finish({}));
-    };
-    const again = h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => { void listen(); } }, 'Play again');
+    const { finish, listen } = audioExercise({ container, play: ctx.play, text: item.sl, resolve });
+    const again = h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => listen() }, 'Play again');
     const options = ctx.rng() < 0.5 ? null : meaningOptions(item, ctx.lesson, ctx.rng);
 
     if (!options) {
@@ -82,44 +73,27 @@ export function render(container, entry, ctx) {
       input.focus();
     } else {
       const question = h('h2', { class: 'prompt-en', tabindex: '-1' }, 'What does it mean?');
-      const result = h('div', { 'aria-live': 'polite' });
-      const actions = h('div', { class: 'actions' });
-      let answered = false;
-      /** @param {string} choice */
-      const pick = (choice) => {
-        if (answered) return;
-        answered = true;
-        const correct = choice === item.en;
-        options.forEach((option, i) => {
-          buttons[i].disabled = true;
-          if (option === item.en) buttons[i].classList.add('option-right');
-          else if (option === choice) buttons[i].classList.add('option-wrong');
-        });
-        result.replaceChildren(h('section', { class: `feedback feedback-${correct ? 'correct' : 'wrong'}` },
-          h('p', { class: 'feedback-headline' }, correct ? 'Correct.' : 'Not quite.'),
+      const { group, result, actions } = optionGroup({
+        options, answer: item.en, label: 'Meanings', stacked: true,
+        onPick: () => [
           h('div', { class: 'feedback-row' },
             h('span', { class: 'feedback-label' }, 'You heard'),
             h('span', { class: 'sl-display feedback-form', lang: 'sl' }, item.sl)),
           h('div', { class: 'feedback-row' },
             h('span', { class: 'feedback-label' }, 'It means'),
-            h('span', { class: 'en-text' }, item.en))));
-        const next = h('button', { type: 'button', class: 'btn btn-primary', onclick: () => finish(listeningOutcome(correct)) }, 'Continue');
-        actions.append(next);
-        next.focus();
-      };
-      /** @type {HTMLButtonElement[]} */
-      const buttons = options.map((option) => /** @type {HTMLButtonElement} */ (h('button', {
-        type: 'button', class: 'btn btn-secondary option', onclick: () => pick(option),
-      }, option)));
+            h('span', { class: 'en-text' }, item.en)),
+        ],
+        onContinue: (choice, correct) => finish(listeningOutcome(correct)),
+      });
       mount(container, h('article', { class: 'exercise exercise-listening' },
         h('p', { class: 'eyebrow' }, 'Listening'),
         question,
         h('div', { class: 'tools' }, again),
-        h('div', { class: 'options actions-stack', role: 'group', 'aria-label': 'Meanings' }, buttons),
+        group,
         result,
         actions));
       question.focus();
     }
-    void listen();
+    listen();
   });
 }

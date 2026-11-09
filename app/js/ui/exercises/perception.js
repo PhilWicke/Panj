@@ -7,7 +7,8 @@
 // resolves with no outcome.
 
 import { h, mount } from '../../util/dom.js';
-import { showNoAudio } from '../components/no-audio.js';
+import { audioExercise } from '../components/no-audio.js';
+import { optionGroup } from '../components/option-group.js';
 
 /** @typedef {import('./registry.js').ExerciseRender} ExerciseRender */
 /** @typedef {import('./registry.js').ExerciseOutcome} ExerciseOutcome */
@@ -35,54 +36,22 @@ export function pickPerception(rng) {
 export function render(container, entry, ctx) {
   const { words, target } = pickPerception(ctx.rng);
   return new Promise((resolve) => {
-    let done = false;
-    /** @param {ExerciseOutcome} outcome */
-    const finish = (outcome) => {
-      if (done) return;
-      done = true;
-      resolve(outcome);
-    };
-    const listen = async () => {
-      const how = await ctx.play(target);
-      if (how === 'none' && !done) showNoAudio(container, () => finish({}));
-    };
+    const { finish, listen } = audioExercise({ container, play: ctx.play, text: target, resolve });
     const question = h('h2', { class: 'prompt-en', tabindex: '-1' }, 'Which did you hear?');
-    const result = h('div', { 'aria-live': 'polite' });
-    const actions = h('div', { class: 'actions' });
-    let answered = false;
-
-    /** @param {string} choice */
-    const pick = (choice) => {
-      if (answered) return;
-      answered = true;
-      const correct = choice === target;
-      words.forEach((word, i) => {
-        buttons[i].disabled = true;
-        if (word === target) buttons[i].classList.add('option-right');
-        else if (word === choice) buttons[i].classList.add('option-wrong');
-      });
-      result.replaceChildren(h('section', { class: `feedback feedback-${correct ? 'correct' : 'wrong'}` },
-        h('p', { class: 'feedback-headline' }, correct ? 'Correct.' : 'Not quite.'),
-        !correct && h('p', null, 'It was ', h('span', { lang: 'sl', class: 'quick-check-answer' }, target), '.')));
-      const next = h('button', { type: 'button', class: 'btn btn-primary', onclick: () => finish({ aux: { kind: 'perception', correct } }) }, 'Continue');
-      actions.append(next);
-      next.focus();
-    };
-
-    /** @type {HTMLButtonElement[]} */
-    const buttons = words.map((word) => /** @type {HTMLButtonElement} */ (h('button', {
-      type: 'button', class: 'btn btn-secondary option option-sl', lang: 'sl', onclick: () => pick(word),
-    }, word)));
-
+    const { group, result, actions } = optionGroup({
+      options: words, answer: target, label: 'Words', lang: 'sl', large: true,
+      onPick: (choice, correct) => !correct && h('p', null, 'It was ', h('span', { lang: 'sl', class: 'quick-check-answer' }, target), '.'),
+      onContinue: (choice, correct) => finish({ aux: { kind: 'perception', correct } }),
+    });
     mount(container, h('article', { class: 'exercise exercise-perception' },
       h('p', { class: 'eyebrow' }, 'Listen closely'),
       question,
       h('div', { class: 'tools' },
-        h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => { void listen(); } }, 'Play again')),
-      h('div', { class: 'options', role: 'group', 'aria-label': 'Words' }, buttons),
+        h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => listen() }, 'Play again')),
+      group,
       result,
       actions));
     question.focus();
-    void listen();
+    listen();
   });
 }

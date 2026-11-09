@@ -4,13 +4,16 @@
 // first try that does not match gets one more, with what was heard ("Heard: ..."), and a second
 // that does not match is a missed recall. Silence or the timeout lets the learner speak again
 // without using up the try; a second silence in a row turns this exercise self-rated, so it never
-// holds the learner. A refused microphone, or a recogniser that cannot run, turns the exercise
-// self-rated without a dialog, and the later speaking exercises too until the app is reloaded. Self-rated (recognition off, unavailable or failed): the model plays, "Say it, then
-// tap", and "Matched" or "Not yet" report `aux` only, never a recall. A recogniser is never
-// constructed unless the learner has opted in.
+// holds the learner. Any other recogniser error turns the exercise self-rated without a dialog. A
+// refused microphone or speech service, a missing microphone or a recogniser without Slovenian
+// also keeps the later speaking exercises self-rated until the next session (recognitionBlocked in
+// speech.js); a lost connection or a recogniser that would not start affects this exercise only.
+// Self-rated (recognition off, unavailable or failed): the model plays, "Say it, then tap", and
+// "Matched" or "Not yet" report `aux` only, never a recall. A recogniser is never constructed
+// unless the learner has opted in.
 
 import { h, mount } from '../../util/dom.js';
-import { compareSpoken, recognizeOnce, speechAvailable } from '../../audio/speech.js';
+import { compareSpoken, recognitionBlocked, recognizeOnce, speechAvailable } from '../../audio/speech.js';
 
 /** @typedef {import('./registry.js').ExerciseRender} ExerciseRender */
 /** @typedef {import('./registry.js').ExerciseOutcome} ExerciseOutcome */
@@ -19,15 +22,13 @@ import { compareSpoken, recognizeOnce, speechAvailable } from '../../audio/speec
 
 /** Tries a recognised answer gets: the first, and one more when it does not match. */
 const ATTEMPTS = 2;
-/** Recogniser errors after which the learner can simply speak again; any other means it cannot run here. */
+/** Recogniser errors after which the learner can simply speak again; any other turns this exercise self-rated. */
 const TRY_AGAIN = new Set(['no-speech', 'timeout', 'aborted']);
 /** @type {Record<Verdict, number>} */
 const RANK = { match: 0, close: 1, miss: 2 };
 const FALLBACK_NOTICE = 'Speech recognition is not available here, so you rate yourself.';
+const FAILED_NOTICE = 'Speech recognition did not work this time, so you rate this one yourself.';
 const SILENCE_NOTICE = 'Nothing was heard, so you rate this one yourself.';
-
-/** Set once recognition failed in a way that does not pass by itself; the rest of the visit is self-rated. */
-let recognitionFailed = false;
 
 /**
  * What a recognised try leads to: a correct recall on a match; another try when it does not
@@ -42,9 +43,10 @@ export function attemptOutcome(verdict, attempt) {
 }
 
 /**
- * Whether a recogniser error means recognition cannot run here (a refused microphone, no
- * microphone, no connection to the speech service, no recogniser), so the exercise turns
- * self-rated; silence, the timeout and an abort only mean the learner can speak again.
+ * Whether a recogniser error turns this exercise self-rated (a refused microphone, no microphone,
+ * no connection to the speech service, no recogniser, a failed start, an unknown error); silence,
+ * the timeout and an abort only mean the learner can speak again. Whether later exercises stay
+ * self-rated is speech.js's recognitionBlocked.
  * @param {string|null} error as recognizeOnce reports it
  * @returns {boolean}
  */
@@ -148,8 +150,7 @@ export function render(container, entry, ctx) {
         if (done) return;
         if (transcript === null) {
           if (recognitionFallsBack(error)) {
-            recognitionFailed = true;
-            selfRated(FALLBACK_NOTICE);
+            selfRated(recognitionBlocked() ? FALLBACK_NOTICE : FAILED_NOTICE);
             return;
           }
           silences += 1;
@@ -194,7 +195,7 @@ export function render(container, entry, ctx) {
     };
 
     // The opt-in comes first: without it nothing below may construct a recogniser.
-    if (ctx.settings.speech && speechAvailable() && !recognitionFailed) recognised();
+    if (ctx.settings.speech && speechAvailable() && !recognitionBlocked()) recognised();
     else selfRated(ctx.settings.speech ? FALLBACK_NOTICE : null);
   });
 }

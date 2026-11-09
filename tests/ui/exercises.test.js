@@ -7,20 +7,27 @@
 // the answer away; a dialogue line counts as a miss when any of its items would; a line's playback
 // holds the scene until it settles or for the line's wait at most; speaker labels. Listening
 // offers the meaning among three other meanings of the lesson; a spoken attempt that does not
-// match gets one more try, and a recogniser that cannot run turns the exercise self-rated; a
-// spoken answer is compared with the item's form and its accepted variants; the perception sets
-// are two or three similar words. The exercises' DOM runs in the browser check.
+// match gets one more try, and a recogniser error other than silence turns the exercise self-rated;
+// a spoken answer is compared with the item's form and its accepted variants; the perception sets
+// are two or three similar words. Through the fake DOM: an audio exercise turns into the no-audio
+// line when nothing plays and finishes once; structured input, the meaning pick and the perception
+// drill resolve their `aux` through the shared option group; a refused microphone keeps the later
+// speaking exercises self-rated until resetRecognition, a lost connection or a failed start only
+// the one exercise. The rest of the exercises' DOM runs in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
+import { h } from '../../app/js/util/dom.js';
 import { shuffle } from '../../app/js/util/shuffle.js';
-import { blankify, promptWithBlank, structuredOutcome } from '../../app/js/ui/exercises/structured.js';
+import { recognitionBlocked, resetRecognition } from '../../app/js/audio/speech.js';
+import { audioExercise } from '../../app/js/ui/components/no-audio.js';
+import { blankify, promptWithBlank, structuredOutcome, render as renderStructured } from '../../app/js/ui/exercises/structured.js';
 import { slotBase, slotOutcome } from '../../app/js/ui/exercises/slot.js';
 import { dialogueOutcome, lineEffective, speakerLabel, playWaitMs, playWithin } from '../../app/js/ui/exercises/dialogue.js';
-import { meaningOptions } from '../../app/js/ui/exercises/listening.js';
-import { attemptOutcome, recognitionFallsBack, spokenVerdict } from '../../app/js/ui/exercises/speaking.js';
-import { PERCEPTION_SETS, pickPerception } from '../../app/js/ui/exercises/perception.js';
+import { meaningOptions, render as renderListening } from '../../app/js/ui/exercises/listening.js';
+import { attemptOutcome, recognitionFallsBack, spokenVerdict, render as renderSpeaking } from '../../app/js/ui/exercises/speaking.js';
+import { PERCEPTION_SETS, pickPerception, render as renderPerception } from '../../app/js/ui/exercises/perception.js';
 
 /** @typedef {import('../../app/js/content/types.js').Lesson} Lesson */
 /** @typedef {import('../../app/js/content/types.js').Item} Item */
@@ -47,8 +54,44 @@ const item = (fields) => ({
   examples: [], verification: { review1: null, review2: null, native: null, status: 'accepted' }, ...fields,
 });
 
+/** @type {ReturnType<typeof installFakeDom>} */
+let document;
+
 before(() => {
-  installFakeDom();
+  document = installFakeDom();
+});
+
+/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
+function elements(root) {
+  /** @type {any[]} */
+  const found = [];
+  /** @param {any} node */
+  const walk = (node) => {
+    for (const child of node.childNodes) {
+      if (!child.tagName) continue;
+      found.push(child);
+      walk(child);
+    }
+  };
+  walk(root);
+  return found;
+}
+
+/** The button under `root` that reads `text`, if any. @param {any} root @param {string} text */
+const button = (root, text) => elements(root).find((el) => el.tagName === 'BUTTON' && el.textContent === text);
+
+/** Lets timers of 0 ms and the promises after them run. */
+const settle = () => new Promise((resolve) => setTimeout(resolve, 5));
+
+/**
+ * An exercise context with nothing in it but the lesson, muted, speech off and a sound that plays.
+ * @param {Record<string, unknown>} fields
+ * @returns {any}
+ */
+const context = (fields) => ({
+  item: null, rule: null, lesson, rules: [], settings: { speech: false }, mode: { mute: true, speech: false },
+  play: async () => 'device', rng: seeded(1), allowPending: false, effective: (/** @type {string} */ id, /** @type {string} */ recall) => recall,
+  ...fields,
 });
 
 test('blankify splits the prompt at the first run of underscores, also one attached to a stem', () => {
@@ -259,7 +302,7 @@ test('attemptOutcome: a match is a correct recall; anything else gets one more t
   assert.equal(attemptOutcome('miss', 2), 'wrong');
 });
 
-test('recognitionFallsBack: a refusal or a recogniser that cannot run turns the exercise self-rated; silence and the timeout do not', () => {
+test('recognitionFallsBack: a refusal or a recogniser that cannot run turns this exercise self-rated; silence and the timeout do not', () => {
   for (const error of ['not-allowed', 'service-not-allowed', 'audio-capture', 'network', 'language-not-supported', 'unavailable', 'start-failed']) {
     assert.equal(recognitionFallsBack(error), true, error);
   }
@@ -295,4 +338,171 @@ test('PERCEPTION_SETS hold two or three similar words each, and pickPerception d
     targets.add(target);
   }
   assert.equal(targets.size, PERCEPTION_SETS.flat().length, 'every word gets played');
+});
+
+test('audioExercise turns the exercise into the no-audio line when nothing plays, finishes once, and lets a late none pass', async () => {
+  /** @type {unknown[]} */
+  const outcomes = [];
+  /** @type {string[]} */
+  const played = [];
+  const container = /** @type {any} */ (h('div', null, h('p', null, 'The drill')));
+  const ends = audioExercise({
+    container, text: 'koza', resolve: (outcome) => outcomes.push(outcome),
+    play: async (text) => { played.push(text); return 'none'; },
+  });
+  ends.listen();
+  await settle();
+  assert.deepEqual(played, ['koza']);
+  assert.equal(container.textContent, 'No audio on this device.Continue', 'the exercise is replaced by one line and Continue');
+  const next = button(container, 'Continue');
+  assert.equal(document.activeElement, next);
+  next.dispatch('click');
+  next.dispatch('click');
+  ends.finish({ aux: { kind: 'perception', correct: true } });
+  assert.deepEqual(outcomes, [{}], 'Continue finishes with no outcome, once');
+
+  const playing = /** @type {any} */ (h('div', null, 'The drill'));
+  audioExercise({ container: playing, text: 'bil', resolve: () => {}, play: async () => 'device' }).listen();
+  await settle();
+  assert.equal(playing.textContent, 'The drill', 'a sound that plays leaves the exercise alone');
+
+  /** @type {(how: 'none') => void} */
+  let late = () => {};
+  const stage = /** @type {any} */ (h('div', null, 'The next exercise'));
+  const finished = audioExercise({ container: stage, text: 'bil', resolve: () => {}, play: () => new Promise((resolve) => { late = resolve; }) });
+  finished.listen();
+  finished.finish({ aux: { kind: 'perception', correct: true } });
+  late('none');
+  await settle();
+  assert.equal(stage.textContent, 'The next exercise', 'a none after the exercise finished does not draw over the next one');
+});
+
+test('structured input, the meaning pick and the perception drill resolve their aux through the shared option group', async () => {
+  const [exercise] = lesson.structured;
+  const rule = { id: 'r-biti-present', title_en: 'Biti in the present', card_en: 'Jaz takes sem.' };
+  const structured = /** @type {any} */ (h('div'));
+  const picked = renderStructured(structured, { kind: 'structured', exerciseId: exercise.id }, context({ rule }));
+  assert.equal(elements(structured).find((el) => el.getAttribute('role') === 'group').getAttribute('aria-label'), 'Options');
+  button(structured, 'ste').dispatch('click');
+  const blank = elements(structured).find((el) => el.classList.contains('blank'));
+  assert.equal(blank.textContent, 'sem', 'the gap is filled with the answer');
+  assert.ok(blank.classList.contains('blank-filled'));
+  const panel = elements(structured).find((el) => el.tagName === 'SECTION');
+  assert.equal(panel.textContent, 'Not quite.The answer is sem.Biti in the presentJaz takes sem.', 'headline, answer and the rule line');
+  button(structured, 'Continue').dispatch('click');
+  assert.deepEqual(await picked, { aux: { kind: 'structured', correct: false } });
+
+  const evening = /** @type {Item} */ (lesson.items.find((each) => each.sl === 'Dober večer.'));
+  /** @type {string[]} */
+  const heard = [];
+  const draw = seeded(3);
+  let first = true;
+  const meaningRng = () => (first ? ((first = false), 0.9) : draw());
+  const listening = /** @type {any} */ (h('div'));
+  const meant = renderListening(listening, { kind: 'listening', itemId: evening.id },
+    context({ item: evening, rng: meaningRng, play: async (/** @type {string} */ text) => { heard.push(text); return 'device'; } }));
+  await settle();
+  assert.deepEqual(heard, ['Dober večer.'], 'the line plays at once');
+  const group = elements(listening).find((el) => el.getAttribute('role') === 'group');
+  assert.equal(group.className, 'options actions-stack');
+  assert.equal(group.childNodes.length, 4);
+  assert.equal(document.activeElement?.textContent, 'What does it mean?');
+  button(listening, 'Good evening.').dispatch('click');
+  assert.equal(elements(listening).find((el) => el.tagName === 'SECTION').textContent,
+    'Correct.You heardDober večer.It meansGood evening.');
+  button(listening, 'Continue').dispatch('click');
+  assert.deepEqual(await meant, { aux: { kind: 'listening', correct: true } });
+
+  const silent = /** @type {any} */ (h('div'));
+  const skipped = renderListening(silent, { kind: 'listening', itemId: evening.id }, context({ item: evening, play: async () => 'none' }));
+  await settle();
+  button(silent, 'Continue').dispatch('click');
+  assert.deepEqual(await skipped, {}, 'no audio: no outcome');
+
+  const perception = /** @type {any} */ (h('div'));
+  const drilled = renderPerception(perception, { kind: 'perception' }, context({ rng: () => 0 }));
+  assert.deepEqual(elements(perception).filter((el) => el.classList.contains('option-sl')).map((el) => el.textContent), ['bil', 'bila']);
+  button(perception, 'bila').dispatch('click');
+  assert.equal(elements(perception).find((el) => el.tagName === 'SECTION').textContent, 'Not quite.It was bil.');
+  button(perception, 'Continue').dispatch('click');
+  assert.deepEqual(await drilled, { aux: { kind: 'perception', correct: false } });
+});
+
+test('speaking: a refused microphone keeps later speaking exercises self-rated until resetRecognition; a lost connection or a failed start only this one', async (t) => {
+  const FALLBACK = 'Speech recognition is not available here, so you rate yourself.';
+  const FAILED = 'Speech recognition did not work this time, so you rate this one yourself.';
+  /** @type {{ error: string }} what the recogniser does on start: fire this error, or throw */
+  const next = { error: 'not-allowed' };
+  let started = 0;
+  class Refusing {
+    constructor() {
+      /** @type {any} */ this.onerror = null;
+      /** @type {any} */ this.onresult = null;
+      /** @type {any} */ this.onend = null;
+    }
+
+    start() {
+      started += 1;
+      if (next.error === 'throw') throw new Error('InvalidStateError');
+      setTimeout(() => this.onerror?.({ error: next.error }), 0);
+    }
+
+    abort() {}
+  }
+  Object.defineProperty(globalThis, 'SpeechRecognition', { value: Refusing, configurable: true, writable: true });
+  t.after(() => {
+    delete (/** @type {Record<string, unknown>} */ (globalThis)).SpeechRecognition;
+    resetRecognition();
+  });
+
+  const evening = /** @type {Item} */ (lesson.items.find((each) => each.sl === 'Dober večer.'));
+  const speechOn = () => context({ item: evening, settings: { speech: true }, mode: { mute: true, speech: true }, play: async () => 'none' });
+  /** @returns {{ stage: any, outcome: Promise<unknown> }} */
+  const show = () => {
+    const stage = /** @type {any} */ (h('div'));
+    return { stage, outcome: renderSpeaking(stage, { kind: 'speaking', itemId: evening.id }, speechOn()) };
+  };
+  /** @param {any} stage */
+  const selfRated = (stage) => Boolean(button(stage, 'Matched') && button(stage, 'Not yet')) && !button(stage, 'Speak');
+
+  resetRecognition();
+  const refused = show();
+  assert.ok(button(refused.stage, 'Speak'), 'speech on and a recogniser present: Speak');
+  button(refused.stage, 'Speak').dispatch('click');
+  await settle();
+  assert.ok(selfRated(refused.stage), 'the refusal turns the exercise self-rated, without a dialog');
+  assert.ok(refused.stage.textContent.includes(FALLBACK));
+  assert.equal(recognitionBlocked(), true);
+  button(refused.stage, 'Not yet').dispatch('click');
+  assert.deepEqual(await refused.outcome, { aux: { kind: 'speaking', correct: false } }, 'self-rated: aux only');
+
+  const later = show();
+  assert.ok(selfRated(later.stage), 'the next speaking exercise is self-rated at once');
+  assert.ok(later.stage.textContent.includes(FALLBACK));
+  assert.equal(started, 1, 'and does not ask the recogniser again');
+
+  resetRecognition();
+  assert.ok(button(show().stage, 'Speak'), 'after resetRecognition (a new session, or the switch turned on) Speak is back');
+
+  for (const error of ['service-not-allowed', 'audio-capture', 'language-not-supported']) {
+    resetRecognition();
+    next.error = error;
+    const each = show();
+    button(each.stage, 'Speak').dispatch('click');
+    await settle();
+    assert.ok(selfRated(each.stage) && each.stage.textContent.includes(FALLBACK), error);
+    assert.ok(selfRated(show().stage), `${error} stays for the later exercises`);
+  }
+
+  for (const error of ['network', 'throw', 'a-code-from-a-later-browser']) {
+    resetRecognition();
+    next.error = error;
+    const each = show();
+    button(each.stage, 'Speak').dispatch('click');
+    await settle();
+    assert.ok(selfRated(each.stage), `${error}: this exercise is self-rated`);
+    assert.ok(each.stage.textContent.includes(FAILED), `${error}: and says it is this once`);
+    assert.equal(recognitionBlocked(), false, error);
+    assert.ok(button(show().stage, 'Speak'), `${error}: the next speaking exercise offers Speak again`);
+  }
 });
