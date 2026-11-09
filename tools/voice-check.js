@@ -1,11 +1,13 @@
 // The voice check before any audio is generated in bulk: the twenty lines of
 // tools/fixtures/voice-sample.txt in three Gemini voices, written as MP3 into
-// the voice-check folder of the Slovelingo hub, plus an index.html to listen to
-// them side by side and note what sounds wrong. Bulk generation waits for
-// the maintainer's verdict on this page.
+// the audio folder of the --out folder, plus an index.html there to listen to
+// them side by side and note what sounds wrong. Bulk generation waits for the
+// listener's verdict on this page.
 //
-// CLI: node tools/voice-check.js [--model <model>]   (npm run voice-check)
-// Repeatable: lines already generated are skipped. Exit 1 when a line failed.
+// CLI: node tools/voice-check.js --out <dir> [--model <model>]
+//   (npm run voice-check -- --out <dir>)
+// Repeatable: lines already generated are skipped. Exit 1 when a line failed or
+// --out is missing, 2 on a bad argument.
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,14 +15,13 @@ import { parseArgs } from 'node:util';
 import { audioId } from '../app/js/util/audio-id.js';
 import { DEFAULT_MODEL, generateAll, textsFromFile } from './gen-audio.js';
 
-const OUT_DIR = './voice-check/';
-const AUDIO_DIR = path.join(OUT_DIR, 'audio');
 const SAMPLE_FILE = fileURLToPath(new URL('./fixtures/voice-sample.txt', import.meta.url));
 const VOICES = [
   { name: 'Kore', kind: 'female' },
   { name: 'Puck', kind: 'male' },
   { name: 'Aoede', kind: 'female' },
 ];
+const USAGE = 'Usage: node tools/voice-check.js --out <dir> [--model <model>]';
 
 /**
  * @param {string} file
@@ -140,23 +141,32 @@ ${body}
 /** @param {string[]} argv @returns {Promise<number>} the exit code */
 async function main(argv) {
   let model = DEFAULT_MODEL;
+  /** @type {string | undefined} */
+  let out;
   try {
-    const { values } = parseArgs({ args: argv, options: { model: { type: 'string' } } });
+    const { values } = parseArgs({ args: argv, options: { model: { type: 'string' }, out: { type: 'string' } } });
     model = values.model ?? DEFAULT_MODEL;
+    out = values.out;
   } catch (err) {
-    console.error(`${err instanceof Error ? err.message : String(err)}\nUsage: node tools/voice-check.js [--model <model>]`);
+    console.error(`${err instanceof Error ? err.message : String(err)}\n${USAGE}`);
     return 2;
   }
+  if (!out) {
+    console.error(`Give the output folder with --out <dir>\n${USAGE}`);
+    return 1;
+  }
+  const outDir = path.resolve(out);
+  const audioDir = path.join(outDir, 'audio');
   const lines = await textsFromFile(SAMPLE_FILE);
   const texts = lines.flatMap((text) => VOICES.map(({ name }) => ({ text, voice: name })));
   let result;
   try {
-    result = await generateAll({ texts, outDir: AUDIO_DIR, model });
+    result = await generateAll({ texts, outDir: audioDir, model });
   } catch (err) {
     console.error(`ERROR ${err instanceof Error ? err.message : String(err)}`);
     return 1;
   }
-  const manifest = await readManifestOrEmpty(path.join(AUDIO_DIR, 'manifest.json'));
+  const manifest = await readManifestOrEmpty(path.join(audioDir, 'manifest.json'));
   const rows = [];
   let bytes = 0;
   /** @type {Set<string>} */
@@ -172,11 +182,11 @@ async function main(argv) {
     }
     rows.push({ text, clips });
   }
-  await writeFile(path.join(OUT_DIR, 'index.html'), page(rows, [...models].join(', ') || model));
+  await writeFile(path.join(outDir, 'index.html'), page(rows, [...models].join(', ') || model));
   for (const { text, error } of result.failed) console.error(`FAILED ${JSON.stringify(text)} ${error}`);
   console.log(`lines=${lines.length} voices=${VOICES.map((v) => v.name).join(',')} model=${model} generated=${result.generated} skipped=${result.skipped} failed=${result.failed.length}`);
   console.log(`clips=${rows.flatMap((row) => row.clips).filter((clip) => clip.ok).length} total=${(bytes / 1024).toFixed(1)} KB`);
-  console.log(`wrote ${path.join(OUT_DIR, 'index.html')}`);
+  console.log(`wrote ${path.join(outDir, 'index.html')}`);
   return result.failed.length > 0 ? 1 : 0;
 }
 
