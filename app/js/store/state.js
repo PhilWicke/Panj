@@ -127,6 +127,16 @@ export async function addFlag(adapter, flag) {
 }
 
 /**
+ * Writes the meta record, the one record of the meta store, under its fixed id: the first load
+ * stamps it through here and an import writes the file's through here.
+ * @param {StoreAdapter} adapter
+ * @param {Meta} meta
+ */
+export async function saveMeta(adapter, meta) {
+  await adapter.put('meta', { ...meta, id: META_ID });
+}
+
+/**
  * Reads the whole state. Settings fields the stored record lacks take their defaults, so a field
  * added in a later version reads as its default on an older record. The first load writes the
  * meta record, which stamps when the learner started. Sessions come back in order of startedAt
@@ -152,7 +162,7 @@ export async function loadState(adapter, now = Date.now()) {
   let meta = metaRecord ? withoutId(metaRecord) : null;
   if (!meta) {
     meta = { schemaVersion: SCHEMA_VERSION, createdAt: now };
-    await adapter.put('meta', { ...meta, id: META_ID });
+    await saveMeta(adapter, meta);
   }
   return {
     items,
@@ -239,6 +249,5 @@ export async function importState(adapter, data, now = Date.now()) {
   await saveSettings(adapter, { ...DEFAULT_APP_SETTINGS, ...data.settings });
   for (const flag of data.flags ?? []) await addFlag(adapter, flag);
   const createdAt = typeof data.meta?.createdAt === 'number' ? data.meta.createdAt : now;
-  const meta = { ...data.meta, schemaVersion: SCHEMA_VERSION, createdAt };
-  await adapter.put('meta', { ...meta, id: META_ID });
+  await saveMeta(adapter, { ...data.meta, schemaVersion: SCHEMA_VERSION, createdAt });
 }

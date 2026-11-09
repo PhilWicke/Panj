@@ -9,7 +9,7 @@ import { STORE_NAMES, createMemoryStore } from '../../app/js/store/memory.js';
 import { DB_NAME, DB_VERSION, openIndexedDb, openStore } from '../../app/js/store/db.js';
 import {
   APP_ID, SCHEMA_VERSION, DEFAULT_APP_SETTINGS,
-  loadState, saveItemState, appendSession, saveSettings, addFlag, exportState, validateImport, importState,
+  loadState, saveItemState, appendSession, saveSettings, addFlag, saveMeta, exportState, validateImport, importState,
 } from '../../app/js/store/state.js';
 
 const TZ = 'Europe/Berlin';
@@ -284,6 +284,66 @@ test('openStore falls back to memory when indexedDB is undefined', async (t) => 
   await openIndexedDb('other', 3);
   assert.deepEqual(openedWith, { name: 'other', version: 3 });
   assert.equal(created.length, 5);
+});
+
+test('saveMeta writes the meta record and loadState returns it', async () => {
+  const adapter = createMemoryStore();
+  await saveMeta(adapter, { createdAt: 1, sealed: ['u01'] });
+  const state = await loadState(adapter);
+  assert.equal(state.meta.createdAt, 1); assert.deepEqual(state.meta.sealed, ['u01']);
+  // the one record of the meta store, under id meta, as the first load would have stamped it
+  assert.deepEqual(await adapter.get('meta', 'meta'), { id: 'meta', createdAt: 1, sealed: ['u01'] });
+  assert.equal((await adapter.getAll('meta')).length, 1);
+  // saving again replaces it, and a load does not stamp over it
+  await saveMeta(adapter, { schemaVersion: 1, createdAt: 2 });
+  assert.deepEqual((await loadState(adapter, 99)).meta, { schemaVersion: 1, createdAt: 2 });
+  assert.equal((await adapter.getAll('meta')).length, 1);
+  // the first load's stamp and an import's meta are the same record
+  const fresh = createMemoryStore();
+  await loadState(fresh, T0);
+  assert.deepEqual(await fresh.get('meta', 'meta'), { id: 'meta', schemaVersion: 1, createdAt: T0 });
+  const imported = validateImport(JSON.stringify({ app: 'slovelingo', schemaVersion: 1, items: {}, sessions: [], meta: { schemaVersion: 1, createdAt: 5, sealed: ['u02'] } }));
+  assert.equal(imported.ok, true);
+  await importState(fresh, imported.data, T1);
+  assert.deepEqual(await fresh.get('meta', 'meta'), { id: 'meta', schemaVersion: 1, createdAt: 5, sealed: ['u02'] });
+  // the saved object is not aliased: changing it afterwards changes nothing in the store
+  const meta = { schemaVersion: 1, createdAt: 3 };
+  await saveMeta(adapter, meta);
+  meta.createdAt = 4;
+  assert.equal((await loadState(adapter)).meta.createdAt, 3);
+});
+
+test('openStore falls back to memory when the open request is blocked', async (t) => {
+  assert.equal(globalThis.indexedDB, undefined, 'Node has no IndexedDB');
+  t.after(() => { delete globalThis.indexedDB; });
+  // open() returns a request whose onblocked is called in a microtask and whose onsuccess never fires
+  let request;
+  globalThis.indexedDB = {
+    open() {
+      request = { result: undefined };
+      queueMicrotask(() => request.onblocked?.());
+      return request;
+    },
+  };
+  /** The promise's outcome, or 'hung' when nothing settles within half a second, so a missed onblocked fails cleanly instead of hanging. */
+  const guarded = (promise) => {
+    let timer;
+    const timeout = new Promise((resolve) => { timer = setTimeout(() => resolve('hung'), 500); });
+    return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+  };
+  const outcome = await guarded(openIndexedDb().then(() => 'opened', (err) => err));
+  assert.ok(outcome instanceof Error, `a blocked open request rejects, got ${String(outcome)}`);
+  assert.match(outcome.message, /blocked/);
+  const store = await guarded(openStore());
+  assert.notEqual(store, 'hung', 'a blocked open must not hang the app');
+  assert.equal(store.persistent, false);
+  await saveItemState(store.adapter, createState('u01-l01-i01', T0));
+  assert.deepEqual(Object.keys((await loadState(store.adapter, T0)).items), ['u01-l01-i01'], 'the memory store runs the app');
+  // the other tab closes after all and the request succeeds late: the connection is closed, not left to block the next upgrade
+  let closed = 0;
+  request.result = { close() { closed += 1; } };
+  request.onsuccess();
+  assert.equal(closed, 1);
 });
 
 // Beyond the brief: the memory adapter's contract, which the IndexedDB adapter shares.

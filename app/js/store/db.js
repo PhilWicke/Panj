@@ -1,8 +1,9 @@
 // The IndexedDB store: one database, one object store per StoreName with keyPath `id`, one
 // transaction per operation. openStore is what the app boots with: IndexedDB when it opens, the
-// memory store (memory.js) when it is missing or refuses (a private window, blocked storage),
-// reported as `persistent: false` so Today can say that progress will not outlive the page.
-// Version 1 creates the five stores in onupgradeneeded; a later version migrates there too.
+// memory store (memory.js) when it is missing, refuses (a private window, blocked storage) or is
+// blocked by another tab that holds an older version open, reported as `persistent: false` so
+// Today can say that progress will not outlive the page. Version 1 creates the five stores in
+// onupgradeneeded; a later version migrates there too.
 
 import { STORE_NAMES, createMemoryStore } from './memory.js';
 
@@ -57,8 +58,9 @@ function adapterFor(db) {
 
 /**
  * Opens the database, creating any of the five object stores it lacks. Rejects when IndexedDB is
- * missing, when `open` throws (a context without storage) or when the request fails (blocked or
- * full storage).
+ * missing, when `open` throws (a context without storage), when the request fails (blocked or
+ * full storage) or when it is blocked by another tab that holds an older version open and does not
+ * close it, since such an open may never finish.
  * @param {string} [name]
  * @param {number} [version]
  * @returns {Promise<StoreAdapter>}
@@ -72,14 +74,25 @@ export function openIndexedDb(name = DB_NAME, version = DB_VERSION) {
       return;
     }
     const request = factory.open(name, version);
+    let blocked = false;
     request.onupgradeneeded = () => {
       const db = request.result;
       for (const store of STORE_NAMES) {
         if (!db.objectStoreNames.contains(store)) db.createObjectStore(store, { keyPath: 'id' });
       }
     };
+    request.onblocked = () => {
+      blocked = true;
+      reject(new Error('IndexedDB open is blocked by another tab'));
+    };
     request.onsuccess = () => {
       const db = request.result;
+      if (blocked) {
+        // The other tab closed after all, but this page already runs on memory: close the
+        // connection rather than leave one open that would block the next upgrade.
+        db.close();
+        return;
+      }
       // Another tab is upgrading to a newer version: close so it is not blocked. Operations on this
       // page then fail until it is reloaded, which is the better of the two failure modes.
       db.onversionchange = () => db.close();
@@ -91,7 +104,9 @@ export function openIndexedDb(name = DB_NAME, version = DB_VERSION) {
 
 /**
  * The store the app runs on: IndexedDB, or memory when it cannot be opened, with `persistent`
- * false on the fallback (export still works there).
+ * false on the fallback (export still works there). A blocked open (another tab holds an older
+ * version and does not close it) falls back the same way, so the app can show that progress is
+ * not being saved instead of waiting on a request that may never finish.
  * @returns {Promise<{ adapter: StoreAdapter, persistent: boolean }>}
  */
 export async function openStore() {
