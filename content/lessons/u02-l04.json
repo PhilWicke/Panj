@@ -433,6 +433,9 @@
     "title_sl": "Na ulici",
     "title_en": "In the street",
     "setting_en": "A neighbour of your hosts stops you in the street and asks about your family.",
+    "cast": {
+      "passer-by": "male"
+    },
     "lines": [
       {
         "speaker": "passer-by",

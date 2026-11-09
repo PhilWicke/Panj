@@ -371,6 +371,9 @@
     "title_sl": "Prehitro",
     "title_en": "Too fast",
     "setting_en": "An older person at your hosts' house greets you and speaks very fast.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "host",

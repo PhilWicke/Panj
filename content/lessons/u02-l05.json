@@ -321,6 +321,9 @@
     "title_sl": "V nedeljo popoldne",
     "title_en": "On a Sunday afternoon",
     "setting_en": "On a Sunday afternoon you visit relatives of your hosts on your own. One of them, who says ti to you, opens the door and later sees you off.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "you",

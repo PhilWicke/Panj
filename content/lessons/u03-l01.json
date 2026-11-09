@@ -412,6 +412,9 @@
     "title_sl": "Kaj boste pili?",
     "title_en": "What would you like to drink?",
     "setting_en": "Your hosts welcome you into the living room and offer you something to drink.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "host",

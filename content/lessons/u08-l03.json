@@ -379,6 +379,9 @@
     "title_sl": "Na stopnicah",
     "title_en": "On the stairs",
     "setting_en": "On the stairs you meet a neighbour who has just come in from outside.",
+    "cast": {
+      "neighbour": "female"
+    },
     "lines": [
       {
         "speaker": "you",

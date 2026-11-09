@@ -331,6 +331,9 @@
     "title_sl": "V nedeljo",
     "title_en": "On Sunday",
     "setting_en": "Your hosts invite you on a Sunday walk in the hills. You talk about the weather and about last weekend.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

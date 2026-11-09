@@ -309,6 +309,9 @@
     "title_sl": "Jutri na kavo",
     "title_en": "Coffee tomorrow",
     "setting_en": "In the evening a neighbour, who says ti to you, asks you and your hosts out for coffee the next day. The next day you are running late.",
+    "cast": {
+      "neighbour": "male"
+    },
     "lines": [
       {
         "speaker": "neighbour",

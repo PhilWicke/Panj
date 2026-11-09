@@ -394,6 +394,9 @@
     "title_sl": "Slovenija",
     "title_en": "Slovenia so far",
     "setting_en": "Your hosts ask how you like Slovenia so far.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "host",

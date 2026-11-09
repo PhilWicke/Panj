@@ -393,6 +393,9 @@
     "title_sl": "Kje si?",
     "title_en": "Where are you?",
     "setting_en": "In the afternoon one of your hosts, who says ti to you, makes coffee and looks for you around the house.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "host",

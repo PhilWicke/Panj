@@ -395,6 +395,9 @@
     "title_sl": "Pred hišo",
     "title_en": "Outside the house",
     "setting_en": "Outside your hosts' house, one of their neighbours stops to talk to you.",
+    "cast": {
+      "passer-by": "female"
+    },
     "lines": [
       {
         "speaker": "passer-by",

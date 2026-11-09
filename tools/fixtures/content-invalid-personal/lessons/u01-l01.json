@@ -120,6 +120,9 @@
     "title_sl": "Pri vratih",
     "title_en": "At the door",
     "setting_en": "You arrive at your girlfriend's parents' house for the first time.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

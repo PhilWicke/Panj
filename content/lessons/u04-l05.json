@@ -333,6 +333,10 @@
     "title_sl": "Sobotno jutro",
     "title_en": "Saturday morning",
     "setting_en": "On a Saturday morning you buy apples at a market stall, then sit down at a café for a coffee and pay.",
+    "cast": {
+      "clerk": "female",
+      "waiter": "male"
+    },
     "lines": [
       {
         "speaker": "clerk",

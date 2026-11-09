@@ -345,6 +345,9 @@
     "title_sl": "Pri vratih",
     "title_en": "At the door",
     "setting_en": "It is evening. You arrive at your hosts' house as a guest, and one of them opens the door.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

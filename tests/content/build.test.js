@@ -312,7 +312,7 @@ test('a consolidation lesson keeps production and new_items over earlier items o
     await addLesson(dir, 'u01-l05', 'consolidation');
     await editJson(dir, 'lessons/u01-l05.json', (doc) => {
       doc.production = [{ id: 'u01-l05-p01', en: 'Greet someone politely during the day.', answer: 'Dober dan.', item: 'u01-l01-i02' }];
-      doc.dialogue = { id: 'u01-l05-d', title_sl: 'Obisk', title_en: 'A visit', setting_en: 'At the door.', lines: [
+      doc.dialogue = { id: 'u01-l05-d', title_sl: 'Obisk', title_en: 'A visit', setting_en: 'At the door.', cast: { host: 'female' }, lines: [
         { speaker: 'host', sl: 'Dober dan.', en: 'Good day.' },
         { speaker: 'you', sl: 'Hvala, gospa.', en: 'Thank you, madam.', new_items: ['u01-l03-i01'] },
       ] };

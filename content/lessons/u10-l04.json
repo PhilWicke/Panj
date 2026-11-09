@@ -410,6 +410,9 @@
     "title_sl": "V kavarni",
     "title_en": "In the café",
     "setting_en": "In a café, a student at the next table asks how your Slovenian is going.",
+    "cast": {
+      "student": "female"
+    },
     "lines": [
       {
         "speaker": "student",

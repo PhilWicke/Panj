@@ -398,6 +398,9 @@
     "title_sl": "Kdo pride jutri?",
     "title_en": "Who is coming tomorrow?",
     "setting_en": "Your hosts tell you about a relative of theirs who is coming to visit tomorrow.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

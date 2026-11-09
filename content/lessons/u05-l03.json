@@ -378,6 +378,9 @@
     "title_sl": "Načrt za vikend",
     "title_en": "Plans for the weekend",
     "setting_en": "On a Friday your hosts want to go out for lunch at the weekend, and you find a day that suits you.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "you",

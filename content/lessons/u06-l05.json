@@ -345,6 +345,9 @@
     "title_sl": "Ogled stanovanja",
     "title_en": "Viewing a flat",
     "setting_en": "Another neighbour of your hosts, an older person, has a flat to rent. You look round it room by room, and your hosts come along.",
+    "cast": {
+      "neighbour": "female"
+    },
     "lines": [
       {
         "speaker": "neighbour",

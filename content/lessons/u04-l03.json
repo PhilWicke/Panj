@@ -414,6 +414,9 @@
     "title_sl": "Jabolka in jajca",
     "title_en": "Apples and eggs",
     "setting_en": "You buy apples and eggs in a small shop near your hosts' house.",
+    "cast": {
+      "clerk": "male"
+    },
     "lines": [
       {
         "speaker": "clerk",

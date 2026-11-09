@@ -385,6 +385,9 @@
     "title_sl": "Proti večeru",
     "title_en": "Towards evening",
     "setting_en": "Late in the day you come to the bread counter of a small shop, and the bread has run out.",
+    "cast": {
+      "clerk": "male"
+    },
     "lines": [
       {
         "speaker": "you",

@@ -437,6 +437,9 @@
     "title_sl": "Kje delaš?",
     "title_en": "Where do you work?",
     "setting_en": "You are at your hosts' table. A neighbour, also a guest, asks what you do.",
+    "cast": {
+      "neighbour": "male"
+    },
     "lines": [
       {
         "speaker": "neighbour",

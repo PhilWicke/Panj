@@ -381,6 +381,9 @@
     "title_sl": "Kosilo",
     "title_en": "Lunch",
     "setting_en": "You sit down to lunch with your hosts and ask what there is.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "you",

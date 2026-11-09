@@ -400,6 +400,9 @@
     "title_sl": "Na hitro v trgovino",
     "title_en": "A quick trip to the shop",
     "setting_en": "You put on your coat to go out. One of your hosts, who says ti to you, asks where you are going.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

@@ -403,6 +403,10 @@
     "title_sl": "Na avtobusu",
     "title_en": "On the bus",
     "setting_en": "You take the bus into town. At the stop you ask a passer-by which bus to take, and on board you ask the driver where to get off.",
+    "cast": {
+      "passer-by": "male",
+      "driver": "female"
+    },
     "lines": [
       {
         "speaker": "you",

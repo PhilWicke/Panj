@@ -384,6 +384,9 @@
     "title_sl": "Kaj te boli?",
     "title_en": "What hurts?",
     "setting_en": "Your hosts see that you look tired and ask what is wrong. You have a headache.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "host",

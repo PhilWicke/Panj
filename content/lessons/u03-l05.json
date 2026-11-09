@@ -336,6 +336,9 @@
     "title_sl": "Nedeljsko kosilo",
     "title_en": "Sunday lunch",
     "setting_en": "Sunday lunch with your hosts, who say vi to you, from sitting down to thanking them.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

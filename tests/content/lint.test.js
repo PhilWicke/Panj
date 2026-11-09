@@ -347,3 +347,47 @@ test('schema files are valid JSON Schema documents that agree with the linter on
   assert.ok(schemas.Lesson.required.includes('role'));
   assert.deepEqual(schemas.Lesson.properties.role.enum, ['theme', 'consolidation']);
 });
+
+// The cast rule: every speaker other than the learner has one recorded voice, and the speakers
+// of one scene can be told apart by it.
+
+test('cast: a speaker other than you without a voice is an error, with an empty cast or none at all', async () => {
+  const missing = ['lessons/u01-l01.json dialogue/cast/host: speaker "host" has no voice in the cast'];
+  const empty = await lintMutated((dir) => editJson(dir, LESSON, (doc) => { doc.dialogue.cast = {}; }));
+  assert.deepEqual(byRule(empty.errors, 'cast').map(describe), missing);
+  const none = await lintMutated((dir) => editJson(dir, LESSON, (doc) => { delete doc.dialogue.cast; }));
+  assert.deepEqual(byRule(none.errors, 'cast').map(describe), missing);
+});
+
+test('cast: an entry for someone who does not speak, or for you, is an error', async () => {
+  const r = await lintMutated((dir) => editJson(dir, LESSON, (doc) => {
+    doc.dialogue.cast = { host: 'female', waiter: 'male', you: 'female' };
+  }));
+  assert.deepEqual(new Set(byRule(r.errors, 'cast').map(describe)), new Set([
+    'lessons/u01-l01.json dialogue/cast/waiter: "waiter" has a voice but does not speak in this dialogue',
+    'lessons/u01-l01.json dialogue/cast/you: "you" is the learner and takes no voice in the cast',
+  ]));
+});
+
+test('cast: speakers other than you must not all share one voice', async () => {
+  /** @param {Record<string, string>} cast @param {boolean} [third] */
+  const scene = (cast, third = false) => lintMutated((dir) => editJson(dir, LESSON, (doc) => {
+    doc.dialogue.lines[3].speaker = 'waiter';
+    if (third) doc.dialogue.lines.push({ speaker: 'clerk', sl: 'Dober dan.', en: 'Good day.' });
+    doc.dialogue.cast = cast;
+  }));
+  assert.deepEqual(byRule((await scene({ host: 'male', waiter: 'male' })).errors, 'cast').map(describe), [
+    'lessons/u01-l01.json dialogue/cast: "host", "waiter" all share the voice "male"; a scene tells its speakers apart by voice',
+  ]);
+  assert.deepEqual(byRule((await scene({ host: 'male', waiter: 'female' })).errors, 'cast'), []);
+  assert.equal(byRule((await scene({ host: 'female', waiter: 'female', clerk: 'female' }, true)).errors, 'cast').length, 1);
+  assert.deepEqual(byRule((await scene({ host: 'female', waiter: 'female', clerk: 'male' }, true)).errors, 'cast'), []);
+});
+
+test('cast: the schema names the two voices and does not require the field', async () => {
+  const r = await lintMutated((dir) => editJson(dir, LESSON, (doc) => { doc.dialogue.cast = { host: 'robot' }; }));
+  assert.deepEqual(byRule(r.errors, 'schema').map(describe), ['lessons/u01-l01.json dialogue/cast/host: expected one of "female", "male"']);
+  const schema = JSON.parse(await readFile(fileURLToPath(new URL('../../content/schema/lesson.schema.json', import.meta.url)), 'utf8'));
+  assert.deepEqual(schema.$defs.Dialogue.properties.cast.additionalProperties.enum, ['female', 'male']);
+  assert.ok(!schema.$defs.Dialogue.required.includes('cast'));
+});

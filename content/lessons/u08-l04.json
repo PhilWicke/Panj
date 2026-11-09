@@ -395,6 +395,9 @@
     "title_sl": "Ponedeljek zjutraj",
     "title_en": "Monday morning",
     "setting_en": "On Monday morning your hosts ask about your weekend.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "host",

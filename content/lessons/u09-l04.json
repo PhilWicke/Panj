@@ -406,6 +406,9 @@
     "title_sl": "Danes doma",
     "title_en": "At home today",
     "setting_en": "You feel ill, and your hosts tell you to rest and to see a doctor.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "host",

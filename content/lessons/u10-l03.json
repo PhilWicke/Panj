@@ -421,6 +421,9 @@
     "title_sl": "Jutri in počitnice",
     "title_en": "Tomorrow and the holidays",
     "setting_en": "Over dinner, you talk with your hosts about tomorrow and about when you will come for the summer holidays.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "host",

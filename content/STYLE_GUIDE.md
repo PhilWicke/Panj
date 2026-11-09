@@ -135,6 +135,8 @@ The app labels the table keys `1`, `2`, `3`, `sg`, `du` and `pl`; any other key 
 - Every line has at most 60 characters and 10 words, so it can be typed.
 - `new_items` on a line names the items that line practises.
 
+Every dialogue has a `cast`, written right after `setting_en`, that gives each speaker other than `you` the voice `female` or `male`. Grammar comes first: where a speaker's own lines, or lines said to or about them, show their gender (`rada`, `bila`, `šel`, `utrujena`, `natakarica`, `gospod`), the voice matches it, and if those lines contradict each other the dialogue goes back for a rewrite. Two speakers other than `you` in one scene get different voices. A job does not decide a voice: the doctor is not always male and the clerk not always female. "One of your hosts" may be either of them; inside one scene a speaker keeps one voice, over a unit both voices are heard, and the same role in the same setting keeps its voice where the setting implies the same person.
+
 ## Standing alone without sound or speech
 
 A lesson works with the sound off and without speaking. Its typed, structured and production material carries it on its own; listening and perception draw only on the lesson's own items; nothing the learner needs is ever only heard; and every dialogue line is short enough to type.

@@ -351,6 +351,10 @@
     "title_sl": "Dan v mestu",
     "title_en": "A day in town",
     "setting_en": "A day trip into town. You ask a passer-by, an older person, the way to the old town. Later, at the station, you buy a ticket home from a clerk.",
+    "cast": {
+      "passer-by": "female",
+      "clerk": "male"
+    },
     "lines": [
       {
         "speaker": "you",

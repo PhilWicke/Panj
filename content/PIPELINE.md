@@ -13,7 +13,7 @@ One fresh drafting session per unit receives:
 - the output of `node tools/known-words.js --before <first lesson of the unit>`;
 - the rule cards to write.
 
-It writes the theme lessons in order and the consolidation lesson last. Every item's `verification` is `{ "review1": null, "review2": null, "native": null, "status": "pending" }`.
+It writes the theme lessons in order and the consolidation lesson last. Every item's `verification` is `{ "review1": null, "review2": null, "native": null, "status": "pending" }`. Each dialogue gets its `cast` while it is drafted, by the casting paragraph in `STYLE_GUIDE.md`.
 
 The draft is done when `node tools/lint-content.js --allow-pending` exits 0 and `node tools/known-words.js` reports no lesson of the unit under its share.
 

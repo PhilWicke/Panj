@@ -175,6 +175,7 @@
         "title_sl": { "$ref": "#/$defs/slText" },
         "title_en": { "$ref": "#/$defs/enText" },
         "setting_en": { "$ref": "#/$defs/enText", "description": "The scene in English, in generic framing." },
+        "cast": { "type": "object", "description": "The recorded voice of each speaker other than the learner.", "additionalProperties": { "enum": ["female", "male"] } },
         "lines": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/DialogueLine" } }
       }
     }

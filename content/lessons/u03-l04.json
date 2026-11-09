@@ -379,6 +379,9 @@
     "title_sl": "Jutri zjutraj",
     "title_en": "Tomorrow morning",
     "setting_en": "In the evening, one of your hosts, who says ti to you, asks about breakfast for tomorrow.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "host",

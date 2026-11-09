@@ -396,6 +396,9 @@
     "title_sl": "Pri blagajni",
     "title_en": "At the till",
     "setting_en": "You have had a coffee and a slice of cake in a café, and now you pay at the till.",
+    "cast": {
+      "waiter": "female"
+    },
     "lines": [
       {
         "speaker": "you",

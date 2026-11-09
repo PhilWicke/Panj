@@ -397,6 +397,9 @@
     "title_sl": "Po hiši",
     "title_en": "Round the house",
     "setting_en": "You arrive to stay with your hosts. One of them, who says ti to you, shows you round the house.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "host",

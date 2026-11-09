@@ -318,6 +318,10 @@
     "title_sl": "Obisk pri zdravniku",
     "title_en": "A visit to the doctor",
     "setting_en": "A short visit to the doctor, from the waiting room to what to take.",
+    "cast": {
+      "clerk": "male",
+      "doctor": "female"
+    },
     "lines": [
       {
         "speaker": "clerk",

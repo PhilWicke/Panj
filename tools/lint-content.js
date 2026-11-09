@@ -71,6 +71,9 @@ const ITEM_TYPES = ['chunk', 'word', 'form'];
 const GENDERS = ['m', 'f', 'n'];
 const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 const ROLES = ['theme', 'consolidation'];
+// cast: the recorded voices, and the speaker id of the learner, who has none.
+const CAST_VOICES = ['female', 'male'];
+const LEARNER = 'you';
 
 // ---------------------------------------------------------------------------
 // Small helpers
@@ -283,6 +286,7 @@ const dialogue = object({
   title_sl: req(text),
   title_en: req(text),
   setting_en: req(text),
+  cast: opt(recordOf(oneOf(CAST_VOICES))),
   lines: req(arrayOf(dialogueLine, { min: 1 })),
 });
 
@@ -536,6 +540,33 @@ function checkLineLength(lesson, report) {
       report(sub(at, 'sl'), `has ${chars} characters and ${words} words; a line to type has at most ${MAX_LINE_CHARS} and ${MAX_LINE_WORDS}`);
     }
   });
+}
+
+/**
+ * Lint rule cast: every speaker other than the learner has a voice in the dialogue's cast, nobody
+ * else has one, and the speakers other than the learner do not all share one voice. A dialogue
+ * without a cast counts as one with an empty cast.
+ * @param {Doc} lesson @param {Report} report
+ */
+function checkCast(lesson, report) {
+  if (!isObject(lesson.dialogue) || !Array.isArray(lesson.dialogue.lines)) return;
+  const cast = lesson.dialogue.cast ?? {};
+  if (!isObject(cast)) return;
+  const speakers = new Set(lesson.dialogue.lines.flatMap((line) => (isObject(line) && typeof line.speaker === 'string' ? [line.speaker] : [])));
+  const others = [...speakers].filter((speaker) => speaker !== LEARNER);
+  for (const speaker of others) {
+    if (!Object.hasOwn(cast, speaker)) report(sub('dialogue/cast', speaker), `speaker ${quote(speaker)} has no voice in the cast`);
+  }
+  for (const name of Object.keys(cast)) {
+    if (name === LEARNER) report(sub('dialogue/cast', name), `${quote(name)} is the learner and takes no voice in the cast`);
+    else if (!speakers.has(name)) report(sub('dialogue/cast', name), `${quote(name)} has a voice but does not speak in this dialogue`);
+  }
+  if (others.length < 2) return;
+  const voices = new Set(others.map((speaker) => cast[speaker]));
+  const [voice] = voices;
+  if (voices.size === 1 && typeof voice === 'string' && CAST_VOICES.includes(voice)) {
+    report('dialogue/cast', `${others.map(quote).join(', ')} all share the voice ${quote(voice)}; a scene tells its speakers apart by voice`);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -959,6 +990,7 @@ export async function lintContent({ contentDir, allowPending = false }) {
     checkFormsRecorded(doc, reporter(file, 'form-unrecorded'));
     checkExamples(doc, reporter(file, 'examples'));
     checkLineLength(doc, reporter(file, 'standalone'));
+    checkCast(doc, reporter(file, 'cast'));
   }
   for (const { file, doc } of rules) {
     const schema = reporter(file, 'schema');

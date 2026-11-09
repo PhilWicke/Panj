@@ -379,6 +379,9 @@
     "title_sl": "Kje so kozarci?",
     "title_en": "Where are the glasses?",
     "setting_en": "Your hosts are making lunch. You offer to help lay the table and ask where things are.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "you",

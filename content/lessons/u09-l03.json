@@ -387,6 +387,9 @@
     "title_sl": "Proti glavobolu",
     "title_en": "For a headache",
     "setting_en": "You are at the pharmacy and ask for something against a headache.",
+    "cast": {
+      "clerk": "female"
+    },
     "lines": [
       {
         "speaker": "clerk",

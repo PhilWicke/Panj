@@ -291,6 +291,9 @@
     "title_sl": "Pri sosedih",
     "title_en": "At the neighbours'",
     "setting_en": "Your hosts' neighbours have invited you over: the greeting at the door, a few words, and goodbye.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

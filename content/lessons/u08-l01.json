@@ -401,6 +401,9 @@
     "title_sl": "Konec tedna",
     "title_en": "At the weekend",
     "setting_en": "At home with your hosts, you talk about what you like doing at the weekend.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

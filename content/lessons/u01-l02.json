@@ -370,6 +370,9 @@
     "title_sl": "V kuhinji",
     "title_en": "In the kitchen",
     "setting_en": "Morning in the kitchen. One of your hosts says ti to you, and you say vi back.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "host",

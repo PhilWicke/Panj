@@ -405,6 +405,9 @@
     "title_sl": "Do postaje",
     "title_en": "To the station",
     "setting_en": "You are in town and need the bus station. You stop a passer-by, an older person, and ask the way.",
+    "cast": {
+      "passer-by": "female"
+    },
     "lines": [
       {
         "speaker": "you",

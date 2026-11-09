@@ -381,6 +381,9 @@
     "title_sl": "Ne morem več",
     "title_en": "I can't eat any more",
     "setting_en": "Lunch with your hosts goes on, and they keep offering you more. They say vi to you.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

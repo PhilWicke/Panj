@@ -339,6 +339,9 @@
     "title_sl": "Petek zvečer",
     "title_en": "Friday evening",
     "setting_en": "On Friday evening you tell your hosts about your week and your plans.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

@@ -449,6 +449,9 @@
     "title_sl": "Navaden dan",
     "title_en": "An ordinary day",
     "setting_en": "One of your hosts, who says ti to you, asks about your working day on Monday.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

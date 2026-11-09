@@ -397,6 +397,9 @@
     "title_sl": "Družinske slike",
     "title_en": "Family photos",
     "setting_en": "After dinner, your hosts show you photos of their family on the phone.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

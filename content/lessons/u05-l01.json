@@ -366,6 +366,9 @@
     "title_sl": "Kdaj je zajtrk?",
     "title_en": "When is breakfast?",
     "setting_en": "It is late in the evening at your hosts' house. You ask the time, and one of them tells you when breakfast is.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "you",

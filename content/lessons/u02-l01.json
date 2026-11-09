@@ -443,6 +443,9 @@
     "title_sl": "Za mizo",
     "title_en": "At the table",
     "setting_en": "At the table, an older relative of your hosts asks about your family. They say ti to you, and you say vi back.",
+    "cast": {
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "host",

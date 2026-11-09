@@ -419,6 +419,10 @@
     "title_sl": "Za mizo v kavarni",
     "title_en": "At a café table",
     "setting_en": "You sit at a café table with one of your hosts, who says ti to you. You order, the drinks come, and you ask for the bill.",
+    "cast": {
+      "waiter": "female",
+      "host": "male"
+    },
     "lines": [
       {
         "speaker": "waiter",

@@ -390,6 +390,9 @@
     "title_sl": "Na blagajni",
     "title_en": "At the ticket office",
     "setting_en": "At the railway station you buy a train ticket from a clerk at the counter.",
+    "cast": {
+      "clerk": "male"
+    },
     "lines": [
       {
         "speaker": "clerk",

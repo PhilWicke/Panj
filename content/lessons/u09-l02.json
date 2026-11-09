@@ -406,6 +406,9 @@
     "title_sl": "Zjutraj doma",
     "title_en": "A morning at home",
     "setting_en": "In the morning you feel ill, and your hosts ask how you are.",
+    "cast": {
+      "host": "female"
+    },
     "lines": [
       {
         "speaker": "host",

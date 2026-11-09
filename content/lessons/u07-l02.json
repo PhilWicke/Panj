@@ -382,6 +382,9 @@
     "title_sl": "Do trga",
     "title_en": "To the square",
     "setting_en": "You want to see the old town and its square. You ask a passer-by, an older person, the way.",
+    "cast": {
+      "passer-by": "male"
+    },
     "lines": [
       {
         "speaker": "you",

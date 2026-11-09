@@ -427,6 +427,9 @@
     "title_sl": "V pisarni",
     "title_en": "At the office",
     "setting_en": "Back at the office, a colleague asks how your last week went.",
+    "cast": {
+      "colleague": "female"
+    },
     "lines": [
       {
         "speaker": "colleague",

@@ -397,6 +397,9 @@
     "title_sl": "Čez ograjo",
     "title_en": "Over the fence",
     "setting_en": "Your hosts' neighbour, who says ti to you, chats with you over the garden fence and asks where you live in town.",
+    "cast": {
+      "neighbour": "male"
+    },
     "lines": [
       {
         "speaker": "neighbour",
