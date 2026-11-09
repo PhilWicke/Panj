@@ -1,6 +1,6 @@
 // tests/engine/session.test.js
 // The daily session builder: due reviews interleaved with the lesson's new items under the per-day
-// and forecast caps, rule cards after the chunk that introduces them, slot production as the third
+// and forecast caps, rule cards right after the meet that introduces them, slot production as the third
 // recall, the dialogue once its items have graduated, audio kinds by mode, one fluency pass to
 // close, and the closing menu.
 import { test } from 'node:test';
@@ -121,7 +121,7 @@ test('reviews come first and new items respect the daily cap', () => {
     const at = queue.indexOf(meet);
     const recalls = recallsOf(queue, meet.itemId);
     assert.equal(recalls.length, GRADUATE_AFTER, 'a meet and three recalls');
-    assert.equal(recalls[0], at + 1, 'the first recall follows the meet at once');
+    assert.equal(recalls[0], at + 1, 'the first recall follows the meet at once when the item introduces no rule');
     assert.ok(recalls[1] > recalls[0] + 1 && recalls[2] > recalls[1] + 1, 'the later recalls are spaced by other work');
   }
   const firstMeet = queue.findIndex((e) => e.kind === 'meet');
@@ -177,14 +177,15 @@ test('rule card appears after the first meet that references it, then its struct
   const ruleB = find((e) => e.kind === 'rule' && e.ruleId === 'r-b');
   assert.equal(queue.filter((e) => e.kind === 'rule').length, 2, 'once per rule, although two items reference r-a');
   assert.ok(ruleA > meet1 && ruleA < meet2, 'r-a follows the first item that references it');
+  assert.equal(ruleA, meet1 + 1, 'right after the meet, before the item\'s first recall');
   assert.deepEqual(queue.slice(meet1, meet1 + 5), [
     { kind: 'meet', itemId: 'u01-l02-i01', lessonId: 'u01-l02' },
-    { kind: 'typed_en_sl', itemId: 'u01-l02-i01', lessonId: 'u01-l02' },
     { kind: 'rule', ruleId: 'r-a', lessonId: 'u01-l02' },
     { kind: 'structured', exerciseId: 'u01-l02-s01', ruleId: 'r-a', lessonId: 'u01-l02' },
     { kind: 'structured', exerciseId: 'u01-l02-s03', ruleId: 'r-a', lessonId: 'u01-l02' },
-  ], 'meet, the immediate recall, the card, then the lesson\'s structured exercises for the rule in order');
-  assert.ok(ruleB > meet2);
+    { kind: 'typed_en_sl', itemId: 'u01-l02-i01', lessonId: 'u01-l02' },
+  ], 'meet, the card, the lesson\'s structured exercises for the rule in order, then the item\'s first recall');
+  assert.equal(ruleB, meet2 + 1, 'r-a is already queued, so r-b comes right after the second meet');
   assert.deepEqual(queue[ruleB + 1], { kind: 'structured', exerciseId: 'u01-l02-s02', ruleId: 'r-b', lessonId: 'u01-l02' });
   assert.equal(queue.filter((e) => e.kind === 'structured').length, 3, 'each structured exercise once');
   // a faded rule: its quick-check item is in review with retrievability at or above the target; the card goes, the practice stays
@@ -194,7 +195,7 @@ test('rule card appears after the first meet that references it, then its struct
   assert.ok(!faded.some((e) => e.kind === 'rule' && e.ruleId === 'r-a'));
   assert.ok(faded.some((e) => e.kind === 'rule' && e.ruleId === 'r-b'));
   const first = faded.findIndex((e) => e.kind === 'meet');
-  assert.deepEqual(faded.slice(first + 1, first + 4).map((e) => e.exerciseId ?? e.kind), ['typed_en_sl', 'u01-l02-s01', 'u01-l02-s03'], 'structured exercises keep their place');
+  assert.deepEqual(faded.slice(first + 1, first + 4).map((e) => e.exerciseId ?? e.kind), ['u01-l02-s01', 'u01-l02-s03', 'typed_en_sl'], 'structured exercises keep their place, before the first recall');
   // below the target the card is back
   const weakA = review('r-a', T0 - 60 * DAY);
   assert.ok(retrievability(weakA, T0) < S.desiredRetention);

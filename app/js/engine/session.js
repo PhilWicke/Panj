@@ -6,10 +6,11 @@
 //
 // The queue, in order:
 //   1. due reviews (typed recall, oldest due first) interleaved with the lesson's new items. A new
-//      item is a meet, an immediate recall and two later recalls spaced by other work; an item
-//      left in learning on an earlier day gets the recalls it still needs, first. A rule card
-//      follows the immediate recall of the first item that introduces it, then the lesson's
-//      structured exercises for that rule. An item's slot production is its third recall.
+//      item is a meet, a first recall and two later recalls spaced by other work; an item left in
+//      learning on an earlier day gets the recalls it still needs, first. A rule card comes right
+//      after the meet of the first item that introduces it, then the lesson's structured exercises
+//      for that rule, and only then the item's first recall. An item's slot production is its
+//      third recall.
 //   2. rule cards the lesson lists but no item introduces, until their quick check is recorded.
 //   3. with sound: listening over known items, then one perception drill.
 //   4. the lesson's dialogue, once every item it practises has graduated.
@@ -277,9 +278,9 @@ export function buildSession(input) {
     return entries;
   };
   /**
-   * An item's entries: the meet (for a new item), `needed` recalls of which the last is the item's
-   * slot production when its lesson has one, and after the first recall the cards of the rules the
-   * item introduces.
+   * An item's entries: the meet (for a new item), right after it the cards of the rules the item
+   * introduces with their structured exercises, then `needed` recalls of which the last is the
+   * item's slot production when its lesson has one.
    * @param {string} itemId @param {boolean} meet @param {number} needed @returns {LearningUnit}
    */
   const unitFor = (itemId, meet, needed) => {
@@ -294,12 +295,12 @@ export function buildSession(input) {
     }
     /** @type {QueueEntry[]} */
     const intro = meet && lessonId ? [{ kind: 'meet', itemId, lessonId }] : [];
-    intro.push(...groups[0]);
     if (meet && entry) {
       for (const ruleId of entry.item.rules ?? []) {
         if (!queuedRules.has(ruleId) && ruleIds.has(ruleId)) intro.push(...ruleEntries(ruleId, entry.lesson));
       }
     }
+    intro.push(...groups[0]);
     return { intro, later: groups.slice(1) };
   };
 
