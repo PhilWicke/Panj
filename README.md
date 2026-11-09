@@ -55,7 +55,7 @@ This renders `app/assets/icon.svg` and `app/assets/icon-maskable.svg` into the P
 
 ## Deploy
 
-The repository's Pages workflow publishes the site to GitHub Pages from a strict content build. Every push to `main` deploys once the tests have passed: `.github/workflows/ci.yml` runs the strict build and publishes the `app/` folder.
+The repository's Pages workflow publishes the site to GitHub Pages from a strict content build. Every push to `main` deploys once the tests have passed: `.github/workflows/ci.yml` runs the strict build and publishes the `app/` folder. The live app is at https://philwicke.github.io/Slovelingo/.
 
 ## Licence
 
