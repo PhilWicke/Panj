@@ -120,7 +120,8 @@
       "helper": "zamuja is from zamujati, to be late, as in malo zamujam.",
       "accept": [],
       "rules": [
-        "r-verb-present"
+        "r-verb-present",
+        "r-iti-present"
       ],
       "freq_rank": null,
       "verification": {

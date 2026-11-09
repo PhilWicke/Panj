@@ -61,7 +61,8 @@
         "Lahko dobim deset jajc?"
       ],
       "rules": [
-        "r-numbers-5-plus"
+        "r-numbers-5-plus",
+        "r-dual-nouns"
       ],
       "freq_rank": null,
       "verification": {

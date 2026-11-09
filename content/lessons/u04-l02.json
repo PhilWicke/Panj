@@ -119,7 +119,9 @@
       ],
       "helper": "s is the z of z mlekom, written s before k; kartica, card, is like German Karte.",
       "accept": [],
-      "rules": [],
+      "rules": [
+        "r-lahko"
+      ],
       "freq_rank": null,
       "verification": {
         "review1": "accepted",
@@ -155,7 +157,8 @@
       "accept": [],
       "rules": [
         "r-dual-nouns",
-        "r-numbers-to-100"
+        "r-numbers-to-100",
+        "r-numbers-1-4"
       ],
       "freq_rank": 169,
       "verification": {

@@ -25,7 +25,9 @@
       ],
       "helper": null,
       "accept": [],
-      "rules": [],
+      "rules": [
+        "r-grem-v-na"
+      ],
       "freq_rank": null,
       "verification": {
         "review1": "accepted",
@@ -177,7 +179,9 @@
       ],
       "helper": null,
       "accept": [],
-      "rules": [],
+      "rules": [
+        "r-locative"
+      ],
       "freq_rank": null,
       "verification": {
         "review1": "accepted",
@@ -212,7 +216,9 @@
       ],
       "helper": "Tablette in German, tablet in English.",
       "accept": [],
-      "rules": [],
+      "rules": [
+        "r-accusative-feminine"
+      ],
       "freq_rank": null,
       "verification": {
         "review1": "accepted",

@@ -256,6 +256,26 @@ test("standalone: practice draws on the lesson's own items, a consolidation less
     'lessons/u01-l02.json production/u01-l02-p02/item: practises "u01-l03-i01", which is not an item of this unit up to this lesson',
   ], 'an earlier lesson\'s item is fine, a later lesson\'s is not');
 });
+test("structured-unreachable: a theme lesson's structured exercise needs its rule on the lesson or on one of the lesson's items", async () => {
+  const exercise = { id: 'u01-l02-s01', prompt_sl: 'Jaz ___ tukaj.', options: ['sem', 'si'], answer: 'sem', rule: 'r-biti-present', en: 'I am here.' };
+  const reachable = async (role, edit) => {
+    const r = await lintMutated(async (dir) => {
+      await addLesson(dir, 'u01-l02', role);
+      await editJson(dir, 'lessons/u01-l02.json', (doc) => {
+        doc.structured = [exercise];
+        edit(doc);
+      });
+    });
+    return byRule(r.errors, 'structured-unreachable').map(describe);
+  };
+  assert.deepEqual(await reachable('theme', () => {}), [
+    'lessons/u01-l02.json structured/u01-l02-s01/rule: is played only with rule "r-biti-present", which neither this lesson nor any of its items lists, so the exercise never appears',
+  ]);
+  assert.deepEqual(await reachable('theme', (doc) => { doc.items[0].rules = ['r-biti-present']; }), [], 'an item of the lesson lists the rule');
+  assert.deepEqual(await reachable('theme', (doc) => { doc.rules = ['r-biti-present']; }), [], 'the lesson lists the rule');
+  assert.deepEqual(await reachable('consolidation', () => {}), [], 'a consolidation lesson plays its structured exercises on its own');
+});
+
 test('every item has one or two examples of at most eight words', async () => {
   const r = await lintMutated((dir) => editJson(dir, LESSON, (doc) => {
     doc.items[0].examples = [];

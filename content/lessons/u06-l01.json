@@ -104,7 +104,8 @@
         "Tam je kuhinja."
       ],
       "rules": [
-        "r-kje-kam"
+        "r-kje-kam",
+        "r-biti-present"
       ],
       "freq_rank": null,
       "verification": {

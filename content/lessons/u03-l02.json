@@ -86,7 +86,8 @@
         "Jaz jem kruh."
       ],
       "rules": [
-        "r-accusative-masculine"
+        "r-accusative-masculine",
+        "r-accusative-feminine"
       ],
       "freq_rank": null,
       "verification": {
@@ -116,7 +117,8 @@
       "helper": "Built like zelo je prijazen: je comes second.",
       "accept": [],
       "rules": [
-        "r-biti-present"
+        "r-biti-present",
+        "r-adjective-agreement"
       ],
       "freq_rank": null,
       "verification": {

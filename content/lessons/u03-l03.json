@@ -58,7 +58,8 @@
       "helper": "še is still or more, as in lep dan še naprej.",
       "accept": [],
       "rules": [
-        "r-particles-se-pa"
+        "r-particles-se-pa",
+        "r-accusative-feminine"
       ],
       "freq_rank": null,
       "verification": {

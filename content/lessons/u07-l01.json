@@ -261,7 +261,8 @@
       "helper": "Like English bank and German Bank, the kind for money.",
       "accept": [],
       "rules": [
-        "r-do-genitive"
+        "r-do-genitive",
+        "r-pri"
       ],
       "freq_rank": 924,
       "verification": {

@@ -156,7 +156,8 @@
         "Še je mlada."
       ],
       "rules": [
-        "r-adjective-agreement"
+        "r-adjective-agreement",
+        "r-biti-present"
       ],
       "freq_rank": null,
       "verification": {

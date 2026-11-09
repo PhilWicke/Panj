@@ -25,7 +25,9 @@
       ],
       "helper": "Like German Wie viel Uhr ist es?: literally how much is the clock.",
       "accept": [],
-      "rules": [],
+      "rules": [
+        "r-biti-present"
+      ],
       "freq_rank": null,
       "verification": {
         "review1": "accepted",

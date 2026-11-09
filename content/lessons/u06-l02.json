@@ -29,7 +29,8 @@
         "V kuhinji sem."
       ],
       "rules": [
-        "r-locative"
+        "r-locative",
+        "r-grem-v-na"
       ],
       "freq_rank": null,
       "verification": {

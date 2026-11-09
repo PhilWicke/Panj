@@ -25,7 +25,9 @@
       ],
       "helper": "kateri is which, as in ob kateri uri; danes is today.",
       "accept": [],
-      "rules": [],
+      "rules": [
+        "r-biti-present"
+      ],
       "freq_rank": null,
       "verification": {
         "review1": "accepted",

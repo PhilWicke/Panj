@@ -223,7 +223,8 @@
       "accept": [],
       "rules": [
         "r-do-genitive",
-        "r-locative"
+        "r-locative",
+        "r-v-or-na"
       ],
       "freq_rank": 866,
       "verification": {

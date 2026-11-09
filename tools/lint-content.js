@@ -776,6 +776,13 @@ function checkCorpus(corpus, allowPending, cognates, issues) {
       else if (!place?.earlier.has(items.get(id)?.lesson)) add(file, 'standalone', at, `practises ${quote(id)}, which is not an item of this unit up to this lesson`);
     };
     const rulesSoFar = place?.rules ?? new Set(Array.isArray(doc.rules) ? doc.rules : []);
+    // structured-unreachable: a theme lesson plays a structured exercise only with the card of its
+    // rule (ruleEntries in app/js/engine/session.js), and the card comes for a rule the lesson or
+    // one of its items lists. A consolidation lesson plays its structured exercises on its own.
+    const playedRules = new Set(Array.isArray(doc.rules) ? doc.rules : []);
+    eachObject(doc.items, 'items', (x) => {
+      if (Array.isArray(x.rules)) for (const rule of x.rules) playedRules.add(rule);
+    });
     /** register: a typed answer never contains a recognition-only item. @param {unknown} answer @param {string} at */
     const producible = (answer, at) => {
       if (typeof answer !== 'string') return;
@@ -807,6 +814,9 @@ function checkCorpus(corpus, allowPending, cognates, issues) {
       knownRule(x.rule, sub(at, 'rule'));
       if (typeof x.rule === 'string' && ruleIds.has(x.rule) && !rulesSoFar.has(x.rule)) {
         add(file, 'standalone', sub(at, 'rule'), `uses rule ${quote(x.rule)} before a lesson introduces it`);
+      }
+      if (!consolidation && typeof x.rule === 'string' && ruleIds.has(x.rule) && !playedRules.has(x.rule)) {
+        add(file, 'structured-unreachable', sub(at, 'rule'), `is played only with rule ${quote(x.rule)}, which neither this lesson nor any of its items lists, so the exercise never appears`);
       }
       producible(x.answer, sub(at, 'answer'));
     });

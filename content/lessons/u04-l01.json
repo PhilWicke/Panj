@@ -197,7 +197,8 @@
       "helper": null,
       "accept": [],
       "rules": [
-        "r-genitive-quantity"
+        "r-genitive-quantity",
+        "r-accusative-masculine"
       ],
       "freq_rank": 1793,
       "verification": {

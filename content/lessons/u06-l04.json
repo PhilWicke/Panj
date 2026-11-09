@@ -163,7 +163,8 @@
       "helper": "Like German Haus and English house.",
       "accept": [],
       "rules": [
-        "r-locative"
+        "r-locative",
+        "r-v-or-na"
       ],
       "freq_rank": 314,
       "verification": {
