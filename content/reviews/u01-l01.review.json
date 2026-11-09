@@ -1,4 +1,335 @@
 {
   "lesson": "u01-l01",
-  "reviews": []
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {
+        "u01-l01-i01": {
+          "verdict": "accepted",
+          "reason": "eSSKJ lists živjo as a variant of the headword živijo, so the sl and the accept variant are both correct. The colloquial register is right. 'Živjo, kako si?' and 'Živjo, pridi naprej.' are both natural, with faithful English.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=živijo"
+        },
+        "u01-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Correct standard greeting with a neutral register. 'Good day' is the usual textbook gloss. The helper is an honest parallel to Guten Tag. Both examples are natural and use the right vi forms.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Correct greeting. Both examples are natural and translated faithfully. The helper is an honest parallel to Guten Abend.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Correct leave-taking at night. Noč and Nacht are true cognates. Both examples are natural ('Hvala za lep večer', 'se vidimo jutri').",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Adijo is the everyday colloquial farewell. The helper matches the recorded etymology, a borrowing from Italian addio. Both examples are natural.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/adijo"
+        },
+        "u01-l01-i06": {
+          "verdict": "accepted",
+          "reason": "The SSKJ² headword is 'nasvídenje in na svídenje', so the sl and the accept variant are both standard. The helper describes the build correctly (svidenje is a seeing again, as in Auf Wiedersehen). The examples are natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=nasvidenje"
+        },
+        "u01-l01-i07": {
+          "verdict": "accepted",
+          "reason": "Correct. 'Dobro, hvala' and 'Hvala lepa' are natural, and the accept variant 'hvala lepa' is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-i08": {
+          "verdict": "accepted",
+          "reason": "Prosim is the 1sg of prositi, so the helper is accurate. Example 2 correctly shows the 'you're welcome' use, and 'Kar naprej, prosim' is natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u01-l01-s01": {
+          "verdict": "accepted",
+          "reason": "With jaz, only sem fits. The English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-s02": {
+          "verdict": "accepted",
+          "reason": "With ti, only si fits. 'Ti si doma' is grammatical and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-s03": {
+          "verdict": "accepted",
+          "reason": "With ona, only je fits. The English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-s04": {
+          "verdict": "accepted",
+          "reason": "With vi, only ste fits. The English matches s02, but the pronoun in the prompt makes the answer unique.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Dober večer is the right evening greeting, and the instruction is clear.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Lahko noč is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Hvala is correct, and 'hvala lepa' is a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Nasvidenje is the polite farewell, and 'na svidenje' is a correct spelling variant (SSKJ²).",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=nasvidenje"
+        },
+        "u01-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "A natural greeting at the door. Dobrodošli is the right polite form.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural reply.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "'Kar naprej, prosim' is the standard way to invite someone in.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "The polite question to a guest is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural reply. The English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "r-biti-present": {
+          "verdict": "accepted",
+          "reason": "All nine forms are correct, and so are the pronouns and notes (midva/medve, vidva/vedve, onadva/onidve, oni/one, polite vi ste). The toggle sentences are correct. 'Midva sva lačna' uses the right masculine dual adjective, and only sva fits the blank. The card text and helpers are accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "r-ti-vi": {
+          "verdict": "accepted",
+          "reason": "Accurate account of ti and vi with singular and plural verbs. The toggle examples are correct. In the quick check, gospa calls for ste, so exactly one option is right. The du/Sie helper is apt.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 3,
+      "items": {
+        "u01-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Živjo is the everyday informal greeting. eSSKJ lists žívjo, žívio and žívijo together, so the accept variant živijo is correct. The colloquial register fits, and both examples are natural (pridi naprej is a normal way to say come in).",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=%C5%BEivjo"
+        },
+        "u01-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Standard daytime greeting. Both examples are natural, the Guten Tag helper is a true parallel, and the gloss is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Correct greeting. The examples are natural, and the Guten Abend parallel is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Correct fixed phrase. Both examples are natural, and noč is a true cognate of Nacht.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Pravopis marks adijo as neknj. pog., which matches the colloquial register. Snoj derives it from Italian addio (Latin ad Deum), so the helper is true. The examples are natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=adijo"
+        },
+        "u01-l01-i06": {
+          "verdict": "accepted",
+          "reason": "SSKJ2 has the headword 'nasvídenje in na svídenje', so both the target and the accept variant are standard. The helper's structural parallel with Auf Wiedersehen is real, and the examples are natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=nasvidenje"
+        },
+        "u01-l01-i07": {
+          "verdict": "accepted",
+          "reason": "Correct, and the examples are natural. The accept variant hvala lepa is correct Slovenian and a fine answer to thanking someone.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-i08": {
+          "verdict": "accepted",
+          "reason": "Correct. The helper is true, since prosim is the 1sg of prositi. The second example rightly shows the 'you're welcome' use and translates it faithfully.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u01-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Only sem fits jaz, and the English matches.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-s02": {
+          "verdict": "accepted",
+          "reason": "Only si fits ti, and doma is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Only je fits ona.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Only ste fits vi. The English is the same as in s02, but the pronoun in the prompt settles the answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Dober večer is the right evening greeting.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, and the accept variant hvala lepa is correct too.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Nasvidenje is the polite goodbye, and na svidenje is the standard alternative spelling (SSKJ2).",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=nasvidenje"
+        },
+        "u01-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural host greeting at the door.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural reply.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Kar naprej, prosim is the idiomatic invitation to come in.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural, and the polite form fits a guest.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l01-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural reply.",
+          "fix": "",
+          "source": ""
+        },
+        "r-biti-present": {
+          "verdict": "accepted",
+          "reason": "All nine forms and pronouns are correct, and so are the dual notes (medve, vedve, onidve for women), the oni/one note, the polite vi note, the toggles and the quick check (midva sva lačna, with lačna the correct masculine dual). The card text and helpers are accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "r-ti-vi": {
+          "verdict": "accepted",
+          "reason": "Accurate card. Ti takes the singular verb and vi the plural. The toggles and the quick check (gospa leads to kako ste) are correct, and the du/Sie parallel holds.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u01-l01-i01": "632d80fcedb93d17",
+    "u01-l01-i02": "31e2bdc4fef20489",
+    "u01-l01-i03": "d3a97e7c10cd1fde",
+    "u01-l01-i04": "f172f74efc8f8106",
+    "u01-l01-i05": "1844e6d7af4761b8",
+    "u01-l01-i06": "18e5aeba005493b8",
+    "u01-l01-i07": "126769b6a3f522cc",
+    "u01-l01-i08": "c58292a70d63f2d4",
+    "u01-l01-s01": "7f1268206a10d8d5",
+    "u01-l01-s02": "f527d3563c86986c",
+    "u01-l01-s03": "01644a006bfaad57",
+    "u01-l01-s04": "5998b6e1d56fd1ad",
+    "u01-l01-p01": "a4ad1a0f4f1cb444",
+    "u01-l01-p02": "6d2830c7eed2beda",
+    "u01-l01-p03": "ef39b5b4f21d0090",
+    "u01-l01-p04": "f6c3d0beb4538a2a",
+    "u01-l01-d-01": "1af8825fa1d853c5",
+    "u01-l01-d-02": "997ffdf0037d785e",
+    "u01-l01-d-03": "5559da56bc1d07c2",
+    "u01-l01-d-04": "e54a94e150b29eaa",
+    "u01-l01-d-05": "650a0ced2e12c995",
+    "u01-l01-d-06": "f7d3de4cd3302274",
+    "r-biti-present": "428cf199820a400e",
+    "r-ti-vi": "04baea25ce584250"
+  }
 }

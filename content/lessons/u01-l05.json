@@ -1,0 +1,353 @@
+{
+  "id": "u01-l05",
+  "unit": "u01",
+  "order": 5,
+  "role": "consolidation",
+  "title_sl": "Na obisku",
+  "title_en": "On a visit",
+  "items": [
+    {
+      "id": "u01-l05-i01",
+      "type": "chunk",
+      "sl": "Dobrodošli.",
+      "sl_colloquial": null,
+      "en": "Welcome.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan, dobrodošli.",
+          "en": "Good day, welcome."
+        },
+        {
+          "sl": "Dobrodošli. Kar naprej, prosim.",
+          "en": "Welcome. Come on in, please."
+        }
+      ],
+      "helper": "Built like English welcome: dobro, well, and došli, come.",
+      "accept": [],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": 2284,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l05-i02",
+      "type": "chunk",
+      "sl": "Kar naprej.",
+      "sl_colloquial": null,
+      "en": "Come on in.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober večer. Kar naprej.",
+          "en": "Good evening. Come on in."
+        },
+        {
+          "sl": "Kar naprej, dobrodošli.",
+          "en": "Come on in, welcome."
+        }
+      ],
+      "helper": "naprej is forward, so literally just forward.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l05-i03",
+      "type": "chunk",
+      "sl": "Hvala za vse.",
+      "sl_colloquial": null,
+      "en": "Thanks for everything.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala za vse. Nasvidenje.",
+          "en": "Thanks for everything. Goodbye."
+        },
+        {
+          "sl": "Hvala za vse, gospa.",
+          "en": "Thank you for everything, madam."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l05-i04",
+      "type": "chunk",
+      "sl": "Se vidimo.",
+      "sl_colloquial": null,
+      "en": "See you.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Se vidimo jutri.",
+          "en": "See you tomorrow."
+        },
+        {
+          "sl": "Hvala za vse. Se vidimo.",
+          "en": "Thanks for everything. See you."
+        }
+      ],
+      "helper": "Literally we see each other, like German wir sehen uns.",
+      "accept": [
+        "Se vidiva."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l05-i05",
+      "type": "chunk",
+      "sl": "Lep dan še naprej.",
+      "sl_colloquial": null,
+      "en": "Have a nice rest of the day.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala. Lep dan še naprej.",
+          "en": "Thank you. Have a nice rest of the day."
+        },
+        {
+          "sl": "Nasvidenje in lep dan še naprej.",
+          "en": "Goodbye, and have a nice rest of the day."
+        }
+      ],
+      "helper": "Literally a nice day from here on: še naprej is still onward.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l05-i06",
+      "type": "chunk",
+      "sl": "Srečno.",
+      "sl_colloquial": null,
+      "en": "Good luck.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala za vse in srečno.",
+          "en": "Thanks for everything, and good luck."
+        },
+        {
+          "sl": "Adijo in srečno.",
+          "en": "Bye, and all the best."
+        }
+      ],
+      "helper": "From sreča, luck. Also a warm goodbye.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 1432,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [],
+  "structured": [
+    {
+      "id": "u01-l05-s01",
+      "prompt_sl": "___ ste iz Avstrije?",
+      "options": [
+        "Ali",
+        "Od kod",
+        "Kako"
+      ],
+      "answer": "Ali",
+      "rule": "r-a-ali",
+      "en": "Are you from Austria?"
+    },
+    {
+      "id": "u01-l05-s02",
+      "prompt_sl": "Oprostite, kako ___ je ime?",
+      "options": [
+        "ti",
+        "vam"
+      ],
+      "answer": "vam",
+      "rule": "r-ime-mi-je",
+      "en": "Excuse me, what is your name?"
+    },
+    {
+      "id": "u01-l05-s03",
+      "prompt_sl": "Oni ___ iz Slovenije.",
+      "options": [
+        "so",
+        "ste",
+        "smo"
+      ],
+      "answer": "so",
+      "rule": "r-biti-present",
+      "en": "They are from Slovenia."
+    },
+    {
+      "id": "u01-l05-s04",
+      "prompt_sl": "Midva ___ od tukaj.",
+      "options": [
+        "nisva",
+        "nismo",
+        "nista"
+      ],
+      "answer": "nisva",
+      "rule": "r-biti-negative",
+      "en": "The two of us are not from here."
+    },
+    {
+      "id": "u01-l05-s05",
+      "prompt_sl": "Dobrodošli. Kako ___?",
+      "options": [
+        "si",
+        "ste"
+      ],
+      "answer": "ste",
+      "rule": "r-ti-vi",
+      "en": "Welcome. How are you? (to an older guest)"
+    }
+  ],
+  "production": [
+    {
+      "id": "u01-l05-p01",
+      "en": "Welcome guests at the door.",
+      "answer": "Dobrodošli.",
+      "accept": [],
+      "item": "u01-l05-i01"
+    },
+    {
+      "id": "u01-l05-p02",
+      "en": "Wish someone a nice rest of the day.",
+      "answer": "Lep dan še naprej.",
+      "accept": [],
+      "item": "u01-l05-i05"
+    },
+    {
+      "id": "u01-l05-p03",
+      "en": "Greet an older neighbour during the day.",
+      "answer": "Dober dan.",
+      "accept": [],
+      "item": "u01-l01-i02"
+    },
+    {
+      "id": "u01-l05-p04",
+      "en": "Ask your hosts' neighbours how they are.",
+      "answer": "Kako ste?",
+      "accept": [],
+      "item": "u01-l02-i04"
+    },
+    {
+      "id": "u01-l05-p05",
+      "en": "Tell the neighbours you are not from here.",
+      "answer": "Nisem od tukaj.",
+      "accept": [
+        "Nisem od tod."
+      ],
+      "item": "u01-l03-i04"
+    },
+    {
+      "id": "u01-l05-p06",
+      "en": "Politely say excuse me.",
+      "answer": "Oprostite.",
+      "accept": [],
+      "item": "u01-l04-i05"
+    }
+  ],
+  "dialogue": {
+    "id": "u01-l05-d",
+    "title_sl": "Pri sosedih",
+    "title_en": "At the neighbours'",
+    "setting_en": "Your hosts' neighbours have invited you over: the greeting at the door, a few words, and goodbye.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Dober dan. Dobrodošli. Kar naprej.",
+        "en": "Good day. Welcome. Come on in."
+      },
+      {
+        "speaker": "you",
+        "sl": "Dober dan. Hvala lepa.",
+        "en": "Good day. Thank you very much.",
+        "new_items": [
+          "u01-l01-i02",
+          "u01-l04-i08"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kako ste? Od kod ste?",
+        "en": "How are you? Where are you from?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Dobro, hvala. Sem iz Avstrije.",
+        "en": "Fine, thank you. I'm from Austria.",
+        "new_items": [
+          "u01-l02-i05",
+          "u01-l03-i03"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Niste od tukaj? Ste na obisku?",
+        "en": "You're not from here? Are you visiting?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, sem na obisku.",
+        "en": "Yes, I'm visiting.",
+        "new_items": [
+          "u01-l02-i07",
+          "u01-l04-i04"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Lep dan še naprej. Srečno.",
+        "en": "Have a nice rest of the day. All the best."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala za vse. Se vidimo.",
+        "en": "Thanks for everything. See you.",
+        "new_items": [
+          "u01-l05-i03",
+          "u01-l05-i04"
+        ]
+      }
+    ]
+  }
+}

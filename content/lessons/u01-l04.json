@@ -1,0 +1,419 @@
+{
+  "id": "u01-l04",
+  "unit": "u01",
+  "order": 4,
+  "role": "theme",
+  "title_sl": "Me veseli",
+  "title_en": "Nice to meet you",
+  "items": [
+    {
+      "id": "u01-l04-i01",
+      "type": "chunk",
+      "sl": "Kako vam je ime?",
+      "sl_colloquial": null,
+      "en": "What is your name? (polite)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan, gospa. Kako vam je ime?",
+          "en": "Good day, madam. What is your name?"
+        },
+        {
+          "sl": "Oprostite, kako vam je ime?",
+          "en": "Excuse me, what is your name?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-ime-mi-je",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l04-i02",
+      "type": "chunk",
+      "sl": "Kako ti je ime?",
+      "sl_colloquial": null,
+      "en": "What is your name? (informal: to a child or a peer)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Živjo. Kako ti je ime?",
+          "en": "Hi. What's your name?"
+        },
+        {
+          "sl": "Kako ti je ime? Od kod si?",
+          "en": "What's your name? Where are you from?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-ime-mi-je",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review2 doubtful: The Slovenian and the examples are correct. The doubt is in the en field: '(to someone close)' is an odd note for asking a name, since you already know the name of someone close. The lesson's own s01 and p02 frame it as 'to a child'. The note would be clearer as '(informal: to a child or a peer)'."
+      }
+    },
+    {
+      "id": "u01-l04-i03",
+      "type": "chunk",
+      "sl": "Me veseli.",
+      "sl_colloquial": null,
+      "en": "Nice to meet you.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan, me veseli.",
+          "en": "Good day, nice to meet you."
+        },
+        {
+          "sl": "Me veseli. Sem na obisku.",
+          "en": "Nice to meet you. I'm visiting."
+        }
+      ],
+      "helper": "Literally it makes me glad, from vesel, glad.",
+      "accept": [
+        "Veseli me."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l04-i04",
+      "type": "chunk",
+      "sl": "Sem na obisku.",
+      "sl_colloquial": null,
+      "en": "I'm visiting.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Nisem od tukaj, sem na obisku.",
+          "en": "I'm not from here, I'm visiting."
+        },
+        {
+          "sl": "Ja, sem na obisku.",
+          "en": "Yes, I'm visiting."
+        }
+      ],
+      "helper": "Built like German Ich bin zu Besuch: obisk is a visit.",
+      "accept": [
+        "Jaz sem na obisku."
+      ],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l04-i05",
+      "type": "chunk",
+      "sl": "Oprostite.",
+      "sl_colloquial": null,
+      "en": "Excuse me. (polite)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, gospa. Od kod ste?",
+          "en": "Excuse me, madam. Where are you from?"
+        },
+        {
+          "sl": "Oprostite, nisem od tukaj.",
+          "en": "Sorry, I'm not from here."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": 1189,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l04-i06",
+      "type": "chunk",
+      "sl": "Ne razumem.",
+      "sl_colloquial": null,
+      "en": "I don't understand.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, ne razumem.",
+          "en": "Sorry, I don't understand."
+        },
+        {
+          "sl": "Ne razumem, nisem od tukaj.",
+          "en": "I don't understand, I'm not from here."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l04-i07",
+      "type": "chunk",
+      "sl": "Počasi, prosim.",
+      "sl_colloquial": null,
+      "en": "Slowly, please.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ne razumem. Počasi, prosim.",
+          "en": "I don't understand. Slowly, please."
+        },
+        {
+          "sl": "Bolj počasi, prosim.",
+          "en": "More slowly, please."
+        }
+      ],
+      "helper": null,
+      "accept": [
+        "Bolj počasi, prosim.",
+        "Počasneje, prosim."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l04-i08",
+      "type": "chunk",
+      "sl": "Hvala lepa.",
+      "sl_colloquial": null,
+      "en": "Thank you very much.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala lepa, gospa.",
+          "en": "Thank you very much, madam."
+        },
+        {
+          "sl": "Hvala lepa. Nasvidenje.",
+          "en": "Thank you very much. Goodbye."
+        }
+      ],
+      "helper": "lepa is lovely, as in lep dan: a lovely thank you.",
+      "accept": [
+        "Lepa hvala."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-ime-mi-je"
+  ],
+  "structured": [
+    {
+      "id": "u01-l04-s01",
+      "prompt_sl": "Kako ___ je ime?",
+      "options": [
+        "ti",
+        "vam",
+        "mi"
+      ],
+      "answer": "ti",
+      "rule": "r-ime-mi-je",
+      "en": "What's your name? (to a child)"
+    },
+    {
+      "id": "u01-l04-s02",
+      "prompt_sl": "Kako vam ___ ime?",
+      "options": [
+        "je",
+        "ste",
+        "sem"
+      ],
+      "answer": "je",
+      "rule": "r-ime-mi-je",
+      "en": "What is your name? (polite)"
+    },
+    {
+      "id": "u01-l04-s03",
+      "prompt_sl": "Jaz ___ na obisku.",
+      "options": [
+        "sem",
+        "si",
+        "je"
+      ],
+      "answer": "sem",
+      "rule": "r-biti-present",
+      "en": "I'm visiting."
+    },
+    {
+      "id": "u01-l04-s04",
+      "prompt_sl": "Midva ___ na obisku.",
+      "options": [
+        "sva",
+        "smo",
+        "sta"
+      ],
+      "answer": "sva",
+      "rule": "r-biti-present",
+      "en": "The two of us are visiting."
+    },
+    {
+      "id": "u01-l04-s05",
+      "prompt_sl": "Oprostite, od kod ___?",
+      "options": [
+        "si",
+        "ste"
+      ],
+      "answer": "ste",
+      "rule": "r-ti-vi",
+      "en": "Excuse me, where are you from?"
+    }
+  ],
+  "production": [
+    {
+      "id": "u01-l04-p01",
+      "en": "Ask an older person their name.",
+      "answer": "Kako vam je ime?",
+      "accept": [],
+      "item": "u01-l04-i01"
+    },
+    {
+      "id": "u01-l04-p02",
+      "en": "Ask a child their name.",
+      "answer": "Kako ti je ime?",
+      "accept": [],
+      "item": "u01-l04-i02"
+    },
+    {
+      "id": "u01-l04-p03",
+      "en": "Say it is nice to meet someone.",
+      "answer": "Me veseli.",
+      "accept": [
+        "Veseli me."
+      ],
+      "item": "u01-l04-i03"
+    },
+    {
+      "id": "u01-l04-p04",
+      "en": "Say you are here on a visit.",
+      "answer": "Sem na obisku.",
+      "accept": [
+        "Jaz sem na obisku."
+      ],
+      "item": "u01-l04-i04"
+    },
+    {
+      "id": "u01-l04-p05",
+      "en": "Say you do not understand.",
+      "answer": "Ne razumem.",
+      "accept": [],
+      "item": "u01-l04-i06"
+    },
+    {
+      "id": "u01-l04-p06",
+      "en": "Ask someone to speak slowly.",
+      "answer": "Počasi, prosim.",
+      "accept": [
+        "Bolj počasi, prosim.",
+        "Počasneje, prosim."
+      ],
+      "item": "u01-l04-i07"
+    }
+  ],
+  "dialogue": {
+    "id": "u01-l04-d",
+    "title_sl": "Prehitro",
+    "title_en": "Too fast",
+    "setting_en": "An older person at your hosts' house greets you and speaks very fast.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Dober dan. Me veseli. Od kod ste?",
+        "en": "Good day. Nice to meet you. Where are you from?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Oprostite, ne razumem. Počasi, prosim.",
+        "en": "Sorry, I don't understand. Slowly, please.",
+        "new_items": [
+          "u01-l04-i05",
+          "u01-l04-i06",
+          "u01-l04-i07"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Od kod ste? Ste na obisku?",
+        "en": "Where are you from? Are you visiting?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Sem iz Avstrije. Sem na obisku.",
+        "en": "I'm from Austria. I'm visiting.",
+        "new_items": [
+          "u01-l04-i04"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Iz Avstrije? Dobrodošli.",
+        "en": "From Austria? Welcome."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala lepa. Me veseli.",
+        "en": "Thank you very much. Nice to meet you.",
+        "new_items": [
+          "u01-l04-i08",
+          "u01-l04-i03"
+        ]
+      }
+    ]
+  }
+}

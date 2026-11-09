@@ -30,12 +30,12 @@
       "rules": [
         "r-ti-vi"
       ],
-      "freq_rank": null,
+      "freq_rank": 569,
       "verification": {
-        "review1": null,
-        "review2": null,
+        "review1": "accepted",
+        "review2": "accepted",
         "native": null,
-        "status": "pending"
+        "status": "accepted"
       }
     },
     {
@@ -55,7 +55,7 @@
           "en": "Good day, madam."
         }
       ],
-      "helper": null,
+      "helper": "Built like German Guten Tag: dober is good, dan is day.",
       "accept": [],
       "rules": [
         "r-ti-vi",
@@ -63,10 +63,10 @@
       ],
       "freq_rank": null,
       "verification": {
-        "review1": null,
-        "review2": null,
+        "review1": "accepted",
+        "review2": "accepted",
         "native": null,
-        "status": "pending"
+        "status": "accepted"
       }
     },
     {
@@ -86,17 +86,17 @@
           "en": "Good evening, how are you?"
         }
       ],
-      "helper": null,
+      "helper": "Built like German Guten Abend: večer is evening.",
       "accept": [],
       "rules": [
         "r-biti-present"
       ],
       "freq_rank": null,
       "verification": {
-        "review1": null,
-        "review2": null,
+        "review1": "accepted",
+        "review2": "accepted",
         "native": null,
-        "status": "pending"
+        "status": "accepted"
       }
     },
     {
@@ -121,10 +121,10 @@
       "rules": [],
       "freq_rank": null,
       "verification": {
-        "review1": null,
-        "review2": null,
+        "review1": "accepted",
+        "review2": "accepted",
         "native": null,
-        "status": "pending"
+        "status": "accepted"
       }
     },
     {
@@ -149,12 +149,12 @@
       "rules": [
         "r-ti-vi"
       ],
-      "freq_rank": null,
+      "freq_rank": 923,
       "verification": {
-        "review1": null,
-        "review2": null,
+        "review1": "accepted",
+        "review2": "accepted",
         "native": null,
-        "status": "pending"
+        "status": "accepted"
       }
     },
     {
@@ -171,10 +171,10 @@
         },
         {
           "sl": "Nasvidenje, lep dan še naprej.",
-          "en": "Goodbye, enjoy the rest of your day."
+          "en": "Goodbye, have a nice rest of the day."
         }
       ],
-      "helper": "Built like Auf Wiedersehen: na svidenje, until we see each other again.",
+      "helper": "Built like German Auf Wiedersehen: na svidenje, until we see each other again.",
       "accept": [
         "na svidenje"
       ],
@@ -183,10 +183,10 @@
       ],
       "freq_rank": null,
       "verification": {
-        "review1": null,
-        "review2": null,
+        "review1": "accepted",
+        "review2": "accepted",
         "native": null,
-        "status": "pending"
+        "status": "accepted"
       }
     },
     {
@@ -211,12 +211,12 @@
         "hvala lepa"
       ],
       "rules": [],
-      "freq_rank": null,
+      "freq_rank": 148,
       "verification": {
-        "review1": null,
-        "review2": null,
+        "review1": "accepted",
+        "review2": "accepted",
         "native": null,
-        "status": "pending"
+        "status": "accepted"
       }
     },
     {
@@ -224,7 +224,7 @@
       "type": "chunk",
       "sl": "Prosim.",
       "sl_colloquial": null,
-      "en": "Please.",
+      "en": "Please, or you're welcome.",
       "register": "neutral",
       "examples": [
         {
@@ -239,12 +239,12 @@
       "helper": "Literally I ask, from prositi, to ask.",
       "accept": [],
       "rules": [],
-      "freq_rank": null,
+      "freq_rank": 253,
       "verification": {
-        "review1": null,
-        "review2": null,
+        "review1": "accepted",
+        "review2": "accepted",
         "native": null,
-        "status": "pending"
+        "status": "accepted"
       }
     }
   ],
@@ -277,7 +277,7 @@
       ],
       "answer": "si",
       "rule": "r-biti-present",
-      "en": "You are at home."
+      "en": "You are at home. (to a friend)"
     },
     {
       "id": "u01-l01-s03",
@@ -303,7 +303,7 @@
       ],
       "answer": "ste",
       "rule": "r-biti-present",
-      "en": "You are at home."
+      "en": "You are at home. (to an older person)"
     }
   ],
   "production": [
@@ -344,7 +344,7 @@
     "id": "u01-l01-d",
     "title_sl": "Pri vratih",
     "title_en": "At the door",
-    "setting_en": "It is evening. You arrive at a Slovenian family's house as a guest, and one of your hosts opens the door.",
+    "setting_en": "It is evening. You arrive at your hosts' house as a guest, and one of them opens the door.",
     "lines": [
       {
         "speaker": "host",

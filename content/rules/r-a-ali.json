@@ -1,0 +1,41 @@
+{
+  "id": "r-a-ali",
+  "unit": "u01",
+  "title_en": "A or ali: yes or no questions",
+  "card_en": "A yes or no question can open with ali, or in everyday speech with a. Both just mark the question: a si v redu, ali si v redu, are you OK?",
+  "example": {
+    "sl": "Ali si v redu?",
+    "en": "Are you OK?"
+  },
+  "toggles": [
+    {
+      "label": "Style",
+      "options": [
+        "everyday speech",
+        "careful speech or writing"
+      ],
+      "examples": {
+        "everyday speech": {
+          "sl": "A si v redu?",
+          "en": "Are you OK?"
+        },
+        "careful speech or writing": {
+          "sl": "Ali si v redu?",
+          "en": "Are you OK?"
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "___ ste v redu, gospa?",
+    "options": [
+      "Ali",
+      "Kako",
+      "Od kod"
+    ],
+    "answer": "Ali",
+    "explain_en": "Ali opens a yes or no question. Kako asks how, and od kod asks where from."
+  },
+  "helper_de": "German turns the verb around: Bist du okay? Slovenian can simply put ali or a in front.",
+  "helper_en": "English turns the verb around or adds do. Slovenian can simply put ali or a in front."
+}

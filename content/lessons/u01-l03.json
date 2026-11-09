@@ -1,0 +1,438 @@
+{
+  "id": "u01-l03",
+  "unit": "u01",
+  "order": 3,
+  "role": "theme",
+  "title_sl": "Od kod ste?",
+  "title_en": "Where are you from?",
+  "items": [
+    {
+      "id": "u01-l03-i01",
+      "type": "chunk",
+      "sl": "Od kod ste?",
+      "sl_colloquial": null,
+      "en": "Where are you from? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan. Od kod ste?",
+          "en": "Good day. Where are you from?"
+        },
+        {
+          "sl": "Od kod ste, gospa?",
+          "en": "Where are you from, madam?"
+        }
+      ],
+      "helper": "Literally from where, like German woher.",
+      "accept": [],
+      "rules": [
+        "r-ti-vi",
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l03-i02",
+      "type": "chunk",
+      "sl": "Od kod si?",
+      "sl_colloquial": null,
+      "en": "Where are you from? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Živjo. Od kod si?",
+          "en": "Hi. Where are you from?"
+        },
+        {
+          "sl": "Od kod si? Iz Nemčije?",
+          "en": "Where are you from? From Germany?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-ti-vi",
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l03-i03",
+      "type": "chunk",
+      "sl": "Sem iz Nemčije.",
+      "sl_colloquial": null,
+      "en": "I'm from Germany.",
+      "register": "neutral",
+      "slots": [
+        {
+          "label": "country",
+          "fillers": [
+            "u01-l03-i06",
+            "u01-l03-i07",
+            "u01-l03-i08"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "sl": "Jaz sem iz Nemčije. In vi?",
+          "en": "I'm from Germany. And you?"
+        },
+        {
+          "sl": "Ne, sem iz Nemčije.",
+          "en": "No, I'm from Germany."
+        }
+      ],
+      "helper": "iz works like German aus: aus Deutschland, iz Nemčije. After iz, Nemčija changes to Nemčije.",
+      "accept": [
+        "Jaz sem iz Nemčije."
+      ],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l03-i04",
+      "type": "chunk",
+      "sl": "Nisem od tukaj.",
+      "sl_colloquial": null,
+      "en": "I'm not from here.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ne, nisem od tukaj.",
+          "en": "No, I'm not from here."
+        },
+        {
+          "sl": "Nisem od tukaj, sem iz Avstrije.",
+          "en": "I'm not from here, I'm from Austria."
+        }
+      ],
+      "helper": "nisem is sem with ni- in front: I am not.",
+      "accept": [
+        "Nisem od tod."
+      ],
+      "rules": [
+        "r-biti-negative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l03-i05",
+      "type": "chunk",
+      "sl": "Ne.",
+      "sl_colloquial": null,
+      "en": "No.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ne, hvala.",
+          "en": "No, thank you."
+        },
+        {
+          "sl": "Ne, nisem iz Slovenije.",
+          "en": "No, I'm not from Slovenia."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 2,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l03-i06",
+      "type": "word",
+      "sl": "Nemčija",
+      "sl_colloquial": null,
+      "en": "Germany",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "gen": "Nemčije"
+      },
+      "examples": [
+        {
+          "sl": "Ste iz Nemčije?",
+          "en": "Are you from Germany?"
+        },
+        {
+          "sl": "Jaz nisem iz Nemčije.",
+          "en": "I'm not from Germany."
+        }
+      ],
+      "helper": "From nem, mute: to the early Slavs, the Germans were the people they could not understand.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 1580,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l03-i07",
+      "type": "word",
+      "sl": "Avstrija",
+      "sl_colloquial": null,
+      "en": "Austria",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "gen": "Avstrije"
+      },
+      "examples": [
+        {
+          "sl": "Ona je iz Avstrije.",
+          "en": "She is from Austria."
+        },
+        {
+          "sl": "Si iz Avstrije?",
+          "en": "Are you from Austria?"
+        }
+      ],
+      "helper": "Austria, written with v: Avstrija.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 1579,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l03-i08",
+      "type": "word",
+      "sl": "Slovenija",
+      "sl_colloquial": null,
+      "en": "Slovenia",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "gen": "Slovenije"
+      },
+      "examples": [
+        {
+          "sl": "Slovenija je lepa.",
+          "en": "Slovenia is beautiful."
+        },
+        {
+          "sl": "Sem iz Slovenije.",
+          "en": "I'm from Slovenia."
+        }
+      ],
+      "helper": "Slovenia, written with j: Slovenija.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 164,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-biti-negative"
+  ],
+  "structured": [
+    {
+      "id": "u01-l03-s01",
+      "prompt_sl": "Jaz ___ od tukaj.",
+      "options": [
+        "nisem",
+        "nisi",
+        "ni"
+      ],
+      "answer": "nisem",
+      "rule": "r-biti-negative",
+      "en": "I'm not from here."
+    },
+    {
+      "id": "u01-l03-s02",
+      "prompt_sl": "Ona ___ iz Avstrije.",
+      "options": [
+        "nisem",
+        "ni",
+        "niso"
+      ],
+      "answer": "ni",
+      "rule": "r-biti-negative",
+      "en": "She isn't from Austria."
+    },
+    {
+      "id": "u01-l03-s03",
+      "prompt_sl": "Mi ___ iz Slovenije.",
+      "options": [
+        "nismo",
+        "niste",
+        "niso"
+      ],
+      "answer": "nismo",
+      "rule": "r-biti-negative",
+      "en": "We aren't from Slovenia."
+    },
+    {
+      "id": "u01-l03-s04",
+      "prompt_sl": "Od kod ___, gospa?",
+      "options": [
+        "si",
+        "ste",
+        "je"
+      ],
+      "answer": "ste",
+      "rule": "r-ti-vi",
+      "en": "Where are you from, madam?"
+    },
+    {
+      "id": "u01-l03-s05",
+      "prompt_sl": "Midva ___ iz Nemčije.",
+      "options": [
+        "sva",
+        "smo",
+        "sta"
+      ],
+      "answer": "sva",
+      "rule": "r-biti-present",
+      "en": "The two of us are from Germany."
+    }
+  ],
+  "production": [
+    {
+      "id": "u01-l03-p01",
+      "en": "Ask an older person where they are from.",
+      "answer": "Od kod ste?",
+      "accept": [],
+      "item": "u01-l03-i01"
+    },
+    {
+      "id": "u01-l03-p02",
+      "en": "Ask a friend where they are from.",
+      "answer": "Od kod si?",
+      "accept": [],
+      "item": "u01-l03-i02"
+    },
+    {
+      "id": "u01-l03-p03",
+      "en": "Say you are from Germany.",
+      "answer": "Sem iz Nemčije.",
+      "accept": [
+        "Jaz sem iz Nemčije."
+      ],
+      "item": "u01-l03-i03",
+      "filler": "Nemčije"
+    },
+    {
+      "id": "u01-l03-p04",
+      "en": "Say you are from Austria.",
+      "answer": "Sem iz Avstrije.",
+      "accept": [
+        "Jaz sem iz Avstrije."
+      ],
+      "item": "u01-l03-i03",
+      "filler": "Avstrije"
+    },
+    {
+      "id": "u01-l03-p05",
+      "en": "Say you are from Slovenia.",
+      "answer": "Sem iz Slovenije.",
+      "accept": [
+        "Jaz sem iz Slovenije."
+      ],
+      "item": "u01-l03-i03",
+      "filler": "Slovenije"
+    },
+    {
+      "id": "u01-l03-p06",
+      "en": "Say you are not from here.",
+      "answer": "Nisem od tukaj.",
+      "accept": [
+        "Nisem od tod."
+      ],
+      "item": "u01-l03-i04"
+    }
+  ],
+  "dialogue": {
+    "id": "u01-l03-d",
+    "title_sl": "Pred hišo",
+    "title_en": "Outside the house",
+    "setting_en": "Outside your hosts' house, one of their neighbours stops to talk to you.",
+    "lines": [
+      {
+        "speaker": "passer-by",
+        "sl": "Dober dan. Ste iz Slovenije?",
+        "en": "Good day. Are you from Slovenia?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ne, nisem od tukaj.",
+        "en": "No, I'm not from here.",
+        "new_items": [
+          "u01-l03-i05",
+          "u01-l03-i04"
+        ]
+      },
+      {
+        "speaker": "passer-by",
+        "sl": "Od kod ste?",
+        "en": "Where are you from?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Sem iz Nemčije. In vi?",
+        "en": "I'm from Germany. And you?",
+        "new_items": [
+          "u01-l03-i03"
+        ]
+      },
+      {
+        "speaker": "passer-by",
+        "sl": "Jaz sem od tukaj. Dobrodošli.",
+        "en": "I'm from here. Welcome."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala. Nasvidenje.",
+        "en": "Thank you. Goodbye."
+      }
+    ]
+  }
+}

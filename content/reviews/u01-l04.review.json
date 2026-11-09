@@ -1,0 +1,361 @@
+{
+  "lesson": "u01-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u01-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Correct polite dative construction. Both examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-i02": {
+          "verdict": "accepted",
+          "reason": "The Slovenian and the examples are correct. A minor English point: '(to someone close)' reads oddly for asking a name; '(informal, to a child or a peer)' would fit better. That is not an error in the Slovenian.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-i03": {
+          "verdict": "accepted",
+          "reason": "SSKJ² gives 'Me veseli' as the politeness phrase at an introduction. 'Veseli me' is a correct variant, and the helper (vesel, glad) is accurate.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=veseliti"
+        },
+        "u01-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Correct and natural. The zu Besuch helper is apt, and the jaz variant is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-i05": {
+          "verdict": "accepted",
+          "reason": "Correct polite form. The examples are natural, with 'Sorry' rightly used in the second.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-i06": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-i07": {
+          "verdict": "accepted",
+          "reason": "Understandable and natural as a request. 'Bolj počasi' and 'Počasneje' are correct variants, and the second example is translated faithfully as 'More slowly'.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-i08": {
+          "verdict": "accepted",
+          "reason": "Correct. 'Lepa hvala' is a correct variant, the examples are natural, and the hook is honest.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u01-l04-s01": {
+          "verdict": "accepted",
+          "reason": "'(to a child)' makes ti the one right answer, while mi would mean my name.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-s02": {
+          "verdict": "accepted",
+          "reason": "Only je fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-s03": {
+          "verdict": "accepted",
+          "reason": "With jaz, only sem fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-s04": {
+          "verdict": "accepted",
+          "reason": "With midva, only sva fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Oprostite sets polite vi, so ste is the answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Correct for a child.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-p03": {
+          "verdict": "accepted",
+          "reason": "The answer and the variant are both correct (SSKJ² 'Me veseli').",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=veseliti"
+        },
+        "u01-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, and so is the variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-p06": {
+          "verdict": "accepted",
+          "reason": "The answer and both variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "A natural greeting on being introduced.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural repeat, slower.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct. The two sentences opening with Sem are a little mechanical but pass in speech.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-ime-mi-je": {
+          "verdict": "accepted",
+          "reason": "Accurate dative construction (ti/vam/mi). The toggle examples are correct, and in the quick check gospa makes vam the one right answer. The helpers are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 2,
+      "items": {
+        "u01-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Correct polite question with the dative vam. The examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-i02": {
+          "verdict": "doubtful",
+          "reason": "The Slovenian and the examples are correct. The doubt is in the en field: '(to someone close)' is an odd note for asking a name, since you already know the name of someone close. The lesson's own s01 and p02 frame it as 'to a child'. The note would be clearer as '(informal: to a child or a peer)'.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Me veseli is the usual formula on meeting, and the clitic-first order is normal in Slovenian. Veseli me is a correct variant. The helper (veseliti, to gladden, from vesel) is true.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Correct. Na obisku is the locative of obisk, and the zu Besuch parallel is real. The examples and the accept variant are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-i05": {
+          "verdict": "accepted",
+          "reason": "Correct polite form, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-i06": {
+          "verdict": "accepted",
+          "reason": "Correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-i07": {
+          "verdict": "accepted",
+          "reason": "Understandable and in use (natives often say Malo bolj počasi, prosim). Both variants are correct: počasneje is the regular comparative of the adverb and appears in SSKJ2 entry texts.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=po%C4%8Dasneje"
+        },
+        "u01-l04-i08": {
+          "verdict": "accepted",
+          "reason": "Correct, and Lepa hvala is a correct variant. The helper hook via lep dan is honest.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u01-l04-s01": {
+          "verdict": "accepted",
+          "reason": "The hint 'to a child' settles ti. Vam and mi are wrong for it.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-s02": {
+          "verdict": "accepted",
+          "reason": "Only je is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Only sem fits jaz.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Only sva fits midva.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Oprostite signals vi, so ste.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, and the variant is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Correct, and both variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-ime-mi-je": {
+          "verdict": "accepted",
+          "reason": "Correct dative construction (kako ti/vam je ime, ime mi je). The toggles and the quick check (gospa leads to vam) are correct, and the helpers are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u01-l04-i01": "a28b80b71f47b82b",
+    "u01-l04-i02": "d02d1f0d6df1c858",
+    "u01-l04-i03": "c9e49bc1586b2df0",
+    "u01-l04-i04": "cc2371910fbce61e",
+    "u01-l04-i05": "b22559a356d3417e",
+    "u01-l04-i06": "a2f2c20595efc072",
+    "u01-l04-i07": "eba5b9243a0b102b",
+    "u01-l04-i08": "c25cc658db149035",
+    "u01-l04-s01": "105d335530fa583c",
+    "u01-l04-s02": "7e9ebba656409f1f",
+    "u01-l04-s03": "a50fb6d475676aab",
+    "u01-l04-s04": "d77d1aa5da6ce925",
+    "u01-l04-s05": "b3b8b46bfea565af",
+    "u01-l04-p01": "546be02779fb14a4",
+    "u01-l04-p02": "80f964fa36fd0f8b",
+    "u01-l04-p03": "dd3ec888b1fde97f",
+    "u01-l04-p04": "5d42f27389ae4b0b",
+    "u01-l04-p05": "665ffc9ea42ff120",
+    "u01-l04-p06": "84b718c80cc7887a",
+    "u01-l04-d-01": "85bd2d2b4f485ac8",
+    "u01-l04-d-02": "560ca95c87159889",
+    "u01-l04-d-03": "202034a846329d2b",
+    "u01-l04-d-04": "57275f0307623b7b",
+    "u01-l04-d-05": "d6ceedcc0dec647b",
+    "u01-l04-d-06": "de2f0d221ab33fb7",
+    "r-ime-mi-je": "55d17b521d6bbd3e"
+  }
+}

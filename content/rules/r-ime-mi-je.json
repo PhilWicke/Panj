@@ -1,0 +1,41 @@
+{
+  "id": "r-ime-mi-je",
+  "unit": "u01",
+  "title_en": "Names: ime mi je",
+  "card_en": "To ask a name, Slovenian says how is the name to you: kako ti je ime, politely kako vam je ime. Answer with ime mi je and your name.",
+  "example": {
+    "sl": "Kako vam je ime?",
+    "en": "What is your name?"
+  },
+  "toggles": [
+    {
+      "label": "Talking to",
+      "options": [
+        "someone close",
+        "an older person or a stranger"
+      ],
+      "examples": {
+        "someone close": {
+          "sl": "Kako ti je ime?",
+          "en": "What's your name?"
+        },
+        "an older person or a stranger": {
+          "sl": "Kako vam je ime?",
+          "en": "What is your name?"
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Dober dan, gospa. Kako ___ je ime?",
+    "options": [
+      "ti",
+      "vam",
+      "mi"
+    ],
+    "answer": "vam",
+    "explain_en": "You say vi to gospa, so use the polite vam: kako vam je ime."
+  },
+  "helper_de": "Built like German mir ist kalt, with the person in the dative: ime mi je, the name is to me.",
+  "helper_en": "English says my name; Slovenian says the name is to me. So mi, ti and vam change, never ime."
+}

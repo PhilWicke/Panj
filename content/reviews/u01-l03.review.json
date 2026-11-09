@@ -1,0 +1,361 @@
+{
+  "lesson": "u01-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 4,
+      "items": {
+        "u01-l03-i01": {
+          "verdict": "accepted",
+          "reason": "SSKJ² gives 'odkód in od kód' and says it is written apart, so the spelling 'Od kod' is right. The examples are natural, and the woher helper is honest.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=odkod"
+        },
+        "u01-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Correct ti-form. The examples are natural ('Iz Nemčije?').",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Correct. Iz takes the genitive Nemčije, and the slot fillers each record their genitive. The examples are natural, the accept variant with jaz is correct, and the aus helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-i04": {
+          "verdict": "accepted",
+          "reason": "SSKJ² gives 'vi niste od tukaj' as an unmarked example. 'Nisem od tod' is a correct variant. The examples are natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=tukaj"
+        },
+        "u01-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Correct. Both examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-i06": {
+          "verdict": "accepted",
+          "reason": "The gender f and the gen Nemčije are correct, and the examples are natural. The helper is the standard Slavic etymology (Nemec from nem, mute), and SSKJ² still records némec as 'nem človek'.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=Nemec"
+        },
+        "u01-l03-i07": {
+          "verdict": "accepted",
+          "reason": "The gender f and the gen Avstrije are correct, and the examples are natural. The spelling hook is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-i08": {
+          "verdict": "accepted",
+          "reason": "The gender f and the gen Slovenije are correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u01-l03-s01": {
+          "verdict": "accepted",
+          "reason": "With jaz, only nisem fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-s02": {
+          "verdict": "accepted",
+          "reason": "With ona, only ni fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-s03": {
+          "verdict": "accepted",
+          "reason": "With mi, only nismo fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Gospa and the English 'you' make ste the one right answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-s05": {
+          "verdict": "accepted",
+          "reason": "With midva, only sva fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct polite question.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Correct ti question.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Correct. The filler Nemčije is the recorded genitive, and the jaz variant is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Correct. The filler Avstrije is the recorded genitive.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct. The filler Slovenije is the recorded genitive.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-p06": {
+          "verdict": "accepted",
+          "reason": "The answer and the variant 'Nisem od tod' are both correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=tukaj"
+        },
+        "u01-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "A natural polite question from a neighbour.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural. 'In vi?' is the right polite return question.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-biti-negative": {
+          "verdict": "accepted",
+          "reason": "All nine negative forms and pronouns are correct, and the toggle pair is correct. In the quick check, with on, only ni fits. The 'never ne sem' note and both helpers are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 3,
+      "items": {
+        "u01-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Correct, and the examples are natural. Od kod parallels woher.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Correct ti form, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Correct, with iz taking the genitive Nemčije. The examples are natural, the accept variant is correct, and the helper about aus is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Nisem od tukaj is the usual phrase. The Sinonimni slovar lists od tukaj as an adverb, a synonym of od tod, with no label, so both target and accept variant are fine.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=od%20tukaj"
+        },
+        "u01-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-i06": {
+          "verdict": "accepted",
+          "reason": "Correct feminine gender and genitive Nemčije. The helper gives the accepted etymology from *němъ, mute: SSKJ and Pleteršnik record the old sense of Nemec as a mute person (der Stumme).",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=Nemec"
+        },
+        "u01-l03-i07": {
+          "verdict": "accepted",
+          "reason": "Correct feminine gender and genitive Avstrije. The examples are natural, and the spelling hook is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Correct feminine gender and genitive Slovenije. The examples are natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u01-l03-s01": {
+          "verdict": "accepted",
+          "reason": "Only nisem fits jaz.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-s02": {
+          "verdict": "accepted",
+          "reason": "Only ni fits ona.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-s03": {
+          "verdict": "accepted",
+          "reason": "Only nismo fits mi.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Gospa and the English settle ste.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Only sva fits midva.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, and the filler Nemčije is the right genitive.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, and the filler Avstrije is the right genitive.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, and the filler Slovenije is the right genitive.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Correct, and Nisem od tod is a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l03-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-biti-negative": {
+          "verdict": "accepted",
+          "reason": "All negative forms are correct (nisem, nisi, ni, nisva, nista, nista, nismo, niste, niso), and so are the example, the toggles, the quick check and the notes. Ne sem is indeed never standard.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u01-l03-i01": "d4ff855c05793900",
+    "u01-l03-i02": "b2d25bbc7068e648",
+    "u01-l03-i03": "a4e8502a7de61694",
+    "u01-l03-i04": "93151d2ffe84e227",
+    "u01-l03-i05": "bd10b8f256e5deb1",
+    "u01-l03-i06": "c8161de4aab3b302",
+    "u01-l03-i07": "aa9480fc43a30139",
+    "u01-l03-i08": "1c1791348887562a",
+    "u01-l03-s01": "2984cf74873063ea",
+    "u01-l03-s02": "f094051b12e499e4",
+    "u01-l03-s03": "07ed42a680ba99e0",
+    "u01-l03-s04": "4b89ca26e7fc753b",
+    "u01-l03-s05": "3be34e73be176deb",
+    "u01-l03-p01": "950d90fa039ae106",
+    "u01-l03-p02": "d8af26cb37baea3f",
+    "u01-l03-p03": "908a7fa6689522aa",
+    "u01-l03-p04": "0f1f06c716e0cf4c",
+    "u01-l03-p05": "1d66df17c811d501",
+    "u01-l03-p06": "cd9e8f03e235b9a7",
+    "u01-l03-d-01": "50db6b4236f7bdf5",
+    "u01-l03-d-02": "24e045bfb5980f5c",
+    "u01-l03-d-03": "61e462d2390cbfd9",
+    "u01-l03-d-04": "22972b2b9f729efb",
+    "u01-l03-d-05": "dbe532d663b08630",
+    "u01-l03-d-06": "cd6737790425495f",
+    "r-biti-negative": "d285c271e69432f5"
+  }
+}

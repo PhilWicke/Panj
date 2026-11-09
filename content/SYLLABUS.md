@@ -53,7 +53,7 @@ Focus: greetings and introductions, name, where from, please and thank you, ti a
 - Items (8): Kako vam je ime? | Kako ti je ime? | Me veseli. | Sem na obisku. | Oprostite. | Ne razumem. | Počasi, prosim. | Hvala lepa.
 - Rules: r-ime-mi-je
 - Table keys: none
-- Dialogue (6 lines): an older person at your hosts' house introduces themselves and speaks too fast
+- Dialogue (6 lines): an older person at your hosts' house greets you, speaks too fast and asks where you are from
 
 ### u01-l05 consolidation: Na obisku / On a visit
 - Situations: a short visit from the first hello to the last goodbye, with the whole unit

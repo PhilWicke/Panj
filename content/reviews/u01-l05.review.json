@@ -1,0 +1,348 @@
+{
+  "lesson": "u01-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u01-l05-i01": {
+          "verdict": "accepted",
+          "reason": "SSKJ² gives 'dobrodošli, kar vstopite' as the greeting, and both examples are natural. The helper glosses dobro and došli correctly. It is loose only in that the first part of German willkommen means wish, not well; Italian benvenuto would be the exact parallel.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=dobrodošel"
+        },
+        "u01-l05-i02": {
+          "verdict": "accepted",
+          "reason": "The standard invitation in. The examples are natural, and the hook is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Correct. 'Se vidiva' is the correct dual variant, and the 'wir sehen uns' helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-i05": {
+          "verdict": "accepted",
+          "reason": "A common, natural parting wish. The examples and helper are accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Correct. The helper rightly notes the farewell use (sreča, luck), and the examples are natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u01-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Only Ali makes a valid yes or no question.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Oprostite sets polite vi, so vam is the answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-s03": {
+          "verdict": "accepted",
+          "reason": "With oni, only so fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-s04": {
+          "verdict": "accepted",
+          "reason": "With midva, only nisva fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-s05": {
+          "verdict": "accepted",
+          "reason": "Polite dobrodošli and '(to an older guest)' make ste the answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Kako ste is correct for several people.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-p05": {
+          "verdict": "accepted",
+          "reason": "The answer and the variant are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural welcome at the door.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural, if brisk.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural (SSKJ² has 'vi niste od tukaj').",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "A natural parting wish. 'All the best' fits srečno here.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u01-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Correct plural/polite form of dobrodošel. SSKJ has the example 'dobrodošli, kar vstopite'. The helper (dobro + došel) is sound, and the examples are natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=dobrodo%C5%A1el"
+        },
+        "u01-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Idiomatic, and the examples are natural. The helper is true.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Correct. Se vidiva is the correct dual variant, and the wir sehen uns parallel is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Common farewell formula, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Correct, and the examples are natural. The helper (from sreča, also used as a goodbye) is true.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u01-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Only Ali makes a yes or no question.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Oprostite signals vi, so vam.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-s03": {
+          "verdict": "accepted",
+          "reason": "Only so fits oni.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Only nisva fits midva.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-s05": {
+          "verdict": "accepted",
+          "reason": "The hint 'older guest' settles ste.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct vi form for several people.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, and the variant is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Grammatical and plausible. Two questions in a row is a bit brisk but fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural as a reaction.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Natural parting words, and All the best is a fair rendering of srečno here.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u01-l05-i01": "0c0b8549a28f6446",
+    "u01-l05-i02": "1fea4c47773703a8",
+    "u01-l05-i03": "ae83a824cbd4b1ad",
+    "u01-l05-i04": "033ab61544a3346a",
+    "u01-l05-i05": "86c63e2c44908f65",
+    "u01-l05-i06": "5dbca5e1cea6de54",
+    "u01-l05-s01": "9d81f593e4c9928b",
+    "u01-l05-s02": "63181f417adcd291",
+    "u01-l05-s03": "5c1f7c46f0600b22",
+    "u01-l05-s04": "caffd83eb43ebed2",
+    "u01-l05-s05": "d2ecec1ffb85e674",
+    "u01-l05-p01": "3cbac89064a4a1c6",
+    "u01-l05-p02": "85e87cdc289675eb",
+    "u01-l05-p03": "9b0f8f8ef159bce8",
+    "u01-l05-p04": "e839cdd63b9808fd",
+    "u01-l05-p05": "cd9e8f03e235b9a7",
+    "u01-l05-p06": "0fe354ea1a23919c",
+    "u01-l05-d-01": "727b0c32afa41388",
+    "u01-l05-d-02": "04d06ea84895384c",
+    "u01-l05-d-03": "cc43812c0f500bbc",
+    "u01-l05-d-04": "f49ae0bb395ceed3",
+    "u01-l05-d-05": "379a684c06cebc00",
+    "u01-l05-d-06": "e1664d7693f632f9",
+    "u01-l05-d-07": "c14752c90fd50ec6",
+    "u01-l05-d-08": "8b683bd0340aa6a4"
+  }
+}

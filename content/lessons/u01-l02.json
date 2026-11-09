@@ -1,0 +1,409 @@
+{
+  "id": "u01-l02",
+  "unit": "u01",
+  "order": 2,
+  "role": "theme",
+  "title_sl": "Kako si?",
+  "title_en": "How are you?",
+  "items": [
+    {
+      "id": "u01-l02-i01",
+      "type": "chunk",
+      "sl": "Dobro jutro.",
+      "sl_colloquial": null,
+      "en": "Good morning.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dobro jutro, kako ste?",
+          "en": "Good morning, how are you?"
+        },
+        {
+          "sl": "Dobro jutro, gospa.",
+          "en": "Good morning, madam."
+        }
+      ],
+      "helper": "Built like German Guten Morgen: jutro is morning.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l02-i02",
+      "type": "chunk",
+      "sl": "Čau.",
+      "sl_colloquial": null,
+      "en": "Hi, or bye (casual).",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Čau, kako si?",
+          "en": "Hi, how are you?"
+        },
+        {
+          "sl": "Čau, se vidimo jutri.",
+          "en": "Bye, see you tomorrow."
+        }
+      ],
+      "helper": "From Italian ciao, and like ciao it works for hello and for goodbye.",
+      "accept": [],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l02-i03",
+      "type": "chunk",
+      "sl": "Kako si?",
+      "sl_colloquial": null,
+      "en": "How are you? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kako si? Dobro, hvala.",
+          "en": "How are you? Fine, thanks."
+        },
+        {
+          "sl": "Kako si? A si v redu?",
+          "en": "How are you? Are you OK?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-ti-vi",
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l02-i04",
+      "type": "chunk",
+      "sl": "Kako ste?",
+      "sl_colloquial": null,
+      "en": "How are you? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan, gospa. Kako ste?",
+          "en": "Good day, madam. How are you?"
+        },
+        {
+          "sl": "Dobro jutro. Kako ste?",
+          "en": "Good morning. How are you?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-ti-vi",
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l02-i05",
+      "type": "chunk",
+      "sl": "Dobro, hvala.",
+      "sl_colloquial": null,
+      "en": "Fine, thank you.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dobro, hvala. In vi?",
+          "en": "Fine, thank you. And you?"
+        },
+        {
+          "sl": "Kako ste? Dobro, hvala.",
+          "en": "How are you? Fine, thank you."
+        }
+      ],
+      "helper": null,
+      "accept": [
+        "Hvala, dobro."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l02-i06",
+      "type": "chunk",
+      "sl": "A si v redu?",
+      "sl_colloquial": null,
+      "en": "Are you OK?",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "A si v redu? Ja, hvala.",
+          "en": "Are you OK? Yes, thanks."
+        },
+        {
+          "sl": "Dobro jutro. A si v redu?",
+          "en": "Good morning. Are you OK?"
+        }
+      ],
+      "helper": "v redu is literally in order, like German in Ordnung.",
+      "accept": [
+        "Ali si v redu?",
+        "Si v redu?"
+      ],
+      "rules": [
+        "r-a-ali",
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l02-i07",
+      "type": "chunk",
+      "sl": "Ja.",
+      "sl_colloquial": null,
+      "en": "Yes. (everyday speech)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Ja, hvala.",
+          "en": "Yes, thanks."
+        },
+        {
+          "sl": "Ja, v redu sem.",
+          "en": "Yes, I am OK."
+        }
+      ],
+      "helper": "Like German ja.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 5,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u01-l02-i08",
+      "type": "chunk",
+      "sl": "Da.",
+      "sl_colloquial": null,
+      "en": "Yes. (standard)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Da, tukaj sem.",
+          "en": "Yes, I am here."
+        },
+        {
+          "sl": "Ali ste v redu? Da, hvala.",
+          "en": "Are you OK? Yes, thank you."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 7,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-a-ali"
+  ],
+  "structured": [
+    {
+      "id": "u01-l02-s01",
+      "prompt_sl": "Dobro jutro, gospa. Kako ___?",
+      "options": [
+        "si",
+        "ste",
+        "sem"
+      ],
+      "answer": "ste",
+      "rule": "r-ti-vi",
+      "en": "Good morning, madam. How are you?"
+    },
+    {
+      "id": "u01-l02-s02",
+      "prompt_sl": "Čau. A ___ v redu?",
+      "options": [
+        "si",
+        "ste",
+        "sem"
+      ],
+      "answer": "si",
+      "rule": "r-ti-vi",
+      "en": "Hi. Are you OK? (to a friend)"
+    },
+    {
+      "id": "u01-l02-s03",
+      "prompt_sl": "___ si v redu?",
+      "options": [
+        "A",
+        "Kako",
+        "Od kod"
+      ],
+      "answer": "A",
+      "rule": "r-a-ali",
+      "en": "Are you OK?"
+    },
+    {
+      "id": "u01-l02-s04",
+      "prompt_sl": "Dobro, hvala. In ___?",
+      "options": [
+        "ti",
+        "vi"
+      ],
+      "answer": "vi",
+      "rule": "r-ti-vi",
+      "en": "Fine, thank you. And you? (to an older person)"
+    },
+    {
+      "id": "u01-l02-s05",
+      "prompt_sl": "Jaz ___ v redu.",
+      "options": [
+        "sem",
+        "si",
+        "je"
+      ],
+      "answer": "sem",
+      "rule": "r-biti-present",
+      "en": "I am OK."
+    },
+    {
+      "id": "u01-l02-s06",
+      "prompt_sl": "Midva ___ v redu.",
+      "options": [
+        "sem",
+        "sva",
+        "smo"
+      ],
+      "answer": "sva",
+      "rule": "r-biti-present",
+      "en": "The two of us are OK."
+    }
+  ],
+  "production": [
+    {
+      "id": "u01-l02-p01",
+      "en": "Greet someone in the morning.",
+      "answer": "Dobro jutro.",
+      "accept": [],
+      "item": "u01-l02-i01"
+    },
+    {
+      "id": "u01-l02-p02",
+      "en": "Ask a friend how they are.",
+      "answer": "Kako si?",
+      "accept": [],
+      "item": "u01-l02-i03"
+    },
+    {
+      "id": "u01-l02-p03",
+      "en": "Ask an older person how they are.",
+      "answer": "Kako ste?",
+      "accept": [],
+      "item": "u01-l02-i04"
+    },
+    {
+      "id": "u01-l02-p04",
+      "en": "Say you are fine, and thank them.",
+      "answer": "Dobro, hvala.",
+      "accept": [
+        "Hvala, dobro."
+      ],
+      "item": "u01-l02-i05"
+    },
+    {
+      "id": "u01-l02-p05",
+      "en": "Ask a friend if they are OK.",
+      "answer": "A si v redu?",
+      "accept": [
+        "Ali si v redu?",
+        "Si v redu?"
+      ],
+      "item": "u01-l02-i06"
+    }
+  ],
+  "dialogue": {
+    "id": "u01-l02-d",
+    "title_sl": "V kuhinji",
+    "title_en": "In the kitchen",
+    "setting_en": "Morning in the kitchen. One of your hosts says ti to you, and you say vi back.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Dobro jutro. Kako si?",
+        "en": "Good morning. How are you?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Dobro jutro. Dobro, hvala.",
+        "en": "Good morning. Fine, thank you.",
+        "new_items": [
+          "u01-l02-i01",
+          "u01-l02-i05"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Res? A si v redu?",
+        "en": "Really? Are you OK?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, hvala. Kako ste?",
+        "en": "Yes, thanks. How are you?",
+        "new_items": [
+          "u01-l02-i07",
+          "u01-l02-i04"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Dobro, hvala.",
+        "en": "Fine, thank you."
+      }
+    ]
+  }
+}

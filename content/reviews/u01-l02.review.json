@@ -1,0 +1,348 @@
+{
+  "lesson": "u01-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {
+        "u01-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Correct morning greeting. The examples are natural, and the helper is an honest parallel to Guten Morgen.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-i02": {
+          "verdict": "accepted",
+          "reason": "eSSKJ records čau as a variant of the headword čav, labels it informal and derives it from Italian ciao. Pravopis labels čav slang and glosses only goodbye. In Ljubljana speech, though, čau is the everyday hi and bye among friends, and the style guide names it as a day-one pair. So the colloquial tag, the gloss and both examples hold.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=čav"
+        },
+        "u01-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Correct ti-form question. The colloquial tag fits the course definition of speech among friends and family. Both examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Correct polite or plural question. The gloss note is accurate, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-i05": {
+          "verdict": "accepted",
+          "reason": "A natural reply. 'Hvala, dobro' is an equally common variant, and 'In vi?' is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-i06": {
+          "verdict": "accepted",
+          "reason": "The question particle a is the everyday form. 'Ali si v redu?' and the intonation question 'Si v redu?' are both correct variants. The helper (red, order; in Ordnung) is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Ja is the everyday yes, and the colloquial tag is right. 'Ja, v redu sem' is natural. The German ja helper is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Da is the standard yes. Both examples are natural and translated faithfully.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u01-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Gospa and the English call for ste, and the other options are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-s02": {
+          "verdict": "accepted",
+          "reason": "Čau and '(to a friend)' make si the one right answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Only the particle A makes a yes or no question here. Kako and Od kod are plausible but wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-s04": {
+          "verdict": "accepted",
+          "reason": "With '(to an older person)', vi is the one right answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-s05": {
+          "verdict": "accepted",
+          "reason": "With jaz, only sem fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-s06": {
+          "verdict": "accepted",
+          "reason": "With midva, only sva fits, and the English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Kako si is right for a friend.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Kako ste is right for an older person.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-p04": {
+          "verdict": "accepted",
+          "reason": "The answer and the variant 'Hvala, dobro' are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-p05": {
+          "verdict": "accepted",
+          "reason": "The answer and both variants are correct ti-form questions.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural, and the host uses ti as the setting says.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural enough. The doubled dobro is normal in speech.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural follow-up. 'Res?' is 'Really?'.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural. The guest uses vi back, as the setting says.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-a-ali": {
+          "verdict": "accepted",
+          "reason": "Accurate: ali, or a in everyday speech, opens a yes or no question. The toggle and example sentences are correct. In the quick check only Ali fits among the options. The helpers are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 2,
+      "items": {
+        "u01-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Correct greeting. The examples are natural, and the Guten Morgen parallel is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-i02": {
+          "verdict": "accepted",
+          "reason": "SSKJ2 and eSSKJ list 'čáv in/tudi čáu', so čau is a valid spelling. eSSKJ marks it neformalno and gives its etymology as ciao, which supports the helper. Pravopis 2001 labels it sleng., but in current Ljubljana speech it is everyday colloquial for both hello and bye, so the gloss and register stand.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=%C4%8Dav"
+        },
+        "u01-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Correct ti-form question. The examples are natural, and the register label matches the course convention for ti forms.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Correct. The bracket note rightly gives both the polite and the plural use.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-i05": {
+          "verdict": "accepted",
+          "reason": "Natural reply. Hvala, dobro is an equally natural variant, and the examples are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-i06": {
+          "verdict": "accepted",
+          "reason": "Natural colloquial question. Both accept variants (Ali si v redu?, Si v redu?) are correct, and v redu really is built on red, order, like in Ordnung.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Ja is the everyday colloquial yes. The examples are natural, and the German hook is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Da is the standard yes, and both examples are natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u01-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Gospa forces ste, and the distractors are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-s02": {
+          "verdict": "accepted",
+          "reason": "Si is right for one friend. The bracket '(to a friend)' rules out ste for a group.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Only A gives a yes or no question. Kako and Od kod do not fit si v redu.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-s04": {
+          "verdict": "accepted",
+          "reason": "In vi? is correct for an older person.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Only sem fits jaz.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Only sva fits midva.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Correct ti form for a friend.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Correct vi form.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, and the accept variant is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, and both variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, although dobro is repeated.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Res? A si v redu? is natural spoken Slovenian.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural. Ja followed by the polite Kako ste? matches the setting.",
+          "fix": "",
+          "source": ""
+        },
+        "u01-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-a-ali": {
+          "verdict": "accepted",
+          "reason": "Accurate: ali and colloquial a both mark a yes or no question. The toggles and the quick check (Ali ste v redu, gospa?) are correct, and the distractors Kako and Od kod are wrong.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u01-l02-i01": "090b3d72dfc071e9",
+    "u01-l02-i02": "4f575a077c03f34a",
+    "u01-l02-i03": "4223e15403e3d1b3",
+    "u01-l02-i04": "681ba271d318b9a8",
+    "u01-l02-i05": "337b7188d7fa803e",
+    "u01-l02-i06": "0350c8ea53d7d965",
+    "u01-l02-i07": "225d2ac901c66e47",
+    "u01-l02-i08": "b62491395b6009c9",
+    "u01-l02-s01": "9cb75a3fd22a0791",
+    "u01-l02-s02": "3ed5d500aa190b02",
+    "u01-l02-s03": "35b053e2b0298480",
+    "u01-l02-s04": "ae334596edf44ca6",
+    "u01-l02-s05": "bb95482def85b373",
+    "u01-l02-s06": "141024a06aa8dd4c",
+    "u01-l02-p01": "32d04b0b455b6120",
+    "u01-l02-p02": "aa42c2fcfda2b655",
+    "u01-l02-p03": "e839cdd63b9808fd",
+    "u01-l02-p04": "e5148fceed6afdca",
+    "u01-l02-p05": "3fc0e380ecf98e23",
+    "u01-l02-d-01": "8897fc44409528c3",
+    "u01-l02-d-02": "fdf9fa4037b2eb97",
+    "u01-l02-d-03": "b354e3f87a45a2a2",
+    "u01-l02-d-04": "db981e5242be3d97",
+    "u01-l02-d-05": "f7d3de4cd3302274",
+    "r-a-ali": "32e7a0298ee9d045"
+  }
+}
