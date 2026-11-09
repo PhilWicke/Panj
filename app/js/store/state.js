@@ -39,6 +39,7 @@ import { STORE_NAMES } from './memory.js';
  * @typedef {object} Meta
  * @property {1} schemaVersion the shape of the records in the store
  * @property {number} createdAt epoch ms of the first load, when the learner started
+ * @property {Record<string, string>} [sealed] unit id to the ISO date (`YYYY-MM-DD`) its checkpoint passed; the checkpoint screen writes it, the hive reads it (Ruling 38)
  */
 
 /**

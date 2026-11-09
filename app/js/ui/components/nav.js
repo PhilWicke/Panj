@@ -1,21 +1,21 @@
 // The tab bar at the bottom of the screen (Ruling 37): Today, Hive, Rules, Words, Settings, each a
 // 44 px target, the active one marked with honey and aria-current. A tab whose screen does not
 // exist yet is a button that looks disabled and does nothing; the task that adds the route gives
-// it its path here.
+// it its path here (Words and Settings arrive with Task 17).
 
 import { h } from '../../util/dom.js';
 
 /** @type {{ label: string, path: string|null }[]} */
 const TABS = [
   { label: 'Today', path: '/today' },
-  { label: 'Hive', path: null },
+  { label: 'Hive', path: '/hive' },
   { label: 'Rules', path: '/rules' },
   { label: 'Words', path: null },
   { label: 'Settings', path: null },
 ];
 
 /**
- * @param {string} activePath the route showing, `/today`
+ * @param {string} activePath the route showing, `/today`; the unit page passes `/hive`, the tab it belongs to
  * @returns {HTMLElement}
  */
 export function renderNav(activePath) {

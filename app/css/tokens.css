@@ -74,6 +74,11 @@
   --error: var(--poppy);
   --error-surface: color-mix(in srgb, var(--poppy) 10%, var(--warm-white));
   --mark: color-mix(in srgb, var(--poppy) 20%, var(--warm-white));
+  /* The hive: the boards and their outline, the cells, the captions. Honey is the fill everywhere. */
+  --hive-line: var(--indigo);
+  --hive-board: var(--surface);
+  --hive-cell: var(--warm-white);
+  --hive-text: var(--indigo);
 }
 
 /* Dark theme: indigo stays the surface and honey becomes the accent. The system setting applies
@@ -95,6 +100,10 @@
     --error: color-mix(in srgb, var(--poppy) 55%, var(--warm-white));
     --error-surface: color-mix(in srgb, var(--poppy) 24%, var(--indigo-deep));
     --mark: color-mix(in srgb, var(--poppy) 45%, var(--indigo-deep));
+    --hive-line: color-mix(in srgb, var(--warm-white) 72%, var(--indigo));
+    --hive-board: var(--indigo);
+    --hive-cell: var(--indigo-deep);
+    --hive-text: var(--warm-white);
   }
 }
 
@@ -114,4 +123,8 @@
   --error: color-mix(in srgb, var(--poppy) 55%, var(--warm-white));
   --error-surface: color-mix(in srgb, var(--poppy) 24%, var(--indigo-deep));
   --mark: color-mix(in srgb, var(--poppy) 45%, var(--indigo-deep));
+  --hive-line: color-mix(in srgb, var(--warm-white) 72%, var(--indigo));
+  --hive-board: var(--indigo);
+  --hive-cell: var(--indigo-deep);
+  --hive-text: var(--warm-white);
 }

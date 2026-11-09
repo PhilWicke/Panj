@@ -1,13 +1,16 @@
-// The one DOM helper the screens build with. h(tag, props, ...children) creates an element, sets
-// its props and appends its children, so a screen reads as a tree of calls. Props: `class` sets
-// the class name, `on*` functions become event listeners (`onclick` listens for `click`), `data-*`
-// lands in dataset, `style` takes an object of CSS properties (camelCase or kebab-case, custom
-// properties too), `true` is a bare boolean attribute, `false`, null and undefined leave the
-// prop out, and everything else is an attribute. Children may be strings, numbers, nodes, or
-// arrays of them, nested; null, undefined and false are skipped, so conditions read inline.
+// The two DOM helpers the screens build with. h(tag, props, ...children) creates an element, sets
+// its props and appends its children, so a screen reads as a tree of calls; svg(tag, props,
+// ...children) does the same in the SVG namespace, for the hive. Props: `class` sets the class
+// name, `on*` functions become event listeners (`onclick` listens for `click`), `data-*` lands in
+// dataset, `style` takes an object of CSS properties (camelCase or kebab-case, custom properties
+// too), `true` is a bare boolean attribute, `false`, null and undefined leave the prop out, and
+// everything else is an attribute. Children may be strings, numbers, nodes, or arrays of them,
+// nested; null, undefined and false are skipped, so conditions read inline.
 
 /** @typedef {Node|string|number|boolean|null|undefined} Leaf */
 /** @typedef {Leaf|Array<Leaf|Array<Leaf>>} Child children nest two arrays deep, as a list of mapped lists does */
+
+const SVG_NS = 'http://www.w3.org/2000/svg';
 
 /**
  * @param {string} tag
@@ -17,10 +20,37 @@
  */
 export function h(tag, props, ...children) {
   const el = document.createElement(tag);
+  setProps(el, props, (value) => { el.className = value; });
+  append(el, children);
+  return el;
+}
+
+/**
+ * An element in the SVG namespace, with its props and children as h() takes them. The class goes
+ * through the attribute, since an SVG element's className is not a string.
+ * @param {string} tag `svg`, `g`, `rect`, `polygon`, `text`, `clipPath`, ...
+ * @param {Record<string, any>|null} [props]
+ * @param {...Child} children
+ * @returns {SVGElement}
+ */
+export function svg(tag, props, ...children) {
+  const el = document.createElementNS(SVG_NS, tag);
+  setProps(el, props, (value) => el.setAttribute('class', value));
+  append(el, children);
+  return el;
+}
+
+/**
+ * Sets the props as the module comment describes them.
+ * @param {HTMLElement|SVGElement} el
+ * @param {Record<string, any>|null|undefined} props
+ * @param {(value: string) => void} setClass how this element takes its class name
+ */
+function setProps(el, props, setClass) {
   for (const [key, value] of Object.entries(props ?? {})) {
     if (value === undefined || value === null || value === false) continue;
     if (key === 'class') {
-      el.className = String(value);
+      setClass(String(value));
     } else if (key.startsWith('on') && typeof value === 'function') {
       el.addEventListener(key.slice(2).toLowerCase(), value);
     } else if (key.startsWith('data-')) {
@@ -33,8 +63,6 @@ export function h(tag, props, ...children) {
       el.setAttribute(key, value === true ? '' : String(value));
     }
   }
-  append(el, children);
-  return el;
 }
 
 /**

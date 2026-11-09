@@ -1,9 +1,10 @@
 // tests/helpers/fake-dom.js
 // A minimal stand-in for the browser's document, enough to run app/js/util/dom.js under Node:
-// createElement, createTextNode, className, classList, dataset, setAttribute, appendChild, append,
-// replaceChildren, addEventListener, focus (recorded as document.activeElement) and textContent.
-// It keeps dom.js and the small components honest without a browser; the session itself runs in
-// the end-to-end check.
+// createElement, createElementNS (the tag name keeps its case and the element records its
+// namespace, as an SVG element does), createTextNode, className, classList, dataset, style,
+// setAttribute, appendChild, append, replaceChildren, addEventListener, focus (recorded as
+// document.activeElement) and textContent. It keeps dom.js and the small components honest without
+// a browser; the session itself runs in the end-to-end check.
 
 /** The document installFakeDom put on globalThis, which focus() reports to. @type {{ activeElement: FakeElement|null }|null} */
 let installed = null;
@@ -63,10 +64,11 @@ class FakeText extends FakeNode {
 }
 
 class FakeElement extends FakeNode {
-  /** @param {string} tag */
-  constructor(tag) {
+  /** @param {string} tag @param {string|null} [namespace] */
+  constructor(tag, namespace = null) {
     super();
-    this.tagName = tag.toUpperCase();
+    this.tagName = namespace === null ? tag.toUpperCase() : tag;
+    this.namespaceURI = namespace ?? 'http://www.w3.org/1999/xhtml';
     this.className = '';
     /** @type {Record<string, string>} */
     this.dataset = {};
@@ -74,11 +76,21 @@ class FakeElement extends FakeNode {
     this.attributes = new Map();
     /** @type {Map<string, Function[]>} */
     this.listeners = new Map();
+    /** @type {Map<string, string>} */
+    const declarations = new Map();
+    /** The inline style, as far as setProperty and getPropertyValue go. */
+    this.style = {
+      /** @param {string} property @param {string} value */
+      setProperty: (property, value) => { declarations.set(property, String(value)); },
+      /** @param {string} property */
+      getPropertyValue: (property) => declarations.get(property) ?? '',
+    };
   }
 
-  /** @param {string} name @param {string} value */
+  /** `class` also lands in className, as it does on an HTML element. @param {string} name @param {string} value */
   setAttribute(name, value) {
     this.attributes.set(name, String(value));
+    if (name === 'class') this.className = String(value);
   }
 
   /** @param {string} name */
@@ -93,9 +105,14 @@ class FakeElement extends FakeNode {
     this.listeners.set(type, list);
   }
 
-  /** Calls the listeners of `type` with a bare event object, as a click would. @param {string} type */
-  dispatch(type) {
-    for (const listener of this.listeners.get(type) ?? []) listener({ type, target: this });
+  /**
+   * Calls the listeners of `type` with a bare event object, as a click would; `init` adds fields
+   * such as a keydown's `key`.
+   * @param {string} type
+   * @param {Record<string, any>} [init]
+   */
+  dispatch(type, init = {}) {
+    for (const listener of this.listeners.get(type) ?? []) listener({ type, target: this, preventDefault() {}, ...init });
   }
 
   /** The class names, over className, as the DOM's classList keeps them. */
@@ -115,11 +132,12 @@ class FakeElement extends FakeNode {
 
 /**
  * Puts a fake `document` on globalThis and returns it.
- * @returns {{ createElement(tag: string): FakeElement, createTextNode(data: string): FakeText, activeElement: FakeElement|null }}
+ * @returns {{ createElement(tag: string): FakeElement, createElementNS(namespace: string, tag: string): FakeElement, createTextNode(data: string): FakeText, activeElement: FakeElement|null }}
  */
 export function installFakeDom() {
   const document = {
     createElement: (/** @type {string} */ tag) => new FakeElement(tag),
+    createElementNS: (/** @type {string} */ namespace, /** @type {string} */ tag) => new FakeElement(tag, namespace),
     createTextNode: (/** @type {string} */ data) => new FakeText(String(data)),
     /** @type {FakeElement|null} */
     activeElement: null,

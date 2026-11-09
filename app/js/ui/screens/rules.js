@@ -10,7 +10,7 @@ import { MASTERY_SESSIONS, retrievability } from '../../engine/scheduler.js';
 import { stripDiacritics } from '../../engine/grading.js';
 import { renderRuleCard } from '../components/rulecard.js';
 
-/** @typedef {import('../../main.js').App} App */
+/** @typedef {import('../../app-types.js').App} App */
 /** @typedef {import('../../content/types.js').Rule} Rule */
 /** @typedef {import('../../content/types.js').Unit} Unit */
 /** @typedef {import('../../engine/scheduler.js').ItemState} ItemState */

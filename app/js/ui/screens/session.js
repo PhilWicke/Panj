@@ -1,34 +1,36 @@
 // The session screen. It builds today's queue with buildSession, keeps the entries some exercise
-// is registered for (the others arrive in Tasks 12 to 14), and plays them in order, one exercise
-// at a time, without waiting for the one and ten minute steps: the queue interleaves enough other
-// work (Ruling 22). Every recall goes through applyRecall: effectiveResult decides how it counts,
-// recordRecall (or skipAheadState for a rule's correct quick check, Ruling 21) gives the next
-// state, which is saved at once. A typed recall that counts as a miss comes back after the next
-// two entries until it is right or a slip. At the end a SessionRecord is appended and the closing
-// menu is offered. Each session starts with speech recognition offered again, even if it was
-// refused in an earlier one (resetRecognition). The pure parts are exported for the tests.
+// is registered for, and plays them in order, one exercise at a time, without waiting for the one
+// and ten minute steps: the queue interleaves enough other work (Ruling 22). Every recall goes
+// through applyRecall: effectiveResult decides how it counts, recordRecall (or skipAheadState for
+// a rule's correct quick check, Ruling 21) gives the next state, which is saved at once. A typed
+// recall that counts as a miss comes back after the next two entries until it is right or a slip.
+// At the end a SessionRecord is appended and the closing menu (components/menu.js) is offered:
+// stop, three more minutes, a speaking round, continue the lesson. A speaking round
+// (`?mode=speaking`) plays the speaking entries buildSession planned when speech recognition is
+// on, else the self-rated speaking exercise over up to five review-phase items. Each session
+// starts with speech recognition offered again, even if it was refused in an earlier one
+// (resetRecognition). The pure parts are exported for the tests.
 
 import { h, mount } from '../../util/dom.js';
 import { buildSession, closingMenu } from '../../engine/session.js';
 import { createState, effectiveResult, recordRecall, skipAheadState } from '../../engine/scheduler.js';
 import { honeyFor } from '../../engine/progress.js';
-import { localDateKey } from '../../util/time.js';
+import { currentLesson, todayTotals, unmetItems } from '../../engine/course.js';
 import { isRuleId } from '../../util/ids.js';
+import { shuffle } from '../../util/shuffle.js';
 import { onlyKnown } from '../../content/loader.js';
 import { saveItemState, appendSession } from '../../store/state.js';
 import { renderFor } from '../exercises/registry.js';
+import { renderMenu } from '../components/menu.js';
 import { navigate } from '../../router.js';
 import { resetRecognition } from '../../audio/speech.js';
 
-/** @typedef {import('../../main.js').App} App */
+/** @typedef {import('../../app-types.js').App} App */
 /** @typedef {import('../../engine/session.js').QueueEntry} QueueEntry */
 /** @typedef {import('../../engine/scheduler.js').ItemState} ItemState */
 /** @typedef {import('../../engine/scheduler.js').Settings} Settings */
 /** @typedef {import('../../engine/scheduler.js').RecallResult} RecallResult */
 /** @typedef {import('../../engine/progress.js').SessionRecord} SessionRecord */
-/** @typedef {import('../../content/types.js').Index} Index */
-/** @typedef {import('../../content/types.js').UnitContent} UnitContent */
-/** @typedef {import('../../content/types.js').Lesson} Lesson */
 /** @typedef {import('../exercises/registry.js').ExerciseContext} ExerciseContext */
 /** @typedef {import('../exercises/registry.js').ExerciseOutcome} ExerciseOutcome */
 
@@ -37,9 +39,8 @@ const MINUTE_MS = 60_000;
 const REQUEUE_GAP = 2;
 /** Kinds whose missed recall is played again; slot and dialogue entries play as planned. */
 const RETRIED_KINDS = new Set(['typed_en_sl', 'typed_sl_en']);
-
-/** @type {Record<string, string>} */
-const MENU_LABELS = { stop: 'Stop here', more3: 'Three more minutes', continue: 'Continue the lesson' };
+/** Items a speaking round speaks when buildSession planned no speaking entries. */
+const SPEAKING_ROUND = 5;
 
 /**
  * Puts `entry` back into the run-time queue after the REQUEUE_GAP entries that follow `index`, or
@@ -68,26 +69,6 @@ export function retryEntry(entry, itemId) {
 }
 
 /**
- * The items met and the minutes practised in the sessions that started on today's local date,
- * buildSession's `newToday` and `minutesToday`.
- * @param {SessionRecord[]} sessions
- * @param {number} now epoch ms
- * @param {string} [tz] IANA zone, for tests; the phone's zone when omitted
- * @returns {{ newToday: number, minutesToday: number }}
- */
-export function todayTotals(sessions, now, tz) {
-  const today = localDateKey(now, tz);
-  let newToday = 0;
-  let minutesToday = 0;
-  for (const session of sessions) {
-    if (localDateKey(session.startedAt, tz) !== today) continue;
-    newToday += session.newItems;
-    minutesToday += session.minutes;
-  }
-  return { newToday, minutesToday };
-}
-
-/**
  * The state after a recall and how the recall counts. Items: effectiveResult, then recordRecall
  * with the recall as given (it applies the same rule and remembers the raw result). Rule items: a
  * correct quick check on a rule not yet in review graduates it through skipAheadState; anything
@@ -110,43 +91,21 @@ export function stateAfterRecall(states, itemId, recall, now, settings, tz) {
 }
 
 /**
- * The lesson's practisable items the learner has not met yet: accepted ones, or every one in a dev
- * build.
- * @param {Lesson} lesson
+ * The queue of a speaking round. With speech recognition on, the speaking entries buildSession
+ * planned (over review-phase items, recognition-judged); otherwise, or when it planned none, the
+ * speaking exercise over up to SPEAKING_ROUND review-phase items drawn through `rng`, which is
+ * self-rated while speech is off. Rule items are never spoken.
+ * @param {QueueEntry[]} planned buildSession's queue
  * @param {Record<string, ItemState>} states
- * @param {boolean} allowPending
- * @returns {number}
+ * @param {boolean} speech `mode.speech`
+ * @param {() => number} rng a generator in [0, 1)
+ * @returns {QueueEntry[]}
  */
-function unmetItems(lesson, states, allowPending) {
-  return lesson.items.filter((item) => (allowPending || item.verification.status === 'accepted')
-    && (states[item.id]?.phase ?? 'new') === 'new').length;
-}
-
-/**
- * The current lesson: the first in course order with a practisable item not met yet, with the
- * lessons of its unit and how many items it has left. No lesson once every item is met.
- * @param {Index} index
- * @param {UnitContent[]} units
- * @param {Record<string, ItemState>} states
- * @param {boolean} allowPending
- * @returns {{ lesson: Lesson|null, unitLessons: Lesson[], remaining: number }}
- */
-export function currentLesson(index, units, states, allowPending) {
-  /** @type {Map<string, Lesson>} */
-  const lessons = new Map();
-  /** @type {Map<string, Lesson[]>} */
-  const byUnit = new Map();
-  for (const unit of units) {
-    byUnit.set(unit.unit.id, unit.lessons);
-    for (const lesson of unit.lessons) lessons.set(lesson.id, lesson);
-  }
-  for (const entry of index.lessonIndex) {
-    const lesson = lessons.get(entry.id);
-    if (!lesson) continue;
-    const remaining = unmetItems(lesson, states, allowPending);
-    if (remaining > 0) return { lesson, unitLessons: byUnit.get(lesson.unit) ?? [lesson], remaining };
-  }
-  return { lesson: null, unitLessons: [], remaining: 0 };
+export function speakingQueue(planned, states, speech, rng) {
+  const own = speech ? planned.filter((entry) => entry.kind === 'speaking') : [];
+  if (own.length > 0) return own;
+  const pool = Object.values(states).filter((state) => state.phase === 'review' && !isRuleId(state.itemId)).map((state) => state.itemId);
+  return shuffle(pool, rng).slice(0, SPEAKING_ROUND).map((itemId) => ({ kind: 'speaking', itemId }));
 }
 
 /**
@@ -164,7 +123,8 @@ function playable(app, entry) {
 
 /**
  * Runs a session in `container`. `params.mode` is `continue` to raise the day's new-item cap by
- * the lesson's remaining items (the closing menu's "Continue the lesson", Ruling 22).
+ * the lesson's remaining items (the closing menu's "Continue the lesson", Ruling 22), or
+ * `speaking` for a speaking round (speakingQueue).
  * @param {HTMLElement} container
  * @param {App} app
  * @param {Record<string, string>} [params]
@@ -189,7 +149,8 @@ export function renderSession(container, app, params = {}) {
     now: startedAt, states: known(), lesson, unitLessons, rules: app.index.rules, settings: { ...settings, newPerDay },
     mode, newToday, minutesToday, allowPending: app.allowPending,
   });
-  const queue = planned.filter((entry) => playable(app, entry));
+  const round = params.mode === 'speaking' ? speakingQueue(planned, known(), mode.speech, Math.random) : planned;
+  const queue = round.filter((entry) => playable(app, entry));
 
   const progress = h('div', { class: 'progress-fill' });
   const bar = h('div', { class: 'progress', role: 'progressbar', 'aria-label': 'Session progress', 'aria-valuemin': '0' }, progress);
@@ -293,17 +254,17 @@ export function renderSession(container, app, params = {}) {
     const session = await record();
     showProgress(queue.length);
     end.hidden = true;
-    // The speaking round arrives with Task 14's exercise and Task 15's menu.
     const options = closingMenu({
       minutesToday: todayTotals(app.state.sessions, Date.now()).minutesToday,
       settings,
       lessonRemaining: lesson !== null && unmetItems(lesson, known(), app.allowPending) > 0,
       mode,
-    }).filter((option) => option !== 'speaking');
-    /** @type {Record<string, () => void>} */
+    });
+    /** @type {Record<(typeof options)[number], () => void>} */
     const actions = {
       stop: () => navigate('/today'),
       more3: () => navigate('/session'),
+      speaking: () => navigate('/session?mode=speaking'),
       continue: () => navigate('/session?mode=continue'),
     };
     const minutes = Math.max(1, Math.round(session?.minutes ?? 0));
@@ -316,8 +277,7 @@ export function renderSession(container, app, params = {}) {
     mount(stage, h('article', { class: 'exercise closing' },
       h('h2', { class: 'prompt' }, 'Session complete.'),
       h('p', { class: 'en-text' }, `${summary.charAt(0).toUpperCase()}${summary.slice(1)}.`),
-      h('div', { class: 'actions actions-stack' }, options.map((option, i) =>
-        h('button', { type: 'button', class: i === 0 ? 'btn btn-primary' : 'btn btn-secondary', onclick: actions[option] }, MENU_LABELS[option])))));
+      renderMenu(options, (option) => actions[option]())));
     /** @type {HTMLElement|null} */ (stage.querySelector('button'))?.focus();
   };
 

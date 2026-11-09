@@ -1,6 +1,7 @@
 /* Components: header, screens, buttons, the exercises, the feedback panel, the session bar, the
-   rule card, the Rules screen and the tab bar. Every control is at least 44 px tall; motion only
-   answers an action and sits in the no-preference block at the end. */
+   rule card, the Rules screen, the Today screen with its calendar and hive, the unit page and the
+   tab bar. Every control is at least 44 px tall; motion only answers an action and sits in the
+   no-preference block at the end. */
 
 /* Header */
 
@@ -179,17 +180,18 @@
   font-size: var(--text-18);
 }
 
-.btn[disabled] {
+.btn[disabled],
+.btn[aria-disabled='true'] {
   opacity: 0.5;
   cursor: default;
 }
 
 @media (hover: hover) {
-  .btn-primary:not([disabled]):hover {
+  .btn-primary:not([disabled], [aria-disabled='true']):hover {
     background: color-mix(in srgb, var(--primary) 88%, var(--ink));
   }
 
-  .btn-secondary:not([disabled]):hover {
+  .btn-secondary:not([disabled], [aria-disabled='true']):hover {
     background: var(--surface);
   }
 }
@@ -770,6 +772,276 @@ button.rule-cell {
   transform: none;
 }
 
+/* Today */
+
+.greeting-play {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  margin: 0 calc(-1 * var(--space-8));
+  padding: 0 var(--space-8);
+  border: 0;
+  border-radius: var(--radius-10);
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.greeting-icon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin-left: var(--space-8);
+  color: var(--text-muted);
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.greeting-name {
+  color: var(--text);
+}
+
+.btn-session {
+  flex-direction: column;
+  gap: 2px;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.btn-session-title,
+.btn-session-detail {
+  display: block;
+}
+
+.btn-session-detail {
+  font-size: var(--text-14);
+  font-weight: 500;
+  opacity: 0.92;
+}
+
+.intention {
+  padding: var(--space-8) var(--space-12);
+  border-left: 3px solid var(--honey);
+  border-radius: 0 var(--radius-10) var(--radius-10) 0;
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.section-title {
+  font-size: var(--text-18);
+  font-weight: 700;
+}
+
+.hive-section {
+  display: grid;
+  gap: var(--space-12);
+}
+
+/* Calendar */
+
+.calendar {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--space-8);
+}
+
+.calendar-day {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+  color: var(--text-muted);
+  font-size: var(--text-14);
+  font-weight: 600;
+}
+
+.calendar-square {
+  display: block;
+  width: 100%;
+  max-width: 44px;
+  aspect-ratio: 1;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-10);
+  background: var(--surface);
+}
+
+.calendar-day.is-active .calendar-square {
+  border-color: var(--honey);
+  background: var(--honey);
+}
+
+.calendar-day.is-today .calendar-weekday {
+  color: var(--text);
+}
+
+.calendar-day.is-today .calendar-square {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.calendar-day.is-future .calendar-square {
+  border-style: dashed;
+  background: transparent;
+}
+
+.calendar-line {
+  font-weight: 600;
+}
+
+.calendar-honey {
+  color: var(--text-muted);
+  font-size: var(--text-14);
+}
+
+/* Hive */
+
+.hive {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.hive-panel {
+  cursor: pointer;
+}
+
+.hive-panel:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.hive-board {
+  fill: var(--hive-board);
+  stroke: var(--hive-line);
+  stroke-width: 1.5;
+}
+
+.hive-comb {
+  fill: var(--hive-cell);
+  stroke: var(--hive-line);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+.hive-fill {
+  fill: var(--honey);
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.hive-caption {
+  fill: var(--hive-text);
+  font-family: var(--font);
+  font-weight: 600;
+}
+
+.hive-seal-disc {
+  fill: var(--hive-board);
+  stroke: var(--hive-line);
+  stroke-width: 1.5;
+}
+
+.hive-motif {
+  fill: var(--hive-line);
+  stroke: var(--hive-line);
+  stroke-width: 0;
+}
+
+.hive-motif .m-cut {
+  fill: var(--hive-board);
+  stroke: none;
+}
+
+.hive-motif .m-cut-line {
+  fill: none;
+  stroke: var(--hive-board);
+}
+
+/* Hive screen */
+
+.glance {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--space-16);
+  margin: 0;
+  padding: var(--space-16);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-16);
+  background: var(--surface);
+}
+
+.glance-item {
+  display: grid;
+  gap: 2px;
+}
+
+.glance-term {
+  color: var(--text-muted);
+  font-size: var(--text-14);
+  font-weight: 600;
+}
+
+.glance-value {
+  margin: 0;
+  font-size: var(--text-22);
+  font-weight: 700;
+}
+
+.glance-note {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--text-14);
+}
+
+/* Unit page */
+
+.back {
+  display: flex;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: var(--accent);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+.unit-head {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.lesson-list {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.lesson-entry {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-16);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-16);
+  background: var(--surface);
+}
+
+.lesson-meter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-top: var(--space-8);
+}
+
 /* Tab bar */
 
 .app-main.has-nav {
@@ -852,6 +1124,10 @@ button.rule-cell {
 
   .progress-fill {
     transition: width 240ms ease-out;
+  }
+
+  .hive-fill {
+    transition: transform 300ms ease-out;
   }
 
   .feedback,

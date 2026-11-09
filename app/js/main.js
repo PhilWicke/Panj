@@ -1,8 +1,8 @@
 // The app's entry point. Boot: open the store (IndexedDB, or memory with a notice), load the state
 // and the content bundle, register the exercises, then route: `#/onboarding` until the learner is
-// onboarded, `#/today` otherwise, `#/session` and `#/rules`. Every screen gets the one App object,
-// whose state the screens update as they save; every screen but onboarding and the session has the
-// tab bar below it.
+// onboarded, `#/today` otherwise, `#/session`, `#/hive`, `#/unit?id=uNN` and `#/rules`. Every
+// screen gets the one App object (app-types.js), whose state the screens update as they save;
+// every screen but onboarding and the session has the tab bar below it.
 
 import { h, mount } from './util/dom.js';
 import { openStore } from './store/db.js';
@@ -23,32 +23,12 @@ import * as perception from './ui/exercises/perception.js';
 import { renderNav } from './ui/components/nav.js';
 import { renderToday } from './ui/screens/today.js';
 import { renderSession } from './ui/screens/session.js';
+import { renderHiveScreen } from './ui/screens/hive.js';
+import { renderUnit } from './ui/screens/unit.js';
 import { renderRules } from './ui/screens/rules.js';
 
-/** @typedef {import('./store/memory.js').StoreAdapter} StoreAdapter */
+/** @typedef {import('./app-types.js').App} App */
 /** @typedef {import('./store/state.js').AppState} AppState */
-/** @typedef {import('./content/types.js').Index} Index */
-/** @typedef {import('./content/types.js').UnitContent} UnitContent */
-/** @typedef {import('./content/types.js').Item} Item */
-/** @typedef {import('./content/types.js').Lesson} Lesson */
-/** @typedef {import('./content/types.js').Rule} Rule */
-/** @typedef {import('./audio/player.js').Player} Player */
-
-/**
- * Everything the screens work with.
- * @typedef {object} App
- * @property {StoreAdapter} adapter
- * @property {boolean} persistent false when the store fell back to memory
- * @property {AppState} state loaded once; screens update it as they save
- * @property {Index} index
- * @property {UnitContent[]} units every unit file, in course order
- * @property {Set<string>} known the item and rule ids the bundle carries (Ruling 23)
- * @property {Map<string, { item: Item, lesson: Lesson }>} items item content by id
- * @property {Map<string, Lesson>} lessons by id
- * @property {Map<string, Rule>} rules by id
- * @property {boolean} allowPending a dev build practises pending items (Ruling 20)
- * @property {Player} player the one audio player: recordings, else the device's Slovenian voice
- */
 
 register('meet', meet.render);
 register('typed_en_sl', typed.render);
@@ -66,6 +46,9 @@ const WITHOUT_NAV = new Set(['/onboarding', '/session']);
 /** @type {HTMLElement|null} */
 let nav = null;
 
+/** Routes shown under another route's tab: the unit page belongs to the Hive tab. */
+const TAB_OF = new Map([['/unit', '/hive']]);
+
 /**
  * Puts the tab bar below the main column, or takes it away on the routes without one; the column
  * keeps room at the bottom so the bar never covers content.
@@ -73,7 +56,7 @@ let nav = null;
  */
 function showNav(path) {
   nav?.remove();
-  nav = WITHOUT_NAV.has(path) ? null : renderNav(path);
+  nav = WITHOUT_NAV.has(path) ? null : renderNav(TAB_OF.get(path) ?? path);
   if (nav) root.after(nav);
   root.classList.toggle('has-nav', nav !== null);
 }
@@ -146,6 +129,8 @@ async function boot() {
     if (path === '/onboarding') renderOnboarding(app);
     else if (path === '/today') renderToday(root, app);
     else if (path === '/session') leave = renderSession(root, app, params);
+    else if (path === '/hive') renderHiveScreen(root, app);
+    else if (path === '/unit') renderUnit(root, app, params);
     else if (path === '/rules') renderRules(root, app);
     else return navigate('/today', { replace: true });
     showNav(path);

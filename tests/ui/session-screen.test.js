@@ -1,13 +1,14 @@
 // tests/ui/session-screen.test.js
 // The pure parts of the session screen and its feedback: the run-time queue re-queues a missed
-// typed recall after the next two entries (Ruling 22); today's new items and minutes come from
-// today's session records; one function turns a recall into the next state, rules through
-// skipAheadState on a correct quick check (Ruling 21) and slips through effectiveResult (Ruling 17);
-// the current lesson is the first with an item not met yet; a slip names its letters (Ruling 19).
+// typed recall after the next two entries (Ruling 22); one function turns a recall into the next
+// state, rules through skipAheadState on a correct quick check (Ruling 21) and slips through
+// effectiveResult (Ruling 17); a speaking round keeps the planned speaking entries with speech on
+// and otherwise speaks up to five review-phase items; a slip names its letters (Ruling 19). The
+// course position (currentLesson, todayTotals) is tested in tests/engine/course.test.js.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { DEFAULT_SETTINGS, createState, recordRecall } from '../../app/js/engine/scheduler.js';
-import { requeue, retryEntry, todayTotals, stateAfterRecall, currentLesson } from '../../app/js/ui/screens/session.js';
+import { DEFAULT_SETTINGS, createState, recordRecall, skipAheadState } from '../../app/js/engine/scheduler.js';
+import { requeue, retryEntry, stateAfterRecall, speakingQueue } from '../../app/js/ui/screens/session.js';
 import { mindThe } from '../../app/js/ui/components/feedback.js';
 
 const TZ = 'Europe/Berlin';
@@ -18,6 +19,18 @@ const S = DEFAULT_SETTINGS;
 
 /** @param {string} id */
 const typed = (id) => ({ kind: 'typed_en_sl', itemId: id, lessonId: 'u01-l01' });
+
+/** A deterministic generator in [0, 1) (mulberry32), so picks are repeatable. */
+function seeded(seed) {
+  let a = seed >>> 0;
+  return () => {
+    a = (a + 0x6D2B79F5) >>> 0;
+    let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
 
 test('requeue puts a missed recall after the next two entries, or at the end when fewer remain', () => {
   const queue = ['a', 'b', 'c', 'd', 'e'].map(typed);
@@ -42,18 +55,6 @@ test('retryEntry re-queues typed recalls, turns a fluency miss into a typed reca
   for (const kind of ['meet', 'slot', 'dialogue', 'structured', 'rule', 'listening', 'speaking', 'perception']) {
     assert.equal(retryEntry(/** @type {any} */ ({ kind, itemId: 'u01-l01-i01' }), 'u01-l01-i01'), null, kind);
   }
-});
-
-test("todayTotals sums the new items and minutes of the sessions that started on today's local date", () => {
-  const record = (startedAt, minutes, newItems) => ({ id: String(startedAt), startedAt, endedAt: startedAt + minutes * MINUTE, minutes, recalls: 0, correct: 0, newItems, honey: 0, kinds: {} });
-  const sessions = [
-    record(T0 - DAY, 9, 7),                       // yesterday
-    record(Date.UTC(2026, 0, 4, 22, 58), 12, 3),  // 23:58 yesterday in Berlin, ran past midnight: counts for yesterday
-    record(Date.UTC(2026, 0, 4, 23, 5), 4, 2),    // 00:05 today in Berlin
-    record(T0 - 30 * MINUTE, 6.5, 5),             // this morning
-  ];
-  assert.deepEqual(todayTotals(sessions, T0, TZ), { newToday: 7, minutesToday: 10.5 });
-  assert.deepEqual(todayTotals([], T0, TZ), { newToday: 0, minutesToday: 0 });
 });
 
 test('stateAfterRecall records an item recall, starting from a fresh state when there is none', () => {
@@ -88,39 +89,29 @@ test('stateAfterRecall: a correct quick check graduates a new or learning rule i
   assert.deepEqual(reviewed.state, recordRecall(fresh.state, 'correct', later, S, TZ), 'in review it records correct');
 });
 
-test('currentLesson is the first lesson in course order with a practisable item not met yet, with its unit lessons', () => {
-  const pending = { review1: null, review2: null, native: null, status: 'pending' };
-  const accepted = { ...pending, status: 'accepted' };
-  const lesson = (id, items) => ({ id, unit: id.slice(0, 3), items: items.map(([itemId, verification]) => ({ id: itemId, verification })) });
-  const l1 = lesson('u01-l01', [['u01-l01-i01', accepted], ['u01-l01-i02', pending]]);
-  const l2 = lesson('u01-l02', [['u01-l02-i01', accepted]]);
-  const l3 = lesson('u02-l01', [['u02-l01-i01', accepted]]);
-  const index = { lessonIndex: [{ id: 'u01-l01', unit: 'u01' }, { id: 'u01-l02', unit: 'u01' }, { id: 'u02-l01', unit: 'u02' }] };
-  const units = [{ unit: { id: 'u01' }, lessons: [l1, l2] }, { unit: { id: 'u02' }, lessons: [l3] }];
-  const met = (id) => ({ [id]: recordRecall(createState(id, T0), 'correct', T0, S, TZ) });
-  const at = (states, allowPending) => currentLesson(/** @type {any} */ (index), /** @type {any} */ (units), states, allowPending);
-
-  let found = at({}, false);
-  assert.equal(found.lesson?.id, 'u01-l01');
-  assert.deepEqual(found.unitLessons.map((l) => l.id), ['u01-l01', 'u01-l02']);
-  assert.equal(found.remaining, 1);
-
-  found = at(met('u01-l01-i01'), false);
-  assert.equal(found.lesson?.id, 'u01-l02', 'the pending item does not hold the lesson open in a strict build');
-  found = at(met('u01-l01-i01'), true);
-  assert.equal(found.lesson?.id, 'u01-l01', 'in a dev build it does');
-  assert.equal(found.remaining, 1);
-
-  found = at({ ...met('u01-l01-i01'), ...met('u01-l01-i02'), ...met('u01-l02-i01') }, true);
-  assert.equal(found.lesson?.id, 'u02-l01');
-  assert.deepEqual(found.unitLessons.map((l) => l.id), ['u02-l01']);
-
-  found = at({ ...met('u01-l01-i01'), ...met('u01-l01-i02'), ...met('u01-l02-i01'), ...met('u02-l01-i01') }, true);
-  assert.deepEqual(found, { lesson: null, unitLessons: [], remaining: 0 }, 'every item met: no current lesson');
-});
-
 test('mindThe names the slipped letters', () => {
   assert.equal(mindThe(['č']), 'Mind the č');
   assert.equal(mindThe(['č', 'ž']), 'Mind the č and ž');
   assert.equal(mindThe(['č', 'š', 'ž']), 'Mind the č, š and ž');
+});
+
+test('speakingQueue keeps the planned speaking entries with speech on, else a round of up to five review-phase items', () => {
+  const planned = [typed('u01-l01-i01'), { kind: 'speaking', itemId: 'u01-l01-i01' }, { kind: 'listening', itemId: 'u01-l01-i02' }, { kind: 'speaking', itemId: 'u01-l01-i03' }];
+  /** @type {Record<string, any>} seven review items, one rule item and one learning item */
+  const states = {};
+  for (let i = 1; i <= 7; i += 1) states[`u01-l01-i0${i}`] = skipAheadState(`u01-l01-i0${i}`, T0 - DAY);
+  states['r-ti-vi'] = skipAheadState('r-ti-vi', T0 - DAY);
+  states['u01-l01-i08'] = recordRecall(createState('u01-l01-i08', T0), 'correct', T0, S, TZ);
+  const review = new Set(Object.keys(states).filter((id) => id.startsWith('u01') && id !== 'u01-l01-i08'));
+
+  assert.deepEqual(speakingQueue(planned, states, true, seeded(1)), [{ kind: 'speaking', itemId: 'u01-l01-i01' }, { kind: 'speaking', itemId: 'u01-l01-i03' }]);
+
+  const round = speakingQueue(planned, states, false, seeded(1));
+  assert.equal(round.length, 5);
+  assert.ok(round.every((entry) => entry.kind === 'speaking' && entry.itemId !== undefined && review.has(entry.itemId)), 'review-phase items only, no rule and no learning item');
+  assert.equal(new Set(round.map((entry) => entry.itemId)).size, 5, 'no repeats');
+  assert.deepEqual(speakingQueue(planned, states, false, seeded(1)), round, 'repeatable with the same generator');
+  assert.equal(speakingQueue([typed('u01-l01-i01')], states, true, seeded(1)).length, 5, 'speech on but no speaking entry planned: the round of review items');
+  assert.equal(speakingQueue([], { 'u01-l01-i01': states['u01-l01-i01'], 'u01-l01-i02': states['u01-l01-i02'] }, false, seeded(1)).length, 2, 'fewer than five review items: all of them');
+  assert.deepEqual(speakingQueue([], {}, false, seeded(1)), [], 'nothing in review: nothing to speak');
 });
