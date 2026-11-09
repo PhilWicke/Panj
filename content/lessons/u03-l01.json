@@ -1,0 +1,450 @@
+{
+  "id": "u03-l01",
+  "unit": "u03",
+  "order": 1,
+  "role": "theme",
+  "title_sl": "Kava ali čaj?",
+  "title_en": "Coffee or tea?",
+  "items": [
+    {
+      "id": "u03-l01-i01",
+      "type": "chunk",
+      "sl": "Kavo ali čaj?",
+      "sl_colloquial": null,
+      "en": "Coffee or tea?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan. Kavo ali čaj?",
+          "en": "Good day. Coffee or tea?"
+        },
+        {
+          "sl": "Kavo ali čaj, gospa?",
+          "en": "Coffee or tea, madam?"
+        }
+      ],
+      "helper": "Short for would you like coffee or tea, so kava turns into kavo: it is the thing you would have.",
+      "accept": [
+        "Bi kavo ali čaj?"
+      ],
+      "rules": [
+        "r-accusative-feminine"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l01-i02",
+      "type": "chunk",
+      "sl": "Pijem kavo.",
+      "sl_colloquial": null,
+      "en": "I drink coffee.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Pijem kavo z mlekom.",
+          "en": "I drink coffee with milk."
+        },
+        {
+          "sl": "Jaz pijem kavo. In ti?",
+          "en": "I drink coffee. And you?"
+        }
+      ],
+      "helper": "pijem is from piti, to drink, the verb behind pivo, beer.",
+      "accept": [
+        "Jaz pijem kavo."
+      ],
+      "rules": [
+        "r-accusative-feminine"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l01-i03",
+      "type": "chunk",
+      "sl": "Lahko dobim vodo?",
+      "sl_colloquial": null,
+      "en": "Can I have some water?",
+      "register": "neutral",
+      "slots": [
+        {
+          "label": "drink",
+          "fillers": [
+            "u03-l01-i07",
+            "u03-l01-i05",
+            "u03-l01-i08"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "sl": "Lahko dobim vodo, prosim?",
+          "en": "Can I have some water, please?"
+        },
+        {
+          "sl": "Oprostite, lahko dobim vodo?",
+          "en": "Excuse me, can I have some water?"
+        }
+      ],
+      "helper": "lahko is the word in lahko noč; before a verb it means can or may.",
+      "accept": [
+        "A lahko dobim vodo?",
+        "Ali lahko dobim vodo?"
+      ],
+      "rules": [
+        "r-lahko",
+        "r-accusative-feminine"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l01-i04",
+      "type": "chunk",
+      "sl": "Z mlekom, prosim.",
+      "sl_colloquial": null,
+      "en": "With milk, please.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kavo z mlekom, prosim.",
+          "en": "Coffee with milk, please."
+        },
+        {
+          "sl": "Ja, z mlekom, prosim.",
+          "en": "Yes, with milk, please."
+        }
+      ],
+      "helper": "z is with, and mleko takes -om after it: z mlekom.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l01-i05",
+      "type": "word",
+      "sl": "kava",
+      "sl_colloquial": null,
+      "en": "coffee",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "kavo",
+        "gen": "kave"
+      },
+      "examples": [
+        {
+          "sl": "Kava je dobra.",
+          "en": "The coffee is good."
+        },
+        {
+          "sl": "Kavo, prosim.",
+          "en": "A coffee, please."
+        }
+      ],
+      "helper": "Like English coffee and German Kaffee.",
+      "accept": [],
+      "rules": [
+        "r-accusative-feminine"
+      ],
+      "freq_rank": 1186,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l01-i06",
+      "type": "word",
+      "sl": "čaj",
+      "sl_colloquial": null,
+      "en": "tea",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "acc": "čaj"
+      },
+      "examples": [
+        {
+          "sl": "Čaj, prosim.",
+          "en": "Tea, please."
+        },
+        {
+          "sl": "Imate čaj?",
+          "en": "Do you have tea?"
+        }
+      ],
+      "helper": "Like chai, from the same Chinese word for tea.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l01-i07",
+      "type": "word",
+      "sl": "voda",
+      "sl_colloquial": null,
+      "en": "water",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "vodo"
+      },
+      "examples": [
+        {
+          "sl": "Voda je tukaj.",
+          "en": "The water is here."
+        },
+        {
+          "sl": "Vodo, prosim.",
+          "en": "Water, please."
+        }
+      ],
+      "helper": "Related to English water; vodka is literally little water.",
+      "accept": [],
+      "rules": [
+        "r-accusative-feminine"
+      ],
+      "freq_rank": 166,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l01-i08",
+      "type": "word",
+      "sl": "mleko",
+      "sl_colloquial": null,
+      "en": "milk",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "forms": {
+        "acc": "mleko",
+        "ins": "mlekom"
+      },
+      "examples": [
+        {
+          "sl": "Imate mleko za kavo?",
+          "en": "Do you have milk for the coffee?"
+        },
+        {
+          "sl": "Mleko je tukaj.",
+          "en": "The milk is here."
+        }
+      ],
+      "helper": "Like German Milch and English milk.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 1475,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-accusative-feminine",
+    "r-lahko"
+  ],
+  "structured": [
+    {
+      "id": "u03-l01-s01",
+      "prompt_sl": "Pijem ___.",
+      "options": [
+        "kava",
+        "kavo"
+      ],
+      "answer": "kavo",
+      "rule": "r-accusative-feminine",
+      "en": "I drink coffee."
+    },
+    {
+      "id": "u03-l01-s02",
+      "prompt_sl": "___ je dobra.",
+      "options": [
+        "Kava",
+        "Kavo"
+      ],
+      "answer": "Kava",
+      "rule": "r-accusative-feminine",
+      "en": "The coffee is good."
+    },
+    {
+      "id": "u03-l01-s03",
+      "prompt_sl": "Lahko dobim ___?",
+      "options": [
+        "voda",
+        "vodo"
+      ],
+      "answer": "vodo",
+      "rule": "r-accusative-feminine",
+      "en": "Can I have some water?"
+    },
+    {
+      "id": "u03-l01-s04",
+      "prompt_sl": "Imam ___ in brata.",
+      "options": [
+        "sestra",
+        "sestro"
+      ],
+      "answer": "sestro",
+      "rule": "r-accusative-feminine",
+      "en": "I have a sister and a brother."
+    },
+    {
+      "id": "u03-l01-s05",
+      "prompt_sl": "Lahko ___ čaj?",
+      "options": [
+        "dobim",
+        "dobiti"
+      ],
+      "answer": "dobim",
+      "rule": "r-lahko",
+      "en": "Can I have tea?"
+    }
+  ],
+  "production": [
+    {
+      "id": "u03-l01-p01",
+      "en": "Ask if you can have some water.",
+      "answer": "Lahko dobim vodo?",
+      "accept": [
+        "A lahko dobim vodo?",
+        "Ali lahko dobim vodo?",
+        "Lahko dobim vodo, prosim?",
+        "Lahko dobim vode?"
+      ],
+      "item": "u03-l01-i03",
+      "filler": "vodo"
+    },
+    {
+      "id": "u03-l01-p02",
+      "en": "Ask if you can have a coffee.",
+      "answer": "Lahko dobim kavo?",
+      "accept": [
+        "A lahko dobim kavo?",
+        "Ali lahko dobim kavo?",
+        "Lahko dobim kavo, prosim?"
+      ],
+      "item": "u03-l01-i03",
+      "filler": "kavo"
+    },
+    {
+      "id": "u03-l01-p03",
+      "en": "Ask if you can have some milk.",
+      "answer": "Lahko dobim mleko?",
+      "accept": [
+        "A lahko dobim mleko?",
+        "Ali lahko dobim mleko?",
+        "Lahko dobim mleko, prosim?",
+        "Lahko dobim mleka?"
+      ],
+      "item": "u03-l01-i03",
+      "filler": "mleko"
+    },
+    {
+      "id": "u03-l01-p04",
+      "en": "Offer a guest coffee or tea.",
+      "answer": "Kavo ali čaj?",
+      "accept": [
+        "Bi kavo ali čaj?"
+      ],
+      "item": "u03-l01-i01"
+    },
+    {
+      "id": "u03-l01-p05",
+      "en": "Say you drink coffee.",
+      "answer": "Pijem kavo.",
+      "accept": [
+        "Jaz pijem kavo."
+      ],
+      "item": "u03-l01-i02"
+    },
+    {
+      "id": "u03-l01-p06",
+      "en": "Your host asks how you take your coffee. Say with milk, please.",
+      "answer": "Z mlekom, prosim.",
+      "accept": [],
+      "item": "u03-l01-i04"
+    }
+  ],
+  "dialogue": {
+    "id": "u03-l01-d",
+    "title_sl": "Kaj boste pili?",
+    "title_en": "What would you like to drink?",
+    "setting_en": "Your hosts welcome you into the living room and offer you something to drink.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Kavo ali čaj?",
+        "en": "Coffee or tea?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Kavo, prosim.",
+        "en": "Coffee, please.",
+        "new_items": [
+          "u03-l01-i05"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Z mlekom?",
+        "en": "With milk?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, z mlekom, prosim. Lahko dobim vodo?",
+        "en": "Yes, with milk, please. Can I have some water?",
+        "new_items": [
+          "u03-l01-i04",
+          "u03-l01-i03"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Prosim, tukaj je voda.",
+        "en": "Here you are, here is the water."
+      }
+    ]
+  }
+}

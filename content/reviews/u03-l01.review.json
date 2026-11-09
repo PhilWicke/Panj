@@ -1,0 +1,361 @@
+{
+  "lesson": "u03-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {
+        "u03-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Kavo ali čaj? is the standard host offer with the elided bi/boste; accusative correct; accept variant Bi kavo ali čaj? is correct; helper is an honest grammar hook.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural; examples fine; pivo really is derived from piti, so the helper is a true hook.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Natural polite request; A/Ali variants correct; lahko in lahko noč is the same word, honest hook; slot fillers voda, kava, mleko fit.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Z mlekom, prosim is correct (z before m, instrumental -om); examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-i05": {
+          "verdict": "accepted",
+          "reason": "kava f, acc kavo, gen kave all correct; examples natural; Kaffee/coffee a real cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-i06": {
+          "verdict": "accepted",
+          "reason": "čaj m, acc čaj correct; examples natural; chai from the same Chinese word is true.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-i07": {
+          "verdict": "rejected",
+          "reason": "examples: Voda, prosim. glossed Water, please. is a request and needs the accusative, as the lesson itself teaches with Kavo, prosim; the nominative here would be noticed. Other fields (f, acc vodo, helper on water/vodka) are fine.",
+          "fix": "Vodo, prosim.",
+          "source": "https://fran.si/iskanje?View=1&Query=prositi"
+        },
+        "u03-l01-i08": {
+          "verdict": "accepted",
+          "reason": "mleko n, acc mleko, instrumental mlekom correct; examples natural; Milch/milk real cognates.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u03-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Only kavo fits Pijem ___; distractor kava plausible.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-s02": {
+          "verdict": "accepted",
+          "reason": "Subject needs Kava; one correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Only vodo is right among the options.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Imam sestro in brata is correct and natural; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Lahko dobim čaj? correct; the infinitive is clearly wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct; Lahko dobim vode? with partitive genitive is also good Slovenian.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct, including partitive mleka.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Kavo ali čaj? and Bi kavo ali čaj? both natural offers.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural host offer.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural elliptical reply in the accusative.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct, natural, within length.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Prosim when handing something over is standard (SSKJ: prosim, tukaj imate); English fine.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=prositi"
+        },
+        "r-accusative-feminine": {
+          "verdict": "accepted",
+          "reason": "Card text, toggle examples, quick check (kavo) and both helpers are correct; the German contrast die Suppe/die Suppe is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "r-lahko": {
+          "verdict": "accepted",
+          "reason": "lahko dobim / dobiva / dobimo correct, dual right; quick check has one answer; helpers accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u03-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Kavo ali čaj? is the usual elliptical offer with the accusative; examples natural; helper is an honest hook; accept Bi kavo ali čaj? is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural; examples fine; pivo is indeed derived from piti; accept variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Natural polite request; slot fillers fit the accusative; examples natural; helper (lahko noč, lahko + verb = can/may) is honest; A/Ali variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Correct instrumental after z; examples natural; helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-i05": {
+          "verdict": "accepted",
+          "reason": "kava, f, acc kavo, gen kave all correct; examples natural; Kaffee/coffee is a real cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-i06": {
+          "verdict": "accepted",
+          "reason": "čaj is masculine, acc čaj; examples natural; helper (chai, ultimately Chinese chá) is true.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-i07": {
+          "verdict": "rejected",
+          "reason": "examples: Voda, prosim. glossed as the request Water, please. A native asks with the accusative, exactly as this lesson teaches with Kavo, prosim.; the nominative reads like a menu label or a hand-over, not an order. Other fields are fine.",
+          "fix": "Vodo, prosim.",
+          "source": ""
+        },
+        "u03-l01-i08": {
+          "verdict": "accepted",
+          "reason": "mleko, n, acc mleko, ins mlekom correct; examples natural; Milch/milk is a real cognate.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u03-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Only kavo fits as object of pijem.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-s02": {
+          "verdict": "accepted",
+          "reason": "Subject needs nominative Kava; Kavo is wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Only vodo is right among the options.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Imam sestro in brata is correct; sestra wrong as object.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Lahko dobim čaj? correct; infinitive dobiti wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and all variants are correct, including partitive Lahko dobim vode?",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct; partitive mleka is fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Natural offer; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Correct and natural; instruction clear.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural host offer.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural reply with accusative.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct and short; natural enough.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Prosim used when handing something over is natural; English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "r-accusative-feminine": {
+          "verdict": "accepted",
+          "reason": "Card text, toggle, quick check and German/English contrasts are correct for A1.",
+          "fix": "",
+          "source": ""
+        },
+        "r-lahko": {
+          "verdict": "accepted",
+          "reason": "Forms dobim, dobiva, dobimo correct; quick check has one right answer; helpers accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u03-l01-i01": "f0cbf257b1c9f948",
+    "u03-l01-i02": "ca9d485d1aa687d4",
+    "u03-l01-i03": "013124e380c3ab0a",
+    "u03-l01-i04": "d44cdcf8abeb3025",
+    "u03-l01-i05": "8040201e84e574df",
+    "u03-l01-i06": "ce7aae9ec9f8d281",
+    "u03-l01-i07": "49732d479df5501c",
+    "u03-l01-i08": "bfdf2fbf768886c5",
+    "u03-l01-s01": "061a3f89eba0677c",
+    "u03-l01-s02": "80619a82f89e1351",
+    "u03-l01-s03": "54ab13b4ac7f8dc7",
+    "u03-l01-s04": "7f9a8c75630e4e84",
+    "u03-l01-s05": "28fc4528627ee26e",
+    "u03-l01-p01": "925afdefa5e0dba3",
+    "u03-l01-p02": "faabf2e8aab2607c",
+    "u03-l01-p03": "7391d6f941725a12",
+    "u03-l01-p04": "1d3751ffbfa0326e",
+    "u03-l01-p05": "381cdd86ab1f6acd",
+    "u03-l01-p06": "372a30231fa72d9c",
+    "u03-l01-d-01": "1297aca3bf86e771",
+    "u03-l01-d-02": "320ab3dcfae1ba63",
+    "u03-l01-d-03": "ae59ae61d2bbf309",
+    "u03-l01-d-04": "f34049a0943852ea",
+    "u03-l01-d-05": "82b1cd586f45f8d4",
+    "r-accusative-feminine": "6b0cf7be505ed3ff",
+    "r-lahko": "e79d8b49421c4927"
+  }
+}

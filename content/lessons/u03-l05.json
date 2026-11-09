@@ -1,0 +1,398 @@
+{
+  "id": "u03-l05",
+  "unit": "u03",
+  "order": 5,
+  "role": "consolidation",
+  "title_sl": "Kosilo pri gostiteljih",
+  "title_en": "Lunch with your hosts",
+  "items": [
+    {
+      "id": "u03-l05-i01",
+      "type": "chunk",
+      "sl": "Sedite, prosim.",
+      "sl_colloquial": null,
+      "en": "Please sit down. (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan. Sedite, prosim.",
+          "en": "Good day. Please sit down."
+        },
+        {
+          "sl": "Kar naprej. Sedite, prosim.",
+          "en": "Come on in. Please sit down."
+        }
+      ],
+      "helper": "sedite is related to English sit and German sitzen.",
+      "accept": [
+        "Prosim, sedite.",
+        "Kar sedite."
+      ],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l05-i02",
+      "type": "chunk",
+      "sl": "Lahko pomagam?",
+      "sl_colloquial": null,
+      "en": "Can I help?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Lahko pomagam, gospa?",
+          "en": "Can I help, madam?"
+        },
+        {
+          "sl": "Lahko pomagam? Ni treba, hvala.",
+          "en": "Can I help? There's no need, thank you."
+        }
+      ],
+      "helper": "lahko as in lahko dobim: can I?",
+      "accept": [
+        "A lahko pomagam?",
+        "Ali lahko pomagam?"
+      ],
+      "rules": [
+        "r-lahko"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l05-i03",
+      "type": "chunk",
+      "sl": "Res je okusno.",
+      "sl_colloquial": null,
+      "en": "It's really tasty.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala, res je okusno.",
+          "en": "Thank you, it's really tasty."
+        },
+        {
+          "sl": "Kosilo je res okusno.",
+          "en": "The lunch is really tasty."
+        }
+      ],
+      "helper": "okusno, tasty, comes from okus, taste.",
+      "accept": [
+        "Zelo je okusno."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l05-i04",
+      "type": "chunk",
+      "sl": "Kje je sol?",
+      "sl_colloquial": null,
+      "en": "Where is the salt?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, kje je sol?",
+          "en": "Excuse me, where is the salt?"
+        },
+        {
+          "sl": "Kje je sol? Tukaj je.",
+          "en": "Where is the salt? Here it is."
+        }
+      ],
+      "helper": "sol is salt, like German Salz.",
+      "accept": [],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l05-i05",
+      "type": "chunk",
+      "sl": "Lahko dobim recept?",
+      "sl_colloquial": null,
+      "en": "Can I have the recipe?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Res je okusno. Lahko dobim recept?",
+          "en": "It's really tasty. Can I have the recipe?"
+        },
+        {
+          "sl": "Gospa, lahko dobim recept?",
+          "en": "Madam, can I have the recipe?"
+        }
+      ],
+      "helper": "recept is a recipe, like German Rezept.",
+      "accept": [
+        "A lahko dobim recept?",
+        "Ali lahko dobim recept?"
+      ],
+      "rules": [
+        "r-lahko",
+        "r-accusative-masculine"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l05-i06",
+      "type": "chunk",
+      "sl": "Hvala za kosilo.",
+      "sl_colloquial": null,
+      "en": "Thanks for lunch.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala za kosilo. Nasvidenje.",
+          "en": "Thanks for lunch. Goodbye."
+        },
+        {
+          "sl": "Hvala lepa za kosilo.",
+          "en": "Thank you very much for lunch."
+        }
+      ],
+      "helper": "Built like hvala za vse: za is for.",
+      "accept": [
+        "Hvala lepa za kosilo."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [],
+  "structured": [
+    {
+      "id": "u03-l05-s01",
+      "prompt_sl": "Pijem ___ z mlekom.",
+      "options": [
+        "kava",
+        "kavo"
+      ],
+      "answer": "kavo",
+      "rule": "r-accusative-feminine",
+      "en": "I drink coffee with milk."
+    },
+    {
+      "id": "u03-l05-s02",
+      "prompt_sl": "Imam ___ in sestro.",
+      "options": [
+        "brat",
+        "brata"
+      ],
+      "answer": "brata",
+      "rule": "r-accusative-masculine",
+      "en": "I have a brother and a sister."
+    },
+    {
+      "id": "u03-l05-s03",
+      "prompt_sl": "Lahko ___ recept?",
+      "options": [
+        "dobim",
+        "dobiti"
+      ],
+      "answer": "dobim",
+      "rule": "r-lahko",
+      "en": "Can I have the recipe?"
+    },
+    {
+      "id": "u03-l05-s04",
+      "prompt_sl": "Še malo? Ne, hvala. Kaj ___ vi?",
+      "options": [
+        "pa",
+        "še"
+      ],
+      "answer": "pa",
+      "rule": "r-particles-se-pa",
+      "en": "A little more? No, thank you. What about you? (to an older person)"
+    },
+    {
+      "id": "u03-l05-s05",
+      "prompt_sl": "Midva ___ ribo.",
+      "options": [
+        "jeva",
+        "jemo",
+        "jesta"
+      ],
+      "answer": "jeva",
+      "rule": "r-jesti-piti",
+      "en": "The two of us eat fish."
+    },
+    {
+      "id": "u03-l05-s06",
+      "prompt_sl": "Gospa, ___ meso?",
+      "options": [
+        "ješ",
+        "jeste",
+        "jedo"
+      ],
+      "answer": "jeste",
+      "rule": "r-jesti-piti",
+      "en": "Madam, do you eat meat?"
+    }
+  ],
+  "production": [
+    {
+      "id": "u03-l05-p01",
+      "en": "Ask your hosts if you can help.",
+      "answer": "Lahko pomagam?",
+      "accept": [
+        "A lahko pomagam?",
+        "Ali lahko pomagam?"
+      ],
+      "item": "u03-l05-i02"
+    },
+    {
+      "id": "u03-l05-p02",
+      "en": "Thank your hosts for lunch.",
+      "answer": "Hvala za kosilo.",
+      "accept": [
+        "Hvala lepa za kosilo."
+      ],
+      "item": "u03-l05-i06"
+    },
+    {
+      "id": "u03-l05-p03",
+      "en": "Ask if you can have the recipe.",
+      "answer": "Lahko dobim recept?",
+      "accept": [
+        "A lahko dobim recept?",
+        "Ali lahko dobim recept?"
+      ],
+      "item": "u03-l05-i05"
+    },
+    {
+      "id": "u03-l05-p04",
+      "en": "At the table, ask if you can have some water.",
+      "answer": "Lahko dobim vodo?",
+      "accept": [
+        "A lahko dobim vodo?",
+        "Ali lahko dobim vodo?",
+        "Lahko dobim vodo, prosim?",
+        "Lahko dobim vode?"
+      ],
+      "item": "u03-l01-i03"
+    },
+    {
+      "id": "u03-l05-p05",
+      "en": "Your hosts offer you meat. Say you don't eat meat.",
+      "answer": "Ne jem mesa.",
+      "accept": [
+        "Jaz ne jem mesa.",
+        "Mesa ne jem."
+      ],
+      "item": "u03-l04-i02"
+    },
+    {
+      "id": "u03-l05-p06",
+      "en": "Ask your guests to sit down.",
+      "answer": "Sedite, prosim.",
+      "accept": [
+        "Prosim, sedite.",
+        "Kar sedite."
+      ],
+      "item": "u03-l05-i01"
+    }
+  ],
+  "dialogue": {
+    "id": "u03-l05-d",
+    "title_sl": "Nedeljsko kosilo",
+    "title_en": "Sunday lunch",
+    "setting_en": "Sunday lunch with your hosts, who say vi to you, from sitting down to thanking them.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Kosilo je na mizi. Sedite, prosim.",
+        "en": "Lunch is on the table. Please sit down."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala. Lahko pomagam?",
+        "en": "Thank you. Can I help?",
+        "new_items": [
+          "u03-l05-i02"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Ni treba. Dober tek.",
+        "en": "There's no need. Enjoy your meal."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala, dober tek. Kje je sol?",
+        "en": "Thank you, enjoy your meal. Where is the salt?",
+        "new_items": [
+          "u03-l02-i01",
+          "u03-l05-i04"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Tukaj je. Še malo krompirja?",
+        "en": "Here it is. A few more potatoes?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, prosim. Res je okusno. Lahko dobim recept?",
+        "en": "Yes, please. It's really tasty. Can I have the recipe?",
+        "new_items": [
+          "u03-l03-i03",
+          "u03-l05-i03",
+          "u03-l05-i05"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Ja, lahko. Pa kavo?",
+        "en": "Yes, you can. What about a coffee?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ne, hvala. Hvala za kosilo.",
+        "en": "No, thank you. Thanks for lunch.",
+        "new_items": [
+          "u03-l03-i04",
+          "u03-l05-i06"
+        ]
+      }
+    ]
+  }
+}

@@ -78,6 +78,8 @@ The English gloss must be unambiguous across the course. A word with several sen
 
 English "you" hides what Slovenian marks: `ti` or `vi`, and for two people whether the speaker is one of them (`midva` or `vidva`). Wherever the answer turns on it, the English of a gloss, a structured line or a production instruction says who is meant: "(to a friend)", "(to an older person)", or "you and one other person" rather than "the two of you", which also reads as `vidva`.
 
+A production instruction has one right answer among what the course has taught so far, or its `accept` lists every other one. "Decline politely when offered more" fits `Ne, hvala.`, `Ni treba.` and `Dovolj je.` alike; "Your hosts offer you more. Say no, thank you." asks for the first. No production instruction repeats the English of another word for word, in its own lesson or any other; the consolidation lesson words its own.
+
 ## Example sentences
 
 - One or two per item, at most eight words each.

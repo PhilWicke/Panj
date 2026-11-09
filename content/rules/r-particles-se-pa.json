@@ -1,0 +1,40 @@
+{
+  "id": "r-particles-se-pa",
+  "unit": "u03",
+  "title_en": "Še and pa: more, and what about",
+  "card_en": "Še adds more or still: še malo, a little more; še kavo, another coffee. Pa turns to someone or something else and usually comes second: kaj pa ti, what about you; jaz pa čaj, and I'll have tea.",
+  "example": {
+    "sl": "Kaj pa ti?",
+    "en": "What about you?"
+  },
+  "toggles": [
+    {
+      "label": "Particle",
+      "options": [
+        "še",
+        "pa"
+      ],
+      "examples": {
+        "še": {
+          "sl": "Še malo kave?",
+          "en": "A little more coffee?"
+        },
+        "pa": {
+          "sl": "Jaz pijem kavo. Kaj pa ti?",
+          "en": "I drink coffee. What about you?"
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Jaz pijem čaj. Kaj ___ ti?",
+    "options": [
+      "pa",
+      "še"
+    ],
+    "answer": "pa",
+    "explain_en": "Pa turns the question to the other person: kaj pa ti, what about you?"
+  },
+  "helper_de": "še works like German noch: noch etwas Kaffee, še malo kave. Kaj pa ti is like und du?",
+  "helper_en": "English puts and or but first. Pa usually comes second: jaz pa čaj, and I'll have tea. A short question can also open with it: pa ti?"
+}

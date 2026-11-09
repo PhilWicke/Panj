@@ -1,0 +1,95 @@
+{
+  "id": "r-jesti-piti",
+  "unit": "u03",
+  "title_en": "To eat and to drink: jesti and piti",
+  "card_en": "Jesti, to eat, and piti, to drink: jem, ješ, je and pijem, piješ, pije; the other forms are in the table. Je means both eats and is: on je kruh, he eats bread; on je tukaj, he is here.",
+  "example": {
+    "sl": "Za zajtrk jem kruh in pijem kavo.",
+    "en": "For breakfast I eat bread and drink coffee."
+  },
+  "table": {
+    "rows": [
+      "1",
+      "2",
+      "3"
+    ],
+    "cols": [
+      "sg",
+      "du",
+      "pl"
+    ],
+    "cells": {
+      "1.sg": {
+        "form": "jem, pijem",
+        "pronoun": "jaz"
+      },
+      "2.sg": {
+        "form": "ješ, piješ",
+        "pronoun": "ti"
+      },
+      "3.sg": {
+        "form": "je, pije",
+        "pronoun": "on/ona",
+        "note_en": "je is also he or she is, from biti: the sentence shows which."
+      },
+      "1.du": {
+        "form": "jeva, pijeva",
+        "pronoun": "midva"
+      },
+      "2.du": {
+        "form": "jesta, pijeta",
+        "pronoun": "vidva"
+      },
+      "3.du": {
+        "form": "jesta, pijeta",
+        "pronoun": "onadva",
+        "note_en": "Same form as for vidva."
+      },
+      "1.pl": {
+        "form": "jemo, pijemo",
+        "pronoun": "mi"
+      },
+      "2.pl": {
+        "form": "jeste, pijete",
+        "pronoun": "vi",
+        "note_en": "Also the polite you: vi jeste, vi pijete."
+      },
+      "3.pl": {
+        "form": "jedo, pijejo",
+        "pronoun": "oni",
+        "note_en": "jedo, they eat, does not follow jem, ješ."
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "Verb",
+      "options": [
+        "jesti, to eat",
+        "piti, to drink"
+      ],
+      "examples": {
+        "jesti, to eat": {
+          "sl": "Kaj ješ?",
+          "en": "What are you eating?"
+        },
+        "piti, to drink": {
+          "sl": "Kaj piješ?",
+          "en": "What are you drinking?"
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Kaj ___ za zajtrk, gospa?",
+    "options": [
+      "ješ",
+      "jeste",
+      "jedo"
+    ],
+    "answer": "jeste",
+    "explain_en": "You say vi to gospa, so jesti takes the vi form: kaj jeste za zajtrk?"
+  },
+  "helper_de": "jesti is related to German essen, and like er isst and er ist, je means both he eats and he is.",
+  "helper_en": "jesti is related to English eat. No do in questions: kaj ješ, what do you eat?"
+}

@@ -1,0 +1,45 @@
+{
+  "id": "r-lahko",
+  "unit": "u03",
+  "title_en": "Lahko: can or may",
+  "card_en": "Lahko, can or may, never changes. The verb after it shows the person, as it always does: lahko dobim, can I have; lahko dobimo, can we have. Said as a question, it asks politely.",
+  "example": {
+    "sl": "Lahko dobim vodo?",
+    "en": "Can I have some water?"
+  },
+  "toggles": [
+    {
+      "label": "Who asks",
+      "options": [
+        "just me",
+        "the two of us",
+        "three or more of us"
+      ],
+      "examples": {
+        "just me": {
+          "sl": "Lahko dobim vodo?",
+          "en": "Can I have some water?"
+        },
+        "the two of us": {
+          "sl": "Lahko dobiva vodo?",
+          "en": "Can the two of us have some water?"
+        },
+        "three or more of us": {
+          "sl": "Lahko dobimo vodo?",
+          "en": "Can we have some water?"
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Lahko ___ vodo, prosim?",
+    "options": [
+      "dobim",
+      "dobiti"
+    ],
+    "answer": "dobim",
+    "explain_en": "Lahko never changes, and the verb after it takes the person, here I: lahko dobim."
+  },
+  "helper_de": "German changes the helping verb: kann ich, kannst du. Slovenian keeps lahko and changes the main verb: lahko dobim, lahko dobiš.",
+  "helper_en": "After English can the verb is bare: can I have. After lahko the verb keeps its ending: lahko dobim."
+}

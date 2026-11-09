@@ -1,0 +1,421 @@
+{
+  "id": "u03-l02",
+  "unit": "u03",
+  "order": 2,
+  "role": "theme",
+  "title_sl": "Dober tek",
+  "title_en": "Enjoy your meal",
+  "items": [
+    {
+      "id": "u03-l02-i01",
+      "type": "chunk",
+      "sl": "Dober tek.",
+      "sl_colloquial": null,
+      "en": "Enjoy your meal.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala, dober tek.",
+          "en": "Thank you, enjoy your meal."
+        },
+        {
+          "sl": "Kosilo je tukaj. Dober tek.",
+          "en": "Lunch is here. Enjoy your meal."
+        }
+      ],
+      "helper": "Like German Guten Appetit: tek is appetite.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l02-i02",
+      "type": "chunk",
+      "sl": "Kaj je za kosilo?",
+      "sl_colloquial": null,
+      "en": "What's for lunch?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan. Kaj je za kosilo?",
+          "en": "Good day. What's for lunch?"
+        },
+        {
+          "sl": "Kaj je za kosilo? Riba?",
+          "en": "What's for lunch? Fish?"
+        }
+      ],
+      "helper": "za is for, as in hvala za vse.",
+      "accept": [],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l02-i03",
+      "type": "chunk",
+      "sl": "Jem kruh.",
+      "sl_colloquial": null,
+      "en": "I eat bread.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Jem kruh in ribo.",
+          "en": "I eat bread and fish."
+        },
+        {
+          "sl": "Jaz jem kruh. In ti?",
+          "en": "I eat bread. And you?"
+        }
+      ],
+      "helper": "kruh stays kruh after jem: a masculine thing does not change.",
+      "accept": [
+        "Jaz jem kruh."
+      ],
+      "rules": [
+        "r-accusative-masculine"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l02-i04",
+      "type": "chunk",
+      "sl": "Zelo je dobro.",
+      "sl_colloquial": null,
+      "en": "It's very good.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala, zelo je dobro.",
+          "en": "Thank you, it's very good."
+        },
+        {
+          "sl": "Kosilo? Zelo je dobro.",
+          "en": "The lunch? It's very good."
+        }
+      ],
+      "helper": "Built like zelo je prijazen: je comes second.",
+      "accept": [],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l02-i05",
+      "type": "word",
+      "sl": "kruh",
+      "sl_colloquial": null,
+      "en": "bread",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "acc": "kruh"
+      },
+      "examples": [
+        {
+          "sl": "Kruh je tukaj.",
+          "en": "The bread is here."
+        },
+        {
+          "sl": "Lahko dobim kruh?",
+          "en": "Can I have the bread?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-accusative-masculine"
+      ],
+      "freq_rank": 1743,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l02-i06",
+      "type": "word",
+      "sl": "meso",
+      "sl_colloquial": null,
+      "en": "meat",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "forms": {
+        "acc": "meso",
+        "gen": "mesa"
+      },
+      "examples": [
+        {
+          "sl": "Meso je zelo dobro.",
+          "en": "The meat is very good."
+        },
+        {
+          "sl": "Meso in krompir, prosim.",
+          "en": "Meat and potatoes, please."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-accusative-masculine"
+      ],
+      "freq_rank": 1649,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l02-i07",
+      "type": "word",
+      "sl": "krompir",
+      "sl_colloquial": null,
+      "en": "potatoes",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "acc": "krompir",
+        "gen": "krompirja"
+      },
+      "examples": [
+        {
+          "sl": "Krompir je zelo dober.",
+          "en": "The potatoes are very good."
+        },
+        {
+          "sl": "Lahko dobim krompir?",
+          "en": "Can I have the potatoes?"
+        }
+      ],
+      "helper": "From the Bavarian and Austrian word Grundbirne, ground pear, an old name for the potato.",
+      "accept": [],
+      "rules": [
+        "r-accusative-masculine"
+      ],
+      "freq_rank": 926,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l02-i08",
+      "type": "word",
+      "sl": "riba",
+      "sl_colloquial": null,
+      "en": "fish",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "ribo"
+      },
+      "examples": [
+        {
+          "sl": "Riba ali meso?",
+          "en": "Is it fish or meat?"
+        },
+        {
+          "sl": "Riba je zelo dobra.",
+          "en": "The fish is very good."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-accusative-feminine"
+      ],
+      "freq_rank": 1518,
+      "verification": {
+        "review1": "accepted",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review2 doubtful: examples: Riba ali meso? glossed Fish or meat? As an offer (the sense this unit trains with Kavo ali čaj?) a native says Ribo ali meso?; the nominative only fits the reading Is it fish or meat? Other fields correct."
+      }
+    }
+  ],
+  "rules": [
+    "r-accusative-masculine"
+  ],
+  "structured": [
+    {
+      "id": "u03-l02-s01",
+      "prompt_sl": "Jem kruh in ___.",
+      "options": [
+        "riba",
+        "ribo"
+      ],
+      "answer": "ribo",
+      "rule": "r-accusative-feminine",
+      "en": "I eat bread and fish."
+    },
+    {
+      "id": "u03-l02-s02",
+      "prompt_sl": "Imaš ___?",
+      "options": [
+        "brat",
+        "brata"
+      ],
+      "answer": "brata",
+      "rule": "r-accusative-masculine",
+      "en": "Do you have a brother? (to a friend)"
+    },
+    {
+      "id": "u03-l02-s03",
+      "prompt_sl": "Jem ___ in ribo.",
+      "options": [
+        "kruh",
+        "kruha"
+      ],
+      "answer": "kruh",
+      "rule": "r-accusative-masculine",
+      "en": "I eat bread and fish."
+    },
+    {
+      "id": "u03-l02-s04",
+      "prompt_sl": "Krompir je zelo ___.",
+      "options": [
+        "dober",
+        "dobra",
+        "dobro"
+      ],
+      "answer": "dober",
+      "rule": "r-adjective-agreement",
+      "en": "The potatoes are very good."
+    },
+    {
+      "id": "u03-l02-s05",
+      "prompt_sl": "Riba je zelo ___.",
+      "options": [
+        "dober",
+        "dobra",
+        "dobro"
+      ],
+      "answer": "dobra",
+      "rule": "r-adjective-agreement",
+      "en": "The fish is very good."
+    },
+    {
+      "id": "u03-l02-s06",
+      "prompt_sl": "Meso je zelo ___.",
+      "options": [
+        "dober",
+        "dobra",
+        "dobro"
+      ],
+      "answer": "dobro",
+      "rule": "r-adjective-agreement",
+      "en": "The meat is very good."
+    }
+  ],
+  "production": [
+    {
+      "id": "u03-l02-p01",
+      "en": "Wish everyone at the table a good meal.",
+      "answer": "Dober tek.",
+      "accept": [],
+      "item": "u03-l02-i01"
+    },
+    {
+      "id": "u03-l02-p02",
+      "en": "Ask what's for lunch.",
+      "answer": "Kaj je za kosilo?",
+      "accept": [],
+      "item": "u03-l02-i02"
+    },
+    {
+      "id": "u03-l02-p03",
+      "en": "Say you eat bread.",
+      "answer": "Jem kruh.",
+      "accept": [
+        "Jaz jem kruh."
+      ],
+      "item": "u03-l02-i03"
+    },
+    {
+      "id": "u03-l02-p04",
+      "en": "At the table, tell your hosts it's very good.",
+      "answer": "Zelo je dobro.",
+      "accept": [],
+      "item": "u03-l02-i04"
+    }
+  ],
+  "dialogue": {
+    "id": "u03-l02-d",
+    "title_sl": "Kosilo",
+    "title_en": "Lunch",
+    "setting_en": "You sit down to lunch with your hosts and ask what there is.",
+    "lines": [
+      {
+        "speaker": "you",
+        "sl": "Kaj je za kosilo?",
+        "en": "What's for lunch?",
+        "new_items": [
+          "u03-l02-i02"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Meso, krompir in kruh. Dober tek.",
+        "en": "Meat, potatoes and bread. Enjoy your meal."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala, dober tek.",
+        "en": "Thank you, enjoy your meal.",
+        "new_items": [
+          "u03-l02-i01"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "A je dobro?",
+        "en": "Is it good?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, zelo je dobro.",
+        "en": "Yes, it's very good.",
+        "new_items": [
+          "u03-l02-i04"
+        ]
+      }
+    ]
+  }
+}

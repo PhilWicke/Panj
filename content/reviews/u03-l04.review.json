@@ -1,0 +1,348 @@
+{
+  "lesson": "u03-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {
+        "u03-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Correct, ti marked; jesti cognate with essen/eat is true.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Genitive of negation mesa correct; variants correct; helper's nimam otrok parallel is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Natural call to table; miza is from Latin mensa.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/miza"
+        },
+        "u03-l04-i05": {
+          "verdict": "accepted",
+          "reason": "zajtrk m, acc zajtrk; from *zautrъkъ, so built on jutro is true.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/zajtrk"
+        },
+        "u03-l04-i06": {
+          "verdict": "accepted",
+          "reason": "kosilo n, acc kosilo; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-i07": {
+          "verdict": "accepted",
+          "reason": "večerja f, acc večerjo; za večerjo correct; helper true.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-i08": {
+          "verdict": "accepted",
+          "reason": "hrana f, food; examples natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u03-l04-s01": {
+          "verdict": "accepted",
+          "reason": "With the English, only ješ fits; je (as is) is a plausible trap.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-s02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Oni jedo correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Midva pijeva correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Correct; variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Kaj pa piješ? natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct; topic shift a little abrupt but nothing a native would stop at.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural with ti.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-jesti-piti": {
+          "verdict": "accepted",
+          "reason": "All nine forms of jesti and piti correct, notes accurate; quick check jeste for gospa correct; helpers fine.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 2,
+      "items": {
+        "u03-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Natural; gloss marks ti; jesti is a true cognate of essen/eat.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Genitive of negation correct; Mesa ne jem natural; helper forms correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Correct; examples natural; hook honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Natural; miza borrowed from Latin mensa confirmed.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/miza"
+        },
+        "u03-l04-i05": {
+          "verdict": "accepted",
+          "reason": "zajtrk, m, acc zajtrk correct; from Proto-Slavic *zautrъkъ, built on the root of jutro, so helper is true.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/zajtrk"
+        },
+        "u03-l04-i06": {
+          "verdict": "accepted",
+          "reason": "kosilo, n, acc kosilo correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-i07": {
+          "verdict": "accepted",
+          "reason": "večerja, f, acc večerjo correct; helper from večer true.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-i08": {
+          "verdict": "accepted",
+          "reason": "hrana, f; examples natural and nominative only.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u03-l04-s01": {
+          "verdict": "accepted",
+          "reason": "English (to a friend) fixes ješ; the other forms do not match it.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-s02": {
+          "verdict": "accepted",
+          "reason": "jem correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-s03": {
+          "verdict": "accepted",
+          "reason": "pije correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-s04": {
+          "verdict": "accepted",
+          "reason": "pijemo correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-s05": {
+          "verdict": "accepted",
+          "reason": "jedo correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-s06": {
+          "verdict": "accepted",
+          "reason": "pijeva correct dual.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Correct; variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural ti question.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct, short.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Pridi fits a host who says ti; natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-jesti-piti": {
+          "verdict": "accepted",
+          "reason": "All table forms correct (jem..jedo, pijem..pijejo, duals jeva/jesta, pijeva/pijeta); notes, toggle and quick check jeste correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u03-l04-i01": "f96579026c977a6e",
+    "u03-l04-i02": "a28d386cd79212a1",
+    "u03-l04-i03": "fa910b18a6c60571",
+    "u03-l04-i04": "51c257d2a881398c",
+    "u03-l04-i05": "bcbbd4b4ffd3ea11",
+    "u03-l04-i06": "60df465690525163",
+    "u03-l04-i07": "89a6732405e1e8a2",
+    "u03-l04-i08": "ce470987ee75b920",
+    "u03-l04-s01": "b47a54c72a02d8c2",
+    "u03-l04-s02": "3f0966ad34acf1b6",
+    "u03-l04-s03": "204dec47fec9d382",
+    "u03-l04-s04": "c563e27675258bce",
+    "u03-l04-s05": "baf805fa162ba061",
+    "u03-l04-s06": "7e8071f72a022f2a",
+    "u03-l04-p01": "cbbdc0297d2024eb",
+    "u03-l04-p02": "49365723f1f574e1",
+    "u03-l04-p03": "0e0e6aa3e02ae8d9",
+    "u03-l04-p04": "8601c4d696b24edf",
+    "u03-l04-d-01": "951bf9697fb593d9",
+    "u03-l04-d-02": "c904ee55ebe2e803",
+    "u03-l04-d-03": "7dc3e9fd59c35bc4",
+    "u03-l04-d-04": "71b6f95599bc932c",
+    "u03-l04-d-05": "fd9bdd08311c252f",
+    "u03-l04-d-06": "c5f6f65d14546916",
+    "r-jesti-piti": "a94206e7bf676f4f"
+  }
+}

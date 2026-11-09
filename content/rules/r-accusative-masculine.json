@@ -1,0 +1,40 @@
+{
+  "id": "r-accusative-masculine",
+  "unit": "u03",
+  "title_en": "The object: kruh stays kruh",
+  "card_en": "Masculine nouns for things stay the same as the object: kruh, jem kruh. Those for people and animals take -a: brat, imam brata. Neuter nouns stay the same too: meso, jem meso.",
+  "example": {
+    "sl": "Jem kruh.",
+    "en": "I eat bread."
+  },
+  "toggles": [
+    {
+      "label": "A thing or a person",
+      "options": [
+        "a thing",
+        "a person"
+      ],
+      "examples": {
+        "a thing": {
+          "sl": "Imam kruh.",
+          "en": "I have bread."
+        },
+        "a person": {
+          "sl": "Imam brata.",
+          "en": "I have a brother."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Imam ___ in hčerko.",
+    "options": [
+      "sin",
+      "sina"
+    ],
+    "answer": "sina",
+    "explain_en": "Sin is a person, so as the object it takes -a: imam sina in hčerko."
+  },
+  "helper_de": "German changes der to den for every masculine object: den Kuchen, den Bruder. Slovenian changes only nouns for people and animals: imam brata, but jem kruh.",
+  "helper_en": "English never changes the noun. Slovenian changes a masculine one only when it is alive: imam brata, but jem kruh."
+}

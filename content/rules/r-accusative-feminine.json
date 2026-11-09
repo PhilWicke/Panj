@@ -1,0 +1,41 @@
+{
+  "id": "r-accusative-feminine",
+  "unit": "u03",
+  "title_en": "The object: kava becomes kavo",
+  "card_en": "A feminine noun in -a ends in -o when it is the object, the thing you drink, have or get: kava je dobra, but pijem kavo. This is the accusative, as in imam sestro.",
+  "example": {
+    "sl": "Pijem kavo.",
+    "en": "I drink coffee."
+  },
+  "toggles": [
+    {
+      "label": "Kava in the sentence",
+      "options": [
+        "the subject",
+        "the object"
+      ],
+      "examples": {
+        "the subject": {
+          "sl": "Kava je dobra.",
+          "en": "The coffee is good."
+        },
+        "the object": {
+          "sl": "Pijem kavo.",
+          "en": "I drink coffee."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Pijem kav_ z mlekom.",
+    "options": [
+      "a",
+      "o",
+      "i"
+    ],
+    "answer": "o",
+    "explain_en": "Kava is the thing you drink, the object, so -a becomes -o: pijem kavo."
+  },
+  "helper_de": "In German a feminine object looks like the subject: die Suppe ist gut, ich esse die Suppe. In Slovenian the ending changes: kava, pijem kavo.",
+  "helper_en": "English shows the object only on pronouns, like he and him. Slovenian shows it on the noun itself: kava, kavo."
+}

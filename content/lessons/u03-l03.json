@@ -1,0 +1,428 @@
+{
+  "id": "u03-l03",
+  "unit": "u03",
+  "order": 3,
+  "role": "theme",
+  "title_sl": "Še malo?",
+  "title_en": "A little more?",
+  "items": [
+    {
+      "id": "u03-l03-i01",
+      "type": "chunk",
+      "sl": "Postrezite si.",
+      "sl_colloquial": null,
+      "en": "Help yourself. (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Postrezite si, prosim.",
+          "en": "Please help yourself."
+        },
+        {
+          "sl": "Kosilo je tukaj. Postrezite si.",
+          "en": "Lunch is here. Help yourselves."
+        }
+      ],
+      "helper": "Like German Bedienen Sie sich: si is yourself.",
+      "accept": [
+        "Kar si postrezite."
+      ],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l03-i02",
+      "type": "chunk",
+      "sl": "Še malo?",
+      "sl_colloquial": null,
+      "en": "A little more?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Še malo? Ja, prosim.",
+          "en": "A little more? Yes, please."
+        },
+        {
+          "sl": "Še malo kave?",
+          "en": "A little more coffee?"
+        }
+      ],
+      "helper": "še is still or more, as in lep dan še naprej.",
+      "accept": [],
+      "rules": [
+        "r-particles-se-pa"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l03-i03",
+      "type": "chunk",
+      "sl": "Ja, prosim.",
+      "sl_colloquial": null,
+      "en": "Yes, please.",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kavo? Ja, prosim.",
+          "en": "Coffee? Yes, please."
+        },
+        {
+          "sl": "Ja, prosim, z mlekom.",
+          "en": "Yes, please, with milk."
+        }
+      ],
+      "helper": "ja is like German ja; prosim here is please.",
+      "accept": [
+        "Da, prosim."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l03-i04",
+      "type": "chunk",
+      "sl": "Ne, hvala.",
+      "sl_colloquial": null,
+      "en": "No, thank you.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Še malo? Ne, hvala.",
+          "en": "A little more? No, thank you."
+        },
+        {
+          "sl": "Kavo? Ne, hvala.",
+          "en": "Coffee? No, thank you."
+        }
+      ],
+      "helper": null,
+      "accept": [
+        "Ne, hvala lepa."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l03-i05",
+      "type": "chunk",
+      "sl": "Kaj pa ti?",
+      "sl_colloquial": null,
+      "en": "What about you? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Jaz pijem čaj. Kaj pa ti?",
+          "en": "I drink tea. What about you?"
+        },
+        {
+          "sl": "Dobro, hvala. Kaj pa ti?",
+          "en": "Fine, thank you. What about you?"
+        }
+      ],
+      "helper": "pa turns the question to the other person.",
+      "accept": [
+        "Pa ti?",
+        "In ti?"
+      ],
+      "rules": [
+        "r-particles-se-pa",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l03-i06",
+      "type": "chunk",
+      "sl": "Ne morem več.",
+      "sl_colloquial": null,
+      "en": "I can't eat any more.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala, ne morem več.",
+          "en": "Thank you, I can't eat any more."
+        },
+        {
+          "sl": "Ne, hvala. Ne morem več.",
+          "en": "No, thank you. I can't eat any more."
+        }
+      ],
+      "helper": "morem, I can, is related to English might and German Macht.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l03-i07",
+      "type": "chunk",
+      "sl": "Dovolj je.",
+      "sl_colloquial": null,
+      "en": "That's enough.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala, dovolj je.",
+          "en": "Thank you, that's enough."
+        },
+        {
+          "sl": "Še malo? Ne, dovolj je.",
+          "en": "A little more? No, that's enough."
+        }
+      ],
+      "helper": null,
+      "accept": [
+        "To je dovolj."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l03-i08",
+      "type": "chunk",
+      "sl": "Ni treba.",
+      "sl_colloquial": null,
+      "en": "There's no need.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ni treba, hvala.",
+          "en": "There's no need, thank you."
+        },
+        {
+          "sl": "Še kavo? Ni treba.",
+          "en": "Another coffee? There's no need."
+        }
+      ],
+      "helper": "ni is the not of je, as in on ni tukaj.",
+      "accept": [],
+      "rules": [
+        "r-biti-negative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-particles-se-pa"
+  ],
+  "structured": [
+    {
+      "id": "u03-l03-s01",
+      "prompt_sl": "Dobro, hvala. Kaj ___ vi?",
+      "options": [
+        "pa",
+        "še"
+      ],
+      "answer": "pa",
+      "rule": "r-particles-se-pa",
+      "en": "Fine, thank you. What about you? (to an older person)"
+    },
+    {
+      "id": "u03-l03-s02",
+      "prompt_sl": "___ malo kave?",
+      "options": [
+        "Še",
+        "Več"
+      ],
+      "answer": "Še",
+      "rule": "r-particles-se-pa",
+      "en": "A little more coffee?"
+    },
+    {
+      "id": "u03-l03-s03",
+      "prompt_sl": "Jaz pijem čaj, ona ___ kavo.",
+      "options": [
+        "pa",
+        "še"
+      ],
+      "answer": "pa",
+      "rule": "r-particles-se-pa",
+      "en": "I drink tea, and she has coffee."
+    },
+    {
+      "id": "u03-l03-s04",
+      "prompt_sl": "Še ___?",
+      "options": [
+        "kava",
+        "kavo"
+      ],
+      "answer": "kavo",
+      "rule": "r-accusative-feminine",
+      "en": "Another coffee?"
+    },
+    {
+      "id": "u03-l03-s05",
+      "prompt_sl": "___ si, gospa.",
+      "options": [
+        "Postrezi",
+        "Postrezite"
+      ],
+      "answer": "Postrezite",
+      "rule": "r-ti-vi",
+      "en": "Help yourself, madam."
+    },
+    {
+      "id": "u03-l03-s06",
+      "prompt_sl": "___ treba, hvala.",
+      "options": [
+        "Ni",
+        "Nisem",
+        "Ne"
+      ],
+      "answer": "Ni",
+      "rule": "r-biti-negative",
+      "en": "There's no need, thank you."
+    }
+  ],
+  "production": [
+    {
+      "id": "u03-l03-p01",
+      "en": "Invite your guests to help themselves.",
+      "answer": "Postrezite si.",
+      "accept": [
+        "Kar si postrezite."
+      ],
+      "item": "u03-l03-i01"
+    },
+    {
+      "id": "u03-l03-p02",
+      "en": "Offer someone a little more.",
+      "answer": "Še malo?",
+      "accept": [],
+      "item": "u03-l03-i02"
+    },
+    {
+      "id": "u03-l03-p03",
+      "en": "Your hosts offer you more. Say yes, please.",
+      "answer": "Ja, prosim.",
+      "accept": [
+        "Da, prosim."
+      ],
+      "item": "u03-l03-i03"
+    },
+    {
+      "id": "u03-l03-p04",
+      "en": "Your hosts offer you more. Say no, thank you.",
+      "answer": "Ne, hvala.",
+      "accept": [
+        "Ne, hvala lepa."
+      ],
+      "item": "u03-l03-i04"
+    },
+    {
+      "id": "u03-l03-p05",
+      "en": "Say you can't eat any more.",
+      "answer": "Ne morem več.",
+      "accept": [],
+      "item": "u03-l03-i06"
+    },
+    {
+      "id": "u03-l03-p06",
+      "en": "Turn the question back to a friend: what about you?",
+      "answer": "Kaj pa ti?",
+      "accept": [
+        "Pa ti?",
+        "In ti?"
+      ],
+      "item": "u03-l03-i05"
+    }
+  ],
+  "dialogue": {
+    "id": "u03-l03-d",
+    "title_sl": "Ne morem več",
+    "title_en": "I can't eat any more",
+    "setting_en": "Lunch with your hosts goes on, and they keep offering you more. They say vi to you.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Še malo? Kar si postrezite.",
+        "en": "A little more? Go on, help yourself."
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, prosim. Zelo je dobro.",
+        "en": "Yes, please. It's very good.",
+        "new_items": [
+          "u03-l03-i03"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Še malo krompirja?",
+        "en": "A few more potatoes?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ne, hvala. Ne morem več.",
+        "en": "No, thank you. I can't eat any more.",
+        "new_items": [
+          "u03-l03-i04",
+          "u03-l03-i06"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Res? Pa kavo?",
+        "en": "Really? What about a coffee?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ni treba, hvala. Dovolj je.",
+        "en": "There's no need, thank you. That's enough.",
+        "new_items": [
+          "u03-l03-i08",
+          "u03-l03-i07"
+        ]
+      }
+    ]
+  }
+}

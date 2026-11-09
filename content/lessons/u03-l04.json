@@ -1,0 +1,421 @@
+{
+  "id": "u03-l04",
+  "unit": "u03",
+  "order": 4,
+  "role": "theme",
+  "title_sl": "Za zajtrk",
+  "title_en": "For breakfast",
+  "items": [
+    {
+      "id": "u03-l04-i01",
+      "type": "chunk",
+      "sl": "Kaj ješ za zajtrk?",
+      "sl_colloquial": null,
+      "en": "What do you eat for breakfast? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Dobro jutro. Kaj ješ za zajtrk?",
+          "en": "Good morning. What do you eat for breakfast?"
+        },
+        {
+          "sl": "Kaj ješ za zajtrk? Kruh?",
+          "en": "What do you eat for breakfast? Bread?"
+        }
+      ],
+      "helper": "ješ is from jesti, to eat, a relative of German essen and English eat.",
+      "accept": [],
+      "rules": [
+        "r-jesti-piti",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l04-i02",
+      "type": "chunk",
+      "sl": "Ne jem mesa.",
+      "sl_colloquial": null,
+      "en": "I don't eat meat.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala, ne jem mesa.",
+          "en": "Thank you, I don't eat meat."
+        },
+        {
+          "sl": "Ne jem mesa, jem ribo.",
+          "en": "I don't eat meat, I eat fish."
+        }
+      ],
+      "helper": "After ne, meso becomes mesa, just as imam otroke becomes nimam otrok.",
+      "accept": [
+        "Jaz ne jem mesa.",
+        "Mesa ne jem."
+      ],
+      "rules": [
+        "r-jesti-piti"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l04-i03",
+      "type": "chunk",
+      "sl": "Kdaj je večerja?",
+      "sl_colloquial": null,
+      "en": "When is dinner?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, kdaj je večerja?",
+          "en": "Excuse me, when is dinner?"
+        },
+        {
+          "sl": "Kdaj je večerja, gospa?",
+          "en": "When is dinner, madam?"
+        }
+      ],
+      "helper": "kdaj is when, next to kdo, who, and kje, where.",
+      "accept": [],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l04-i04",
+      "type": "chunk",
+      "sl": "Večerja je na mizi.",
+      "sl_colloquial": null,
+      "en": "Dinner is on the table.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Pridite, večerja je na mizi.",
+          "en": "Come, dinner is on the table."
+        },
+        {
+          "sl": "Večerja je na mizi. Dober tek.",
+          "en": "Dinner is on the table. Enjoy your meal."
+        }
+      ],
+      "helper": "miza, table, comes from Latin mensa, like Spanish mesa.",
+      "accept": [],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l04-i05",
+      "type": "word",
+      "sl": "zajtrk",
+      "sl_colloquial": null,
+      "en": "breakfast",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "acc": "zajtrk"
+      },
+      "examples": [
+        {
+          "sl": "Kaj je za zajtrk?",
+          "en": "What's for breakfast?"
+        },
+        {
+          "sl": "Zajtrk je na mizi.",
+          "en": "Breakfast is on the table."
+        }
+      ],
+      "helper": "Built on jutro, morning, as in dobro jutro.",
+      "accept": [],
+      "rules": [
+        "r-accusative-masculine"
+      ],
+      "freq_rank": 2728,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l04-i06",
+      "type": "word",
+      "sl": "kosilo",
+      "sl_colloquial": null,
+      "en": "lunch",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "forms": {
+        "acc": "kosilo"
+      },
+      "examples": [
+        {
+          "sl": "Kosilo je na mizi.",
+          "en": "Lunch is on the table."
+        },
+        {
+          "sl": "Kosilo je zelo dobro.",
+          "en": "The lunch is very good."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 999,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l04-i07",
+      "type": "word",
+      "sl": "večerja",
+      "sl_colloquial": null,
+      "en": "dinner",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "večerjo"
+      },
+      "examples": [
+        {
+          "sl": "Kaj je za večerjo?",
+          "en": "What's for dinner?"
+        },
+        {
+          "sl": "Večerja je zelo dobra.",
+          "en": "The dinner is very good."
+        }
+      ],
+      "helper": "Built on večer, evening, as in dober večer.",
+      "accept": [],
+      "rules": [
+        "r-accusative-feminine"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u03-l04-i08",
+      "type": "word",
+      "sl": "hrana",
+      "sl_colloquial": null,
+      "en": "food",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "examples": [
+        {
+          "sl": "Hrana je tukaj zelo dobra.",
+          "en": "The food here is very good."
+        },
+        {
+          "sl": "Hrana je res dobra.",
+          "en": "The food is really good."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 654,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-jesti-piti"
+  ],
+  "structured": [
+    {
+      "id": "u03-l04-s01",
+      "prompt_sl": "Kaj ___ za zajtrk?",
+      "options": [
+        "jem",
+        "ješ",
+        "je"
+      ],
+      "answer": "ješ",
+      "rule": "r-jesti-piti",
+      "en": "What do you eat for breakfast? (to a friend)"
+    },
+    {
+      "id": "u03-l04-s02",
+      "prompt_sl": "Jaz ___ kruh.",
+      "options": [
+        "jem",
+        "ješ",
+        "jedo"
+      ],
+      "answer": "jem",
+      "rule": "r-jesti-piti",
+      "en": "I eat bread."
+    },
+    {
+      "id": "u03-l04-s03",
+      "prompt_sl": "Ona ___ kavo.",
+      "options": [
+        "pijem",
+        "piješ",
+        "pije"
+      ],
+      "answer": "pije",
+      "rule": "r-jesti-piti",
+      "en": "She drinks coffee."
+    },
+    {
+      "id": "u03-l04-s04",
+      "prompt_sl": "Mi ___ čaj.",
+      "options": [
+        "pijem",
+        "pijemo",
+        "pijejo"
+      ],
+      "answer": "pijemo",
+      "rule": "r-jesti-piti",
+      "en": "We drink tea."
+    },
+    {
+      "id": "u03-l04-s05",
+      "prompt_sl": "Oni ___ ribo.",
+      "options": [
+        "jemo",
+        "jedo",
+        "jeste"
+      ],
+      "answer": "jedo",
+      "rule": "r-jesti-piti",
+      "en": "They eat fish."
+    },
+    {
+      "id": "u03-l04-s06",
+      "prompt_sl": "Midva ___ vodo.",
+      "options": [
+        "pijeva",
+        "pijemo",
+        "pijeta"
+      ],
+      "answer": "pijeva",
+      "rule": "r-jesti-piti",
+      "en": "The two of us drink water."
+    }
+  ],
+  "production": [
+    {
+      "id": "u03-l04-p01",
+      "en": "Ask a friend what they eat for breakfast.",
+      "answer": "Kaj ješ za zajtrk?",
+      "accept": [],
+      "item": "u03-l04-i01"
+    },
+    {
+      "id": "u03-l04-p02",
+      "en": "Tell your hosts you don't eat meat.",
+      "answer": "Ne jem mesa.",
+      "accept": [
+        "Jaz ne jem mesa.",
+        "Mesa ne jem."
+      ],
+      "item": "u03-l04-i02"
+    },
+    {
+      "id": "u03-l04-p03",
+      "en": "Ask when dinner is.",
+      "answer": "Kdaj je večerja?",
+      "accept": [],
+      "item": "u03-l04-i03"
+    },
+    {
+      "id": "u03-l04-p04",
+      "en": "Call everyone: dinner is on the table.",
+      "answer": "Večerja je na mizi.",
+      "accept": [],
+      "item": "u03-l04-i04"
+    }
+  ],
+  "dialogue": {
+    "id": "u03-l04-d",
+    "title_sl": "Jutri zjutraj",
+    "title_en": "Tomorrow morning",
+    "setting_en": "In the evening, one of your hosts, who says ti to you, asks about breakfast for tomorrow.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Kaj ješ za zajtrk?",
+        "en": "What do you eat for breakfast?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Kruh. Za zajtrk ne jem mesa.",
+        "en": "Bread. I don't eat meat for breakfast.",
+        "new_items": [
+          "u03-l04-i02"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kaj pa piješ? Kavo ali čaj?",
+        "en": "And what do you drink? Coffee or tea?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Kavo, prosim. Kdaj je večerja?",
+        "en": "Coffee, please. When is dinner?",
+        "new_items": [
+          "u03-l04-i03"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Večerja je na mizi. Pridi.",
+        "en": "Dinner is on the table. Come."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala. Dober tek.",
+        "en": "Thank you. Enjoy your meal."
+      }
+    ]
+  }
+}

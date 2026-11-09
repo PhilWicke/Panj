@@ -1,0 +1,34 @@
+{
+  "lesson": "u03-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {
+        "u03-l01-i07": {
+          "verdict": "accepted",
+          "reason": "voda is the standard citation form, feminine, accusative vodo is correct and under the right label; en water is unambiguous for a noun item; register neutral is right. Both examples are grammatical and natural (Voda je tukaj, The water is here; Vodo, prosim, Water, please) and contain the headword or its recorded form. The helper is honest: voda goes back to PIE *wódr, the same root as English water, and Russian vodka is voda plus the diminutive -ka, so little water is a fair gloss. Accept is empty, nothing wrong there.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/vodka"
+        }
+      },
+      "lines": {}
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u03-l01-i07": {
+          "verdict": "accepted",
+          "reason": "voda is the standard citation form, a feminine noun with neutral register, and acc vodo is correct. The English gloss water is plain and unambiguous. Both examples are grammatical and natural with faithful English: Voda je tukaj. works as an answer to Kje je voda?, and Vodo, prosim. is a normal way to ask. Each contains the headword or its recorded form. The helper is honest: voda and English water share the PIE root, and vodka is the Russian diminutive of voda, so little water is the real etymology, not folk etymology. The empty accept list is fine.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/vodka"
+        }
+      },
+      "lines": {}
+    }
+  ],
+  "applied": {
+    "u03-l01-i07": "c6b0363499c44188"
+  }
+}

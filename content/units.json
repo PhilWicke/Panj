@@ -39,7 +39,13 @@
     "title_sl": "Pri mizi",
     "title_en": "At the table",
     "motif": "wheat",
-    "lessons": []
+    "lessons": [
+      "u03-l01",
+      "u03-l02",
+      "u03-l03",
+      "u03-l04",
+      "u03-l05"
+    ]
   },
   {
     "id": "u04",

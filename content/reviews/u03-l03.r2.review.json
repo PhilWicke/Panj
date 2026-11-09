@@ -1,0 +1,34 @@
+{
+  "lesson": "u03-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {},
+      "lines": {
+        "r-particles-se-pa": {
+          "verdict": "accepted",
+          "reason": "card_en is 38 words and correct: še malo kave, še kavo and the contrastive pa in second position after the contrasted word (kaj pa ti, jaz pa čaj) are all natural, and SSKJ gives both the postponed adversative pa (ti pa lenariš) and the elliptical Pa ti? the helper_en mentions. The example, both toggle sentences (Še malo kave? with the genitive after malo; Jaz pijem kavo. Kaj pa ti?) and their English are right. The quick check Jaz pijem čaj. Kaj ___ ti? has one blank and only pa fits. helper_de (noch etwas Kaffee, und du?) is a fair comparison.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=pa"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {},
+      "lines": {
+        "r-particles-se-pa": {
+          "verdict": "accepted",
+          "reason": "The card's Slovenian is correct and natural: še malo, še kavo, kaj pa ti, jaz pa čaj, Še malo kave? (genitive after malo is correct), Jaz pijem kavo. Kaj pa ti? and the colloquial short question Pa ti?. The English is faithful. card_en has 38 words. The quick check has one blank, and its only right answer is pa: Kaj še ti? does not mean what about you, so the distractor is wrong but plausible. The second-position claim matches SSKJ, which labels contrastive pa in that sense zapostavljen (jaz delam, ti pa lenariš), and usually leaves room for sentence-initial pa. The German parallels noch etwas Kaffee and und du? are apt. One cosmetic point, not a language error: helper_de opens with a lowercase še.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=pa"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "r-particles-se-pa": "b73b4ade360f7636"
+  }
+}

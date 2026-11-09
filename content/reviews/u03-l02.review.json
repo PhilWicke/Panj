@@ -1,0 +1,335 @@
+{
+  "lesson": "u03-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {
+        "u03-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Dober tek is the standard wish; tek is appetite in SSKJ, so the Guten Appetit helper is true; examples natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=tek"
+        },
+        "u03-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural; helper fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Jem kruh correct; examples natural; helper states the rule honestly.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Zelo je dobro is natural with the clitic second; examples fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-i05": {
+          "verdict": "accepted",
+          "reason": "kruh m, acc kruh correct; examples natural; null helper is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-i06": {
+          "verdict": "accepted",
+          "reason": "meso n, acc meso, gen mesa correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-i07": {
+          "verdict": "accepted",
+          "reason": "krompir m, acc krompir, gen krompirja correct; potatoes is the right gloss for the mass noun; helper matches the attested etymology from Austrian Grundbirne.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/krompir"
+        },
+        "u03-l02-i08": {
+          "verdict": "accepted",
+          "reason": "riba f, acc ribo correct; examples natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u03-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Only ribo fits as object.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-s02": {
+          "verdict": "accepted",
+          "reason": "Imaš brata? correct, animate masculine; English marks ti.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Jem kruh in ribo; kruha is a plausible wrong distractor.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-s04": {
+          "verdict": "accepted",
+          "reason": "Krompir je zelo dober; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Riba je zelo dobra; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Meso je zelo dobro; one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Dober tek is what one says.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Zelo je dobro is natural praise.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural list and wish.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "The usual reply to dober tek.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "A je dobro? is natural spoken question.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-accusative-masculine": {
+          "verdict": "accepted",
+          "reason": "Inanimate masculine and neuter unchanged, animate masculine -a: correct; toggle, quick check (sina) and helpers accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u03-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Standard meal wish; tek is appetite; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Natural question; za + acc correct; examples fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Correct; examples natural; helper true for inanimate masculine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Zelo je dobro with the clitic after zelo is natural (like Zelo sem vesel); examples fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-i05": {
+          "verdict": "accepted",
+          "reason": "kruh, m, acc kruh correct; examples natural; null helper is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-i06": {
+          "verdict": "accepted",
+          "reason": "meso, n, acc meso, gen mesa correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-i07": {
+          "verdict": "accepted",
+          "reason": "krompir, m, acc krompir, gen krompirja correct; collective gloss potatoes fine; etymology from dialectal Austrian/Bavarian Grundbirne confirmed.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/krompir"
+        },
+        "u03-l02-i08": {
+          "verdict": "doubtful",
+          "reason": "examples: Riba ali meso? glossed Fish or meat? As an offer (the sense this unit trains with Kavo ali čaj?) a native says Ribo ali meso?; the nominative only fits the reading Is it fish or meat? Other fields correct.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u03-l02-s01": {
+          "verdict": "accepted",
+          "reason": "ribo is the only right object form.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-s02": {
+          "verdict": "accepted",
+          "reason": "Animate masculine object brata; English marks ti.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Jem kruh correct; kruha wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-s04": {
+          "verdict": "accepted",
+          "reason": "Masculine krompir takes dober.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Feminine riba takes dobra.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Neuter meso takes dobro.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Answer correct and natural. Consider adding the equally natural Zelo dobro je. and Je zelo dobro. to accept.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural listing and wish.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural reply.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Colloquial a-question is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-accusative-masculine": {
+          "verdict": "accepted",
+          "reason": "Inanimate/animate split and neuter note correct; quick check sina right; German contrast accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u03-l02-i01": "59112e14f8a02536",
+    "u03-l02-i02": "1fd310cd53754c5a",
+    "u03-l02-i03": "86627b9259992986",
+    "u03-l02-i04": "4b086d6c5885b57d",
+    "u03-l02-i05": "2d61cd50c2e0af12",
+    "u03-l02-i06": "8bf55ed4fba2f762",
+    "u03-l02-i07": "aa41feb96153ff5e",
+    "u03-l02-i08": "5367fcb56d99561f",
+    "u03-l02-s01": "1c55416911e29e41",
+    "u03-l02-s02": "116e656cbe4fb1cb",
+    "u03-l02-s03": "7644c11320609c78",
+    "u03-l02-s04": "f86c2fbeeece6307",
+    "u03-l02-s05": "91464c06a94141d3",
+    "u03-l02-s06": "eb69010810d6e986",
+    "u03-l02-p01": "973e2f04a0dda492",
+    "u03-l02-p02": "b49b21575bf6b107",
+    "u03-l02-p03": "72dd620ae64a9710",
+    "u03-l02-p04": "4e06660b4c498b5e",
+    "u03-l02-d-01": "1b16ebd46e58b4e4",
+    "u03-l02-d-02": "79aa5695d9362cec",
+    "u03-l02-d-03": "0f5a2534241abe3a",
+    "u03-l02-d-04": "2fdbb62a49d4925c",
+    "u03-l02-d-05": "2fb2d2c59d570617",
+    "r-accusative-masculine": "f91fe1ef255fa1e9"
+  }
+}

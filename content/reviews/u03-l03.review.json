@@ -1,0 +1,374 @@
+{
+  "lesson": "u03-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u03-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Postrezite si and Kar si postrezite are the natural invitation; gloss marks vi; Bedienen Sie sich is a fair parallel.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Še malo? and Še malo kave? natural; helper fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Ja is colloquial, so the register tag fits; Da, prosim variant correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Correct; Ne, hvala lepa variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Kaj pa ti? natural; Pa ti? and In ti? are both heard; examples fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i06": {
+          "verdict": "accepted",
+          "reason": "Ne morem več is what one says at table; the gloss gives the table sense; moči is cognate with might/Macht, so the helper is true.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i07": {
+          "verdict": "accepted",
+          "reason": "Dovolj je and To je dovolj natural; examples fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Ni treba is the usual polite decline; examples natural; helper correct.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u03-l03-s01": {
+          "verdict": "accepted",
+          "reason": "Kaj pa vi? correct; še wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-s02": {
+          "verdict": "accepted",
+          "reason": "Še malo kave? correct; več malo is wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-s03": {
+          "verdict": "accepted",
+          "reason": "Jaz pijem čaj, ona pa kavo is the natural contrastive ellipsis; English fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Še kavo? correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Postrezite si, gospa correct for vi.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-s06": {
+          "verdict": "accepted",
+          "reason": "Ni treba; Nisem and Ne are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Correct; Da variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Correct; variants natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural host line with vi.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Še malo krompirja? natural partitive.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural decline.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Sentence-initial pa is standard (SSKJ: Pa ti); Pa kavo? natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=pa"
+        },
+        "u03-l03-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural polite decline.",
+          "fix": "",
+          "source": ""
+        },
+        "r-particles-se-pa": {
+          "verdict": "doubtful",
+          "reason": "Slovenian forms are correct, but card_en says pa comes after the first word and helper_en says pa comes second, while SSKJ shows sentence-initial pa (Pa ti) and this unit itself uses Pa ti? as an accept variant and Pa kavo? in dialogues. The note needs to limit itself to the contrastive pa after a question word or topic.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=pa"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u03-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Postrezite si is the set phrase (SSKJ: postrezi si sam); Kar si postrezite correct; helper parallel to Bedienen Sie sich fair.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=postreči"
+        },
+        "u03-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Natural offer; Še malo kave? uses recorded gen kave; helper fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Natural; colloquial tag for ja acceptable; Da, prosim correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Natural; Pa ti? and In ti? both heard; examples fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i06": {
+          "verdict": "accepted",
+          "reason": "Natural at table; gloss specifies eating; moči is a true cognate of might/Macht.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i07": {
+          "verdict": "accepted",
+          "reason": "Correct; To je dovolj correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Correct; examples natural; helper accurate.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u03-l03-s01": {
+          "verdict": "accepted",
+          "reason": "Kaj pa vi is right; še wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-s02": {
+          "verdict": "accepted",
+          "reason": "Še malo kave correct; Več malo is wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-s03": {
+          "verdict": "accepted",
+          "reason": "ona pa kavo is the natural contrastive ellipsis; še does not fit.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Še kavo? correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Vi form to gospa is Postrezite.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-s06": {
+          "verdict": "accepted",
+          "reason": "Ni treba is the only correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Correct; variants correct; instruction marks ti.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural hosting line.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Correct partitive genitive; natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Res? Pa kavo? is a natural colloquial follow-up offer.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l03-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural enough decline.",
+          "fix": "",
+          "source": ""
+        },
+        "r-particles-se-pa": {
+          "verdict": "doubtful",
+          "reason": "card_en says pa comes after the first word, but the same unit opens lines with pa (Pa kavo? in u03-l03-d-05 and u03-l05-d-07, accepted variant Pa ti?), so the rule as stated misleads; should say contrastive pa usually comes second. Forms, toggle and quick check are correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u03-l03-i01": "7174d406ebe564b6",
+    "u03-l03-i02": "685a7e6cf225bc34",
+    "u03-l03-i03": "d468b3acc97a6b24",
+    "u03-l03-i04": "f440ad1e42e70c00",
+    "u03-l03-i05": "e563bb1cad7b6290",
+    "u03-l03-i06": "d82ba496a803e9b2",
+    "u03-l03-i07": "a5aa958a8d1c97ec",
+    "u03-l03-i08": "973a8b12036f237d",
+    "u03-l03-s01": "3dbf17d7f14e6c2e",
+    "u03-l03-s02": "f3ff55c938f64493",
+    "u03-l03-s03": "4c8712b7ef0a28d4",
+    "u03-l03-s04": "acbf22c69bb94ab3",
+    "u03-l03-s05": "8792be817c37d7e3",
+    "u03-l03-s06": "851883ffcc99bc61",
+    "u03-l03-p01": "96905d64d121b11e",
+    "u03-l03-p02": "d27655dd803f9970",
+    "u03-l03-p03": "ad01507b41203fb5",
+    "u03-l03-p04": "97f4add4d16c699d",
+    "u03-l03-p05": "3457bafa8cb7f54c",
+    "u03-l03-p06": "87cb92bc5b1ea865",
+    "u03-l03-d-01": "efb46ff4384b7df7",
+    "u03-l03-d-02": "96964ac3b7ab58b5",
+    "u03-l03-d-03": "9312d4abc3175689",
+    "u03-l03-d-04": "aa7a0e627efe9a59",
+    "u03-l03-d-05": "4b3ada5e50b9775c",
+    "u03-l03-d-06": "224ab40c614b06ed",
+    "r-particles-se-pa": "b73b4ade360f7636"
+  }
+}

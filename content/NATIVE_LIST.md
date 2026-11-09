@@ -15,3 +15,9 @@ For each row, add one line to native-confirmations.tsv: the id, a tab, then `con
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
 | u02-l04-i01 | Onadva sta brata. | The two of them are brothers. | review2 doubtful: accept: 'Sta brata.' opens with the clitic sta and reads as the question Sta brata?; the natural short statement is Brata sta. examples: 'Kdo je to? Onadva sta brata.' answers a singular question about two people; To sta brata. would be the natural answer. Fix: accept: Brata sta.; example: Kdo je to? To sta brata. | accept: Brata sta.; example: Kdo je to? To sta brata. |
+
+## Unit 03
+
+| id | sl | en | doubt | proposed fix |
+|---|---|---|---|---|
+| u03-l02-i08 | riba | fish | review2 doubtful: examples: Riba ali meso? glossed Fish or meat? As an offer (the sense this unit trains with Kavo ali čaj?) a native says Ribo ali meso?; the nominative only fits the reading Is it fish or meat? Other fields correct. |  |

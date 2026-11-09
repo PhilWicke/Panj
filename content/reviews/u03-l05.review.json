@@ -1,0 +1,361 @@
+{
+  "lesson": "u03-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u03-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Sedite is the imperative of sesti; Prosim, sedite and Kar sedite natural; sit/sitzen cognates true.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=sesti"
+        },
+        "u03-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Correct; variants correct; examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Res je okusno natural; variant correct; okus/okusno true.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Correct; sol/Salz real cognates.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Correct; recept/Rezept true; context gives the recipe sense.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u03-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Imam brata in sestro correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-s03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Kaj pa vi? correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-s05": {
+          "verdict": "accepted",
+          "reason": "Midva jeva correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Gospa, jeste meso? correct vi form.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct; partitive vode variant also correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural, within 60 characters and 10 words.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Ja, lahko and Pa kavo? natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u03-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Standard imperative of sesti; variants correct; true cognate of sit/sitzen.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Natural; variants correct; examples fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Natural compliment; okus/okusno true; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Correct; sol/Salz real cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Correct; recept/Rezept true; variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Natural; variant correct.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u03-l05-s01": {
+          "verdict": "accepted",
+          "reason": "kavo correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-s02": {
+          "verdict": "accepted",
+          "reason": "brata correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-s03": {
+          "verdict": "accepted",
+          "reason": "dobim correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Kaj pa vi correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-s05": {
+          "verdict": "accepted",
+          "reason": "jeva correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Vi form jeste to gospa correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Correct; variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct; variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct; variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct; variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Correct; variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Correct; variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural; partitive krompirja correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Correct; 46 characters, 8 words.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Natural colloquial reply and offer.",
+          "fix": "",
+          "source": ""
+        },
+        "u03-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u03-l05-i01": "11db61d97403c195",
+    "u03-l05-i02": "e4125c772fff9284",
+    "u03-l05-i03": "5b337b0c2dea42d8",
+    "u03-l05-i04": "887515a52ce26baa",
+    "u03-l05-i05": "c578490ae71ede8a",
+    "u03-l05-i06": "19c1495f6387e80a",
+    "u03-l05-s01": "7aa4415e96cd6a82",
+    "u03-l05-s02": "76a931174ea5ef2c",
+    "u03-l05-s03": "41adc7bb2a9aa17a",
+    "u03-l05-s04": "b65df9ff99ad8517",
+    "u03-l05-s05": "7f6ac5c407ada1cb",
+    "u03-l05-s06": "886773c24c618ff8",
+    "u03-l05-p01": "f23a15337b5bfaca",
+    "u03-l05-p02": "7db9a4cb944f30db",
+    "u03-l05-p03": "51c261bd76dee1c3",
+    "u03-l05-p04": "f60c811169337c7e",
+    "u03-l05-p05": "49365723f1f574e1",
+    "u03-l05-p06": "a59c6d00bcbe64e3",
+    "u03-l05-d-01": "a351cf1c16dd32f6",
+    "u03-l05-d-02": "b3a07c2b444e7405",
+    "u03-l05-d-03": "fe26590e08495643",
+    "u03-l05-d-04": "37b04c723cd5b18c",
+    "u03-l05-d-05": "d8625f5dd01c7941",
+    "u03-l05-d-06": "409afff28296ecdc",
+    "u03-l05-d-07": "ee647efeac6ca383",
+    "u03-l05-d-08": "de3be33312cb659a"
+  }
+}
