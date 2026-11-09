@@ -1,6 +1,6 @@
 // Registration of the service worker and the update flow (Ruling 58), kept out of main.js. The
 // worker is registered as a module with updateViaCache none where a worker can run: https, or
-// localhost and 127.0.0.1 in development. Its URL carries the content version (`sw.js?v=...`),
+// localhost and 127.0.0.1 in development. Its URL carries the version (`sw.js?v=...`),
 // so a new version is a new script URL and installs as a fresh worker: Chromium's update check
 // for a module worker whose own bytes are unchanged fails to start the new worker when the module
 // that changed is its first or a nested import (version.js here; found in the Task 19 browser

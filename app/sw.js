@@ -1,6 +1,7 @@
 // The service worker (Task 19). The app shell and the content live in one cache named after the
-// content version (`slovelingo-<version>`, the version app/version.js exports), the recorded clips
-// in `slovelingo-audio`, which no update empties. install precaches the files app/precache.json
+// version (`slovelingo-<version>`, the version app/version.js exports: the content and the shell,
+// so a code-only deploy is a new version too), the recorded clips in `slovelingo-audio`, which no
+// update empties. install precaches the files app/precache.json
 // lists (tools/build-content.js writes it with the version) and never skips waiting: the new
 // version waits until the learner taps Reload (Ruling 58). activate drops every other
 // slovelingo-* cache but the audio, claims the pages and tells them `{ type: 'updated' }`. fetch
@@ -12,7 +13,7 @@
 // offline", which fetches the clips of a unit's texts (js/util/audio-texts.js) that the audio
 // manifest lists, three at a time, and answers `unit-audio-cached` with the count. A module
 // worker, registered by js/sw-client.js with updateViaCache none under a URL that carries the
-// version (`sw.js?v=...`), so every content version installs as a fresh worker.
+// version (`sw.js?v=...`), so every version installs as a fresh worker.
 
 import { SLOVELINGO_VERSION } from './version.js';
 import { byteRange, isAudio, policyFor, trimPlan } from './js/sw-policy.js';

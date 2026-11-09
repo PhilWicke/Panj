@@ -2,6 +2,10 @@
 // under content/ into app/content/dist/ (index.json and units/uNN.json) and
 // writes app/version.js, the module the service worker names its cache after,
 // and app/precache.json, the list of shell files the worker installs (Task 19).
+// With an app folder the version covers the shell as well as the content (every
+// file precache.json lists but version.js and the content, plus the worker), so
+// a deploy that changes only code installs a new worker too; without one, as in
+// --check and the library tests, it covers the content files alone.
 //
 // The linter runs first and any error stops the build, with one exception: in a
 // strict build (no --allow-pending) the linter's pending-practised findings are
@@ -14,9 +18,11 @@
 // Library: buildContent({ contentDir, outDir, allowPending, versionFile, appDir }).
 // CLI: node tools/build-content.js [--allow-pending] [--check] [contentDir];
 // exit 1 on lint errors, 2 on a bad argument. --check builds into a temporary
-// folder, removes it and prints the summary only (no version.js, no precache.json).
-// No dependencies: node:fs, node:os, node:path and node:url, plus the app's
-// sha256Hex and wordTokens (the tokeniser lemmasMet shares with the progress counters).
+// folder, removes it and prints the summary only (no version.js, no precache.json,
+// so its version is the content's). No dependencies: node:crypto, node:fs, node:os,
+// node:path and node:url, plus the app's sha256Hex and wordTokens (the tokeniser
+// lemmasMet shares with the progress counters).
+import { createHash } from 'node:crypto';
 import { mkdir, mkdtemp, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -35,7 +41,7 @@ import { wordTokens } from '../app/js/util/tokens.js';
 
 /**
  * @typedef {object} BuildResult
- * @property {string} version the first 12 hex characters of the SHA-256 over the content files
+ * @property {string} version 12 hex characters: with an app folder, of the SHA-256 over the content hash and the shell digest (see buildVersion); without one, of the content hash alone. index.json, version.js and precache.json carry it
  * @property {'dev'|'strict'} mode
  * @property {number} units
  * @property {number} lessons lessons in the index; a strict build leaves out lessons without an accepted item
@@ -61,6 +67,10 @@ const SHELL_FOLDERS = ['css', 'js', 'assets/fonts', 'assets/icons'];
 const SHELL_ASSETS = ['assets/icon.svg', 'assets/audio/manifest.json'];
 /** The worker itself is never precached, wherever it sits. */
 const NOT_PRECACHED = new Set(['sw.js']);
+/** Shell entries whose bytes the version leaves out: the start URL is index.html again, and version.js carries the version itself. */
+const NOT_HASHED = new Set(['./', 'version.js']);
+/** Deployed files the version covers although precache.json does not list them: the worker, which the browser fetches under its own URL. */
+const HASHED_UNLISTED = ['sw.js'];
 
 /** @param {unknown} err */
 const errorMessage = (err) => (err instanceof Error ? err.message : String(err));
@@ -80,22 +90,23 @@ async function listJson(dir, folder) {
 }
 
 /**
- * Reads the content files in a fixed order and derives the version from them:
- * SHA-256 over `<path>\n<contents>` of every file, sorted by path. The linter
- * has passed by the time this runs, so every file parses.
+ * Reads the content files in a fixed order and hashes them: SHA-256 over
+ * `<path>\n<contents>` of every file, sorted by path (`hash`, 64 hex characters,
+ * which buildVersion shortens or combines with the shell). The linter has passed
+ * by the time this runs, so every file parses.
  * @param {string} dir
- * @returns {Promise<{ version: string, units: Unit[], lessons: Lesson[], rules: Rule[] }>}
+ * @returns {Promise<{ hash: string, units: Unit[], lessons: Lesson[], rules: Rule[] }>}
  */
 async function readCorpus(dir) {
   const files = ['units.json', ...(await listJson(dir, 'lessons')), ...(await listJson(dir, 'rules'))].sort();
   const texts = [];
   for (const file of files) texts.push({ file, text: await readFile(path.join(dir, file), 'utf8') });
-  const version = (await sha256Hex(texts.map(({ file, text }) => `${file}\n${text}`).join('\n'))).slice(0, VERSION_LENGTH);
+  const hash = await sha256Hex(texts.map(({ file, text }) => `${file}\n${text}`).join('\n'));
   const parsed = texts.map(({ file, text }) => ({ file, doc: JSON.parse(text) }));
   const inFolder = (/** @type {string} */ folder) => parsed.filter(({ file }) => file.startsWith(`${folder}/`)).map(({ doc }) => doc);
   const units = parsed.find(({ file }) => file === 'units.json');
   if (!units) throw new Error(`units.json is missing in ${dir}`);
-  return { version, units: units.doc, lessons: inFolder('lessons'), rules: inFolder('rules') };
+  return { hash, units: units.doc, lessons: inFolder('lessons'), rules: inFolder('rules') };
 }
 
 /**
@@ -148,24 +159,71 @@ async function filesUnder(dir) {
 }
 
 /**
- * Writes `<appDir>/precache.json`, the shell the service worker installs for this version
- * (Task 19): `{ version, files }` with paths relative to the app folder, in order: the start URL
- * `./`, index.html, the web manifest, version.js, every file under css/ and js/ (never sw.js),
- * every font and icon, the app icon, the audio manifest, then the content index and every unit
- * file this build wrote. precache.json itself is not listed. A listed file missing from the app
- * folder fails the build, since the worker's install would fail on it later.
- * @param {string} appDir the app folder, with content/dist/ and version.js already written
- * @param {string} version
- * @param {string[]} unitIds the unit files written, `uNN`
+ * The shell entries precache.json lists before the content files, relative to the app folder,
+ * in order: the start URL `./`, index.html, the web manifest, version.js, every file under css/
+ * and js/ (never sw.js), every font and icon, the app icon and the audio manifest.
+ * @param {string} appDir
+ * @returns {Promise<string[]>}
  */
-async function writePrecache(appDir, version, unitIds) {
+async function shellList(appDir) {
   const files = ['./', ...SHELL_FILES];
   for (const folder of SHELL_FOLDERS) {
     for (const file of await filesUnder(path.join(appDir, folder))) {
       if (!NOT_PRECACHED.has(path.basename(file))) files.push(`${folder}/${file}`);
     }
   }
-  files.push(...SHELL_ASSETS, 'content/dist/index.json', ...unitIds.map((id) => `content/dist/units/${id}.json`));
+  files.push(...SHELL_ASSETS);
+  return files;
+}
+
+/**
+ * SHA-256 over the bytes of the shell: `<path>\n<bytes>\n` for every entry of the shell list but
+ * the start URL and version.js, plus the worker, sorted by path. The content files stay out (the
+ * content hash covers them, and index.json carries the build time), and so do version.js and
+ * precache.json, which carry the result. A file missing from the app folder fails the build by
+ * name.
+ * @param {string} appDir
+ * @param {string[]} shell the shell list
+ * @returns {Promise<string>} 64 lowercase hex characters
+ */
+async function shellDigest(appDir, shell) {
+  const files = [...shell.filter((file) => !NOT_HASHED.has(file)), ...HASHED_UNLISTED].sort();
+  const digest = createHash('sha256');
+  for (const file of files) {
+    const bytes = await readFile(path.join(appDir, file)).catch(() => null);
+    if (!bytes) throw new Error(`the version covers ${file}, which is missing in ${appDir}`);
+    digest.update(`${file}\n`).update(bytes).update('\n');
+  }
+  return digest.digest('hex');
+}
+
+/**
+ * The version: the first 12 hex characters of the content hash when the build has no shell, else
+ * of the SHA-256 over `<content hash>\n<shell digest>`, so a change to a script, a style, an
+ * asset or the worker is a new version (a new cache name and worker URL) as much as a content
+ * change is.
+ * @param {string} contentHash readCorpus's hash
+ * @param {string|null} shell the shell digest, or null without an app folder
+ * @returns {Promise<string>}
+ */
+async function buildVersion(contentHash, shell) {
+  const full = shell === null ? contentHash : await sha256Hex(`${contentHash}\n${shell}`);
+  return full.slice(0, VERSION_LENGTH);
+}
+
+/**
+ * Writes `<appDir>/precache.json`, the shell the service worker installs for this version
+ * (Task 19): `{ version, files }` with paths relative to the app folder: the shell list, then the
+ * content index and every unit file this build wrote. precache.json itself is not listed. A
+ * listed file missing from the app folder fails the build, since the worker's install would fail
+ * on it later.
+ * @param {string} appDir the app folder, with content/dist/ and version.js already written
+ * @param {string} version
+ * @param {string[]} shell the shell list
+ * @param {string[]} unitIds the unit files written, `uNN`
+ */
+async function writePrecache(appDir, version, shell, unitIds) {
+  const files = [...shell, 'content/dist/index.json', ...unitIds.map((id) => `content/dist/units/${id}.json`)];
   for (const file of files) {
     const info = await stat(path.join(appDir, file === './' ? 'index.html' : file)).catch(() => null);
     if (!info?.isFile()) throw new Error(`precache.json needs ${file}, which is missing in ${appDir}`);
@@ -176,9 +234,10 @@ async function writePrecache(appDir, version, unitIds) {
 /**
  * Compiles the content directory into `outDir` (index.json and units/uNN.json)
  * and, when `versionFile` is given, writes the version module there; when
- * `appDir` is given, writes its precache.json too (outDir is then its
- * content/dist/ and versionFile its version.js). Rejects when the linter finds
- * errors; see the header for what a strict build strips.
+ * `appDir` is given, its shell enters the version and its precache.json is
+ * written too (outDir is then its content/dist/ and versionFile its version.js).
+ * Rejects when the linter finds errors; see the header for what a strict build
+ * strips.
  * @param {{ contentDir: string, outDir: string, allowPending?: boolean, versionFile?: string|null, appDir?: string|null }} options
  * @returns {Promise<BuildResult>}
  */
@@ -196,6 +255,8 @@ export async function buildContent({ contentDir, outDir, allowPending = false, v
   }
 
   const corpus = await readCorpus(contentDir);
+  const shell = appDir ? await shellList(appDir) : null;
+  const version = await buildVersion(corpus.hash, appDir && shell ? await shellDigest(appDir, shell) : null);
   const scheduled = allowPending ? () => true : (/** @type {Item} */ item) => item.verification.status === 'accepted';
   const lessonsById = new Map(corpus.lessons.map((lesson) => [lesson.id, lesson]));
 
@@ -239,7 +300,7 @@ export async function buildContent({ contentDir, outDir, allowPending = false, v
 
   /** @type {Index} */
   const index = {
-    version: corpus.version,
+    version,
     mode,
     generated: new Date().toISOString(),
     units,
@@ -258,12 +319,12 @@ export async function buildContent({ contentDir, outDir, allowPending = false, v
   await writeJson(path.join(outDir, 'index.json'), index);
   if (versionFile) {
     await mkdir(path.dirname(versionFile), { recursive: true });
-    await writeFile(versionFile, versionModule(corpus.version));
+    await writeFile(versionFile, versionModule(version));
   }
-  if (appDir) await writePrecache(appDir, corpus.version, unitFiles.map((unitFile) => unitFile.unit.id));
+  if (appDir && shell) await writePrecache(appDir, version, shell, unitFiles.map((unitFile) => unitFile.unit.id));
 
   return {
-    version: corpus.version,
+    version,
     mode,
     units: units.length,
     lessons: lessonIndex.length,

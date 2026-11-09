@@ -136,7 +136,9 @@ test('strict build leaves a lesson without an accepted item out of the index, th
   assert.deepEqual([dev.lessons, dev.scheduledItems, dev.omittedLessons], [1, 3, []]);
 });
 
-test('the version follows the content files alone: same in both modes and from a copy, different after an edit', async () => {
+// With an app folder the version covers the shell as well (Task 19, fix round 1); the tests beside
+// the precache list in tests/tools/build-content.test.js pin that. No shell is built here.
+test('without an app folder the version follows the content files alone: same in both modes and from a copy, different after an edit', async () => {
   const out = await tmp();
   const dev = await buildContent({ contentDir: fx('content-pending-mixed'), outDir: out, allowPending: true });
   const strict = await buildContent({ contentDir: fx('content-pending-mixed'), outDir: out });

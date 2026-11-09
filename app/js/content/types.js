@@ -151,7 +151,7 @@
 /**
  * app/content/dist/index.json.
  * @typedef {object} Index
- * @property {string} version the first 12 hex characters of the SHA-256 over the content files; app/version.js carries the same value
+ * @property {string} version the build's version, 12 hex characters of a SHA-256 over the content files and the app shell (tools/build-content.js says which files); app/version.js and app/precache.json carry the same value
  * @property {'dev'|'strict'} mode `dev` when built with --allow-pending (every item is practised), `strict` otherwise (items that are not accepted stay in `items` but leave the practice sets, and a lesson without an accepted item is left out)
  * @property {string} generated time of the build, ISO 8601
  * @property {Unit[]} units every unit of units.json, each listing only the lessons the bundle carries

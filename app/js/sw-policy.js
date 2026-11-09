@@ -5,11 +5,11 @@
 // and the recorded clips are `cache-first`, since they never change under one name. Everything
 // else under the scope is `network-first`, fresh when online and from the cache offline: the
 // page, the scripts, the styles, the web manifest, version.js, the content, and the audio
-// manifest, which gains entries without a content version change and so must not be pinned
-// (the one network-first file under assets/audio/). isAudio names the clips, which live in their
-// own cache that no update empties; trimPlan says which clips to evict when that cache grows
-// past its limit, the oldest first (Ruling 57); byteRange reads the Range header a media element
-// sends, so a cached clip can answer the 206 that iOS insists on.
+// manifest, read fresh so new recordings play before the learner reloads into the version that
+// lists them (the one network-first file under assets/audio/). isAudio names the clips, which
+// live in their own cache that no update empties; trimPlan says which clips to evict when that
+// cache grows past its limit, the oldest first (Ruling 57); byteRange reads the Range header a
+// media element sends, so a cached clip can answer the 206 that iOS insists on.
 
 /** @typedef {'network-first'|'cache-first'|'network-only'} Policy */
 /** @typedef {{ url: string, bytes: number, at: number }} ClipEntry a clip in the audio cache: its URL, its size and when it was stored, epoch ms */

@@ -4,10 +4,12 @@
 // URL, index.html, the web manifest, version.js, every file under css/ and js/ (never sw.js),
 // the fonts, the icons, the app icon, the audio manifest, and the content index and unit files
 // it just wrote; precache.json itself is not listed. The test builds into a temporary copy of
-// the real app folder so the list is checked against the real shell.
+// the real app folder so the list is checked against the real shell. With an app folder the
+// version covers that shell as well as the content (fix round 1), so a deploy that changes only
+// code installs a new worker; the tests at the end pin which files are in it.
 import { after, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { cp, mkdtemp, readdir, readFile, rm, stat } from 'node:fs/promises';
+import { appendFile, cp, mkdtemp, readdir, readFile, rm, stat } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -59,6 +61,11 @@ async function buildInto(appDir) {
   const precache = JSON.parse(await readFile(path.join(appDir, 'precache.json'), 'utf8'));
   return { result, precache };
 }
+
+/** @param {string} file */
+const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
+/** The exact text of version.js for a version. @param {string} version */
+const versionModule = (version) => `export const SLOVELINGO_VERSION = "${version}";\nglobalThis.SLOVELINGO_VERSION = SLOVELINGO_VERSION;\n`;
 
 test('precache.json lists every file under app/js and app/css, never sw.js, and carries the build version', async () => {
   const appDir = await copyApp();
@@ -124,8 +131,58 @@ test('without an app folder the build writes no precache list', async () => {
   await assert.rejects(stat(path.join(dir, 'dist', 'precache.json')), { code: 'ENOENT' });
 });
 
-test('a shell file the list needs but the app folder lacks fails the build by name', async () => {
+test('a shell file the list needs or the version covers but the app folder lacks fails the build by name', async () => {
   const appDir = await copyApp();
   await rm(path.join(appDir, 'assets', 'audio', 'manifest.json'));
   await assert.rejects(buildInto(appDir), (err) => err instanceof Error && err.message.includes('assets/audio/manifest.json'));
+  const noWorker = await copyApp();
+  await rm(path.join(noWorker, 'sw.js'));
+  await assert.rejects(buildInto(noWorker), (err) => err instanceof Error && err.message.includes('sw.js'));
+});
+
+// The version with an app folder (fix round 1). A code-only deploy used to keep the content's
+// version, so no new worker installed and the old shell stayed precached for offline use; now
+// the shell is in the hash. What is in it: every file precache.json lists but the start URL
+// (index.html again), version.js (it carries the result) and the content files (the content
+// hash covers them, and index.json carries the build time), plus the worker, which the browser
+// fetches under its own URL. What is not: precache.json, the build outputs, and files under app/
+// that no page loads, such as the maskable icon's source drawing.
+
+test('the version covers the shell: a rebuild keeps it, the content alone gives another, and a style, a script, the worker, the audio manifest or the page changes it in index.json, version.js and precache.json alike', async () => {
+  const appDir = await copyApp();
+  const first = await buildInto(appDir);
+  assert.match(first.result.version, /^[0-9a-f]{12}$/);
+  const again = await buildInto(appDir);
+  assert.equal(again.result.version, first.result.version, 'the same files build to the same version: version.js, precache.json and the build time stay out of it');
+  const dir = await mkdtemp(path.join(tmpdir(), 'slovelingo-precache-test-'));
+  tempDirs.push(dir);
+  const contentOnly = await buildContent({ contentDir: FIXTURE, outDir: path.join(dir, 'dist'), allowPending: true });
+  assert.notEqual(first.result.version, contentOnly.version, 'the shell is in the version');
+
+  let previous = first.result.version;
+  for (const file of ['css/tokens.css', 'js/main.js', 'sw.js', 'assets/audio/manifest.json', 'index.html']) {
+    await appendFile(path.join(appDir, file), '\n');
+    const { result, precache } = await buildInto(appDir);
+    assert.notEqual(result.version, previous, `${file} is in the version`);
+    assert.match(result.version, /^[0-9a-f]{12}$/);
+    assert.equal(precache.version, result.version, `precache.json carries the version after ${file} changed`);
+    assert.equal((await readJson(path.join(appDir, 'content', 'dist', 'index.json'))).version, result.version, `index.json carries the version after ${file} changed`);
+    assert.equal(await readFile(path.join(appDir, 'version.js'), 'utf8'), versionModule(result.version), `version.js carries the version after ${file} changed`);
+    previous = result.version;
+  }
+});
+
+test('a font or an icon changes the version, a file under app/ that the shell does not list leaves it alone', async () => {
+  const appDir = await copyApp();
+  const first = await buildInto(appDir);
+  await appendFile(path.join(appDir, 'assets', 'icons', 'icon-192.png'), Buffer.from([0]));
+  const icon = await buildInto(appDir);
+  assert.notEqual(icon.result.version, first.result.version, 'an icon is in the version');
+  await appendFile(path.join(appDir, 'assets', 'fonts', 'bricolage-latin.woff2'), Buffer.from([0]));
+  const font = await buildInto(appDir);
+  assert.notEqual(font.result.version, icon.result.version, 'a font is in the version');
+  await appendFile(path.join(appDir, 'assets', 'icon-maskable.svg'), '\n');
+  const drawing = await buildInto(appDir);
+  assert.equal(drawing.result.version, font.result.version, 'the maskable source drawing is not part of the shell');
+  assert.equal((await readJson(path.join(appDir, 'precache.json'))).version, drawing.result.version);
 });
