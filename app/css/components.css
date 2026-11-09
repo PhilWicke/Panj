@@ -1,7 +1,7 @@
 /* Components: header, screens, buttons, the exercises, the feedback panel, the session bar, the
-   rule card, the Rules screen, the Today screen with its calendar and hive, the unit page and the
-   tab bar. Every control is at least 44 px tall; motion only answers an action and sits in the
-   no-preference block at the end. */
+   rule card, the Rules screen, the Today screen with its calendar and hive, the unit page, the
+   checkpoint and onboarding forms and the tab bar. Every control is at least 44 px tall; motion
+   only answers an action and sits in the no-preference block at the end. */
 
 /* Header */
 
@@ -153,6 +153,7 @@
   font-weight: 650;
   line-height: 1.2;
   text-align: center;
+  text-decoration: none;
   cursor: pointer;
   touch-action: manipulation;
 }
@@ -1040,6 +1041,110 @@ button.rule-cell {
   align-items: center;
   gap: var(--space-12);
   margin-top: var(--space-8);
+}
+
+/* Checkpoint and onboarding */
+
+.screen-checkpoint,
+.screen-onboarding {
+  gap: var(--space-16);
+}
+
+.checkpoint-intro,
+.onboarding-step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.checkpoint-count {
+  font-weight: 600;
+}
+
+.checkpoint-progress {
+  flex: 1;
+  color: var(--text-muted);
+  font-size: var(--text-14);
+  font-weight: 600;
+  text-align: right;
+}
+
+.checkpoint-result {
+  font-size: var(--text-28);
+}
+
+/* The result and each step's heading take the focus for assistive technology, as the rule title does. */
+.screen-checkpoint .screen-title:focus,
+.onboarding-step h1:focus {
+  outline: none;
+}
+
+.field {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.field-label {
+  font-weight: 600;
+}
+
+.text-input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 var(--space-16);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-10);
+  background: var(--bg);
+  font-size: var(--text-16);
+}
+
+.text-input:focus {
+  border-color: var(--accent);
+}
+
+.number-input {
+  width: 6rem;
+}
+
+.choice-list {
+  display: grid;
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  min-height: 48px;
+  padding: 0 var(--space-16);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-10);
+  background: var(--surface);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.choice input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.choice:has(input:checked) {
+  border-color: var(--accent);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-16);
+  background: var(--surface);
 }
 
 /* Tab bar */

@@ -40,6 +40,7 @@ import { STORE_NAMES } from './memory.js';
  * @property {1} schemaVersion the shape of the records in the store
  * @property {number} createdAt epoch ms of the first load, when the learner started
  * @property {Record<string, string>} [sealed] unit id to the ISO date (`YYYY-MM-DD`) its checkpoint passed; the checkpoint screen writes it, the hive reads it (Ruling 38)
+ * @property {{ at: string, total: number, correct: number, predicted: number }[]} [weeklyChecks] one entry per weekly check taken, in order: the local date key of the check, its items, the right answers and the learner's prediction; the checkpoint screen appends it, Stats reads it (Ruling 55)
  */
 
 /**

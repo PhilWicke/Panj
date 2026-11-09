@@ -1,7 +1,7 @@
 // The unit page (spec 6), reached from a hive board: the unit's titles, whether its checkpoint
 // sealed it and when, how much of it can be recalled now, its lessons each with a retention meter
-// (lessonFill), and two actions later tasks wire, shown as placeholders until then: the
-// checkpoint (Task 16) and keeping the unit's audio offline (Task 19).
+// (lessonFill), the link to the unit's checkpoint (`#/checkpoint?unit=uNN`, once the unit has an
+// item to check), and keeping the unit's audio offline, a placeholder until Task 19.
 
 import { h, mount } from '../../util/dom.js';
 import { onlyKnown } from '../../content/loader.js';
@@ -63,6 +63,7 @@ export function renderUnit(container, app, params = {}) {
   const sealedOn = app.state.meta.sealed?.[id];
   /** @param {import('../../content/types.js').Lesson} lesson @returns {number} the items that count */
   const counted = (lesson) => lesson.items.filter((item) => app.allowPending || item.verification.status === 'accepted').length;
+  const checkable = lessons.some((lesson) => counted(lesson) > 0);
 
   mount(container, h('section', { class: 'screen screen-unit' },
     back,
@@ -83,7 +84,9 @@ export function renderUnit(container, app, params = {}) {
           meter(`lesson-recall-${lesson.id}`, lessonFill(states, lesson, now, retention, options)));
       })),
     h('div', { class: 'actions actions-stack' },
-      h('button', { type: 'button', class: 'btn btn-primary', 'aria-disabled': 'true' }, 'Take the checkpoint'),
+      checkable
+        ? h('a', { class: 'btn btn-primary', href: `#/checkpoint?unit=${unit.id}` }, 'Take the checkpoint')
+        : h('button', { type: 'button', class: 'btn btn-primary', 'aria-disabled': 'true' }, 'Take the checkpoint'),
       h('button', { type: 'button', class: 'btn btn-secondary', 'aria-disabled': 'true' }, 'Keep offline')),
-    h('p', { class: 'quiet' }, 'The checkpoint and offline audio arrive with a later update.')));
+    h('p', { class: 'quiet' }, 'Offline audio arrives with a later update.')));
 }

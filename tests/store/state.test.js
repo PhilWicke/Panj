@@ -306,6 +306,12 @@ test('saveMeta writes the meta record and loadState returns it', async () => {
   assert.equal(imported.ok, true);
   await importState(fresh, imported.data, T1);
   assert.deepEqual(await fresh.get('meta', 'meta'), { id: 'meta', schemaVersion: 1, createdAt: 5, sealed: ['u02'] });
+  // a meta with weekly checks (Task 16) imports as it is, and one without them still does (the cases above)
+  const checks = [{ at: '2026-11-09', total: 8, correct: 6, predicted: 5 }];
+  const weekly = validateImport(JSON.stringify({ app: 'slovelingo', schemaVersion: 1, items: {}, sessions: [], meta: { schemaVersion: 1, createdAt: 5, weeklyChecks: checks } }));
+  assert.equal(weekly.ok, true);
+  await importState(fresh, weekly.data, T1);
+  assert.deepEqual((await loadState(fresh)).meta, { schemaVersion: 1, createdAt: 5, weeklyChecks: checks });
   // the saved object is not aliased: changing it afterwards changes nothing in the store
   const meta = { schemaVersion: 1, createdAt: 3 };
   await saveMeta(adapter, meta);

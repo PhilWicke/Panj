@@ -2,7 +2,8 @@
 // learner's answer with the error marked inside it (typed letters that do not belong struck
 // through, wrong letters highlighted, missing letters shown in a dashed box where they belong),
 // the full correct form beside it in Slovenian size, the one-line rule when the item has one (on a
-// miss, not on a slip that passes), and a retry: the learner types the correct form once more, ungraded, before going on. A slip names
+// miss, not on a slip that passes), and a retry, offered, not forced (Ruling 32), which a checkpoint
+// leaves out (`retry: false`): the learner types the correct form once more, ungraded, before going on. A slip names
 // the letters ("Mind the č"); a second slip in a row says that it counts as a miss.
 
 import { h } from '../../util/dom.js';
@@ -59,10 +60,12 @@ function markedAnswer(diff) {
  * @param {string} opts.target the Slovenian form as written in the content
  * @param {Rule|null} opts.rule
  * @param {() => void} opts.onDone called once, when the learner goes on
+ * @param {boolean} [opts.retry] offer "Type it again" after a miss; true when omitted, false in a checkpoint
  * @returns {HTMLElement}
  */
-export function renderFeedback({ answer, graded, effective, target, rule, onDone }) {
+export function renderFeedback({ answer, graded, effective, target, rule, onDone, retry = true }) {
   const missed = effective === 'wrong';
+  const offerRetry = missed && retry;
   const tone = graded.result === 'correct' ? 'correct' : missed ? 'wrong' : 'slip';
   // A slip shows the variant the learner was writing; anything else shows the main form.
   const correctForm = graded.result === 'slip' && graded.matched ? graded.matched : target;
@@ -87,14 +90,14 @@ export function renderFeedback({ answer, graded, effective, target, rule, onDone
       h('p', null, rule.card_en)),
     actions);
 
-  const continueButton = h('button', { type: 'button', class: missed ? 'btn btn-secondary' : 'btn btn-primary', onclick: done }, 'Continue');
-  if (!missed) {
+  const continueButton = h('button', { type: 'button', class: offerRetry ? 'btn btn-secondary' : 'btn btn-primary', onclick: done }, 'Continue');
+  if (!offerRetry) {
     continueButton.dataset.autofocus = '';
     actions.append(continueButton);
     return panel;
   }
 
-  const retry = () => {
+  const typeAgain = () => {
     const input = /** @type {HTMLInputElement} */ (h('input', {
       type: 'text', class: 'answer-input', lang: 'sl', autocapitalize: 'off', autocomplete: 'off', autocorrect: 'off',
       spellcheck: 'false', enterkeyhint: 'done', 'aria-label': 'Type the correct form once more',
@@ -106,7 +109,7 @@ export function renderFeedback({ answer, graded, effective, target, rule, onDone
     input.focus();
   };
   actions.append(
-    h('button', { type: 'button', class: 'btn btn-primary', 'data-autofocus': '', onclick: retry }, 'Type it again'),
+    h('button', { type: 'button', class: 'btn btn-primary', 'data-autofocus': '', onclick: typeAgain }, 'Type it again'),
     continueButton);
   return panel;
 }

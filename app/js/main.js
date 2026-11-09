@@ -1,12 +1,13 @@
 // The app's entry point. Boot: open the store (IndexedDB, or memory with a notice), load the state
 // and the content bundle, register the exercises, then route: `#/onboarding` until the learner is
-// onboarded, `#/today` otherwise, `#/session`, `#/hive`, `#/unit?id=uNN` and `#/rules`. Every
-// screen gets the one App object (app-types.js), whose state the screens update as they save;
-// every screen but onboarding and the session has the tab bar below it.
+// onboarded, `#/today` otherwise, `#/session`, `#/hive`, `#/unit?id=uNN`, `#/rules` and
+// `#/checkpoint` (a unit's, the weekly check or the placement). Every screen gets the one App
+// object (app-types.js), whose state the screens update as they save; every screen but
+// onboarding, the session and a checkpoint has the tab bar below it.
 
 import { h, mount } from './util/dom.js';
 import { openStore } from './store/db.js';
-import { loadState, saveSettings } from './store/state.js';
+import { loadState } from './store/state.js';
 import { loadIndex, loadUnit, knownIds } from './content/loader.js';
 import { createPlayer } from './audio/player.js';
 import { currentParams, currentPath, navigate, onRoute } from './router.js';
@@ -26,9 +27,11 @@ import { renderSession } from './ui/screens/session.js';
 import { renderHiveScreen } from './ui/screens/hive.js';
 import { renderUnit } from './ui/screens/unit.js';
 import { renderRules } from './ui/screens/rules.js';
+import { renderCheckpoint } from './ui/screens/checkpoint.js';
+import { renderOnboarding } from './ui/screens/onboarding.js';
+import { applyTheme } from './ui/theme.js';
 
 /** @typedef {import('./app-types.js').App} App */
-/** @typedef {import('./store/state.js').AppState} AppState */
 
 register('meet', meet.render);
 register('typed_en_sl', typed.render);
@@ -42,7 +45,7 @@ register('perception', perception.render);
 
 const root = /** @type {HTMLElement} */ (document.getElementById('app'));
 /** Routes that hide the tab bar. */
-const WITHOUT_NAV = new Set(['/onboarding', '/session']);
+const WITHOUT_NAV = new Set(['/onboarding', '/session', '/checkpoint']);
 /** @type {HTMLElement|null} */
 let nav = null;
 
@@ -59,30 +62,6 @@ function showNav(path) {
   nav = WITHOUT_NAV.has(path) ? null : renderNav(TAB_OF.get(path) ?? path);
   if (nav) root.after(nav);
   root.classList.toggle('has-nav', nav !== null);
-}
-
-/** @param {AppState['settings']['theme']} theme */
-function applyTheme(theme) {
-  if (theme === 'system') delete document.documentElement.dataset.theme;
-  else document.documentElement.dataset.theme = theme;
-}
-
-/**
- * The onboarding placeholder until Task 16's screen: one button that marks the learner onboarded.
- * @param {App} app
- */
-function renderOnboarding(app) {
-  mount(root, h('section', { class: 'screen screen-onboarding' },
-    h('h1', { class: 'greeting', lang: 'sl' }, 'Dobrodošli'),
-    h('p', { class: 'en-text' }, 'Welcome. Slovelingo teaches Slovenian a few minutes a day, starting with your first hello.'),
-    h('div', { class: 'actions' }, h('button', {
-      type: 'button', class: 'btn btn-primary btn-large',
-      onclick: async () => {
-        app.state.settings = { ...app.state.settings, onboarded: true };
-        await saveSettings(app.adapter, app.state.settings);
-        navigate('/today', { replace: true });
-      },
-    }, 'Continue'))));
 }
 
 /** @param {unknown} error */
@@ -126,9 +105,10 @@ async function boot() {
     if (!app.state.settings.onboarded && path !== '/onboarding') return navigate('/onboarding', { replace: true });
     if (app.state.settings.onboarded && path === '/onboarding') return navigate('/today', { replace: true });
     window.scrollTo(0, 0);
-    if (path === '/onboarding') renderOnboarding(app);
+    if (path === '/onboarding') renderOnboarding(root, app);
     else if (path === '/today') renderToday(root, app);
     else if (path === '/session') leave = renderSession(root, app, params);
+    else if (path === '/checkpoint') leave = renderCheckpoint(root, app, params);
     else if (path === '/hive') renderHiveScreen(root, app);
     else if (path === '/unit') renderUnit(root, app, params);
     else if (path === '/rules') renderRules(root, app);

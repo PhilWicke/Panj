@@ -1,6 +1,7 @@
 // The Today screen (spec 6): the greeting in Slovenian by the hour with the learner's name, a tap
 // plays it; the week calendar; the primary action, worded from the session buildSession would
-// start now, from the same inputs the session screen uses; the current lesson; the intention line
+// start now, from the same inputs the session screen uses, with the weekly check under it when
+// one is due (every seventh active day, engine/checkpoint.js); the current lesson; the intention line
 // until the habit holds (the week target met four weeks in a row); the hive as the lower part of
 // the screen, a tap on a board opens its unit; and one quiet line when the store is not
 // persistent. The pure parts are exported for the tests.
@@ -11,9 +12,11 @@ import { navigate } from '../../router.js';
 import { buildSession } from '../../engine/session.js';
 import { hiveFill, weekSummary } from '../../engine/progress.js';
 import { currentLesson, todayTotals } from '../../engine/course.js';
+import { WEEKLY_MIN_ITEMS, buildWeeklyCheck, dueWeeklyCheck } from '../../engine/checkpoint.js';
 import { localDateKey } from '../../util/time.js';
 import { honeyInWeek, renderCalendar } from '../components/calendar.js';
 import { renderHive, sealedUnits } from '../components/hive.js';
+import { countLine } from './checkpoint.js';
 
 /** @typedef {import('../../app-types.js').App} App */
 /** @typedef {import('../../engine/session.js').Session} Session */
@@ -113,6 +116,8 @@ export function renderToday(container, app) {
   const week = weekSummary(app.state.sessions, now, WEEK_TARGET);
   const greeting = greetingFor(new Date(now).getHours());
   const fills = app.units.map((content) => hiveFill(states, content, now, settings.desiredRetention, { allowPending: app.allowPending }));
+  const weekly = dueWeeklyCheck(app.state.sessions, app.state.meta, now) ? buildWeeklyCheck(app.index, app.units, states, Math.random) : null;
+  const weeklyItems = weekly ? weekly.blocks.reduce((sum, block) => sum + block.items.length, 0) : 0;
 
   mount(container, h('section', { class: 'screen screen-today' },
     h('h1', { class: 'greeting' },
@@ -127,7 +132,8 @@ export function renderToday(container, app) {
         type: 'button', class: 'btn btn-primary btn-large btn-session', 'aria-disabled': action.enabled ? null : 'true',
         onclick: () => { if (action.enabled) navigate('/session'); },
       }, actionLabel(action.text)),
-      canContinue && h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => navigate('/session?mode=continue') }, 'Continue lesson')),
+      canContinue && h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => navigate('/session?mode=continue') }, 'Continue lesson'),
+      weeklyItems >= WEEKLY_MIN_ITEMS && h('a', { class: 'btn btn-secondary', href: '#/checkpoint?weekly=1' }, `Weekly check: ${countLine(weeklyItems)}`)),
     !action.enabled && h('p', { class: 'quiet' }, 'Come back later today or tomorrow.'),
     !app.persistent && h('p', { class: 'notice' }, 'Progress is not being saved in this browser.'),
     lesson && h('div', { class: 'lesson-card' },
