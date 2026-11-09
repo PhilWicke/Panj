@@ -1,7 +1,8 @@
 // tests/tools/gen-audio.test.js
 // The Gemini TTS tool without the network: ids, key handling, the request and
-// its retries against a stubbed fetch, the ffmpeg conversion, the manifest and
-// the texts collected from a bundle. ffmpeg tests skip when ffmpeg is missing.
+// its retries against a stubbed fetch, the ffmpeg conversion, the manifest, the
+// re-takes of a voice with a pitch ceiling and the texts collected from a bundle.
+// ffmpeg tests skip when ffmpeg is missing.
 import { after, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
@@ -10,7 +11,8 @@ import { mkdir, mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { audioId } from '../../app/js/util/audio-id.js';
-import { DEFAULT_MODEL, bundleTexts, generateAll, pcmToMp3, readKey, synthesize } from '../../tools/gen-audio.js';
+import { DEFAULT_MODEL, MAX_TAKES, bundleTexts, generateAll, highLine, pcmToMp3, readKey, synthesize } from '../../tools/gen-audio.js';
+import { medianPitch } from '../../tools/pitch.js';
 
 const hasFfmpeg = spawnSync('ffmpeg', ['-version'], { stdio: 'ignore' }).status === 0;
 const API = 'https://generativelanguage.googleapis.com/v1beta/models';
@@ -44,6 +46,59 @@ const audioResponse = (pcm) =>
   Response.json({
     candidates: [{ content: { parts: [{ inlineData: { mimeType: 'audio/L16;codec=pcm;rate=24000', data: pcm.toString('base64') } }] } }],
   });
+
+const SENTENCE = 'Danes je lep dan.';
+
+/**
+ * One second of a sine tone as 16-bit 24 kHz mono PCM.
+ * @param {number} hz
+ */
+function tone(hz) {
+  const pcm = Buffer.alloc(48000);
+  for (let i = 0; i < 24000; i += 1) pcm.writeInt16LE(Math.round(12000 * Math.sin((2 * Math.PI * hz * i) / 24000)), i * 2);
+  return pcm;
+}
+
+/** @param {number | null | undefined} actual @param {number} expected */
+function assertNearHz(actual, expected) {
+  assert.ok(typeof actual === 'number' && Math.abs(actual - expected) <= 3, `measured ${actual} Hz, expected about ${expected} Hz`);
+}
+
+/**
+ * The pitch of an mp3 file, decoded back through ffmpeg.
+ * @param {string} file
+ */
+function clipPitch(file) {
+  const args = ['-v', 'error', '-i', file, '-f', 's16le', '-ar', '24000', '-ac', '1', 'pipe:1'];
+  return medianPitch(spawnSync('ffmpeg', args, { maxBuffer: 1 << 24 }).stdout);
+}
+
+/**
+ * Runs generateAll for one text in one voice against a stubbed fetch that answers the takes in
+ * turn. A take is a tone's frequency or a function that makes the answer.
+ * @param {import('node:test').TestContext} t @param {string} voice
+ * @param {(number | (() => Response))[]} takes
+ */
+async function generateTakes(t, voice, takes) {
+  const dir = await tmp();
+  const keyFile = join(dir, 'test.key');
+  await writeFile(keyFile, 'fake-key\n');
+  withEnv(t, { GEMINI_API_KEY_FILE: keyFile });
+  let call = 0;
+  const fetchMock = t.mock.method(globalThis, 'fetch', async () => {
+    const take = takes[call];
+    call += 1;
+    return typeof take === 'number' ? audioResponse(tone(take)) : take();
+  });
+  const outDir = join(dir, 'audio');
+  const run = () => generateAll({ texts: [{ text: SENTENCE, voice }], outDir, model: 'tts-model' });
+  const result = await run();
+  const id = await audioId(SENTENCE, voice);
+  const manifest = JSON.parse(await readFile(join(outDir, 'manifest.json'), 'utf8').catch(() => '{}'));
+  return { result, run, requests: () => fetchMock.mock.callCount(), entry: manifest[id], file: join(outDir, `${id}.mp3`) };
+}
+
+const clientError = () => Response.json({ error: { message: 'not this time' } }, { status: 400 });
 
 test('audioId is stable and voice-specific', async () => {
   assert.equal(await audioId('Dober dan.', 'Kore'), await audioId('Dober dan.', 'Kore'));
@@ -170,18 +225,120 @@ test('generateAll writes one mp3 per id, records it in the manifest and skips it
   ];
 
   const first = await generateAll({ texts, outDir, model: 'tts-model' });
-  assert.deepEqual(first, { generated: 2, skipped: 0, failed: [] });
+  assert.deepEqual(first, { generated: 2, skipped: 0, failed: [], high: [] });
   const manifest = JSON.parse(await readFile(join(outDir, 'manifest.json'), 'utf8'));
   for (const voice of ['Kore', 'Puck']) {
     const id = await audioId('Dober dan.', voice);
     const { size } = await stat(join(outDir, `${id}.mp3`));
-    assert.deepEqual(manifest[id], { text: 'Dober dan.', voice, model: 'tts-model', bytes: size });
+    // silence cannot be measured, so Puck's take is kept at once with a null pitch
+    const measured = voice === 'Puck' ? { pitchHz: null } : {};
+    assert.deepEqual(manifest[id], { text: 'Dober dan.', voice, model: 'tts-model', bytes: size, ...measured });
   }
   assert.equal(Object.keys(manifest).length, 2);
 
   const second = await generateAll({ texts, outDir, model: 'tts-model' });
-  assert.deepEqual(second, { generated: 0, skipped: 2, failed: [] });
+  assert.deepEqual(second, { generated: 0, skipped: 2, failed: [], high: [] });
   assert.equal(fetchMock.mock.callCount(), 2);
+});
+
+const needsFfmpeg = { skip: !hasFfmpeg && 'ffmpeg not found' };
+
+test('a Puck job takes again until a take is under the ceiling and writes that take', needsFfmpeg, async (t) => {
+  const { result, requests, entry, file } = await generateTakes(t, 'Puck', [260, 240, 140]);
+  assert.equal(requests(), 3);
+  assert.deepEqual(result, { generated: 1, skipped: 0, failed: [], high: [] });
+  assertNearHz(entry.pitchHz, 140);
+  assert.ok(Number.isInteger(entry.pitchHz), String(entry.pitchHz));
+  assertNearHz(clipPitch(file), 140);
+});
+
+test('a Puck job always too high makes MAX_TAKES requests, is listed in high and a skip adds nothing', needsFfmpeg, async (t) => {
+  const { result, run, requests, entry, file } = await generateTakes(t, 'Puck', Array(MAX_TAKES).fill(260));
+  assert.equal(requests(), MAX_TAKES);
+  assert.equal(result.generated, 1);
+  assert.deepEqual(result.failed, []);
+  assert.deepEqual(result.high, [{ text: SENTENCE, voice: 'Puck', hz: entry.pitchHz }]);
+  assertNearHz(entry.pitchHz, 260);
+  assertNearHz(clipPitch(file), 260);
+
+  assert.deepEqual(await run(), { generated: 0, skipped: 1, failed: [], high: [] });
+  assert.equal(requests(), MAX_TAKES);
+});
+
+test('a Puck job always too high keeps the lowest of its takes', needsFfmpeg, async (t) => {
+  const { result, requests, entry, file } = await generateTakes(t, 'Puck', [300, 230, 280, 250, 270]);
+  assert.equal(requests(), MAX_TAKES);
+  assert.deepEqual(result.high, [{ text: SENTENCE, voice: 'Puck', hz: entry.pitchHz }]);
+  assertNearHz(entry.pitchHz, 230);
+  assertNearHz(clipPitch(file), 230);
+});
+
+test('a Kore job at 260 Hz makes one request and is not measured', needsFfmpeg, async (t) => {
+  const { result, requests, entry } = await generateTakes(t, 'Kore', [260]);
+  assert.equal(requests(), 1);
+  assert.deepEqual(result, { generated: 1, skipped: 0, failed: [], high: [] });
+  assert.ok(entry && !('pitchHz' in entry), JSON.stringify(entry));
+});
+
+test('a Puck job whose second take fails keeps the first, is not in failed and says why in high', needsFfmpeg, async (t) => {
+  const { result, requests, entry, file } = await generateTakes(t, 'Puck', [260, clientError]);
+  assert.equal(requests(), 2);
+  assert.equal(result.generated, 1);
+  assert.deepEqual(result.failed, []);
+  assert.deepEqual(result.high, [
+    { text: SENTENCE, voice: 'Puck', hz: entry.pitchHz, error: `take 2 of ${MAX_TAKES} failed: tts-model answered 400: not this time` },
+  ]);
+  assertNearHz(entry.pitchHz, 260);
+  assertNearHz(clipPitch(file), 260);
+});
+
+test('a Puck job cut short by a later take keeps the lowest so far and names the take that failed', needsFfmpeg, async (t) => {
+  const { result, requests, entry } = await generateTakes(t, 'Puck', [300, 230, 280, clientError]);
+  assert.equal(requests(), 4);
+  assert.deepEqual(result.high, [
+    { text: SENTENCE, voice: 'Puck', hz: entry.pitchHz, error: `take 4 of ${MAX_TAKES} failed: tts-model answered 400: not this time` },
+  ]);
+  assertNearHz(entry.pitchHz, 230);
+});
+
+test('the reason a job was cut short never carries the key', needsFfmpeg, async (t) => {
+  const echoesKey = () => Response.json({ error: { message: 'refused fake-key' } }, { status: 403 });
+  const { result } = await generateTakes(t, 'Puck', [260, echoesKey]);
+  assert.match(String(result.high[0]?.error), /refused \[key\]/);
+  assert.ok(!JSON.stringify(result).includes('fake-key'), JSON.stringify(result));
+});
+
+test('highLine is the HIGH line of a clip, with the reason only when its takes were cut short', () => {
+  assert.equal(highLine({ text: SENTENCE, voice: 'Puck', hz: 260 }), `HIGH 260 Puck ${SENTENCE}`);
+  assert.equal(
+    highLine({ text: SENTENCE, voice: 'Puck', hz: 260, error: 'take 2 of 5 failed: quota' }),
+    `HIGH 260 Puck ${SENTENCE} (take 2 of 5 failed: quota)`,
+  );
+});
+
+test('a Puck job with no successful take goes to failed', async (t) => {
+  const { result, requests, entry } = await generateTakes(t, 'Puck', [clientError]);
+  assert.equal(requests(), 1);
+  assert.equal(result.generated, 0);
+  assert.equal(result.failed.length, 1);
+  assert.deepEqual(result.high, []);
+  assert.equal(entry, undefined);
+});
+
+test('a take that cannot be measured after a measured one is passed over, so the measured clip stays', needsFfmpeg, async (t) => {
+  const silence = () => audioResponse(Buffer.alloc(48000));
+  const { result, requests, entry } = await generateTakes(t, 'Puck', [260, silence, 140]);
+  assert.equal(requests(), 3);
+  assertNearHz(entry.pitchHz, 140);
+  assert.deepEqual(result.high, []);
+});
+
+test('takes that cannot be measured after a high one leave the high one, listed', needsFfmpeg, async (t) => {
+  const silence = () => audioResponse(Buffer.alloc(48000));
+  const { result, requests, entry } = await generateTakes(t, 'Puck', [260, silence, silence, silence, silence]);
+  assert.equal(requests(), MAX_TAKES);
+  assertNearHz(entry.pitchHz, 260);
+  assert.equal(result.high.length, 1);
 });
 
 test('bundleTexts collects the accepted items, their examples and the dialogue lines of lessons with an accepted item', async () => {

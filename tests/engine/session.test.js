@@ -1,8 +1,10 @@
 // tests/engine/session.test.js
 // The daily session builder: due reviews interleaved with the lesson's new items under the per-day
 // and forecast caps, rule cards right after the meet that introduces them, slot production as the third
-// recall, the dialogue once its items have graduated, audio kinds by mode, one fluency pass to
-// close, the closing menu, and the "Three more minutes" round (Ruling 80).
+// recall, the dialogue once its items have graduated, audio kinds by mode and by the sitting's quiet
+// choices, one fluency pass to close, the closing menu, the "Three more minutes" round (Ruling 80),
+// and consolidation lessons, whose structured and production exercises over the unit's earlier
+// items fall between their new items.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
@@ -10,7 +12,7 @@ import {
 } from '../../app/js/engine/scheduler.js';
 import { localDateKey } from '../../app/js/util/time.js';
 import {
-  buildSession, forecastReviewMinutes, closingMenu, buildMoreRound, REVIEW_MINUTES, NEW_ITEM_MINUTES, MINUTES_PER_KIND, MORE_ITEMS, MORE_MIN,
+  buildSession, forecastReviewMinutes, closingMenu, buildMoreRound, quietDrops, REVIEW_MINUTES, NEW_ITEM_MINUTES, MINUTES_PER_KIND, MORE_ITEMS, MORE_MIN,
 } from '../../app/js/engine/session.js';
 
 const TZ = 'Europe/Berlin';
@@ -293,6 +295,16 @@ test('mute mode drops audio-only kinds; speech adds speaking only when on', () =
   assert.deepEqual(build({ states: pool, mode: SPEECH, rng: seeded(7) }).queue, build({ states: pool, mode: SPEECH, rng: seeded(7) }).queue);
 });
 
+test("cantListen drops listening and perception but keeps speaking; cantTalk drops speaking but keeps the rest", () => {
+  const states = byId(review('u01-l01-i01', T0 - DAY), review('u01-l01-i02', T0 + DAY), review('u01-l01-i03', T0 + DAY));
+  const kindsWith = (mode) => new Set(kinds(build({ lesson: null, states, mode }).queue));
+  const noListen = kindsWith({ ...SPEECH, cantListen: true });
+  assert.ok(noListen.has('speaking') && !noListen.has('listening') && !noListen.has('perception'));
+  const noTalk = kindsWith({ ...SPEECH, cantTalk: true });
+  assert.ok(!noTalk.has('speaking') && noTalk.has('listening') && noTalk.has('perception'));
+  assert.deepEqual([...kindsWith({ ...SPEECH, cantListen: true, cantTalk: true })], ['typed_en_sl']);
+});
+
 test('pending items are never queued even if present in the lesson', () => {
   const mixed = lesson({ items: [item('u01-l02-i01'), item('u01-l02-i02', ['r-b'], 'pending'), item('u01-l02-i03', [], 'rejected')] });
   // states of items that are not accepted, as a dev build could leave behind: in review and in learning
@@ -366,6 +378,18 @@ test('closing menu options follow the rules', () => {
   assert.deepEqual(closingMenu({ minutesToday: 19.9, settings: { ...S, dailyMinutes: 5 }, lessonRemaining: true, mode: MUTE, moreAvailable: true }), ['stop', 'more3', 'continue']);
   assert.deepEqual(closingMenu({ minutesToday: 10, settings: S, lessonRemaining: true, mode: SOUND, moreAvailable: false }), ['stop', 'speaking', 'continue'], 'no round to offer: no more3, whatever the minutes (Ruling 80)');
   assert.deepEqual(closingMenu({ minutesToday: 0, settings: S, lessonRemaining: false, mode: MUTE, moreAvailable: false }), ['stop']);
+});
+
+test('the closing menu leaves out the speaking round when the learner cannot talk, not when they cannot listen', () => {
+  const base = { minutesToday: 0, settings: S, lessonRemaining: false, moreAvailable: false };
+  assert.deepEqual(closingMenu({ ...base, mode: { ...SOUND, cantTalk: true } }), ['stop']);
+  assert.deepEqual(closingMenu({ ...base, mode: { ...SOUND, cantListen: true } }), ['stop', 'speaking']);
+});
+
+test('quietDrops names the kinds each choice drops', () => {
+  assert.deepEqual([...quietDrops(SOUND)], []);
+  assert.deepEqual([...quietDrops({ ...SOUND, cantListen: true })].sort(), ['listening', 'perception']);
+  assert.deepEqual([...quietDrops({ ...SOUND, cantTalk: true })], ['speaking']);
 });
 
 test('buildMoreRound: unpractised review items weakest first, capped at eight, filled from the misses below three, empty when nothing qualifies (Ruling 80)', () => {
@@ -486,4 +510,142 @@ test('the estimate adds up per kind, a session without a lesson is reviews only,
     assert.ok(KINDS.has(e.kind));
     for (const [k, v] of Object.entries(e)) assert.ok(v !== undefined && v !== null, `${e.kind}.${k} is set`);
   }
+});
+
+/** A theme lesson u01-l0n of two plain items. @param {number} n */
+const themeLesson = (n) => lesson({
+  id: `u01-l0${n}`, order: n, items: [item(`u01-l0${n}-i01`), item(`u01-l0${n}-i02`)],
+  rules: [], structured: [], production: [], dialogue: undefined,
+});
+/** The consolidation lesson u01-l05: two new items, two structured exercises, production over two earlier items, its own item and another unit's item. */
+const consolidation = (overrides = {}) => lesson({
+  id: 'u01-l05', order: 5, role: 'consolidation',
+  items: [item('u01-l05-i01', ['r-c']), item('u01-l05-i02')],
+  rules: ['r-c'],
+  structured: [
+    { id: 'u01-l05-s01', prompt_sl: 'a _', options: ['x', 'y'], answer: 'x', rule: 'r-a', en: 'a' },
+    { id: 'u01-l05-s02', prompt_sl: 'b _', options: ['x', 'y'], answer: 'x', rule: 'r-b', en: 'b' },
+  ],
+  production: [
+    { id: 'u01-l05-p01', en: 'One.', answer: 'sl u01-l01-i01', item: 'u01-l01-i01' },
+    { id: 'u01-l05-p02', en: 'Own.', answer: 'sl u01-l05-i01', item: 'u01-l05-i01' },
+    { id: 'u01-l05-p03', en: 'Two.', answer: 'sl u01-l02-i01', item: 'u01-l02-i01' },
+    { id: 'u01-l05-p04', en: 'Elsewhere.', answer: 'sl u02-l01-i01', item: 'u02-l01-i01' },
+  ],
+  dialogue: undefined,
+  ...overrides,
+});
+const THEMES = [1, 2, 3, 4].map(themeLesson);
+/** Every theme item in review, due in three days; r-a recallable (faded), r-b and r-c long overdue. */
+const unitStates = () => byId(
+  ...THEMES.flatMap((l) => l.items.map((i) => review(i.id, T0 + 3 * DAY))),
+  review('r-a', T0 + 3 * DAY), review('r-b', T0 - 60 * DAY), review('r-c', T0 - 60 * DAY));
+const GROUP_IDS = ['u01-l05-s01', 'u01-l05-s02', 'u01-l05-p01', 'u01-l05-p03'];
+// RULES already carries r-a, r-b and r-c.
+const buildC = (overrides = {}) => build({ lesson: consolidation(), unitLessons: [...THEMES, consolidation()], states: unitStates(), ...overrides });
+
+test("a consolidation lesson plays its structured and production exercises over the unit's earlier items, between its new items", () => {
+  const q = buildC().queue;
+  const at = (pred) => q.findIndex(pred);
+  const meet1 = at((e) => e.kind === 'meet' && e.itemId === 'u01-l05-i01');
+  const meet2 = at((e) => e.kind === 'meet' && e.itemId === 'u01-l05-i02');
+  const s01 = at((e) => e.exerciseId === 'u01-l05-s01');
+  const p01 = at((e) => e.exerciseId === 'u01-l05-p01');
+  const card = at((e) => e.kind === 'rule' && e.ruleId === 'r-b');
+  const s02 = at((e) => e.exerciseId === 'u01-l05-s02');
+  const p03 = at((e) => e.exerciseId === 'u01-l05-p03');
+  assert.deepEqual(q[s01], { kind: 'structured', exerciseId: 'u01-l05-s01', ruleId: 'r-a', lessonId: 'u01-l05' });
+  assert.deepEqual(q[p01], { kind: 'slot', exerciseId: 'u01-l05-p01', itemId: 'u01-l01-i01', lessonId: 'u01-l05' });
+  assert.ok(meet1 < s01 && s01 < p01 && p01 < meet2, 'the first two groups sit between the first and the second new item');
+  assert.ok(meet2 < card && card + 1 === s02 && s02 < p03, "r-b's card right before its structured exercise");
+  assert.deepEqual(q.filter((e) => e.kind === 'rule').map((e) => e.ruleId), ['r-b'], 'r-a has faded and r-c is never introduced here');
+  assert.equal(q.filter((e) => e.exerciseId === 'u01-l05-p04').length, 0, "another unit's item is not practised");
+  assert.deepEqual(q.filter((e) => e.exerciseId === 'u01-l05-p02').map((e) => e.itemId), ['u01-l05-i01'], 'own production stays the third recall');
+  for (const id of GROUP_IDS) assert.equal(q.filter((e) => e.exerciseId === id).length, 1, id);
+});
+
+test('consolidation groups wait for the run that introduces their anchor item', () => {
+  const first = buildC({ settings: { ...S, newPerDay: 1 } }).queue.map((e) => e.exerciseId).filter(Boolean);
+  assert.deepEqual(first.filter((id) => GROUP_IDS.includes(id)), ['u01-l05-s01', 'u01-l05-p01']);
+  const started = { ...unitStates(), 'u01-l05-i01': recall(createState('u01-l05-i01', T0), 'correct', T0) };
+  const second = buildC({ states: started, newToday: 1, settings: { ...S, newPerDay: 2 } }).queue.map((e) => e.exerciseId).filter(Boolean);
+  assert.deepEqual(second.filter((id) => GROUP_IDS.includes(id)), ['u01-l05-s02', 'u01-l05-p03']);
+});
+
+test('a due review of an earlier item whose production plays today is replaced by that production', () => {
+  const states = { ...unitStates(), 'u01-l01-i01': review('u01-l01-i01', T0 - DAY) };
+  const s = buildC({ states });
+  assert.equal(s.queue.filter((e) => e.kind === 'typed_en_sl' && e.itemId === 'u01-l01-i01').length, 0);
+  assert.equal(s.queue.filter((e) => e.exerciseId === 'u01-l05-p01').length, 1);
+  assert.equal(s.reviewCount, 0);
+});
+
+test('production over an earlier item never met, or pending in a strict build, is not queued', () => {
+  const states = unitStates();
+  delete states['u01-l02-i01'];
+  assert.equal(buildC({ states }).queue.filter((e) => e.exerciseId === 'u01-l05-p03').length, 0, 'never met');
+  const pendingTwo = { ...themeLesson(2), items: [item('u01-l02-i01', [], 'pending'), item('u01-l02-i02')] };
+  const q = buildC({ unitLessons: [THEMES[0], pendingTwo, THEMES[2], THEMES[3], consolidation()] }).queue;
+  assert.equal(q.filter((e) => e.exerciseId === 'u01-l05-p03').length, 0, 'pending, strict');
+  assert.ok(q.length > 0, 'the session still builds');
+});
+
+test('the extras leave out an earlier item that a consolidation production or the consolidation dialogue practises today', () => {
+  const produced = ['u01-l01-i01', 'u01-l02-i01'];
+  for (let seed = 1; seed <= 50; seed += 1) {
+    const q = buildC({ mode: SPEECH, rng: seeded(seed) }).queue;
+    assert.deepEqual(q.filter((e) => e.kind === 'slot' && produced.includes(e.itemId)).map((e) => e.exerciseId), ['u01-l05-p01', 'u01-l05-p03']);
+    const extras = q.filter((e) => ['listening', 'speaking', 'fluency'].includes(e.kind));
+    assert.deepEqual([...new Set(extras.map((e) => e.kind))], ['listening', 'speaking', 'fluency'], `seed ${seed}: every extra is queued`);
+    for (const e of extras) {
+      for (const id of [e.itemId, ...(e.itemIds ?? [])]) assert.ok(!produced.includes(id), `seed ${seed}: ${e.kind} names ${id}, which p01 or p03 practises`);
+    }
+  }
+  const dialogue = {
+    id: 'u01-l05-d', title_sl: 'Pogovor', title_en: 'Talk', setting_en: 'At the door.',
+    lines: [{ speaker: 'host', sl: 'sl', en: 'en' }, { speaker: 'you', sl: 'sl u01-l03-i01', en: 'en', new_items: ['u01-l03-i01'] }],
+  };
+  const withDialogue = consolidation({ dialogue });
+  for (let seed = 1; seed <= 50; seed += 1) {
+    const q = buildC({ lesson: withDialogue, unitLessons: [...THEMES, withDialogue], mode: SPEECH, rng: seeded(seed) }).queue;
+    assert.equal(q.filter((e) => e.kind === 'dialogue').length, 1);
+    const extras = q.filter((e) => ['listening', 'speaking', 'fluency'].includes(e.kind));
+    for (const e of extras) assert.ok(![e.itemId, ...(e.itemIds ?? [])].includes('u01-l03-i01'), `seed ${seed}: ${e.kind} names the dialogue's item`);
+  }
+});
+
+test('an earlier item still in learning from yesterday plays its consolidation production as one of its GRADUATE_AFTER recalls, all while in learning', () => {
+  const yesterday = T0 - DAY;
+  const states = { ...unitStates(), 'u01-l01-i01': recall(createState('u01-l01-i01', yesterday), 'correct', yesterday) };
+  const q = buildC({ states }).queue;
+  const entries = q.filter((e) => e.itemId === 'u01-l01-i01' && (e.kind === 'typed_en_sl' || e.kind === 'slot'));
+  assert.equal(entries.length, GRADUATE_AFTER, 'GRADUATE_AFTER recalls in all');
+  assert.ok(entries.some((e) => e.kind === 'slot' && e.lessonId === 'u01-l05'), 'the consolidation production is one of them');
+  let state = states['u01-l01-i01'];
+  for (const [i, e] of entries.entries()) {
+    assert.equal(state.phase, 'learning', `recall ${i + 1} (${e.kind}) rates the item while it is still in learning`);
+    state = recall(state, 'correct', T0 + (i + 1) * 60_000);
+  }
+  assert.equal(state.phase, 'review', 'and the last one graduates it');
+});
+
+test("a consolidation group whose anchor was met on an earlier day, the run left before the group, comes with that item's next recall", () => {
+  // u01-l05-i01 anchors s01 and p01; the learner left right after its first recall.
+  const met = recall(createState('u01-l05-i01', T0), 'correct', T0);
+  const states = { ...unitStates(), 'u01-l05-i01': met };
+  const q = buildC({ now: T0 + DAY, states }).queue;
+  const firstRecall = q.findIndex((e) => e.kind === 'typed_en_sl' && e.itemId === 'u01-l05-i01');
+  assert.ok(firstRecall >= 0, "the item's recalls are queued");
+  for (const id of ['u01-l05-s01', 'u01-l05-p01']) {
+    const at = q.findIndex((e) => e.exerciseId === id);
+    assert.equal(q.filter((e) => e.exerciseId === id).length, 1, `${id} is queued once`);
+    assert.ok(at > firstRecall, `${id} comes after the item's first recall of the run`);
+  }
+  for (const id of ['u01-l05-s02', 'u01-l05-p03']) assert.equal(q.filter((e) => e.exerciseId === id).length, 1, `${id} with the new item`);
+  const sameDay = buildC({ states, newToday: 1 }).queue.map((e) => e.exerciseId).filter(Boolean);
+  assert.deepEqual(sameDay.filter((id) => GROUP_IDS.includes(id)), ['u01-l05-s02', 'u01-l05-p03'], 'the same day, the groups are not queued again');
+});
+
+test('a theme lesson, or one without a role, is built as in v1', () => {
+  assert.deepEqual(build({ lesson: lesson({ role: 'theme' }) }), build({ lesson: lesson() }));
 });

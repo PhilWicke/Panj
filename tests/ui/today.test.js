@@ -1,19 +1,25 @@
 // tests/ui/today.test.js
 // The Today screen's pure parts and the two components it is built from: the greeting by the hour,
-// the primary action's text from the planned session, the four-weeks rule that retires the
-// intention line, the week calendar (Ruling 25: active days in honey, grace as text, a fresh start
-// instead of a loss message, honey as a quiet line) and the closing menu. Through
-// tests/helpers/fake-dom.js, the screen on a course without lessons says the first lessons are
-// still being checked and shows no primary action, while a course with lessons and nothing due
-// keeps the disabled action. The rest of the screen runs in the browser check.
+// the primary action's text from the planned session, the week calendar (Ruling 25: active days
+// in honey, grace as text, a fresh start instead of a loss message, honey as a quiet line) and the
+// closing menu. Through tests/helpers/fake-dom.js, the screen on a course without lessons says the
+// first lessons are still being checked and shows no primary action and no strip, a course with
+// lessons and nothing due keeps the disabled action with the line that explains it right after the
+// actions and before the strip, the current unit's strip sits under the
+// primary action with the current lesson's cell marked, linking to the Hive, and no intention line
+// shows, even for an old settings record that carries one. The closing menu offers "Can't talk
+// right now" after the speaking round only when the session asks for it. The rest of the screen
+// runs in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
-import { skipAheadState } from '../../app/js/engine/scheduler.js';
+import { elements, withClass } from '../helpers/dom-query.js';
+import { acceptedChunk } from '../helpers/items.js';
+import { createState, skipAheadState } from '../../app/js/engine/scheduler.js';
 import { weekSummary } from '../../app/js/engine/progress.js';
 import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
-import { greetingFor, primaryAction, habitHolds, renderToday } from '../../app/js/ui/screens/today.js';
+import { greetingFor, primaryAction, renderToday } from '../../app/js/ui/screens/today.js';
 import { calendarLine, honeyInWeek, renderCalendar } from '../../app/js/ui/components/calendar.js';
 import { renderMenu } from '../../app/js/ui/components/menu.js';
 
@@ -26,28 +32,10 @@ const berlin = (day, hour, minute = 0) => Date.UTC(2026, 0, day, hour, minute) -
 const session = (startedAt, minutes = 10, honey = 5) => ({
   id: `s-${startedAt}`, startedAt, endedAt: startedAt + minutes * MINUTE, minutes, recalls: 8, correct: honey, newItems: 0, honey, kinds: { typed_en_sl: 8 },
 });
-/** The sessions of the week that starts on `monday` (a January day number), one per weekday index in `days`. */
-const weekOf = (monday, days) => days.map((d) => session(berlin(monday + d, 8)));
 
 before(() => {
   installFakeDom();
 });
-
-/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
-function elements(root) {
-  /** @type {any[]} */
-  const found = [];
-  /** @param {any} node */
-  const walk = (node) => {
-    for (const child of node.childNodes) {
-      if (!child.tagName) continue;
-      found.push(child);
-      walk(child);
-    }
-  };
-  walk(root);
-  return found;
-}
 
 test('greetingFor: Dobro jutro before 10, Dober dan until 18, Dober večer after', () => {
   for (const hour of [0, 5, 9]) assert.equal(greetingFor(hour), 'Dobro jutro', `hour ${hour}`);
@@ -64,39 +52,6 @@ test('primaryAction names the reviews, new items and minutes of the planned sess
   assert.equal(primaryAction({ queue: [entry], reviewCount: 0, newCount: 7, estimatedMinutes: 5.5 }).text,
     "Start today's session: 0 reviews, 7 new, about 6 min");
   assert.deepEqual(primaryAction({ queue: [], reviewCount: 0, newCount: 0, estimatedMinutes: 0 }), { text: 'Nothing due right now', enabled: false });
-});
-
-test('habitHolds once the week target was met in each of the four past weeks', () => {
-  // the weeks of 5, 12, 19 and 26 January 2026, seen from Monday 2 February
-  const four = [...weekOf(5, [0, 1, 2, 3, 4]), ...weekOf(12, [0, 1, 2, 3, 4, 5]), ...weekOf(19, [0, 2, 3, 4, 5]), ...weekOf(26, [0, 1, 2, 3, 4])];
-  const february2 = berlin(33, 10);
-  assert.equal(habitHolds(four, february2, TZ), true);
-  assert.equal(habitHolds(four.slice(5), february2, TZ), false, 'the week of 5 January is empty');
-  assert.equal(habitHolds([], february2, TZ), false);
-  const grace = [...weekOf(5, [0, 1, 2, 3]), ...four.slice(5)];
-  assert.equal(habitHolds(grace, february2, TZ), true, 'a week met by the grace day counts as met');
-  const thin = [...weekOf(5, [0, 1, 2]), ...four.slice(5)];
-  assert.equal(habitHolds(thin, february2, TZ), false, 'three days do not meet it');
-  assert.equal(habitHolds([...four, ...weekOf(33, [0])], february2, TZ), true, 'the current week is not counted yet');
-  assert.equal(habitHolds(four, berlin(40, 10), TZ), false, 'a week later, the empty week of 2 February counts and the week of 5 January has dropped out');
-});
-
-test('habitHolds steps back by calendar weeks, so the October clock change never counts one week twice', () => {
-  /** An instant of autumn 2026 in Berlin: summer time (UTC+2) until 03:00 on Sunday 25 October, winter time (UTC+1) after. */
-  const autumn = (/** @type {number} */ month, /** @type {number} */ day, /** @type {number} */ hour, minute = 0) => {
-    const summer = month < 10 || (month === 10 && (day < 25 || (day === 25 && hour < 3)));
-    return Date.UTC(2026, month - 1, day, hour, minute) - (summer ? 2 : 1) * HOUR;
-  };
-  /** Five sessions, Monday to Friday, of the week from the Monday `month`/`day`. */
-  const fullWeek = (/** @type {number} */ month, /** @type {number} */ day) => [0, 1, 2, 3, 4].map((d) => session(autumn(month, day + d, 8)));
-  // Sunday 1 November at 23:30, winter time: the four weeks before this one start on 19, 12 and 5 October and 28 September.
-  // Four times 168 hours back cross the change and land an hour later on the wall clock, Monday 00:30 from the second
-  // week on, so counting by hours would look at the week of 19 October twice and never at the week of 28 September.
-  const sunday = autumn(11, 1, 23, 30);
-  const october = [...fullWeek(10, 19), ...fullWeek(10, 12), ...fullWeek(10, 5)];
-  assert.equal(habitHolds(october, sunday, TZ), false, 'the week of 28 September is empty');
-  assert.equal(habitHolds([...october, ...fullWeek(9, 28)], sunday, TZ), true, 'with it met, all four weeks are');
-  assert.equal(habitHolds([...fullWeek(10, 19), ...fullWeek(10, 5), ...fullWeek(9, 28)], sunday, TZ), false, 'the week of 12 October is empty');
 });
 
 test('calendarLine: the week status, never a loss message', () => {
@@ -173,6 +128,7 @@ test('Today on a course without lessons says the first lessons are still being c
   assert.equal(all.some((el) => el.classList.contains('btn-session')), false, 'no primary action');
   assert.equal(all.some((el) => el.textContent === 'Come back later today or tomorrow.'), false, 'not the nothing-due line');
   assert.ok(all.some((el) => el.tagName === 'H1'), 'the greeting is still there');
+  assert.equal(all.some((el) => el.classList.contains('today-strip')), false, 'no strip without lessons');
 });
 
 test('Today with lessons and nothing due keeps the disabled primary action and its line', () => {
@@ -194,6 +150,56 @@ test('Today with lessons and nothing due keeps the disabled primary action and i
   assert.equal(action.getAttribute('aria-disabled'), 'true');
   assert.ok(all.some((el) => el.textContent === 'Come back later today or tomorrow.'));
   assert.equal(all.some((el) => el.textContent === 'Nothing to practise yet'), false);
+  const stack = all.find((el) => el.classList.contains('actions-stack'));
+  const siblings = stack.parentNode.childNodes;
+  const next = siblings[siblings.indexOf(stack) + 1];
+  assert.equal(next.textContent, 'Come back later today or tomorrow.', 'the line comes right after the action it explains');
+  assert.ok(next.tagName === 'P' && next.classList.contains('quiet'));
+  const strip = siblings.find((/** @type {any} */ el) => el.classList?.contains('today-strip'));
+  assert.ok(strip, 'the strip is drawn');
+  assert.ok(siblings.indexOf(strip) > siblings.indexOf(next), 'and the strip after it');
+});
+
+const STRIP_UNIT = { id: 'u01', order: 1, title_sl: 'Prvi stik', title_en: 'First contact', motif: 'flower', lessonCount: 5, lessons: ['u01-l01'] };
+const STRIP_LESSON = {
+  id: 'u01-l01', unit: 'u01', order: 1, title_sl: 'Prvi pozdrav', title_en: 'First hello', rules: [], structured: [], production: [],
+  items: [acceptedChunk('u01-l01-i01', 'Dober dan.', 'Good day.'), acceptedChunk('u01-l01-i02', 'Hvala.', 'Thank you.')],
+};
+
+test("Today draws the current unit's strip under the primary action, the current cell marked, linking to the hive", () => {
+  const index = {
+    version: 't', mode: 'dev', generated: '', units: [STRIP_UNIT], rules: [], counts: { scheduledItems: 2, lemmasMet: 3 },
+    lessonIndex: [{ id: STRIP_LESSON.id, unit: 'u01', order: 1, title_sl: STRIP_LESSON.title_sl, title_en: STRIP_LESSON.title_en, itemCount: 2 }],
+  };
+  // both items new: the lesson is the current one and the session would meet them
+  const states = Object.fromEntries(STRIP_LESSON.items.map((entry) => [entry.id, createState(entry.id, Date.now())]));
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderToday(container, todayApp({ index, units: [{ unit: STRIP_UNIT, lessons: [STRIP_LESSON] }], states }));
+  const all = elements(container);
+  const link = all.find((el) => el.tagName === 'A' && el.classList.contains('today-strip'));
+  assert.ok(link);
+  assert.equal(link.getAttribute('href'), '#/hive');
+  assert.equal(link.getAttribute('aria-label'), 'Unit 1, Prvi stik. Open the hive');
+  assert.ok(all.indexOf(link) > all.indexOf(all.find((el) => el.classList.contains('actions-stack'))), 'under the primary action');
+  assert.equal(withClass(link, 'hive-cell').length, 5);
+  assert.equal(withClass(link, 'is-current').length, 1);
+  assert.equal(all.some((el) => el.textContent === 'Your hive'), false, 'the full hive has left Today');
+});
+
+test('Today shows no intention line, even for an old record that carries one', () => {
+  // the 'nothing due' fixture, built inline: every item met and in review, none due
+  const index = {
+    version: 't', mode: 'dev', generated: '', units: [STRIP_UNIT], rules: [], counts: { scheduledItems: 2, lemmasMet: 3 },
+    lessonIndex: [{ id: STRIP_LESSON.id, unit: 'u01', order: 1, title_sl: STRIP_LESSON.title_sl, title_en: STRIP_LESSON.title_en, itemCount: 2 }],
+  };
+  const states = Object.fromEntries(STRIP_LESSON.items.map((entry) => [entry.id, skipAheadState(entry.id, Date.now())]));
+  const app = todayApp({ index, units: [{ unit: STRIP_UNIT, lessons: [STRIP_LESSON] }], states });
+  app.state.settings = { ...DEFAULT_APP_SETTINGS, onboarded: true, intention: 'on the train' };
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderToday(container, app);
+  const all = elements(container);
+  assert.ok(all.some((el) => el.textContent === 'Come back later today or tomorrow.'), 'nothing is due');
+  assert.equal(all.some((el) => el.classList.contains('intention') || /^I practise/.test(el.textContent)), false);
 });
 
 test('renderMenu offers the closing options in order with their labels, the first as the primary action, and reports the pick', () => {
@@ -208,4 +214,17 @@ test('renderMenu offers the closing options in order with their labels, the firs
   buttons[0].dispatch('click');
   assert.deepEqual(picks, ['speaking', 'stop']);
   assert.deepEqual(elements(renderMenu(['stop'], () => {})).map((b) => b.textContent), ['Stop here']);
+});
+
+test("renderMenu puts \"Can't talk right now\" after the speaking round when asked, and only then", () => {
+  /** @type {string[]} */
+  const calls = [];
+  const menu = renderMenu(['stop', 'speaking', 'continue'], () => {}, { onCantTalk: () => { calls.push('quiet'); } });
+  const buttons = elements(menu).filter((e) => e.tagName === 'BUTTON');
+  assert.deepEqual(buttons.map((b) => b.textContent), ['Stop here', 'A speaking round', "Can't talk right now", 'Continue the lesson']);
+  assert.equal(buttons[2].className, 'btn btn-quiet');
+  buttons[2].dispatch('click');
+  assert.deepEqual(calls, ['quiet']);
+  assert.deepEqual(elements(renderMenu(['stop', 'continue'], () => {}, { onCantTalk: () => {} })).map((b) => b.textContent), ['Stop here', 'Continue the lesson']);
+  assert.deepEqual(elements(renderMenu(['stop', 'speaking'], () => {})).map((b) => b.textContent), ['Stop here', 'A speaking round']);
 });

@@ -1,15 +1,16 @@
 // tests/engine/progress.test.js
 // Progress counters over the item states and the session records: the items the learner can recall
-// now, the words met, the hive fill per lesson and unit, the Monday-based week with its one grace
-// day, honey, the hours practised and the credited minutes of a session (the gaps between its
-// marks, each capped, Ruling 79). Every function is pure and counts in the learner's local days.
+// now, the words met, the hive fill per lesson and unit with each lesson's cell state, the unit's
+// reviews that are due, the Monday-based week with its one grace day, honey, the hours practised
+// and the credited minutes of a session (the gaps between its marks, each capped, Ruling 79).
+// Every function is pure and counts in the learner's local days.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { DEFAULT_SETTINGS, createState, recordRecall, skipAheadState, retrievability } from '../../app/js/engine/scheduler.js';
 import { localDateKey } from '../../app/js/util/time.js';
 import {
-  recallNow, wordsMet, lessonFill, hiveFill, weekSummary, honeyFor, hoursPracticed, a1Hours, creditedMinutes, MAX_GAP_MS,
+  recallNow, wordsMet, lessonFill, cellState, hiveFill, unitDue, weekSummary, honeyFor, hoursPracticed, a1Hours, creditedMinutes, MAX_GAP_MS,
 } from '../../app/js/engine/progress.js';
 
 const TZ = 'Europe/Berlin';
@@ -171,7 +172,7 @@ test('lessonFill and hiveFill count pending items only with allowPending', () =>
   assert.equal(lessonFill(states, l, T0, 0.9, { allowPending: true }), 1);
   const content = { unit: unit('u01', [l]), lessons: [l] };
   assert.equal(hiveFill(states, content, T0, 0.9).fill, 0);
-  assert.deepEqual(hiveFill(states, content, T0, 0.9, { allowPending: true }), { unitId: 'u01', cells: [{ lessonId: 'u01-l05', fill: 1 }], fill: 1 });
+  assert.deepEqual(hiveFill(states, content, T0, 0.9, { allowPending: true }), { unitId: 'u01', cells: [{ lessonId: 'u01-l05', order: 5, fill: 1, state: 'learned' }], fill: 1 });
   // a mixed lesson: with the flag every item counts, so an unmet rejected item lowers the share
   const mixed = lesson('u01-l01', [item('u01-l01-i01', 'a'), item('u01-l01-i02', 'b'), item('u01-l01-i09', 'f', [], 'pending'), item('u01-l01-i10', 'g', [], 'rejected')]);
   const mixedStates = byId(fresh, edge, reviewed('u01-l01-i09', 1));
@@ -179,8 +180,12 @@ test('lessonFill and hiveFill count pending items only with allowPending', () =>
   assert.equal(lessonFill(mixedStates, mixed, T0, R, { allowPending: true }), 3 / 4, 'three of all four');
   const two = { unit: unit('u01', [mixed, l]), lessons: [mixed, l] };
   const all = { ...mixedStates, ...states };
-  assert.deepEqual(hiveFill(all, two, T0, R, { allowPending: true }), { unitId: 'u01', cells: [{ lessonId: 'u01-l01', fill: 3 / 4 }, { lessonId: 'u01-l05', fill: 1 }], fill: 5 / 6 });
-  assert.deepEqual(hiveFill(all, two, T0, R), { unitId: 'u01', cells: [{ lessonId: 'u01-l01', fill: 1 }, { lessonId: 'u01-l05', fill: 0 }], fill: 1 });
+  assert.deepEqual(hiveFill(all, two, T0, R, { allowPending: true }), {
+    unitId: 'u01', cells: [{ lessonId: 'u01-l01', order: 1, fill: 3 / 4, state: 'in-progress' }, { lessonId: 'u01-l05', order: 5, fill: 1, state: 'learned' }], fill: 5 / 6,
+  });
+  assert.deepEqual(hiveFill(all, two, T0, R), {
+    unitId: 'u01', cells: [{ lessonId: 'u01-l01', order: 1, fill: 1, state: 'learned' }, { lessonId: 'u01-l05', order: 5, fill: 0, state: 'not-started' }], fill: 1,
+  }, 'the all-pending lesson counts nothing in a strict build, whatever its states');
   // recallNow counts states and never looked at verification
   assert.equal(recallNow(states, T0, R), 2);
 });
@@ -349,17 +354,50 @@ test('hiveFill gives one cell per lesson and the unit share weighted by items', 
   const states = byId(fresh, edge, fading, gone, reviewed('u01-l02-i01', 1), reviewed('u01-l03-i01', 1));
   assert.deepEqual(hiveFill(states, content, T0, R), {
     unitId: 'u01',
-    cells: [{ lessonId: 'u01-l01', fill: 0.5 }, { lessonId: 'u01-l02', fill: 1 }, { lessonId: 'u01-l03', fill: 0 }],
+    cells: [{ lessonId: 'u01-l01', order: 1, fill: 0.5, state: 'in-progress' }, { lessonId: 'u01-l02', order: 2, fill: 1, state: 'learned' }, { lessonId: 'u01-l03', order: 3, fill: 0, state: 'not-started' }],
     fill: 3 / 5,
   });
   assert.equal(hiveFill(states, content, T0, 0.85).fill, 4 / 5);
-  assert.deepEqual(hiveFill({}, content, T0, R), { unitId: 'u01', cells: [{ lessonId: 'u01-l01', fill: 0 }, { lessonId: 'u01-l02', fill: 0 }, { lessonId: 'u01-l03', fill: 0 }], fill: 0 });
+  assert.deepEqual(hiveFill({}, content, T0, R), {
+    unitId: 'u01',
+    cells: [{ lessonId: 'u01-l01', order: 1, fill: 0, state: 'not-started' }, { lessonId: 'u01-l02', order: 2, fill: 0, state: 'not-started' }, { lessonId: 'u01-l03', order: 3, fill: 0, state: 'not-started' }],
+    fill: 0,
+  });
   // a unit without lessons: the strict build leaves all-pending lessons out, the unit file stays
   assert.deepEqual(hiveFill(states, { unit: unit('u02', []), lessons: [] }, T0, R), { unitId: 'u02', cells: [], fill: 0 });
-  // the cells agree with lessonFill
+  // the cells agree with lessonFill and cellState
   for (const l of [l1, l2, l3]) {
-    assert.equal(hiveFill(states, content, T0, R).cells.find((c) => c.lessonId === l.id)?.fill, lessonFill(states, l, T0, R));
+    const cell = hiveFill(states, content, T0, R).cells.find((c) => c.lessonId === l.id);
+    assert.equal(cell?.fill, lessonFill(states, l, T0, R));
+    assert.equal(cell?.state, cellState(states, l, T0, R));
   }
+});
+
+test('cellState: not started until an item is met, in progress while a counted item is not recallable, learned when all are', () => {
+  const states = byId(fresh, edge, fading, lapsed, learning, unmet, mastered);
+  /** @param {number[]} ns @param {string} [status] */
+  const at = (ns, status) => lesson('u01-l01', ns.map((n) => item(`u01-l01-i0${n}`, String(n), [], status)));
+  assert.equal(cellState(states, at([7]), T0, R), 'not-started');
+  assert.equal(cellState(states, at([6, 1]), T0, R), 'in-progress');
+  assert.equal(cellState(states, at([1, 2, 8]), T0, R), 'learned');
+  assert.equal(cellState(states, at([1, 5]), T0, R), 'in-progress', 'a lapse keeps the lesson in progress');
+  assert.equal(cellState(states, at([1, 3]), T0, R), 'in-progress', 'below the target is not learned');
+  assert.equal(cellState(states, at([1], 'pending'), T0, R), 'not-started', 'a strict build counts accepted items only');
+  assert.equal(cellState(states, at([1], 'pending'), T0, R, { allowPending: true }), 'learned');
+  assert.equal(cellState(states, at([]), T0, R), 'not-started');
+});
+
+test("unitDue counts the unit's due items, accepted only in a strict build", () => {
+  const states = byId({ ...fresh, due: T0 - DAY }, { ...edge, due: T0 + DAY }, { ...lapsed, due: T0 - HOUR }, learning, unmet,
+    { ...mastered, due: T0 - DAY }, { ...reviewed('u01-l02-i01', 8), due: T0 - DAY }, { ...reviewed('u02-l01-i01', 8), due: T0 - DAY });
+  const lessons = [
+    lesson('u01-l01', [1, 2, 5, 6, 7, 8].map((n) => item(`u01-l01-i0${n}`, String(n)))),
+    lesson('u01-l02', [item('u01-l02-i01', 'p', [], 'pending')]),
+  ];
+  const content = { unit: unit('u01', lessons), lessons };
+  assert.equal(unitDue(states, content, T0), 3, 'fresh, lapsed and mastered; edge is not due yet, learning and unmet are no reviews, u02 is another unit');
+  assert.equal(unitDue(states, content, T0, { allowPending: true }), 4, 'the pending item counts in a dev build');
+  assert.equal(unitDue({}, content, T0), 0);
 });
 
 test('honey is one per correct recall and A1 courses budget 120 to 180 hours', () => {

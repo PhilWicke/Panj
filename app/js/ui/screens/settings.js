@@ -1,15 +1,15 @@
 // The Settings screen (spec 6): one form of sections, every change saved at once (no Save button),
 // with a quiet "Saved" for assistive technology; a change the store refuses is taken back, in the
 // app's settings, in the player and in the control, with "Not saved. Try again." The learner's
-// name and the clause that completes "I practise …" (Ruling 52); the daily goal, the new items per
-// day and the target recall, each kept in its range (store/setting-ranges.js, shared with the
-// import); the theme, applied at once; the voice of the recordings and mute, passed to the
-// player (Ruling 48); the speaking checks switch, off by default, with the Global Constraints'
-// description. Then the learner's data: export (shared as a file where the phone can, else
-// downloaded), import (validated, confirmed with its counts, then replacing everything) and reset
-// (only after typing the word); whether an import or a reset finishes or fails half-way, the state
-// is read back from the store and the screen drawn from it, so it never shows what the store no
-// longer holds. A link leads to the statistics. The pure parts are exported for the tests.
+// name; the daily goal, the new items per day and the target recall, each kept in its range
+// (store/setting-ranges.js, shared with the import); the theme, applied at once; the voice of the
+// recordings and mute, passed to the player (Ruling 48); the speaking checks switch, off by
+// default, with the Global Constraints' description. Then the learner's data: export (shared as a
+// file where the phone can, else downloaded), import (validated, confirmed with its counts, then
+// replacing everything) and reset (only after typing the word); whether an import or a reset
+// finishes or fails half-way, the state is read back from the store and the screen drawn from it,
+// so it never shows what the store no longer holds. A link leads to the statistics. The pure parts
+// are exported for the tests.
 
 import { h, mount } from '../../util/dom.js';
 import { navigate } from '../../router.js';
@@ -33,7 +33,6 @@ export const SPEECH_DESCRIPTION = "Speaking checks send your voice to Google's s
 /** The word that confirms a reset. */
 const RESET_WORD = 'reset';
 const NAME_MAX = 40;
-const INTENTION_MAX = 120;
 
 /** @type {readonly [Theme, string][]} */
 const THEMES = [['system', 'System'], ['light', 'Light'], ['dark', 'Dark']];
@@ -263,10 +262,7 @@ function draw(container, app, message) {
         h('h2', { class: 'section-title', id: 'settings-you' }, 'You'),
         textField('settings-name', 'Name', settings.name, NAME_MAX,
           (value, input) => { void save({ name: value.trim().slice(0, NAME_MAX) }, (restored) => { input.value = restored.name; }); },
-          'Optional. The name stays on this phone.'),
-        textField('settings-intention', 'I practise …', settings.intention, INTENTION_MAX,
-          (value, input) => { void save({ intention: value.trim() }, (restored) => { input.value = restored.intention; }); },
-          'Your fixed moment in the day, such as on the train after the first stop.')),
+          'Optional. The name stays on this phone.')),
       h('section', { class: 'settings-group', 'aria-labelledby': 'settings-practice' },
         h('h2', { class: 'section-title', id: 'settings-practice' }, 'Practice'),
         numberField('dailyMinutes', 'settings-minutes', 'Daily goal', 'Minutes a day, 3 to 60.'),
@@ -284,7 +280,7 @@ function draw(container, app, message) {
           void save({ voice }, (restored) => check(restored.voice));
           app.player.setVoice(voice);
         }),
-        h('p', { class: 'quiet' }, "Female and male are the course's recordings. The device voice is your phone's own Slovenian voice."),
+        h('p', { class: 'quiet' }, "Female and male are the course's recordings, and in a dialogue each speaker keeps a voice of their own. The device voice is your phone's own Slovenian voice."),
         renderSwitch({
           id: 'settings-mute', label: 'Mute', description: 'No sound at all: every exercise has a silent form.', checked: settings.mute,
           onChange: (mute, button) => {

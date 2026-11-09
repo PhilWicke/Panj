@@ -4,15 +4,19 @@
 // the line (diacritics aside) is close, anything else a miss. recognizeOnce never rejects: it
 // resolves transcript null when the API is missing, on an error, on an end without a result and
 // on its timeout; a refused microphone or service, no microphone or no Slovenian is remembered as
-// recognitionBlocked until resetRecognition, and no other error is. createPlayer plays the recording first, the device's Slovenian voice second and
-// resolves 'none' when neither exists; a missing manifest reads as empty without a console error,
+// recognitionBlocked until resetRecognition, and no other error is. stopRecognition aborts the
+// recogniser listening now (recognizeOnce resolves `aborted`), and a second recognizeOnce stops the
+// first, so one recogniser listens at a time. createPlayer plays the recording first, the device's Slovenian voice second and
+// resolves 'none' when neither exists; a speaker's voice asked for one line comes before the
+// preferred voice, unless the preference is the device voice; a missing manifest reads as empty
+// without a console error,
 // and a missing Web Crypto as no recording; mute plays nothing; setVoice changes the voice of later lookups and stops what
 // plays; a new play waits for the cancelled utterance to let go before it speaks; audioAvailable
 // says whether a recording in the preferred voice or a Slovenian device voice exists (Ruling 81),
 // within AUDIO_CHECK_MS, a slower answer reading as available (Ruling 95).
 import { test, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { compareSpoken, recognitionBlocked, recognizeOnce, resetRecognition, speechAvailable } from '../../app/js/audio/speech.js';
+import { compareSpoken, recognitionBlocked, recognizeOnce, resetRecognition, speechAvailable, stopRecognition } from '../../app/js/audio/speech.js';
 import { AUDIO_CHECK_MS, createPlayer, voiceFor, VOICES } from '../../app/js/audio/player.js';
 import { audioId } from '../../app/js/util/audio-id.js';
 
@@ -266,6 +270,31 @@ test('recognizeOnce remembers a failure that does not pass by itself until reset
   assert.equal(recognitionBlocked(), false, 'a missing API is speechAvailable\'s to say');
 });
 
+test('stopRecognition aborts the recogniser listening now, recognizeOnce resolves aborted, a second recognizeOnce stops the first, and with none listening it does nothing', async () => {
+  const { FakeRecognition, made } = fakeRecognition(() => {});
+  stub('SpeechRecognition', FakeRecognition);
+  stopRecognition();
+  assert.equal(made.length, 0, 'with none listening it does nothing');
+
+  const first = recognizeOnce({ timeoutMs: 10_000 });
+  assert.deepEqual([made[0].started, made[0].aborted], [1, 0], 'listening');
+  stopRecognition();
+  assert.equal(made[0].aborted, 1, 'the recogniser is aborted at once');
+  assert.deepEqual(await first, { transcript: null, error: 'aborted' });
+  assert.equal(recognitionBlocked(), false, 'an abort is for that attempt only');
+  stopRecognition();
+  assert.equal(made[0].aborted, 1, 'once it has ended, stopRecognition does nothing');
+
+  const second = recognizeOnce({ timeoutMs: 10_000 });
+  const third = recognizeOnce({ timeoutMs: 10_000 });
+  assert.equal(made[1].aborted, 1, 'a second recognizeOnce stops the first');
+  assert.deepEqual(await second, { transcript: null, error: 'aborted' });
+  assert.deepEqual([made[2].started, made[2].aborted], [1, 0], 'and listens itself');
+  stopRecognition();
+  assert.equal(made[2].aborted, 1);
+  assert.deepEqual(await third, { transcript: null, error: 'aborted' });
+});
+
 test('voiceFor maps the voice preference to the recordings\' voice, none for the device voice', () => {
   assert.deepEqual(VOICES, { female: 'Kore', male: 'Puck' });
   assert.equal(voiceFor('female'), 'Kore');
@@ -390,6 +419,43 @@ test('createPlayer plays the recording in the preferred voice from beside the ma
   const male = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'male', mute: false });
   assert.equal(await male.hasAudioFor('Dober dan.'), false, 'the recording is in the other voice');
   assert.equal(await male.play('Dober dan.'), 'none');
+});
+
+test("play with a speaker's voice takes that recording, else the preferred one, else the device voice; the device preference ignores it", async () => {
+  const kore = await audioId('Dober dan.', 'Kore');
+  const puck = await audioId('Dober dan.', 'Puck');
+  /** @param {string} voice */
+  const entry = (voice) => ({ text: 'Dober dan.', voice, model: 'm', bytes: 1 });
+  const { FakeAudio, made } = fakeAudio();
+  stub('Audio', FakeAudio);
+  stub('speechSynthesis', undefined);
+  const female = () => createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false });
+
+  stub('fetch', serving({ [kore]: entry('Kore'), [puck]: entry('Puck') }).fetch);
+  const both = female();
+  assert.equal(await both.play('Dober dan.', { voice: 'male' }), 'file');
+  assert.equal(made.at(-1).src, `assets/audio/${puck}.mp3`, "the speaker's voice");
+  assert.equal(await both.play('Dober dan.'), 'file');
+  assert.equal(made.at(-1).src, `assets/audio/${kore}.mp3`, 'no option: the preferred voice');
+
+  stub('fetch', serving({ [kore]: entry('Kore') }).fetch);
+  assert.equal(await female().play('Dober dan.', { voice: 'male' }), 'file');
+  assert.equal(made.at(-1).src, `assets/audio/${kore}.mp3`, 'only the preferred voice was recorded');
+
+  const { synth, FakeUtterance, log } = fakeSynth();
+  stub('speechSynthesis', synth);
+  stub('SpeechSynthesisUtterance', FakeUtterance);
+  const clips = made.length;
+  assert.equal(await female().play('Hvala.', { voice: 'male' }), 'device', 'recorded in neither voice');
+  assert.deepEqual(log.splice(0), ['speak Hvala.', 'end Hvala.']);
+
+  const { fetch, calls } = serving({ [kore]: entry('Kore'), [puck]: entry('Puck') });
+  stub('fetch', fetch);
+  const device = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'device', mute: false });
+  assert.equal(await device.play('Dober dan.', { voice: 'male' }), 'device');
+  assert.deepEqual(log, ['speak Dober dan.', 'end Dober dan.']);
+  assert.deepEqual(calls, [], 'the device preference looks for no recording');
+  assert.equal(made.length, clips, 'and plays none');
 });
 
 test('createPlayer falls back to a Slovenian device voice when there is no recording, or the recording fails', async () => {

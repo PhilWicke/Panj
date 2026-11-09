@@ -1,15 +1,20 @@
 // Gemini text-to-speech for the course recordings. Build-time only, run on
-// the maintainer's machine: each text is sent to Gemini TTS once per voice, the 16-bit
+// the maintainer's machine: each text is sent to Gemini TTS in each voice, the 16-bit
 // 24 kHz mono PCM that comes back is piped straight into ffmpeg (no PCM file is
 // written) and stored as outDir/<audioId>.mp3, and outDir/manifest.json maps
 // each id to { text, voice, model, bytes }. Ids already in the manifest with
 // their file on disk are skipped, so a run can be repeated after a failure.
 //
+// A voice with a pitch ceiling is measured after every take and taken again when
+// it comes out too high, at most MAX_TAKES takes, keeping the lowest. Its manifest
+// entries also carry pitchHz, and the CLI lists each clip still high as HIGH, with
+// the reason when a failed take ended the taking early.
+//
 // The key is read only from the file named by GEMINI_API_KEY_FILE, by default
 // ~/.config/google/aistudio.key. The GEMINI_API_KEY variable is stale and is
 // never read. The key is never printed, logged or put into an error message.
 //
-// Library: readKey, synthesize, pcmToMp3, generateAll, bundleTexts, textsFromFile.
+// Library: readKey, synthesize, pcmToMp3, generateAll, bundleTexts, textsFromFile, highLine.
 // CLI: node tools/gen-audio.js (--from-bundle | --texts <file>) [--voice <name> ...]
 //   [--model <model>] [--limit <n>] [--out <dir>]
 // --from-bundle reads app/content/dist (run a content build first) and appends
@@ -25,11 +30,24 @@ import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { audioId } from '../app/js/util/audio-id.js';
 import { audioTexts, drillTexts } from '../app/js/util/audio-texts.js';
+import { medianPitch } from './pitch.js';
 
 /** @typedef {import('../app/js/content/types.js').Index} Index */
 /** @typedef {import('../app/js/content/types.js').UnitContent} UnitContent */
-/** @typedef {{ text: string, voice: string, model: string, bytes: number }} ManifestEntry */
-/** @typedef {{ generated: number, skipped: number, failed: { text: string, error: string }[] }} GenerateResult */
+/**
+ * `pitchHz`, on clips of a voice with a pitch ceiling only, is the clip's median pitch in whole
+ * Hz, or null when it could not be measured.
+ * @typedef {{ text: string, voice: string, model: string, bytes: number, pitchHz?: number | null }} ManifestEntry
+ */
+/**
+ * A kept clip still above its voice's ceiling. `error` is there only when a failed take ended the
+ * taking before MAX_TAKES, and says which take failed and why.
+ * @typedef {{ text: string, voice: string, hz: number, error?: string }} HighClip
+ */
+/**
+ * `high` lists the kept clips still above their voice's ceiling.
+ * @typedef {{ generated: number, skipped: number, failed: { text: string, error: string }[], high: HighClip[] }} GenerateResult
+ */
 
 // The model the voice check ran on, so bulk clips come from the model the voice check approved.
 // gemini-3.8-flash-tts is not usable with this prompt: it answers audio/wav and
@@ -38,6 +56,13 @@ import { audioTexts, drillTexts } from '../app/js/util/audio-texts.js';
 export const DEFAULT_MODEL = 'gemini-3.1-flash-tts-preview';
 /** Kore is a female voice, Puck a male one. */
 export const DEFAULT_VOICES = ['Kore', 'Puck'];
+/**
+ * The highest median pitch a clip of the voice may have before it is taken again. Measured on
+ * the voice-check clips, Puck's pitch runs from 118 to 314 Hz and the high takes are not stable.
+ * @type {Readonly<Record<string, number>>}
+ */
+export const PITCH_CEILING_HZ = Object.freeze({ Puck: 185 });
+export const MAX_TAKES = 5;
 const API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models';
 const PROMPT = 'Say clearly in Slovenian, at a natural pace: ';
 const RETRY_DELAYS_MS = [2000, 4000, 8000];
@@ -218,9 +243,38 @@ async function writeManifest(file, manifest) {
 const exists = (file) => stat(file).then(() => true, () => false);
 
 /**
+ * Takes a text in a voice with a pitch ceiling and returns the take to keep with its pitch: the
+ * first at or under the ceiling, or a first take that cannot be measured (null, never retaken),
+ * or else the lowest of MAX_TAKES; a later take that cannot be measured is passed over. A failure after a successful take ends the taking and keeps the lowest
+ * so far with the reason in `error`, so only a failed first take throws.
+ * @param {{ text: string, voice: string, model: string, key: string }} request
+ * @param {number} ceiling
+ * @returns {Promise<{ pcm: Buffer, hz: number | null, error?: string }>}
+ */
+async function lowestTake(request, ceiling) {
+  /** @type {{ pcm: Buffer, hz: number } | undefined} */
+  let lowest;
+  for (let take = 0; take < MAX_TAKES; take += 1) {
+    let pcm;
+    try {
+      pcm = await synthesize(request);
+    } catch (err) {
+      if (!lowest) throw err;
+      return { ...lowest, error: `take ${take + 1} of ${MAX_TAKES} failed: ${redact(errorMessage(err), request.key)}` };
+    }
+    const hz = medianPitch(pcm, SAMPLE_RATE);
+    if (hz === null && lowest) continue;
+    if (hz === null || hz <= ceiling) return { pcm, hz };
+    if (!lowest || hz < lowest.hz) lowest = { pcm, hz };
+  }
+  return /** @type {{ pcm: Buffer, hz: number }} */ (lowest);
+}
+
+/**
  * Generates outDir/<id>.mp3 for every { text, voice } whose id is not yet in the manifest with
  * its file, `concurrency` requests at a time, and records each file in outDir/manifest.json as
- * soon as it is written. The key is read only when something needs generating.
+ * soon as it is written. A voice with a pitch ceiling goes through lowestTake, any other voice is
+ * synthesized once and never measured. The key is read only when something needs generating.
  * @param {{ texts: { text: string, voice: string }[], outDir: string, model: string, concurrency?: number }} options
  * @returns {Promise<GenerateResult>}
  */
@@ -236,7 +290,7 @@ export async function generateAll({ texts, outDir, model, concurrency = 2 }) {
     if (!jobs.has(id)) jobs.set(id, { id, text, voice });
   }
   /** @type {GenerateResult} */
-  const result = { generated: 0, skipped: 0, failed: [] };
+  const result = { generated: 0, skipped: 0, failed: [], high: [] };
   const todo = [];
   for (const job of jobs.values()) {
     if (manifest[job.id] && (await exists(path.join(outDir, `${job.id}.mp3`)))) result.skipped += 1;
@@ -255,11 +309,22 @@ export async function generateAll({ texts, outDir, model, concurrency = 2 }) {
       next += 1;
       const file = path.join(outDir, `${job.id}.mp3`);
       try {
-        const pcm = await synthesize({ text: job.text, voice: job.voice, model, key });
+        const request = { text: job.text, voice: job.voice, model, key };
+        const ceiling = PITCH_CEILING_HZ[job.voice];
+        const { pcm, hz, error } = ceiling === undefined ? { pcm: await synthesize(request), hz: null, error: undefined } : await lowestTake(request, ceiling);
         await pcmToMp3(pcm, file);
-        manifest[job.id] = { text: job.text, voice: job.voice, model, bytes: (await stat(file)).size };
+        /** @type {ManifestEntry} */
+        const entry = { text: job.text, voice: job.voice, model, bytes: (await stat(file)).size };
+        if (ceiling !== undefined) entry.pitchHz = hz === null ? null : Math.round(hz);
+        manifest[job.id] = entry;
         await save();
         result.generated += 1;
+        if (hz !== null && hz > ceiling) {
+          /** @type {HighClip} */
+          const clip = { text: job.text, voice: job.voice, hz: Math.round(hz) };
+          if (error !== undefined) clip.error = error;
+          result.high.push(clip);
+        }
       } catch (err) {
         result.failed.push({ text: job.text, error: `${job.voice}: ${redact(errorMessage(err), key)}` });
       }
@@ -298,6 +363,12 @@ export async function textsFromFile(file) {
   const raw = (await readFile(file, 'utf8')).replace(/^﻿/, '');
   return [...new Set(raw.split(/\r?\n/).map((line) => line.trim()).filter((line) => line !== ''))];
 }
+
+/**
+ * The line the CLI prints for a clip still high: the reason follows only when a failed take cut the taking short.
+ * @param {HighClip} clip
+ */
+export const highLine = ({ text, voice, hz, error }) => `HIGH ${hz} ${voice} ${text}${error === undefined ? '' : ` (${error})`}`;
 
 /** @param {string[]} argv @returns {Promise<number>} the exit code */
 async function main(argv) {
@@ -362,8 +433,9 @@ async function main(argv) {
     return 1;
   }
   for (const { text, error } of result.failed) console.error(`FAILED ${JSON.stringify(text)} ${error}`);
+  for (const clip of result.high) console.log(highLine(clip));
   console.log(
-    `texts=${texts.length}${drill} voices=${voices.join(',')} model=${model} generated=${result.generated} skipped=${result.skipped} failed=${result.failed.length}`,
+    `texts=${texts.length}${drill} voices=${voices.join(',')} model=${model} generated=${result.generated} skipped=${result.skipped} failed=${result.failed.length} high=${result.high.length}`,
   );
   console.log(`wrote ${rel(outDir)}`);
   return result.failed.length > 0 ? 1 : 0;

@@ -3,41 +3,30 @@
 // count and minutes line, the result line with its rounded percent, the verdict, the calibration
 // line of the weekly check, the default prediction and how the prediction field is read, the error
 // card's line before and during the save, and once an earlier unit of the placement chain was
-// saved), the settings onboarding saves (the clause trimmed, the
-// name capped, onboarded set, Ruling 52), and the feedback panel without its retry, which the
-// checkpoint asks for. Through tests/helpers/fake-dom.js, onboarding's last step holds its buttons
-// while it saves and, when the save is refused, says so and offers them again. The checkpoint flow
-// itself runs in the browser check.
+// saved), the settings onboarding saves (the name capped, onboarded set), and the feedback panel
+// without its retry, which the checkpoint asks for. Through tests/helpers/fake-dom.js, onboarding
+// counts three steps and never asks when the learner will practise, and its last step holds its
+// buttons while it saves and, when the save is refused, says so and offers them again. The
+// placement check takes its chain of units from the content, and an empty chain reaches the
+// not-found card. A unit checkpoint run to its end card: a pass paints the unit's strip sealed,
+// one motif per cell of the unit and filled from the states the check left, and a miss draws no
+// strip. The rest of the checkpoint flow runs in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
+import { elements, withClass } from '../helpers/dom-query.js';
 import { grade } from '../../app/js/engine/grading.js';
+import { createMemoryStore } from '../../app/js/store/memory.js';
 import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
 import { renderFeedback } from '../../app/js/ui/components/feedback.js';
 import {
-  aboutLine, calibrationLine, countLine, defaultPrediction, failureLine, predictionFrom, resultLine, verdictLine,
+  aboutLine, calibrationLine, countLine, defaultPrediction, failureLine, predictionFrom, renderCheckpoint, resultLine, verdictLine,
 } from '../../app/js/ui/screens/checkpoint.js';
-import { DEFAULT_INTENTION, onboardingSettings, renderOnboarding } from '../../app/js/ui/screens/onboarding.js';
+import { onboardingSettings, renderOnboarding } from '../../app/js/ui/screens/onboarding.js';
 
 before(() => {
   installFakeDom();
 });
-
-/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
-function elements(root) {
-  /** @type {any[]} */
-  const found = [];
-  /** @param {any} node */
-  const walk = (node) => {
-    for (const child of node.childNodes) {
-      if (!child.tagName) continue;
-      found.push(child);
-      walk(child);
-    }
-  };
-  walk(root);
-  return found;
-}
 
 test('countLine and defaultPrediction: the intro card counts items and minutes, and guesses 80 percent', () => {
   assert.equal(countLine(8), '8 items, about 3 min');
@@ -93,14 +82,25 @@ test('calibrationLine compares the prediction with the result', () => {
   assert.equal(calibrationLine(8, 7), 'You predicted 8 and got 7. 1 fewer than you thought.');
 });
 
-test('onboardingSettings keeps the other settings, trims the clause and the name, caps the name and marks the learner onboarded', () => {
-  assert.equal(DEFAULT_INTENTION, 'on the train after the first stop');
-  const saved = onboardingSettings(DEFAULT_APP_SETTINGS, { name: '  Ana ', intention: ` ${DEFAULT_INTENTION} `, theme: 'dark' });
-  assert.deepEqual(saved, { ...DEFAULT_APP_SETTINGS, name: 'Ana', intention: DEFAULT_INTENTION, theme: 'dark', onboarded: true });
-  const kept = onboardingSettings({ ...DEFAULT_APP_SETTINGS, dailyMinutes: 15, mute: true }, { name: '', intention: '', theme: 'system' });
-  assert.deepEqual(kept, { ...DEFAULT_APP_SETTINGS, dailyMinutes: 15, mute: true, name: '', intention: '', theme: 'system', onboarded: true }, 'an empty name and clause are allowed');
-  assert.equal(onboardingSettings(DEFAULT_APP_SETTINGS, { name: 'a'.repeat(50), intention: 'x', theme: 'light' }).name.length, 40);
-  assert.equal(onboardingSettings(DEFAULT_APP_SETTINGS, { name: 'Ana', intention: 'after breakfast.', theme: 'light' }).intention, 'after breakfast.', 'the clause is stored as typed, trimmed; Today adds the sentence around it');
+test('onboardingSettings keeps the other settings, trims and caps the name, sets the theme and marks the learner onboarded', () => {
+  assert.deepEqual(onboardingSettings(DEFAULT_APP_SETTINGS, { name: '  Ana ', theme: 'dark' }), { ...DEFAULT_APP_SETTINGS, name: 'Ana', theme: 'dark', onboarded: true });
+  assert.deepEqual(onboardingSettings({ ...DEFAULT_APP_SETTINGS, dailyMinutes: 15, mute: true }, { name: '', theme: 'system' }),
+    { ...DEFAULT_APP_SETTINGS, dailyMinutes: 15, mute: true, name: '', theme: 'system', onboarded: true });
+  assert.equal(onboardingSettings(DEFAULT_APP_SETTINGS, { name: 'a'.repeat(50), theme: 'light' }).name.length, 40);
+});
+
+test('onboarding has three steps and never asks when you will practise', () => {
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderOnboarding(container, /** @type {any} */ ({ adapter: {}, state: { settings: { ...DEFAULT_APP_SETTINGS } } }));
+  /** @type {string[]} */
+  const seen = [];
+  for (let step = 1; step <= 3; step += 1) {
+    seen.push(container.querySelector('.eyebrow').textContent);
+    assert.equal(elements(container).some((el) => el.textContent === 'When will you practise?' || el.textContent === 'I practise …'), false, `step ${step}`);
+    if (step < 3) container.querySelector('.onboarding-step').dispatch('submit');
+  }
+  assert.deepEqual(seen, ['1 of 3', '2 of 3', '3 of 3']);
+  assert.ok(elements(container).some((el) => el.tagName === 'H1' && el.textContent === 'Add to home screen'));
 });
 
 test('onboarding: a refused save says so, offers the buttons again and keeps the learner where they are; a second try goes on', async (t) => {
@@ -117,8 +117,8 @@ test('onboarding: a refused save says so, offers the buttons again and keeps the
   const app = /** @type {any} */ ({ adapter, state: { settings: { ...DEFAULT_APP_SETTINGS } } });
   const container = /** @type {any} */ (document.createElement('main'));
   renderOnboarding(container, app);
-  for (let step = 1; step < 4; step += 1) container.querySelector('.onboarding-step').dispatch('submit');
-  assert.equal(container.querySelector('.eyebrow').textContent, '4 of 4');
+  for (let step = 1; step < 3; step += 1) container.querySelector('.onboarding-step').dispatch('submit');
+  assert.equal(container.querySelector('.eyebrow').textContent, '3 of 3');
   /** @param {string} text */
   const pick = (text) => elements(container).find((el) => el.tagName === 'BUTTON' && el.textContent === text);
   const start = pick('Start from the first hello');
@@ -166,4 +166,65 @@ test('renderFeedback without a retry offers Continue only, as the primary action
     [['Type it again', 'btn btn-primary'], ['Continue', 'btn btn-secondary']], 'the retry is offered by default (Ruling 32)');
   const right = renderFeedback({ answer: 'Živjo', graded: grade('Živjo', 'Živjo.'), effective: 'correct', target: 'Živjo.', rule: null, retry: false, onDone: () => {} });
   assert.deepEqual(elements(right).filter((e) => e.tagName === 'BUTTON').map((b) => b.textContent), ['Continue']);
+});
+
+test('the placement check takes its units from the content', () => {
+  const unit = { id: 'u05', order: 5, title_sl: 'Dan in čas', title_en: 'Day and time', motif: 'sun', lessons: ['u05-l01'] };
+  const lesson = { id: 'u05-l01', unit: 'u05', order: 1, title_sl: 'Moj dan', title_en: 'My day', rules: [], structured: [], production: [],
+    items: [{ id: 'u05-l01-i01', type: 'word', sl: 'zjutraj', en: 'in the morning', register: 'neutral', examples: [],
+      verification: { review1: 'accepted', review2: 'accepted', native: null, status: 'accepted' } }] };
+  /** Renders the placement check over a course whose index lists `units`. @param {any[]} units */
+  const placement = (units) => {
+    const container = /** @type {any} */ (document.createElement('main'));
+    renderCheckpoint(container, /** @type {any} */ ({
+      index: { units, rules: [] }, units: [{ unit, lessons: [lesson] }], known: new Set(['u05-l01-i01']), allowPending: false,
+      state: { items: {}, sessions: [], settings: { ...DEFAULT_APP_SETTINGS }, meta: { schemaVersion: 1, createdAt: 0 } },
+    }), { placement: '1' });
+    return container;
+  };
+  const placed = placement([unit]);
+  assert.ok(placed.querySelector('.checkpoint-intro'), 'the first unit of the content starts the chain, whatever its id');
+  assert.equal(elements(placed).some((e) => e.textContent === 'Checkpoint not found'), false);
+  const empty = placement([]);
+  assert.equal(empty.querySelector('.checkpoint-intro'), null);
+  assert.ok(elements(empty).some((e) => e.tagName === 'H1' && e.textContent === 'Checkpoint not found'), 'an empty chain reaches the not-found card');
+});
+
+const SUN = { id: 'u05', order: 5, title_sl: 'Dan in čas', title_en: 'Day and time', motif: 'sun', level: 'A1', lessonCount: 5, lessons: ['u05-l01'] };
+const MORNING = { id: 'u05-l01', unit: 'u05', order: 1, title_sl: 'Moj dan', title_en: 'My day', rules: [], structured: [], production: [],
+  items: [{ id: 'u05-l01-i01', type: 'word', sl: 'zjutraj', en: 'in the morning', register: 'neutral', examples: [],
+    verification: { review1: 'accepted', review2: 'accepted', native: null, status: 'accepted' } }] };
+/** Runs the u05 checkpoint, one item answered with `answer`, to its end card. @param {string} answer */
+async function unitCheckEnd(answer) {
+  const app = /** @type {any} */ ({
+    adapter: createMemoryStore(), index: { units: [SUN], rules: [] }, units: [{ unit: SUN, lessons: [MORNING] }],
+    known: new Set(['u05-l01-i01']), allowPending: false,
+    state: { items: {}, sessions: [], settings: { ...DEFAULT_APP_SETTINGS }, meta: { schemaVersion: 1, createdAt: 0 } },
+  });
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderCheckpoint(container, app, { unit: 'u05' });
+  container.querySelector('.checkpoint-intro').dispatch('submit');
+  container.querySelector('input').value = answer;
+  container.querySelector('.answer-form').dispatch('submit');
+  elements(container).find((e) => e.tagName === 'BUTTON' && e.textContent === 'Continue').dispatch('click');
+  await new Promise((resolve) => setTimeout(resolve, 5));
+  return container;
+}
+
+test("a passed unit checkpoint's end card paints the unit's strip with its motif, a failed one draws no strip", async () => {
+  const passed = await unitCheckEnd('zjutraj');
+  assert.ok(elements(passed).some((e) => e.textContent === 'Passed. The unit is sealed in your hive.'));
+  const strip = elements(passed.querySelector('.checkpoint-seal')).find((e) => e.tagName === 'svg');
+  assert.equal(strip.getAttribute('class'), 'hive hive-strip-large');
+  assert.equal(withClass(strip, 'hive-seal').length, 2, 'the board under the cells and the motifs over them');
+  assert.equal(elements(strip).filter((e) => e.tagName === 'use' && e.getAttribute('class') === 'hive-motif motif-sun').length, 5, 'one motif per cell of the unit');
+  const failed = await unitCheckEnd('zvečer');
+  assert.ok(elements(failed).some((e) => e.textContent === 'Not yet. Keep practising and take it again when you are ready.'));
+  assert.equal(failed.querySelector('.checkpoint-seal'), null);
+});
+
+test("the pass card's strip is filled from the states the check left", async () => {
+  const passed = await unitCheckEnd('zjutraj');
+  const [cell] = withClass(passed.querySelector('.checkpoint-seal'), 'hive-cell');
+  assert.equal(cell.getAttribute('class'), 'hive-cell is-learned', 'the item the check passed is recallable now, so its lesson is learned');
 });

@@ -2,11 +2,14 @@
 // The course position, pure over the bundle and the item states: today's new items and minutes
 // come from today's session records (buildSession's newToday and minutesToday); the current lesson
 // is the first in course order with a practisable item not met yet, with the lessons of its unit;
-// unmetItems counts what a lesson still has to introduce.
+// unmetItems counts what a lesson still has to introduce. The course's shape is read from the
+// content: a lesson's role, the level groups, the units of the placement check and the unit in focus.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { DEFAULT_SETTINGS, createState, recordRecall } from '../../app/js/engine/scheduler.js';
-import { currentLesson, practisable, todayTotals, unmetItems } from '../../app/js/engine/course.js';
+import {
+  PLACEMENT_LENGTH, currentLesson, focusUnitId, lessonRole, levelGroups, placementUnits, practisable, todayTotals, unmetItems,
+} from '../../app/js/engine/course.js';
 
 const TZ = 'Europe/Berlin';
 const MINUTE = 60_000;
@@ -76,4 +79,36 @@ test('currentLesson is the first lesson in course order with a practisable item 
 
   found = at({ ...met('u01-l01-i01'), ...met('u01-l01-i02'), ...met('u01-l02-i01'), ...met('u02-l01-i01') }, true);
   assert.deepEqual(found, { lesson: null, unitLessons: [], remaining: 0 }, 'every item met: no current lesson');
+});
+
+/** @param {string} id @param {string} [level] */
+const u = (id, level) => /** @type {any} */ ({ id, order: Number(id.slice(1)), title_sl: id, title_en: id, motif: 'flower', lessons: [], ...(level ? { level } : {}) });
+
+test('lessonRole: consolidation when the lesson says so, a theme lesson otherwise', () => {
+  assert.equal(lessonRole(/** @type {any} */ ({ role: 'consolidation' })), 'consolidation');
+  assert.equal(lessonRole(/** @type {any} */ ({ role: 'theme' })), 'theme');
+  assert.equal(lessonRole(/** @type {any} */ ({})), 'theme');
+  assert.equal(lessonRole(/** @type {any} */ ({ role: 'review' })), 'theme');
+});
+
+test('levelGroups keeps course order and starts a group where the level changes', () => {
+  assert.deepEqual(levelGroups([u('u01', 'A1'), u('u02', 'A1'), u('u11', 'A2')]).map((g) => [g.level, g.units.map((x) => x.id)]),
+    [['A1', ['u01', 'u02']], ['A2', ['u11']]]);
+  assert.deepEqual(levelGroups([u('u01'), u('u02')]).map((g) => [g.level, g.units.length]), [[null, 2]]);
+  assert.deepEqual(levelGroups([]), []);
+});
+
+test('placementUnits takes the first three units of the first level, read from the content', () => {
+  assert.equal(PLACEMENT_LENGTH, 3);
+  const course = [...Array.from({ length: 10 }, (_, i) => u(`u${String(i + 1).padStart(2, '0')}`, 'A1')), u('u11', 'A2')];
+  assert.deepEqual(placementUnits(course), ['u01', 'u02', 'u03']);
+  assert.deepEqual(placementUnits([u('u01', 'A1'), u('u02', 'A1'), u('u11', 'A2')]), ['u01', 'u02']);
+  assert.deepEqual(placementUnits([]), []);
+});
+
+test("focusUnitId is the current lesson's unit, else the last unit with bundled lessons, else null", () => {
+  const index = { units: [{ ...u('u01'), lessons: ['u01-l01'] }, { ...u('u02'), lessons: ['u02-l01'] }, u('u03')] };
+  assert.equal(focusUnitId(index, { unit: 'u01' }), 'u01');
+  assert.equal(focusUnitId(index, null), 'u02');
+  assert.equal(focusUnitId({ units: [u('u01')] }, null), null);
 });

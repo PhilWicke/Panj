@@ -8,8 +8,11 @@
 // is offered again in the next; recognitionBlocked tells the exercises so they do not ask again
 // in the meantime.
 // Any other failure (no connection, a recogniser that would not start, an error the browser names
-// otherwise) is reported for the one attempt only. compareSpoken judges a transcript against the
-// line coarsely: a match, close, or a miss, never a score.
+// otherwise) is reported for the one attempt only. One recogniser listens at a time: a new
+// recognizeOnce stops the one before it, and stopRecognition stops the one listening now, which the
+// session screen calls once a speaking exercise is skipped or drawn again and when it is left, so
+// the microphone closes at once. compareSpoken judges a transcript against the line coarsely: a
+// match, close, or a miss, never a score.
 
 import { grade, levenshtein, normalize, stripDiacritics } from '../engine/grading.js';
 
@@ -21,6 +24,16 @@ const LASTING_ERRORS = new Set(['not-allowed', 'service-not-allowed', 'audio-cap
 
 /** Set by a lasting error, cleared by resetRecognition. */
 let blocked = false;
+/** Ends the recognizeOnce that is listening now, if one is. @type {(() => void)|null} */
+let stopListening = null;
+
+/**
+ * Stops the recogniser that is listening now, at once: the microphone closes and its
+ * recognizeOnce resolves with the error `aborted`. Does nothing when none listens.
+ */
+export function stopRecognition() {
+  stopListening?.();
+}
 
 /**
  * The part of the Web Speech recogniser used here. The DOM typings leave the interface out (it is
@@ -78,22 +91,28 @@ export function resetRecognition() {
  * `error` naming why when the API is missing (`unavailable`), when the recogniser cannot start
  * (`start-failed`), on the recogniser's own errors (`not-allowed` when the microphone is refused,
  * `no-speech`, `network` and the others, as the browser names them), when it ends without a
- * result (`no-speech`) and after `timeoutMs` (`timeout`, and the recogniser is stopped). A lasting
- * error sets recognitionBlocked.
+ * result (`no-speech`), after `timeoutMs` (`timeout`, and the recogniser is stopped) and when
+ * stopRecognition or the next recognizeOnce stops it (`aborted`). A lasting error sets
+ * recognitionBlocked.
  * @param {{ lang?: string, timeoutMs?: number }} [options]
  * @returns {Promise<Recognised>}
  */
 export function recognizeOnce({ lang = 'sl-SI', timeoutMs = 6000 } = {}) {
   const Recognizer = recognitionConstructor();
   if (!Recognizer) return Promise.resolve({ transcript: null, error: 'unavailable' });
+  // One recogniser at a time.
+  stopRecognition();
   return new Promise((resolve) => {
     /** @type {Recognition|null} */
     let recognition = null;
     let done = false;
+    const stop = () => finish(null, 'aborted');
+    stopListening = stop;
     /** @param {string|null} transcript @param {string|null} error */
     const finish = (transcript, error) => {
       if (done) return;
       done = true;
+      if (stopListening === stop) stopListening = null;
       clearTimeout(timer);
       if (error !== null && LASTING_ERRORS.has(error)) blocked = true;
       if (recognition) {

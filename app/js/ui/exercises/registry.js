@@ -37,7 +37,7 @@
  * @property {Rule[]} rules every rule card of the bundle
  * @property {AppSettings} settings
  * @property {Mode} mode
- * @property {(text: string) => Promise<'file'|'device'|'none'>} play
+ * @property {(text: string, options?: { voice?: 'female'|'male' }) => Promise<'file'|'device'|'none'>} play `options.voice` is the speaker's voice for this one line
  * @property {() => number} rng
  * @property {boolean} allowPending
  * @property {(itemId: string, recall: RecallResult) => RecallResult} effective

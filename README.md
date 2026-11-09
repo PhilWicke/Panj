@@ -1,6 +1,6 @@
 # Slovelingo
 
-Slovelingo is an installable web app for learning everyday Slovenian, aimed at someone who wants to talk with the people around them. Short daily sessions mix new words and phrases with spaced review, and the app runs offline on a phone once it has been added to the home screen. There is no account and no server: progress stays on the device.
+Slovelingo is an installable web app for learning everyday Slovenian, aimed at someone who wants to talk with the people around them. Short daily sessions mix new words and phrases with spaced review, and the app runs offline on a phone once it has been added to the home screen. A session can go quiet for the moment, without sound or without speaking, and the hive shows each unit as a row of cells that fill with what you can recall now. There is no account and no server: progress stays on the device.
 
 The project needs Node 24 or later and has no runtime dependencies. [docs/SPEC.md](docs/SPEC.md) summarises the design.
 
@@ -25,6 +25,8 @@ npm run lint:content
 
 `npm run test:e2e` runs the app end to end in a phone-sized Chromium after `npm install --no-save @playwright/test@1.64.1`, which leaves `package.json` as it is; on a machine that already has Playwright's Chromium 1248, put `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` in front of that install, and elsewhere fetch the browser with `npx playwright install chromium`. The CI workflow runs the same test on every push and pull request with a browser it installs itself.
 
+The hive and quiet scenarios serve their own courses, so they do not depend on the content written so far.
+
 ## Build
 
 ```sh
@@ -43,7 +45,7 @@ npm run audio -- --limit 5
 npm run voice-check -- --out <dir>
 ```
 
-`npm run audio` generates clips for the accepted content of the last build into `app/assets/audio/`, and `--limit 5` keeps a trial run to the first five texts in each voice. `npm run voice-check -- --out <dir>` writes sample lines in three voices and a page to compare them into the folder you name.
+`npm run audio` generates clips for the accepted content of the last build into `app/assets/audio/`, and `--limit 5` keeps a trial run to the first five texts in each voice. The male voice's clips are measured and re-taken up to five times when they come out too high, and clips still high are listed as `HIGH`. `npm run voice-check -- --out <dir>` writes sample lines in three voices and a page to compare them into the folder you name.
 
 ## Icons
 

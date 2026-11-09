@@ -1,33 +1,31 @@
-// The Today screen (spec 6): the greeting in Slovenian by the hour with the learner's name, a tap
-// plays it; the week calendar; the primary action, worded from the session buildSession would
-// start now, from the same inputs the session screen uses, with the weekly check under it when
-// one is due (every seventh active day, engine/checkpoint.js); the current lesson; the intention line
-// until the habit holds (the week target met four weeks in a row); the hive as the lower part of
-// the screen, a tap on a board opens its unit; and one quiet line when the store is not
-// persistent. A course without lessons yet (a strict build before any content is accepted) says
-// so in place of the primary action. The pure parts are exported for the tests.
+// The Today screen (spec 6, concept section 3): the greeting in Slovenian by the hour with the
+// learner's name, a tap plays it; the week calendar; the primary action, worded from the session
+// buildSession would start now, from the same inputs the session screen uses, with the weekly
+// check under it when one is due (every seventh active day, engine/checkpoint.js), and right
+// after them, when nothing is due, the line that explains the disabled action; under them the
+// strip of the unit in focus (focusUnitId: the current lesson's unit, else the last unit with
+// lessons) drawn large, the current lesson's cell rimmed, a tap opens the Hive; the current
+// lesson; and one quiet line when the store is not persistent. A course without lessons yet (a
+// strict build before any content is accepted) says so in place of the primary action and draws
+// no strip. The pure parts are exported for the tests.
 
 import { h, mount, svg } from '../../util/dom.js';
 import { onlyKnown } from '../../content/loader.js';
 import { navigate } from '../../router.js';
 import { buildSession } from '../../engine/session.js';
 import { hiveFill, weekSummary } from '../../engine/progress.js';
-import { currentLesson, todayTotals } from '../../engine/course.js';
+import { currentLesson, focusUnitId, todayTotals } from '../../engine/course.js';
 import { WEEKLY_MIN_ITEMS, buildWeeklyCheck, dueWeeklyCheck } from '../../engine/checkpoint.js';
 import { localDateKey } from '../../util/time.js';
 import { honeyInWeek, renderCalendar } from '../components/calendar.js';
-import { renderHive, sealedUnits } from '../components/hive.js';
+import { renderStrip, sealedUnits } from '../components/hive.js';
 import { countLine } from './checkpoint.js';
 
 /** @typedef {import('../../app-types.js').App} App */
 /** @typedef {import('../../engine/session.js').Session} Session */
-/** @typedef {import('../../engine/progress.js').SessionRecord} SessionRecord */
 
-const WEEK_MS = 7 * 86_400_000;
 /** Active days per week, the target the calendar shows. */
 const WEEK_TARGET = 5;
-/** Weeks in a row the target must have been met before the intention line retires. */
-const HABIT_WEEKS = 4;
 
 /**
  * The greeting for the hour of the learner's day.
@@ -51,35 +49,6 @@ export function primaryAction(session) {
   const minutes = Math.max(1, Math.round(session.estimatedMinutes));
   const reviews = `${session.reviewCount} ${session.reviewCount === 1 ? 'review' : 'reviews'}`;
   return { text: `Start today's session: ${reviews}, ${session.newCount} new, about ${minutes} min`, enabled: true };
-}
-
-/**
- * Whether the habit holds: the week target was met (the grace day counted) in each of the
- * HABIT_WEEKS weeks before the current one. The intention line shows until it does. The weeks are
- * stepped on the calendar, as Stats' weeklyAccuracy does: from this week's Monday (weekSummary's
- * weekStart), each earlier week is named by an instant at noon UTC on its Monday, which every zone
- * reads as that Monday or the Tuesday, so a clock change in between never picks the wrong week.
- * @param {SessionRecord[]} sessions
- * @param {number} now epoch ms
- * @param {string} [tz] IANA zone, for tests; the phone's zone when omitted
- * @returns {boolean}
- */
-export function habitHolds(sessions, now, tz) {
-  const monday = Date.parse(`${weekSummary([], now, WEEK_TARGET, tz).weekStart}T12:00:00Z`);
-  for (let k = 1; k <= HABIT_WEEKS; k += 1) {
-    if (!weekSummary(sessions, now, WEEK_TARGET, tz, monday - k * WEEK_MS).met) return false;
-  }
-  return true;
-}
-
-/**
- * The intention as a sentence: "I practise" and the clause from onboarding, with a full stop.
- * @param {string} intention "on the train after the first stop"
- * @returns {string}
- */
-function intentionLine(intention) {
-  const clause = intention.trim().replace(/[.\s]+$/, '');
-  return `I practise ${clause}.`;
 }
 
 /** @returns {SVGElement} a small speaker, the hint that the greeting plays */
@@ -117,10 +86,15 @@ export function renderToday(container, app) {
   });
   const action = primaryAction(planned);
   const canContinue = lesson !== null && remaining > 0 && newToday >= settings.newPerDay;
-  const unit = lesson ? app.index.units.find((candidate) => candidate.id === lesson.unit) : undefined;
+  const unitId = focusUnitId(app.index, lesson);
+  const unit = unitId === null ? undefined : app.index.units.find((candidate) => candidate.id === unitId);
+  const unitContent = unit && app.units.find((content) => content.unit.id === unit.id);
+  const fill = unitContent && hiveFill(states, unitContent, now, settings.desiredRetention, { allowPending: app.allowPending });
+  /** The unit in focus drawn large, the day's work visible as the cell it fills; a tap opens the Hive. */
+  const strip = unit && h('a', { class: 'today-strip', href: '#/hive', 'aria-label': `Unit ${unit.order}, ${unit.title_sl}. Open the hive` },
+    renderStrip(fill, unit, { sealed: sealedUnits(app.state.meta)[unit.id] === true, currentLessonId: lesson?.id ?? null, caption: true }));
   const week = weekSummary(app.state.sessions, now, WEEK_TARGET);
   const greeting = greetingFor(new Date(now).getHours());
-  const fills = app.units.map((content) => hiveFill(states, content, now, settings.desiredRetention, { allowPending: app.allowPending }));
   const weekly = dueWeeklyCheck(app.state.sessions, app.state.meta, now) ? buildWeeklyCheck(app.index, app.units, states, Math.random) : null;
   const weeklyItems = weekly ? weekly.blocks.reduce((sum, block) => sum + block.items.length, 0) : 0;
   /** The bundle carries no lesson yet: nothing can be practised until content is released. */
@@ -144,14 +118,12 @@ export function renderToday(container, app) {
         }, actionLabel(action.text)),
         canContinue && h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => navigate('/session?mode=continue') }, 'Continue lesson'),
         weeklyItems >= WEEKLY_MIN_ITEMS && h('a', { class: 'btn btn-secondary', href: '#/checkpoint?weekly=1' }, `Weekly check: ${countLine(weeklyItems)}`)),
+    // The line that explains a disabled action comes right after the actions, before the strip.
     !noLessons && !action.enabled && h('p', { class: 'quiet' }, 'Come back later today or tomorrow.'),
+    strip,
     !app.persistent && h('p', { class: 'notice' }, 'Progress is not being saved in this browser.'),
     lesson && h('div', { class: 'lesson-card' },
       h('p', { class: 'eyebrow' }, unit ? `Unit ${unit.order}, lesson ${lesson.order}` : `Lesson ${lesson.order}`),
       h('p', { class: 'sl-title', lang: 'sl' }, lesson.title_sl),
-      h('p', { class: 'en-text' }, lesson.title_en)),
-    settings.intention && !habitHolds(app.state.sessions, now) && h('p', { class: 'intention' }, intentionLine(settings.intention)),
-    h('section', { class: 'hive-section', 'aria-labelledby': 'today-hive' },
-      h('h2', { class: 'section-title', id: 'today-hive' }, 'Your hive'),
-      renderHive(fills, app.index.units, { onUnit: (id) => navigate(`/unit?id=${id}`), sealed: sealedUnits(app.state.meta) }))));
+      h('p', { class: 'en-text' }, lesson.title_en))));
 }

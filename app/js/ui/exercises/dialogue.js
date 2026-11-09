@@ -1,7 +1,8 @@
 // The dialogue scene (spec 4.2, point 5): the lesson's scripted exchange. The title and the
 // setting, then the lines in order, as a transcript that grows: a line of another speaker shows
-// its Slovenian large with the English under it and plays (unless muted), and the scene goes on
-// when the playback ends, or after the line's wait if it never does; a learner line shows the
+// its Slovenian large with the English under it and plays (unless muted), in the voice the
+// dialogue's cast gives that speaker if it names one, and the scene goes on when the playback
+// ends, or after the line's wait if it never does; a learner line shows the
 // English and the shared typed answer field, graded against the line's Slovenian with the
 // diacritic rule, with the feedback panel after it. The transcript is the scene's one live
 // region: the lines and the feedback inside it are read out as they arrive, and the feedback slot
@@ -107,8 +108,9 @@ export function render(container, entry, ctx) {
       const line = lines[index];
       if (line.speaker !== LEARNER) {
         transcript.append(h('li', { class: 'lesson-card' }, said(line)));
+        const voice = dialogue.cast?.[line.speaker];
         // A scene left mid-way stops talking; a playback that never ends holds it for the line's wait.
-        if (!ctx.mode.mute && container.isConnected) await playWithin(() => ctx.play(line.sl), playWaitMs(line.sl));
+        if (!ctx.mode.mute && container.isConnected) await playWithin(() => (voice ? ctx.play(line.sl, { voice }) : ctx.play(line.sl)), playWaitMs(line.sl));
         return step(index + 1);
       }
 

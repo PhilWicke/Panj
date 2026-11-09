@@ -3,12 +3,14 @@
 // course order, the index's lesson order and then the item order in the lesson, each with its
 // phase or "mastered"; matchesWord filters on the Slovenian and the English, every word of the
 // query, ignoring case and diacritics; the top line counts the rows, "n items met" (Ruling 61),
-// checked on the screen rendered through tests/helpers/fake-dom.js. The rest of the screen runs in
-// the browser check.
+// checked on the screen rendered through tests/helpers/fake-dom.js; wordDetails gives a row's
+// helper line and first example, which the row shows under the word. The rest of the screen runs
+// in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
-import { matchesWord, metLine, renderWords, wordRows } from '../../app/js/ui/screens/words.js';
+import { elements } from '../helpers/dom-query.js';
+import { matchesWord, metLine, renderWords, wordDetails, wordRows } from '../../app/js/ui/screens/words.js';
 
 before(() => {
   installFakeDom();
@@ -101,4 +103,38 @@ test('the top line counts the rows of the list, "n items met" (Ruling 61)', () =
   assert.equal(rows.length, 5);
   assert.equal(container.querySelector('.word-count').textContent, '5 items met', 'the line above the list counts the list');
   assert.equal(container.querySelector('.word-list').childNodes.length, rows.length);
+});
+
+const BRAT = { ...item('u01-l01-i04', 'brat', 'brother'), helper: 'Like Bruder in German.',
+  examples: [{ sl: 'To je moj brat.', en: 'This is my brother.' }, { sl: 'Brat je doma.', en: 'The brother is at home.' }] };
+
+test('wordDetails gives the helper and the first example, or null for each when the item has none', () => {
+  assert.deepEqual(wordDetails(BRAT), { helper: 'Like Bruder in German.', example: { sl: 'To je moj brat.', en: 'This is my brother.' } });
+  assert.deepEqual(wordDetails(item('u01-l01-i02', 'Dober dan.', 'Good day.')), { helper: null, example: null });
+  assert.equal(wordDetails({ ...BRAT, helper: null }).helper, null);
+  assert.equal(wordDetails({ ...BRAT, helper: '' }).helper, null);
+});
+
+test('a Words row shows the helper line and the first example under the word', () => {
+  // renderWords over an app whose only met items are BRAT (lesson u01-l01) and u01-l01-i02, as the screen test in this file builds one
+  const withBrat = lesson('u01-l01', [item('u01-l01-i02', 'Dober dan.', 'Good day.'), BRAT]);
+  const app = /** @type {any} */ ({
+    index: { lessonIndex: [{ id: withBrat.id, unit: withBrat.unit, order: withBrat.order, title_sl: withBrat.id, title_en: withBrat.id, itemCount: 2 }] },
+    lessons: new Map([[withBrat.id, withBrat]]),
+    state: { items: { 'u01-l01-i02': state('u01-l01-i02', 'review'), 'u01-l01-i04': state('u01-l01-i04', 'learning') }, settings: { mute: true } },
+  });
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderWords(container, app);
+
+  const rows = elements(container).filter((e) => e.tagName === 'LI' && e.classList.contains('word-entry'));
+  const brat = rows.find((r) => r.textContent.includes('brat'));
+  assert.equal(brat.querySelector('.word-helper').textContent, 'Like Bruder in German.');
+  const example = brat.querySelector('.word-example');
+  assert.equal(example.querySelector('.sl-text').textContent, 'To je moj brat.');
+  assert.equal(example.querySelector('.sl-text').getAttribute('lang'), 'sl');
+  assert.equal(example.querySelector('.en-text').textContent, 'This is my brother.');
+  assert.equal(elements(container).some((e) => e.textContent === 'Brat je doma.'), false, 'the first example only');
+  const plain = rows.find((r) => r.textContent.includes('Dober dan.'));
+  assert.equal(plain.querySelector('.word-helper'), null);
+  assert.equal(plain.querySelector('.word-example'), null);
 });

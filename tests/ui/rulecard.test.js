@@ -4,11 +4,14 @@
 // leads to (Rulings 21 and 30), which rules the Rules screen lists and in what groups, the mastery
 // meter's value and stage, and the search filter (case- and diacritic-insensitive). Through
 // tests/helpers/fake-dom.js, the quick check picks through the shared option group and reports
-// once; the rest of the card's DOM runs in the browser check.
+// once, and the table names the row and col keys the content uses (persons, numbers, genders,
+// cases and counts) in words, any other key as written; the rest of the card's DOM runs in the
+// browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
+import { elements } from '../helpers/dom-query.js';
 import {
   DEFAULT_SETTINGS, MASTERY_SESSIONS, createState, recordRecall, retrievability, skipAheadState,
 } from '../../app/js/engine/scheduler.js';
@@ -47,22 +50,6 @@ before(() => {
   installFakeDom();
 });
 
-/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
-function elements(root) {
-  /** @type {any[]} */
-  const found = [];
-  /** @param {any} node */
-  const walk = (node) => {
-    for (const child of node.childNodes) {
-      if (!child.tagName) continue;
-      found.push(child);
-      walk(child);
-    }
-  };
-  walk(root);
-  return found;
-}
-
 test('tableCellsFor lists the cells row by row, each with its row and col, and skips the missing ones', () => {
   const cells = tableCellsFor(biti);
   assert.equal(cells.length, 9);
@@ -78,6 +65,28 @@ test('tableCellsFor lists the cells row by row, each with its row and col, and s
     { row: '2', col: 'pl', cell: { form: 'ste' } },
   ], 'a missing cell is left out, so it renders empty');
   assert.deepEqual(tableCellsFor(tiVi), [], 'a rule without a table has no cells');
+});
+
+test('the table names genders, numbers, cases and counts in words, and shows an unknown key as written', () => {
+  /** @param {NonNullable<Rule['table']>} table */
+  const headers = (table) => {
+    const card = renderRuleCard(rule({ table }), { onQuickCheck() {}, tableOpen: true });
+    const cells = elements(card).filter((e) => e.tagName === 'TH');
+    /** @param {any} th the header's own label, without the caption a marked col adds */
+    const label = (th) => th.childNodes[0].textContent;
+    return {
+      rows: cells.filter((th) => th.getAttribute('scope') === 'row').map(label),
+      cols: cells.filter((th) => th.getAttribute('scope') === 'col').map(label),
+    };
+  };
+  assert.deepEqual(headers({ rows: ['m', 'f', 'n'], cols: ['sg', 'du', 'pl'], cells: { 'm.sg': { form: 'dober' } } }),
+    { rows: ['Masculine', 'Feminine', 'Neuter'], cols: ['Singular', 'Dual', 'Plural'] });
+  assert.deepEqual(headers({ rows: ['one', 'two', 'three', 'four'], cols: ['m', 'f', 'n'], cells: { 'one.m': { form: 'en' } } }),
+    { rows: ['One', 'Two', 'Three', 'Four'], cols: ['Masculine', 'Feminine', 'Neuter'] });
+  assert.deepEqual(headers({ rows: ['nom', 'gen', 'dat', 'acc', 'loc', 'ins'], cols: ['sg'], cells: { 'nom.sg': { form: 'hiša' } } }).rows,
+    ['Nominative', 'Genitive', 'Dative', 'Accusative', 'Locative', 'Instrumental']);
+  assert.deepEqual(headers({ rows: ['voc'], cols: ['xyz'], cells: { 'voc.xyz': { form: 'hiša' } } }),
+    { rows: ['voc'], cols: ['xyz'] }, 'an unknown key shows as written');
 });
 
 test('exampleForToggle gives the example of the chosen option, and the card example for anything unknown', () => {

@@ -1,15 +1,25 @@
 // tests/ui/hive.test.js
-// The hive: hiveLayout puts the unit panels in two columns and sizes each grid row by its taller
-// panel; cellSize is one hexagon size for the whole hive; cellCenters places a panel's cells in rows
-// of six. Through tests/helpers/fake-dom.js, renderHive draws one panel per unit with a hexagon
-// per lesson filled in proportion, the caption, the seal with the unit's motif, and a tap or Enter
-// on a panel reports the unit; a second render starts each cell where it was and moves it to the
-// new fill (motion in answer to a session), and resetHiveMemory forgets what was shown, so each
-// test starts from a hive never drawn. sealedUnits turns meta.sealed into the hive's flags.
+// The hive as honeycomb strips: the geometry constants, cellWidth (one cell width for the whole
+// hive, shrinking only when the widest strip would not fit the column), cellCenters (the comb
+// centred, every other row offset by half a cell), hexPoints (a regular pointy-top hexagon) and
+// stripCells (a unit's lessonCount cells, bundled lessons at their order, placeholders elsewhere).
+// Through tests/helpers/fake-dom.js, renderHive draws one strip per unit with its cells, states,
+// fills, caption and tap target, a heading per level when the course has more than one, and the
+// seal of a sealed strip: an opaque board under the cells, flush with them top and bottom so the
+// captions above and below stay clear, and the motifs over them; renderStrip draws one strip
+// large, marks the current lesson, reports cell taps and carries the seal in the same order. The
+// fake DOM does no hit testing, so a CSS test pins both seal groups as paint only
+// (pointer-events: none): in a browser a tap on a sealed cell must reach the cell and the strip. A second render starts each cell where
+// it was and moves it to the new fill, a seal new in this page's life paints once, and
+// resetHiveMemory forgets what was shown, so each test starts from a hive never drawn. sealedUnits
+// turns meta.sealed into the hive's flags.
 import { test, before, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
-import { HIVE_WIDTH, hiveLayout, cellSize, cellCenters, renderHive, resetHiveMemory, sealedUnits } from '../../app/js/ui/components/hive.js';
+import { elements, withClass } from '../helpers/dom-query.js';
+import { HIVE_WIDTH, CELL_W, CELL_H, CAPTION_H, STRIP_PITCH, cellWidth, stripCells, cellCenters, hexPoints,
+  renderHive, renderStrip, resetHiveMemory, sealedUnits } from '../../app/js/ui/components/hive.js';
 
 before(() => {
   installFakeDom();
@@ -19,159 +29,190 @@ beforeEach(() => {
   resetHiveMemory();
 });
 
-/** Every element under `root`, depth first. @param {any} root @returns {any[]} */
-function elements(root) {
-  /** @type {any[]} */
-  const found = [];
-  /** @param {any} node */
-  const walk = (node) => {
-    for (const child of node.childNodes) {
-      if (!child.tagName) continue;
-      found.push(child);
-      walk(child);
-    }
-  };
-  walk(root);
-  return found;
-}
+const TITLES = ['Prvi stik', 'Družina in ljudje', 'Pri mizi', 'V kavarni in v trgovini', 'Dan in čas', 'Dom', 'Po mestu', 'Prosti čas in vreme', 'Telo in zdravje', 'Delo in študij'];
+const MOTIFS = ['flower', 'heart', 'wheat', 'cup', 'sun', 'house', 'bird', 'leaf', 'hand', 'bee'];
+const pad = (n) => String(n).padStart(2, '0');
+const UNITS = TITLES.map((title_sl, i) => ({ id: `u${pad(i + 1)}`, order: i + 1, title_sl, title_en: `Unit ${i + 1}`, motif: MOTIFS[i], level: 'A1', lessonCount: 5, lessons: [] }));
+/** A unit's fill with one cell per spec, in order. @param {string} unitId @param {[number, string][]} specs @param {number} [share] */
+const fillOf = (unitId, specs, share = 0) => ({ unitId, fill: share, cells: specs.map(([fill, state], i) => ({ lessonId: `${unitId}-l${pad(i + 1)}`, order: i + 1, fill, state })) });
+const FIVE = /** @type {[number, string][]} */ ([[1, 'learned'], [0.4, 'in-progress'], [0, 'not-started'], [0, 'not-started'], [0, 'not-started']]);
+const FILLS = UNITS.map((u) => fillOf(u.id, FIVE, 0.28));
 
-/** @param {any} root @param {string} className */
-const withClass = (root, className) => elements(root).filter((e) => e.classList.contains(className));
-
-/** @param {string} id @param {string} title_sl @param {string} title_en @param {string} motif @param {string[]} lessons */
-const unit = (id, title_sl, title_en, motif, lessons) => ({ id, order: Number(id.slice(1)), title_sl, title_en, motif, lessons });
-const UNITS = [
-  unit('u01', 'Prvi stik', 'First contact', 'flower', ['u01-l01', 'u01-l02']),
-  unit('u02', 'Družina in ljudje', 'Family and people', 'heart', []),
-  unit('u03', 'Pri mizi', 'At the table', 'wheat', ['u03-l01']),
-];
-
-test('hiveLayout puts the panels in two columns of one width, each grid row as tall as its taller panel', () => {
-  const boxes = hiveLayout(10, [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-  assert.equal(boxes.length, 10);
-  const { w, h } = boxes[0];
-  assert.ok(w > 0 && h > 0);
-  assert.ok(boxes.every((b) => b.w === w && b.h === h), 'one lesson or none: every panel has the same size');
-  const gap = boxes[1].x - w;
-  assert.ok(gap > 0, 'a gap between the columns');
-  assert.equal(boxes[1].x + w, HIVE_WIDTH, 'the second column ends at the hive width');
-  assert.ok(boxes.filter((_, i) => i % 2 === 0).every((b) => b.x === 0), 'odd units in the left column');
-  assert.ok(boxes.filter((_, i) => i % 2 === 1).every((b) => b.x === w + gap), 'even units in the right column');
-  for (let i = 0; i < 10; i += 1) assert.equal(boxes[i].y, Math.floor(i / 2) * (h + gap), `row of panel ${i + 1}`);
-
-  const uneven = hiveLayout(3, [7, 1, 0]);
-  assert.equal(uneven.length, 3);
-  assert.equal(uneven[0].h, uneven[1].h, 'the panels of a row share its height');
-  assert.ok(uneven[0].h > uneven[2].h, 'seven lessons wrap into a second row of cells, so the first row is taller');
-  assert.deepEqual([uneven[2].x, uneven[2].y], [0, uneven[0].h + gap]);
-
-  assert.deepEqual(hiveLayout(0, []), []);
-  assert.deepEqual(hiveLayout(1, [5]).map((b) => [b.x, b.y, b.w]), [[0, 0, w]]);
+test('the geometry: 52 by 60 cells, an 82 unit strip, ten strips in 820, 48 px cells at 360 px', () => {
+  assert.deepEqual([HIVE_WIDTH, CELL_W, CELL_H, CAPTION_H, STRIP_PITCH], [358, 52, 60, 22, 82]);
+  assert.equal(Math.round(CELL_W * 328 / HIVE_WIDTH), 48);
+  assert.equal(cellWidth(5), 52);
+  assert.equal(cellWidth(0), 52);
+  assert.equal(Math.round(cellWidth(7) * 100) / 100, 47.73, 'seven cells shrink to fit the column');
+  assert.equal(hexPoints(26, 30, 52), '26,1.13 51,15.57 51,44.43 26,58.87 1,44.43 1,15.57', 'a regular hexagon: half height twice the roof rise');
 });
 
-test('cellSize is one hexagon width for the whole hive, capped, and never below the smallest readable size', () => {
-  assert.equal(cellSize([]), 28);
-  assert.equal(cellSize([1, 0, 0]), 28, 'few cells: the cap');
-  assert.equal(cellSize([4]), 28);
-  const five = cellSize([5]);
-  assert.ok(five < 28 && five > 20, `five per row fit the panel: ${five}`);
-  assert.ok(cellSize([6]) < five, 'six per row are smaller');
-  assert.equal(cellSize([12]), cellSize([6]), 'more than six wrap, the size stays');
-  assert.equal(cellSize([5, 1, 0]), five, 'the widest row decides');
+test('cellCenters centres the comb and offsets every other row by half a cell', () => {
+  const row0 = cellCenters(5, 52, 0, 5);
+  const row1 = cellCenters(5, 52, 1, 5);
+  assert.deepEqual(row0.map((c) => c.cx), [62, 114, 166, 218, 270]);
+  assert.ok(row0.every((c) => c.cy === 30));
+  assert.deepEqual(row1.map((c) => c.cx), [88, 140, 192, 244, 296]);
+  assert.ok(row1.every((c) => c.cy === 112));
+  const seven = cellCenters(7, cellWidth(7), 1, 7);
+  assert.ok(seven[6].cx + cellWidth(7) / 2 <= HIVE_WIDTH + 1e-9, 'the widest strip fits');
 });
 
-test("cellCenters lays out a panel's cells in rows of six, the second row staggered by half a cell", () => {
-  const box = { x: 0, y: 0, w: 158, h: 80 };
-  const three = cellCenters(box, 3, 28);
-  assert.equal(three.length, 3);
-  assert.ok(three.every((c) => c.cy === three[0].cy), 'one row');
-  assert.ok(three.every((c) => c.r > 0));
-  assert.equal(three[1].cx - three[0].cx, three[2].cx - three[1].cx, 'even spacing');
-  assert.ok(three[0].cx - 14 >= box.x && three[2].cx + 14 <= box.x + box.w, 'inside the panel');
-  const offset = cellCenters({ x: 170, y: 90, w: 158, h: 80 }, 1, 28)[0];
-  assert.deepEqual([offset.cx - three[0].cx, offset.cy - three[0].cy], [170, 90], 'the panel position moves the cells');
-  const seven = cellCenters(box, 7, 20);
-  assert.equal(seven.length, 7);
-  assert.equal(new Set(seven.map((c) => c.cy)).size, 2, 'two rows');
-  assert.ok(seven[6].cy > seven[0].cy);
-  assert.equal(seven[6].cx - seven[0].cx, (seven[1].cx - seven[0].cx) / 2, 'the second row starts half a pitch in');
-  assert.deepEqual(cellCenters(box, 0, 28), []);
+test('stripCells draws lessonCount cells, bundled lessons at their order and placeholders elsewhere', () => {
+  const u = { ...UNITS[1] };
+  const f = { unitId: 'u02', fill: 0.5, cells: [{ lessonId: 'u02-l01', order: 1, fill: 1, state: 'learned' }, { lessonId: 'u02-l03', order: 3, fill: 0, state: 'not-started' }] };
+  assert.deepEqual(stripCells(u, f).map((c) => [c.position, c.lessonId, c.state]),
+    [[1, 'u02-l01', 'learned'], [2, null, 'not-started'], [3, 'u02-l03', 'not-started'], [4, null, 'not-started'], [5, null, 'not-started']]);
+  assert.deepEqual(stripCells({ ...u, lessonCount: undefined }, f).map((c) => c.position), [1, 2, 3], 'no lessonCount: up to the highest bundled order');
+  assert.deepEqual(stripCells({ ...u, lessonCount: undefined }, undefined), []);
+  assert.equal(stripCells(u, undefined).length, 5, 'a unit with no bundled lesson still draws its cells');
 });
 
-test('renderHive draws one panel per unit with cells filled in proportion, captions, a seal with the motif, and taps', async () => {
+test('renderHive draws one strip per unit and one cell per lesson, fifty for ten by five, with states, captions and taps', () => {
   /** @type {string[]} */
   const taps = [];
-  const fills = [
-    { unitId: 'u01', cells: [{ lessonId: 'u01-l01', fill: 1 }, { lessonId: 'u01-l02', fill: 0.4 }], fill: 0.7 },
-    { unitId: 'u02', cells: [], fill: 0 },
-    { unitId: 'u03', cells: [{ lessonId: 'u03-l01', fill: 0 }], fill: 0 },
-  ];
-  const el = renderHive(fills, /** @type {any} */ (UNITS), { onUnit: (id) => { taps.push(id); }, sealed: { u01: true } });
-  assert.equal(el.tagName, 'svg');
-  assert.equal(el.namespaceURI, 'http://www.w3.org/2000/svg');
-  assert.ok(String(el.getAttribute('viewBox')).includes(` ${HIVE_WIDTH} `), 'the viewBox is the hive width');
-
-  const panels = withClass(el, 'hive-panel');
-  assert.equal(panels.length, 3);
-  assert.ok(panels.every((p) => p.getAttribute('role') === 'button' && p.getAttribute('tabindex') === '0'));
-  assert.equal(panels[0].getAttribute('aria-label'), 'Unit 1, Prvi stik, First contact: 70 percent recalled now, sealed');
-  assert.equal(panels[1].getAttribute('aria-label'), 'Unit 2, Družina in ljudje, Family and people: no lessons yet');
-  assert.equal(panels[2].getAttribute('aria-label'), 'Unit 3, Pri mizi, At the table: 0 percent recalled now');
-
-  assert.deepEqual(panels.map((p) => withClass(p, 'hive-cell').length), [2, 0, 1]);
-  const rects = withClass(panels[0], 'hive-fill');
-  assert.deepEqual(rects.map((r) => r.style.getPropertyValue('transform')), ['scaleY(1)', 'scaleY(0.4)'], 'honey fills in proportion, from the bottom');
-  assert.ok(withClass(panels[0], 'hive-comb').length === 2, 'each cell has its hexagon');
-  assert.ok(elements(el).some((e) => e.tagName === 'clipPath'), 'the fill is clipped to the hexagon');
-
-  const captions = elements(el).filter((e) => e.tagName === 'text');
-  assert.deepEqual(captions.map((c) => c.textContent), ['Prvi stik', 'Družina in ljudje', 'Pri mizi']);
-  assert.ok(captions.every((c) => c.getAttribute('lang') === 'sl'));
-
-  assert.equal(withClass(panels[0], 'hive-seal').length, 1, 'the sealed panel carries its seal');
-  assert.equal(withClass(panels[0], 'motif-flower').length, 1, "with the unit's motif");
-  assert.equal(withClass(panels[1], 'hive-seal').length, 0);
-  assert.equal(withClass(panels[2], 'hive-seal').length, 0);
-
-  panels[0].dispatch('click');
-  panels[2].dispatch('keydown', { key: 'Enter' });
-  panels[1].dispatch('keydown', { key: 'a' });
-  panels[1].dispatch('keydown', { key: ' ' });
-  assert.deepEqual(taps, ['u01', 'u03', 'u02']);
-
-  // A second render after a session: the changed cell starts where it was and moves to its new fill.
-  const later = [{ ...fills[0], cells: [{ lessonId: 'u01-l01', fill: 1 }, { lessonId: 'u01-l02', fill: 0.8 }], fill: 0.9 }, fills[1], fills[2]];
-  const again = renderHive(later, /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: {} });
-  const moved = withClass(again, 'hive-fill');
-  assert.deepEqual(moved.map((r) => r.style.getPropertyValue('transform')), ['scaleY(1)', 'scaleY(0.4)', 'scaleY(0)'], 'starts where it was');
-  await new Promise((resolve) => setTimeout(resolve, 5));
-  assert.deepEqual(moved.map((r) => r.style.getPropertyValue('transform')), ['scaleY(1)', 'scaleY(0.8)', 'scaleY(0)'], 'then fills');
-  assert.equal(withClass(again, 'hive-seal').length, 0, 'unsealed draws no seal');
+  const el = renderHive(FILLS, /** @type {any} */ (UNITS), { onUnit: (id) => { taps.push(id); }, sealed: {} });
+  assert.equal(el.tagName, 'DIV');
+  const svgs = elements(el).filter((e) => e.tagName === 'svg');
+  assert.equal(svgs.length, 1);
+  assert.equal(svgs[0].getAttribute('viewBox'), '0 0 358 820');
+  assert.equal(elements(el).filter((e) => e.tagName === 'H2').length, 0, 'one level, no heading');
+  const strips = withClass(el, 'hive-strip');
+  assert.equal(strips.length, 10);
+  assert.equal(withClass(el, 'hive-cell').length, 50);
+  assert.deepEqual(withClass(strips[0], 'hive-cell').map((c) => c.getAttribute('class')),
+    ['hive-cell is-learned', 'hive-cell is-in-progress', 'hive-cell is-not-started', 'hive-cell is-not-started', 'hive-cell is-not-started']);
+  assert.deepEqual(withClass(strips[0], 'hive-fill').map((r) => r.style.getPropertyValue('transform')), ['scaleY(1)', 'scaleY(0.4)', 'scaleY(0)', 'scaleY(0)', 'scaleY(0)']);
+  assert.deepEqual(withClass(el, 'hive-caption').map((t) => t.textContent), TITLES);
+  assert.equal(withClass(el, 'hive-caption')[0].getAttribute('font-size'), '13', 'captions 12 px even at 360');
+  assert.equal(strips[0].getAttribute('aria-label'), 'Unit 1, Prvi stik, Unit 1: 28 percent recalled now');
+  const hit = withClass(strips[1], 'hive-hit')[0];
+  assert.deepEqual(['x', 'y', 'width', 'height'].map((a) => hit.getAttribute(a)), ['0', '82', '358', '82']);
+  assert.ok(Number(hit.getAttribute('height')) * 328 / HIVE_WIDTH >= 44, 'a strip is a 44 px target at 360 px');
+  strips[0].dispatch('click');
+  strips[3].dispatch('keydown', { key: 'Enter' });
+  strips[4].dispatch('keydown', { key: 'a' });
+  strips[4].dispatch('keydown', { key: ' ' });
+  assert.deepEqual(taps, ['u01', 'u04', 'u05']);
 });
 
-test('renderHive draws every motif the units name', () => {
-  const motifs = ['flower', 'heart', 'wheat', 'hexagon', 'sun', 'house', 'bird', 'leaf', 'star', 'bee'];
-  const units = motifs.map((motif, i) => unit(`u${String(i + 1).padStart(2, '0')}`, `U ${i + 1}`, `Unit ${i + 1}`, motif, []));
-  const sealed = Object.fromEntries(units.map((u) => [u.id, true]));
-  const el = renderHive([], /** @type {any} */ (units), { onUnit: () => {}, sealed });
-  assert.equal(withClass(el, 'hive-panel').length, 10);
-  assert.equal(withClass(el, 'hive-seal').length, 10);
-  for (const motif of motifs) assert.equal(withClass(el, `motif-${motif}`).length, 1, motif);
-  assert.equal(withClass(el, 'hive-cell').length, 0, 'units without loaded lessons draw no cells');
+test('without bundled lessons every strip draws placeholder cells and says so', () => {
+  const el = renderHive([], /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: {} });
+  assert.equal(withClass(el, 'is-placeholder').length, 50);
+  assert.equal(withClass(el, 'hive-fill').length, 0);
+  assert.equal(withClass(el, 'hive-strip')[3].getAttribute('aria-label'), 'Unit 4, V kavarni in v trgovini, Unit 4: no lessons yet');
+});
+
+test('a sealed strip lays its board under the cells, flush with them, and paints its motif over every cell', () => {
+  const el = renderHive(FILLS, /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: { u01: true } });
+  const strip = withClass(el, 'hive-strip')[0];
+  const seals = withClass(strip, 'hive-seal');
+  assert.equal(seals.length, 2, 'the board and the motifs, two groups');
+  const [under, seal] = seals;
+  assert.equal(strip.childNodes[0].getAttribute('class'), 'hive-hit');
+  assert.equal(strip.childNodes[1], under, 'the board right after the tap target');
+  assert.ok(strip.childNodes.indexOf(under) < strip.childNodes.indexOf(withClass(strip, 'hive-cell')[0]), 'under the cells');
+  assert.equal(strip.childNodes.at(-1), seal, 'the motifs painted last, over the cells');
+  const boards = withClass(under, 'hive-seal-board');
+  assert.equal(boards.length, 1);
+  assert.equal(withClass(seal, 'hive-seal-board').length, 0);
+  assert.deepEqual(['x', 'y', 'width', 'height'].map((a) => boards[0].getAttribute(a)), ['33', '0', '266', '60'], 'three out left and right, flush with the cells top and bottom');
+  assert.equal(elements(under).filter((e) => e.tagName === 'use').length, 0);
+  const uses = elements(seal).filter((e) => e.tagName === 'use');
+  assert.equal(uses.length, 5);
+  assert.ok(uses.every((u) => u.getAttribute('class') === 'hive-motif motif-flower'));
+  const id = uses[0].getAttribute('href').slice(1);
+  assert.ok(elements(el).some((e) => e.tagName === 'symbol' && e.getAttribute('id') === id), 'the symbol is in the same SVG');
+  assert.equal(withClass(strip, 'hive-fill').length, 5, 'the honey stays under the paint');
+  assert.ok(strip.getAttribute('aria-label').endsWith(', sealed'));
+  assert.equal(withClass(withClass(el, 'hive-strip')[1], 'hive-seal').length, 0);
+  const kite = renderHive([], /** @type {any} */ ([{ ...UNITS[0], motif: 'kite' }]), { onUnit: () => {}, sealed: { u01: true } });
+  assert.ok(elements(kite).some((e) => e.tagName === 'use' && e.getAttribute('class') === 'hive-motif motif-hexagon'), 'an unknown motif paints the hexagon');
+});
+
+test("a sealed strip's board leaves its own caption and the caption above the next sealed strip clear", () => {
+  const el = renderHive(FILLS, /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: { u01: true, u02: true } });
+  const [b0, b1] = withClass(el, 'hive-seal-board');
+  const c0 = withClass(el, 'hive-caption')[0];
+  /** @param {any} e @param {string} a */
+  const n = (e, a) => Number(e.getAttribute(a));
+  assert.ok(n(b1, 'y') - 1 >= n(c0, 'y') + 4, 'the descenders clear the next rim');
+  assert.ok(n(c0, 'y') - 10 >= n(b0, 'y') + n(b0, 'height') + 1, 'the cap height clears its own rim');
+});
+
+test('one heading per level when the course has two', () => {
+  const units = [UNITS[0], UNITS[1], { id: 'u11', order: 11, title_sl: 'Naprej', title_en: 'Onwards', motif: 'bee', level: 'A2', lessonCount: 5, lessons: [] }];
+  const el = renderHive([], /** @type {any} */ (units), { onUnit: () => {}, sealed: {} });
+  assert.deepEqual(elements(el).filter((e) => e.tagName === 'H2').map((e) => e.textContent), ['A1', 'A2']);
+  assert.deepEqual(elements(el).filter((e) => e.tagName === 'svg').map((s) => s.getAttribute('viewBox')), ['0 0 358 164', '0 0 358 82']);
+});
+
+test('no constant course shape: strips of seven, five and no lessons draw twelve cells in one width', () => {
+  const units = [{ ...UNITS[0], lessonCount: 7 }, UNITS[1], { ...UNITS[2], lessonCount: 0 }];
+  const el = renderHive([], /** @type {any} */ (units), { onUnit: () => {}, sealed: {} });
+  assert.deepEqual(withClass(el, 'hive-strip').map((s) => withClass(s, 'hive-cell').length), [7, 5, 0]);
+});
+
+test('fills move only when they change, and a seal paints once', async () => {
+  renderHive(FILLS, /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: {} });
+  const later = [fillOf('u01', [[1, 'learned'], [0.8, 'in-progress'], [0, 'not-started'], [0, 'not-started'], [0, 'not-started']]), ...FILLS.slice(1)];
+  const moved = renderHive(later, /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: { u01: true } });
+  const second = withClass(withClass(moved, 'hive-strip')[0], 'hive-fill')[1];
+  assert.equal(second.style.getPropertyValue('transform'), 'scaleY(0.4)', 'starts where it was');
+  await new Promise((resolve) => setTimeout(resolve, 5));
+  assert.equal(second.style.getPropertyValue('transform'), 'scaleY(0.8)', 'then fills');
+  /** @param {any} root */
+  const sealClasses = (root) => withClass(root, 'hive-seal').map((g) => g.getAttribute('class'));
+  assert.deepEqual(sealClasses(moved), ['hive-seal is-sealing', 'hive-seal is-sealing'], 'a new seal paints, board and motifs');
+  const again = renderHive(later, /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: { u01: true } });
+  assert.deepEqual(sealClasses(again), ['hive-seal', 'hive-seal'], 'once');
+  resetHiveMemory();
+  const fresh = renderHive(later, /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: { u01: true } });
+  assert.deepEqual(sealClasses(fresh), ['hive-seal', 'hive-seal'], 'a seal there on the first draw does not play');
+});
+
+test("renderStrip draws one strip large, marks the current lesson's cell, reports cell taps and paints a seal", () => {
+  /** @type {string[]} */
+  const taps = [];
+  const f = fillOf('u01', [[1, 'learned'], [0.4, 'in-progress']]);
+  const strip = renderStrip(f, /** @type {any} */ (UNITS[0]), { sealed: false, currentLessonId: 'u01-l02', caption: true, onCell: (id) => { taps.push(id); } });
+  assert.equal(strip.getAttribute('aria-hidden'), 'true');
+  assert.equal(strip.getAttribute('viewBox'), '0 0 264 86');
+  const cells = withClass(strip, 'hive-cell');
+  assert.equal(cells.length, 5);
+  assert.equal(cells[1].getAttribute('class'), 'hive-cell is-in-progress is-current');
+  cells[1].dispatch('click');
+  cells[3].dispatch('click');
+  assert.deepEqual(taps, ['u01-l02'], 'a placeholder does nothing');
+  assert.deepEqual(withClass(strip, 'hive-caption').map((t) => t.textContent), ['Prvi stik']);
+  assert.equal(renderStrip(f, /** @type {any} */ (UNITS[0]), { sealed: false }).getAttribute('viewBox'), '0 0 264 64');
+  const sealed = renderStrip(f, /** @type {any} */ (UNITS[0]), { sealed: true, caption: true });
+  const [under, over] = withClass(sealed, 'hive-seal');
+  assert.equal(withClass(sealed, 'hive-seal').length, 2, 'the large strip carries the seal too');
+  const body = sealed.childNodes;
+  assert.deepEqual([body.indexOf(under), body.indexOf(over)], [1, body.length - 1], 'after the defs the board, under the cells; the motifs last');
+  assert.ok(body.indexOf(under) < body.indexOf(withClass(sealed, 'hive-cell')[0]));
+  assert.deepEqual(['y', 'height'].map((a) => withClass(under, 'hive-seal-board')[0].getAttribute(a)), ['2', '60'], 'flush with the cells');
+  assert.equal(withClass(sealed, 'hive-caption')[0].getAttribute('y'), '76');
+  const motifs = elements(over).filter((e) => e.tagName === 'use' && e.getAttribute('class') === 'hive-motif motif-flower');
+  assert.equal(motifs.length, withClass(sealed, 'hive-cell').length, 'one motif per cell');
+  assert.equal(motifs.length, 5);
+  assert.ok(elements(sealed).some((e) => e.tagName === 'symbol' && e.getAttribute('id') === motifs[0].getAttribute('href').slice(1)), 'the symbol is in the same SVG');
+});
+
+test('the seal is paint only, so a tap on a sealed cell reaches the cell and the strip under it', () => {
+  const css = readFileSync(new URL('../../app/css/components.css', import.meta.url), 'utf8');
+  const rule = css.match(/^\.hive-seal\s*\{([^}]*)\}/m);
+  assert.ok(rule, 'components.css has a .hive-seal rule');
+  assert.match(rule[1], /pointer-events:\s*none;/, 'the board and motifs take no taps');
+  const sealed = renderHive(FILLS, /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: { u01: true } });
+  const strip = withClass(sealed, 'hive-strip')[0];
+  const paint = [...withClass(strip, 'hive-seal-board'), ...elements(strip).filter((e) => e.tagName === 'use')];
+  assert.equal(paint.length, 6);
+  assert.ok(paint.every((e) => withClass(strip, 'hive-seal').some((g) => elements(g).includes(e))), 'the board and every motif sit in a .hive-seal group');
 });
 
 test('sealedUnits turns the dates of meta.sealed into flags by unit id', () => {
   assert.deepEqual(sealedUnits({ schemaVersion: 1, createdAt: 0 }), {});
-  assert.deepEqual(sealedUnits({ schemaVersion: 1, createdAt: 0, sealed: {} }), {});
-  assert.deepEqual(sealedUnits({ schemaVersion: 1, createdAt: 0, sealed: { u01: '2026-11-02', u02: '2026-11-08' } }), { u01: true, u02: true });
-});
-
-test('resetHiveMemory forgets the fills shown, so the next render draws each cell at its fill with nothing to move', () => {
-  const fills = [{ unitId: 'u01', cells: [{ lessonId: 'u01-l01', fill: 0.2 }], fill: 0.2 }];
-  renderHive(fills, /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: {} });
-  const remembered = renderHive([{ ...fills[0], cells: [{ lessonId: 'u01-l01', fill: 0.9 }] }], /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: {} });
-  assert.equal(withClass(remembered, 'hive-fill')[0].style.getPropertyValue('transform'), 'scaleY(0.2)', 'without a reset it starts where it was');
-  resetHiveMemory();
-  const fresh = renderHive([{ ...fills[0], cells: [{ lessonId: 'u01-l01', fill: 0.9 }] }], /** @type {any} */ (UNITS), { onUnit: () => {}, sealed: {} });
-  assert.equal(withClass(fresh, 'hive-fill')[0].style.getPropertyValue('transform'), 'scaleY(0.9)', 'after a reset it is drawn at its fill');
+  assert.deepEqual(sealedUnits({ schemaVersion: 1, createdAt: 0, sealed: { u01: '2026-11-02' } }), { u01: true });
 });

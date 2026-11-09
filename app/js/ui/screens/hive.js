@@ -1,7 +1,8 @@
-// The Hive screen (spec 6): the ten boards, a tap on one opens its unit page; under them the honest
-// counts of spec 4.7, each against the course's own total: items recallable now against the
-// scheduled items, words met against the course's words, hours practised against the hours A1
-// courses budget. Counts, not scores.
+// The Hive screen (spec 6, concept section 3): the course as honeycomb, one strip per unit of the
+// index with a cell per lesson (components/hive.js), a tap on a strip opens its unit page; under
+// the comb the honest counts of spec 4.7, each against the course's own total: items recallable
+// now against the scheduled items, words met against the course's words, hours practised against
+// the hours A1 courses budget. Counts, not scores.
 
 import { h, mount } from '../../util/dom.js';
 import { onlyKnown } from '../../content/loader.js';
@@ -36,7 +37,7 @@ export function renderHiveScreen(container, app) {
   const fills = app.units.map((content) => hiveFill(states, content, now, retention, { allowPending: app.allowPending }));
   mount(container, h('section', { class: 'screen screen-hive' },
     h('h1', { class: 'screen-title' }, 'Hive'),
-    h('p', { class: 'en-text' }, 'One board per unit, one cell per lesson. A cell fills with what you can recall now, and a passed checkpoint seals its board. Tap a board to open the unit.'),
+    h('p', { class: 'en-text' }, 'One row per unit, one cell per lesson. A cell fills with what you can recall now, and a passed checkpoint paints its row. Tap a row to open the unit.'),
     renderHive(fills, app.index.units, { onUnit: (id) => navigate(`/unit?id=${id}`), sealed: sealedUnits(app.state.meta) }),
     h('dl', { class: 'glance' },
       glance('Can recall now', `${recallNow(states, now, retention)} of ${app.index.counts.scheduledItems} items`),

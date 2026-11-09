@@ -84,6 +84,7 @@
  * @property {string} title_en
  * @property {string} setting_en the scene in English, in generic framing
  * @property {DialogueLine[]} lines
+ * @property {Record<string, 'female'|'male'>} [cast] the recorded voice of each speaker other than the learner
  */
 
 /**
@@ -92,6 +93,7 @@
  * @property {string} id `uNN-lNN`
  * @property {string} unit id of the unit, which lists this lesson in units.json
  * @property {number} order position within the unit, from 1
+ * @property {'theme'|'consolidation'} [role] a consolidation lesson brings the unit's earlier lessons together; a missing or other role is a theme lesson (lessonRole, engine/course.js)
  * @property {string} title_sl
  * @property {string} title_en
  * @property {Item[]} items
@@ -132,6 +134,8 @@
  * @property {string} title_en
  * @property {string} motif the hive motif drawn on the unit's panel
  * @property {string[]} lessons lesson ids in order
+ * @property {string} [level] the level the unit belongs to, such as `A1`; each run of units of one level forms a group (levelGroups, engine/course.js), and a course without levels is one group
+ * @property {number} [lessonCount] the cells the hive draws for the unit, its lessons whether the bundle carries them yet or not; without it the hive draws the bundled lessons
  */
 
 // ---------------------------------------------------------------------------

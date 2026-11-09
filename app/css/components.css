@@ -1,10 +1,11 @@
-/* Components: header, screens, buttons, the exercises, the feedback panel, the session bar, the
-   rule card, the Rules screen, the Today screen with its calendar and hive, the unit page, the
-   checkpoint and onboarding forms, the Words, Stats and Settings screens, the tab bar and the
-   toast. Every control is at least 44 by 44 px, through min-height and min-width or padding,
-   never by scaling text; the focus ring is base.css's, and a component only adds its indigo band
-   where its own box-shadow or an SVG shape would leave it out; motion only answers an action, sits
-   in the no-preference block, and the reduce block at the very end switches all of it off. */
+/* Components: header, screens, buttons, the exercises, the feedback panel, the session bar with
+   its Quiet panel and offer, the rule card, the Rules screen, the Today screen with its calendar
+   and hive, the unit page, the checkpoint and onboarding forms, the Words, Stats and Settings
+   screens, the tab bar and the toast. Every control is at least 44 by 44 px, through min-height
+   and min-width or padding, never by scaling text; the focus ring is base.css's, and a component
+   only adds its indigo band where its own box-shadow or an SVG shape would leave it out; motion
+   only answers an action, sits in the no-preference block, and the reduce block at the very end
+   switches all of it off. */
 
 /* Header */
 
@@ -396,7 +397,8 @@
   gap: var(--space-12);
 }
 
-.session-end {
+.session-end,
+.session-quiet {
   padding: 0 var(--space-8);
 }
 
@@ -413,6 +415,50 @@
   height: 100%;
   border-radius: inherit;
   background: var(--honey);
+}
+
+/* The Quiet panel: a quiet card under the session bar with the two choices and their line. */
+.quiet-panel {
+  display: grid;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-16);
+  background: var(--surface);
+}
+
+/* A choice that holds looks on, not disabled: pressed in the panel, and the session bar's toggle
+   reads "Quiet on" with the same look while either holds. */
+.quiet-panel .btn[aria-pressed='true'],
+.session-quiet.is-on {
+  opacity: 1;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.session-quiet.is-on {
+  text-decoration: none;
+}
+
+/* The choice offered beside an exercise; it takes no room while nothing is offered. */
+.quiet-offer {
+  display: flex;
+}
+
+.quiet-offer:empty {
+  display: none;
+}
+
+/* The offer's text starts at the content edge; its tap target stays 44 px high. */
+.quiet-offer .btn-quiet {
+  padding-inline: 0;
+  border-inline-width: 0;
+}
+
+/* The unit's checkpoint on the closing screen of its last lesson, set apart from the menu under it. */
+.closing-checkpoint {
+  margin-block-end: var(--space-16);
 }
 
 /* Rule card */
@@ -827,22 +873,16 @@ button.rule-cell {
   opacity: 0.92;
 }
 
-.intention {
-  padding: var(--space-8) var(--space-12);
-  border-left: 3px solid var(--honey);
-  border-radius: 0 var(--radius-10) var(--radius-10) 0;
-  background: var(--surface);
-  color: var(--text-muted);
-}
-
 .section-title {
   font-size: var(--text-18);
   font-weight: 700;
 }
 
-.hive-section {
-  display: grid;
-  gap: var(--space-12);
+/* The unit in focus as one large strip under the primary action, a link to the Hive; the focus
+   ring is base.css's, round with the link. */
+.today-strip {
+  display: block;
+  border-radius: var(--radius-16);
 }
 
 /* Calendar */
@@ -905,37 +945,64 @@ button.rule-cell {
   font-size: var(--text-14);
 }
 
-/* Hive */
+/* Hive: honeycomb strips (hive.js), one per unit. A strip's tap target is a transparent rect, so
+   the whole row answers a tap; on focus its own stroke carries the ring's band, since an SVG group
+   has no box for base.css's shadow. The cells are outlines over the honey, a learned cell rimmed
+   darker; a sealed strip has an opaque board under its cells and the unit's motif over them. Both
+   seal groups are paint only: they take no taps, so a tap on a sealed cell reaches the cell
+   (renderStrip's onCell) and the strip's own tap target under it. */
 
 .hive {
   display: block;
   width: 100%;
+  max-width: 358px;
   height: auto;
+  margin-inline: auto;
   overflow: visible;
 }
 
-.hive-panel {
+.hive-strip-large {
+  max-width: 358px;
+}
+
+.hive-level {
+  font-size: var(--text-18);
+  font-weight: 700;
+}
+
+.hive-strip {
   cursor: pointer;
 }
 
-/* A board has no box for the focus ring's indigo band (base.css), so on focus its own outline
-   thickens to carry the band. The honey ring follows the thicker stroke out (Chrome draws an SVG
-   outline around the stroke), keeping its 2px offset from it. */
-.hive-panel:focus-visible .hive-board {
+.hive-hit {
+  fill: transparent;
+}
+
+.hive-strip:focus-visible .hive-hit {
+  stroke: var(--accent);
   stroke-width: 4;
 }
 
-.hive-board {
-  fill: var(--hive-board);
+.hive-comb {
+  fill: transparent;
   stroke: var(--hive-line);
   stroke-width: 1.5;
+  stroke-linejoin: round;
 }
 
-.hive-comb {
-  fill: var(--hive-cell);
-  stroke: var(--hive-line);
-  stroke-width: 1.2;
-  stroke-linejoin: round;
+.is-learned .hive-comb {
+  stroke: var(--hive-rim);
+  stroke-width: 3;
+}
+
+.is-current .hive-comb {
+  stroke: var(--hive-current);
+  stroke-width: 2.5;
+}
+
+.is-placeholder .hive-comb {
+  stroke-dasharray: 3 3;
+  opacity: 0.75;
 }
 
 .hive-fill {
@@ -950,26 +1017,48 @@ button.rule-cell {
   font-weight: 600;
 }
 
-.hive-seal-disc {
-  fill: var(--hive-board);
-  stroke: var(--hive-line);
-  stroke-width: 1.5;
+.hive-seal {
+  pointer-events: none;
 }
 
-.hive-motif {
-  fill: var(--hive-line);
-  stroke: var(--hive-line);
-  stroke-width: 0;
-}
-
-.hive-motif .m-cut {
-  fill: var(--hive-board);
+.hive-seal-board {
+  fill: var(--seal-board);
   stroke: none;
 }
 
-.hive-motif .m-cut-line {
+/* Motifs: the parts of a motif symbol (motifs.js), flat in the folk colours, each filled part
+   outlined in --motif-line; m-line parts are a stroke alone, in --motif-stroke. */
+
+.motif .m-main {
+  fill: var(--poppy);
+}
+
+.motif .m-second {
+  fill: var(--leaf);
+}
+
+.motif .m-third {
+  fill: var(--honey);
+}
+
+.motif .m-cut {
+  fill: var(--warm-white);
+}
+
+.motif .m-main,
+.motif .m-second,
+.motif .m-third,
+.motif .m-cut {
+  stroke: var(--motif-line);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.motif .m-line {
   fill: none;
-  stroke: var(--hive-board);
+  stroke: var(--motif-stroke);
+  stroke-width: 1.6;
+  stroke-linecap: round;
 }
 
 /* Hive screen */
@@ -1029,18 +1118,85 @@ button.rule-cell {
   gap: var(--space-4);
 }
 
-.lesson-list {
+/* The unit's strip, its lesson titles and the due line, as wide as the strip so each title sits
+   under its cell: one grid column per cell (--cells, set inline). */
+.unit-strip {
+  display: grid;
+  gap: var(--space-8);
+  width: 100%;
+  max-width: 358px;
+  margin-inline: auto;
+}
+
+.strip-titles {
+  display: grid;
+  grid-template-columns: repeat(var(--cells), minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.strip-titles > li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  text-align: center;
+}
+
+.strip-title {
+  width: 100%;
+  min-height: var(--tap);
+  padding: var(--space-4);
+  border: 0;
+  border-radius: var(--radius-10);
+  background: transparent;
+  color: var(--accent);
+  font-size: var(--text-14);
+  font-weight: 600;
+  line-height: 1.2;
+  hyphens: auto;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.unit-due {
+  color: var(--text-muted);
+  font-size: var(--text-14);
+}
+
+/* A lesson's sheet: a card with a honey top edge. It is a surface already, so a rule's example
+   sits on the page colour. */
+.lesson-sheet {
+  display: grid;
+  gap: var(--space-12);
+  padding: var(--space-16);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--honey);
+  border-radius: var(--radius-16);
+  background: var(--surface);
+}
+
+.sheet-items,
+.sheet-rules {
   display: grid;
   gap: var(--space-12);
 }
 
-.lesson-entry {
-  display: grid;
-  gap: var(--space-4);
-  padding: var(--space-16);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-16);
-  background: var(--surface);
+.sheet-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.sheet-rules .rule-title {
+  margin: 0;
+}
+
+.lesson-sheet .rule-example {
+  background: var(--bg);
 }
 
 .lesson-meter {
@@ -1078,6 +1234,11 @@ button.rule-cell {
 
 .checkpoint-result {
   font-size: var(--text-28);
+}
+
+/* The pass card's strip of the unit just sealed; the strip keeps .hive's centring. */
+.checkpoint-seal {
+  margin-block: var(--space-16);
 }
 
 .field {
@@ -1190,6 +1351,28 @@ button.rule-cell {
   height: 24px;
   fill: currentColor;
   stroke: currentColor;
+}
+
+/* The helper line and the first example under the word: the English muted at 14 px, the example's
+   Slovenian at 16 px. The entry is a surface already, so the helper panel sits on the page colour. */
+.word-helper {
+  padding: var(--space-8) var(--space-12);
+  background: var(--bg);
+  color: var(--text-muted);
+  font-size: var(--text-14);
+}
+
+.word-example {
+  display: grid;
+  gap: 2px;
+}
+
+.word-example .sl-text {
+  font-size: var(--text-16);
+}
+
+.word-example .en-text {
+  font-size: var(--text-14);
 }
 
 .word-meta {
@@ -1600,6 +1783,10 @@ button.rule-cell {
     transition: transform 300ms ease-out;
   }
 
+  .hive-seal.is-sealing {
+    animation: seal-paint 600ms ease-out;
+  }
+
   .feedback,
   .reveal:not([hidden]) {
     animation: settle 200ms ease-out;
@@ -1615,6 +1802,16 @@ button.rule-cell {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes seal-paint {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 

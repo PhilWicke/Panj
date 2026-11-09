@@ -1,14 +1,15 @@
 // Progress counters: pure functions over the item states (scheduler.js), the compiled content
 // (content/types.js) and the session records the session screen appends. They feed the Today
-// screen, the hive, the weekly calendar and the Stats and Words screens. Nothing here reads the
-// clock or writes to its inputs, and the days are the learner's local days (util/time.js).
+// screen, the hive, the unit page, the weekly calendar and the Stats and Words screens. Nothing
+// here reads the clock or writes to its inputs, and the days are the learner's local days
+// (util/time.js).
 //
 // Two counters are shown against the bundle's totals and count the way the compiler does:
 // recallNow against index.counts.scheduledItems (lesson items, so the rule quick-check items that
 // share the states are left out, as in session.js) and wordsMet against index.counts.lemmasMet
 // (the same tokeniser, util/tokens.js, over the same texts).
 
-import { retrievability } from './scheduler.js';
+import { retrievability, isDue } from './scheduler.js';
 import { practisable } from './course.js';
 import { localDateKey, daysBetween } from '../util/time.js';
 import { wordTokens } from '../util/tokens.js';
@@ -60,7 +61,8 @@ import { isRuleId } from '../util/ids.js';
  * @property {boolean} reachable the target can still be met, the grace day counted: possibleDays is at least target minus the grace day
  */
 
-/** @typedef {{ lessonId: string, fill: number }} HiveCell */
+/** @typedef {'not-started'|'in-progress'|'learned'} CellState */
+/** @typedef {{ lessonId: string, order: number, fill: number, state: CellState }} HiveCell */
 /** @typedef {{ unitId: string, cells: HiveCell[], fill: number }} HiveFill */
 /** @typedef {{ allowPending?: boolean }} FillOptions allowPending: every item of a lesson counts, as a dev build practises them all; accepted items only when omitted */
 
@@ -144,28 +146,35 @@ export function wordsMet(states, units) {
 }
 
 /**
- * The items of a lesson that count (the accepted ones, or every item with `allowPending`) and how
- * many of them are recallable now.
+ * The items of a lesson that count (the accepted ones, or every item with `allowPending`), how
+ * many of them the learner has met (a state whose phase is not `new`) and how many are
+ * recallable now.
  * @param {Record<string, ItemState>} states
  * @param {Lesson} lesson
  * @param {number} now
  * @param {number} retention
  * @param {boolean} allowPending
- * @returns {{ counted: number, recalled: number }}
+ * @returns {{ counted: number, met: number, recalled: number }}
  */
 function tally(states, lesson, now, retention, allowPending) {
   let counted = 0;
+  let met = 0;
   let recalled = 0;
   for (const item of lesson.items) {
     if (!practisable(item, allowPending)) continue;
     counted += 1;
-    if (recallable(states[item.id], now, retention)) recalled += 1;
+    const state = states[item.id];
+    if ((state?.phase ?? 'new') !== 'new') met += 1;
+    if (recallable(state, now, retention)) recalled += 1;
   }
-  return { counted, recalled };
+  return { counted, met, recalled };
 }
 
 /** @param {{ counted: number, recalled: number }} t @returns {number} 0 to 1, and 0 when nothing counts */
 const share = (t) => (t.counted === 0 ? 0 : t.recalled / t.counted);
+
+/** @param {{ counted: number, met: number, recalled: number }} t @returns {CellState} */
+const stateOf = (t) => (t.counted > 0 && t.recalled === t.counted ? 'learned' : t.met > 0 ? 'in-progress' : 'not-started');
 
 /**
  * The share of the lesson's items the learner can recall now, 0 to 1: what a hive cell shows,
@@ -183,10 +192,27 @@ export function lessonFill(states, lesson, now, retention, options = {}) {
 }
 
 /**
+ * The state of a lesson's hive cell, over the items lessonFill counts (the accepted ones, or every
+ * item with `options.allowPending`): `learned` when at least one counts and every counted item is
+ * recallable now, `in-progress` when a counted item has been met (its phase is not `new`), so a
+ * lapse or an item below the target keeps a met lesson in progress, and `not-started` otherwise.
+ * @param {Record<string, ItemState>} states by item id
+ * @param {Lesson} lesson
+ * @param {number} now epoch ms
+ * @param {number} retention the desired retention, 0 to 1
+ * @param {FillOptions} [options]
+ * @returns {CellState}
+ */
+export function cellState(states, lesson, now, retention, options = {}) {
+  return stateOf(tally(states, lesson, now, retention, options.allowPending === true));
+}
+
+/**
  * The fill of a unit's panel: one cell per lesson the bundle carries, in order, with that lesson's
- * fill, and the unit's own fill as the share of all its counted items that are recallable now
- * (weighted by items, so a lesson of ten items counts for more than one of three). The accepted
- * items count, or every item with `options.allowPending` (a dev build).
+ * order, its fill (lessonFill) and its state (cellState), and the unit's own fill as the share of
+ * all its counted items that are recallable now (weighted by items, so a lesson of ten items
+ * counts for more than one of three). The accepted items count, or every item with
+ * `options.allowPending` (a dev build).
  * @param {Record<string, ItemState>} states by item id
  * @param {UnitContent} unitContent
  * @param {number} now epoch ms
@@ -201,9 +227,33 @@ export function hiveFill(states, unitContent, now, retention, options = {}) {
     const t = tally(states, lesson, now, retention, allowPending);
     total.counted += t.counted;
     total.recalled += t.recalled;
-    return { lessonId: lesson.id, fill: share(t) };
+    return { lessonId: lesson.id, order: lesson.order, fill: share(t), state: stateOf(t) };
   });
   return { unitId: unitContent.unit.id, cells, fill: share(total) };
+}
+
+/**
+ * How many of the unit's items are due for review now, for the unit page's due line: the items of
+ * its lessons that count (the accepted ones, or every item with `options.allowPending`, as
+ * hiveFill counts them) whose state is in review or lapsed and due. New and learning items are no
+ * reviews, so a drained unit, sealed or not, says what it needs and nothing else.
+ * @param {Record<string, ItemState>} states by item id
+ * @param {UnitContent} unitContent
+ * @param {number} now epoch ms
+ * @param {FillOptions} [options]
+ * @returns {number}
+ */
+export function unitDue(states, unitContent, now, options = {}) {
+  const allowPending = options.allowPending === true;
+  let due = 0;
+  for (const lesson of unitContent.lessons) {
+    for (const item of lesson.items) {
+      if (!practisable(item, allowPending)) continue;
+      const state = states[item.id];
+      if (state && (state.phase === 'review' || state.phase === 'lapsed') && isDue(state, now)) due += 1;
+    }
+  }
+  return due;
 }
 
 /**
