@@ -1,0 +1,481 @@
+{
+  "id": "u10-l01",
+  "unit": "u10",
+  "order": 1,
+  "role": "theme",
+  "title_sl": "Kaj si po poklicu?",
+  "title_en": "What do you do?",
+  "items": [
+    {
+      "id": "u10-l01-i01",
+      "type": "chunk",
+      "sl": "Kaj si po poklicu?",
+      "sl_colloquial": null,
+      "en": "What do you do for a living? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kaj si pa ti po poklicu?",
+          "en": "And you, what do you do for a living?"
+        },
+        {
+          "sl": "In kaj si po poklicu?",
+          "en": "And what do you do for a living?"
+        }
+      ],
+      "helper": "poklic is your job or calling, from klic, a call, as German Beruf comes from rufen.",
+      "accept": [],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l01-i02",
+      "type": "chunk",
+      "sl": "Kje delaš?",
+      "sl_colloquial": null,
+      "en": "Where do you work? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kje pa delaš?",
+          "en": "And where do you work?"
+        },
+        {
+          "sl": "Kje delaš, v centru?",
+          "en": "Where do you work, in the centre?"
+        }
+      ],
+      "helper": "delati is both to do and to work: kaj delaš, what are you doing; kje delaš, where do you work.",
+      "accept": [
+        "Kje pa delaš?"
+      ],
+      "rules": [
+        "r-verb-present",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l01-i03",
+      "type": "chunk",
+      "sl": "Delam v pisarni.",
+      "sl_colloquial": null,
+      "en": "I work in an office.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Delam v pisarni v centru.",
+          "en": "I work in an office in the centre."
+        },
+        {
+          "sl": "Delam v pisarni, imam dobro službo.",
+          "en": "I work in an office, I have a good job."
+        }
+      ],
+      "helper": "v pisarni, in the office: pisarna takes -i, as in v kuhinji.",
+      "accept": [
+        "V pisarni delam."
+      ],
+      "rules": [
+        "r-locative",
+        "r-verb-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l01-i04",
+      "type": "chunk",
+      "sl": "Sem študent.",
+      "sl_colloquial": null,
+      "en": "I am a student.",
+      "register": "neutral",
+      "slots": [
+        {
+          "label": "job",
+          "fillers": [
+            "u10-l01-i07",
+            "u10-l01-i08"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "sl": "Sem študent, nimam denarja.",
+          "en": "I'm a student, I have no money."
+        },
+        {
+          "sl": "Moj brat je tudi študent.",
+          "en": "My brother is a student too."
+        }
+      ],
+      "helper": "A woman says Sem študentka. Slovenian has no word for a.",
+      "accept": [
+        "Sem študentka.",
+        "Študent sem.",
+        "Študentka sem."
+      ],
+      "rules": [
+        "r-feminine-professions",
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l01-i05",
+      "type": "word",
+      "sl": "služba",
+      "sl_colloquial": null,
+      "en": "job, place of work",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "službo",
+        "loc": "službi"
+      },
+      "examples": [
+        {
+          "sl": "Imam dobro službo.",
+          "en": "I have a good job."
+        },
+        {
+          "sl": "Danes sem v službi.",
+          "en": "I'm at work today."
+        }
+      ],
+      "helper": "From služiti, to serve, as German Dienst comes from dienen.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 337,
+      "verification": {
+        "review1": "doubtful",
+        "review2": "accepted",
+        "native": null,
+        "status": "pending",
+        "notes": "review1 doubtful: Register. The gloss 'place of work' and the example 'Danes sem v službi' use the sense SSKJ labels pog. ('// pog. stavba, prostor, kjer se opravlja tako delo ... to sem slišal v službi'), and Pravopis has knj. pog. for 'čakati koga pred službo'. The item is tagged neutral, so by the style guide it waits for a native to confirm the tag. The job sense itself carries no label; forms and helper are fine."
+      }
+    },
+    {
+      "id": "u10-l01-i06",
+      "type": "word",
+      "sl": "pisarna",
+      "sl_colloquial": null,
+      "en": "office",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "pisarno",
+        "loc": "pisarni"
+      },
+      "examples": [
+        {
+          "sl": "Pisarna je v centru.",
+          "en": "The office is in the centre."
+        },
+        {
+          "sl": "Grem v pisarno.",
+          "en": "I'm going to the office."
+        }
+      ],
+      "helper": "From pisati, to write: the place where writing is done.",
+      "accept": [],
+      "rules": [
+        "r-locative"
+      ],
+      "freq_rank": 2195,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l01-i07",
+      "type": "word",
+      "sl": "učitelj",
+      "sl_colloquial": null,
+      "en": "teacher",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "f": "učiteljica"
+      },
+      "examples": [
+        {
+          "sl": "Moj brat je učitelj.",
+          "en": "My brother is a teacher."
+        },
+        {
+          "sl": "Moja sestra je učiteljica.",
+          "en": "My sister is a teacher."
+        }
+      ],
+      "helper": "From učiti, to teach. A woman is učiteljica.",
+      "accept": [
+        "učiteljica"
+      ],
+      "rules": [
+        "r-feminine-professions"
+      ],
+      "freq_rank": 779,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l01-i08",
+      "type": "word",
+      "sl": "profesor",
+      "sl_colloquial": null,
+      "en": "professor, or secondary school teacher",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "f": "profesorica"
+      },
+      "examples": [
+        {
+          "sl": "Profesor je zelo prijazen.",
+          "en": "The professor is very kind."
+        },
+        {
+          "sl": "Ona je profesorica.",
+          "en": "She is a professor."
+        }
+      ],
+      "helper": "Like German Professor, but also a secondary school teacher. A woman is profesorica.",
+      "accept": [
+        "profesorica"
+      ],
+      "rules": [
+        "r-feminine-professions"
+      ],
+      "freq_rank": 669,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-feminine-professions"
+  ],
+  "structured": [
+    {
+      "id": "u10-l01-s01",
+      "prompt_sl": "Moj brat je ___.",
+      "options": [
+        "učitelj",
+        "učiteljica",
+        "učitelja"
+      ],
+      "answer": "učitelj",
+      "rule": "r-feminine-professions",
+      "en": "My brother is a teacher."
+    },
+    {
+      "id": "u10-l01-s02",
+      "prompt_sl": "Moja sestra je ___.",
+      "options": [
+        "profesor",
+        "profesorica",
+        "profesorja"
+      ],
+      "answer": "profesorica",
+      "rule": "r-feminine-professions",
+      "en": "My sister is a professor."
+    },
+    {
+      "id": "u10-l01-s03",
+      "prompt_sl": "On je ___.",
+      "options": [
+        "študent",
+        "študentka"
+      ],
+      "answer": "študent",
+      "rule": "r-feminine-professions",
+      "en": "He is a student."
+    },
+    {
+      "id": "u10-l01-s04",
+      "prompt_sl": "Ona je ___.",
+      "options": [
+        "študent",
+        "študentka"
+      ],
+      "answer": "študentka",
+      "rule": "r-feminine-professions",
+      "en": "She is a student."
+    },
+    {
+      "id": "u10-l01-s05",
+      "prompt_sl": "Delam v ___.",
+      "options": [
+        "pisarni",
+        "pisarna",
+        "pisarno"
+      ],
+      "answer": "pisarni",
+      "rule": "r-locative",
+      "en": "I work in an office."
+    },
+    {
+      "id": "u10-l01-s06",
+      "prompt_sl": "Kje ___ tvoja sestra?",
+      "options": [
+        "dela",
+        "delam",
+        "delaš"
+      ],
+      "answer": "dela",
+      "rule": "r-verb-present",
+      "en": "Where does your sister work?"
+    }
+  ],
+  "production": [
+    {
+      "id": "u10-l01-p01",
+      "en": "Someone at the table asks what you do. Say you are a student.",
+      "answer": "Sem študent.",
+      "accept": [
+        "Sem študentka.",
+        "Študent sem.",
+        "Študentka sem."
+      ],
+      "item": "u10-l01-i04"
+    },
+    {
+      "id": "u10-l01-p02",
+      "en": "Say you are a primary school teacher.",
+      "answer": "Sem učitelj.",
+      "accept": [
+        "Sem učiteljica.",
+        "Učitelj sem.",
+        "Učiteljica sem."
+      ],
+      "item": "u10-l01-i04",
+      "filler": "učitelj"
+    },
+    {
+      "id": "u10-l01-p03",
+      "en": "Say you are a university professor.",
+      "answer": "Sem profesor.",
+      "accept": [
+        "Sem profesorica.",
+        "Profesor sem.",
+        "Profesorica sem."
+      ],
+      "item": "u10-l01-i04",
+      "filler": "profesor"
+    },
+    {
+      "id": "u10-l01-p04",
+      "en": "Ask someone close where they work.",
+      "answer": "Kje delaš?",
+      "accept": [
+        "Kje pa delaš?"
+      ],
+      "item": "u10-l01-i02"
+    },
+    {
+      "id": "u10-l01-p05",
+      "en": "Say you work in an office.",
+      "answer": "Delam v pisarni.",
+      "accept": [
+        "V pisarni delam."
+      ],
+      "item": "u10-l01-i03"
+    },
+    {
+      "id": "u10-l01-p06",
+      "en": "Ask someone close what they do for a living.",
+      "answer": "Kaj si po poklicu?",
+      "accept": [
+        "Kaj delaš?",
+        "Kaj pa delaš?"
+      ],
+      "item": "u10-l01-i01"
+    }
+  ],
+  "dialogue": {
+    "id": "u10-l01-d",
+    "title_sl": "Kje delaš?",
+    "title_en": "Where do you work?",
+    "setting_en": "You are at your hosts' table. A neighbour, also a guest, asks what you do.",
+    "lines": [
+      {
+        "speaker": "neighbour",
+        "sl": "Kaj si po poklicu?",
+        "en": "What do you do for a living?",
+        "new_items": [
+          "u10-l01-i01"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Delam v pisarni. Kaj pa ti?",
+        "en": "I work in an office. What about you?",
+        "new_items": [
+          "u10-l01-i03"
+        ]
+      },
+      {
+        "speaker": "neighbour",
+        "sl": "Jaz sem učitelj. Kje delaš?",
+        "en": "I'm a teacher. Where do you work?",
+        "new_items": [
+          "u10-l01-i07",
+          "u10-l01-i02"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "V centru. Imam dobro službo.",
+        "en": "In the centre. I have a good job.",
+        "new_items": [
+          "u10-l01-i05"
+        ]
+      },
+      {
+        "speaker": "neighbour",
+        "sl": "Lepo. Tudi jaz delam v centru.",
+        "en": "Nice. I work in the centre too."
+      }
+    ]
+  }
+}

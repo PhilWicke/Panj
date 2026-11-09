@@ -1,0 +1,458 @@
+{
+  "id": "u10-l04",
+  "unit": "u10",
+  "order": 4,
+  "role": "theme",
+  "title_sl": "Učim se slovensko",
+  "title_en": "I am learning Slovenian",
+  "items": [
+    {
+      "id": "u10-l04-i01",
+      "type": "chunk",
+      "sl": "Kaj študiraš?",
+      "sl_colloquial": null,
+      "en": "What are you studying? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kaj pa ti študiraš?",
+          "en": "And what are you studying?"
+        },
+        {
+          "sl": "Kaj študiraš na fakulteti?",
+          "en": "What are you studying at the faculty?"
+        }
+      ],
+      "helper": "študirati, like German studieren.",
+      "accept": [
+        "Kaj pa študiraš?"
+      ],
+      "rules": [
+        "r-verb-present",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l04-i02",
+      "type": "chunk",
+      "sl": "Učim se slovensko.",
+      "sl_colloquial": null,
+      "en": "I am learning Slovenian.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Zvečer se učim slovensko.",
+          "en": "In the evening I learn Slovenian."
+        },
+        {
+          "sl": "Učim se slovensko, lep jezik je.",
+          "en": "I am learning Slovenian, it's a beautiful language."
+        }
+      ],
+      "helper": "se stays in second place: zvečer se učim slovensko.",
+      "accept": [
+        "Učim se slovenščine.",
+        "Učim se slovenščino.",
+        "Slovensko se učim."
+      ],
+      "rules": [
+        "r-clitic-order",
+        "r-reflexive-se"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "doubtful",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review1 doubtful: The accept variants are confirmed: Pravopis gives učiti se kaj, česa, so slovenščine and slovenščino both stand. The headword with the adverb slovensko is the doubt: Fran shows the adverb only with govoriti and no attestation of učiti se slovensko. It sounds natural in speech to me, but I cannot source it and the neutral tag rests on it.; review2 doubtful: sl and examples use the adverb slovensko with učiti se. SSKJ and Pravopis show that adverb only with govoriti, the same holds for angleško, and Pravopis gives učiti se the government kaj, česa (fiziko, kuhanja). So the accept variants Učim se slovenščine and Učim se slovenščino are supported, while the headword form, heard in speech as far as I know, is not attested in the dictionaries. A native should confirm it, or the headword should move to slovenščino or slovenščine. Slovensko se učim shares the doubt. Fix: Učim se slovenščino."
+      }
+    },
+    {
+      "id": "u10-l04-i03",
+      "type": "chunk",
+      "sl": "Govorim malo slovensko.",
+      "sl_colloquial": null,
+      "en": "I speak a little Slovenian.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, govorim malo slovensko.",
+          "en": "Excuse me, I speak a little Slovenian."
+        },
+        {
+          "sl": "Govorim malo slovensko. Počasi, prosim.",
+          "en": "I speak a little Slovenian. Slowly, please."
+        }
+      ],
+      "helper": "After govorim the language ends in -o: slovensko, nemško.",
+      "accept": [
+        "Malo govorim slovensko."
+      ],
+      "rules": [
+        "r-verb-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l04-i04",
+      "type": "chunk",
+      "sl": "Hodim na tečaj.",
+      "sl_colloquial": null,
+      "en": "I go to a course.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hodim na tečaj slovenščine.",
+          "en": "I go to a Slovenian course."
+        },
+        {
+          "sl": "Zvečer hodim na tečaj.",
+          "en": "In the evening I go to a course."
+        }
+      ],
+      "helper": "hodim is for going regularly; grem is one trip.",
+      "accept": [],
+      "rules": [
+        "r-grem-v-na"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l04-i05",
+      "type": "chunk",
+      "sl": "Ni lahko.",
+      "sl_colloquial": null,
+      "en": "It isn't easy.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Slovenščina? Ni lahko.",
+          "en": "Slovenian? It isn't easy."
+        },
+        {
+          "sl": "Ni lahko, res.",
+          "en": "It isn't easy, really."
+        }
+      ],
+      "helper": "lahko is also can, as in lahko dobim; here it means easy.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l04-i06",
+      "type": "word",
+      "sl": "jezik",
+      "sl_colloquial": null,
+      "en": "language (also tongue)",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "examples": [
+        {
+          "sl": "Slovenščina je lep jezik.",
+          "en": "Slovenian is a beautiful language."
+        },
+        {
+          "sl": "Kateri jezik je to?",
+          "en": "Which language is that?"
+        }
+      ],
+      "helper": "Like English mother tongue: it is also the tongue in your mouth.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 385,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l04-i07",
+      "type": "word",
+      "sl": "fakulteta",
+      "sl_colloquial": null,
+      "en": "faculty (of a university)",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "fakulteto",
+        "loc": "fakulteti"
+      },
+      "examples": [
+        {
+          "sl": "Danes sem na fakulteti.",
+          "en": "I'm at the faculty today."
+        },
+        {
+          "sl": "Grem na fakulteto.",
+          "en": "I'm going to the faculty."
+        }
+      ],
+      "helper": "Like German Fakultät.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 1109,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l04-i08",
+      "type": "word",
+      "sl": "slovenščina",
+      "sl_colloquial": null,
+      "en": "Slovenian (the language)",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "gen": "slovenščine",
+        "acc": "slovenščino"
+      },
+      "examples": [
+        {
+          "sl": "Moja slovenščina ni dobra.",
+          "en": "My Slovenian is not good."
+        },
+        {
+          "sl": "Slovenščina mi je všeč.",
+          "en": "I like Slovenian."
+        }
+      ],
+      "helper": "-ščina makes a language name: slovenščina, nemščina.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 696,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-clitic-order"
+  ],
+  "structured": [
+    {
+      "id": "u10-l04-s01",
+      "prompt_sl": "Zvečer ___ učim slovenščino.",
+      "options": [
+        "se",
+        "sem",
+        "si"
+      ],
+      "answer": "se",
+      "rule": "r-clitic-order",
+      "en": "In the evening I study Slovenian."
+    },
+    {
+      "id": "u10-l04-s02",
+      "prompt_sl": "Včeraj ___ se učil.",
+      "options": [
+        "sem",
+        "se",
+        "si"
+      ],
+      "answer": "sem",
+      "rule": "r-clitic-order",
+      "en": "I studied yesterday. (a man speaking)"
+    },
+    {
+      "id": "u10-l04-s03",
+      "prompt_sl": "Jutri se ___ učil.",
+      "options": [
+        "bom",
+        "sem",
+        "boš"
+      ],
+      "answer": "bom",
+      "rule": "r-clitic-order",
+      "en": "I will study tomorrow. (a man speaking)"
+    },
+    {
+      "id": "u10-l04-s04",
+      "prompt_sl": "Kje ___ se učil slovenščino?",
+      "options": [
+        "si",
+        "se",
+        "sem"
+      ],
+      "answer": "si",
+      "rule": "r-clitic-order",
+      "en": "Where did you learn Slovenian? (to a man)"
+    },
+    {
+      "id": "u10-l04-s05",
+      "prompt_sl": "Včeraj mi ___ bilo slabo.",
+      "options": [
+        "je",
+        "sem",
+        "se"
+      ],
+      "answer": "je",
+      "rule": "r-clitic-order",
+      "en": "I felt sick yesterday."
+    },
+    {
+      "id": "u10-l04-s06",
+      "prompt_sl": "Hodim ___ tečaj.",
+      "options": [
+        "na",
+        "v",
+        "pri"
+      ],
+      "answer": "na",
+      "rule": "r-grem-v-na",
+      "en": "I go to a course."
+    },
+    {
+      "id": "u10-l04-s07",
+      "prompt_sl": "Kaj ___?",
+      "options": [
+        "študiraš",
+        "študiram",
+        "študira"
+      ],
+      "answer": "študiraš",
+      "rule": "r-verb-present",
+      "en": "What are you studying? (to a friend)"
+    }
+  ],
+  "production": [
+    {
+      "id": "u10-l04-p01",
+      "en": "Ask someone close what they are studying.",
+      "answer": "Kaj študiraš?",
+      "accept": [
+        "Kaj pa študiraš?"
+      ],
+      "item": "u10-l04-i01"
+    },
+    {
+      "id": "u10-l04-p02",
+      "en": "Say you are learning Slovenian. Use the noun slovenščina.",
+      "answer": "Učim se slovenščino.",
+      "accept": [
+        "Učim se slovenščine.",
+        "Slovenščino se učim.",
+        "Slovenščine se učim."
+      ],
+      "item": "u10-l04-i02"
+    },
+    {
+      "id": "u10-l04-p03",
+      "en": "Say you speak a little Slovenian.",
+      "answer": "Govorim malo slovensko.",
+      "accept": [
+        "Malo govorim slovensko."
+      ],
+      "item": "u10-l04-i03"
+    },
+    {
+      "id": "u10-l04-p04",
+      "en": "Say you go to a course.",
+      "answer": "Hodim na tečaj.",
+      "accept": [],
+      "item": "u10-l04-i04"
+    },
+    {
+      "id": "u10-l04-p05",
+      "en": "Someone asks how your Slovenian is going. Say it is not easy.",
+      "answer": "Ni lahko.",
+      "accept": [],
+      "item": "u10-l04-i05"
+    },
+    {
+      "id": "u10-l04-p06",
+      "en": "Say Slovenian is a beautiful language.",
+      "answer": "Slovenščina je lep jezik.",
+      "accept": [],
+      "item": "u10-l04-i06"
+    }
+  ],
+  "dialogue": {
+    "id": "u10-l04-d",
+    "title_sl": "V kavarni",
+    "title_en": "In the café",
+    "setting_en": "In a café, a student at the next table asks how your Slovenian is going.",
+    "lines": [
+      {
+        "speaker": "student",
+        "sl": "Živjo. Kaj študiraš?",
+        "en": "Hi. What are you studying?",
+        "new_items": [
+          "u10-l04-i01"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Učim se slovenščino. Hodim na tečaj.",
+        "en": "I'm learning Slovenian. I go to a course.",
+        "new_items": [
+          "u10-l04-i02",
+          "u10-l04-i04"
+        ]
+      },
+      {
+        "speaker": "student",
+        "sl": "Kako ti gre slovenščina?",
+        "en": "How is your Slovenian going?",
+        "new_items": [
+          "u10-l04-i08"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Ni lahko. Govorim malo slovensko.",
+        "en": "It isn't easy. I speak a little Slovenian.",
+        "new_items": [
+          "u10-l04-i05",
+          "u10-l04-i03"
+        ]
+      },
+      {
+        "speaker": "student",
+        "sl": "Lep jezik je. Srečno.",
+        "en": "It's a beautiful language. Good luck.",
+        "new_items": [
+          "u10-l04-i06"
+        ]
+      }
+    ]
+  }
+}

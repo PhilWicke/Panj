@@ -1,0 +1,374 @@
+{
+  "lesson": "u10-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {
+        "u10-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Correct, variants fine, colloquial tag follows the ti rule.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Correct, examples natural, helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Correct, examples natural, feminine variant right.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Fixed phrase, natural; Bomo videle is a correct feminine variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Natural, helper accurate on present for a fixed plan.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-i06": {
+          "verdict": "accepted",
+          "reason": "Gender and loc. izpitu correct, examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-i07": {
+          "verdict": "accepted",
+          "reason": "SSKJ: feminine plural-only, unlabelled. Snoj refers it to počiti, the perfective partner of počivati, so the hook is honest.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=počitnice"
+        },
+        "u10-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Sense 1 unlabelled in SSKJ. Snoj refers it to nasledīti, same root as slediti, so the hook is fair; acc.f naslednjo correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=naslednji"
+        }
+      },
+      "lines": {
+        "u10-l03-s01": {
+          "verdict": "accepted",
+          "reason": "Bom with jaz, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-s02": {
+          "verdict": "accepted",
+          "reason": "English fixes the addressee; boš right.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-s03": {
+          "verdict": "accepted",
+          "reason": "Bo with on, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Bodo with oni, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Bova with midva, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-s06": {
+          "verdict": "accepted",
+          "reason": "Future takes the l-form; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-s07": {
+          "verdict": "accepted",
+          "reason": "Feminine prišla with ona, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Correct; present Kdaj prideš? is rightly accepted.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-p06": {
+          "verdict": "doubtful",
+          "reason": "The answer is natural, but accept is empty although this very lesson teaches bom plus l-form, so 'Naslednji teden bom šel na počitnice.' is equally right and would be marked wrong. The style guide wants every other right answer listed.",
+          "fix": "Add to accept: Naslednji teden bom šel na počitnice. / Naslednji teden bom šla na počitnice.",
+          "source": ""
+        },
+        "u10-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural; SSKJ has velja as confirmation ('velja, jutri se vidiva').",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=veljati"
+        },
+        "r-future-bom": {
+          "verdict": "accepted",
+          "reason": "All table forms and pronouns right, toggle and quick check correct, helpers accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 5,
+      "items": {
+        "u10-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Correct future with l-participle, colloquial ti tag right, variants and examples correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural. The accept order is marked but grammatical, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Correct, natural examples, feminine variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-i04": {
+          "verdict": "accepted",
+          "reason": "The usual fixed phrase. Feminine plural variant is grammatical for an all-female group. Helper is consistent with the course's name for the l-form.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural. Present for a scheduled event is normal, and the helper says so honestly.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-i06": {
+          "verdict": "accepted",
+          "reason": "Correct gender and locative izpitu, natural examples.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-i07": {
+          "verdict": "accepted",
+          "reason": "Correct plural-only noun, no register label in SSKJ, and Snoj points to počiti, so the helper holds. SSKJ's core sense is the school break, and an employee's leave is more often dopust, but SSKJ's imeti, vzeti si tri tedne počitnic and everyday grem na počitnice support adult use.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=po%C4%8Ditnice"
+        },
+        "u10-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Correct adjective and acc.f naslednjo, natural examples, helper from slediti is sound.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u10-l03-s01": {
+          "verdict": "accepted",
+          "reason": "bom agrees with jaz, and the others do not fit.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-s02": {
+          "verdict": "accepted",
+          "reason": "boš is fixed by the English, addressed to a friend.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-s03": {
+          "verdict": "accepted",
+          "reason": "bo agrees with on.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-s04": {
+          "verdict": "accepted",
+          "reason": "bodo agrees with oni and prišli. bosta is a plausible distractor.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-s05": {
+          "verdict": "accepted",
+          "reason": "bova is the dual form for midva.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-s06": {
+          "verdict": "accepted",
+          "reason": "Future takes the l-participle. delati is the classic learner error and delam is wrong too.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-s07": {
+          "verdict": "accepted",
+          "reason": "prišla agrees with ona, and the other options are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct, and the variant is grammatical.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Correct, with both genders and both orders listed.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Correct. Kdaj prideš? is a natural perfective present with future meaning.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Correct fixed phrase and a correct feminine variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, and the variant is grammatical.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Answer correct and natural, and the English asks for the present. Grem na počitnice naslednji teden and Naslednji teden bom šel na počitnice would also be correct and could be added to accept.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural dinner question, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, and both sentences are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural, with correct phrase priti na počitnice.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural hedged reply.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l03-d-05": {
+          "verdict": "doubtful",
+          "reason": "Srečno na izpitu is fine. The doubt is Velja: SSKJ gives it as confirmation of a settled arrangement (velja, jutri se vidiva), but the previous line is a hedge, Bomo videli. Mogoče naslednji teden, so there is nothing firm to agree to. The English All right is softer than the Slovenian. Prav or V redu would fit.",
+          "fix": "V redu. Srečno na izpitu.",
+          "source": "https://fran.si/iskanje?View=1&Query=veljati"
+        },
+        "r-future-bom": {
+          "verdict": "accepted",
+          "reason": "All nine forms and pronouns are correct, and the notes hold. medve is the main SSKJ and Pravopis form next to midve, so the note on two women is right. Toggle and quick check are fine.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=midva"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l03-i01": "ebabcc4082b512e1",
+    "u10-l03-i02": "ae98ce4953134d60",
+    "u10-l03-i03": "69eba9c75df46f02",
+    "u10-l03-i04": "bb6840e2224523a2",
+    "u10-l03-i05": "c816a1c4b5de2a28",
+    "u10-l03-i06": "9f233c26c2496c63",
+    "u10-l03-i07": "6d7e12798348d973",
+    "u10-l03-i08": "0f5facd0c904202e",
+    "u10-l03-s01": "ac253584520cec21",
+    "u10-l03-s02": "f9bdaf6ad36d3d71",
+    "u10-l03-s03": "83277ef119b5ccda",
+    "u10-l03-s04": "4154ca0821f676da",
+    "u10-l03-s05": "b3450357d11e816c",
+    "u10-l03-s06": "a15cfb42829aaf4b",
+    "u10-l03-s07": "dfcfebf6ebe749ed",
+    "u10-l03-p01": "94006ca38950c536",
+    "u10-l03-p02": "0848da7d793c01e0",
+    "u10-l03-p03": "fca666206d4d0f34",
+    "u10-l03-p04": "d39b6aa24125c851",
+    "u10-l03-p05": "fa99ffdaf600358b",
+    "u10-l03-p06": "399cc4d9c8d18b8d",
+    "u10-l03-d-01": "5877bd072a23e94e",
+    "u10-l03-d-02": "cf60f366349d3bdc",
+    "u10-l03-d-03": "e44983bf47494997",
+    "u10-l03-d-04": "588f7eea3ae301d3",
+    "u10-l03-d-05": "a63812f79a9d7c74",
+    "r-future-bom": "662f7b0ee8768233"
+  }
+}

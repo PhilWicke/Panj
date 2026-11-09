@@ -1,0 +1,414 @@
+{
+  "id": "u10-l05",
+  "unit": "u10",
+  "order": 5,
+  "role": "consolidation",
+  "title_sl": "Moj teden",
+  "title_en": "My week",
+  "items": [
+    {
+      "id": "u10-l05-i01",
+      "type": "chunk",
+      "sl": "Kako je bilo v službi?",
+      "sl_colloquial": null,
+      "en": "How was work?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kako je bilo danes v službi?",
+          "en": "How was work today?"
+        },
+        {
+          "sl": "Kako je bilo v službi ta teden?",
+          "en": "How was work this week?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-past-biti",
+        "r-locative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "doubtful",
+        "review2": "accepted",
+        "native": null,
+        "status": "pending",
+        "notes": "review1 doubtful: Natural, but register: 'v službi' for the workplace is the sense SSKJ labels pog. ('to sem slišal v službi'), and the chunk is tagged neutral. By the style guide it waits for a native to confirm the tag."
+      }
+    },
+    {
+      "id": "u10-l05-i02",
+      "type": "chunk",
+      "sl": "Bilo je naporno.",
+      "sl_colloquial": null,
+      "en": "It was tiring.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Bilo je zelo naporno.",
+          "en": "It was very tiring."
+        },
+        {
+          "sl": "Včeraj je bilo naporno.",
+          "en": "Yesterday was tiring."
+        }
+      ],
+      "helper": "From napor, effort: what takes effort is naporno.",
+      "accept": [],
+      "rules": [
+        "r-past-biti"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l05-i03",
+      "type": "chunk",
+      "sl": "Imam veliko dela.",
+      "sl_colloquial": null,
+      "en": "I have a lot of work.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Danes imam veliko dela.",
+          "en": "I have a lot of work today."
+        },
+        {
+          "sl": "Ta teden imam veliko dela.",
+          "en": "I have a lot of work this week."
+        }
+      ],
+      "helper": "dela is the genitive of delo, work, after veliko, a lot of.",
+      "accept": [
+        "Imam dosti dela."
+      ],
+      "rules": [
+        "r-genitive-quantity"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l05-i04",
+      "type": "chunk",
+      "sl": "Končno je petek.",
+      "sl_colloquial": null,
+      "en": "It's finally Friday.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Končno je petek, grem domov.",
+          "en": "It's finally Friday, I'm going home."
+        },
+        {
+          "sl": "Končno je petek. Lep vikend.",
+          "en": "It's finally Friday. Have a nice weekend."
+        }
+      ],
+      "helper": "Built on konec, end: končno is at last.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l05-i05",
+      "type": "chunk",
+      "sl": "Komaj čakam vikend.",
+      "sl_colloquial": null,
+      "en": "I can't wait for the weekend.",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Komaj čakam vikend, grem v hribe.",
+          "en": "I can't wait for the weekend, I'm going to the hills."
+        },
+        {
+          "sl": "Komaj čakam vikend, potem grem na morje.",
+          "en": "I can't wait for the weekend, then I'm going to the seaside."
+        }
+      ],
+      "helper": "Literally I barely wait: komaj is barely, čakam is I wait.",
+      "accept": [
+        "Komaj čakam konec tedna."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l05-i06",
+      "type": "chunk",
+      "sl": "Se vidimo v ponedeljek.",
+      "sl_colloquial": null,
+      "en": "See you on Monday.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Lep vikend, se vidimo v ponedeljek.",
+          "en": "Have a nice weekend, see you on Monday."
+        },
+        {
+          "sl": "Se vidimo v ponedeljek ob osmih.",
+          "en": "See you on Monday at eight."
+        }
+      ],
+      "helper": null,
+      "accept": [
+        "Vidimo se v ponedeljek."
+      ],
+      "rules": [
+        "r-days"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [],
+  "structured": [
+    {
+      "id": "u10-l05-s01",
+      "prompt_sl": "Ona je ___ na fakulteti.",
+      "options": [
+        "profesor",
+        "profesorica",
+        "profesorja"
+      ],
+      "answer": "profesorica",
+      "rule": "r-feminine-professions",
+      "en": "She is a professor at the faculty."
+    },
+    {
+      "id": "u10-l05-s02",
+      "prompt_sl": "Včeraj sem ___ v pisarni.",
+      "options": [
+        "delal",
+        "delati",
+        "delam"
+      ],
+      "answer": "delal",
+      "rule": "r-past-l-participle",
+      "en": "I worked in the office yesterday. (a man speaking)"
+    },
+    {
+      "id": "u10-l05-s03",
+      "prompt_sl": "V soboto ___ doma.",
+      "options": [
+        "bom",
+        "bo",
+        "boš"
+      ],
+      "answer": "bom",
+      "rule": "r-future-bom",
+      "en": "I will be at home on Saturday."
+    },
+    {
+      "id": "u10-l05-s04",
+      "prompt_sl": "V ponedeljek ___ bom učil.",
+      "options": [
+        "se",
+        "sem",
+        "si"
+      ],
+      "answer": "se",
+      "rule": "r-clitic-order",
+      "en": "I will study on Monday. (a man speaking)"
+    },
+    {
+      "id": "u10-l05-s05",
+      "prompt_sl": "Ona ___ imela veliko dela.",
+      "options": [
+        "je",
+        "sem",
+        "si"
+      ],
+      "answer": "je",
+      "rule": "r-past-l-participle",
+      "en": "She had a lot of work."
+    },
+    {
+      "id": "u10-l05-s06",
+      "prompt_sl": "Imam veliko ___.",
+      "options": [
+        "delo",
+        "dela",
+        "delu"
+      ],
+      "answer": "dela",
+      "rule": "r-genitive-quantity",
+      "en": "I have a lot of work."
+    },
+    {
+      "id": "u10-l05-s07",
+      "prompt_sl": "Se vidimo ___ ponedeljek.",
+      "options": [
+        "v",
+        "na",
+        "ob"
+      ],
+      "answer": "v",
+      "rule": "r-days",
+      "en": "See you on Monday."
+    }
+  ],
+  "production": [
+    {
+      "id": "u10-l05-p01",
+      "en": "Someone asks about your day at work. Say it was tiring.",
+      "answer": "Bilo je naporno.",
+      "accept": [],
+      "item": "u10-l05-i02"
+    },
+    {
+      "id": "u10-l05-p02",
+      "en": "A colleague is leaving on Friday. Say see you on Monday.",
+      "answer": "Se vidimo v ponedeljek.",
+      "accept": [
+        "Vidimo se v ponedeljek."
+      ],
+      "item": "u10-l05-i06"
+    },
+    {
+      "id": "u10-l05-p03",
+      "en": "A neighbour asks what you do for a living. Say you are a student.",
+      "answer": "Sem študent.",
+      "accept": [
+        "Sem študentka.",
+        "Študent sem.",
+        "Študentka sem."
+      ],
+      "item": "u10-l01-i04"
+    },
+    {
+      "id": "u10-l05-p04",
+      "en": "Your hosts ask why you did not come. Say you had no time.",
+      "answer": "Nisem imel časa.",
+      "accept": [
+        "Nisem imela časa."
+      ],
+      "item": "u10-l02-i04"
+    },
+    {
+      "id": "u10-l05-p05",
+      "en": "Your hosts ask about tomorrow. Say you will be at home.",
+      "answer": "Jutri bom doma.",
+      "accept": [
+        "Doma bom jutri."
+      ],
+      "item": "u10-l03-i02"
+    },
+    {
+      "id": "u10-l05-p06",
+      "en": "Your hosts ask how your Slovenian is going. Say you speak a little.",
+      "answer": "Govorim malo slovensko.",
+      "accept": [
+        "Malo govorim slovensko."
+      ],
+      "item": "u10-l04-i03"
+    }
+  ],
+  "dialogue": {
+    "id": "u10-l05-d",
+    "title_sl": "Petek zvečer",
+    "title_en": "Friday evening",
+    "setting_en": "On Friday evening you tell your hosts about your week and your plans.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Končno je petek. Kako je bilo v službi?",
+        "en": "It's finally Friday. How was work?",
+        "new_items": [
+          "u10-l05-i04",
+          "u10-l05-i01"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Bilo je naporno. Imam veliko dela.",
+        "en": "It was tiring. I have a lot of work.",
+        "new_items": [
+          "u10-l05-i02",
+          "u10-l05-i03"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kaj si delal ta teden?",
+        "en": "What did you do this week?",
+        "new_items": [
+          "u10-l02-i01"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "V četrtek sem ves dan delal v pisarni.",
+        "en": "On Thursday I worked in the office all day.",
+        "new_items": [
+          "u10-l02-i02",
+          "u10-l01-i06"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kaj boš delal jutri?",
+        "en": "What will you do tomorrow?",
+        "new_items": [
+          "u10-l03-i01"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Komaj čakam vikend. Jutri bom doma.",
+        "en": "I can't wait for the weekend. I'll be at home tomorrow.",
+        "new_items": [
+          "u10-l05-i05",
+          "u10-l03-i02"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kaj pa slovenščina?",
+        "en": "And your Slovenian?",
+        "new_items": [
+          "u10-l04-i08"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Učim se slovenščino. V ponedeljek imam izpit.",
+        "en": "I'm learning Slovenian. I have an exam on Monday.",
+        "new_items": [
+          "u10-l04-i02",
+          "u10-l03-i06"
+        ]
+      }
+    ]
+  }
+}

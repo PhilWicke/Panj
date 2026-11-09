@@ -1,0 +1,96 @@
+{
+  "id": "r-future-bom",
+  "unit": "u10",
+  "title_en": "The future: bom",
+  "card_en": "The future is bom, boš, bo and so on plus the past form in -l: jutri bom delal, I will work tomorrow. With biti, bom alone is enough: jutri bom doma.",
+  "example": {
+    "sl": "Jutri bom doma.",
+    "en": "I will be at home tomorrow."
+  },
+  "table": {
+    "rows": [
+      "1",
+      "2",
+      "3"
+    ],
+    "cols": [
+      "sg",
+      "du",
+      "pl"
+    ],
+    "cells": {
+      "1.sg": {
+        "form": "bom",
+        "pronoun": "jaz"
+      },
+      "2.sg": {
+        "form": "boš",
+        "pronoun": "ti"
+      },
+      "3.sg": {
+        "form": "bo",
+        "pronoun": "on/ona",
+        "note_en": "The same for he, she and it."
+      },
+      "1.du": {
+        "form": "bova",
+        "pronoun": "midva",
+        "note_en": "Two women say medve bova."
+      },
+      "2.du": {
+        "form": "bosta",
+        "pronoun": "vidva"
+      },
+      "3.du": {
+        "form": "bosta",
+        "pronoun": "onadva",
+        "note_en": "Same form as for vidva."
+      },
+      "1.pl": {
+        "form": "bomo",
+        "pronoun": "mi"
+      },
+      "2.pl": {
+        "form": "boste",
+        "pronoun": "vi",
+        "note_en": "Also the polite you."
+      },
+      "3.pl": {
+        "form": "bodo",
+        "pronoun": "oni",
+        "note_en": "oni for men or a mixed group, one for women."
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "When",
+      "options": [
+        "yesterday",
+        "tomorrow"
+      ],
+      "examples": {
+        "yesterday": {
+          "sl": "Včeraj sem delal.",
+          "en": "I worked yesterday."
+        },
+        "tomorrow": {
+          "sl": "Jutri bom delal.",
+          "en": "I will work tomorrow."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Midva ___ jutri doma.",
+    "options": [
+      "bom",
+      "bova",
+      "bomo"
+    ],
+    "answer": "bova",
+    "explain_en": "Midva is the two of us, so the dual form bova fits."
+  },
+  "helper_de": "Like German ich werde, but with the past form: bom delal, not bom delati.",
+  "helper_en": "One word for will and going to. The form in -l is the same as in the past: delal sem, bom delal."
+}

@@ -1,0 +1,467 @@
+{
+  "id": "u10-l03",
+  "unit": "u10",
+  "order": 3,
+  "role": "theme",
+  "title_sl": "Jutri bom doma",
+  "title_en": "Tomorrow I will be at home",
+  "items": [
+    {
+      "id": "u10-l03-i01",
+      "type": "chunk",
+      "sl": "Kaj boš delal jutri?",
+      "sl_colloquial": null,
+      "en": "What will you do tomorrow? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kaj boš delal jutri zvečer?",
+          "en": "What will you do tomorrow evening?"
+        },
+        {
+          "sl": "Kaj boš delal jutri popoldne?",
+          "en": "What will you do tomorrow afternoon?"
+        }
+      ],
+      "helper": "To a woman: Kaj boš delala jutri?",
+      "accept": [
+        "Kaj boš delala jutri?",
+        "Kaj boš jutri delal?",
+        "Kaj boš jutri delala?"
+      ],
+      "rules": [
+        "r-future-bom",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l03-i02",
+      "type": "chunk",
+      "sl": "Jutri bom doma.",
+      "sl_colloquial": null,
+      "en": "I will be at home tomorrow.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Jutri bom doma, pridi na kavo.",
+          "en": "I'll be at home tomorrow, come for a coffee."
+        },
+        {
+          "sl": "Jutri bom doma do petih.",
+          "en": "I'll be at home until five tomorrow."
+        }
+      ],
+      "helper": "bom is the future of biti: I will be.",
+      "accept": [
+        "Doma bom jutri."
+      ],
+      "rules": [
+        "r-future-bom"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l03-i03",
+      "type": "chunk",
+      "sl": "Kdaj boš prišel?",
+      "sl_colloquial": null,
+      "en": "When will you come? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kdaj boš prišel domov?",
+          "en": "When will you come home?"
+        },
+        {
+          "sl": "Kdaj boš prišel na počitnice?",
+          "en": "When will you come for the holidays?"
+        }
+      ],
+      "helper": "To a woman: Kdaj boš prišla?",
+      "accept": [
+        "Kdaj boš prišla?"
+      ],
+      "rules": [
+        "r-future-bom",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l03-i04",
+      "type": "chunk",
+      "sl": "Bomo videli.",
+      "sl_colloquial": null,
+      "en": "We will see.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Mogoče naslednji teden, bomo videli.",
+          "en": "Maybe next week, we will see."
+        },
+        {
+          "sl": "Bomo videli, kako bo.",
+          "en": "We will see how it goes."
+        }
+      ],
+      "helper": "A fixed phrase: videli is the past form of videti, to see.",
+      "accept": [
+        "Bomo videle."
+      ],
+      "rules": [
+        "r-future-bom"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l03-i05",
+      "type": "chunk",
+      "sl": "Jutri imam izpit.",
+      "sl_colloquial": null,
+      "en": "I have an exam tomorrow.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Jutri imam izpit ob osmih.",
+          "en": "I have an exam at eight tomorrow."
+        },
+        {
+          "sl": "Jutri imam izpit, grem spat.",
+          "en": "I have an exam tomorrow, I'm going to bed."
+        }
+      ],
+      "helper": "Slovenian often uses the present for a fixed plan, as in English I have an exam tomorrow.",
+      "accept": [
+        "Izpit imam jutri."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l03-i06",
+      "type": "word",
+      "sl": "izpit",
+      "sl_colloquial": null,
+      "en": "exam",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "loc": "izpitu"
+      },
+      "examples": [
+        {
+          "sl": "Kdaj je izpit?",
+          "en": "When is the exam?"
+        },
+        {
+          "sl": "V petek imam izpit.",
+          "en": "I have an exam on Friday."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 584,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l03-i07",
+      "type": "word",
+      "sl": "počitnice",
+      "sl_colloquial": null,
+      "en": "holidays, time off work or school",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "examples": [
+        {
+          "sl": "Kam greš na počitnice?",
+          "en": "Where are you going on holiday?"
+        },
+        {
+          "sl": "Naslednji teden imam počitnice.",
+          "en": "Next week I am on holiday."
+        }
+      ],
+      "helper": "Always plural. Built on počivati, to rest.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 1309,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l03-i08",
+      "type": "word",
+      "sl": "naslednji",
+      "sl_colloquial": null,
+      "en": "next",
+      "register": "neutral",
+      "pos": "adjective",
+      "forms": {
+        "acc.f": "naslednjo"
+      },
+      "examples": [
+        {
+          "sl": "Naslednji teden bom doma.",
+          "en": "Next week I will be at home."
+        },
+        {
+          "sl": "Naslednjo soboto nimam časa.",
+          "en": "I don't have time next Saturday."
+        }
+      ],
+      "helper": "From slediti, to follow: the one that follows.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 290,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-future-bom"
+  ],
+  "structured": [
+    {
+      "id": "u10-l03-s01",
+      "prompt_sl": "Jaz ___ jutri doma.",
+      "options": [
+        "bom",
+        "boš",
+        "bo",
+        "bodo"
+      ],
+      "answer": "bom",
+      "rule": "r-future-bom",
+      "en": "I will be at home tomorrow."
+    },
+    {
+      "id": "u10-l03-s02",
+      "prompt_sl": "Kdaj ___ prišel?",
+      "options": [
+        "bom",
+        "boš",
+        "bo"
+      ],
+      "answer": "boš",
+      "rule": "r-future-bom",
+      "en": "When will you come? (to a friend)"
+    },
+    {
+      "id": "u10-l03-s03",
+      "prompt_sl": "On ___ jutri delal.",
+      "options": [
+        "bom",
+        "boš",
+        "bo"
+      ],
+      "answer": "bo",
+      "rule": "r-future-bom",
+      "en": "He will work tomorrow."
+    },
+    {
+      "id": "u10-l03-s04",
+      "prompt_sl": "Oni ___ prišli v soboto.",
+      "options": [
+        "bo",
+        "bosta",
+        "bodo"
+      ],
+      "answer": "bodo",
+      "rule": "r-future-bom",
+      "en": "They will come on Saturday."
+    },
+    {
+      "id": "u10-l03-s05",
+      "prompt_sl": "Midva ___ doma.",
+      "options": [
+        "bova",
+        "bomo",
+        "bosta"
+      ],
+      "answer": "bova",
+      "rule": "r-future-bom",
+      "en": "The two of us will be at home."
+    },
+    {
+      "id": "u10-l03-s06",
+      "prompt_sl": "Jutri bom ___ doma.",
+      "options": [
+        "delal",
+        "delati",
+        "delam"
+      ],
+      "answer": "delal",
+      "rule": "r-future-bom",
+      "en": "I will work at home tomorrow. (a man speaking)"
+    },
+    {
+      "id": "u10-l03-s07",
+      "prompt_sl": "Ona bo ___ jutri.",
+      "options": [
+        "prišel",
+        "prišla",
+        "priti"
+      ],
+      "answer": "prišla",
+      "rule": "r-future-bom",
+      "en": "She will come tomorrow."
+    }
+  ],
+  "production": [
+    {
+      "id": "u10-l03-p01",
+      "en": "Tell your hosts you will be at home tomorrow.",
+      "answer": "Jutri bom doma.",
+      "accept": [
+        "Doma bom jutri."
+      ],
+      "item": "u10-l03-i02"
+    },
+    {
+      "id": "u10-l03-p02",
+      "en": "Ask someone close what they will do tomorrow.",
+      "answer": "Kaj boš delal jutri?",
+      "accept": [
+        "Kaj boš delala jutri?",
+        "Kaj boš jutri delal?",
+        "Kaj boš jutri delala?"
+      ],
+      "item": "u10-l03-i01"
+    },
+    {
+      "id": "u10-l03-p03",
+      "en": "Ask someone close when they will come.",
+      "answer": "Kdaj boš prišel?",
+      "accept": [
+        "Kdaj boš prišla?",
+        "Kdaj prideš?"
+      ],
+      "item": "u10-l03-i03"
+    },
+    {
+      "id": "u10-l03-p04",
+      "en": "You are not sure yet. Say we will see.",
+      "answer": "Bomo videli.",
+      "accept": [
+        "Bomo videle."
+      ],
+      "item": "u10-l03-i04"
+    },
+    {
+      "id": "u10-l03-p05",
+      "en": "Say you have an exam tomorrow.",
+      "answer": "Jutri imam izpit.",
+      "accept": [
+        "Izpit imam jutri."
+      ],
+      "item": "u10-l03-i05"
+    },
+    {
+      "id": "u10-l03-p06",
+      "en": "Say you are going on holiday next week.",
+      "answer": "Naslednji teden grem na počitnice.",
+      "accept": [
+        "Grem na počitnice naslednji teden.",
+        "Na počitnice grem naslednji teden.",
+        "Naslednji teden bom šel na počitnice.",
+        "Naslednji teden bom šla na počitnice."
+      ],
+      "item": "u10-l03-i07"
+    }
+  ],
+  "dialogue": {
+    "id": "u10-l03-d",
+    "title_sl": "Jutri in počitnice",
+    "title_en": "Tomorrow and the holidays",
+    "setting_en": "Over dinner, you talk with your hosts about tomorrow and about when you will come for the summer holidays.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Kaj boš delal jutri?",
+        "en": "What will you do tomorrow?",
+        "new_items": [
+          "u10-l03-i01"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Jutri bom doma. V petek imam izpit.",
+        "en": "I'll be at home tomorrow. I have an exam on Friday.",
+        "new_items": [
+          "u10-l03-i02",
+          "u10-l03-i06"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kdaj boš prišel na počitnice?",
+        "en": "When will you come for the holidays?",
+        "new_items": [
+          "u10-l03-i03",
+          "u10-l03-i07"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Bomo videli. Mogoče naslednji teden.",
+        "en": "We'll see. Maybe next week.",
+        "new_items": [
+          "u10-l03-i04",
+          "u10-l03-i08"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "V redu. Srečno na izpitu.",
+        "en": "All right. Good luck with the exam."
+      }
+    ]
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "r-past-l-participle",
+  "unit": "u10",
+  "title_en": "The past: delal sem",
+  "card_en": "The past is sem, si, je and so on plus a form in -l that matches who did it: delal sem for a man, delala sem for a woman. Negative: nisem delal. Iti has its own: šel, šla.",
+  "example": {
+    "sl": "Ves dan sem delal.",
+    "en": "I worked all day."
+  },
+  "table": {
+    "rows": [
+      "m",
+      "f",
+      "n"
+    ],
+    "cols": [
+      "sg",
+      "du",
+      "pl"
+    ],
+    "cells": {
+      "m.sg": {
+        "form": "delal",
+        "pronoun": "on",
+        "note_en": "A man says delal sem, I worked."
+      },
+      "f.sg": {
+        "form": "delala",
+        "pronoun": "ona",
+        "note_en": "A woman says delala sem, I worked."
+      },
+      "n.sg": {
+        "form": "delalo",
+        "pronoun": "ono",
+        "note_en": "For it: delalo je, it worked."
+      },
+      "m.du": {
+        "form": "delala",
+        "pronoun": "onadva",
+        "note_en": "Two men or a mixed pair: the same form as for one woman."
+      },
+      "f.du": {
+        "form": "delali",
+        "pronoun": "onidve",
+        "note_en": "Two women: the same form as for men or a mixed group, not delale."
+      },
+      "n.du": {
+        "form": "delali",
+        "pronoun": "onidve"
+      },
+      "m.pl": {
+        "form": "delali",
+        "pronoun": "oni",
+        "note_en": "Men or a mixed group."
+      },
+      "f.pl": {
+        "form": "delale",
+        "pronoun": "one",
+        "note_en": "Women only."
+      },
+      "n.pl": {
+        "form": "delala",
+        "pronoun": "ona",
+        "note_en": "They, for neuter nouns."
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "Who did it",
+      "options": [
+        "a man",
+        "a woman"
+      ],
+      "examples": {
+        "a man": {
+          "sl": "Včeraj sem delal.",
+          "en": "I worked yesterday."
+        },
+        "a woman": {
+          "sl": "Včeraj sem delala.",
+          "en": "I worked yesterday."
+        }
+      }
+    },
+    {
+      "label": "Yes or no",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "examples": {
+        "yes": {
+          "sl": "Delal sem.",
+          "en": "I worked."
+        },
+        "no": {
+          "sl": "Nisem delal.",
+          "en": "I didn't work."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Ona je ves dan ___.",
+    "options": [
+      "delal",
+      "delala",
+      "delalo"
+    ],
+    "answer": "delala",
+    "explain_en": "Ona is one woman, so the past form takes -la: delala."
+  },
+  "helper_de": "Built like ich bin gegangen, with biti for every verb, never imeti. The past form changes with gender: delal, delala.",
+  "helper_en": "English worked fits everyone. Slovenian shows who did it: delal sem for a man, delala sem for a woman."
+}

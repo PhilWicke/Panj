@@ -1,0 +1,374 @@
+{
+  "lesson": "u10-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 5,
+      "items": {
+        "u10-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Correct, SSKJ has študirati na fakulteti pattern; helper a true cognate; colloquial tag follows the ti rule.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=študirati"
+        },
+        "u10-l04-i02": {
+          "verdict": "doubtful",
+          "reason": "The accept variants are confirmed: Pravopis gives učiti se kaj, česa, so slovenščine and slovenščino both stand. The headword with the adverb slovensko is the doubt: Fran shows the adverb only with govoriti and no attestation of učiti se slovensko. It sounds natural in speech to me, but I cannot source it and the neutral tag rests on it.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=slovensko"
+        },
+        "u10-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Govoriti slovensko is attested in Pravopis; malo placement and variant natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=slovensko"
+        },
+        "u10-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Natural, helper accurate on hodim versus grem. English slightly stiff but accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-i05": {
+          "verdict": "accepted",
+          "reason": "SSKJ has predicative lahko ('ni ji bilo lahko'); helper accurate on the two senses.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=lahko"
+        },
+        "u10-l04-i06": {
+          "verdict": "accepted",
+          "reason": "Gender right, examples natural, helper honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-i07": {
+          "verdict": "accepted",
+          "reason": "Forms right, examples natural, true cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-i08": {
+          "verdict": "accepted",
+          "reason": "Forms, examples and helper correct.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u10-l04-s01": {
+          "verdict": "doubtful",
+          "reason": "The clitic exercise is sound, but the sentence carries the same doubt as u10-l04-i02 (učiti se slovensko).",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=slovensko"
+        },
+        "u10-l04-s02": {
+          "verdict": "accepted",
+          "reason": "Sem se correct; English fixes the person.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Se bom correct; English fixes the person.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-s04": {
+          "verdict": "doubtful",
+          "reason": "Si se is right and the English fixes the person; same doubt as u10-l04-i02 on učiti se slovensko.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=slovensko"
+        },
+        "u10-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Mi je correct, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Hoditi na tečaj, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-s07": {
+          "verdict": "accepted",
+          "reason": "English fixes the addressee.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-p02": {
+          "verdict": "doubtful",
+          "reason": "Genitive and accusative variants are confirmed by Pravopis; the answer itself carries the doubt on u10-l04-i02.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=učiti"
+        },
+        "u10-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural in the situation given.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural. Format note only: speaker 'student' is outside the style guide's speaker list.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-d-02": {
+          "verdict": "doubtful",
+          "reason": "Same doubt as u10-l04-i02 on učim se slovensko; the second sentence is fine.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=slovensko"
+        },
+        "u10-l04-d-03": {
+          "verdict": "doubtful",
+          "reason": "Without the dative it sounds odd for a person's progress. Fran shows a school subject with iti taking the dative ('matematika mu ne gre'); the undative pattern is for things like 'trgovina gre dobro'. The English says 'your Slovenian', which also wants ti.",
+          "fix": "Kako ti gre slovenščina?",
+          "source": "https://fran.si/iskanje?View=1&Query=iti"
+        },
+        "u10-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-clitic-order": {
+          "verdict": "doubtful",
+          "reason": "The clitic order is right (sem se, se bom, mi je), and toggles, quick check and helpers are correct. The card's example and text use učim se slovensko, so it carries the doubt on u10-l04-i02.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=slovensko"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 6,
+      "items": {
+        "u10-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Correct, unlabelled in the SSKJ university sense, with študirati na filozofski fakulteti attested. Colloquial tag follows the ti rule. Examples acceptable.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=%C5%A1tudirati"
+        },
+        "u10-l04-i02": {
+          "verdict": "doubtful",
+          "reason": "sl and examples use the adverb slovensko with učiti se. SSKJ and Pravopis show that adverb only with govoriti, the same holds for angleško, and Pravopis gives učiti se the government kaj, česa (fiziko, kuhanja). So the accept variants Učim se slovenščine and Učim se slovenščino are supported, while the headword form, heard in speech as far as I know, is not attested in the dictionaries. A native should confirm it, or the headword should move to slovenščino or slovenščine. Slovensko se učim shares the doubt.",
+          "fix": "Učim se slovenščino.",
+          "source": "https://fran.si/iskanje?View=1&Query=u%C4%8Diti"
+        },
+        "u10-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Dictionaries give govoriti slovensko directly, the variant is correct, examples are natural and the helper is accurate.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=slovensko"
+        },
+        "u10-l04-i04": {
+          "verdict": "accepted",
+          "reason": "SSKJ gives hoditi for regular attendance (hoditi na predavanja, na sestanke), and tečaj fits that pattern. The helper is right. The English I go to a course is a little stiff but accurate.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=hoditi"
+        },
+        "u10-l04-i05": {
+          "verdict": "accepted",
+          "reason": "Natural impersonal phrase. Helper separates the two senses of lahko honestly. Slovenščina? Ni lahko. works as a topic followed by a general comment.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-i06": {
+          "verdict": "accepted",
+          "reason": "Correct gender, gloss notes both senses, natural examples, honest English hook.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-i07": {
+          "verdict": "accepted",
+          "reason": "Correct gender and forms, natural examples, true German cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-i08": {
+          "verdict": "accepted",
+          "reason": "Correct gender, genitive and accusative, natural examples, true suffix helper.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u10-l04-s01": {
+          "verdict": "doubtful",
+          "reason": "The clitic exercise itself is right and se is the only fit. The sentence carries učim slovensko, whose adverb with učiti se is not attested; see u10-l04-i02.",
+          "fix": "Zvečer se učim slovenščino.",
+          "source": "https://fran.si/iskanje?View=1&Query=slovensko"
+        },
+        "u10-l04-s02": {
+          "verdict": "accepted",
+          "reason": "sem before se is correct, and the English fixes the first person.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-s03": {
+          "verdict": "accepted",
+          "reason": "se before bom is correct, and the English fixes the first person.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-s04": {
+          "verdict": "doubtful",
+          "reason": "si is the right answer and the order is correct. The sentence carries se učil slovensko, with the same unattested adverb as u10-l04-i02.",
+          "fix": "Kje si se učil slovenščino?",
+          "source": "https://fran.si/iskanje?View=1&Query=slovensko"
+        },
+        "u10-l04-s05": {
+          "verdict": "accepted",
+          "reason": "je follows the dative mi. Včeraj mi je bilo slabo is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-s06": {
+          "verdict": "accepted",
+          "reason": "tečaj takes na in hoditi na tečaj. v and pri are wrong with this accusative.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-s07": {
+          "verdict": "accepted",
+          "reason": "študiraš is fixed by the English, addressed to a friend.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Correct ti question, variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-p02": {
+          "verdict": "doubtful",
+          "reason": "The target answer is the doubted form with the adverb slovensko; see u10-l04-i02. Accept entries slovenščine and slovenščino are supported by Pravopis government.",
+          "fix": "Učim se slovenščino.",
+          "source": "https://fran.si/iskanje?View=1&Query=u%C4%8Diti"
+        },
+        "u10-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural in the stated context.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Correct, with adjective agreement on masculine jezik.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural between students, English faithful. Side note: speaker student is not in the style guide's speaker list.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-d-02": {
+          "verdict": "doubtful",
+          "reason": "Hodim na tečaj is fine. Učim se slovensko carries the doubt in u10-l04-i02.",
+          "fix": "Učim se slovenščino. Hodim na tečaj.",
+          "source": "https://fran.si/iskanje?View=1&Query=u%C4%8Diti"
+        },
+        "u10-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Passes as a short check-in. Kako ti gre slovenščina? would be slightly more natural, but this is not wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural, with govorim malo slovensko attested as a pattern.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural, correct word order with je after the predicate noun phrase.",
+          "fix": "",
+          "source": ""
+        },
+        "r-clitic-order": {
+          "verdict": "doubtful",
+          "reason": "The order rules are correct: sem before se, se before bom, je last, and usually second is suitably hedged. Toggles and quick check are right. The doubt is only the card's example and text Učim se slovensko, for the reason at u10-l04-i02.",
+          "fix": "Učim se slovenščino.",
+          "source": "https://fran.si/iskanje?View=1&Query=u%C4%8Diti"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l04-i01": "4106819077271817",
+    "u10-l04-i02": "439b4eb3f91f6960",
+    "u10-l04-i03": "816349330c6ce693",
+    "u10-l04-i04": "7613c4f2898b753e",
+    "u10-l04-i05": "e75ee71272e54500",
+    "u10-l04-i06": "4319b09a86e6c04d",
+    "u10-l04-i07": "2e443901bd172895",
+    "u10-l04-i08": "555984423ab6093b",
+    "u10-l04-s01": "bb7320b11deda3fc",
+    "u10-l04-s02": "a369c9e52ff2f27c",
+    "u10-l04-s03": "536254cc5011c266",
+    "u10-l04-s04": "5788115306985d85",
+    "u10-l04-s05": "852a47020b279d15",
+    "u10-l04-s06": "3fbd97c76c49828f",
+    "u10-l04-s07": "120f22156a178b19",
+    "u10-l04-p01": "cad33b130e0ba96c",
+    "u10-l04-p02": "ba55c1046525adae",
+    "u10-l04-p03": "8dc614990b42ccf6",
+    "u10-l04-p04": "b0317dada89d7c6f",
+    "u10-l04-p05": "92fc698ba182ecf7",
+    "u10-l04-p06": "9a607e789f02cff7",
+    "u10-l04-d-01": "f24bf96d7714fb7a",
+    "u10-l04-d-02": "9f895daafd48a060",
+    "u10-l04-d-03": "3a09384237e4c63e",
+    "u10-l04-d-04": "e606154bf807bc8a",
+    "u10-l04-d-05": "0e6ad6b8f8c58bcc",
+    "r-clitic-order": "f44f748bfd938381"
+  }
+}

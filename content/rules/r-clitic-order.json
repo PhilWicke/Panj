@@ -1,0 +1,41 @@
+{
+  "id": "r-clitic-order",
+  "unit": "u10",
+  "title_en": "Short words go second",
+  "card_en": "Short words such as sem, se, mi and bom usually come second: učim se slovenščino, jutri bom doma. Together: sem before se, se before bom, je last: včeraj sem se učil, jutri se bom učil, slabo mi je.",
+  "example": {
+    "sl": "Učim se slovenščino.",
+    "en": "I am learning Slovenian."
+  },
+  "toggles": [
+    {
+      "label": "When",
+      "options": [
+        "past",
+        "future"
+      ],
+      "examples": {
+        "past": {
+          "sl": "Včeraj sem se učil.",
+          "en": "I studied yesterday."
+        },
+        "future": {
+          "sl": "Jutri se bom učil.",
+          "en": "I will study tomorrow."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Jutri ___ bom učil.",
+    "options": [
+      "se",
+      "sem",
+      "si"
+    ],
+    "answer": "se",
+    "explain_en": "Se comes before bom: jutri se bom učil, I will study tomorrow."
+  },
+  "helper_de": "German keeps the verb second; Slovenian keeps the short words second: heute lerne ich, danes se učim.",
+  "helper_en": "English has nothing like this, so learn the blocks by heart: sem se, se bom, mi je."
+}

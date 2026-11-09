@@ -1,0 +1,34 @@
+{
+  "lesson": "u10-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 6,
+      "items": {},
+      "lines": {
+        "r-past-l-participle": {
+          "verdict": "accepted",
+          "reason": "All nine table forms are right, including m.du delala and f.du and n.du delali, as Wiktionary's l-participle table shows. The note that two women take delali and not delale matches the standard. Fran gives onadva and, for feminine and neuter, onidve, each as one word, so the pronouns stand. The example, both toggles and the quick check are natural and correctly translated, and the quick check has one right answer, since je rules out the plural readings of ona. The 38-word card and both helpers are accurate, Slovenian using biti for every verb. Small point only: for a thing that functions, Pravopis prefers delovati, but the n.sg note just shows the neuter ending and SSKJ sense 6 has naprave so delale, so delalo je, it worked, stands.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/delati"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 4,
+      "items": {},
+      "lines": {
+        "r-past-l-participle": {
+          "verdict": "accepted",
+          "reason": "All nine participle forms are correct under the right labels (delal, delala, delalo; delala, delali, delali; delali, delale, delala), and the pronouns are right (on, ona, ono; onadva, onidve, onidve; oni, one, ona). The note that two women take delali, not delale, matches the standard paradigm. The example, the toggles and the English are correct. The quick check has one right option, delala, and delal and delalo are wrong for ona. The card text is accurate at 38 words, and the German helper is right that biti is the auxiliary for every verb.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/delati"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "r-past-l-participle": "1b0e77c5bf28c74d"
+  }
+}

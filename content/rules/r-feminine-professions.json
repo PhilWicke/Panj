@@ -1,0 +1,41 @@
+{
+  "id": "r-feminine-professions",
+  "unit": "u10",
+  "title_en": "Jobs for women: učiteljica",
+  "card_en": "Job names have a feminine form, mostly in -ica or -ka: učitelj, učiteljica; profesor, profesorica; študent, študentka. Slovenian has no word for a: sem učiteljica, I am a teacher.",
+  "example": {
+    "sl": "Sem učiteljica.",
+    "en": "I am a teacher."
+  },
+  "toggles": [
+    {
+      "label": "Who",
+      "options": [
+        "a man",
+        "a woman"
+      ],
+      "examples": {
+        "a man": {
+          "sl": "Sem učitelj.",
+          "en": "I am a teacher."
+        },
+        "a woman": {
+          "sl": "Sem učiteljica.",
+          "en": "I am a teacher."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Moja sestra je ___.",
+    "options": [
+      "učitelj",
+      "učiteljica",
+      "učiteljico"
+    ],
+    "answer": "učiteljica",
+    "explain_en": "A sister is a woman, so the job takes the feminine form učiteljica."
+  },
+  "helper_de": "As in German: Lehrer, Lehrerin. And as in German, no article: sem učiteljica, ich bin Lehrerin.",
+  "helper_en": "English teacher covers both. Slovenian has two words, and no a: sem učitelj, I am a teacher."
+}

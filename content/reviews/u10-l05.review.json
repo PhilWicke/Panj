@@ -1,0 +1,374 @@
+{
+  "lesson": "u10-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {
+        "u10-l05-i01": {
+          "verdict": "doubtful",
+          "reason": "Natural, but register: 'v službi' for the workplace is the sense SSKJ labels pog. ('to sem slišal v službi'), and the chunk is tagged neutral. By the style guide it waits for a native to confirm the tag.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=služba"
+        },
+        "u10-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Natural, examples fine, helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Genitive after veliko right, variant dosti fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Natural, examples fine, helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Natural; SSKJ has komaj čakam; colloquial fits vikend; konec tedna variant right; helper literal and honest.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=komaj"
+        },
+        "u10-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Natural, variant fine.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u10-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Profesorica with ona, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-s02": {
+          "verdict": "accepted",
+          "reason": "L-form after sem, English fixes the speaker.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-s03": {
+          "verdict": "doubtful",
+          "reason": "Two options can fit. 'V soboto sem doma' is correct present for a fixed plan, which this unit's own helper teaches (u10-l03-i05), so sem is not clearly wrong for 'I will be at home on Saturday'.",
+          "fix": "Replace the distractor sem with bo.",
+          "source": ""
+        },
+        "u10-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Se bom correct, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-s05": {
+          "verdict": "accepted",
+          "reason": "Je with ona, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Genitive dela after veliko.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-s07": {
+          "verdict": "accepted",
+          "reason": "V ponedeljek, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural in speech; the register tag is judged on the item.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-08": {
+          "verdict": "doubtful",
+          "reason": "Same doubt as u10-l04-i02 on učim se slovensko; the second sentence is fine.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=slovensko"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 3,
+      "items": {
+        "u10-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Natural neuter past with correct locative, examples fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Natural and correct. Helper from napor is true.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Correct genitive after veliko, dosti variant correct, helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Natural. Helper from konec is true, and Lep vikend is a normal short wish.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Colloquial tag is right, since vikend in this sense is pog. in SSKJ and knj. pog. in Pravopis. čakati takes a direct object (koga/kaj in Pravopis), and komaj čakam is attested in SSKJ, so the noun object is grammatical. Variant with konec tedna is correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=vikend"
+        },
+        "u10-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Natural leave-taking, correct v plus accusative, variant correct.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u10-l05-s01": {
+          "verdict": "accepted",
+          "reason": "profesorica agrees with ona. Distractors wrong and plausible.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Past needs the participle delal, fixed by the English.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-s03": {
+          "verdict": "accepted",
+          "reason": "bom matches the English will be. V soboto sem doma is possible in speech as a plan, but the English excludes it.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-s04": {
+          "verdict": "accepted",
+          "reason": "se before bom is correct, and the distractors do not fit.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-s05": {
+          "verdict": "accepted",
+          "reason": "je agrees with ona, and imela veliko dela is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Genitive dela after veliko. delo and delu are wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-s07": {
+          "verdict": "accepted",
+          "reason": "Days take v plus accusative. na and ob are wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct, variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, with both genders and orders listed.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, feminine variant listed.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, variant grammatical.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Correct. The context in the instruction supplies the language.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural, and both sentences are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, correct genitive.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural and correct word order.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural, and komaj čakam plus accusative is grammatical.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=%C4%8Dakati"
+        },
+        "u10-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Natural short turn, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-08": {
+          "verdict": "doubtful",
+          "reason": "V ponedeljek imam izpit is fine. Učim se slovensko uses the adverb with učiti se, which the dictionaries do not show; see u10-l04-i02.",
+          "fix": "Učim se slovenščino. V ponedeljek imam izpit.",
+          "source": "https://fran.si/iskanje?View=1&Query=u%C4%8Diti"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l05-i01": "c9edced57b6b362f",
+    "u10-l05-i02": "1dff76b7ebbc5ff3",
+    "u10-l05-i03": "e6793f5f4365097b",
+    "u10-l05-i04": "260fda268b247220",
+    "u10-l05-i05": "844b13125c384b39",
+    "u10-l05-i06": "3f10c6bca9762802",
+    "u10-l05-s01": "70f9303120b2dfb8",
+    "u10-l05-s02": "00443f0a34359de6",
+    "u10-l05-s03": "844425b77f431733",
+    "u10-l05-s04": "82aa4ad69ff3f9a6",
+    "u10-l05-s05": "a3481696695ad7a5",
+    "u10-l05-s06": "52107a44bb8582f7",
+    "u10-l05-s07": "4789d9265fe7569a",
+    "u10-l05-p01": "39c4f8254f57efc1",
+    "u10-l05-p02": "8c67460e018a36b3",
+    "u10-l05-p03": "719c0cdbf61f3626",
+    "u10-l05-p04": "1228f7f38a10e402",
+    "u10-l05-p05": "94006ca38950c536",
+    "u10-l05-p06": "8dc614990b42ccf6",
+    "u10-l05-d-01": "af8b8684cfb9e2d1",
+    "u10-l05-d-02": "1db146d2312d1f21",
+    "u10-l05-d-03": "fe964cc3cf84c57a",
+    "u10-l05-d-04": "e071d2d9d781c26f",
+    "u10-l05-d-05": "5877bd072a23e94e",
+    "u10-l05-d-06": "c4d551dc4ac66830",
+    "u10-l05-d-07": "e5af8537a0941ccd",
+    "u10-l05-d-08": "dbfc92c39ad43ab5"
+  }
+}

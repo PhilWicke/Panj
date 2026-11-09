@@ -1,0 +1,34 @@
+{
+  "lesson": "u10-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {},
+      "lines": {
+        "u10-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Pravopis gives učiti se with kaj or česa (fiziko, kuhanja), so the accusative answer Učim se slovenščino and the genitive variant Učim se slovenščine are both supported, by government and by analogy with school subjects; neither dictionary prints the phrase with slovenščina itself. Slovenščino se učim and Slovenščine se učim are correct fronted orders with se in second place. Both forms of the noun are recorded on u10-l04-i08. The instruction is accurate and, by naming the noun, keeps out the adverb slovensko, so the answer and its accept list cover what the course has taught.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=u%C4%8Diti"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 2,
+      "items": {},
+      "lines": {
+        "u10-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Pravopis gives učiti se with kaj, česa, and SSKJ has both učiti se fiziko and učiti se kuhanja, so the accusative answer Učim se slovenščino and the genitive variant Učim se slovenščine both stand. Neither dictionary has an example with a language name, but both forms are normal usage. The fronted variants Slovenščino se učim and Slovenščine se učim keep se in second place and are correct. The instruction is accurate, and naming the noun rules out the adverb slovensko, so the accept list covers the right answers.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=u%C4%8Diti"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l04-p02": "ca8086b3327f2b71"
+  }
+}

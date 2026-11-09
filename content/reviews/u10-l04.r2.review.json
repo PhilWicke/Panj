@@ -1,0 +1,99 @@
+{
+  "lesson": "u10-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {},
+      "lines": {
+        "u10-l04-s01": {
+          "verdict": "accepted",
+          "reason": "Zvečer se učim slovenščino is correct and natural. SSKJ and Pravopis give učiti se with the accusative (učiti se fiziko, zgodovino), so slovenščino stands. Se in second place is right; sem and si are wrong here, so exactly one option fits. The English is accurate.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=u%C4%8Diti"
+        },
+        "u10-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Kje si se učil slovenščino? is correct, with si before se and the accusative supported by SSKJ and Pravopis. The imperfective is natural for asking where the learning took place. Sem would be grammatical on its own but contradicts the English 'you (to a man)', and se is impossible, so one option is right.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=u%C4%8Diti"
+        },
+        "u10-l04-p02": {
+          "verdict": "doubtful",
+          "reason": "The answer Učim se slovenščino is correct, and the variants with slovenščine and the fronted orders are supported by Pravopis (učiti se kaj, česa). The doubt is the accept variant Učim se slovensko: Fran shows the adverb slovensko with govoriti only, never with učiti se. I believe it is heard in speech but cannot source it, and accept entries must be correct Slovenian. Also, the item u10-l04-i02 accepts Slovensko se učim, which this list lacks, so the two lists disagree. A native should decide both. Disclosure: the lesson file's verification field on that item shows earlier review notes, which I saw; this doubt rests on my own lookup.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=slovensko"
+        },
+        "u10-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Učim se slovenščino. Hodim na tečaj. is natural and within the length limits, and the accusative is supported by SSKJ and Pravopis. It answers Kaj študiraš? sensibly. 'I go to a course' is slightly stiff English but accurate and matches the item gloss.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=u%C4%8Diti"
+        },
+        "u10-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Kako ti gre slovenščina? is idiomatic, in the same pattern as asking how a school subject is going, and suits a peer in the ti form. The English is faithful. Outside the language check: the speaker label student is not in the style guide's speaker list.",
+          "fix": "",
+          "source": ""
+        },
+        "r-clitic-order": {
+          "verdict": "accepted",
+          "reason": "The order stated is correct: present auxiliary before se (včeraj sem se učil), se before the future auxiliary (jutri se bom učil), je last (slabo mi je). The example with slovenščino is supported by SSKJ and Pravopis. The toggles and their English are correct, the quick check has one right option (sem and si are ungrammatical there), and the helpers are accurate. card_en is within 40 words.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=u%C4%8Diti"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 3,
+      "items": {},
+      "lines": {
+        "u10-l04-s01": {
+          "verdict": "accepted",
+          "reason": "Zvečer se učim slovenščino is correct and natural. Učiti se takes the accusative as well as the genitive (Pravopis lists both; SSKJ has učiti se fiziko, zgodovino). Se is the only right option: sem and si do not fit učim. The English is accurate.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=učiti"
+        },
+        "u10-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Kje si se učil slovenščino? has the correct order, si before se, and is natural. With the English '(to a man)' only si is right: sem would mean 'I', and se se is ungrammatical.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l04-p02": {
+          "verdict": "doubtful",
+          "reason": "The answer Učim se slovenščino and the variants Učim se slovenščine, Slovenščino se učim and Slovenščine se učim are correct (Pravopis gives učiti se with kaj and česa). The doubt is the variant Učim se slovensko. Fran attests the adverb slovensko only with govoriti, not with učiti se, so it may be spoken usage rather than correct standard, and a native speaker should confirm it. Separately, the item's own accept list has Slovensko se učim, which is missing here, so if the adverb stands the two lists disagree.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=slovensko"
+        },
+        "u10-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Učim se slovenščino. Hodim na tečaj. is grammatical and natural as an answer to Kaj študiraš? The accusative is attested for učiti se, hodim na tečaj is the right verb for going regularly, and the English is faithful.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=učiti"
+        },
+        "u10-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Kako ti gre slovenščina? is idiomatic, with the dative ti and the nominative subject. The English 'How is your Slovenian going?' is accurate, and the line is short.",
+          "fix": "",
+          "source": ""
+        },
+        "r-clitic-order": {
+          "verdict": "accepted",
+          "reason": "The order stated is correct: auxiliary sem before se, se before the future bom, and je last after a dative (včeraj sem se učil, jutri se bom učil, slabo mi je). The example, toggles and German contrast are correct, and učim se slovenščino has an attested accusative. In the quick check only se fits: sem bom is ungrammatical and učiti does not take si.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=učiti"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l04-s01": "8b6cb4660411e795",
+    "u10-l04-s04": "3f83bdaca7386d7e",
+    "u10-l04-p02": "c0b01bf1812614f8",
+    "u10-l04-d-02": "7461362edfa1e47c",
+    "u10-l04-d-03": "9e20160fff64fe9b",
+    "r-clitic-order": "b52a6d895e9fafb8"
+  }
+}

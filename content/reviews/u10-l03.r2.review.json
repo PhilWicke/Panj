@@ -1,0 +1,47 @@
+{
+  "lesson": "u10-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {},
+      "lines": {
+        "u10-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Naslednji teden grem na počitnice is natural, and the present for a planned future is normal. The word-order variants are correct. SSKJ and Pravopis give bom šel for the future of iti without a label, so the bom šel and bom šla variants stand. The instruction is clear and not repeated elsewhere in the unit.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=iti"
+        },
+        "u10-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "V redu. Srečno na izpitu. is what a host would say, with the correct locative izpitu, which is recorded in the item's forms. It follows on from the exam mentioned earlier in the dialogue, and the English is faithful.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 2,
+      "items": {},
+      "lines": {
+        "u10-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Naslednji teden grem na počitnice is natural, with the present for a planned trip. The word order variants and the future variants bom šel and bom šla are all correct. The English instruction fits, and počitnice is not limited to pupils in the dictionary examples (vzeti si tri tedne počitnic, poceni počitnice v gorah).",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=počitnice"
+        },
+        "u10-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "V redu. Srečno na izpitu. is what a host would say; izpitu is the correct locative after na. Srečno as a wish is attested, and the English is faithful. Short enough to type.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=srečno"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l03-p06": "71839e4ae54bb11c",
+    "u10-l03-d-05": "823f6377b21ff267"
+  }
+}

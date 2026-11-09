@@ -1,0 +1,34 @@
+{
+  "lesson": "u10-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 5,
+      "items": {},
+      "lines": {
+        "r-past-l-participle": {
+          "verdict": "doubtful",
+          "reason": "All Slovenian is correct: the nine table forms match the Wiktionary l-participle table, onidve is confirmed for the neuter dual, and the example, toggles, quick check (one right option) and helpers are fine. The doubt is one English note. The f.du cell says 'Two women: the same form as for a group', but the card has two group forms, and a group of women takes delale (f.pl), so in a cell about women the note points to the wrong form. Delali is the form for men or a mixed group, so the note should read 'Two women: the same form as for men or a mixed group.'",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/delati"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {},
+      "lines": {
+        "r-past-l-participle": {
+          "verdict": "doubtful",
+          "reason": "All Slovenian is correct: every table form matches the standard l-participle paradigm (m delal, delala, delali; f delala, delali, delale; n delalo, delali, delala), the pronouns are right, and the example, toggles and quick check (one right option) are fine. The doubt is the English note on f.du, 'Two women: the same form as for a group.' It is true only of a male or mixed group. In the same row the group form is delale ('Women only'), so a learner can read the note as saying two women use delale, which is wrong. Suggested note: 'Two women: delali, the same form as for men or a mixed group, not delale.'",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/delati"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "r-past-l-participle": "1b0e77c5bf28c74d"
+  }
+}

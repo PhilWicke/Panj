@@ -1,0 +1,47 @@
+{
+  "lesson": "u10-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u10-l05-s03": {
+          "verdict": "accepted",
+          "reason": "V soboto bom doma is correct and natural. The English 'I will be' leaves bom as the only right option; bo and boš are plausible wrong persons.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Učim se slovenščino. V ponedeljek imam izpit. is correct and short enough to type, and the accusative is supported by SSKJ and Pravopis (lookup made under u10-l04). Repeating slovenščino after Kaj pa slovenščina? is a little full but unremarkable. The English is faithful.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=u%C4%8Diti"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u10-l05-s03": {
+          "verdict": "accepted",
+          "reason": "V soboto bom doma is correct and natural. The English 'I will be' leaves bom as the only right option; bo and boš are plausible wrong persons.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Učim se slovenščino. V ponedeljek imam izpit. is grammatical, the English is faithful, and the line has 45 characters and 7 words. After Kaj pa slovenščina? a native might drop the noun and say Učim se, but repeating it is unremarkable in a learner's mouth and is not an error.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l05-s03": "bec33a1c348bb687",
+    "u10-l05-d-08": "3b9324615e4b1575"
+  }
+}

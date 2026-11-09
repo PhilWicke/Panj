@@ -1,0 +1,387 @@
+{
+  "lesson": "u10-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 4,
+      "items": {
+        "u10-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Correct, natural examples; colloquial tag follows the ti rule.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Correct, clitic placement in examples and variants right.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Natural. Movement to work is unlabelled in SSKJ sense 1 ('voziti se v službo'), so neutral holds.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=služba"
+        },
+        "u10-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Correct genitive after negation, examples natural, helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-i05": {
+          "verdict": "accepted",
+          "reason": "Gender and gen. tedna correct, examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-i06": {
+          "verdict": "accepted",
+          "reason": "SSKJ gives sestanek unlabelled in this sense; loc. sestanku correct; sestati se hook is transparent.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=sestanek"
+        },
+        "u10-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Correct, gen. časa right, examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Correct adjective, acc.f prejšnjo right, helper true.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u10-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Feminine singular delala, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-s02": {
+          "verdict": "accepted",
+          "reason": "English fixes the man, so delal is the one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Masculine plural delali, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-s04": {
+          "verdict": "accepted",
+          "reason": "Masculine dual -la correct for midva.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/delati"
+        },
+        "u10-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Feminine šla, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Correct, English fixes the speaker; distractors are wrong forms.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-s07": {
+          "verdict": "accepted",
+          "reason": "Genitive after nimam.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, ob osmih right.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, clitic placement right.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural spoken question.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "r-past-l-participle": {
+          "verdict": "rejected",
+          "reason": "The Slovenian is right: table forms match the Wiktionary paradigm (m.du delala, f.du and n.du delali, n.pl delala), and onidve is found in SSKJ and Pravopis. The fault is in card_en: 'Not: nisem delal.' reads as 'do not say nisem delal', and the same unit uses 'not' for the wrong form ('bom delal, not bom delati'). The card must say this is the negative.",
+          "fix": "The past is sem, si, je and so on plus a form in -l that matches who did it: delal sem for a man, delala sem for a woman. Negative: nisem delal. Iti has its own: šel, šla.",
+          "source": "https://en.wiktionary.org/wiki/delati"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u10-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Correct past question, ti form correctly colloquial, feminine variant correct, natural examples.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural, with word order correct in the item, examples and variants.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Correct past of iti, natural examples, helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Correct, with genitive časa after negation. Žal as sorry is a slightly free but acceptable English rendering in the example.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-i05": {
+          "verdict": "accepted",
+          "reason": "Correct gender and fleeting-vowel genitive tedna. Examples natural, including do petih.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-i06": {
+          "verdict": "accepted",
+          "reason": "Correct gender and locative sestanku, natural examples, and the link to sestati se is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Correct noun and genitive, natural examples showing accusative čas and genitive časa after nimam.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Correct adjective and acc.f prejšnjo, natural examples, helper from prej is true.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u10-l02-s01": {
+          "verdict": "accepted",
+          "reason": "delala agrees with ona. Exactly one option fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-s02": {
+          "verdict": "accepted",
+          "reason": "delal is fixed by the note to a man. delali cannot follow si.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-s03": {
+          "verdict": "accepted",
+          "reason": "delali agrees with mi smo, and do petih is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-s04": {
+          "verdict": "accepted",
+          "reason": "Masculine dual participle delala is correct after midva sva, and the distractors are plausible.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-s05": {
+          "verdict": "accepted",
+          "reason": "šla agrees with ona. The irregular forms make good distractors.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-s06": {
+          "verdict": "accepted",
+          "reason": "imel is the only participle among the options, as the sentence requires.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-s07": {
+          "verdict": "accepted",
+          "reason": "Genitive časa after nimam. Nominative-accusative čas and locative času are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Correct, with the feminine variant accepted.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Correct in both orders and both genders.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Correct. V službo sem šel would also be correct and could be added to accept.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, with the feminine variant accepted.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, including ob osmih and the fronted variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-p06": {
+          "verdict": "accepted",
+          "reason": "Correct, with both genders and word orders listed.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural colleague greeting and question, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, with correct clitic position.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural spoken question without the particle, correct locative.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural follow-up, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l02-d-06": {
+          "verdict": "accepted",
+          "reason": "Grammatical and short. Elliptical potem domov is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-past-l-participle": {
+          "verdict": "rejected",
+          "reason": "All table forms and pronouns are correct, including feminine dual delali and neuter dual onidve, and the toggles and quick check are fine. The fault is in card_en: 'Not: nisem delal.' reads as the usual formula for a form to avoid, right after the affirmative pattern, so it tells the learner the correct negative is wrong. The toggle on the same card shows Nisem delal as right.",
+          "fix": "card_en: replace 'Not: nisem delal.' with 'Negative: nisem delal.'",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l02-i01": "996c2e661d98caf8",
+    "u10-l02-i02": "703f0b3e2676c750",
+    "u10-l02-i03": "4b1e9e551e40db31",
+    "u10-l02-i04": "f23a005f32b880dc",
+    "u10-l02-i05": "3b2f8ee4d648d4b6",
+    "u10-l02-i06": "17c7879a868b8489",
+    "u10-l02-i07": "b21d490f9673249f",
+    "u10-l02-i08": "7626c2703e23c1d0",
+    "u10-l02-s01": "a67273149e42ef78",
+    "u10-l02-s02": "e0d0d6619f76578d",
+    "u10-l02-s03": "66a231876ff06219",
+    "u10-l02-s04": "70892dce95055480",
+    "u10-l02-s05": "23af3f320e14c4c9",
+    "u10-l02-s06": "01a2007440d84fbf",
+    "u10-l02-s07": "6fe4377141257949",
+    "u10-l02-p01": "69801696809923d8",
+    "u10-l02-p02": "3f38b62384c615cb",
+    "u10-l02-p03": "2cc42cc8c95ecfb3",
+    "u10-l02-p04": "1228f7f38a10e402",
+    "u10-l02-p05": "4417df613b51c613",
+    "u10-l02-p06": "4df0924b99644ba9",
+    "u10-l02-d-01": "67fab10794363937",
+    "u10-l02-d-02": "ae31d5b01acd46de",
+    "u10-l02-d-03": "19cb78c132b8c1ae",
+    "u10-l02-d-04": "6b301a9cef8b202f",
+    "u10-l02-d-05": "93913ccf02a7e1e0",
+    "u10-l02-d-06": "3366e169fb49ac1e",
+    "r-past-l-participle": "1b0e77c5bf28c74d"
+  }
+}

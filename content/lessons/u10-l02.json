@@ -1,0 +1,481 @@
+{
+  "id": "u10-l02",
+  "unit": "u10",
+  "order": 2,
+  "role": "theme",
+  "title_sl": "Prejšnji teden",
+  "title_en": "Last week",
+  "items": [
+    {
+      "id": "u10-l02-i01",
+      "type": "chunk",
+      "sl": "Kaj si delal?",
+      "sl_colloquial": null,
+      "en": "What did you do? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kaj si delal včeraj?",
+          "en": "What did you do yesterday?"
+        },
+        {
+          "sl": "Kaj si delal prejšnji teden?",
+          "en": "What did you do last week?"
+        }
+      ],
+      "helper": "To a woman: Kaj si delala?",
+      "accept": [
+        "Kaj si delala?"
+      ],
+      "rules": [
+        "r-past-l-participle",
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l02-i02",
+      "type": "chunk",
+      "sl": "Ves dan sem delal.",
+      "sl_colloquial": null,
+      "en": "I worked all day.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Včeraj sem ves dan delal.",
+          "en": "Yesterday I worked all day."
+        },
+        {
+          "sl": "Ves dan sem delal v pisarni.",
+          "en": "I worked in the office all day."
+        }
+      ],
+      "helper": "A woman says Ves dan sem delala.",
+      "accept": [
+        "Ves dan sem delala.",
+        "Delal sem ves dan.",
+        "Delala sem ves dan."
+      ],
+      "rules": [
+        "r-past-l-participle"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l02-i03",
+      "type": "chunk",
+      "sl": "Šel sem v službo.",
+      "sl_colloquial": null,
+      "en": "I went to work.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Zjutraj sem šel v službo.",
+          "en": "In the morning I went to work."
+        },
+        {
+          "sl": "V ponedeljek sem šel v službo.",
+          "en": "On Monday I went to work."
+        }
+      ],
+      "helper": "A woman says Šla sem v službo. Iti has its own past: šel, šla.",
+      "accept": [
+        "Šla sem v službo."
+      ],
+      "rules": [
+        "r-past-l-participle",
+        "r-grem-v-na"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l02-i04",
+      "type": "chunk",
+      "sl": "Nisem imel časa.",
+      "sl_colloquial": null,
+      "en": "I didn't have time.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Včeraj nisem imel časa.",
+          "en": "I didn't have time yesterday."
+        },
+        {
+          "sl": "Žal nisem imel časa za sestanek.",
+          "en": "Sorry, I didn't have time for the meeting."
+        }
+      ],
+      "helper": "A woman says Nisem imela časa. After not, the noun takes the genitive: časa.",
+      "accept": [
+        "Nisem imela časa."
+      ],
+      "rules": [
+        "r-past-l-participle",
+        "r-genitive-ni"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l02-i05",
+      "type": "word",
+      "sl": "teden",
+      "sl_colloquial": null,
+      "en": "week",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "gen": "tedna"
+      },
+      "examples": [
+        {
+          "sl": "Prejšnji teden sem bil doma.",
+          "en": "Last week I was at home."
+        },
+        {
+          "sl": "Ta teden delam do petih.",
+          "en": "This week I work until five."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 240,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l02-i06",
+      "type": "word",
+      "sl": "sestanek",
+      "sl_colloquial": null,
+      "en": "meeting",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "loc": "sestanku"
+      },
+      "examples": [
+        {
+          "sl": "Imam sestanek ob osmih.",
+          "en": "I have a meeting at eight."
+        },
+        {
+          "sl": "Včeraj sem bil na sestanku.",
+          "en": "Yesterday I was at a meeting."
+        }
+      ],
+      "helper": "From sestati se, to meet up.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 842,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l02-i07",
+      "type": "word",
+      "sl": "čas",
+      "sl_colloquial": null,
+      "en": "time",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "gen": "časa"
+      },
+      "examples": [
+        {
+          "sl": "Imaš čas jutri?",
+          "en": "Do you have time tomorrow?"
+        },
+        {
+          "sl": "Danes nimam časa.",
+          "en": "I don't have time today."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-genitive-ni"
+      ],
+      "freq_rank": 105,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u10-l02-i08",
+      "type": "word",
+      "sl": "prejšnji",
+      "sl_colloquial": null,
+      "en": "last, previous",
+      "register": "neutral",
+      "pos": "adjective",
+      "forms": {
+        "acc.f": "prejšnjo"
+      },
+      "examples": [
+        {
+          "sl": "Prejšnji teden je bil lep.",
+          "en": "Last week was lovely."
+        },
+        {
+          "sl": "Prejšnjo soboto sem bil doma.",
+          "en": "Last Saturday I was at home."
+        }
+      ],
+      "helper": "Built on prej, earlier.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 628,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-past-l-participle"
+  ],
+  "structured": [
+    {
+      "id": "u10-l02-s01",
+      "prompt_sl": "Ona je ves dan ___.",
+      "options": [
+        "delal",
+        "delala",
+        "delali"
+      ],
+      "answer": "delala",
+      "rule": "r-past-l-participle",
+      "en": "She worked all day."
+    },
+    {
+      "id": "u10-l02-s02",
+      "prompt_sl": "Kaj si ___ včeraj?",
+      "options": [
+        "delal",
+        "delala",
+        "delali"
+      ],
+      "answer": "delal",
+      "rule": "r-past-l-participle",
+      "en": "What did you do yesterday? (to a man)"
+    },
+    {
+      "id": "u10-l02-s03",
+      "prompt_sl": "Mi smo ___ do petih.",
+      "options": [
+        "delal",
+        "delala",
+        "delali"
+      ],
+      "answer": "delali",
+      "rule": "r-past-l-participle",
+      "en": "We worked until five."
+    },
+    {
+      "id": "u10-l02-s04",
+      "prompt_sl": "Midva sva ___ doma.",
+      "options": [
+        "delal",
+        "delala",
+        "delali"
+      ],
+      "answer": "delala",
+      "rule": "r-past-l-participle",
+      "en": "The two of us worked at home."
+    },
+    {
+      "id": "u10-l02-s05",
+      "prompt_sl": "Ona je ___ v službo.",
+      "options": [
+        "šel",
+        "šla",
+        "šli"
+      ],
+      "answer": "šla",
+      "rule": "r-past-l-participle",
+      "en": "She went to work."
+    },
+    {
+      "id": "u10-l02-s06",
+      "prompt_sl": "Nisem ___ časa.",
+      "options": [
+        "imel",
+        "imam",
+        "imeti"
+      ],
+      "answer": "imel",
+      "rule": "r-past-l-participle",
+      "en": "I didn't have time. (a man speaking)"
+    },
+    {
+      "id": "u10-l02-s07",
+      "prompt_sl": "Danes nimam ___.",
+      "options": [
+        "čas",
+        "časa",
+        "času"
+      ],
+      "answer": "časa",
+      "rule": "r-genitive-ni",
+      "en": "I don't have time today."
+    }
+  ],
+  "production": [
+    {
+      "id": "u10-l02-p01",
+      "en": "Ask someone close what they did.",
+      "answer": "Kaj si delal?",
+      "accept": [
+        "Kaj si delala?"
+      ],
+      "item": "u10-l02-i01"
+    },
+    {
+      "id": "u10-l02-p02",
+      "en": "Say you worked all day.",
+      "answer": "Ves dan sem delal.",
+      "accept": [
+        "Ves dan sem delala.",
+        "Delal sem ves dan.",
+        "Delala sem ves dan."
+      ],
+      "item": "u10-l02-i02"
+    },
+    {
+      "id": "u10-l02-p03",
+      "en": "Say you went to work.",
+      "answer": "Šel sem v službo.",
+      "accept": [
+        "Šla sem v službo."
+      ],
+      "item": "u10-l02-i03"
+    },
+    {
+      "id": "u10-l02-p04",
+      "en": "Say you had no time.",
+      "answer": "Nisem imel časa.",
+      "accept": [
+        "Nisem imela časa."
+      ],
+      "item": "u10-l02-i04"
+    },
+    {
+      "id": "u10-l02-p05",
+      "en": "Say you have a meeting at eight.",
+      "answer": "Imam sestanek ob osmih.",
+      "accept": [
+        "Ob osmih imam sestanek."
+      ],
+      "item": "u10-l02-i06"
+    },
+    {
+      "id": "u10-l02-p06",
+      "en": "Say you did not work last week.",
+      "answer": "Prejšnji teden nisem delal.",
+      "accept": [
+        "Prejšnji teden nisem delala.",
+        "Nisem delal prejšnji teden.",
+        "Nisem delala prejšnji teden."
+      ],
+      "item": "u10-l02-i08"
+    }
+  ],
+  "dialogue": {
+    "id": "u10-l02-d",
+    "title_sl": "V pisarni",
+    "title_en": "At the office",
+    "setting_en": "Back at the office, a colleague asks how your last week went.",
+    "lines": [
+      {
+        "speaker": "colleague",
+        "sl": "Živjo. Kaj si delal prejšnji teden?",
+        "en": "Hi. What did you do last week?",
+        "new_items": [
+          "u10-l02-i01",
+          "u10-l02-i08",
+          "u10-l02-i05"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "V ponedeljek sem ves dan delal.",
+        "en": "On Monday I worked all day.",
+        "new_items": [
+          "u10-l02-i02"
+        ]
+      },
+      {
+        "speaker": "colleague",
+        "sl": "Si bil na sestanku?",
+        "en": "Were you at the meeting?",
+        "new_items": [
+          "u10-l02-i06"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Ne, nisem imel časa.",
+        "en": "No, I didn't have time.",
+        "new_items": [
+          "u10-l02-i04",
+          "u10-l02-i07"
+        ]
+      },
+      {
+        "speaker": "colleague",
+        "sl": "Kaj pa v petek?",
+        "en": "And on Friday?"
+      },
+      {
+        "speaker": "you",
+        "sl": "V petek sem šel v službo, potem domov.",
+        "en": "On Friday I went to work, then home.",
+        "new_items": [
+          "u10-l02-i03"
+        ]
+      }
+    ]
+  }
+}

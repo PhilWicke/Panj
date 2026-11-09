@@ -1,0 +1,361 @@
+{
+  "lesson": "u10-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {
+        "u10-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Standard question, examples natural. The poklic/klic hook is honest: Pleteršnik glosses poklic as Ruf, Berufung and Beruf. Colloquial tag follows the ti rule.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=poklic"
+        },
+        "u10-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Natural, examples and accept variant correct, helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Correct locative, natural examples, accept word order fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Correct, feminine and word-order variants are right, examples natural (gen. denarja correct).",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-i05": {
+          "verdict": "doubtful",
+          "reason": "Register. The gloss 'place of work' and the example 'Danes sem v službi' use the sense SSKJ labels pog. ('// pog. stavba, prostor, kjer se opravlja tako delo ... to sem slišal v službi'), and Pravopis has knj. pog. for 'čakati koga pred službo'. The item is tagged neutral, so by the style guide it waits for a native to confirm the tag. The job sense itself carries no label; forms and helper are fine.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=služba"
+        },
+        "u10-l01-i06": {
+          "verdict": "accepted",
+          "reason": "Gender, forms, examples and helper correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-i07": {
+          "verdict": "accepted",
+          "reason": "Correct noun and feminine form, examples natural, helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-i08": {
+          "verdict": "accepted",
+          "reason": "Correct; the gloss rightly covers the secondary school sense; feminine form right.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u10-l01-s01": {
+          "verdict": "accepted",
+          "reason": "One correct option; nominative masculine after brat; distractors wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-s02": {
+          "verdict": "accepted",
+          "reason": "One correct option; profesorica after sestra.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Correct, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Correct, one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Locative pisarni is the one right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-s06": {
+          "verdict": "accepted",
+          "reason": "Third person dela agrees with tvoja sestra.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct; učitelj fits primary school.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, instruction names the addressee.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, variant fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Correct; Kaj delaš? is rightly accepted for a job question.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural elliptical answer; službo here is the job sense.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-feminine-professions": {
+          "verdict": "accepted",
+          "reason": "Forms, toggle, quick check (učiteljico is a good wrong case) and helpers correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 2,
+      "items": {
+        "u10-l01-i01": {
+          "verdict": "accepted",
+          "reason": "The usual way to ask about someone's job. The ti form is correctly colloquial and glossed. Pleteršnik glosses poklic as Ruf, Beruf, so the helper's link to klic and German rufen holds. Both examples are natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=poklic"
+        },
+        "u10-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Idiomatic. Both examples are natural, the accept variant is correct, and the helper on delati is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Correct locative and natural. The fronted order in accept is fine, and the helper's -i pattern holds.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Correct and natural. Sentence-initial sem is fine in Slovenian. The feminine and word-order variants are correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Correct gender, acc and loc. The gloss covers both the job and being at work. Derivation from služiti, parallel to Dienst and dienen, is sound.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-i06": {
+          "verdict": "accepted",
+          "reason": "Correct gender and forms, natural examples, and the derivation from pisati is real.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-i07": {
+          "verdict": "accepted",
+          "reason": "Correct masculine and feminine forms, natural examples, true helper.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-i08": {
+          "verdict": "accepted",
+          "reason": "SSKJ defines profesor as someone teaching at a secondary or higher school, so the gloss and helper are right. Feminine form and examples are correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=profesor"
+        }
+      },
+      "lines": {
+        "u10-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Only učitelj fits moj brat. učiteljica fails on gender and učitelja on case.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-s02": {
+          "verdict": "accepted",
+          "reason": "profesorica is the form for moja sestra. The masculine and the genitive are wrong but plausible distractors.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Only študent agrees with on.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Only študentka agrees with ona.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Location after v needs the locative pisarni. Nominative and accusative are plausible and wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-s06": {
+          "verdict": "accepted",
+          "reason": "Third person dela agrees with tvoja sestra. The other persons do not fit.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Answer correct. Accept covers the feminine and the natural alternative order.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-p02": {
+          "verdict": "accepted",
+          "reason": "učitelj is right for a primary school teacher, and the instruction separates it from profesor. Variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-p03": {
+          "verdict": "accepted",
+          "reason": "profesor is right for a university post. Variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Correct ti question with a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Correct. The fronted variant is grammatical and natural with stress on the place.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Answer correct. Kaj delaš? and Kaj pa delaš? are also said about someone's job, though out of context they mean what are you doing. As accepted answers they are correct Slovenian.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural opener, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural reply and return question.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural. Jaz is justified by the contrast with the question just asked.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Short elliptical answer, natural, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u10-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural. Tudi jaz is correctly placed, English faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "r-feminine-professions": {
+          "verdict": "accepted",
+          "reason": "Forms, the -ica and -ka note, the no-article point, toggles and quick check are all correct. The genitive-looking distractor učiteljico is plausible and wrong. The German parallel holds.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l01-i01": "1f7fcf359da2665f",
+    "u10-l01-i02": "0be0fc6ddbbcfcbb",
+    "u10-l01-i03": "62b825666d96824a",
+    "u10-l01-i04": "29a29bdfa3fb8b2a",
+    "u10-l01-i05": "c51c7038d54ec80f",
+    "u10-l01-i06": "936fb7effa1f26f9",
+    "u10-l01-i07": "0796630147be49de",
+    "u10-l01-i08": "898b9746c023934a",
+    "u10-l01-s01": "74d591bc03a64581",
+    "u10-l01-s02": "025c8b9d0f6e839c",
+    "u10-l01-s03": "0b7c78553f9f9419",
+    "u10-l01-s04": "c408a7b0e3f6c5b8",
+    "u10-l01-s05": "1ca59b1019b3b969",
+    "u10-l01-s06": "426a77a98ce03e22",
+    "u10-l01-p01": "719c0cdbf61f3626",
+    "u10-l01-p02": "3769d77fef901720",
+    "u10-l01-p03": "a43deb44ce48dbae",
+    "u10-l01-p04": "7e124e45e2ba6199",
+    "u10-l01-p05": "fd5e20966c7d1a2b",
+    "u10-l01-p06": "fee5567340448f7d",
+    "u10-l01-d-01": "3ed4705c19b0a754",
+    "u10-l01-d-02": "396ff99e687f0a03",
+    "u10-l01-d-03": "3a1b0ce481620689",
+    "u10-l01-d-04": "b37825134cbdcae4",
+    "u10-l01-d-05": "93d261f2204d4b4b",
+    "r-feminine-professions": "24d494d6098d6abe"
+  }
+}

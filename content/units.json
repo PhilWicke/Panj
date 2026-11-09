@@ -151,6 +151,12 @@
     "title_sl": "Delo in študij",
     "title_en": "Work and study",
     "motif": "bee",
-    "lessons": []
+    "lessons": [
+      "u10-l01",
+      "u10-l02",
+      "u10-l03",
+      "u10-l04",
+      "u10-l05"
+    ]
   }
 ]
