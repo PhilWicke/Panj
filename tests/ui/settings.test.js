@@ -74,6 +74,7 @@ test('a change the store refuses is taken back in the settings, the player and t
   const app = /** @type {any} */ ({ adapter, state: { settings: { ...DEFAULT_APP_SETTINGS, onboarded: true } }, player });
   const container = /** @type {any} */ (document.createElement('main'));
   renderSettings(container, app);
+  assert.equal(elements(container).some((el) => el.getAttribute('id') === 'settings-intention' || el.textContent === 'I practise …'), false, 'no intention field');
   const status = () => container.querySelector('.settings-saved').textContent;
 
   // the mute switch: flipped on, the player muted, then both taken back

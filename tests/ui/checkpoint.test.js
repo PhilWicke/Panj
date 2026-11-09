@@ -3,12 +3,12 @@
 // count and minutes line, the result line with its rounded percent, the verdict, the calibration
 // line of the weekly check, the default prediction and how the prediction field is read, the error
 // card's line before and during the save, and once an earlier unit of the placement chain was
-// saved), the settings onboarding saves (the clause trimmed, the
-// name capped, onboarded set, Ruling 52), and the feedback panel without its retry, which the
-// checkpoint asks for. Through tests/helpers/fake-dom.js, onboarding's last step holds its buttons
-// while it saves and, when the save is refused, says so and offers them again. The placement check
-// takes its chain of units from the content, and an empty chain reaches the not-found card. The
-// checkpoint flow itself runs in the browser check.
+// saved), the settings onboarding saves (the name capped, onboarded set), and the feedback panel
+// without its retry, which the checkpoint asks for. Through tests/helpers/fake-dom.js, onboarding
+// counts three steps and never asks when the learner will practise, and its last step holds its
+// buttons while it saves and, when the save is refused, says so and offers them again. The
+// placement check takes its chain of units from the content, and an empty chain reaches the
+// not-found card. The checkpoint flow itself runs in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
@@ -19,7 +19,7 @@ import { renderFeedback } from '../../app/js/ui/components/feedback.js';
 import {
   aboutLine, calibrationLine, countLine, defaultPrediction, failureLine, predictionFrom, renderCheckpoint, resultLine, verdictLine,
 } from '../../app/js/ui/screens/checkpoint.js';
-import { DEFAULT_INTENTION, onboardingSettings, renderOnboarding } from '../../app/js/ui/screens/onboarding.js';
+import { onboardingSettings, renderOnboarding } from '../../app/js/ui/screens/onboarding.js';
 
 before(() => {
   installFakeDom();
@@ -79,14 +79,25 @@ test('calibrationLine compares the prediction with the result', () => {
   assert.equal(calibrationLine(8, 7), 'You predicted 8 and got 7. 1 fewer than you thought.');
 });
 
-test('onboardingSettings keeps the other settings, trims the clause and the name, caps the name and marks the learner onboarded', () => {
-  assert.equal(DEFAULT_INTENTION, 'on the train after the first stop');
-  const saved = onboardingSettings(DEFAULT_APP_SETTINGS, { name: '  Ana ', intention: ` ${DEFAULT_INTENTION} `, theme: 'dark' });
-  assert.deepEqual(saved, { ...DEFAULT_APP_SETTINGS, name: 'Ana', intention: DEFAULT_INTENTION, theme: 'dark', onboarded: true });
-  const kept = onboardingSettings({ ...DEFAULT_APP_SETTINGS, dailyMinutes: 15, mute: true }, { name: '', intention: '', theme: 'system' });
-  assert.deepEqual(kept, { ...DEFAULT_APP_SETTINGS, dailyMinutes: 15, mute: true, name: '', intention: '', theme: 'system', onboarded: true }, 'an empty name and clause are allowed');
-  assert.equal(onboardingSettings(DEFAULT_APP_SETTINGS, { name: 'a'.repeat(50), intention: 'x', theme: 'light' }).name.length, 40);
-  assert.equal(onboardingSettings(DEFAULT_APP_SETTINGS, { name: 'Ana', intention: 'after breakfast.', theme: 'light' }).intention, 'after breakfast.', 'the clause is stored as typed, trimmed; Today adds the sentence around it');
+test('onboardingSettings keeps the other settings, trims and caps the name, sets the theme and marks the learner onboarded', () => {
+  assert.deepEqual(onboardingSettings(DEFAULT_APP_SETTINGS, { name: '  Ana ', theme: 'dark' }), { ...DEFAULT_APP_SETTINGS, name: 'Ana', theme: 'dark', onboarded: true });
+  assert.deepEqual(onboardingSettings({ ...DEFAULT_APP_SETTINGS, dailyMinutes: 15, mute: true }, { name: '', theme: 'system' }),
+    { ...DEFAULT_APP_SETTINGS, dailyMinutes: 15, mute: true, name: '', theme: 'system', onboarded: true });
+  assert.equal(onboardingSettings(DEFAULT_APP_SETTINGS, { name: 'a'.repeat(50), theme: 'light' }).name.length, 40);
+});
+
+test('onboarding has three steps and never asks when you will practise', () => {
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderOnboarding(container, /** @type {any} */ ({ adapter: {}, state: { settings: { ...DEFAULT_APP_SETTINGS } } }));
+  /** @type {string[]} */
+  const seen = [];
+  for (let step = 1; step <= 3; step += 1) {
+    seen.push(container.querySelector('.eyebrow').textContent);
+    assert.equal(elements(container).some((el) => el.textContent === 'When will you practise?' || el.textContent === 'I practise …'), false, `step ${step}`);
+    if (step < 3) container.querySelector('.onboarding-step').dispatch('submit');
+  }
+  assert.deepEqual(seen, ['1 of 3', '2 of 3', '3 of 3']);
+  assert.ok(elements(container).some((el) => el.tagName === 'H1' && el.textContent === 'Add to home screen'));
 });
 
 test('onboarding: a refused save says so, offers the buttons again and keeps the learner where they are; a second try goes on', async (t) => {
@@ -103,8 +114,8 @@ test('onboarding: a refused save says so, offers the buttons again and keeps the
   const app = /** @type {any} */ ({ adapter, state: { settings: { ...DEFAULT_APP_SETTINGS } } });
   const container = /** @type {any} */ (document.createElement('main'));
   renderOnboarding(container, app);
-  for (let step = 1; step < 4; step += 1) container.querySelector('.onboarding-step').dispatch('submit');
-  assert.equal(container.querySelector('.eyebrow').textContent, '4 of 4');
+  for (let step = 1; step < 3; step += 1) container.querySelector('.onboarding-step').dispatch('submit');
+  assert.equal(container.querySelector('.eyebrow').textContent, '3 of 3');
   /** @param {string} text */
   const pick = (text) => elements(container).find((el) => el.tagName === 'BUTTON' && el.textContent === text);
   const start = pick('Start from the first hello');

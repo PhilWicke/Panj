@@ -19,7 +19,6 @@ import { SETTING_RANGES, THEME_OPTIONS, VOICE_OPTIONS, clampToRange, withinRange
  * What the app keeps beyond the scheduler's Settings.
  * @typedef {object} Preferences
  * @property {string} name shown in the greeting; stays on the device
- * @property {string} intention the implementation intention from onboarding, "on the train after the first stop"
  * @property {boolean} mute no sound: silent forms of every exercise
  * @property {boolean} speech speech recognition opt-in, off by default
  * @property {'system'|'light'|'dark'} theme
@@ -75,7 +74,6 @@ const META_ID = 'meta';
 export const DEFAULT_APP_SETTINGS = Object.freeze({
   ...DEFAULT_SETTINGS,
   name: '',
-  intention: '',
   mute: false,
   speech: false,
   theme: 'system',
@@ -95,6 +93,24 @@ function withoutId(record) {
 /** @param {unknown} value @returns {boolean} a plain object, not null and not an array */
 function isRecord(value) {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+/**
+ * The stored settings record as the app's settings: the defaults, with the record's value for
+ * each key of DEFAULT_APP_SETTINGS it holds. Any other key (the store's id, a field an earlier
+ * version kept, such as v1's intention) is left out.
+ * @param {Record<string, unknown>|undefined} record
+ * @returns {AppSettings}
+ */
+function knownSettings(record) {
+  /** @type {Record<string, unknown>} */
+  const settings = { ...DEFAULT_APP_SETTINGS };
+  if (record) {
+    for (const key of Object.keys(settings)) {
+      if (Object.hasOwn(record, key)) settings[key] = record[key];
+    }
+  }
+  return /** @type {AppSettings} */ (settings);
 }
 
 /**
@@ -151,9 +167,11 @@ export async function saveMeta(adapter, meta) {
 
 /**
  * Reads the whole state. Settings fields the stored record lacks take their defaults, so a field
- * added in a later version reads as its default on an older record. The first load writes the
- * meta record, which stamps when the learner started. Sessions come back in order of startedAt
- * and flags in order of at, whichever adapter holds them.
+ * added in a later version reads as its default on an older record; only the keys of
+ * DEFAULT_APP_SETTINGS are kept, so a field a later version dropped (v1's intention) leaves the
+ * state here and the store at the next settings save. The first load writes the meta record,
+ * which stamps when the learner started. Sessions come back in order of startedAt and flags in
+ * order of at, whichever adapter holds them.
  * @param {StoreAdapter} adapter
  * @param {number} [now] epoch ms for the meta record created on first load; the clock when omitted
  * @returns {Promise<AppState>}
@@ -180,7 +198,7 @@ export async function loadState(adapter, now = Date.now()) {
   return {
     items,
     sessions: sessions.sort((a, b) => a.startedAt - b.startedAt || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)),
-    settings: { ...DEFAULT_APP_SETTINGS, ...(settingsRecord ? withoutId(settingsRecord) : {}) },
+    settings: knownSettings(settingsRecord),
     flags: flagRecords.map(withoutId).sort((a, b) => a.at - b.at),
     meta,
   };
@@ -249,9 +267,8 @@ export function validateImport(json) {
 /**
  * A file's settings made safe to store (Ruling 84): only the keys of DEFAULT_APP_SETTINGS survive.
  * A number outside its range (setting-ranges.js), a theme or voice outside its options, a switch
- * that is not a boolean and a name or clause that is not a string each take their default; a
- * number inside its range lands on its step. A missing or non-object settings value gives the
- * defaults.
+ * that is not a boolean and a name that is not a string each take their default; a number inside
+ * its range lands on its step. A missing or non-object settings value gives the defaults.
  * @param {unknown} settings `data.settings`, in whatever shape the file has it
  * @returns {AppSettings}
  */

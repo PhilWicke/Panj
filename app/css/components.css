@@ -827,14 +827,6 @@ button.rule-cell {
   opacity: 0.92;
 }
 
-.intention {
-  padding: var(--space-8) var(--space-12);
-  border-left: 3px solid var(--honey);
-  border-radius: 0 var(--radius-10) var(--radius-10) 0;
-  background: var(--surface);
-  color: var(--text-muted);
-}
-
 .section-title {
   font-size: var(--text-18);
   font-weight: 700;

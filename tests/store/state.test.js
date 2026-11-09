@@ -23,7 +23,7 @@ const S = DEFAULT_SETTINGS;
 // The controller's default settings, spelled out so the test does not trust the module's own constant.
 const DEFAULTS = {
   desiredRetention: 0.9, newPerDay: 7, dailyMinutes: 10,
-  name: '', intention: '', mute: false, speech: false, theme: 'system', voice: 'female', onboarded: false,
+  name: '', mute: false, speech: false, theme: 'system', voice: 'female', onboarded: false,
 };
 
 const recall = (state, result, now) => recordRecall(state, result, now, S, TZ);
@@ -57,7 +57,7 @@ async function populated() {
   const early = session('s-b', T0);
   await appendSession(adapter, late);
   await appendSession(adapter, early);
-  const settings = { ...DEFAULTS, name: 'Ana', intention: 'on the train after the first stop', newPerDay: 12, theme: 'dark', voice: 'male', mute: true, onboarded: true };
+  const settings = { ...DEFAULTS, name: 'Ana', newPerDay: 12, theme: 'dark', voice: 'male', mute: true, onboarded: true };
   await saveSettings(adapter, settings);
   const flags = [flag('u01-l01-i01', 'Audio sounds off', T0 + 20 * MINUTE), flag('u01-l01-i02', 'Is this register right?', T0 + HOUR)];
   await addFlag(adapter, flags[1]);
@@ -208,6 +208,21 @@ test('importState sanitises the settings: unknown keys dropped, numbers outside 
   assert.deepEqual(sanitizeSettings([1]), DEFAULTS);
   assert.deepEqual(sanitizeSettings('dark'), DEFAULTS);
   assert.deepEqual(sanitizeSettings(DEFAULT_APP_SETTINGS), DEFAULTS, 'the defaults pass through');
+});
+
+test('a v1 settings record and a v1 backup with an intention load and import without it', async () => {
+  const adapter = createMemoryStore();
+  await adapter.put('settings', { id: 'settings', ...DEFAULTS, name: 'Ana', intention: 'on the train after the first stop' });
+  const loaded = await loadState(adapter, T0);
+  assert.equal(Object.hasOwn(loaded.settings, 'intention'), false);
+  assert.equal(loaded.settings.name, 'Ana');
+  const file = validateImport(JSON.stringify({ app: 'slovelingo', schemaVersion: 1, items: {}, sessions: [], settings: { name: 'Eva', intention: 'after breakfast' } }));
+  assert.equal(file.ok, true, 'an old backup still validates');
+  const target = createMemoryStore();
+  await importState(target, /** @type {any} */ (file).data, T1);
+  const stored = await target.get('settings', 'settings');
+  assert.equal(Object.hasOwn(stored, 'intention'), false);
+  assert.equal(stored.name, 'Eva');
 });
 
 test('validateImport rejects foreign or malformed JSON with a reason and does not touch the store', async () => {
