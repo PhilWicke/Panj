@@ -21,3 +21,9 @@ For each row, add one line to native-confirmations.tsv: the id, a tab, then `con
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
 | u03-l02-i08 | riba | fish | review2 doubtful: examples: Riba ali meso? glossed Fish or meat? As an offer (the sense this unit trains with Kavo ali čaj?) a native says Ribo ali meso?; the nominative only fits the reading Is it fish or meat? Other fields correct. |  |
+
+## Unit 04
+
+| id | sl | en | doubt | proposed fix |
+|---|---|---|---|---|
+| u04-l05-i06 | Lep vikend. | Have a nice weekend. | review1 doubtful: The Slovenian, examples and helper are correct. But register is tagged neutral, while SSKJ marks vikend in the weekend sense pog. and Pravopis marks it knj. pog. That is the course's colloquial, as this unit itself tags kilo (knj. pog.) colloquial. Lep konec tedna. is the neutral form, so the register should probably be colloquial. |  |

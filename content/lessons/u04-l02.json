@@ -1,0 +1,433 @@
+{
+  "id": "u04-l02",
+  "unit": "u04",
+  "order": 2,
+  "role": "theme",
+  "title_sl": "Koliko stane?",
+  "title_en": "How much is it?",
+  "items": [
+    {
+      "id": "u04-l02-i01",
+      "type": "chunk",
+      "sl": "Koliko stane?",
+      "sl_colloquial": null,
+      "en": "How much does it cost?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, koliko stane?",
+          "en": "Excuse me, how much does it cost?"
+        },
+        {
+          "sl": "Koliko stane kava?",
+          "en": "How much does the coffee cost?"
+        }
+      ],
+      "helper": "koliko is how much, as in koliko si star; stane is it costs.",
+      "accept": [
+        "Koliko to stane?"
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l02-i02",
+      "type": "chunk",
+      "sl": "Koliko je skupaj?",
+      "sl_colloquial": null,
+      "en": "How much is it altogether?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala. Koliko je skupaj?",
+          "en": "Thank you. How much is it altogether?"
+        },
+        {
+          "sl": "Kava in čaj. Koliko je skupaj?",
+          "en": "A coffee and a tea. How much is it altogether?"
+        }
+      ],
+      "helper": "skupaj is together; here it means all together.",
+      "accept": [
+        "Koliko bo skupaj?"
+      ],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l02-i03",
+      "type": "chunk",
+      "sl": "To je predrago.",
+      "sl_colloquial": null,
+      "en": "That's too expensive.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ne, hvala. To je predrago.",
+          "en": "No, thank you. That's too expensive."
+        },
+        {
+          "sl": "Sto evrov? To je predrago.",
+          "en": "A hundred euros? That's too expensive."
+        }
+      ],
+      "helper": "drag means dear in both senses, loved and expensive, like English dear; pre- adds too.",
+      "accept": [
+        "Predrago je."
+      ],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l02-i04",
+      "type": "chunk",
+      "sl": "Plačam s kartico.",
+      "sl_colloquial": null,
+      "en": "I'll pay by card.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Plačam s kartico, prosim.",
+          "en": "I'll pay by card, please."
+        },
+        {
+          "sl": "Lahko plačam s kartico?",
+          "en": "Can I pay by card?"
+        }
+      ],
+      "helper": "s is the z of z mlekom, written s before k; kartica, card, is like German Karte.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l02-i05",
+      "type": "word",
+      "sl": "evro",
+      "sl_colloquial": null,
+      "en": "euro",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "du": "evra",
+        "gen.pl": "evrov"
+      },
+      "examples": [
+        {
+          "sl": "Kava stane dva evra.",
+          "en": "The coffee costs two euros."
+        },
+        {
+          "sl": "To je pet evrov.",
+          "en": "That's five euros."
+        }
+      ],
+      "helper": "The euro, written as Slovenian says it: evro.",
+      "accept": [],
+      "rules": [
+        "r-dual-nouns",
+        "r-numbers-to-100"
+      ],
+      "freq_rank": 169,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l02-i06",
+      "type": "word",
+      "sl": "pet",
+      "sl_colloquial": null,
+      "en": "five",
+      "register": "neutral",
+      "pos": "numeral",
+      "examples": [
+        {
+          "sl": "Pet evrov, prosim.",
+          "en": "Five euros, please."
+        },
+        {
+          "sl": "Stane pet evrov.",
+          "en": "It costs five euros."
+        }
+      ],
+      "helper": "Related to Greek pente, as in pentagon.",
+      "accept": [],
+      "rules": [
+        "r-numbers-to-100"
+      ],
+      "freq_rank": 167,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l02-i07",
+      "type": "word",
+      "sl": "deset",
+      "sl_colloquial": null,
+      "en": "ten",
+      "register": "neutral",
+      "pos": "numeral",
+      "examples": [
+        {
+          "sl": "Deset evrov, prosim.",
+          "en": "Ten euros, please."
+        },
+        {
+          "sl": "To je deset evrov.",
+          "en": "That's ten euros."
+        }
+      ],
+      "helper": "Related to Latin decem, as in decimal.",
+      "accept": [],
+      "rules": [
+        "r-numbers-to-100"
+      ],
+      "freq_rank": 223,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l02-i08",
+      "type": "word",
+      "sl": "sto",
+      "sl_colloquial": null,
+      "en": "a hundred",
+      "register": "neutral",
+      "pos": "numeral",
+      "examples": [
+        {
+          "sl": "To je sto evrov.",
+          "en": "That's a hundred euros."
+        },
+        {
+          "sl": "Stane sto evrov.",
+          "en": "It costs a hundred euros."
+        }
+      ],
+      "helper": "Related to Latin centum, as in per cent.",
+      "accept": [],
+      "rules": [
+        "r-numbers-to-100"
+      ],
+      "freq_rank": 220,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-numbers-to-100"
+  ],
+  "structured": [
+    {
+      "id": "u04-l02-s01",
+      "prompt_sl": "Kava stane ___ evra.",
+      "options": [
+        "dva",
+        "dve",
+        "tri"
+      ],
+      "answer": "dva",
+      "rule": "r-numbers-1-4",
+      "en": "The coffee costs two euros."
+    },
+    {
+      "id": "u04-l02-s02",
+      "prompt_sl": "Stane ___ evrov.",
+      "options": [
+        "petindvajset",
+        "petnajst",
+        "petdeset"
+      ],
+      "answer": "petindvajset",
+      "rule": "r-numbers-to-100",
+      "en": "It costs twenty-five euros."
+    },
+    {
+      "id": "u04-l02-s03",
+      "prompt_sl": "To je ___ evrov.",
+      "options": [
+        "štirinajst",
+        "štirideset",
+        "štiriindvajset"
+      ],
+      "answer": "štirideset",
+      "rule": "r-numbers-to-100",
+      "en": "That's forty euros."
+    },
+    {
+      "id": "u04-l02-s04",
+      "prompt_sl": "Skupaj je ___ evrov.",
+      "options": [
+        "dvanajst",
+        "dvajset",
+        "dvaindvajset"
+      ],
+      "answer": "dvajset",
+      "rule": "r-numbers-to-100",
+      "en": "Altogether it's twenty euros."
+    },
+    {
+      "id": "u04-l02-s05",
+      "prompt_sl": "Lahko ___ s kartico?",
+      "options": [
+        "plačam",
+        "plačati"
+      ],
+      "answer": "plačam",
+      "rule": "r-lahko",
+      "en": "Can I pay by card?"
+    },
+    {
+      "id": "u04-l02-s06",
+      "prompt_sl": "Koliko ___ skupaj?",
+      "options": [
+        "je",
+        "sem",
+        "so"
+      ],
+      "answer": "je",
+      "rule": "r-biti-present",
+      "en": "How much is it altogether?"
+    }
+  ],
+  "production": [
+    {
+      "id": "u04-l02-p01",
+      "en": "Ask how much it costs.",
+      "answer": "Koliko stane?",
+      "accept": [
+        "Koliko to stane?"
+      ],
+      "item": "u04-l02-i01"
+    },
+    {
+      "id": "u04-l02-p02",
+      "en": "Ask how much it is altogether.",
+      "answer": "Koliko je skupaj?",
+      "accept": [
+        "Koliko bo skupaj?"
+      ],
+      "item": "u04-l02-i02"
+    },
+    {
+      "id": "u04-l02-p03",
+      "en": "Say that's too expensive.",
+      "answer": "To je predrago.",
+      "accept": [
+        "Predrago je."
+      ],
+      "item": "u04-l02-i03"
+    },
+    {
+      "id": "u04-l02-p04",
+      "en": "Say you'll pay by card.",
+      "answer": "Plačam s kartico.",
+      "accept": [],
+      "item": "u04-l02-i04"
+    },
+    {
+      "id": "u04-l02-p05",
+      "en": "Say it costs five euros.",
+      "answer": "Stane pet evrov.",
+      "accept": [
+        "To stane pet evrov.",
+        "To je pet evrov."
+      ],
+      "item": "u04-l02-i06"
+    },
+    {
+      "id": "u04-l02-p06",
+      "en": "Say it costs ten euros.",
+      "answer": "Stane deset evrov.",
+      "accept": [
+        "To stane deset evrov.",
+        "To je deset evrov."
+      ],
+      "item": "u04-l02-i07"
+    }
+  ],
+  "dialogue": {
+    "id": "u04-l02-d",
+    "title_sl": "Pri blagajni",
+    "title_en": "At the till",
+    "setting_en": "You have had a coffee and a slice of cake in a café, and now you pay at the till.",
+    "lines": [
+      {
+        "speaker": "you",
+        "sl": "Dober dan. Koliko je skupaj?",
+        "en": "Good day. How much is it altogether?",
+        "new_items": [
+          "u04-l02-i02"
+        ]
+      },
+      {
+        "speaker": "waiter",
+        "sl": "Kava in torta, to je pet evrov.",
+        "en": "Coffee and cake, that's five euros."
+      },
+      {
+        "speaker": "you",
+        "sl": "Lahko plačam s kartico?",
+        "en": "Can I pay by card?",
+        "new_items": [
+          "u04-l02-i04"
+        ]
+      },
+      {
+        "speaker": "waiter",
+        "sl": "Ja, lahko. Hvala lepa.",
+        "en": "Yes, you can. Thank you very much."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala. Lep dan še naprej.",
+        "en": "Thank you. Have a nice rest of the day."
+      }
+    ]
+  }
+}

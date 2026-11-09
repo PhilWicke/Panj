@@ -1,0 +1,457 @@
+{
+  "id": "u04-l01",
+  "unit": "u04",
+  "order": 1,
+  "role": "theme",
+  "title_sl": "V kavarni",
+  "title_en": "In the café",
+  "items": [
+    {
+      "id": "u04-l01-i01",
+      "type": "chunk",
+      "sl": "Kaj boste?",
+      "sl_colloquial": null,
+      "en": "What will you have? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan. Kaj boste?",
+          "en": "Good day. What will you have?"
+        },
+        {
+          "sl": "Kaj boste, kavo ali čaj?",
+          "en": "What will you have, coffee or tea?"
+        }
+      ],
+      "helper": "boste is will, the vi form: short for what will you have.",
+      "accept": [],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l01-i02",
+      "type": "chunk",
+      "sl": "Eno kavo, prosim.",
+      "sl_colloquial": null,
+      "en": "One coffee, please.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan. Eno kavo, prosim.",
+          "en": "Good day. One coffee, please."
+        },
+        {
+          "sl": "Eno kavo z mlekom, prosim.",
+          "en": "One coffee with milk, please."
+        }
+      ],
+      "helper": "ena kava becomes eno kavo when you order it: both words take the -o of pijem kavo.",
+      "accept": [
+        "Kavo, prosim."
+      ],
+      "rules": [
+        "r-accusative-feminine"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l01-i03",
+      "type": "chunk",
+      "sl": "Zame čaj.",
+      "sl_colloquial": null,
+      "en": "Tea for me.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Zame čaj, prosim.",
+          "en": "Tea for me, please."
+        },
+        {
+          "sl": "Kavo ali čaj? Zame čaj.",
+          "en": "Coffee or tea? Tea for me."
+        }
+      ],
+      "helper": "zame is za me, for me, written as one word.",
+      "accept": [
+        "Zame pa čaj.",
+        "Zame čaj, prosim."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l01-i04",
+      "type": "chunk",
+      "sl": "Kozarec vode, prosim.",
+      "sl_colloquial": null,
+      "en": "A glass of water, please.",
+      "register": "neutral",
+      "slots": [
+        {
+          "label": "drink",
+          "fillers": [
+            "u04-l01-i06",
+            "u04-l01-i07",
+            "u04-l01-i08"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "sl": "Lahko dobim kozarec vode?",
+          "en": "Can I have a glass of water?"
+        },
+        {
+          "sl": "Oprostite, kozarec vode, prosim.",
+          "en": "Excuse me, a glass of water, please."
+        }
+      ],
+      "helper": "After kozarec, a glass, voda turns into vode: a glass of water.",
+      "accept": [
+        "Lahko dobim kozarec vode?"
+      ],
+      "rules": [
+        "r-genitive-quantity"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l01-i05",
+      "type": "chunk",
+      "sl": "Račun, prosim.",
+      "sl_colloquial": null,
+      "en": "The bill, please.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Lahko dobim račun?",
+          "en": "Can I have the bill?"
+        },
+        {
+          "sl": "Hvala. Račun, prosim.",
+          "en": "Thank you. The bill, please."
+        }
+      ],
+      "helper": "račun is both the bill and a calculation, like German Rechnung.",
+      "accept": [
+        "Lahko dobim račun?"
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l01-i06",
+      "type": "word",
+      "sl": "sok",
+      "sl_colloquial": null,
+      "en": "juice",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "acc": "sok",
+        "gen": "soka"
+      },
+      "examples": [
+        {
+          "sl": "Imate sok?",
+          "en": "Do you have juice?"
+        },
+        {
+          "sl": "Kozarec soka, prosim.",
+          "en": "A glass of juice, please."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-genitive-quantity"
+      ],
+      "freq_rank": 1793,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l01-i07",
+      "type": "word",
+      "sl": "pivo",
+      "sl_colloquial": null,
+      "en": "beer",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "forms": {
+        "acc": "pivo",
+        "gen": "piva"
+      },
+      "examples": [
+        {
+          "sl": "Eno pivo, prosim.",
+          "en": "One beer, please."
+        },
+        {
+          "sl": "Pivo je zelo dobro.",
+          "en": "The beer is very good."
+        }
+      ],
+      "helper": "Built on piti, to drink, as in pijem kavo.",
+      "accept": [],
+      "rules": [
+        "r-genitive-quantity"
+      ],
+      "freq_rank": 1600,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l01-i08",
+      "type": "word",
+      "sl": "vino",
+      "sl_colloquial": null,
+      "en": "wine",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "forms": {
+        "acc": "vino",
+        "gen": "vina"
+      },
+      "examples": [
+        {
+          "sl": "Kozarec vina, prosim.",
+          "en": "A glass of wine, please."
+        },
+        {
+          "sl": "Vino ali pivo?",
+          "en": "Wine or beer?"
+        }
+      ],
+      "helper": "Like German Wein and English wine.",
+      "accept": [],
+      "rules": [
+        "r-genitive-quantity"
+      ],
+      "freq_rank": 430,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-genitive-quantity"
+  ],
+  "structured": [
+    {
+      "id": "u04-l01-s01",
+      "prompt_sl": "Kozarec ___, prosim.",
+      "options": [
+        "voda",
+        "vodo",
+        "vode"
+      ],
+      "answer": "vode",
+      "rule": "r-genitive-quantity",
+      "en": "A glass of water, please."
+    },
+    {
+      "id": "u04-l01-s02",
+      "prompt_sl": "Lahko dobim kozarec ___?",
+      "options": [
+        "vino",
+        "vina"
+      ],
+      "answer": "vina",
+      "rule": "r-genitive-quantity",
+      "en": "Can I have a glass of wine?"
+    },
+    {
+      "id": "u04-l01-s03",
+      "prompt_sl": "Še malo ___?",
+      "options": [
+        "kava",
+        "kavo",
+        "kave"
+      ],
+      "answer": "kave",
+      "rule": "r-genitive-quantity",
+      "en": "A little more coffee?"
+    },
+    {
+      "id": "u04-l01-s04",
+      "prompt_sl": "Malo ___, prosim.",
+      "options": [
+        "mleko",
+        "mleka"
+      ],
+      "answer": "mleka",
+      "rule": "r-genitive-quantity",
+      "en": "A little milk, please."
+    },
+    {
+      "id": "u04-l01-s05",
+      "prompt_sl": "___ kavo, prosim.",
+      "options": [
+        "Ena",
+        "Eno"
+      ],
+      "answer": "Eno",
+      "rule": "r-accusative-feminine",
+      "en": "One coffee, please."
+    },
+    {
+      "id": "u04-l01-s06",
+      "prompt_sl": "En ___, prosim.",
+      "options": [
+        "sok",
+        "soka"
+      ],
+      "answer": "sok",
+      "rule": "r-accusative-masculine",
+      "en": "One juice, please."
+    }
+  ],
+  "production": [
+    {
+      "id": "u04-l01-p01",
+      "en": "Order a glass of juice.",
+      "answer": "Kozarec soka, prosim.",
+      "accept": [
+        "Lahko dobim kozarec soka?"
+      ],
+      "item": "u04-l01-i04",
+      "filler": "soka"
+    },
+    {
+      "id": "u04-l01-p02",
+      "en": "Order a glass of wine.",
+      "answer": "Kozarec vina, prosim.",
+      "accept": [
+        "Lahko dobim kozarec vina?"
+      ],
+      "item": "u04-l01-i04",
+      "filler": "vina"
+    },
+    {
+      "id": "u04-l01-p03",
+      "en": "Ask the waiter for a glass of water.",
+      "answer": "Kozarec vode, prosim.",
+      "accept": [
+        "Lahko dobim kozarec vode?"
+      ],
+      "item": "u04-l01-i04"
+    },
+    {
+      "id": "u04-l01-p04",
+      "en": "Ask the waiter for the bill.",
+      "answer": "Račun, prosim.",
+      "accept": [
+        "Lahko dobim račun?"
+      ],
+      "item": "u04-l01-i05"
+    },
+    {
+      "id": "u04-l01-p05",
+      "en": "Order one coffee.",
+      "answer": "Eno kavo, prosim.",
+      "accept": [
+        "Kavo, prosim.",
+        "Lahko dobim kavo?",
+        "Lahko dobim eno kavo?"
+      ],
+      "item": "u04-l01-i02"
+    },
+    {
+      "id": "u04-l01-p06",
+      "en": "Tell the waiter: tea for me.",
+      "answer": "Zame čaj.",
+      "accept": [
+        "Zame pa čaj.",
+        "Zame čaj, prosim."
+      ],
+      "item": "u04-l01-i03"
+    }
+  ],
+  "dialogue": {
+    "id": "u04-l01-d",
+    "title_sl": "Za mizo v kavarni",
+    "title_en": "At a café table",
+    "setting_en": "You sit at a café table with one of your hosts, who says ti to you. You order, the drinks come, and you ask for the bill.",
+    "lines": [
+      {
+        "speaker": "waiter",
+        "sl": "Dober dan. Kaj boste?",
+        "en": "Good day. What will you have?"
+      },
+      {
+        "speaker": "host",
+        "sl": "Eno kavo, prosim. Pa ti?",
+        "en": "One coffee, please. And you?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Zame čaj in kozarec vode, prosim.",
+        "en": "Tea for me and a glass of water, please.",
+        "new_items": [
+          "u04-l01-i03",
+          "u04-l01-i04"
+        ]
+      },
+      {
+        "speaker": "waiter",
+        "sl": "Izvolite. Kava, čaj in voda.",
+        "en": "Here you are. Coffee, tea and water."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala. Račun, prosim.",
+        "en": "Thank you. The bill, please.",
+        "new_items": [
+          "u04-l01-i05"
+        ]
+      }
+    ]
+  }
+}

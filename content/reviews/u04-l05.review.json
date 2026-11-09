@@ -1,0 +1,361 @@
+{
+  "lesson": "u04-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {
+        "u04-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Kaj želite? is the standard seller and waiter question. The gloss marks vi, and the examples and helper are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Je to domače? is the natural market question. The examples are correct, the helper (dom) is true, and the a and ali variants are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Malo več, prosim. is natural, with the genitive in the example. Še malo, prosim. is a fitting variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-i04": {
+          "verdict": "accepted",
+          "reason": "drobiž m (gen drobiža) means small-value money, usually coins, so Imate drobiž? and the gloss are right. The helper and variants are correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=drobiž"
+        },
+        "u04-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Obdržite drobiž. is a natural way to say keep the change. Kar obdržite drobiž. is a correct variant, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-i06": {
+          "verdict": "doubtful",
+          "reason": "The Slovenian, examples and helper are correct. But register is tagged neutral, while SSKJ marks vikend in the weekend sense pog. and Pravopis marks it knj. pog. That is the course's colloquial, as this unit itself tags kilo (knj. pog.) colloquial. Lep konec tedna. is the neutral form, so the register should probably be colloquial.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=vikend"
+        }
+      },
+      "lines": {
+        "u04-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Malo več kruha, prosim. is correct. Only kruha fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Deset jabolk, prosim. is correct. Only jabolk fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-s03": {
+          "verdict": "accepted",
+          "reason": "petinštirideset is correctly spelled and right for forty-five. The distractors are correctly spelled.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Žal ni več soka. is correct. Only soka fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-s05": {
+          "verdict": "accepted",
+          "reason": "Dve jabolki, prosim. is correct dual. jabolka and jabolk are wrong after dve.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Nimam drobiža. is correct (genitive drobiža).",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=drobiž"
+        },
+        "u04-l05-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Malo več, prosim. and Še malo, prosim. both fit the situation.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-p03": {
+          "verdict": "accepted",
+          "reason": "The answer and variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Kozarec vina, prosim. and the variant are correct. The instruction is worded differently from u04-l01-p02 and p03.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Vzamem to. and To vzamem. are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-p06": {
+          "verdict": "accepted",
+          "reason": "The answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural market opening.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Ja, vse je domače. Dva evra, prosim. is natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural, though see the register doubt on u04-l05-i06 (the line's Slovenian itself is fine).",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural waiter question.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Izvolite, račun. is natural when bringing the bill.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural when paying and leaving the change.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 2,
+      "items": {
+        "u04-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Kaj želite? is a standard clerk or waiter question, and the English carries the vi note. The examples are natural, and želeti is correct in the helper.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Je to domače? is natural at a market stall, and the A and Ali variants are correct. Domač covers both home-grown and homemade, so the example's 'homemade wine' is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Malo več, prosim. and Še malo, prosim. are natural. Malo več mleka uses the genitive correctly. The helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Imate drobiž? is natural, and the variants are correct. SSKJ glosses drobiž as low-value money, mostly coins, so 'small change' is right. Drobiž comes from droben.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=drobiž"
+        },
+        "u04-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Obdržite drobiž. and Kar obdržite drobiž. are correct and passable for 'keep the change' (Kar obdržite. alone is also very common). The (polite) note fits, and postrezite si is a correct vi imperative parallel.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Lep vikend. is the usual wish, and Lep konec tedna. is a correct variant. Vikend is a real loan from English weekend. The examples are natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u04-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Malo več kruha, prosim. is correct, with one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Deset jabolk is correct, and jabolka is wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-s03": {
+          "verdict": "accepted",
+          "reason": "Petinštirideset is forty-five. Štiriinpetdeset (54) and petnajst are correctly spelled and wrong for the English.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Žal ni več soka. is correct, with one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-s05": {
+          "verdict": "accepted",
+          "reason": "Dve jabolki is the correct dual. Jabolka and jabolk are wrong after dve.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Nimam drobiža. is correct (SSKJ examples use drobiža), with one answer.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=drobiž"
+        },
+        "u04-l05-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and the variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-p02": {
+          "verdict": "accepted",
+          "reason": "The instruction is clear, and Malo več, prosim. and Še malo, prosim. are both natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Imate drobiž? and its variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Kozarec vina, prosim. and its accept are correct, and the wording differs from u04-l01-p02.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Vzamem to. and To vzamem. are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Deset jajc, prosim. and its accept are correct. Structural note only: no production line practises a u04-l02 item, and no dialogue new_items name a u04-l04 item.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Dober dan. Kaj želite? is a typical stall greeting.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Kilo jabolk, prosim. Je to domače? is natural, with to as a generic 'this'.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Ja, vse je domače. Dva evra, prosim. is natural, and dva evra is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Izvolite. Hvala in lep vikend. is natural when handing over money.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Dober dan. Kaj boste? is a typical waiter opening.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Eno kavo in kozarec soka, prosim. is correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Izvolite, račun. is natural, and 'Here is the bill' is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Pet evrov. Obdržite drobiž. is correct and understandable as paying and leaving the change.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u04-l05-i01": "75760389af13d514",
+    "u04-l05-i02": "005a4b884b3cf19d",
+    "u04-l05-i03": "3c5f722191f02d29",
+    "u04-l05-i04": "98a90a9915c37379",
+    "u04-l05-i05": "08897a836de5b5c5",
+    "u04-l05-i06": "0667d300ae12a665",
+    "u04-l05-s01": "29d573585e734beb",
+    "u04-l05-s02": "8e00282a93127a57",
+    "u04-l05-s03": "839484ed13acf5f7",
+    "u04-l05-s04": "d8e80b016182a123",
+    "u04-l05-s05": "4fb4ab2f3b98fe51",
+    "u04-l05-s06": "a219c6747d52c787",
+    "u04-l05-p01": "74aed3d20a2cbeb3",
+    "u04-l05-p02": "6f25c6f37d4d6e96",
+    "u04-l05-p03": "3c897bd82ed0228c",
+    "u04-l05-p04": "92b284458af0c23d",
+    "u04-l05-p05": "818e400687279206",
+    "u04-l05-p06": "2a86baf8e02d0be5",
+    "u04-l05-d-01": "ede1b82281d371b6",
+    "u04-l05-d-02": "c3b77e6b23f49f84",
+    "u04-l05-d-03": "1c23f853d4113588",
+    "u04-l05-d-04": "6bff85f68b0b0416",
+    "u04-l05-d-05": "0cb195dbc6de5ca0",
+    "u04-l05-d-06": "c69ae785c8bc841f",
+    "u04-l05-d-07": "875fcab221bf4624",
+    "u04-l05-d-08": "50b363b2f8e96e4d"
+  }
+}

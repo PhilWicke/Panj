@@ -1,0 +1,361 @@
+{
+  "lesson": "u04-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {
+        "u04-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Kaj boste? is the usual waiter question; the gloss marks the vi reading, both examples are natural and the helper is an honest hook.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Eno kavo, prosim. is correct (accusative eno kavo). The examples are natural, Kavo, prosim. is a fair variant and the helper explains the -o correctly.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Zame čaj. is natural when ordering. zame is correctly written as one word (za + me), and both accept variants are right.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Kozarec vode, prosim. is correct with the genitive. The slot fillers give kozarec soka/piva/vina, and the examples, helper and variant are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Račun, prosim. is the standard way to ask for the bill. The helper is a true semantic parallel (bill and calculation, as in Rechnung), and the variant is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i06": {
+          "verdict": "accepted",
+          "reason": "sok m, juice. acc sok and gen soka are correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i07": {
+          "verdict": "accepted",
+          "reason": "pivo n, beer. acc pivo and gen piva are correct, the examples are natural, and the helper (from piti) is true etymology.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i08": {
+          "verdict": "accepted",
+          "reason": "vino n, wine. acc vino and gen vina are correct, the examples are natural, and the cognate helper is true.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u04-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Kozarec vode, prosim. is correct, and voda and vodo are wrong in the slot.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-s02": {
+          "verdict": "accepted",
+          "reason": "Lahko dobim kozarec vina? is correct. Only vina fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Še malo kave? is a natural offer, and only kave fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Malo mleka, prosim. is correct. Only mleka fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Eno kavo, prosim. is correct, and Ena kavo is wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-s06": {
+          "verdict": "doubtful",
+          "reason": "The Slovenian and the single right answer (Eno pivo) are correct. But the line is tagged r-accusative-masculine although pivo is neuter, so the card shown with it would present a neuter noun as masculine. It needs a retag (neuter accusative equals the nominative) or no rule.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Kozarec soka, prosim. and the variant are correct, and filler soka matches the recorded gen.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Kozarec vina, prosim. and the variant are correct. Filler vina is recorded.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-p03": {
+          "verdict": "accepted",
+          "reason": "The answer and variant are correct, and the instruction is clear.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Račun, prosim. and Lahko dobim račun? are both natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Eno kavo, prosim. is correct, and all three variants are correct Slovenian.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Zame čaj. and both variants are natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural waiter opening, correctly translated.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Pa ti? is the natural way to turn the question to a ti partner.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural. It is short enough to type.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Izvolite is right when serving, and the list is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "r-genitive-quantity": {
+          "verdict": "accepted",
+          "reason": "The card text (30 words), example, toggles (vode, soka, vina), quick check (piva) and German and English contrasts are all correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u04-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Kaj boste? is what a waiter says to a guest. The bracketed note on the English settles vi, both examples are natural (kavo ali čaj is the accusative an implied pili would take), and the helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Eno kavo, prosim. is the standard order. The accept Kavo, prosim. is correct, both examples are natural, and the helper explains ena kava becoming eno kavo correctly.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Zame čaj. is natural when ordering, and Zame pa čaj. is even more idiomatic after someone else has ordered. Both accepts are correct. The helper is right that zame is za plus the clitic me written as one word.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Kozarec vode, prosim. has the correct genitive vode after a quantity. Both examples and the accept Lahko dobim kozarec vode? are natural. The fillers sok, pivo and vino all fit the slot in the genitive (soka, piva, vina).",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Račun, prosim. is the standard way to ask for the bill, and the examples and accept are natural. The helper claims only a shared double meaning (bill and calculation), which is true; it does not claim the words are related.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/račun"
+        },
+        "u04-l01-i06": {
+          "verdict": "accepted",
+          "reason": "sok is masculine, with accusative sok and genitive soka. Imate sok? and Kozarec soka, prosim. are both natural. The helper is null, which is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i07": {
+          "verdict": "accepted",
+          "reason": "pivo is neuter, with accusative pivo and genitive piva. The examples are natural. Pivo does come from piti, so the helper is a true etymology.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-i08": {
+          "verdict": "accepted",
+          "reason": "vino is neuter, with accusative vino and genitive vina. The examples are natural, and Wein and wine are true cognates (all from Latin vinum).",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u04-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Only vode fits after kozarec; voda and vodo are plausible distractors and both wrong. The English is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-s02": {
+          "verdict": "accepted",
+          "reason": "Lahko dobim kozarec vina? is correct, and vino is wrong here. There is one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Še malo kave? is the natural thing a host offers. Kava and kavo are wrong after malo, so there is one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Malo mleka, prosim. is correct and natural, with one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Eno kavo is correct, and Ena kavo is wrong. There is one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-s06": {
+          "verdict": "accepted",
+          "reason": "Eno pivo, prosim. is correct, and Eno piva is wrong, so there is one answer. One note: pivo is neuter but the line is tagged r-accusative-masculine. That is a metadata mismatch, not a language error.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Kozarec soka, prosim. and the accept Lahko dobim kozarec soka? are both correct. The filler soka is recorded in the sok item.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Kozarec vina, prosim. and its accept are correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-p03": {
+          "verdict": "accepted",
+          "reason": "The instruction is clear, and the answer and accept are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Račun, prosim. and Lahko dobim račun? are the standard requests.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Eno kavo, prosim. is correct, and all three accepts are correct Slovenian and natural ways to order.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Zame čaj. is correct, with the natural variants Zame pa čaj. and Zame čaj, prosim. accepted.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Dober dan. Kaj boste? is a typical waiter opening.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "The host orders, then turns to you with Pa ti?, which is natural and fits the ti setting.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Zame čaj in kozarec vode, prosim. is natural, short and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Izvolite while serving, then naming what is served, is natural, and the English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Hvala. Račun, prosim. is natural. Asking for the bill right after the drinks arrive is compressed, but the setting announces it.",
+          "fix": "",
+          "source": ""
+        },
+        "r-genitive-quantity": {
+          "verdict": "accepted",
+          "reason": "The card text is correct and under 40 words. The genitive forms vode, soka, vina and piva are right. The toggles are natural, and the quick check (piv_ with o, a, e) has one blank and one right answer, a. Both helpers are accurate: German ein Glas Wasser does leave Wasser unmarked.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u04-l01-i01": "f04d418209970c5d",
+    "u04-l01-i02": "52dd9cf53955bdb2",
+    "u04-l01-i03": "5711f5410598a171",
+    "u04-l01-i04": "bc9962cf584e38e6",
+    "u04-l01-i05": "7d06d1718731ec16",
+    "u04-l01-i06": "91466743616ae960",
+    "u04-l01-i07": "9d6de8c580422c6b",
+    "u04-l01-i08": "48312c3e0821797c",
+    "u04-l01-s01": "b76d524a977c6b8f",
+    "u04-l01-s02": "a7d6095fec0bb621",
+    "u04-l01-s03": "2dc1fcf8d734c9eb",
+    "u04-l01-s04": "183fa5916355b38d",
+    "u04-l01-s05": "65627740ad2b7620",
+    "u04-l01-s06": "6dea7f70dd43e445",
+    "u04-l01-p01": "e80d5e1e8135f245",
+    "u04-l01-p02": "92b284458af0c23d",
+    "u04-l01-p03": "fcb237640b6e55e2",
+    "u04-l01-p04": "1929984356ca1d40",
+    "u04-l01-p05": "c33cb4a790aa2edc",
+    "u04-l01-p06": "51165963c295bfc0",
+    "u04-l01-d-01": "0cb195dbc6de5ca0",
+    "u04-l01-d-02": "4f664a7111a19c45",
+    "u04-l01-d-03": "32bd15ab7b3d49c3",
+    "u04-l01-d-04": "2188f8fa07071989",
+    "u04-l01-d-05": "d96f573250107d54",
+    "r-genitive-quantity": "135f8c9820e5db14"
+  }
+}

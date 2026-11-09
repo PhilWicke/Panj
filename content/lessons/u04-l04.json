@@ -1,0 +1,431 @@
+{
+  "id": "u04-l04",
+  "unit": "u04",
+  "order": 4,
+  "role": "theme",
+  "title_sl": "Ni kruha",
+  "title_en": "There is no bread",
+  "items": [
+    {
+      "id": "u04-l04-i01",
+      "type": "chunk",
+      "sl": "Imate svež kruh?",
+      "sl_colloquial": null,
+      "en": "Do you have fresh bread? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan. Imate svež kruh?",
+          "en": "Good day. Do you have fresh bread?"
+        },
+        {
+          "sl": "Oprostite, imate svež kruh?",
+          "en": "Excuse me, do you have fresh bread?"
+        }
+      ],
+      "helper": "kruh stays kruh as the object, as in jem kruh.",
+      "accept": [
+        "A imate svež kruh?",
+        "Ali imate svež kruh?"
+      ],
+      "rules": [
+        "r-imeti-present",
+        "r-accusative-masculine"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l04-i02",
+      "type": "chunk",
+      "sl": "Ni več kruha.",
+      "sl_colloquial": null,
+      "en": "There's no more bread.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Žal ni več kruha.",
+          "en": "I'm afraid there's no more bread."
+        },
+        {
+          "sl": "Oprostite, ni več kruha.",
+          "en": "I'm sorry, there's no more bread."
+        }
+      ],
+      "helper": "ni več is no more, as in ne morem več; after ni, kruh becomes kruha.",
+      "accept": [],
+      "rules": [
+        "r-genitive-ni"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l04-i03",
+      "type": "chunk",
+      "sl": "Nimamo več.",
+      "sl_colloquial": null,
+      "en": "We don't have any more.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kruh? Žal nimamo več.",
+          "en": "Bread? I'm afraid we don't have any more."
+        },
+        {
+          "sl": "Nimamo več kruha.",
+          "en": "We have no more bread."
+        }
+      ],
+      "helper": "nimamo is the we form of nimam, as in nimam otrok.",
+      "accept": [],
+      "rules": [
+        "r-imeti-negative",
+        "r-genitive-ni"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l04-i04",
+      "type": "chunk",
+      "sl": "Žal ne.",
+      "sl_colloquial": null,
+      "en": "I'm afraid not.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Imate kruh? Žal ne.",
+          "en": "Do you have bread? I'm afraid not."
+        },
+        {
+          "sl": "Žal ne, nimamo več.",
+          "en": "I'm afraid not, we don't have any more."
+        }
+      ],
+      "helper": "ne is no, as in ne, hvala; žal softens it, like I am afraid.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l04-i05",
+      "type": "chunk",
+      "sl": "Vzamem to.",
+      "sl_colloquial": null,
+      "en": "I'll take this.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dobro, vzamem to.",
+          "en": "All right, I'll take this."
+        },
+        {
+          "sl": "Vzamem to, hvala.",
+          "en": "I'll take this, thank you."
+        }
+      ],
+      "helper": "to is this, as in to je moja družina.",
+      "accept": [
+        "To vzamem."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l04-i06",
+      "type": "chunk",
+      "sl": "Kje je blagajna?",
+      "sl_colloquial": null,
+      "en": "Where is the checkout?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, kje je blagajna?",
+          "en": "Excuse me, where is the checkout?"
+        },
+        {
+          "sl": "Kje je blagajna? Tukaj?",
+          "en": "Where is the checkout? Here?"
+        }
+      ],
+      "helper": "kje is where, as in kje je sol.",
+      "accept": [],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l04-i07",
+      "type": "word",
+      "sl": "trgovina",
+      "sl_colloquial": null,
+      "en": "shop",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "examples": [
+        {
+          "sl": "Kje je trgovina?",
+          "en": "Where is the shop?"
+        },
+        {
+          "sl": "Trgovina je tukaj.",
+          "en": "The shop is here."
+        }
+      ],
+      "helper": "Built on trg, a market square: a trgovina is where trade happens.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 619,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l04-i08",
+      "type": "word",
+      "sl": "denar",
+      "sl_colloquial": null,
+      "en": "money",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "gen": "denarja"
+      },
+      "examples": [
+        {
+          "sl": "Nimam denarja.",
+          "en": "I have no money."
+        },
+        {
+          "sl": "Denar je tukaj.",
+          "en": "The money is here."
+        }
+      ],
+      "helper": "From Latin denarius, a Roman coin, like the dinar.",
+      "accept": [],
+      "rules": [
+        "r-genitive-ni"
+      ],
+      "freq_rank": 257,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-genitive-ni"
+  ],
+  "structured": [
+    {
+      "id": "u04-l04-s01",
+      "prompt_sl": "Ni več ___.",
+      "options": [
+        "kruh",
+        "kruha"
+      ],
+      "answer": "kruha",
+      "rule": "r-genitive-ni",
+      "en": "There's no more bread."
+    },
+    {
+      "id": "u04-l04-s02",
+      "prompt_sl": "Žal ni ___.",
+      "options": [
+        "voda",
+        "vodo",
+        "vode"
+      ],
+      "answer": "vode",
+      "rule": "r-genitive-ni",
+      "en": "I'm afraid there's no water."
+    },
+    {
+      "id": "u04-l04-s03",
+      "prompt_sl": "Nimam ___.",
+      "options": [
+        "denar",
+        "denarja"
+      ],
+      "answer": "denarja",
+      "rule": "r-genitive-ni",
+      "en": "I have no money."
+    },
+    {
+      "id": "u04-l04-s04",
+      "prompt_sl": "Nimamo ___.",
+      "options": [
+        "kava",
+        "kavo",
+        "kave"
+      ],
+      "answer": "kave",
+      "rule": "r-genitive-ni",
+      "en": "We have no coffee."
+    },
+    {
+      "id": "u04-l04-s05",
+      "prompt_sl": "Imate svež ___?",
+      "options": [
+        "kruh",
+        "kruha"
+      ],
+      "answer": "kruh",
+      "rule": "r-accusative-masculine",
+      "en": "Do you have fresh bread?"
+    },
+    {
+      "id": "u04-l04-s06",
+      "prompt_sl": "Mi ___ več.",
+      "options": [
+        "nimamo",
+        "nimate",
+        "nimajo"
+      ],
+      "answer": "nimamo",
+      "rule": "r-imeti-negative",
+      "en": "We don't have any more."
+    }
+  ],
+  "production": [
+    {
+      "id": "u04-l04-p01",
+      "en": "Ask the clerk if they have fresh bread.",
+      "answer": "Imate svež kruh?",
+      "accept": [
+        "A imate svež kruh?",
+        "Ali imate svež kruh?"
+      ],
+      "item": "u04-l04-i01"
+    },
+    {
+      "id": "u04-l04-p02",
+      "en": "Say there's no more bread.",
+      "answer": "Ni več kruha.",
+      "accept": [],
+      "item": "u04-l04-i02"
+    },
+    {
+      "id": "u04-l04-p03",
+      "en": "Answer a question politely: I'm afraid not.",
+      "answer": "Žal ne.",
+      "accept": [],
+      "item": "u04-l04-i04"
+    },
+    {
+      "id": "u04-l04-p04",
+      "en": "Point at something and say you'll take this.",
+      "answer": "Vzamem to.",
+      "accept": [
+        "To vzamem."
+      ],
+      "item": "u04-l04-i05"
+    },
+    {
+      "id": "u04-l04-p05",
+      "en": "Ask where the checkout is.",
+      "answer": "Kje je blagajna?",
+      "accept": [],
+      "item": "u04-l04-i06"
+    },
+    {
+      "id": "u04-l04-p06",
+      "en": "Say you have no money.",
+      "answer": "Nimam denarja.",
+      "accept": [
+        "Jaz nimam denarja."
+      ],
+      "item": "u04-l04-i08"
+    }
+  ],
+  "dialogue": {
+    "id": "u04-l04-d",
+    "title_sl": "Proti večeru",
+    "title_en": "Towards evening",
+    "setting_en": "Late in the day you come to the bread counter of a small shop, and the bread has run out.",
+    "lines": [
+      {
+        "speaker": "you",
+        "sl": "Dober večer. Imate svež kruh?",
+        "en": "Good evening. Do you have fresh bread?",
+        "new_items": [
+          "u04-l04-i01"
+        ]
+      },
+      {
+        "speaker": "clerk",
+        "sl": "Žal ne, nimamo več.",
+        "en": "I'm afraid not, we don't have any more."
+      },
+      {
+        "speaker": "you",
+        "sl": "Ni več kruha? Kaj pa to?",
+        "en": "No more bread? What about this?",
+        "new_items": [
+          "u04-l04-i02"
+        ]
+      },
+      {
+        "speaker": "clerk",
+        "sl": "To je pecivo. Zelo je dobro.",
+        "en": "That's pastry. It's very good."
+      },
+      {
+        "speaker": "you",
+        "sl": "Dobro, vzamem to. Kje je blagajna?",
+        "en": "All right, I'll take this. Where is the checkout?",
+        "new_items": [
+          "u04-l04-i05",
+          "u04-l04-i06"
+        ]
+      },
+      {
+        "speaker": "clerk",
+        "sl": "Blagajna je tam. Hvala in nasvidenje.",
+        "en": "The checkout is over there. Thank you and goodbye."
+      }
+    ]
+  }
+}

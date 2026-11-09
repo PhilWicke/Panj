@@ -1,0 +1,46 @@
+{
+  "id": "r-genitive-quantity",
+  "unit": "u04",
+  "title_en": "A glass of water: kozarec vode",
+  "card_en": "After a word of quantity, such as kozarec, a glass, or malo, a little, the noun takes the genitive, the of-form: voda becomes vode, sok becomes soka, vino becomes vina.",
+  "example": {
+    "sl": "Kozarec vode, prosim.",
+    "en": "A glass of water, please."
+  },
+  "toggles": [
+    {
+      "label": "Drink",
+      "options": [
+        "water",
+        "juice",
+        "wine"
+      ],
+      "examples": {
+        "water": {
+          "sl": "Kozarec vode, prosim.",
+          "en": "A glass of water, please."
+        },
+        "juice": {
+          "sl": "Kozarec soka, prosim.",
+          "en": "A glass of juice, please."
+        },
+        "wine": {
+          "sl": "Kozarec vina, prosim.",
+          "en": "A glass of wine, please."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Kozarec piv_, prosim.",
+    "options": [
+      "o",
+      "a",
+      "e"
+    ],
+    "answer": "a",
+    "explain_en": "After kozarec, a glass, pivo takes the genitive: kozarec piva."
+  },
+  "helper_de": "German says ein Glas Wasser and leaves Wasser as it is. Slovenian marks the of in the ending: kozarec vode.",
+  "helper_en": "English needs of: a glass of water. Slovenian has no word for of here; the ending does the job: kozarec vode."
+}

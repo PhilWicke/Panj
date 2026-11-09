@@ -1,0 +1,34 @@
+{
+  "lesson": "u04-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u04-l04-i08": {
+          "verdict": "accepted",
+          "reason": "denar is standard spelling, masculine, and the genitive denarja is correct and recorded under gen. The English money is accurate and has only one sense. Neutral register is right. Nimam denarja. is natural, a textbook case of the genitive after nimam, and is translated faithfully. Denar je tukaj. is grammatical and plausible, for example said while pointing to where the money is. The helper is honest: the word comes from Latin denarius, a Roman silver coin, via Italian denaro, and dinar has the same source. The accept list is empty, which is right.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=denar"
+        }
+      },
+      "lines": {}
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 1,
+      "items": {
+        "u04-l04-i08": {
+          "verdict": "accepted",
+          "reason": "denar is the correct standard spelling of a masculine inanimate noun, and the genitive denarja under gen is correct. The gloss money is unambiguous and neutral is the right register. Both examples contain the headword, are grammatical and are translated faithfully: Nimam denarja. uses the genitive after nimam, and Denar je tukaj. uses the nominative. The helper is a true etymology: denar comes from Latin denarius, and so does dinar. The accept list is empty, which is correct.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/denar"
+        }
+      },
+      "lines": {}
+    }
+  ],
+  "applied": {
+    "u04-l04-i08": "044a0ee406119f5b"
+  }
+}

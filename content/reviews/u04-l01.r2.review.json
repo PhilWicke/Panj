@@ -1,0 +1,34 @@
+{
+  "lesson": "u04-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u04-l01-s06": {
+          "verdict": "accepted",
+          "reason": "En sok, prosim. is a natural way to order one juice. sok is an inanimate masculine noun, so its accusative is the same as the nominative and en stays en. Only sok fits the blank. The distractor soka is wrong here but plausible, because the learner has just met kozarec soka and the -a object ending of animate nouns (imam brata). The English One juice, please. matches, and r-accusative-masculine is the right rule.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u04-l01-s06": {
+          "verdict": "accepted",
+          "reason": "En sok, prosim. is a normal way to order in a café. sok is masculine inanimate, so its accusative is the same as the nominative, and en agrees with it. Only one option fits: en soka is ungrammatical, because the genitive here would need a quantity word such as kozarec, which this prompt does not have. That makes soka a plausible distractor after kozarec soka, but a wrong one. One juice, please. is a faithful English rendering.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u04-l01-s06": "82787652dd46db9f"
+  }
+}

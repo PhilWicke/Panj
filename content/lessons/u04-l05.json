@@ -1,0 +1,394 @@
+{
+  "id": "u04-l05",
+  "unit": "u04",
+  "order": 5,
+  "role": "consolidation",
+  "title_sl": "Na tržnici",
+  "title_en": "At the market",
+  "items": [
+    {
+      "id": "u04-l05-i01",
+      "type": "chunk",
+      "sl": "Kaj želite?",
+      "sl_colloquial": null,
+      "en": "What would you like? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan, kaj želite?",
+          "en": "Good day, what would you like?"
+        },
+        {
+          "sl": "Kaj želite, kavo ali čaj?",
+          "en": "What would you like, coffee or tea?"
+        }
+      ],
+      "helper": "želite is from želeti, to wish: what do you wish for?",
+      "accept": [],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l05-i02",
+      "type": "chunk",
+      "sl": "Je to domače?",
+      "sl_colloquial": null,
+      "en": "Is this home-grown?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, je to domače?",
+          "en": "Excuse me, is this home-grown?"
+        },
+        {
+          "sl": "Je to domače vino?",
+          "en": "Is this homemade wine?"
+        }
+      ],
+      "helper": "domače is from dom, home, as in doma, at home.",
+      "accept": [
+        "A je to domače?",
+        "Ali je to domače?"
+      ],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l05-i03",
+      "type": "chunk",
+      "sl": "Malo več, prosim.",
+      "sl_colloquial": null,
+      "en": "A little more, please.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ne, malo več, prosim.",
+          "en": "No, a little more, please."
+        },
+        {
+          "sl": "Malo več mleka, prosim.",
+          "en": "A little more milk, please."
+        }
+      ],
+      "helper": "malo is a little, as in še malo; več is more, as in ne morem več.",
+      "accept": [
+        "Še malo, prosim."
+      ],
+      "rules": [
+        "r-genitive-quantity"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l05-i04",
+      "type": "chunk",
+      "sl": "Imate drobiž?",
+      "sl_colloquial": null,
+      "en": "Do you have small change? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, imate drobiž?",
+          "en": "Excuse me, do you have small change?"
+        },
+        {
+          "sl": "Imate drobiž? Žal ne.",
+          "en": "Do you have small change? I'm afraid not."
+        }
+      ],
+      "helper": "drobiž is small change, from droben, tiny.",
+      "accept": [
+        "A imate drobiž?",
+        "Ali imate drobiž?"
+      ],
+      "rules": [
+        "r-imeti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l05-i05",
+      "type": "chunk",
+      "sl": "Obdržite drobiž.",
+      "sl_colloquial": null,
+      "en": "Keep the change. (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala, obdržite drobiž.",
+          "en": "Thank you, keep the change."
+        },
+        {
+          "sl": "Pet evrov. Obdržite drobiž.",
+          "en": "Five euros. Keep the change."
+        }
+      ],
+      "helper": "obdržite is the polite vi form, as in postrezite si.",
+      "accept": [
+        "Kar obdržite drobiž."
+      ],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l05-i06",
+      "type": "chunk",
+      "sl": "Lep vikend.",
+      "sl_colloquial": null,
+      "en": "Have a nice weekend.",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Hvala in lep vikend.",
+          "en": "Thank you, and have a nice weekend."
+        },
+        {
+          "sl": "Nasvidenje in lep vikend.",
+          "en": "Goodbye, and have a nice weekend."
+        }
+      ],
+      "helper": "vikend is the English weekend, spelled the Slovenian way.",
+      "accept": [
+        "Lep konec tedna."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "doubtful",
+        "review2": "accepted",
+        "native": null,
+        "status": "pending",
+        "notes": "review1 doubtful: The Slovenian, examples and helper are correct. But register is tagged neutral, while SSKJ marks vikend in the weekend sense pog. and Pravopis marks it knj. pog. That is the course's colloquial, as this unit itself tags kilo (knj. pog.) colloquial. Lep konec tedna. is the neutral form, so the register should probably be colloquial."
+      }
+    }
+  ],
+  "rules": [],
+  "structured": [
+    {
+      "id": "u04-l05-s01",
+      "prompt_sl": "Malo več ___, prosim.",
+      "options": [
+        "kruh",
+        "kruha"
+      ],
+      "answer": "kruha",
+      "rule": "r-genitive-quantity",
+      "en": "A little more bread, please."
+    },
+    {
+      "id": "u04-l05-s02",
+      "prompt_sl": "Deset ___, prosim.",
+      "options": [
+        "jabolka",
+        "jabolk"
+      ],
+      "answer": "jabolk",
+      "rule": "r-numbers-5-plus",
+      "en": "Ten apples, please."
+    },
+    {
+      "id": "u04-l05-s03",
+      "prompt_sl": "Stane ___ evrov.",
+      "options": [
+        "petinštirideset",
+        "štiriinpetdeset",
+        "petnajst"
+      ],
+      "answer": "petinštirideset",
+      "rule": "r-numbers-to-100",
+      "en": "It costs forty-five euros."
+    },
+    {
+      "id": "u04-l05-s04",
+      "prompt_sl": "Žal ni več ___.",
+      "options": [
+        "sok",
+        "soka"
+      ],
+      "answer": "soka",
+      "rule": "r-genitive-ni",
+      "en": "I'm afraid there's no more juice."
+    },
+    {
+      "id": "u04-l05-s05",
+      "prompt_sl": "Dve ___, prosim.",
+      "options": [
+        "jabolki",
+        "jabolka",
+        "jabolk"
+      ],
+      "answer": "jabolki",
+      "rule": "r-dual-nouns",
+      "en": "Two apples, please."
+    },
+    {
+      "id": "u04-l05-s06",
+      "prompt_sl": "Nimam ___.",
+      "options": [
+        "drobiž",
+        "drobiža"
+      ],
+      "answer": "drobiža",
+      "rule": "r-genitive-ni",
+      "en": "I have no small change."
+    }
+  ],
+  "production": [
+    {
+      "id": "u04-l05-p01",
+      "en": "At a market stall, ask if this is home-grown.",
+      "answer": "Je to domače?",
+      "accept": [
+        "A je to domače?",
+        "Ali je to domače?"
+      ],
+      "item": "u04-l05-i02"
+    },
+    {
+      "id": "u04-l05-p02",
+      "en": "The seller weighs too little. Ask for a little more.",
+      "answer": "Malo več, prosim.",
+      "accept": [
+        "Še malo, prosim."
+      ],
+      "item": "u04-l05-i03"
+    },
+    {
+      "id": "u04-l05-p03",
+      "en": "Ask the seller if they have small change.",
+      "answer": "Imate drobiž?",
+      "accept": [
+        "A imate drobiž?",
+        "Ali imate drobiž?"
+      ],
+      "item": "u04-l05-i04"
+    },
+    {
+      "id": "u04-l05-p04",
+      "en": "Ask the waiter for a glass of wine.",
+      "answer": "Kozarec vina, prosim.",
+      "accept": [
+        "Lahko dobim kozarec vina?"
+      ],
+      "item": "u04-l01-i04",
+      "filler": "vina"
+    },
+    {
+      "id": "u04-l05-p05",
+      "en": "Tell the seller you'll take this one.",
+      "answer": "Vzamem to.",
+      "accept": [
+        "To vzamem."
+      ],
+      "item": "u04-l04-i05"
+    },
+    {
+      "id": "u04-l05-p06",
+      "en": "Buy ten eggs at a market stall.",
+      "answer": "Deset jajc, prosim.",
+      "accept": [
+        "Lahko dobim deset jajc?"
+      ],
+      "item": "u04-l03-i02"
+    }
+  ],
+  "dialogue": {
+    "id": "u04-l05-d",
+    "title_sl": "Sobotno jutro",
+    "title_en": "Saturday morning",
+    "setting_en": "On a Saturday morning you buy apples at a market stall, then sit down at a café for a coffee and pay.",
+    "lines": [
+      {
+        "speaker": "clerk",
+        "sl": "Dober dan. Kaj želite?",
+        "en": "Good day. What would you like?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Kilo jabolk, prosim. Je to domače?",
+        "en": "A kilo of apples, please. Is this home-grown?",
+        "new_items": [
+          "u04-l03-i01",
+          "u04-l05-i02"
+        ]
+      },
+      {
+        "speaker": "clerk",
+        "sl": "Ja, vse je domače. Dva evra, prosim.",
+        "en": "Yes, it's all home-grown. Two euros, please."
+      },
+      {
+        "speaker": "you",
+        "sl": "Izvolite. Hvala in lep vikend.",
+        "en": "Here you are. Thank you, and have a nice weekend.",
+        "new_items": [
+          "u04-l05-i06"
+        ]
+      },
+      {
+        "speaker": "waiter",
+        "sl": "Dober dan. Kaj boste?",
+        "en": "Good day. What will you have?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Eno kavo in kozarec soka, prosim.",
+        "en": "One coffee and a glass of juice, please.",
+        "new_items": [
+          "u04-l01-i02",
+          "u04-l01-i04"
+        ]
+      },
+      {
+        "speaker": "waiter",
+        "sl": "Izvolite, račun.",
+        "en": "Here is the bill."
+      },
+      {
+        "speaker": "you",
+        "sl": "Pet evrov. Obdržite drobiž.",
+        "en": "Five euros. Keep the change.",
+        "new_items": [
+          "u04-l02-i06",
+          "u04-l05-i05"
+        ]
+      }
+    ]
+  }
+}

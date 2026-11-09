@@ -1,0 +1,63 @@
+{
+  "id": "r-genitive-ni",
+  "unit": "u04",
+  "title_en": "There is no: ni kruha",
+  "card_en": "To say there is no, or no more, of something, use ni or ni več with the noun in the genitive: ni kruha, ni več vode. Nimam and nimamo take the genitive too: nimam denarja.",
+  "example": {
+    "sl": "Ni več kruha.",
+    "en": "There's no more bread."
+  },
+  "toggles": [
+    {
+      "label": "Statement",
+      "options": [
+        "positive",
+        "negative"
+      ],
+      "examples": {
+        "positive": {
+          "sl": "Imamo svež kruh.",
+          "en": "We have fresh bread."
+        },
+        "negative": {
+          "sl": "Nimamo več kruha.",
+          "en": "We have no more bread."
+        }
+      }
+    },
+    {
+      "label": "Noun",
+      "options": [
+        "kruh",
+        "voda",
+        "mleko"
+      ],
+      "examples": {
+        "kruh": {
+          "sl": "Ni več kruha.",
+          "en": "There's no more bread."
+        },
+        "voda": {
+          "sl": "Ni več vode.",
+          "en": "There's no more water."
+        },
+        "mleko": {
+          "sl": "Ni več mleka.",
+          "en": "There's no more milk."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Žal ni več kav_.",
+    "options": [
+      "a",
+      "o",
+      "e"
+    ],
+    "answer": "e",
+    "explain_en": "After ni, kava takes the genitive: ni več kave."
+  },
+  "helper_de": "German says es gibt kein Brot mehr. Slovenian has no word for kein here: ni več kruha, with kruh in the genitive.",
+  "helper_en": "English says there is no bread. Slovenian uses ni, the not of je, and changes the noun: ni kruha."
+}

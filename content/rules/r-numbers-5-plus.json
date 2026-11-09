@@ -1,0 +1,51 @@
+{
+  "id": "r-numbers-5-plus",
+  "unit": "u04",
+  "title_en": "Five and more: pet evrov",
+  "card_en": "From five on, the noun after a number is in the genitive plural: pet evrov, deset jajc, sto jabolk. With one to four it is not: eno jajce, dve jajci, tri jajca.",
+  "example": {
+    "sl": "Deset jajc, prosim.",
+    "en": "Ten eggs, please."
+  },
+  "toggles": [
+    {
+      "label": "How many eggs",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "examples": {
+        "1": {
+          "sl": "Eno jajce, prosim.",
+          "en": "One egg, please."
+        },
+        "2": {
+          "sl": "Dve jajci, prosim.",
+          "en": "Two eggs, please."
+        },
+        "3": {
+          "sl": "Tri jajca, prosim.",
+          "en": "Three eggs, please."
+        },
+        "5": {
+          "sl": "Pet jajc, prosim.",
+          "en": "Five eggs, please."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Stane pet evr_.",
+    "options": [
+      "a",
+      "i",
+      "ov"
+    ],
+    "answer": "ov",
+    "explain_en": "From five on, the noun takes the genitive plural: pet evrov."
+  },
+  "helper_de": "German uses the plain plural after every number: fünf Eier. Slovenian switches to the genitive plural from five on: pet jajc.",
+  "helper_en": "English adds -s from two on: five eggs. Slovenian has one form for two, one for three and four, and the genitive plural from five: pet jajc."
+}

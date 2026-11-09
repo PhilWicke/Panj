@@ -55,7 +55,13 @@
     "title_sl": "V kavarni in v trgovini",
     "title_en": "In the café and the shop",
     "motif": "cup",
-    "lessons": []
+    "lessons": [
+      "u04-l01",
+      "u04-l02",
+      "u04-l03",
+      "u04-l04",
+      "u04-l05"
+    ]
   },
   {
     "id": "u05",

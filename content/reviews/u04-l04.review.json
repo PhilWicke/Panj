@@ -1,0 +1,374 @@
+{
+  "lesson": "u04-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u04-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Imate svež kruh? is correct and natural. The gloss marks the vi reading, and the examples and variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Ni več kruha. is correct with the genitive. The examples are natural, and the helper is accurate. Kruha ni več. would also be a natural variant to accept.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Nimamo več. is natural, and the examples and helper are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Žal ne. is natural, and I'm afraid not. is the right gloss.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i05": {
+          "verdict": "accepted",
+          "reason": "Vzamem to. is correct and heard when pointing. To vzamem. is a correct variant, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i06": {
+          "verdict": "accepted",
+          "reason": "Kje je blagajna? is correct, and checkout is the right gloss in a shop.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i07": {
+          "verdict": "accepted",
+          "reason": "trgovina f, shop, is correct. The helper (from trg) is true etymology.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i08": {
+          "verdict": "rejected",
+          "reason": "The word, gender, gen denarja, examples and helper are all correct. But the accept field of this word item holds the sentence Jaz nimam denarja., which is not a variant of the headword denar. In an item drill it would accept a sentence for money. It belongs on u04-l04-p06, where it already is.",
+          "fix": "denar (accept: empty)",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u04-l04-s01": {
+          "verdict": "accepted",
+          "reason": "Ni več kruha. is correct. Only kruha fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-s02": {
+          "verdict": "accepted",
+          "reason": "Žal ni vode. is correct. Only vode fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Nimam denarja. is correct. Only denarja fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Nimamo kave. is correct. Only kave fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Imate svež kruh? is correct. svež kruha is ungrammatical (a partitive would need svežega kruha), so exactly one option is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Mi nimamo več. is correct, and the other persons clash with mi.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and the a and ali variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Ni več kruha. is correct. Kruha ni več., equally natural, could be added to accept.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Žal ne. matches the instruction.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-p04": {
+          "verdict": "accepted",
+          "reason": "The answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Kje je blagajna? is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Nimam denarja. and Jaz nimam denarja. are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Dober večer fits late in the day, and the question is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Ni več kruha? Kaj pa to? is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "pecivo covers baked goods in general (SSKJ, including slano pecivo), so That's pastry is fair. Zelo je dobro. has the clitic correctly placed.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=pecivo"
+        },
+        "u04-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural and correct. Within the length limits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "r-genitive-ni": {
+          "verdict": "accepted",
+          "reason": "The card text, example, both toggles (Imamo svež kruh / Nimamo več kruha; kruha, vode, mleka), quick check (kave) and German and English contrasts are all correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u04-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Imate svež kruh? is natural, and the A and Ali variants are correct. The English carries the vi note, and the examples and helper are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Ni več kruha. has the correct genitive. The examples are natural (Oprostite rendered as 'I'm sorry' fits), and the helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Nimamo več. is natural, the examples are correct, and the helper's nimam otrok uses the correct genitive plural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Žal ne. means 'I'm afraid not', and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i05": {
+          "verdict": "accepted",
+          "reason": "Vzamem to. and To vzamem. are both said when choosing something in a shop. The examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i06": {
+          "verdict": "accepted",
+          "reason": "Kje je blagajna? is correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i07": {
+          "verdict": "accepted",
+          "reason": "trgovina is feminine, and the examples are natural. Trgovina does come from trg through trgovati, so the helper is true.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-i08": {
+          "verdict": "rejected",
+          "reason": "The accept field is wrong. The sentence Jaz nimam denarja. is listed as an accepted variant of the word item denar. It is correct Slovenian but not an alternative for 'money', so the grader could accept a whole sentence for the word. The sentence belongs only in u04-l04-p06, where it already is. Everything else is correct: masculine, genitive denarja, natural examples and a true Latin helper.",
+          "fix": "accept: [] (drop Jaz nimam denarja. from the item; keep it in u04-l04-p06)",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u04-l04-s01": {
+          "verdict": "accepted",
+          "reason": "Ni več kruha. is correct, with one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-s02": {
+          "verdict": "accepted",
+          "reason": "Žal ni vode. is correct, and voda and vodo are wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Nimam denarja. is correct, with one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Nimamo kave. is correct, with one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Imate svež kruh? is correct. Kruha is excluded because the adjective svež would then have to be svežega.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Mi nimamo več. is correct, and mi rules out nimate and nimajo.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and the accepts are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Ni več kruha. is correct. The equally natural Kruha ni več. could be added to accept.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Žal ne. is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Vzamem to. and To vzamem. are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Kje je blagajna? is correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Nimam denarja. and Jaz nimam denarja. are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Dober večer fits late in the day, and the line is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Žal ne, nimamo več. is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Ni več kruha? Kaj pa to? is natural, and the English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "To je pecivo. Zelo je dobro. is natural, with the clitic correctly in second position. Pecivo as 'pastry' is fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Dobro, vzamem to. Kje je blagajna? is natural and within the length limits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Blagajna je tam. Hvala in nasvidenje. is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-genitive-ni": {
+          "verdict": "accepted",
+          "reason": "The card text is correct and under 40 words. The genitive after ni and nimam(o) is shown correctly, and all the toggle sentences are correct. The quick check (kav_ with a, o, e) has one blank and one right answer, e. Both helpers are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u04-l04-i01": "90906cdf6833aa5b",
+    "u04-l04-i02": "2a5d3daf5ef96b32",
+    "u04-l04-i03": "b590a5dd1a8b5a99",
+    "u04-l04-i04": "639d041604f015ba",
+    "u04-l04-i05": "802ad90e74ec6f7d",
+    "u04-l04-i06": "013ee3622ef7a212",
+    "u04-l04-i07": "13708293cc057783",
+    "u04-l04-i08": "5e1f5f2880a7c0a4",
+    "u04-l04-s01": "8c16300f779a26a5",
+    "u04-l04-s02": "40d7873b53149477",
+    "u04-l04-s03": "6162715fc6e9e099",
+    "u04-l04-s04": "16168369694b7a98",
+    "u04-l04-s05": "579480fe589696e3",
+    "u04-l04-s06": "cb44387b06db1fdc",
+    "u04-l04-p01": "33ff2bb80e19b460",
+    "u04-l04-p02": "1e1be0eae0b614c2",
+    "u04-l04-p03": "953fb7d4a1f31c78",
+    "u04-l04-p04": "818e400687279206",
+    "u04-l04-p05": "188d7130f92f91ef",
+    "u04-l04-p06": "af9f0de651af967a",
+    "u04-l04-d-01": "bfb85e79e8102804",
+    "u04-l04-d-02": "824b00f80424a75a",
+    "u04-l04-d-03": "05204944204175b0",
+    "u04-l04-d-04": "dce300ab8b07d57b",
+    "u04-l04-d-05": "838065548aa67fd8",
+    "u04-l04-d-06": "38ef261fa5a1068c",
+    "r-genitive-ni": "dc91976c26d2297b"
+  }
+}

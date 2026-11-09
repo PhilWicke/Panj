@@ -1,0 +1,374 @@
+{
+  "lesson": "u04-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 6,
+      "items": {
+        "u04-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Kilo jabolk, prosim. is natural. kilo is the accusative of kila, which Pravopis marks knj. pog. (it even gives kilo za zrezke, prosim), so the colloquial register is justified. Kilogram jabolk is the neutral variant, and the examples are fine.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=kila"
+        },
+        "u04-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Deset jajc, prosim. is correct (genitive plural). The examples and variant are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Še kaj? is the usual shop question. Bo še kaj? and Še kaj drugega? are correct variants.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-i04": {
+          "verdict": "accepted",
+          "reason": "To je vse. and To bo vse. are both natural, and so are the examples.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Potrebujem vrečko. is correct. Rabim vrečko. is the general colloquial standard (rabiti is knj. pog. in Pravopis), acceptable as a variant.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=rabiti"
+        },
+        "u04-l03-i06": {
+          "verdict": "accepted",
+          "reason": "jabolko n. acc.du jabolki, acc.pl jabolka and gen.pl jabolk are correct. The examples are natural and the cognate helper is true.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-i07": {
+          "verdict": "accepted",
+          "reason": "jajce n. jajci, jajca and jajc are correct, the examples are natural, and the helper (Ei, egg) is a true cognate.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-i08": {
+          "verdict": "accepted",
+          "reason": "vrečka f, acc vrečko, is correct. The helper is accurate: vrečka is the diminutive of vreča.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u04-l03-s01": {
+          "verdict": "accepted",
+          "reason": "Deset jajc, prosim. is correct. Only jajc fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-s02": {
+          "verdict": "accepted",
+          "reason": "Pet jabolk, prosim. is correct. Only jabolk fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-s03": {
+          "verdict": "accepted",
+          "reason": "Kilo jabolk, prosim. is correct, and jabolka is wrong after kilo.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Tri jajca, prosim. is correct, and jajc is wrong after tri.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Potrebujem vrečko. is correct, and only vrečko fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-s06": {
+          "verdict": "accepted",
+          "reason": "Stane dva evra. is correct, and evrov is wrong after dva.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and both variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-p02": {
+          "verdict": "accepted",
+          "reason": "The answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-p03": {
+          "verdict": "accepted",
+          "reason": "To je vse. and To bo vse. both fit the clearly set-up instruction.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-p04": {
+          "verdict": "accepted",
+          "reason": "The answer and the variant (knj. pog. rabiti) are correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=rabiti"
+        },
+        "u04-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Pet jajc, prosim. and the variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Imate jabolka? and the a and ali variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Dober dan, izvolite. is the usual shop opening, and the English is a fair rendering.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Prosim when handing over plus Še kaj? is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Je to vse? is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural, with še for also. Within the length limits.",
+          "fix": "",
+          "source": ""
+        },
+        "r-numbers-5-plus": {
+          "verdict": "accepted",
+          "reason": "The card text is correct within 100 (pet evrov, deset jajc, sto jabolk; eno jajce, dve jajci, tri jajca). So are the example, toggles, quick check (evrov) and German and English contrasts.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 5,
+      "items": {
+        "u04-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Kilo jabolk, prosim. is what people say at a stall. Here kilo is the accusative of kila, which Pravopis marks as standard colloquial (knj. pog.), so the colloquial register is justified. The accepts are correct, though Kilogram jabolk is stiff. Minor point: the helper 'kilo, as in English' hides that the word is kila (dve kili, pet kil).",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=kila"
+        },
+        "u04-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Deset jajc, prosim. has the correct genitive plural. The examples, the accept and the helper are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Še kaj? is the clerk's standard question, and Bo še kaj? and Še kaj drugega? are natural variants. The examples are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-i04": {
+          "verdict": "accepted",
+          "reason": "To je vse. and To bo vse. are both natural, and the examples are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Potrebujem vrečko. is correct with the accusative vrečko. The accept Rabim vrečko. uses rabiti in the sense 'need', which Pravopis marks as standard colloquial, so it is correct Slovenian.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=rabiti"
+        },
+        "u04-l03-i06": {
+          "verdict": "accepted",
+          "reason": "jabolko is neuter. Jabolki (dual), jabolka (plural) and jabolk (genitive plural) are correct. The examples are natural, and Apfel and apple are true cognates.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-i07": {
+          "verdict": "accepted",
+          "reason": "jajce is neuter. Jajci, jajca and jajc are correct, and the examples are natural. Ei and egg share the PIE root with Slavic *aje, so the cognate is genuine.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-i08": {
+          "verdict": "accepted",
+          "reason": "vrečka is feminine with accusative vrečko. It is a diminutive of vreča, so the helper is true. The examples are fine. Glossing it 'bag (shopping)' would keep it apart from torba if that comes later.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u04-l03-s01": {
+          "verdict": "accepted",
+          "reason": "Deset jajc is correct, and the other options are wrong after deset.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-s02": {
+          "verdict": "accepted",
+          "reason": "Pet jabolk is correct, with one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-s03": {
+          "verdict": "accepted",
+          "reason": "Kilo jabolk is correct, and jabolka is wrong after kilo.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Tri jajca is correct, and tri jajc is wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Potrebujem vrečko. is correct, with one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-s06": {
+          "verdict": "accepted",
+          "reason": "Stane dva evra. is correct, and dva evrov is wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and the accepts are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-p02": {
+          "verdict": "accepted",
+          "reason": "The answer and the accept are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-p03": {
+          "verdict": "accepted",
+          "reason": "The instruction is clear, and To je vse. and To bo vse. are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Potrebujem vrečko. and Rabim vrečko. are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Pet jajc, prosim. and Lahko dobim pet jajc? are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Imate jabolka? is correct, and the A and Ali variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Dober dan, izvolite. is a typical clerk greeting, and 'what can I get you' is a fair rendering.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "This is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Prosim is used when handing something over, and Še kaj? follows naturally.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Ja, deset jajc, prosim. is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Je to vse? is natural (Bo to vse? is also common).",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l03-d-06": {
+          "verdict": "accepted",
+          "reason": "Ja, to je vse. Potrebujem še vrečko. is natural, and the English 'I also need a bag' renders še correctly.",
+          "fix": "",
+          "source": ""
+        },
+        "r-numbers-5-plus": {
+          "verdict": "accepted",
+          "reason": "The card text is correct and under 40 words (pet evrov, deset jajc, sto jabolk against eno jajce, dve jajci, tri jajca). The toggle sentences are correct. The quick check (evr_ with a, i, ov) has one blank and one right answer, ov. Both helpers are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u04-l03-i01": "a97ff123419820fa",
+    "u04-l03-i02": "dad225266f33efb5",
+    "u04-l03-i03": "4f42c94eec00624e",
+    "u04-l03-i04": "93e4a304c933cc14",
+    "u04-l03-i05": "56dd3b2aabb70794",
+    "u04-l03-i06": "f14fedcd53795d9e",
+    "u04-l03-i07": "7b34d1f621f4d23e",
+    "u04-l03-i08": "da7950a96283b334",
+    "u04-l03-s01": "715633909b6a8418",
+    "u04-l03-s02": "2a30fce0c56eea6f",
+    "u04-l03-s03": "7b7cf40dbe061c90",
+    "u04-l03-s04": "4808764f0f3cd0ff",
+    "u04-l03-s05": "e3033cfc4e7d9a21",
+    "u04-l03-s06": "f4c830e132ff83d1",
+    "u04-l03-p01": "f5ac0a96ad750d0a",
+    "u04-l03-p02": "2a86baf8e02d0be5",
+    "u04-l03-p03": "03d935ac5de20922",
+    "u04-l03-p04": "0a288453058d5f5f",
+    "u04-l03-p05": "dd17ce3f46c5b27b",
+    "u04-l03-p06": "9ff044b830d30124",
+    "u04-l03-d-01": "8004a95d29924eaa",
+    "u04-l03-d-02": "6f6daf60e601319a",
+    "u04-l03-d-03": "e0f19e6185c292cd",
+    "u04-l03-d-04": "d3dfb29dbecaa5cf",
+    "u04-l03-d-05": "5046e085fa6c22c3",
+    "u04-l03-d-06": "ca1d5ac6df864623",
+    "r-numbers-5-plus": "7c250281a5deb547"
+  }
+}

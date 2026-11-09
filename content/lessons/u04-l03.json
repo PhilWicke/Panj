@@ -1,0 +1,460 @@
+{
+  "id": "u04-l03",
+  "unit": "u04",
+  "order": 3,
+  "role": "theme",
+  "title_sl": "V trgovini",
+  "title_en": "In the shop",
+  "items": [
+    {
+      "id": "u04-l03-i01",
+      "type": "chunk",
+      "sl": "Kilo jabolk, prosim.",
+      "sl_colloquial": null,
+      "en": "A kilo of apples, please.",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Dober dan. Kilo jabolk, prosim.",
+          "en": "Good day. A kilo of apples, please."
+        },
+        {
+          "sl": "Kilo jabolk in deset jajc, prosim.",
+          "en": "A kilo of apples and ten eggs, please."
+        }
+      ],
+      "helper": "kilo, as in English; after it, jabolko takes the genitive plural, jabolk.",
+      "accept": [
+        "Kilogram jabolk, prosim.",
+        "Lahko dobim kilo jabolk?"
+      ],
+      "rules": [
+        "r-genitive-quantity"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l03-i02",
+      "type": "chunk",
+      "sl": "Deset jajc, prosim.",
+      "sl_colloquial": null,
+      "en": "Ten eggs, please.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan. Deset jajc, prosim.",
+          "en": "Good day. Ten eggs, please."
+        },
+        {
+          "sl": "Imate jajca? Deset jajc, prosim.",
+          "en": "Do you have eggs? Ten eggs, please."
+        }
+      ],
+      "helper": "After deset, ten, jajce takes the genitive plural: deset jajc.",
+      "accept": [
+        "Lahko dobim deset jajc?"
+      ],
+      "rules": [
+        "r-numbers-5-plus"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l03-i03",
+      "type": "chunk",
+      "sl": "Še kaj?",
+      "sl_colloquial": null,
+      "en": "Anything else?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kilo jabolk. Še kaj?",
+          "en": "A kilo of apples. Anything else?"
+        },
+        {
+          "sl": "Še kaj? Ne, hvala.",
+          "en": "Anything else? No, thank you."
+        }
+      ],
+      "helper": "še is more, as in še malo; kaj is what, here anything.",
+      "accept": [
+        "Bo še kaj?",
+        "Še kaj drugega?"
+      ],
+      "rules": [
+        "r-particles-se-pa"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l03-i04",
+      "type": "chunk",
+      "sl": "To je vse.",
+      "sl_colloquial": null,
+      "en": "That's all.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ne, hvala, to je vse.",
+          "en": "No, thank you, that's all."
+        },
+        {
+          "sl": "To je vse. Koliko je skupaj?",
+          "en": "That's all. How much is it altogether?"
+        }
+      ],
+      "helper": "vse is all, as in hvala za vse.",
+      "accept": [
+        "To bo vse."
+      ],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l03-i05",
+      "type": "chunk",
+      "sl": "Potrebujem vrečko.",
+      "sl_colloquial": null,
+      "en": "I need a bag.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, potrebujem vrečko.",
+          "en": "Excuse me, I need a bag."
+        },
+        {
+          "sl": "Ja, potrebujem vrečko, prosim.",
+          "en": "Yes, I need a bag, please."
+        }
+      ],
+      "helper": "vrečka becomes vrečko, the object, as kava becomes kavo.",
+      "accept": [
+        "Rabim vrečko."
+      ],
+      "rules": [
+        "r-accusative-feminine"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l03-i06",
+      "type": "word",
+      "sl": "jabolko",
+      "sl_colloquial": null,
+      "en": "apple",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "forms": {
+        "acc.du": "jabolki",
+        "acc.pl": "jabolka",
+        "gen.pl": "jabolk"
+      },
+      "examples": [
+        {
+          "sl": "To jabolko je zelo dobro.",
+          "en": "This apple is very good."
+        },
+        {
+          "sl": "Imate jabolka?",
+          "en": "Do you have apples?"
+        }
+      ],
+      "helper": "Like German Apfel and English apple.",
+      "accept": [],
+      "rules": [
+        "r-numbers-5-plus"
+      ],
+      "freq_rank": 2860,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l03-i07",
+      "type": "word",
+      "sl": "jajce",
+      "sl_colloquial": null,
+      "en": "egg",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "forms": {
+        "acc.du": "jajci",
+        "acc.pl": "jajca",
+        "gen.pl": "jajc"
+      },
+      "examples": [
+        {
+          "sl": "Za zajtrk jem jajce.",
+          "en": "I eat an egg for breakfast."
+        },
+        {
+          "sl": "Tri jajca, prosim.",
+          "en": "Three eggs, please."
+        }
+      ],
+      "helper": "Related to German Ei and English egg.",
+      "accept": [],
+      "rules": [
+        "r-numbers-5-plus"
+      ],
+      "freq_rank": 1275,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u04-l03-i08",
+      "type": "word",
+      "sl": "vrečka",
+      "sl_colloquial": null,
+      "en": "bag",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "vrečko"
+      },
+      "examples": [
+        {
+          "sl": "Imate vrečko?",
+          "en": "Do you have a bag?"
+        },
+        {
+          "sl": "Vrečka je tukaj.",
+          "en": "The bag is here."
+        }
+      ],
+      "helper": "A small vreča, a sack: -ka makes it small.",
+      "accept": [],
+      "rules": [
+        "r-accusative-feminine"
+      ],
+      "freq_rank": 2219,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-numbers-5-plus"
+  ],
+  "structured": [
+    {
+      "id": "u04-l03-s01",
+      "prompt_sl": "Deset ___, prosim.",
+      "options": [
+        "jajce",
+        "jajca",
+        "jajc"
+      ],
+      "answer": "jajc",
+      "rule": "r-numbers-5-plus",
+      "en": "Ten eggs, please."
+    },
+    {
+      "id": "u04-l03-s02",
+      "prompt_sl": "Pet ___, prosim.",
+      "options": [
+        "jabolko",
+        "jabolka",
+        "jabolk"
+      ],
+      "answer": "jabolk",
+      "rule": "r-numbers-5-plus",
+      "en": "Five apples, please."
+    },
+    {
+      "id": "u04-l03-s03",
+      "prompt_sl": "Kilo ___, prosim.",
+      "options": [
+        "jabolka",
+        "jabolk"
+      ],
+      "answer": "jabolk",
+      "rule": "r-genitive-quantity",
+      "en": "A kilo of apples, please."
+    },
+    {
+      "id": "u04-l03-s04",
+      "prompt_sl": "Tri ___, prosim.",
+      "options": [
+        "jajca",
+        "jajc"
+      ],
+      "answer": "jajca",
+      "rule": "r-numbers-5-plus",
+      "en": "Three eggs, please."
+    },
+    {
+      "id": "u04-l03-s05",
+      "prompt_sl": "Potrebujem ___.",
+      "options": [
+        "vrečka",
+        "vrečko"
+      ],
+      "answer": "vrečko",
+      "rule": "r-accusative-feminine",
+      "en": "I need a bag."
+    },
+    {
+      "id": "u04-l03-s06",
+      "prompt_sl": "Stane dva ___.",
+      "options": [
+        "evra",
+        "evrov"
+      ],
+      "answer": "evra",
+      "rule": "r-dual-nouns",
+      "en": "It costs two euros."
+    }
+  ],
+  "production": [
+    {
+      "id": "u04-l03-p01",
+      "en": "Ask for a kilo of apples.",
+      "answer": "Kilo jabolk, prosim.",
+      "accept": [
+        "Kilogram jabolk, prosim.",
+        "Lahko dobim kilo jabolk?"
+      ],
+      "item": "u04-l03-i01"
+    },
+    {
+      "id": "u04-l03-p02",
+      "en": "Ask for ten eggs.",
+      "answer": "Deset jajc, prosim.",
+      "accept": [
+        "Lahko dobim deset jajc?"
+      ],
+      "item": "u04-l03-i02"
+    },
+    {
+      "id": "u04-l03-p03",
+      "en": "The clerk asks if you want anything else. Say that's all.",
+      "answer": "To je vse.",
+      "accept": [
+        "To bo vse."
+      ],
+      "item": "u04-l03-i04"
+    },
+    {
+      "id": "u04-l03-p04",
+      "en": "Tell the clerk you need a bag.",
+      "answer": "Potrebujem vrečko.",
+      "accept": [
+        "Rabim vrečko."
+      ],
+      "item": "u04-l03-i05"
+    },
+    {
+      "id": "u04-l03-p05",
+      "en": "Ask for five eggs.",
+      "answer": "Pet jajc, prosim.",
+      "accept": [
+        "Lahko dobim pet jajc?"
+      ],
+      "item": "u04-l03-i07"
+    },
+    {
+      "id": "u04-l03-p06",
+      "en": "Ask the clerk if they have apples.",
+      "answer": "Imate jabolka?",
+      "accept": [
+        "A imate jabolka?",
+        "Ali imate jabolka?"
+      ],
+      "item": "u04-l03-i06"
+    }
+  ],
+  "dialogue": {
+    "id": "u04-l03-d",
+    "title_sl": "Jabolka in jajca",
+    "title_en": "Apples and eggs",
+    "setting_en": "You buy apples and eggs in a small shop near your hosts' house.",
+    "lines": [
+      {
+        "speaker": "clerk",
+        "sl": "Dober dan, izvolite.",
+        "en": "Good day, what can I get you?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Dober dan. Kilo jabolk, prosim.",
+        "en": "Good day. A kilo of apples, please.",
+        "new_items": [
+          "u04-l03-i01"
+        ]
+      },
+      {
+        "speaker": "clerk",
+        "sl": "Prosim. Še kaj?",
+        "en": "Here you are. Anything else?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, deset jajc, prosim.",
+        "en": "Yes, ten eggs, please.",
+        "new_items": [
+          "u04-l03-i02"
+        ]
+      },
+      {
+        "speaker": "clerk",
+        "sl": "Je to vse?",
+        "en": "Is that all?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, to je vse. Potrebujem še vrečko.",
+        "en": "Yes, that's all. I also need a bag.",
+        "new_items": [
+          "u04-l03-i04",
+          "u04-l03-i05"
+        ]
+      }
+    ]
+  }
+}

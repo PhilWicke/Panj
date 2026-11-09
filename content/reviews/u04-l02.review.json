@@ -1,0 +1,361 @@
+{
+  "lesson": "u04-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {
+        "u04-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Koliko stane? is the standard price question. The examples are natural and Koliko to stane? is a correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Koliko je skupaj? is natural, and Koliko bo skupaj? is a very common, correct variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i03": {
+          "verdict": "accepted",
+          "reason": "To je predrago. is correct. The helper is accurate (drag means both expensive and dear, and pre- means too), and Predrago je. is a fine variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Plačam s kartico. is natural. The helper is correct: z becomes s before voiceless k, and kartica matches Karte.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i05": {
+          "verdict": "accepted",
+          "reason": "evro m is the standard spelling. du evra and gen.pl evrov are correct, and so are the examples.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i06": {
+          "verdict": "accepted",
+          "reason": "pet is correct with evrov. The helper is a true cognate (Greek pente).",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i07": {
+          "verdict": "accepted",
+          "reason": "deset is correct. The examples are natural and the helper is a true cognate (Latin decem).",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i08": {
+          "verdict": "accepted",
+          "reason": "sto is correct, and so are the examples. The helper is a true cognate (Latin centum).",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u04-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Kava stane dva evra. is correct, and dve evra and tri evra are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-s02": {
+          "verdict": "accepted",
+          "reason": "petindvajset is right for twenty-five, and the other numerals are plausible distractors decided by the English.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-s03": {
+          "verdict": "accepted",
+          "reason": "štirideset is right for forty, and the distractors are spelled correctly.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-s04": {
+          "verdict": "accepted",
+          "reason": "Skupaj je dvajset evrov. is natural and correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Lahko plačam s kartico? is correct. The infinitive is wrong after lahko here.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Koliko je skupaj? is correct, and sem and so are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-p02": {
+          "verdict": "accepted",
+          "reason": "The answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-p03": {
+          "verdict": "accepted",
+          "reason": "The answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Plačam s kartico. is correct, and the instruction fits it.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Stane pet evrov. and both variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-p06": {
+          "verdict": "accepted",
+          "reason": "Stane deset evrov. and both variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural greeting and question at the counter.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, correctly translated.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Ja, lahko. Hvala lepa. is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Lep dan še naprej. is the usual parting phrase, correctly glossed.",
+          "fix": "",
+          "source": ""
+        },
+        "r-numbers-to-100": {
+          "verdict": "accepted",
+          "reason": "The card text (36 words) is correct: -najst teens, -deset tens, dvajset, unit-in-ten order, sto. The example, toggles, quick check and German and English contrasts are all correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u04-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Koliko stane? and the accept Koliko to stane? are the standard question. The examples are natural, and the helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Koliko je skupaj? and Koliko bo skupaj? are both what people say at a till. The examples and the helper are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i03": {
+          "verdict": "accepted",
+          "reason": "To je predrago. and Predrago je. are correct. The helper is accurate: drag means both expensive and dear (dragi), and pre- means too.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Plačam s kartico. is natural, and the s/z alternation before k is described correctly. Kartica and Karte are true cognates (Latin charta). Both examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i05": {
+          "verdict": "accepted",
+          "reason": "evro is masculine; dva evra (dual) and pet evrov (genitive plural) are correct and correctly labelled. The examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i06": {
+          "verdict": "accepted",
+          "reason": "pet is correct, and pet evrov in the examples is right. Pet and Greek pente are true cognates (PIE *penkwe).",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i07": {
+          "verdict": "accepted",
+          "reason": "deset is correct, and deset evrov in the examples is right. The cognate with Latin decem is genuine.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-i08": {
+          "verdict": "accepted",
+          "reason": "sto, a hundred, is correct, and sto evrov is right. Sto is related to Latin centum through PIE.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u04-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Dva evra is correct. Dve evra and tri evra are both wrong, so there is one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-s02": {
+          "verdict": "accepted",
+          "reason": "Petindvajset matches twenty-five. Petnajst and petdeset are correctly spelled distractors that are wrong for the English.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Štirideset is forty. Štirinajst and štiriindvajset are correctly spelled and wrong for the English.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-s04": {
+          "verdict": "accepted",
+          "reason": "Skupaj je dvajset evrov. is natural, and only dvajset matches the English.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Lahko plačam s kartico? is correct, and the infinitive is wrong after lahko here.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Koliko je skupaj? is the only correct choice.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-p01": {
+          "verdict": "accepted",
+          "reason": "The answer and the accept are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Koliko je skupaj? and Koliko bo skupaj? are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-p03": {
+          "verdict": "accepted",
+          "reason": "To je predrago. and Predrago je. are both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Plačam s kartico. is correct. A learner might also type S kartico, prosim., which is natural but does not quite match the instruction to say you will pay.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Stane pet evrov. is correct, and both accepts are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-p06": {
+          "verdict": "accepted",
+          "reason": "Stane deset evrov. is correct, and both accepts are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "This is a natural opening at a till.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Kava in torta, to je pet evrov. is natural, and torta for a slice of cake is fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Lahko plačam s kartico? is correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Ja, lahko. Hvala lepa. is natural, and the English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u04-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Lep dan še naprej. is the usual parting phrase, and the English renders it well.",
+          "fix": "",
+          "source": ""
+        },
+        "r-numbers-to-100": {
+          "verdict": "accepted",
+          "reason": "The card text is correct and under 40 words: teens end in -najst, tens in -deset with dvajset for 20, and the unit comes first, joined by in and written as one word. The toggle sentences are correct. The quick check has one blank and one right answer; dvajsetpet and dvajset in pet are wrong. The German and English helpers (fünfundzwanzig, four-and-twenty) are accurate.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u04-l02-i01": "c7c082bc129bf949",
+    "u04-l02-i02": "9a793808e1f9cf6e",
+    "u04-l02-i03": "ecbf1f8139861bc7",
+    "u04-l02-i04": "761e0bb4d7a5f9a6",
+    "u04-l02-i05": "b03341b0c98f6187",
+    "u04-l02-i06": "8ada2111bf77f0f6",
+    "u04-l02-i07": "f2af458e99b1fe2c",
+    "u04-l02-i08": "a3e009f424a4fe86",
+    "u04-l02-s01": "b37671011c91db0a",
+    "u04-l02-s02": "365bb929f33a6963",
+    "u04-l02-s03": "265071e95203ec48",
+    "u04-l02-s04": "de6e7d0daf9edbf8",
+    "u04-l02-s05": "a06568bb7b51b6da",
+    "u04-l02-s06": "3918682553426806",
+    "u04-l02-p01": "16b681d81be22b4a",
+    "u04-l02-p02": "d17bfee05ae238ee",
+    "u04-l02-p03": "b1b996c7447dcf2c",
+    "u04-l02-p04": "926636e0bd498b59",
+    "u04-l02-p05": "457359ae60f67ed2",
+    "u04-l02-p06": "85e8842173df5807",
+    "u04-l02-d-01": "a01ec81f3c1fec05",
+    "u04-l02-d-02": "d6a73f862724cb4e",
+    "u04-l02-d-03": "cc7aeb09ae3b7454",
+    "u04-l02-d-04": "b4143f8c67557151",
+    "u04-l02-d-05": "0c1f4832616f0ad4",
+    "r-numbers-to-100": "bb8bc30eeb0a8c28"
+  }
+}

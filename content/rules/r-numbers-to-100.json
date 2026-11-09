@@ -1,0 +1,51 @@
+{
+  "id": "r-numbers-to-100",
+  "unit": "u04",
+  "title_en": "Numbers to 100",
+  "card_en": "Five to ten: pet, šest, sedem, osem, devet, deset. Teens end in -najst (petnajst), tens in -deset (petdeset), with dvajset for 20. In between, the unit comes first, joined by in: petindvajset, twenty-five. Sto is 100.",
+  "example": {
+    "sl": "To je petindvajset evrov.",
+    "en": "That's twenty-five euros."
+  },
+  "toggles": [
+    {
+      "label": "Price",
+      "options": [
+        "5",
+        "25",
+        "50",
+        "100"
+      ],
+      "examples": {
+        "5": {
+          "sl": "Stane pet evrov.",
+          "en": "It costs five euros."
+        },
+        "25": {
+          "sl": "Stane petindvajset evrov.",
+          "en": "It costs twenty-five euros."
+        },
+        "50": {
+          "sl": "Stane petdeset evrov.",
+          "en": "It costs fifty euros."
+        },
+        "100": {
+          "sl": "Stane sto evrov.",
+          "en": "It costs a hundred euros."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "25 je ___.",
+    "options": [
+      "petindvajset",
+      "dvajsetpet",
+      "dvajset in pet"
+    ],
+    "answer": "petindvajset",
+    "explain_en": "The unit comes first and in joins it to the ten, all in one word: petindvajset."
+  },
+  "helper_de": "Just like German fünfundzwanzig: the unit comes first and in joins it to the ten, petindvajset.",
+  "helper_en": "English puts the ten first, twenty-five. Slovenian says five-and-twenty, as in the old English four-and-twenty."
+}
