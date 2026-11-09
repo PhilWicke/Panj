@@ -2,10 +2,13 @@
 // is registered for, and plays them in order, one exercise at a time, without waiting for the one
 // and ten minute steps: the queue interleaves enough other work (Ruling 22). The mode it builds
 // with mutes the queue when nothing can play (no recording in the learner's voice and no device
-// voice, Ruling 81), so no audio exercise is scheduled into the no-audio line. Every recall goes
-// through applyRecall: effectiveResult decides how it counts, recordRecall (or skipAheadState for
-// a rule's correct quick check, Ruling 21) gives the next state, which is saved at once. A typed
-// recall that counts as a miss comes back after the next two entries until it is right or a slip.
+// voice, Ruling 81), so no audio exercise is scheduled into the no-audio line; the player's check
+// answers within AUDIO_CHECK_MS (Ruling 95). That mute is for buildSession and the closing menu
+// only: the exercises get the learner's own mute (Ruling 94), so Listen still shows and host lines
+// are still tried. Every recall goes through applyRecall: effectiveResult decides how it counts,
+// recordRecall (or skipAheadState for a rule's correct quick check, Ruling 21) gives the next
+// state, which is saved at once. A typed recall that counts as a miss comes back after the next
+// two entries until it is right or a slip.
 // The run's SessionRecord has its id from the start: after every settled entry a provisional
 // record is written under it, so a run the browser or the learner abandons still counts for what
 // was done (Ruling 78), and the same id is finalised when the run ends; its minutes are credited
@@ -149,7 +152,11 @@ function playable(app, entry) {
  */
 export function renderSession(container, app, params = {}) {
   const settings = app.state.settings;
-  /** @type {Mode} `mute` is settled by buildQueue once the player has said whether anything can play */
+  /**
+   * The mode of buildSession and closingMenu: buildQueue settles `mute` once the player has said
+   * whether anything can play. The exercises get the learner's own mute instead (contextFor).
+   * @type {Mode}
+   */
   const mode = { mute: settings.mute, speech: settings.speech };
   const startedAt = Date.now();
   /** The run's record id, fixed from the start so every write replaces the one before (Ruling 78). */
@@ -176,8 +183,9 @@ export function renderSession(container, app, params = {}) {
   const queue = [];
 
   /**
-   * Builds this run's queue once the player has said whether anything can play: the day's plan
-   * (muted when it cannot, Ruling 81), a speaking round, or the more round after the last run.
+   * Builds this run's queue once the player has said whether anything can play, which it does
+   * within AUDIO_CHECK_MS (Ruling 95): the day's plan (muted when nothing can, Ruling 81), a
+   * speaking round, or the more round after the last run.
    */
   const buildQueue = async () => {
     mode.mute = settings.mute || !(await app.player.audioAvailable());
@@ -236,7 +244,8 @@ export function renderSession(container, app, params = {}) {
       lesson: (entry.lessonId === undefined ? undefined : app.lessons.get(entry.lessonId)) ?? found?.lesson ?? null,
       rules: app.index.rules,
       settings,
-      mode,
+      // The learner's own mute, not the derived one: Listen shows and host lines are tried (Ruling 94).
+      mode: { ...mode, mute: settings.mute },
       play: (text) => app.player.play(text),
       rng: Math.random,
       allowPending: app.allowPending,

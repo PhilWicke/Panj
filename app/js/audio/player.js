@@ -2,7 +2,8 @@
 // learner's voice, else with the device's own Slovenian voice (one whose `lang` starts with `sl`)
 // through speechSynthesis, else not at all, and play() says which happened; audioAvailable() says
 // beforehand whether either source exists, so the session schedules no audio exercise nothing can
-// play (Ruling 81). Mute plays nothing.
+// play (Ruling 81), and answers within AUDIO_CHECK_MS, a slower answer reading as available
+// (Ruling 95). Mute plays nothing.
 // One sound at a time: play(), stop(), setMute() and setVoice() end whatever plays; setVoice()
 // changes the learner's voice for every later lookup (Ruling 48). The manifest is the one
 // tools/gen-audio.js writes ({ id: { text, voice, model, bytes } }, id = audioId(text, voice)),
@@ -15,6 +16,12 @@ import { audioId } from '../util/audio-id.js';
 /** The Gemini voice of each voice preference, as the recordings are named; the one place to rename them. */
 export const VOICES = Object.freeze({ female: 'Kore', male: 'Puck' });
 
+/**
+ * How long audioAvailable() waits for its answer before it reads as available: a slow network
+ * must never remove exercises, and a Listen tap shows the no-audio line if the manifest never
+ * comes (Ruling 95).
+ */
+export const AUDIO_CHECK_MS = 1500;
 /** How long an empty voice list waits for `voiceschanged`; some browsers fill it late. */
 const VOICES_WAIT_MS = 500;
 /**
@@ -42,10 +49,11 @@ const CANCEL_SETTLE_MS = 150;
  *   preferred voice exists; a promise, since it awaits the manifest and audioId
  * @property {() => boolean} deviceVoiceAvailable whether the device has a Slovenian voice, from
  *   the voice list as it stands
- * @property {() => Promise<boolean>} audioAvailable whether anything can play: the manifest has a
- *   recording in the preferred voice, or the device has a Slovenian voice. It awaits the manifest
- *   (never fetched for the voice `device`, Ruling 45) and the voice list, which some browsers
- *   fill late; mute does not enter into it
+ * @property {(options?: { within?: number }) => Promise<boolean>} audioAvailable whether anything
+ *   can play: the manifest has a recording in the preferred voice, or the device has a Slovenian
+ *   voice. It awaits the manifest (never fetched for the voice `device`, Ruling 45) and the voice
+ *   list, which some browsers fill late, for at most `within` ms (default AUDIO_CHECK_MS); an
+ *   answer that takes longer reads as available (Ruling 95). Mute does not enter into it
  */
 
 /**
@@ -242,6 +250,22 @@ export function createPlayer({ manifestUrl, voicePref, mute }) {
     return Boolean(synth && typeof SpeechSynthesisUtterance !== 'undefined' && slovenianVoice(synth.getVoices()));
   };
 
+  /**
+   * Whether a recording in the preferred voice or a Slovenian device voice exists, however long
+   * the manifest and the voice list take.
+   * @returns {Promise<boolean>}
+   */
+  const anythingPlays = async () => {
+    const voice = voiceFor(preferred);
+    if (voice) {
+      manifest ??= fetchManifest(manifestUrl);
+      if (Object.values(await manifest).some((entry) => entry?.voice === voice)) return true;
+    }
+    const synth = globalThis.speechSynthesis;
+    if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return false;
+    return slovenianVoice(await voices(synth)) !== null;
+  };
+
   return {
     async play(text) {
       halt();
@@ -269,15 +293,13 @@ export function createPlayer({ manifestUrl, voicePref, mute }) {
       return (await recordingFor(text)) !== null;
     },
     deviceVoiceAvailable,
-    async audioAvailable() {
-      const voice = voiceFor(preferred);
-      if (voice) {
-        manifest ??= fetchManifest(manifestUrl);
-        if (Object.values(await manifest).some((entry) => entry?.voice === voice)) return true;
-      }
-      const synth = globalThis.speechSynthesis;
-      if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return false;
-      return slovenianVoice(await voices(synth)) !== null;
+    audioAvailable({ within: bound = AUDIO_CHECK_MS } = {}) {
+      /** @type {ReturnType<typeof setTimeout>|undefined} */
+      let timer;
+      /** @type {Promise<boolean>} */
+      const late = new Promise((resolve) => { timer = setTimeout(() => resolve(true), bound); });
+      // The real answer clears the timer when it wins, so no handle outlives the check.
+      return Promise.race([anythingPlays(), late]).finally(() => clearTimeout(timer));
     },
   };
 }

@@ -9,7 +9,8 @@
 // after each settled entry, finalised under the same id when the run ends, nothing for a run
 // without a settled entry (Ruling 78); the closing menu offers three more minutes only when the
 // round would have content and the more run plays that round (Ruling 80); with nothing able to
-// play, the queue is built muted (Ruling 81).
+// play, the queue is built muted (Ruling 81), while the exercises keep the learner's own mute
+// (Ruling 94).
 import { test, before, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
@@ -30,11 +31,14 @@ const S = DEFAULT_SETTINGS;
 let document;
 /** The entries the fake exercises were asked to render, in order. @type {any[]} */
 const shown = [];
+/** The context each of those entries was rendered with, in the same order. @type {any[]} */
+const contexts = [];
 /** Resolves the exercise showing. @type {((outcome: any) => void)|null} */
 let finish = null;
-/** A fake exercise: it notes its entry and waits for the test to answer it. @type {any} */
-const waitingExercise = (/** @type {any} */ container, /** @type {any} */ entry) => new Promise((resolve) => {
+/** A fake exercise: it notes its entry and context and waits for the test to answer it. @type {any} */
+const waitingExercise = (/** @type {any} */ container, /** @type {any} */ entry, /** @type {any} */ ctx) => new Promise((resolve) => {
   shown.push(entry);
+  contexts.push(ctx);
   finish = resolve;
 });
 
@@ -46,6 +50,7 @@ before(() => {
 
 beforeEach(() => {
   shown.length = 0;
+  contexts.length = 0;
   finish = null;
 });
 
@@ -313,6 +318,28 @@ test('with no recording and no device voice the queue is built muted: no listeni
   renderSession(third, chosen);
   await settle();
   assert.equal(progressbar(third).getAttribute('aria-valuemax'), '1', 'the learner\'s mute stands whatever can play');
+});
+
+test('the exercises get the learner\'s own mute: the mute derived from no audio builds the queue only (Ruling 94)', async () => {
+  const silent = sessionApp({ states: byId(due('u01-l01-i01')), settings: { mute: false }, audio: false });
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderSession(container, silent);
+  await settle();
+  assert.equal(progressbar(container).getAttribute('aria-valuemax'), '1', 'no listening and no perception entry');
+  assert.equal(contexts.length, 1);
+  assert.equal(contexts[0].mode.mute, false, 'Listen shows and host lines are tried');
+  assert.equal(contexts[0].mode.speech, silent.state.settings.speech, 'the rest of the mode as built');
+  await answer({ itemId: 'u01-l01-i01', recall: 'correct' });
+  assert.deepEqual(shown.map((e) => e.kind), ['typed_en_sl']);
+
+  const chosen = sessionApp({ states: byId(due('u01-l01-i01')), settings: { mute: true }, audio: true });
+  const other = /** @type {any} */ (document.createElement('main'));
+  shown.length = 0;
+  contexts.length = 0;
+  renderSession(other, chosen);
+  await settle();
+  assert.equal(contexts.length, 1);
+  assert.equal(contexts[0].mode.mute, true, 'the learner\'s mute reaches the exercises');
 });
 
 test('speakingQueue keeps the planned speaking entries with speech on, else a round of up to five review-phase items', () => {

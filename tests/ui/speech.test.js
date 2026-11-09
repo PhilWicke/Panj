@@ -8,11 +8,12 @@
 // resolves 'none' when neither exists; a missing manifest reads as empty without a console error,
 // and a missing Web Crypto as no recording; mute plays nothing; setVoice changes the voice of later lookups and stops what
 // plays; a new play waits for the cancelled utterance to let go before it speaks; audioAvailable
-// says whether a recording in the preferred voice or a Slovenian device voice exists (Ruling 81).
+// says whether a recording in the preferred voice or a Slovenian device voice exists (Ruling 81),
+// within AUDIO_CHECK_MS, a slower answer reading as available (Ruling 95).
 import { test, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { compareSpoken, recognitionBlocked, recognizeOnce, resetRecognition, speechAvailable } from '../../app/js/audio/speech.js';
-import { createPlayer, voiceFor, VOICES } from '../../app/js/audio/player.js';
+import { AUDIO_CHECK_MS, createPlayer, voiceFor, VOICES } from '../../app/js/audio/player.js';
 import { audioId } from '../../app/js/util/audio-id.js';
 
 const MANIFEST_URL = 'assets/audio/manifest.json';
@@ -321,6 +322,43 @@ test('audioAvailable: a recording in the preferred voice or a Slovenian device v
   assert.equal(await createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false }).audioAvailable(), true, 'no recording, but the device voice');
   stub('speechSynthesis', fakeSynth({ voices: [{ lang: 'en-GB', name: 'Daniel' }] }).synth);
   assert.equal(await createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'device', mute: false }).audioAvailable(), false, 'no Slovenian voice among the device voices');
+});
+
+test('audioAvailable answers within AUDIO_CHECK_MS: a manifest that never comes reads as available, a faster answer stands and clears its timer (Ruling 95)', async (t) => {
+  assert.equal(AUDIO_CHECK_MS, 1500);
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const sets = t.mock.method(globalThis, 'setTimeout');
+  const clears = t.mock.method(globalThis, 'clearTimeout');
+  /** Lets every promise that can settle do so; setImmediate is not mocked. */
+  const flush = () => new Promise((resolve) => setImmediate(resolve));
+  stub('speechSynthesis', undefined);
+
+  const stalled = { calls: /** @type {string[]} */ ([]) };
+  stub('fetch', (/** @type {string} */ url) => {
+    stalled.calls.push(url);
+    return new Promise(() => {});
+  });
+  /** @type {boolean|null} */
+  let answer = null;
+  const pending = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false }).audioAvailable()
+    .then((value) => { answer = value; });
+  await flush();
+  assert.deepEqual(stalled.calls, [MANIFEST_URL], 'the manifest fetch has started and never settles');
+  t.mock.timers.tick(AUDIO_CHECK_MS - 1);
+  await flush();
+  assert.equal(answer, null, 'no answer before the bound');
+  t.mock.timers.tick(1);
+  await pending;
+  assert.equal(answer, true, 'the bound wins: audio reads as available, so no exercise is removed');
+
+  sets.mock.resetCalls();
+  clears.mock.resetCalls();
+  stub('fetch', notFound().fetch);
+  assert.equal(await createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false }).audioAvailable(), false,
+    'the real answer comes first and stands: an empty manifest and no device voice');
+  const bound = sets.mock.calls.filter((call) => call.arguments[1] === AUDIO_CHECK_MS);
+  assert.equal(bound.length, 1, 'one timer for the bound');
+  assert.ok(clears.mock.calls.some((call) => call.arguments[0] === bound[0].result), 'and it is cleared once the real answer wins');
 });
 
 test('createPlayer never rejects: without Web Crypto (an insecure context) there is no recording to find', async () => {
