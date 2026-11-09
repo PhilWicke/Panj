@@ -1,0 +1,63 @@
+{
+  "id": "r-boli-me",
+  "unit": "u09",
+  "title_en": "What hurts: boli me",
+  "card_en": "To say what hurts, the body part is the subject and the person takes me: boli me glava, literally the head hurts me. With several body parts the verb is bolijo: bolijo me noge.",
+  "example": {
+    "sl": "Boli me glava.",
+    "en": "My head hurts."
+  },
+  "toggles": [
+    {
+      "label": "Who it hurts",
+      "options": [
+        "me",
+        "you (to someone close)",
+        "you (polite)"
+      ],
+      "examples": {
+        "me": {
+          "sl": "Boli me glava.",
+          "en": "My head hurts."
+        },
+        "you (to someone close)": {
+          "sl": "Boli te glava?",
+          "en": "Does your head hurt? (to someone close)"
+        },
+        "you (polite)": {
+          "sl": "Boli vas glava?",
+          "en": "Does your head hurt? (polite)"
+        }
+      }
+    },
+    {
+      "label": "How many",
+      "options": [
+        "one",
+        "several"
+      ],
+      "examples": {
+        "one": {
+          "sl": "Boli me noga.",
+          "en": "My leg hurts."
+        },
+        "several": {
+          "sl": "Bolijo me noge.",
+          "en": "My legs hurt."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Boli ___ glava.",
+    "options": [
+      "me",
+      "mi",
+      "jaz"
+    ],
+    "answer": "me",
+    "explain_en": "The person in pain takes me, not mi: boli me glava."
+  },
+  "helper_de": "Like der Kopf tut mir weh, the body part is the subject. But Slovenian uses me, like mich, not mi.",
+  "helper_en": "English says my head hurts. Slovenian says the head hurts me, so glava stays the same and only me changes with the person."
+}

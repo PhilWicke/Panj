@@ -1,0 +1,424 @@
+{
+  "id": "u09-l01",
+  "unit": "u09",
+  "order": 1,
+  "role": "theme",
+  "title_sl": "Boli me glava",
+  "title_en": "I have a headache",
+  "items": [
+    {
+      "id": "u09-l01-i01",
+      "type": "chunk",
+      "sl": "Kaj te boli?",
+      "sl_colloquial": null,
+      "en": "What hurts? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kaj te boli, roka ali hrbet?",
+          "en": "What hurts, your arm or your back?"
+        },
+        {
+          "sl": "A si v redu? Kaj te boli?",
+          "en": "Are you OK? What hurts?"
+        }
+      ],
+      "helper": "boli, it hurts: the same root gives bolan, ill.",
+      "accept": [],
+      "rules": [
+        "r-boli-me"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l01-i02",
+      "type": "chunk",
+      "sl": "Boli me glava.",
+      "sl_colloquial": null,
+      "en": "My head hurts.",
+      "register": "neutral",
+      "slots": [
+        {
+          "label": "body part",
+          "fillers": [
+            "u09-l01-i06",
+            "u09-l01-i07",
+            "u09-l01-i08"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "sl": "Boli me glava, grem domov.",
+          "en": "My head hurts, I'm going home."
+        },
+        {
+          "sl": "Zjutraj me boli glava.",
+          "en": "In the morning my head hurts."
+        }
+      ],
+      "helper": "Literally the head hurts me: glava is the subject.",
+      "accept": [
+        "Glava me boli."
+      ],
+      "rules": [
+        "r-boli-me"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l01-i03",
+      "type": "chunk",
+      "sl": "Bolijo me noge.",
+      "sl_colloquial": null,
+      "en": "My legs hurt.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Zvečer me bolijo noge.",
+          "en": "In the evening my legs hurt."
+        },
+        {
+          "sl": "Bolijo me noge, ne morem več.",
+          "en": "My legs hurt, I can't go on."
+        }
+      ],
+      "helper": "For a pair such as legs, people say noge and bolijo rather than the dual.",
+      "accept": [
+        "Noge me bolijo."
+      ],
+      "rules": [
+        "r-boli-me"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l01-i04",
+      "type": "chunk",
+      "sl": "Boli me grlo.",
+      "sl_colloquial": null,
+      "en": "I have a sore throat.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Boli me grlo, pijem čaj.",
+          "en": "I have a sore throat, I'm drinking tea."
+        },
+        {
+          "sl": "Malo me boli grlo.",
+          "en": "My throat hurts a bit."
+        }
+      ],
+      "helper": "grlo, throat: distantly related to German Gurgel.",
+      "accept": [
+        "Grlo me boli."
+      ],
+      "rules": [
+        "r-boli-me"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "doubtful",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review1 doubtful: Slovenian, English, accept and examples are fine. The doubt is the helper. grlo comes from Proto-Slavic *gъrdlo, PIE *gʷerh₃-, and the lookup names Latin gurges among its cognates, so German Gurgel can only be a distant link through Latin, which the Gurgel page does not confirm. English gargle is traced by Wiktionary to French gargouiller and is not shown as related, so offering it as a comparison looks like forced resemblance. Keep Gurgel only if a native or etymology source confirms it, otherwise set helper to null.; review2 doubtful: Slovenian, gloss, examples and accept are fine. The doubt is the helper: Gurgel is a real but remote relative (PIE *gwerh3- through Latin gurgulio), while the lookup traces gargle only to Old French gargouille and shows no link to grlo, so that half may be forced resemblance. Fix: grlo, throat: distantly related to German Gurgel."
+      }
+    },
+    {
+      "id": "u09-l01-i05",
+      "type": "word",
+      "sl": "glava",
+      "sl_colloquial": null,
+      "en": "head",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "examples": [
+        {
+          "sl": "Glava me zelo boli.",
+          "en": "My head hurts a lot."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 355,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l01-i06",
+      "type": "word",
+      "sl": "roka",
+      "sl_colloquial": null,
+      "en": "hand, arm",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "examples": [
+        {
+          "sl": "Roka me boli, ne morem delati.",
+          "en": "My arm hurts, I can't work."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 327,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l01-i07",
+      "type": "word",
+      "sl": "noga",
+      "sl_colloquial": null,
+      "en": "leg, foot",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "pl": "noge"
+      },
+      "examples": [
+        {
+          "sl": "Noga me boli, ne grem v hribe.",
+          "en": "My leg hurts, I'm not going to the hills."
+        },
+        {
+          "sl": "Moja noga je v redu.",
+          "en": "My leg is fine."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 623,
+      "verification": {
+        "review1": "doubtful",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review1 doubtful: Headword, gender and form pl noge are right, and the first example is natural. The doubt is the second example, Moja noga je v redu: Slovenian normally leaves out the possessive with one's own body part, so moja reads as a calque of my leg and as a sentence built to show the word. Noga je v redu would be the natural form. Fix: Noga je v redu.; review2 doubtful: Headword, gender and pl form are correct. The doubt is the second example: 'Moja noga je v redu.' sounds translated, since Slovenian normally drops the possessive with a body part unless there is a contrast. Fix: Noga je v redu."
+      }
+    },
+    {
+      "id": "u09-l01-i08",
+      "type": "word",
+      "sl": "hrbet",
+      "sl_colloquial": null,
+      "en": "back (of the body)",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "examples": [
+        {
+          "sl": "Hrbet me zelo boli.",
+          "en": "My back hurts a lot."
+        },
+        {
+          "sl": "Hrbet me boli, ne morem spati.",
+          "en": "My back hurts, I can't sleep."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 2761,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-boli-me"
+  ],
+  "structured": [
+    {
+      "id": "u09-l01-s01",
+      "prompt_sl": "Boli ___ glava.",
+      "options": [
+        "me",
+        "mi",
+        "jaz"
+      ],
+      "answer": "me",
+      "rule": "r-boli-me",
+      "en": "My head hurts."
+    },
+    {
+      "id": "u09-l01-s02",
+      "prompt_sl": "Kaj ___ boli?",
+      "options": [
+        "te",
+        "ti",
+        "si"
+      ],
+      "answer": "te",
+      "rule": "r-boli-me",
+      "en": "What hurts? (to someone close)"
+    },
+    {
+      "id": "u09-l01-s03",
+      "prompt_sl": "___ me noge.",
+      "options": [
+        "Bolijo",
+        "Boli"
+      ],
+      "answer": "Bolijo",
+      "rule": "r-boli-me",
+      "en": "My legs hurt."
+    },
+    {
+      "id": "u09-l01-s04",
+      "prompt_sl": "___ me hrbet.",
+      "options": [
+        "Boli",
+        "Bolijo"
+      ],
+      "answer": "Boli",
+      "rule": "r-boli-me",
+      "en": "My back hurts."
+    },
+    {
+      "id": "u09-l01-s05",
+      "prompt_sl": "Boli me ___.",
+      "options": [
+        "roka",
+        "roko",
+        "roki"
+      ],
+      "answer": "roka",
+      "rule": "r-boli-me",
+      "en": "My arm hurts."
+    }
+  ],
+  "production": [
+    {
+      "id": "u09-l01-p01",
+      "en": "Someone close looks unwell. Ask what hurts.",
+      "answer": "Kaj te boli?",
+      "accept": [],
+      "item": "u09-l01-i01"
+    },
+    {
+      "id": "u09-l01-p02",
+      "en": "Your hosts ask what hurts. Say your head does.",
+      "answer": "Boli me glava.",
+      "accept": [
+        "Glava me boli."
+      ],
+      "item": "u09-l01-i02"
+    },
+    {
+      "id": "u09-l01-p03",
+      "en": "Tell your hosts your back hurts.",
+      "answer": "Boli me hrbet.",
+      "accept": [
+        "Hrbet me boli."
+      ],
+      "item": "u09-l01-i02",
+      "filler": "hrbet"
+    },
+    {
+      "id": "u09-l01-p04",
+      "en": "Tell your hosts your arm hurts.",
+      "answer": "Boli me roka.",
+      "accept": [
+        "Roka me boli."
+      ],
+      "item": "u09-l01-i02",
+      "filler": "roka"
+    },
+    {
+      "id": "u09-l01-p05",
+      "en": "You have walked all day. Say your legs hurt.",
+      "answer": "Bolijo me noge.",
+      "accept": [
+        "Noge me bolijo."
+      ],
+      "item": "u09-l01-i03"
+    },
+    {
+      "id": "u09-l01-p06",
+      "en": "You have a sore throat. Tell your hosts.",
+      "answer": "Boli me grlo.",
+      "accept": [
+        "Grlo me boli."
+      ],
+      "item": "u09-l01-i04"
+    }
+  ],
+  "dialogue": {
+    "id": "u09-l01-d",
+    "title_sl": "Kaj te boli?",
+    "title_en": "What hurts?",
+    "setting_en": "Your hosts see that you look tired and ask what is wrong. You have a headache.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "A si v redu? Kaj te boli?",
+        "en": "Are you OK? What hurts?",
+        "new_items": [
+          "u09-l01-i01"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Boli me glava.",
+        "en": "My head hurts.",
+        "new_items": [
+          "u09-l01-i02"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "A te boli tudi grlo?",
+        "en": "Does your throat hurt too?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, boli me grlo.",
+        "en": "Yes, my throat hurts.",
+        "new_items": [
+          "u09-l01-i04"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Pridi, čaj je na mizi.",
+        "en": "Come, the tea is on the table."
+      }
+    ]
+  }
+}

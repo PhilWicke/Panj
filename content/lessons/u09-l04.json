@@ -1,0 +1,454 @@
+{
+  "id": "u09-l04",
+  "unit": "u09",
+  "order": 4,
+  "role": "theme",
+  "title_sl": "Moram k zdravniku",
+  "title_en": "I have to see a doctor",
+  "items": [
+    {
+      "id": "u09-l04-i01",
+      "type": "chunk",
+      "sl": "Moram k zdravniku.",
+      "sl_colloquial": null,
+      "en": "I have to see a doctor.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Danes moram k zdravniku.",
+          "en": "I have to see a doctor today."
+        },
+        {
+          "sl": "Boli me hrbet, moram k zdravniku.",
+          "en": "My back hurts, I have to see a doctor."
+        }
+      ],
+      "helper": "zdravnik, doctor, comes from zdrav, healthy. After k, to, it becomes zdravniku.",
+      "accept": [
+        "Moram iti k zdravniku."
+      ],
+      "rules": [
+        "r-moram"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l04-i02",
+      "type": "chunk",
+      "sl": "Moram počivati.",
+      "sl_colloquial": "Moram počivat.",
+      "en": "I have to rest.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Danes moram počivati.",
+          "en": "I have to rest today."
+        },
+        {
+          "sl": "Bolan sem, moram počivati.",
+          "en": "I'm ill, I have to rest."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [
+        "r-moram"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l04-i03",
+      "type": "chunk",
+      "sl": "Moraš piti več vode.",
+      "sl_colloquial": "Moraš pit več vode.",
+      "en": "You have to drink more water. (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Vroče je, moraš piti več vode.",
+          "en": "It's hot, you have to drink more water."
+        },
+        {
+          "sl": "Moraš piti več vode in počivati.",
+          "en": "You have to drink more water and rest."
+        }
+      ],
+      "helper": "več takes the of-form: več vode, more water.",
+      "accept": [],
+      "rules": [
+        "r-moram",
+        "r-genitive-quantity"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l04-i04",
+      "type": "chunk",
+      "sl": "Danes ne smeš delati.",
+      "sl_colloquial": "Danes ne smeš delat.",
+      "en": "You mustn't work today. (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Bolan si, danes ne smeš delati.",
+          "en": "You're ill, you mustn't work today."
+        },
+        {
+          "sl": "Imaš vročino, danes ne smeš delati.",
+          "en": "You have a fever, you mustn't work today."
+        }
+      ],
+      "helper": "ne smeš is like German du darfst nicht, you are not allowed.",
+      "accept": [
+        "Ne smeš delati danes.",
+        "Ne smeš danes delati."
+      ],
+      "rules": [
+        "r-moram"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l04-i05",
+      "type": "chunk",
+      "sl": "Pokličite rešilca.",
+      "sl_colloquial": null,
+      "en": "Call an ambulance. (polite, or to several people)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Slabo mi je, pokličite rešilca.",
+          "en": "I feel sick, call an ambulance."
+        },
+        {
+          "sl": "Pokličite rešilca, moram v bolnišnico.",
+          "en": "Call an ambulance, I have to go to hospital."
+        }
+      ],
+      "helper": "rešilec, ambulance, comes from rešiti, to save or rescue.",
+      "accept": [],
+      "rules": [
+        "r-imperative-recognition"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "doubtful",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review1 doubtful: Register. SSKJ labels rešilec pog. in the sense of ambulance, and the style guide makes an item tagged neutral despite such a label doubtful until a native confirms the tag. The form itself is right: Pravopis marks the noun živ., and SSKJ gives poklicali so rešilca, so the accusative rešilca stands. Examples and helper are fine.; review2 doubtful: The form is right: Pravopis marks rešilec živ., and SSKJ gives 'poklicali so rešilca'. The doubt is register: SSKJ labels the ambulance sense pog., and the item is tagged neutral, which the style guide holds as doubtful until a native confirms the tag."
+      }
+    },
+    {
+      "id": "u09-l04-i06",
+      "type": "word",
+      "sl": "zdravnik",
+      "sl_colloquial": null,
+      "en": "doctor",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "dat": "zdravniku"
+      },
+      "examples": [
+        {
+          "sl": "Kje je zdravnik?",
+          "en": "Where is the doctor?"
+        },
+        {
+          "sl": "Zdravnik je zelo prijazen.",
+          "en": "The doctor is very kind."
+        }
+      ],
+      "helper": "From zdrav, healthy: the one who makes you healthy.",
+      "accept": [
+        "doktor"
+      ],
+      "rules": [],
+      "freq_rank": 1576,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l04-i07",
+      "type": "word",
+      "sl": "bolnišnica",
+      "sl_colloquial": null,
+      "en": "hospital",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "bolnišnico"
+      },
+      "examples": [
+        {
+          "sl": "Kje je bolnišnica?",
+          "en": "Where is the hospital?"
+        },
+        {
+          "sl": "Grem v bolnišnico.",
+          "en": "I'm going to the hospital."
+        }
+      ],
+      "helper": "From bolan, ill: a place for the ill.",
+      "accept": [
+        "bolnica"
+      ],
+      "rules": [],
+      "freq_rank": 2747,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l04-i08",
+      "type": "word",
+      "sl": "pomoč",
+      "sl_colloquial": null,
+      "en": "help",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "examples": [
+        {
+          "sl": "Potrebujem pomoč.",
+          "en": "I need help."
+        },
+        {
+          "sl": "Rabim pomoč, prosim.",
+          "en": "I need help, please."
+        }
+      ],
+      "helper": "Related to pomagati, to help: Lahko pomagam?",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 519,
+      "verification": {
+        "review1": "accepted",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review2 doubtful: Noun, gender and examples are fine. The doubt is the helper's 'From pomagati': Wiktionary derives pomoč from the verb *pomoťi, so pomoč and pomagati look like relatives rather than one coming from the other. Fix: Related to pomagati, to help: Lahko pomagam?"
+      }
+    }
+  ],
+  "rules": [
+    "r-moram"
+  ],
+  "structured": [
+    {
+      "id": "u09-l04-s01",
+      "prompt_sl": "___ počivati.",
+      "options": [
+        "Moram",
+        "Moraš",
+        "Mora"
+      ],
+      "answer": "Moram",
+      "rule": "r-moram",
+      "en": "I have to rest."
+    },
+    {
+      "id": "u09-l04-s02",
+      "prompt_sl": "___ piti več vode.",
+      "options": [
+        "Moraš",
+        "Moram",
+        "Morem"
+      ],
+      "answer": "Moraš",
+      "rule": "r-moram",
+      "en": "You have to drink more water. (to someone close)"
+    },
+    {
+      "id": "u09-l04-s03",
+      "prompt_sl": "Danes ne ___ delati.",
+      "options": [
+        "smeš",
+        "moraš",
+        "sem"
+      ],
+      "answer": "smeš",
+      "rule": "r-moram",
+      "en": "You mustn't work today. (to someone close)"
+    },
+    {
+      "id": "u09-l04-s04",
+      "prompt_sl": "Vi ___ k zdravniku.",
+      "options": [
+        "morate",
+        "moraš",
+        "moram"
+      ],
+      "answer": "morate",
+      "rule": "r-moram",
+      "en": "You have to see a doctor. (polite)"
+    },
+    {
+      "id": "u09-l04-s05",
+      "prompt_sl": "Ona ___ k zdravniku.",
+      "options": [
+        "mora",
+        "morate",
+        "moram"
+      ],
+      "answer": "mora",
+      "rule": "r-moram",
+      "en": "She has to see a doctor."
+    },
+    {
+      "id": "u09-l04-s06",
+      "prompt_sl": "Moram piti več ___.",
+      "options": [
+        "vode",
+        "voda",
+        "vodo"
+      ],
+      "answer": "vode",
+      "rule": "r-genitive-quantity",
+      "en": "I have to drink more water."
+    }
+  ],
+  "production": [
+    {
+      "id": "u09-l04-p01",
+      "en": "Your back hurts badly. Say you have to see a doctor.",
+      "answer": "Moram k zdravniku.",
+      "accept": [
+        "Moram iti k zdravniku."
+      ],
+      "item": "u09-l04-i01"
+    },
+    {
+      "id": "u09-l04-p02",
+      "en": "Your hosts ask you out, but you are ill. Say you have to rest.",
+      "answer": "Moram počivati.",
+      "accept": [
+        "Moram počivat."
+      ],
+      "item": "u09-l04-i02"
+    },
+    {
+      "id": "u09-l04-p03",
+      "en": "Tell someone close they have to drink more water.",
+      "answer": "Moraš piti več vode.",
+      "accept": [
+        "Moraš pit več vode."
+      ],
+      "item": "u09-l04-i03"
+    },
+    {
+      "id": "u09-l04-p04",
+      "en": "Tell someone close they must not work today.",
+      "answer": "Danes ne smeš delati.",
+      "accept": [
+        "Ne smeš delati danes.",
+        "Ne smeš danes delati.",
+        "Danes ne smeš delat."
+      ],
+      "item": "u09-l04-i04"
+    },
+    {
+      "id": "u09-l04-p05",
+      "en": "Someone has fallen in the street. Ask a stranger to call an ambulance.",
+      "answer": "Pokličite rešilca.",
+      "accept": [
+        "Prosim, pokličite rešilca.",
+        "Pokličite rešilca, prosim."
+      ],
+      "item": "u09-l04-i05"
+    },
+    {
+      "id": "u09-l04-p06",
+      "en": "You need help. Say so.",
+      "answer": "Potrebujem pomoč.",
+      "accept": [
+        "Rabim pomoč."
+      ],
+      "item": "u09-l04-i08"
+    }
+  ],
+  "dialogue": {
+    "id": "u09-l04-d",
+    "title_sl": "Danes doma",
+    "title_en": "At home today",
+    "setting_en": "You feel ill, and your hosts tell you to rest and to see a doctor.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Kako se počutiš?",
+        "en": "How are you feeling?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Slabo. Imam vročino in boli me glava.",
+        "en": "Not well. I have a fever and my head hurts."
+      },
+      {
+        "speaker": "host",
+        "sl": "Danes ne smeš delati.",
+        "en": "You mustn't work today.",
+        "new_items": [
+          "u09-l04-i04"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Moram k zdravniku?",
+        "en": "Do I have to see a doctor?",
+        "new_items": [
+          "u09-l04-i01"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Ja. In moraš piti več vode.",
+        "en": "Yes. And you have to drink more water.",
+        "new_items": [
+          "u09-l04-i03"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Dobro, moram počivati.",
+        "en": "All right, I have to rest.",
+        "new_items": [
+          "u09-l04-i02"
+        ]
+      }
+    ]
+  }
+}

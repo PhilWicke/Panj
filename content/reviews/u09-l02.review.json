@@ -1,0 +1,374 @@
+{
+  "lesson": "u09-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {
+        "u09-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Standard reflexive question, natural examples, helper accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Natural, gloss fits, accept variant is correct Slovenian.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Natural idiom with dative mi, gloss I feel sick is right, accept Meni je slabo is correct, German parallel genuine.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Natural, correct dative construction, accept variant correct, helper useful and honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-i05": {
+          "verdict": "accepted",
+          "reason": "imeti vročino is listed by Pravopis and the fever sense is in SSKJ. Accept Imam temperaturo is correct; Pravopis labels the fever use of temperatura knj. pog., which is fine for a variant.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=vročina"
+        },
+        "u09-l02-i06": {
+          "verdict": "accepted",
+          "reason": "prehlajen is a real adjective from prehladiti, biti prehlajen is attested, feminine variant correct. Helper link to hlad is transparent.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=prehlajen"
+        },
+        "u09-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Natural, feminine variant accepted, examples fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Correct adjective with feminine bolna (fleeting a), examples natural, helper true.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u09-l02-s01": {
+          "verdict": "accepted",
+          "reason": "se is the only correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-s02": {
+          "verdict": "accepted",
+          "reason": "English pins first person, so počutim is the one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Dative mi required; me and sem are wrong but plausible.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-s04": {
+          "verdict": "accepted",
+          "reason": "Dative ti required, English names the addressee.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-s05": {
+          "verdict": "accepted",
+          "reason": "gospa fixes polite vam; vas and ti are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Feminine agreement bolna; one correct answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Answer correct, instruction fixes the ti form.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-p02": {
+          "verdict": "doubtful",
+          "reason": "Answer and listed variants are correct, but Ne počutim se dobro., the most literal rendering of 'you don't feel well' and built only from taught words, is missing from accept. The style guide requires accept to list every other right answer, so a learner typing this correct sentence would be marked wrong.",
+          "fix": "Ne počutim se dobro.",
+          "source": ""
+        },
+        "u09-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and feminine variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, correctly translated.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural spoken question without a question word.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Pojdi spat is the natural phrase, faithful English.",
+          "fix": "",
+          "source": ""
+        },
+        "r-reflexive-se": {
+          "verdict": "accepted",
+          "reason": "Table forms of počutiti se are all correct, card note on position is right, quick check has one answer, German contrast accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "r-dative-pronouns": {
+          "verdict": "accepted",
+          "reason": "Short dative forms mi, ti, mu/ji, nama, vama, jima, nam, vam, jim are all correct. Note on pronoun mi meaning we is helpful. Quick check has one answer.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 3,
+      "items": {
+        "u09-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Standard reflexive question. Examples are natural and the sich fühlen comparison is honest.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=po%C4%8Dutiti"
+        },
+        "u09-l02-i02": {
+          "verdict": "accepted",
+          "reason": "'Počuti se dobro/slabo' is attested. Accept variant and examples are correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=po%C4%8Dutiti"
+        },
+        "u09-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Exact everyday phrase, correctly glossed. Accept variant and German helper are right.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Natural phrase with correct examples and variant. The helper is an honest warning.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-i05": {
+          "verdict": "accepted",
+          "reason": "Imam vročino is the standard phrase and the helper is right. The accept variant Imam temperaturo is labelled knj. pog. in Pravopis, which is fine for a variant in the colloquial standard.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=temperatura"
+        },
+        "u09-l02-i06": {
+          "verdict": "accepted",
+          "reason": "Prehlajen means having a cold. Feminine variant and examples are correct, and the hook through hlad holds (prehlad, prehladiti).",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=prehlajen"
+        },
+        "u09-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Correct phrase, feminine variant and natural examples.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Bolan, feminine bolna, correctly glossed. Examples are natural and the root helper is true.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u09-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Only se fits; exactly one option is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-s02": {
+          "verdict": "accepted",
+          "reason": "English cue fixes first person; počutim is the one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Only dative mi fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-s04": {
+          "verdict": "accepted",
+          "reason": "Only dative ti fits, and the addressee is named.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Polite dative vam is the answer; vas and ti are plausible and wrong with gospa.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-s06": {
+          "verdict": "accepted",
+          "reason": "Feminine agreement gives bolna; exactly one option is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Clear instruction, correct answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-p02": {
+          "verdict": "doubtful",
+          "reason": "Answer and listed variants are correct, but the instruction says 'you don't feel well' and 'Ne počutim se dobro.', the literal and equally natural answer built from taught words, is not in accept. The style guide requires accept to list every other right answer.",
+          "fix": "Add to accept: Ne počutim se dobro.",
+          "source": ""
+        },
+        "u09-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Correct answer; variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Correct answer; all three variants are correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-p06": {
+          "verdict": "accepted",
+          "reason": "Correct answer, with both genders covered.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural morning greeting and question.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural reply.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural spoken question.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct and natural; English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Pojdi spat is natural; English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "r-reflexive-se": {
+          "verdict": "accepted",
+          "reason": "All table forms and pronouns are correct, as are the note, quick check and German contrast.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=po%C4%8Dutiti"
+        },
+        "r-dative-pronouns": {
+          "verdict": "accepted",
+          "reason": "Clitic datives mi, ti, mu/ji, nama, vama, jima, nam, vam, jim are correct. Quick check and the note on pronoun mi are correct.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u09-l02-i01": "4e53061709306ce6",
+    "u09-l02-i02": "64aea8e7f8d58551",
+    "u09-l02-i03": "3ad561c3d35dc4a4",
+    "u09-l02-i04": "9d1501f9cb723864",
+    "u09-l02-i05": "921aee9a7352e220",
+    "u09-l02-i06": "7d488135f54ecfdc",
+    "u09-l02-i07": "d6f7e4a53f31f948",
+    "u09-l02-i08": "3125a8aa26c4af1d",
+    "u09-l02-s01": "6831dcf1c640f6cf",
+    "u09-l02-s02": "17611e77f652e153",
+    "u09-l02-s03": "ea6cb65f0d26d2cf",
+    "u09-l02-s04": "be3b4a46450a1653",
+    "u09-l02-s05": "4a2d4cbbd8a19572",
+    "u09-l02-s06": "7b3b4d3e403ac234",
+    "u09-l02-p01": "3bcc045fd06b62cd",
+    "u09-l02-p02": "4253b8aaa9dea501",
+    "u09-l02-p03": "52e8714b8dc53081",
+    "u09-l02-p04": "f478bfbea33d58e8",
+    "u09-l02-p05": "0e2e4bfbece75f8a",
+    "u09-l02-p06": "7de7f57dea50a2f8",
+    "u09-l02-d-01": "f2d49077bf63aa79",
+    "u09-l02-d-02": "750373f6d209d53e",
+    "u09-l02-d-03": "6ad1fade62c67fff",
+    "u09-l02-d-04": "0b41e42781ed7edd",
+    "u09-l02-d-05": "959acdd014f5ab2f",
+    "r-reflexive-se": "e77a0ecbb8f3cfcc",
+    "r-dative-pronouns": "6995f2e3e3c20076"
+  }
+}

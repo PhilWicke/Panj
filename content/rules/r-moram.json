@@ -1,0 +1,99 @@
+{
+  "id": "r-moram",
+  "unit": "u09",
+  "title_en": "Must and must not: moram, ne smeš",
+  "card_en": "Morati, to have to, takes the infinitive: moram počivati. For must not, use ne smeš, ne sme: danes ne smeš delati. Ne moraš only means you do not have to.",
+  "example": {
+    "sl": "Moram počivati.",
+    "en": "I have to rest."
+  },
+  "table": {
+    "rows": [
+      "1",
+      "2",
+      "3"
+    ],
+    "cols": [
+      "sg",
+      "du",
+      "pl"
+    ],
+    "cells": {
+      "1.sg": {
+        "form": "moram",
+        "pronoun": "jaz"
+      },
+      "2.sg": {
+        "form": "moraš",
+        "pronoun": "ti",
+        "note_en": "Ne moraš means you do not have to; ne smeš means you must not."
+      },
+      "3.sg": {
+        "form": "mora",
+        "pronoun": "on/ona"
+      },
+      "1.du": {
+        "form": "morava",
+        "pronoun": "midva"
+      },
+      "2.du": {
+        "form": "morata",
+        "pronoun": "vidva"
+      },
+      "3.du": {
+        "form": "morata",
+        "pronoun": "onadva",
+        "note_en": "Same form as for vidva."
+      },
+      "1.pl": {
+        "form": "moramo",
+        "pronoun": "mi"
+      },
+      "2.pl": {
+        "form": "morate",
+        "pronoun": "vi",
+        "note_en": "Also the polite you: morate počivati."
+      },
+      "3.pl": {
+        "form": "morajo",
+        "pronoun": "oni"
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "Must or must not",
+      "options": [
+        "you must",
+        "you must not",
+        "you do not have to"
+      ],
+      "examples": {
+        "you must": {
+          "sl": "Moraš počivati.",
+          "en": "You have to rest. (to someone close)"
+        },
+        "you must not": {
+          "sl": "Ne smeš delati.",
+          "en": "You mustn't work. (to someone close)"
+        },
+        "you do not have to": {
+          "sl": "Ne moraš delati.",
+          "en": "You don't have to work. (to someone close)"
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Bolan si, ___ počivati.",
+    "options": [
+      "moraš",
+      "morem",
+      "moram"
+    ],
+    "answer": "moraš",
+    "explain_en": "Bolan si speaks to someone close, so morati takes the ti form moraš; morem means I can."
+  },
+  "helper_de": "moram is like ich muss, with a plain infinitive. Ne smeš is du darfst nicht; ne moraš is du musst nicht.",
+  "helper_en": "English must not forbids; ne moraš does not. To forbid, use ne smeš."
+}

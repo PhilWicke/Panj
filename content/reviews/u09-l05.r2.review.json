@@ -1,0 +1,34 @@
+{
+  "lesson": "u09-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {},
+      "lines": {
+        "u09-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Nič hudega is a natural short reply to what the doctor said and matches the English. SSKJ uses nič hudega as a gloss under nič, in the never-mind sense. Ni nič hudega is not listed literally, but the pattern ni nič plus genitive is in SSKJ (ta misel ni nič novega, njegov roman ni nič posebnega), and the phrase is common in speech. Optional addition to accept: Nič hudega ni, equally natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=nič"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 4,
+      "items": {},
+      "lines": {
+        "u09-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Nič hudega is a natural short reply to what the doctor said, and Ni nič hudega is a correct full sentence. The instruction's English fits. Fran has no entry for the phrase, but SSKJ uses it as a plain gloss ('nič ne dé' glossed 'nič hudega; vseeno je'), and the reading 'nothing serious' in this context is my own judgement. One gap that does not affect correctness: Nič hudega ni, an equally common word order, is built from simple words and is missing from accept, so it could be added under the style guide's rule that accept lists every other right answer.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=nič"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u09-l05-p05": "5e9a8c3f4669ade2"
+  }
+}

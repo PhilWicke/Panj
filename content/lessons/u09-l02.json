@@ -1,0 +1,448 @@
+{
+  "id": "u09-l02",
+  "unit": "u09",
+  "order": 2,
+  "role": "theme",
+  "title_sl": "Slabo mi je",
+  "title_en": "I feel sick",
+  "items": [
+    {
+      "id": "u09-l02-i01",
+      "type": "chunk",
+      "sl": "Kako se počutiš?",
+      "sl_colloquial": null,
+      "en": "How are you feeling? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Živjo, kako se počutiš?",
+          "en": "Hi, how are you feeling?"
+        },
+        {
+          "sl": "Kako se počutiš danes?",
+          "en": "How are you feeling today?"
+        }
+      ],
+      "helper": "Like German sich fühlen: se goes with počutiti and never changes.",
+      "accept": [],
+      "rules": [
+        "r-reflexive-se"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l02-i02",
+      "type": "chunk",
+      "sl": "Slabo se počutim.",
+      "sl_colloquial": null,
+      "en": "I don't feel well.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Danes se slabo počutim.",
+          "en": "I don't feel well today."
+        },
+        {
+          "sl": "Oprostite, slabo se počutim.",
+          "en": "Excuse me, I don't feel well."
+        }
+      ],
+      "helper": "slabo is badly, the opposite of dobro.",
+      "accept": [
+        "Počutim se slabo."
+      ],
+      "rules": [
+        "r-reflexive-se"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l02-i03",
+      "type": "chunk",
+      "sl": "Slabo mi je.",
+      "sl_colloquial": null,
+      "en": "I feel sick.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, slabo mi je.",
+          "en": "Excuse me, I feel sick."
+        },
+        {
+          "sl": "Bolan sem, slabo mi je.",
+          "en": "I'm ill, I feel sick."
+        }
+      ],
+      "helper": "Exactly like German mir ist schlecht: slabo mi je.",
+      "accept": [
+        "Meni je slabo."
+      ],
+      "rules": [
+        "r-dative-pronouns"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l02-i04",
+      "type": "chunk",
+      "sl": "Bolje mi je.",
+      "sl_colloquial": null,
+      "en": "I feel better.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Hvala, danes mi je bolje.",
+          "en": "Thank you, I feel better today."
+        },
+        {
+          "sl": "Malo mi je bolje.",
+          "en": "I feel a bit better."
+        }
+      ],
+      "helper": "bolje is better; do not mix it up with boli, it hurts.",
+      "accept": [
+        "Meni je bolje."
+      ],
+      "rules": [
+        "r-dative-pronouns"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l02-i05",
+      "type": "chunk",
+      "sl": "Imam vročino.",
+      "sl_colloquial": null,
+      "en": "I have a fever.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Danes imam vročino.",
+          "en": "I have a fever today."
+        },
+        {
+          "sl": "Imam vročino, ne morem delati.",
+          "en": "I have a fever, I can't work."
+        }
+      ],
+      "helper": "vročina, fever, comes from vroče, hot: Zelo je vroče.",
+      "accept": [
+        "Imam temperaturo."
+      ],
+      "rules": [
+        "r-imeti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l02-i06",
+      "type": "chunk",
+      "sl": "Prehlajen sem.",
+      "sl_colloquial": null,
+      "en": "I have a cold.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Malo sem prehlajen.",
+          "en": "I have a bit of a cold."
+        },
+        {
+          "sl": "Prehlajen sem, pijem čaj.",
+          "en": "I have a cold, I'm drinking tea."
+        }
+      ],
+      "helper": "From hlad, cool, as in hladilnik, fridge.",
+      "accept": [
+        "Prehlajena sem."
+      ],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l02-i07",
+      "type": "chunk",
+      "sl": "Utrujen sem.",
+      "sl_colloquial": null,
+      "en": "I'm tired.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Zelo sem utrujen.",
+          "en": "I'm very tired."
+        },
+        {
+          "sl": "Utrujen sem, grem spat.",
+          "en": "I'm tired, I'm going to bed."
+        }
+      ],
+      "helper": null,
+      "accept": [
+        "Utrujena sem."
+      ],
+      "rules": [
+        "r-biti-present"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l02-i08",
+      "type": "word",
+      "sl": "bolan",
+      "sl_colloquial": null,
+      "en": "ill, sick",
+      "register": "neutral",
+      "pos": "adjective",
+      "forms": {
+        "f": "bolna"
+      },
+      "examples": [
+        {
+          "sl": "Otrok je bolan.",
+          "en": "The child is ill."
+        },
+        {
+          "sl": "Ona je danes bolna.",
+          "en": "She is ill today."
+        }
+      ],
+      "helper": "From the same root as boli, it hurts.",
+      "accept": [],
+      "rules": [
+        "r-adjective-agreement"
+      ],
+      "freq_rank": 1499,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-reflexive-se",
+    "r-dative-pronouns"
+  ],
+  "structured": [
+    {
+      "id": "u09-l02-s01",
+      "prompt_sl": "Kako ___ počutiš?",
+      "options": [
+        "se",
+        "si",
+        "sem"
+      ],
+      "answer": "se",
+      "rule": "r-reflexive-se",
+      "en": "How are you feeling? (to someone close)"
+    },
+    {
+      "id": "u09-l02-s02",
+      "prompt_sl": "Slabo se ___.",
+      "options": [
+        "počutim",
+        "počutiš",
+        "počuti"
+      ],
+      "answer": "počutim",
+      "rule": "r-reflexive-se",
+      "en": "I don't feel well."
+    },
+    {
+      "id": "u09-l02-s03",
+      "prompt_sl": "Slabo ___ je.",
+      "options": [
+        "mi",
+        "me",
+        "sem"
+      ],
+      "answer": "mi",
+      "rule": "r-dative-pronouns",
+      "en": "I feel sick."
+    },
+    {
+      "id": "u09-l02-s04",
+      "prompt_sl": "Ali ___ je bolje?",
+      "options": [
+        "ti",
+        "te",
+        "si"
+      ],
+      "answer": "ti",
+      "rule": "r-dative-pronouns",
+      "en": "Are you feeling better? (to someone close)"
+    },
+    {
+      "id": "u09-l02-s05",
+      "prompt_sl": "Ali ___ je bolje, gospa?",
+      "options": [
+        "vam",
+        "vas",
+        "ti"
+      ],
+      "answer": "vam",
+      "rule": "r-dative-pronouns",
+      "en": "Are you feeling better, madam?"
+    },
+    {
+      "id": "u09-l02-s06",
+      "prompt_sl": "Ona je ___.",
+      "options": [
+        "bolna",
+        "bolan",
+        "bolno"
+      ],
+      "answer": "bolna",
+      "rule": "r-adjective-agreement",
+      "en": "She is ill."
+    }
+  ],
+  "production": [
+    {
+      "id": "u09-l02-p01",
+      "en": "Ask someone close how they are feeling.",
+      "answer": "Kako se počutiš?",
+      "accept": [],
+      "item": "u09-l02-i01"
+    },
+    {
+      "id": "u09-l02-p02",
+      "en": "Your hosts ask how you are. Say you don't feel well.",
+      "answer": "Slabo se počutim.",
+      "accept": [
+        "Počutim se slabo.",
+        "Ne počutim se dobro.",
+        "Slabo mi je.",
+        "Ni mi dobro."
+      ],
+      "item": "u09-l02-i02"
+    },
+    {
+      "id": "u09-l02-p03",
+      "en": "You suddenly feel sick at the table. Tell your hosts.",
+      "answer": "Slabo mi je.",
+      "accept": [
+        "Meni je slabo.",
+        "Slabo se počutim."
+      ],
+      "item": "u09-l02-i03"
+    },
+    {
+      "id": "u09-l02-p04",
+      "en": "Your hosts ask how you are today. Say you feel better.",
+      "answer": "Bolje mi je.",
+      "accept": [
+        "Meni je bolje.",
+        "Danes mi je bolje.",
+        "Bolje se počutim."
+      ],
+      "item": "u09-l02-i04"
+    },
+    {
+      "id": "u09-l02-p05",
+      "en": "You have a fever. Tell your hosts.",
+      "answer": "Imam vročino.",
+      "accept": [
+        "Imam temperaturo."
+      ],
+      "item": "u09-l02-i05"
+    },
+    {
+      "id": "u09-l02-p06",
+      "en": "A neighbour asks why you stayed at home. Say you have a cold.",
+      "answer": "Prehlajen sem.",
+      "accept": [
+        "Prehlajena sem."
+      ],
+      "item": "u09-l02-i06"
+    }
+  ],
+  "dialogue": {
+    "id": "u09-l02-d",
+    "title_sl": "Zjutraj doma",
+    "title_en": "A morning at home",
+    "setting_en": "In the morning you feel ill, and your hosts ask how you are.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Dobro jutro. Kako se počutiš?",
+        "en": "Good morning. How are you feeling?",
+        "new_items": [
+          "u09-l02-i01"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Slabo se počutim. Utrujen sem.",
+        "en": "I don't feel well. I'm tired.",
+        "new_items": [
+          "u09-l02-i02",
+          "u09-l02-i07"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Imaš vročino?",
+        "en": "Do you have a fever?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, imam vročino. Prehlajen sem.",
+        "en": "Yes, I have a fever. I have a cold.",
+        "new_items": [
+          "u09-l02-i05",
+          "u09-l02-i06"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Pojdi spat. Čaj je v kuhinji.",
+        "en": "Go to bed. The tea is in the kitchen."
+      }
+    ]
+  }
+}

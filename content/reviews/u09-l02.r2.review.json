@@ -1,0 +1,34 @@
+{
+  "lesson": "u09-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {},
+      "lines": {
+        "u09-l02-p02": {
+          "verdict": "accepted",
+          "reason": "The answer and all four variants are correct and fit the instruction. SSKJ gives slabo se počuti (feels unwell) and the dative use v avtobusu ji je vedno slabo, so Slabo se počutim and Slabo mi je both cover it. Ni mi dobro is not listed literally in Fran, but it is the regular negation of the predicative dobro mi je (Pravopis: Zdaj mi je dobro) and is everyday speech. Ne počutim se dobro has correct clitic placement. The English is accurate. One small gap, not a language error: Meni je slabo, accepted in p03 and on item i03, is not listed here although Slabo mi je is; it could be added.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=slabo"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 3,
+      "items": {},
+      "lines": {
+        "u09-l02-p02": {
+          "verdict": "accepted",
+          "reason": "The instruction is clear and the answer matches it. All four variants are correct and natural, and the clitic order is right in each (Slabo se počutim, Počutim se slabo, Ne počutim se dobro, Ni mi dobro). The Fran valency dictionary gives 'Počuti se dobro/slabo'. SSKJ under slabo gives 'zaradi vročine mu je postalo slabo', which supports Slabo mi je for feeling unwell. Ni mi dobro is not a dictionary example, but Pravopis has predicative dobro with a dative ('Zdaj mi je dobro') and the negated form is everyday speech.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=počutiti"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u09-l02-p02": "9d7d848022ed8f0f"
+  }
+}

@@ -1,0 +1,361 @@
+{
+  "lesson": "u09-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 5,
+      "items": {
+        "u09-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Correct polite form with accusative vas, examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Two-word spelling confirmed: SSKJ has od kdaj je ta hiša tvoja, Pravopis Od kdaj si v novi službi. Examples natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=kdaj"
+        },
+        "u09-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Correct, examples natural and faithfully translated.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-i04": {
+          "verdict": "accepted",
+          "reason": "zdravstvena kartica is in SSKJ, in the sense of the insured person's card. Accusative correct, accept correct, helper true.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=kartica"
+        },
+        "u09-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Common set phrase in genitive after nič, gloss fits a doctor's reassurance, examples natural. The lookup did not list the phrase as such but supports hud as bad or severe.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=hud"
+        },
+        "u09-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Pravopis gives the imperative ozdravi of ozdraveti. The usual wish, accept Čim prej ozdravi is correct, helper true.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=ozdraveti"
+        }
+      },
+      "lines": {
+        "u09-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Accusative vas required; vam and ti are wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Singular grlo needs boli; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-s03": {
+          "verdict": "accepted",
+          "reason": "se is the only correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Dative mi; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-s05": {
+          "verdict": "accepted",
+          "reason": "dvakrat is the only fitting form.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Infinitive piti after moram; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Answer correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-p05": {
+          "verdict": "doubtful",
+          "reason": "Nič hudega. is right, but the instruction says it is nothing serious and the full sentence Ni nič hudega. is equally natural and is the literal rendering. It is missing from accept, so a correct answer would be marked wrong. The style guide requires accept to list every other right answer.",
+          "fix": "Ni nič hudega.",
+          "source": ""
+        },
+        "u09-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct, addressee named.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural handing-over phrase.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Language natural. Speaker doctor is not in the style guide's speaker list, which is a form point for the linter rather than a language fault.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Correct two-word spelling, natural. Same speaker label point as line 3.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=kdaj"
+        },
+        "u09-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Natural, within limits at 48 characters and 9 words. Same speaker label point as line 3.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 6,
+      "items": {
+        "u09-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Natural polite question with correct vas; examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Written apart as in SSKJ and Pravopis (odkdaj has no hit in either). Examples and helper are right.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=kdaj"
+        },
+        "u09-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Correct and common; undeclined včeraj after od is normal. Examples are natural and faithfully translated.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=v%C4%8Deraj"
+        },
+        "u09-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Zdravstvena kartica is the everyday name; accusative is correct and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Common fixed phrase with correct genitive after nič. The dictionary pages did not list it, but it is ordinary usage. Examples and gloss are fine.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Ozdraveti gives imperative ozdravi (-ite in Pravopis). Natural wish. Accept Čim prej ozdravi is correctly spelled apart per SSKJ.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=%C4%8Dimprej"
+        }
+      },
+      "lines": {
+        "u09-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Accusative vas is the one fit; vam is a good distractor.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Singular grlo takes boli.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-s03": {
+          "verdict": "accepted",
+          "reason": "Only se fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Only dative mi fits.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-s05": {
+          "verdict": "accepted",
+          "reason": "Only dvakrat fits the English cue.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Moram takes the infinitive piti.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Correct answer. 'Ni nič hudega.' is also possible, but a beginner is unlikely to build the double negative, so accept can stay as it is.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural reception line.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Ja, izvolite is what people say when handing something over.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural. Outside the language check: speaker doctor is not in the style guide's speaker list.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural reply.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural follow-up, correctly written apart.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=kdaj"
+        },
+        "u09-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural reply.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Natural advice within the limits; po jedi is the usual dosage phrase.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=jed"
+        },
+        "u09-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural question.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u09-l05-i01": "85f7215408e263c5",
+    "u09-l05-i02": "a32c6b9ed7cd3757",
+    "u09-l05-i03": "aecd36ebfed4e54b",
+    "u09-l05-i04": "a34da3e76c4c2151",
+    "u09-l05-i05": "a31934297df44402",
+    "u09-l05-i06": "03ff2c155ae8046b",
+    "u09-l05-s01": "41949494f525ac8c",
+    "u09-l05-s02": "5a589a358a5e9685",
+    "u09-l05-s03": "f2ad33e2ce2af2c5",
+    "u09-l05-s04": "baddaa283026c9fb",
+    "u09-l05-s05": "a24cfbbab8b8873b",
+    "u09-l05-s06": "78f852d06d8164fb",
+    "u09-l05-p01": "6c068498ea023169",
+    "u09-l05-p02": "0e2e4bfbece75f8a",
+    "u09-l05-p03": "8a77d6c7b9a0b9a3",
+    "u09-l05-p04": "b28f46942c344256",
+    "u09-l05-p05": "1b86f7c2d88b6dde",
+    "u09-l05-p06": "6fee227dab4cf2ff",
+    "u09-l05-d-01": "f296549c04f32894",
+    "u09-l05-d-02": "528bbff472ca6018",
+    "u09-l05-d-03": "a7612f2703f0410f",
+    "u09-l05-d-04": "f49e7af7ffe91897",
+    "u09-l05-d-05": "a874e7beaf8504d7",
+    "u09-l05-d-06": "7818a140d657f344",
+    "u09-l05-d-07": "ea233434a8fe9098",
+    "u09-l05-d-08": "5fe55a628e1056c7"
+  }
+}

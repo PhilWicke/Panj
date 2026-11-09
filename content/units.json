@@ -135,7 +135,13 @@
     "title_sl": "Telo in zdravje",
     "title_en": "Body and health",
     "motif": "hand",
-    "lessons": []
+    "lessons": [
+      "u09-l01",
+      "u09-l02",
+      "u09-l03",
+      "u09-l04",
+      "u09-l05"
+    ]
   },
   {
     "id": "u10",

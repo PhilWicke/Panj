@@ -1,0 +1,76 @@
+{
+  "id": "r-dative-pronouns",
+  "unit": "u09",
+  "title_en": "How you feel: mi je",
+  "card_en": "To say how you feel, use je with a short word for the person: slabo mi je, literally it is bad to me. Mi is to me, ti to you, vam politely. Je never changes.",
+  "example": {
+    "sl": "Slabo mi je.",
+    "en": "I feel sick."
+  },
+  "table": {
+    "rows": [
+      "1",
+      "2",
+      "3"
+    ],
+    "cols": [
+      "sg",
+      "du",
+      "pl"
+    ],
+    "cells": {
+      "1.sg": {
+        "form": "mi",
+        "pronoun": "jaz"
+      },
+      "2.sg": {
+        "form": "ti",
+        "pronoun": "ti",
+        "note_en": "For someone close."
+      },
+      "3.sg": {
+        "form": "mu/ji",
+        "pronoun": "on/ona",
+        "note_en": "mu for him, ji for her."
+      },
+      "1.du": {
+        "form": "nama",
+        "pronoun": "midva"
+      },
+      "2.du": {
+        "form": "vama",
+        "pronoun": "vidva"
+      },
+      "3.du": {
+        "form": "jima",
+        "pronoun": "onadva"
+      },
+      "1.pl": {
+        "form": "nam",
+        "pronoun": "mi",
+        "note_en": "Here the pronoun mi means we, not to me."
+      },
+      "2.pl": {
+        "form": "vam",
+        "pronoun": "vi",
+        "note_en": "Also the polite you: slabo vam je."
+      },
+      "3.pl": {
+        "form": "jim",
+        "pronoun": "oni"
+      }
+    }
+  },
+  "quick_check": {
+    "prompt_sl": "Bolje ___ je.",
+    "options": [
+      "mi",
+      "me",
+      "sem"
+    ],
+    "answer": "mi",
+    "explain_en": "Slabo mi je and bolje mi je take mi; me goes with boli: boli me glava."
+  },
+  "helper_de": "Exactly like mir ist schlecht: slabo mi je. Mi works like mir, ti like dir, vam like Ihnen.",
+  "helper_en": "English says I feel sick. Slovenian has no I here, just it is bad to me: slabo mi je."
+}

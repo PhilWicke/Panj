@@ -1,0 +1,348 @@
+{
+  "lesson": "u09-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 6,
+      "items": {
+        "u09-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Natural question with accusative te. Examples are natural and faithfully translated. Helper is true: boli and bolan share a root.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=boleti"
+        },
+        "u09-l01-i02": {
+          "verdict": "accepted",
+          "reason": "SSKJ and Pravopis both give glava me boli. Accept variant with the other word order is correct. Examples natural, helper accurate.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=boleti"
+        },
+        "u09-l01-i03": {
+          "verdict": "accepted",
+          "reason": "bolijo is a valid 3pl next to bolé. Plural noge for a natural pair is the normal usage, and the helper says so correctly. Examples natural.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/boleti"
+        },
+        "u09-l01-i04": {
+          "verdict": "doubtful",
+          "reason": "Slovenian, English, accept and examples are fine. The doubt is the helper. grlo comes from Proto-Slavic *gъrdlo, PIE *gʷerh₃-, and the lookup names Latin gurges among its cognates, so German Gurgel can only be a distant link through Latin, which the Gurgel page does not confirm. English gargle is traced by Wiktionary to French gargouiller and is not shown as related, so offering it as a comparison looks like forced resemblance. Keep Gurgel only if a native or etymology source confirms it, otherwise set helper to null.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/gargle"
+        },
+        "u09-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Correct noun, gender f, natural example containing the headword.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-i06": {
+          "verdict": "accepted",
+          "reason": "Correct noun and gender. Gloss hand, arm covers both senses. Example natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-i07": {
+          "verdict": "doubtful",
+          "reason": "Headword, gender and form pl noge are right, and the first example is natural. The doubt is the second example, Moja noga je v redu: Slovenian normally leaves out the possessive with one's own body part, so moja reads as a calque of my leg and as a sentence built to show the word. Noga je v redu would be the natural form.",
+          "fix": "Noga je v redu.",
+          "source": ""
+        },
+        "u09-l01-i08": {
+          "verdict": "accepted",
+          "reason": "Correct noun, masculine, gloss disambiguated. Examples natural and correctly translated.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u09-l01-s01": {
+          "verdict": "accepted",
+          "reason": "me is the only standard option; mi and jaz are plausible wrong choices.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-s02": {
+          "verdict": "accepted",
+          "reason": "te is the only correct option; distractors are wrong but plausible.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Plural subject noge needs bolijo; one correct answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Singular hrbet needs boli; one correct answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Subject in the nominative, roka. roko and roki do not fit with singular boli.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Answer correct and instruction pins the ti form.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and word-order variant both correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct, filler as it stands in the slot.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct, filler as it stands in the slot.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct, natural plural for legs.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural, short, correctly translated.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural colloquial a-question with te and tudi.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct and acceptable as a reply, if slightly fuller than a native's short Ja, tudi grlo.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural, faithful English.",
+          "fix": "",
+          "source": ""
+        },
+        "r-boli-me": {
+          "verdict": "accepted",
+          "reason": "Card, example, toggles and quick check are correct. me (not mi) and bolijo for several parts are right, and the German contrast is accurate.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/boleti"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 9,
+      "items": {
+        "u09-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Natural question with the correct accusative clitic te. Gloss, examples and the boli/bolan helper are right.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Standard pattern, attested as 'glava, zob me boli'. Examples and the accepted word order are correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=boleti"
+        },
+        "u09-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Bolijo is the main 3pl form. Plural rather than dual is normal for a natural pair, so the helper is honest. Examples are natural.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/boleti"
+        },
+        "u09-l01-i04": {
+          "verdict": "doubtful",
+          "reason": "Slovenian, gloss, examples and accept are fine. The doubt is the helper: Gurgel is a real but remote relative (PIE *gwerh3- through Latin gurgulio), while the lookup traces gargle only to Old French gargouille and shows no link to grlo, so that half may be forced resemblance.",
+          "fix": "grlo, throat: distantly related to German Gurgel.",
+          "source": "https://en.wiktionary.org/wiki/gargle"
+        },
+        "u09-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Correct noun, gender and gloss. The example is natural and contains the headword.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-i06": {
+          "verdict": "accepted",
+          "reason": "Correct noun and gender. 'hand, arm' reflects both senses. The example is natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-i07": {
+          "verdict": "doubtful",
+          "reason": "Headword, gender and pl form are correct. The doubt is the second example: 'Moja noga je v redu.' sounds translated, since Slovenian normally drops the possessive with a body part unless there is a contrast.",
+          "fix": "Noga je v redu.",
+          "source": ""
+        },
+        "u09-l01-i08": {
+          "verdict": "accepted",
+          "reason": "Correct masculine noun, and the gloss has its note. Both examples are natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u09-l01-s01": {
+          "verdict": "accepted",
+          "reason": "Only me fits; mi and jaz are plausible and wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-s02": {
+          "verdict": "accepted",
+          "reason": "Only te fits; ti and si are plausible and wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Plural noge needs Bolijo; exactly one option is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Singular hrbet needs Boli; exactly one option is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Subject nominative roka is the only fit with singular boli; roko and roki are wrong here.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Clear instruction, correct answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Correct answer and correct word-order variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant; filler is as written in the slot.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant; filler is as written in the slot.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant, with a natural context.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural colloquial question with a; English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural reply.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural question; tudi is well placed.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct and natural enough as a reply.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural host line; English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "r-boli-me": {
+          "verdict": "accepted",
+          "reason": "Toggle examples, quick check and card text are correct. The German contrast (mir weh against me, like mich) is accurate.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/boleti"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u09-l01-i01": "cb4240ce0d4fe27e",
+    "u09-l01-i02": "03701912109b009f",
+    "u09-l01-i03": "da1457ed8ffbc1f6",
+    "u09-l01-i04": "062b1c7debfb40d8",
+    "u09-l01-i05": "2ee72606324afda5",
+    "u09-l01-i06": "f755a6a39c31711a",
+    "u09-l01-i07": "4ef234b3dd5bf34c",
+    "u09-l01-i08": "4bb32f296ba263a2",
+    "u09-l01-s01": "7b2e94a039688202",
+    "u09-l01-s02": "a1e6af09c7f768b1",
+    "u09-l01-s03": "260aa2dd2e26c770",
+    "u09-l01-s04": "29427ad062773760",
+    "u09-l01-s05": "d1411e16602a4290",
+    "u09-l01-p01": "3ec8a6175dcd2989",
+    "u09-l01-p02": "22d56a209da6ed45",
+    "u09-l01-p03": "2cc98d5ae974bb49",
+    "u09-l01-p04": "15deb3009c9126c9",
+    "u09-l01-p05": "6c068498ea023169",
+    "u09-l01-p06": "c162072586efaff0",
+    "u09-l01-d-01": "ca2a6f1fab1a7670",
+    "u09-l01-d-02": "34782d8e91291313",
+    "u09-l01-d-03": "5ee10d9f098b4c19",
+    "u09-l01-d-04": "d846913d6b5555b2",
+    "u09-l01-d-05": "27998b87ff89e0db",
+    "r-boli-me": "c1a1c1b106e81753"
+  }
+}

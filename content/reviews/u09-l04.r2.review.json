@@ -1,0 +1,34 @@
+{
+  "lesson": "u09-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {},
+      "lines": {
+        "u09-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Pokličite rešilca is what someone would call out here. The accusative rešilca is right: Pravopis marks rešilec živ. and SSKJ has poklicali so rešilca. The vi imperative is right for a stranger, and the instruction makes that clear. Both variants with prosim are correct. SSKJ labels the ambulance sense pog., but that concerns the register tag on item i05, which stays with the native speaker; the production line itself is natural and within the course's colloquial standard.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=rešilec"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 4,
+      "items": {},
+      "lines": {
+        "u09-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Pokličite is the correct vi imperative for a stranger (poklicati, pokličem, Wiktionary: poklíčite). Rešilca is the correct accusative: Pravopis marks rešilec as animate and SSKJ has 'poklicali so rešilca'. Both prosim variants are correctly punctuated and natural, and the English is accurate. A note for the item, which is outside this key: SSKJ labels rešilec in the ambulance sense pog. and Pravopis prakt.sp., while u09-l04-i05 is tagged neutral, so the style guide's register rule applies to that item. The line itself is what people say and is within the course's colloquial standard.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=rešilec"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u09-l04-p05": "1503080292262765"
+  }
+}

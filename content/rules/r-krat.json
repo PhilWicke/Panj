@@ -1,0 +1,46 @@
+{
+  "id": "r-krat",
+  "unit": "u09",
+  "title_en": "How often: trikrat",
+  "card_en": "Add krat, times, to a number to say how often: enkrat, once; dvakrat, twice; trikrat, three times. Kolikokrat asks how many times, and na dan means a day.",
+  "example": {
+    "sl": "Eno tableto trikrat na dan.",
+    "en": "One tablet three times a day."
+  },
+  "toggles": [
+    {
+      "label": "How often",
+      "options": [
+        "once",
+        "twice",
+        "three times"
+      ],
+      "examples": {
+        "once": {
+          "sl": "Enkrat na dan.",
+          "en": "Once a day."
+        },
+        "twice": {
+          "sl": "Dvakrat na dan.",
+          "en": "Twice a day."
+        },
+        "three times": {
+          "sl": "Trikrat na dan.",
+          "en": "Three times a day."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "___krat na dan?",
+    "options": [
+      "Koliko",
+      "Kdaj",
+      "Kaj"
+    ],
+    "answer": "Koliko",
+    "explain_en": "Kolikokrat is koliko, how many, plus krat, times."
+  },
+  "helper_de": "Like German -mal: einmal, dreimal, wie oft.",
+  "helper_en": "English writes three times in two words; Slovenian joins them: trikrat."
+}

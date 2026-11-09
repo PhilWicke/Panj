@@ -1,0 +1,374 @@
+{
+  "lesson": "u09-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u09-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Natural, examples correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-i02": {
+          "verdict": "accepted",
+          "reason": "proti with dative glavobolu is correct and natural, addressee named, accept correct, helper true.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Correct chunk, examples natural, helper is an honest hook.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Correct, examples are what a pharmacist says, German parallel genuine.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-i05": {
+          "verdict": "accepted",
+          "reason": "SSKJ and Pravopis both give jemati zdravilo po jedi, and SSKJ has the sense of eating for jed, so the helper is accurate.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=jed"
+        },
+        "u09-l03-i06": {
+          "verdict": "accepted",
+          "reason": "Correct noun, gender and forms, examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-i07": {
+          "verdict": "accepted",
+          "reason": "Correct noun, gender and forms, cognates genuine.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Correct neuter noun, examples natural, derivation from zdrav true.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u09-l03-s01": {
+          "verdict": "accepted",
+          "reason": "English pins Kolikokrat; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-s02": {
+          "verdict": "accepted",
+          "reason": "trikrat is the only fitting form.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-s03": {
+          "verdict": "accepted",
+          "reason": "Dvakrat is the only fitting form.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Accusative tableto after eno; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Accusative of direction after v; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-s06": {
+          "verdict": "accepted",
+          "reason": "Locative centru; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct; Kolikokrat na dan naj vzamem? drops the object but is fine in context.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Answer correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Answer correct and attested.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=jed"
+        },
+        "u09-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and Rabim variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural service phrase.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, within length.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural, faithful English.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural elliptic question.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural pharmacist's reply.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-krat": {
+          "verdict": "accepted",
+          "reason": "enkrat, dvakrat, trikrat, kolikokrat and na dan are correct. Quick check has one blank and one answer, German parallel genuine.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 3,
+      "items": {
+        "u09-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Standard question with natural examples.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Proti takes the dative, so glavobolu is correct. Natural at a pharmacy; helper and variant are right.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Kolikokrat is the standard one-word spelling, and Pleteršnik glosses it wie oft, so the helper holds. Examples are natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=kolikokrat"
+        },
+        "u09-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Standard dosage phrase with natural examples; the dreimal helper is honest.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-i05": {
+          "verdict": "accepted",
+          "reason": "SSKJ gives 'jemati zdravilo po jedi' and the sense of eating, so chunk, gloss and helper hold.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=jed"
+        },
+        "u09-l03-i06": {
+          "verdict": "accepted",
+          "reason": "Correct noun, gender, acc and loc forms; examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-i07": {
+          "verdict": "accepted",
+          "reason": "Correct noun, gender and forms; true cognate helper; examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Correct neuter noun; helper through zdrav is true; examples are natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u09-l03-s01": {
+          "verdict": "accepted",
+          "reason": "English cue fixes Kolikokrat; distractors are plausible.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-s02": {
+          "verdict": "accepted",
+          "reason": "Only trikrat fits the sentence.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-s03": {
+          "verdict": "accepted",
+          "reason": "'Dve na dan' could stand alone for two tablets, but the English cue 'Twice' fixes Dvakrat as the one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Accusative tableto is the one fit after eno.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Motion takes the accusative lekarno; exactly one option is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-s06": {
+          "verdict": "accepted",
+          "reason": "Location takes the locative centru; exactly one option is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Correct answer; both longer variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Correct answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Correct answer. Rabim in the sense of need is pog. in SSKJ and knj. pog. in Pravopis, which suits an accept variant in the colloquial standard.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=rabiti"
+        },
+        "u09-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Standard opening for a shop assistant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural request within the length limits.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural; English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural short question.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural dosage instruction.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l03-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural closing question.",
+          "fix": "",
+          "source": ""
+        },
+        "r-krat": {
+          "verdict": "accepted",
+          "reason": "Enkrat, dvakrat, trikrat and kolikokrat are correct; card, toggles, quick check and the German -mal contrast are right.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=kolikokrat"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u09-l03-i01": "b4695aae6ebfb1ee",
+    "u09-l03-i02": "f78f8f6d3b779cf5",
+    "u09-l03-i03": "7380acae3bd2f25b",
+    "u09-l03-i04": "a3bcac8cff706336",
+    "u09-l03-i05": "36b7cf0fb8550c40",
+    "u09-l03-i06": "33c18df29285a384",
+    "u09-l03-i07": "1d6ff0f164dd6050",
+    "u09-l03-i08": "f5437723cce09095",
+    "u09-l03-s01": "f209210e804ec507",
+    "u09-l03-s02": "3e7feb28d24ba9ca",
+    "u09-l03-s03": "f433622ef8410244",
+    "u09-l03-s04": "bf24f9f9aca7516b",
+    "u09-l03-s05": "e5708de23ca460a4",
+    "u09-l03-s06": "33ec89d7e4e3fabe",
+    "u09-l03-p01": "ff32ef1ae4f2a17a",
+    "u09-l03-p02": "f3ad48d970e7f742",
+    "u09-l03-p03": "a65f505fc36c27a7",
+    "u09-l03-p04": "8a77d6c7b9a0b9a3",
+    "u09-l03-p05": "6840d7dde7fc196c",
+    "u09-l03-p06": "03df3cad4d2828c2",
+    "u09-l03-d-01": "ede1b82281d371b6",
+    "u09-l03-d-02": "65b44d23a45e8795",
+    "u09-l03-d-03": "357e3deb151aab77",
+    "u09-l03-d-04": "16ccf535aa7d37bc",
+    "u09-l03-d-05": "2642bbf6b97f2c42",
+    "u09-l03-d-06": "b65b1fc6670253ed",
+    "r-krat": "da201f561dbab092"
+  }
+}

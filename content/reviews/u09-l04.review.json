@@ -1,0 +1,374 @@
+{
+  "lesson": "u09-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 5,
+      "items": {
+        "u09-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Natural elliptic chunk with k plus dative, accept with iti correct, examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Correct, colloquial short infinitive počivat is right, examples natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Correct, več with genitive vode, colloquial pit is right, addressee named.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-i04": {
+          "verdict": "accepted",
+          "reason": "ne smeš is the right prohibition, colloquial delat right, accept variants correct, German parallel genuine.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-i05": {
+          "verdict": "doubtful",
+          "reason": "Register. SSKJ labels rešilec pog. in the sense of ambulance, and the style guide makes an item tagged neutral despite such a label doubtful until a native confirms the tag. The form itself is right: Pravopis marks the noun živ., and SSKJ gives poklicali so rešilca, so the accusative rešilca stands. Examples and helper are fine.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=rešilec"
+        },
+        "u09-l04-i06": {
+          "verdict": "accepted",
+          "reason": "Correct noun, gender and dative form, examples natural. Accept doktor is correct; SSKJ labels the physician sense pog., which is fine for a variant.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=doktor"
+        },
+        "u09-l04-i07": {
+          "verdict": "accepted",
+          "reason": "Correct noun, gender and accusative. Accept bolnica is correct and unlabelled for the hospital sense in SSKJ and Pravopis.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=bolnica"
+        },
+        "u09-l04-i08": {
+          "verdict": "accepted",
+          "reason": "Correct feminine noun, SSKJ lists potrebovati pomoč, examples natural. Minor: pomoč and pomagati are related, but the lookup does not show pomoč as derived from pomagati, so Related to pomagati would be safer than From.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=pomoč"
+        }
+      },
+      "lines": {
+        "u09-l04-s01": {
+          "verdict": "accepted",
+          "reason": "English pins first person; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-s02": {
+          "verdict": "accepted",
+          "reason": "English pins second person and obligation; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-s03": {
+          "verdict": "accepted",
+          "reason": "English mustn't separates smeš from moraš; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Vi needs morate; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Ona needs mora; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Genitive vode after več; one answer.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and colloquial variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and colloquial variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Correct Slovenian, SSKJ attests poklicali so rešilca. The register question sits on the item. Pokličite rešilca, prosim. would be worth adding next to the listed variant.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=rešilec"
+        },
+        "u09-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and Rabim variant correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, within length.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural, faithful English.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural spoken question.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Correct and natural enough as a closing line.",
+          "fix": "",
+          "source": ""
+        },
+        "r-moram": {
+          "verdict": "accepted",
+          "reason": "All table forms of morati are correct, the ne smeš versus ne moraš contrast is right, toggles correct, quick check has one answer, morem correctly glossed.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 7,
+      "items": {
+        "u09-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Natural elliptical phrase with correct dative after k. Variant, examples and helper are right.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Correct, with a real short colloquial infinitive; examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Correct genitive after več; pit is the real colloquial infinitive; examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Correct prohibition with smeti; word-order variants and the German helper are right.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-i05": {
+          "verdict": "doubtful",
+          "reason": "The form is right: Pravopis marks rešilec živ., and SSKJ gives 'poklicali so rešilca'. The doubt is register: SSKJ labels the ambulance sense pog., and the item is tagged neutral, which the style guide holds as doubtful until a native confirms the tag.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=re%C5%A1ilec"
+        },
+        "u09-l04-i06": {
+          "verdict": "accepted",
+          "reason": "Correct noun, gender and dative. Accept doktor is correct Slovenian, though SSKJ labels the physician sense pog.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=doktor"
+        },
+        "u09-l04-i07": {
+          "verdict": "accepted",
+          "reason": "Correct noun and accusative; bolnica is unlabelled in SSKJ, so it is a fair variant. Examples and helper are right.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=bolnica"
+        },
+        "u09-l04-i08": {
+          "verdict": "doubtful",
+          "reason": "Noun, gender and examples are fine. The doubt is the helper's 'From pomagati': Wiktionary derives pomoč from the verb *pomoťi, so pomoč and pomagati look like relatives rather than one coming from the other.",
+          "fix": "Related to pomagati, to help: Lahko pomagam?",
+          "source": "https://en.wiktionary.org/wiki/Reconstruction:Proto-Slavic/pomo%C5%A5%D1%8C"
+        }
+      },
+      "lines": {
+        "u09-l04-s01": {
+          "verdict": "accepted",
+          "reason": "English cue fixes Moram; exactly one option is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-s02": {
+          "verdict": "accepted",
+          "reason": "English cue fixes Moraš; Morem is a good false friend.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-s03": {
+          "verdict": "accepted",
+          "reason": "English cue 'mustn't' fixes smeš against moraš, which is the point of the rule.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Vi takes morate.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Ona takes mora.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Več takes the genitive vode.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Correct answer and variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Correct answer and colloquial variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct answer and colloquial variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct answer; all variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-p05": {
+          "verdict": "doubtful",
+          "reason": "The Slovenian is correct, but it carries the register doubt on rešilec (SSKJ pog.). Accept also lists 'Prosim, pokličite rešilca.' and not the equally natural 'Pokličite rešilca, prosim.'",
+          "fix": "Add to accept: Pokličite rešilca, prosim.",
+          "source": "https://fran.si/iskanje?View=1&Query=re%C5%A1ilec"
+        },
+        "u09-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Correct answer; Rabim pomoč is a fair colloquial-standard variant (SSKJ pog., Pravopis knj. pog.).",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=rabiti"
+        },
+        "u09-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural question.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural reply within the limits.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural spoken question.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u09-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "r-moram": {
+          "verdict": "accepted",
+          "reason": "All table forms are correct, and the moraš, smeš and ne moraš contrast is accurate. Morem correctly explained as I can. German helper is right.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u09-l04-i01": "52d6b7fb94fdbaf3",
+    "u09-l04-i02": "490bc97dd220edf2",
+    "u09-l04-i03": "c3d8a006e13a5730",
+    "u09-l04-i04": "ec763b54a3c1e9a6",
+    "u09-l04-i05": "a561eafd851465cc",
+    "u09-l04-i06": "cb74134bb1d943f4",
+    "u09-l04-i07": "ca7a15b45be25191",
+    "u09-l04-i08": "61b9272d129862c2",
+    "u09-l04-s01": "9c4f479d38446061",
+    "u09-l04-s02": "1cb39c4e8f52120b",
+    "u09-l04-s03": "d1621bfa63343073",
+    "u09-l04-s04": "6b17d0a43ee2b750",
+    "u09-l04-s05": "4717669cab0d2d0c",
+    "u09-l04-s06": "abb89bc893bbdfda",
+    "u09-l04-p01": "b28f46942c344256",
+    "u09-l04-p02": "1b1d7187d67e1db3",
+    "u09-l04-p03": "97df45d913c18ec8",
+    "u09-l04-p04": "92203eb82942a0b8",
+    "u09-l04-p05": "4df2ad1c877fb3a3",
+    "u09-l04-p06": "e3aab39b83300390",
+    "u09-l04-d-01": "8204259f2598d5ec",
+    "u09-l04-d-02": "d8fe6ee02c1aaf53",
+    "u09-l04-d-03": "c0b012ceefab64c3",
+    "u09-l04-d-04": "035f73be70e27242",
+    "u09-l04-d-05": "17d9705fe78e24a4",
+    "u09-l04-d-06": "78e00e2a406b48d1",
+    "r-moram": "e656471e261e07f0"
+  }
+}

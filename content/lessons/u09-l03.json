@@ -1,0 +1,433 @@
+{
+  "id": "u09-l03",
+  "unit": "u09",
+  "order": 3,
+  "role": "theme",
+  "title_sl": "V lekarni",
+  "title_en": "At the pharmacy",
+  "items": [
+    {
+      "id": "u09-l03-i01",
+      "type": "chunk",
+      "sl": "Kje je lekarna?",
+      "sl_colloquial": null,
+      "en": "Where is the pharmacy?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, kje je lekarna?",
+          "en": "Excuse me, where is the pharmacy?"
+        },
+        {
+          "sl": "Dober dan, kje je lekarna?",
+          "en": "Good day, where is the pharmacy?"
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l03-i02",
+      "type": "chunk",
+      "sl": "Imate kaj proti glavobolu?",
+      "sl_colloquial": null,
+      "en": "Do you have anything for a headache? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan, imate kaj proti glavobolu?",
+          "en": "Good day, do you have anything for a headache?"
+        },
+        {
+          "sl": "Boli me glava, imate kaj proti glavobolu?",
+          "en": "My head hurts, do you have anything for a headache?"
+        }
+      ],
+      "helper": "proti, against; glavobol is glava, head, plus bol, pain.",
+      "accept": [
+        "Ali imate kaj proti glavobolu?"
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l03-i03",
+      "type": "chunk",
+      "sl": "Kolikokrat na dan?",
+      "sl_colloquial": null,
+      "en": "How many times a day?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kolikokrat na dan naj vzamem tableto?",
+          "en": "How many times a day should I take the tablet?"
+        },
+        {
+          "sl": "Hvala, kolikokrat na dan?",
+          "en": "Thank you, how many times a day?"
+        }
+      ],
+      "helper": "koliko, how many, plus krat, times: like German wie oft.",
+      "accept": [],
+      "rules": [
+        "r-krat"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l03-i04",
+      "type": "chunk",
+      "sl": "Trikrat na dan.",
+      "sl_colloquial": null,
+      "en": "Three times a day.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Eno tableto trikrat na dan.",
+          "en": "One tablet three times a day."
+        },
+        {
+          "sl": "Trikrat na dan, po jedi.",
+          "en": "Three times a day, after a meal."
+        }
+      ],
+      "helper": "tri, three, plus krat, times: like German dreimal.",
+      "accept": [],
+      "rules": [
+        "r-krat"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l03-i05",
+      "type": "chunk",
+      "sl": "Po jedi.",
+      "sl_colloquial": null,
+      "en": "After a meal.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Zdravilo vzamem po jedi.",
+          "en": "I take the medicine after a meal."
+        },
+        {
+          "sl": "Po jedi pijem kavo.",
+          "en": "After a meal I drink coffee."
+        }
+      ],
+      "helper": "Literally after eating: jed, a meal, has the same root as jem, I eat.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l03-i06",
+      "type": "word",
+      "sl": "lekarna",
+      "sl_colloquial": null,
+      "en": "pharmacy",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "lekarno",
+        "loc": "lekarni"
+      },
+      "examples": [
+        {
+          "sl": "Lekarna je v centru.",
+          "en": "The pharmacy is in the centre."
+        },
+        {
+          "sl": "Grem v lekarno.",
+          "en": "I'm going to the pharmacy."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l03-i07",
+      "type": "word",
+      "sl": "tableta",
+      "sl_colloquial": null,
+      "en": "tablet, pill",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "tableto",
+        "pl": "tablete",
+        "acc.pl": "tablete"
+      },
+      "examples": [
+        {
+          "sl": "Imate tablete proti glavobolu?",
+          "en": "Do you have tablets for a headache?"
+        },
+        {
+          "sl": "Vzamem eno tableto.",
+          "en": "I'm taking one tablet."
+        }
+      ],
+      "helper": "Tablette in German, tablet in English.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l03-i08",
+      "type": "word",
+      "sl": "zdravilo",
+      "sl_colloquial": null,
+      "en": "medicine",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "examples": [
+        {
+          "sl": "Potrebujem zdravilo.",
+          "en": "I need medicine."
+        },
+        {
+          "sl": "Koliko stane to zdravilo?",
+          "en": "How much is this medicine?"
+        }
+      ],
+      "helper": "From zdrav, healthy, as in Vsi so zdravi.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 2484,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-krat"
+  ],
+  "structured": [
+    {
+      "id": "u09-l03-s01",
+      "prompt_sl": "___ na dan?",
+      "options": [
+        "Kolikokrat",
+        "Kako",
+        "Kdaj"
+      ],
+      "answer": "Kolikokrat",
+      "rule": "r-krat",
+      "en": "How many times a day?"
+    },
+    {
+      "id": "u09-l03-s02",
+      "prompt_sl": "Tableto vzamem ___ na dan.",
+      "options": [
+        "trikrat",
+        "tri",
+        "trije"
+      ],
+      "answer": "trikrat",
+      "rule": "r-krat",
+      "en": "I take the tablet three times a day."
+    },
+    {
+      "id": "u09-l03-s03",
+      "prompt_sl": "___ na dan, po jedi.",
+      "options": [
+        "Dvakrat",
+        "Dve",
+        "Dva"
+      ],
+      "answer": "Dvakrat",
+      "rule": "r-krat",
+      "en": "Twice a day, after a meal."
+    },
+    {
+      "id": "u09-l03-s04",
+      "prompt_sl": "Vzamem eno ___.",
+      "options": [
+        "tableto",
+        "tableta",
+        "tablete"
+      ],
+      "answer": "tableto",
+      "rule": "r-accusative-feminine",
+      "en": "I'm taking one tablet."
+    },
+    {
+      "id": "u09-l03-s05",
+      "prompt_sl": "Grem v ___.",
+      "options": [
+        "lekarno",
+        "lekarna",
+        "lekarni"
+      ],
+      "answer": "lekarno",
+      "rule": "r-grem-v-na",
+      "en": "I'm going to the pharmacy."
+    },
+    {
+      "id": "u09-l03-s06",
+      "prompt_sl": "Lekarna je v ___.",
+      "options": [
+        "centru",
+        "center",
+        "centra"
+      ],
+      "answer": "centru",
+      "rule": "r-locative",
+      "en": "The pharmacy is in the centre."
+    }
+  ],
+  "production": [
+    {
+      "id": "u09-l03-p01",
+      "en": "You are in a new town. Ask a passer-by where the pharmacy is.",
+      "answer": "Kje je lekarna?",
+      "accept": [
+        "Oprostite, kje je lekarna?"
+      ],
+      "item": "u09-l03-i01"
+    },
+    {
+      "id": "u09-l03-p02",
+      "en": "You have a headache. Ask the pharmacist if they have anything for it.",
+      "answer": "Imate kaj proti glavobolu?",
+      "accept": [
+        "Ali imate kaj proti glavobolu?"
+      ],
+      "item": "u09-l03-i02"
+    },
+    {
+      "id": "u09-l03-p03",
+      "en": "Ask the pharmacist how many times a day to take it.",
+      "answer": "Kolikokrat na dan?",
+      "accept": [
+        "Kolikokrat na dan naj vzamem?",
+        "Kolikokrat na dan naj vzamem tableto?"
+      ],
+      "item": "u09-l03-i03"
+    },
+    {
+      "id": "u09-l03-p04",
+      "en": "Someone asks how often you take the tablets. Say three times a day.",
+      "answer": "Trikrat na dan.",
+      "accept": [],
+      "item": "u09-l03-i04"
+    },
+    {
+      "id": "u09-l03-p05",
+      "en": "Someone asks when you take the medicine. Say after a meal.",
+      "answer": "Po jedi.",
+      "accept": [],
+      "item": "u09-l03-i05"
+    },
+    {
+      "id": "u09-l03-p06",
+      "en": "Tell the pharmacist you need medicine.",
+      "answer": "Potrebujem zdravilo.",
+      "accept": [
+        "Rabim zdravilo."
+      ],
+      "item": "u09-l03-i08"
+    }
+  ],
+  "dialogue": {
+    "id": "u09-l03-d",
+    "title_sl": "Proti glavobolu",
+    "title_en": "For a headache",
+    "setting_en": "You are at the pharmacy and ask for something against a headache.",
+    "lines": [
+      {
+        "speaker": "clerk",
+        "sl": "Dober dan. Kaj želite?",
+        "en": "Good day. What would you like?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Boli me glava. Imate kaj proti glavobolu?",
+        "en": "My head hurts. Do you have anything for a headache?",
+        "new_items": [
+          "u09-l03-i02"
+        ]
+      },
+      {
+        "speaker": "clerk",
+        "sl": "Ja, tukaj so tablete.",
+        "en": "Yes, here are some tablets."
+      },
+      {
+        "speaker": "you",
+        "sl": "Kolikokrat na dan?",
+        "en": "How many times a day?",
+        "new_items": [
+          "u09-l03-i03"
+        ]
+      },
+      {
+        "speaker": "clerk",
+        "sl": "Trikrat na dan, po jedi.",
+        "en": "Three times a day, after a meal.",
+        "new_items": [
+          "u09-l03-i04",
+          "u09-l03-i05"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala. Koliko stane?",
+        "en": "Thank you. How much is it?"
+      }
+    ]
+  }
+}

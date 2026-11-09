@@ -1,0 +1,389 @@
+{
+  "id": "u09-l05",
+  "unit": "u09",
+  "order": 5,
+  "role": "consolidation",
+  "title_sl": "Pri zdravniku",
+  "title_en": "At the doctor's",
+  "items": [
+    {
+      "id": "u09-l05-i01",
+      "type": "chunk",
+      "sl": "Kaj vas boli?",
+      "sl_colloquial": null,
+      "en": "What hurts? (polite)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Dober dan, kaj vas boli?",
+          "en": "Good day, what hurts?"
+        },
+        {
+          "sl": "Gospa, kaj vas boli?",
+          "en": "Madam, what hurts?"
+        }
+      ],
+      "helper": "The polite version of Kaj te boli?",
+      "accept": [],
+      "rules": [
+        "r-boli-me"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l05-i02",
+      "type": "chunk",
+      "sl": "Od kdaj?",
+      "sl_colloquial": null,
+      "en": "Since when?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Od kdaj vas boli grlo?",
+          "en": "Since when has your throat been hurting?"
+        },
+        {
+          "sl": "Od kdaj imate vročino?",
+          "en": "Since when have you had a fever?"
+        }
+      ],
+      "helper": "Literally from when: od as in Od kod si?",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l05-i03",
+      "type": "chunk",
+      "sl": "Od včeraj.",
+      "sl_colloquial": null,
+      "en": "Since yesterday.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Od včeraj imam vročino.",
+          "en": "I have had a fever since yesterday."
+        },
+        {
+          "sl": "Hrbet me boli od včeraj.",
+          "en": "My back has been hurting since yesterday."
+        }
+      ],
+      "helper": "od, from, plus včeraj, yesterday.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l05-i04",
+      "type": "chunk",
+      "sl": "Imate zdravstveno kartico?",
+      "sl_colloquial": null,
+      "en": "Do you have a health insurance card? (polite, or to several people)",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Oprostite, imate zdravstveno kartico?",
+          "en": "Excuse me, do you have a health insurance card?"
+        },
+        {
+          "sl": "Imam zdravstveno kartico.",
+          "en": "I have a health insurance card."
+        }
+      ],
+      "helper": "zdravstven comes from zdrav, healthy. kartico is the card of Plačam s kartico.",
+      "accept": [
+        "Ali imate zdravstveno kartico?"
+      ],
+      "rules": [
+        "r-accusative-feminine"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l05-i05",
+      "type": "chunk",
+      "sl": "Nič hudega.",
+      "sl_colloquial": null,
+      "en": "It's nothing serious.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Nič hudega, jutri bo bolje.",
+          "en": "It's nothing serious, tomorrow it will be better."
+        },
+        {
+          "sl": "Nič hudega, ni problema.",
+          "en": "It's nothing serious, no problem."
+        }
+      ],
+      "helper": "Literally nothing bad: hudega is from hud, bad or severe.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u09-l05-i06",
+      "type": "chunk",
+      "sl": "Hitro ozdravi.",
+      "sl_colloquial": null,
+      "en": "Get well soon. (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Adijo in hitro ozdravi.",
+          "en": "Bye, and get well soon."
+        },
+        {
+          "sl": "Hitro ozdravi, se vidimo.",
+          "en": "Get well soon, see you."
+        }
+      ],
+      "helper": "ozdraveti, to get well, comes from zdrav, healthy.",
+      "accept": [
+        "Čim prej ozdravi."
+      ],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [],
+  "structured": [
+    {
+      "id": "u09-l05-s01",
+      "prompt_sl": "Kaj ___ boli, gospa?",
+      "options": [
+        "vas",
+        "vam",
+        "ti"
+      ],
+      "answer": "vas",
+      "rule": "r-boli-me",
+      "en": "What hurts, madam?"
+    },
+    {
+      "id": "u09-l05-s02",
+      "prompt_sl": "Od včeraj me ___ grlo.",
+      "options": [
+        "boli",
+        "bolijo"
+      ],
+      "answer": "boli",
+      "rule": "r-boli-me",
+      "en": "My throat has been hurting since yesterday."
+    },
+    {
+      "id": "u09-l05-s03",
+      "prompt_sl": "Kako ___ počutite?",
+      "options": [
+        "se",
+        "si",
+        "sem"
+      ],
+      "answer": "se",
+      "rule": "r-reflexive-se",
+      "en": "How are you feeling? (polite)"
+    },
+    {
+      "id": "u09-l05-s04",
+      "prompt_sl": "Danes ___ je bolje.",
+      "options": [
+        "mi",
+        "me",
+        "sem"
+      ],
+      "answer": "mi",
+      "rule": "r-dative-pronouns",
+      "en": "I feel better today."
+    },
+    {
+      "id": "u09-l05-s05",
+      "prompt_sl": "Tableto vzamem ___ na dan.",
+      "options": [
+        "dvakrat",
+        "dve",
+        "drugi"
+      ],
+      "answer": "dvakrat",
+      "rule": "r-krat",
+      "en": "I take the tablet twice a day."
+    },
+    {
+      "id": "u09-l05-s06",
+      "prompt_sl": "Moram ___ več vode.",
+      "options": [
+        "piti",
+        "pijem",
+        "pij"
+      ],
+      "answer": "piti",
+      "rule": "r-moram",
+      "en": "I have to drink more water."
+    }
+  ],
+  "production": [
+    {
+      "id": "u09-l05-p01",
+      "en": "The doctor asks what hurts. It is your legs.",
+      "answer": "Bolijo me noge.",
+      "accept": [
+        "Noge me bolijo."
+      ],
+      "item": "u09-l01-i03"
+    },
+    {
+      "id": "u09-l05-p02",
+      "en": "The doctor asks how you are. Say you have a fever.",
+      "answer": "Imam vročino.",
+      "accept": [
+        "Imam temperaturo."
+      ],
+      "item": "u09-l02-i05"
+    },
+    {
+      "id": "u09-l05-p03",
+      "en": "You tell the doctor how often you take the tablets: three times a day.",
+      "answer": "Trikrat na dan.",
+      "accept": [],
+      "item": "u09-l03-i04"
+    },
+    {
+      "id": "u09-l05-p04",
+      "en": "Tell your hosts you must go to the doctor.",
+      "answer": "Moram k zdravniku.",
+      "accept": [
+        "Moram iti k zdravniku."
+      ],
+      "item": "u09-l04-i01"
+    },
+    {
+      "id": "u09-l05-p05",
+      "en": "Your hosts ask what the doctor said. Say it is nothing serious.",
+      "answer": "Nič hudega.",
+      "accept": [
+        "Ni nič hudega."
+      ],
+      "item": "u09-l05-i05"
+    },
+    {
+      "id": "u09-l05-p06",
+      "en": "Say get well soon to someone close.",
+      "answer": "Hitro ozdravi.",
+      "accept": [
+        "Čim prej ozdravi."
+      ],
+      "item": "u09-l05-i06"
+    }
+  ],
+  "dialogue": {
+    "id": "u09-l05-d",
+    "title_sl": "Obisk pri zdravniku",
+    "title_en": "A visit to the doctor",
+    "setting_en": "A short visit to the doctor, from the waiting room to what to take.",
+    "lines": [
+      {
+        "speaker": "clerk",
+        "sl": "Dober dan. Imate zdravstveno kartico?",
+        "en": "Good day. Do you have a health insurance card?",
+        "new_items": [
+          "u09-l05-i04"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, izvolite.",
+        "en": "Yes, here you are."
+      },
+      {
+        "speaker": "doctor",
+        "sl": "Dober dan. Kaj vas boli?",
+        "en": "Good day. What hurts?",
+        "new_items": [
+          "u09-l05-i01"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Boli me grlo in imam vročino.",
+        "en": "My throat hurts and I have a fever.",
+        "new_items": [
+          "u09-l01-i04",
+          "u09-l02-i05"
+        ]
+      },
+      {
+        "speaker": "doctor",
+        "sl": "Od kdaj?",
+        "en": "Since when?",
+        "new_items": [
+          "u09-l05-i02"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Od včeraj. Slabo mi je.",
+        "en": "Since yesterday. I feel sick.",
+        "new_items": [
+          "u09-l05-i03",
+          "u09-l02-i03"
+        ]
+      },
+      {
+        "speaker": "doctor",
+        "sl": "Nič hudega. Eno tableto trikrat na dan, po jedi.",
+        "en": "It's nothing serious. One tablet three times a day, after a meal.",
+        "new_items": [
+          "u09-l05-i05",
+          "u09-l03-i04",
+          "u09-l03-i05"
+        ]
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala. Moram počivati?",
+        "en": "Thank you. Do I have to rest?",
+        "new_items": [
+          "u09-l04-i02"
+        ]
+      }
+    ]
+  }
+}
