@@ -1,0 +1,299 @@
+{
+  "lesson": "u08-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {
+        "u08-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Natural chunk; examples correct; gefallen comparison fair."
+        },
+        "u08-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Correct, addressee named. Accept variants A ti je všeč? and Ti je všeč? are normal in speech."
+        },
+        "u08-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Correct negation and clitic order; examples natural."
+        },
+        "u08-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Natural, variant correct; the slot fillers all fit in the nominative."
+        },
+        "u08-l02-i05": {
+          "verdict": "accepted",
+          "reason": "Gender and acc correct; examples natural. Snoj cross-refers glasba to glas, so the helper is honest.",
+          "source": "https://fran.si/iskanje?View=1&Query=glasba"
+        },
+        "u08-l02-i06": {
+          "verdict": "accepted",
+          "reason": "Gender correct; examples natural; a true cognate."
+        },
+        "u08-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Gender and loc morju correct; examples natural; Meer is a real cognate."
+        },
+        "u08-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Gender correct; examples natural; the note that mesto also means place is true."
+        }
+      },
+      "lines": {
+        "u08-l02-s01": {
+          "verdict": "accepted",
+          "reason": "je is the one right option with Ljubljana as subject."
+        },
+        "u08-l02-s02": {
+          "verdict": "accepted",
+          "reason": "Nominative glasba is required; distractors wrong."
+        },
+        "u08-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Dative mi is the one right option."
+        },
+        "u08-l02-s04": {
+          "verdict": "accepted",
+          "reason": "ti is right for the addressee the English names; te and si do not fit that meaning."
+        },
+        "u08-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Ni is the one right option."
+        },
+        "u08-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Correct and natural."
+        },
+        "u08-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct; addressee named."
+        },
+        "u08-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural."
+        },
+        "u08-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct."
+        },
+        "u08-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct; filler in the right form."
+        },
+        "u08-l02-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct; filler in the right form."
+        },
+        "u08-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Kaj pa morje? is a natural follow-up."
+        },
+        "u08-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Grammatical and natural, English faithful."
+        },
+        "r-vsec-mi-je": {
+          "verdict": "accepted",
+          "reason": "Example, toggles, quick check and notes correct; the gefallen and mir comparisons are accurate."
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 3,
+      "items": {
+        "u08-l02-i01": {
+          "verdict": "accepted",
+          "reason": "Standard chunk, attested with the thing as subject and the person in the dative. The gefallen comparison is accurate.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=všeč"
+        },
+        "u08-l02-i02": {
+          "verdict": "accepted",
+          "reason": "Correct; the A and bare variants are normal in speech, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-i03": {
+          "verdict": "accepted",
+          "reason": "Correct negation with ni first, attested in SSKJ as ni mi všeč, and the examples are natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=všeč"
+        },
+        "u08-l02-i04": {
+          "verdict": "accepted",
+          "reason": "Correct subject construction, the reversed order is a valid variant and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-i05": {
+          "verdict": "accepted",
+          "reason": "Feminine, acc glasbo is correct, and the derivation from glas is supported by the etymological cross-reference.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=glasba"
+        },
+        "u08-l02-i06": {
+          "verdict": "accepted",
+          "reason": "Masculine, true cognate, natural examples.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-i07": {
+          "verdict": "accepted",
+          "reason": "Neuter, loc morju is correct. Morje continues PIE *móri, the root of German Meer, so the helper is true.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/morje"
+        },
+        "u08-l02-i08": {
+          "verdict": "accepted",
+          "reason": "Neuter, the gloss covers both town and city, the helper on place is true and the examples are natural.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u08-l02-s01": {
+          "verdict": "accepted",
+          "reason": "Ljubljana is the subject, so je is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-s02": {
+          "verdict": "accepted",
+          "reason": "Nominative glasba is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-s03": {
+          "verdict": "accepted",
+          "reason": "Dative clitic mi is the only right option; jaz and me are plausible and wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-s04": {
+          "verdict": "accepted",
+          "reason": "Dative ti is the only right option, and the addressee is named.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-s05": {
+          "verdict": "accepted",
+          "reason": "Ni is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-p01": {
+          "verdict": "accepted",
+          "reason": "Correct chunk.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and both variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-p03": {
+          "verdict": "accepted",
+          "reason": "Correct chunk.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-p04": {
+          "verdict": "accepted",
+          "reason": "Naming všeč keeps one construction in play; answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Answer, variant and filler are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-p06": {
+          "verdict": "accepted",
+          "reason": "Answer, variant and filler are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural; Kaj pa is the normal way to turn the question.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l02-d-05": {
+          "verdict": "accepted",
+          "reason": "Grammatical, natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "r-vsec-mi-je": {
+          "verdict": "accepted",
+          "reason": "Card text, toggles, quick check and helpers are correct; all Slovenian is standard.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u08-l02-i01": "b7ddd8b31880fe36",
+    "u08-l02-i02": "3fb44dc658df87f1",
+    "u08-l02-i03": "6bdf95b7d05578a8",
+    "u08-l02-i04": "aa815aad1a60e172",
+    "u08-l02-i05": "c3d767347699643d",
+    "u08-l02-i06": "cc225b1c4cfd4be5",
+    "u08-l02-i07": "1cc6e8d5becf8c5e",
+    "u08-l02-i08": "e4641947a1a3bff2",
+    "u08-l02-s01": "7735b472ffebfdcb",
+    "u08-l02-s02": "84c53e701f177637",
+    "u08-l02-s03": "96523e0b6af1665c",
+    "u08-l02-s04": "7dd48e495ecd4519",
+    "u08-l02-s05": "f01eca36b40d0ea4",
+    "u08-l02-p01": "088288d86610e89c",
+    "u08-l02-p02": "124bee174b8905be",
+    "u08-l02-p03": "63fa77cc7ac654c0",
+    "u08-l02-p04": "e85cd0ed39308804",
+    "u08-l02-p05": "8bce1a41a4ebbba6",
+    "u08-l02-p06": "8769db3dd41cc257",
+    "u08-l02-d-01": "55ef8fde70f78cd3",
+    "u08-l02-d-02": "bcc7fba063123527",
+    "u08-l02-d-03": "31668f45bad86d63",
+    "u08-l02-d-04": "6f5d40811d0c7ba1",
+    "u08-l02-d-05": "fb2276c4dd71e4a7",
+    "r-vsec-mi-je": "3450c20b5815d31a"
+  }
+}

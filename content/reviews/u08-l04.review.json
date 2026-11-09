@@ -1,0 +1,322 @@
+{
+  "lesson": "u08-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {
+        "u08-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Natural; variant and examples correct; addressee named."
+        },
+        "u08-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Natural; variant correct; locative morju right."
+        },
+        "u08-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Natural; variant correct; locative plural right."
+        },
+        "u08-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Natural; examples correct."
+        },
+        "u08-l04-i05": {
+          "verdict": "accepted",
+          "reason": "Natural; variant correct; helper on order accurate."
+        },
+        "u08-l04-i06": {
+          "verdict": "accepted",
+          "reason": "Correct negative past; variant and examples correct."
+        },
+        "u08-l04-i07": {
+          "verdict": "accepted",
+          "reason": "Correct, examples natural. The helper is framed as a sound hook, not an etymology claim, and the resemblance is real. Wiktionary and Fran did not state a link to večer.",
+          "source": "https://fran.si/iskanje?View=1&Query=včeraj"
+        },
+        "u08-l04-i08": {
+          "verdict": "accepted",
+          "reason": "Colloquial tag matches SSKJ pog. and Pravopis knj. pog. for the weekend sense; SSKJ has 'kam greš za vikend'; examples natural.",
+          "source": "https://fran.si/iskanje?View=1&Query=vikend"
+        }
+      },
+      "lines": {
+        "u08-l04-s01": {
+          "verdict": "accepted",
+          "reason": "sem is the one right option."
+        },
+        "u08-l04-s02": {
+          "verdict": "accepted",
+          "reason": "si is the one right option; addressee named."
+        },
+        "u08-l04-s03": {
+          "verdict": "accepted",
+          "reason": "bila agrees with ona."
+        },
+        "u08-l04-s04": {
+          "verdict": "accepted",
+          "reason": "bilo is the right form with no named referent, matching the taught chunk."
+        },
+        "u08-l04-s05": {
+          "verdict": "accepted",
+          "reason": "sva is the one right option with midva."
+        },
+        "u08-l04-s06": {
+          "verdict": "accepted",
+          "reason": "smo is the one right option."
+        },
+        "u08-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct."
+        },
+        "u08-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct."
+        },
+        "u08-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct."
+        },
+        "u08-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct and natural."
+        },
+        "u08-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct."
+        },
+        "u08-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct."
+        },
+        "u08-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural."
+        },
+        "u08-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural; plural vi fits the hosts, and the English says so."
+        },
+        "u08-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "r-past-biti": {
+          "verdict": "accepted",
+          "reason": "All table forms and notes correct, including feminine dual bili sva and bili sta and feminine plural bile; toggles and quick check right."
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 4,
+      "items": {
+        "u08-l04-i01": {
+          "verdict": "accepted",
+          "reason": "Correct and natural; bila variant is covered.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Correct locative, na morju is the normal phrase for the seaside, and the clitic order in the examples is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-i03": {
+          "verdict": "accepted",
+          "reason": "Correct locative plural, and the clitic order in the examples is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-i04": {
+          "verdict": "accepted",
+          "reason": "Standard question with neuter bilo; examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-i05": {
+          "verdict": "accepted",
+          "reason": "Correct, the variant is equally natural and the helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-i06": {
+          "verdict": "accepted",
+          "reason": "Correct negation; the helper and bila variant are right.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-i07": {
+          "verdict": "accepted",
+          "reason": "Correct adverb. The hook is honest, since Proto-Slavic *vьčera is derived from *večerъ, evening.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/Reconstruction:Proto-Slavic/vьčera"
+        },
+        "u08-l04-i08": {
+          "verdict": "accepted",
+          "reason": "Colloquial is the right tag: SSKJ pog., Pravopis knj. pog. Za vikend is attested and the helper is true.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=vikend"
+        }
+      },
+      "lines": {
+        "u08-l04-s01": {
+          "verdict": "accepted",
+          "reason": "Sem is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-s02": {
+          "verdict": "accepted",
+          "reason": "Si is the only right option, and the addressee is named.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-s03": {
+          "verdict": "accepted",
+          "reason": "Bila is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-s04": {
+          "verdict": "accepted",
+          "reason": "Impersonal Kako je bilo is the taught phrase, and the English with no noun points to bilo.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-s05": {
+          "verdict": "accepted",
+          "reason": "Sva is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-s06": {
+          "verdict": "accepted",
+          "reason": "Smo is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variant are correct, and the addressee is named.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct chunk.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-p05": {
+          "verdict": "accepted",
+          "reason": "Answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural; za vikend is the usual colloquial phrase.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=vikend"
+        },
+        "u08-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Grammatical and faithful; je bilo sonce passes in speech, though je bilo sončno is also common.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural; plural vi to the hosts is rendered clearly by you all.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l04-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "r-past-biti": {
+          "verdict": "accepted",
+          "reason": "All table forms, pronouns and notes are correct, including feminine dual bili sva and bili sta and feminine plural bile. Toggles, quick check and helpers are right.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u08-l04-i01": "e546bd64b4113878",
+    "u08-l04-i02": "ddb1b9e3d54284e3",
+    "u08-l04-i03": "2c7805c6c29c8641",
+    "u08-l04-i04": "520f512e4ccc2b3d",
+    "u08-l04-i05": "44b4a8df01182b7e",
+    "u08-l04-i06": "3e240c14a72b43ed",
+    "u08-l04-i07": "cc57073d6cf26e4d",
+    "u08-l04-i08": "098449395d82807e",
+    "u08-l04-s01": "73bf2b9abe697579",
+    "u08-l04-s02": "b57a03546d1920a1",
+    "u08-l04-s03": "92fb051cab23a58d",
+    "u08-l04-s04": "066a87bde88e7ad2",
+    "u08-l04-s05": "d861df0459b4f524",
+    "u08-l04-s06": "d34c37e6996cffd1",
+    "u08-l04-p01": "78bd6c2453e59b21",
+    "u08-l04-p02": "6e89d2bc7c0b00e2",
+    "u08-l04-p03": "ee76e7e798f8c145",
+    "u08-l04-p04": "2e7a0f186102282f",
+    "u08-l04-p05": "e194a17831c612c1",
+    "u08-l04-p06": "06f539ddbca5ff6c",
+    "u08-l04-d-01": "c8ce45fd9cca8730",
+    "u08-l04-d-02": "4e9c277c52597a8c",
+    "u08-l04-d-03": "89dd5486dd4f13ea",
+    "u08-l04-d-04": "4be888d6c358c072",
+    "u08-l04-d-05": "1511356c5bf08af3",
+    "u08-l04-d-06": "43c9e5f7dfc1f23e",
+    "r-past-biti": "372fbe3e3824b7be"
+  }
+}

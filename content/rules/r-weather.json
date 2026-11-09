@@ -1,0 +1,46 @@
+{
+  "id": "r-weather",
+  "unit": "u08",
+  "title_en": "Talking about the weather",
+  "card_en": "Weather talk has no word for English it. Use a verb alone, dežuje, it is raining, or je with the neuter form: mrzlo je, it is cold; vroče je, it is hot.",
+  "example": {
+    "sl": "Dežuje.",
+    "en": "It is raining."
+  },
+  "toggles": [
+    {
+      "label": "The weather",
+      "options": [
+        "rain",
+        "cold",
+        "hot"
+      ],
+      "examples": {
+        "rain": {
+          "sl": "Dežuje.",
+          "en": "It's raining."
+        },
+        "cold": {
+          "sl": "Mrzlo je.",
+          "en": "It's cold."
+        },
+        "hot": {
+          "sl": "Zelo je vroče.",
+          "en": "It's very hot."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Danes je ___.",
+    "options": [
+      "mrzlo",
+      "mrzel",
+      "mrzla"
+    ],
+    "answer": "mrzlo",
+    "explain_en": "Weather talk uses the neuter form with je: mrzlo je, it is cold."
+  },
+  "helper_de": "German needs es: es regnet, es ist kalt. Slovenian needs no es: dežuje, mrzlo je.",
+  "helper_en": "English needs it: it is raining. Slovenian has no word for it here."
+}

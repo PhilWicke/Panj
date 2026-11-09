@@ -1,0 +1,34 @@
+{
+  "lesson": "u08-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u08-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Same correct answer as u08-l03-p03, where the form was checked. The instruction is natural, has its own wording with a scene, and does not repeat the unit 8 lesson 3 instruction as a whole. It asks only for it's raining, so Dežuje is the one target. Minor note: 'outside' could prompt Zunaj dežuje, which is correct Slovenian, but zunaj appears in none of the unit files I was given, so I cannot tell whether it has been taught. The Dež gre note on u08-l03-p03 applies here as well.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u08-l05-p05": {
+          "verdict": "doubtful",
+          "reason": "The answer Dežuje. is correct, and the instruction is accurate, natural and worded differently from u08-l03-p03. The doubt is the same empty accept list: Dež gre. is an accepted variant of the item u08-l03-i03 and Danes gre dež. is an example in u08-l03, so a form taught earlier in the unit would be marked wrong here. SSKJ labels dež gre pog. and Pravopis neknj. pog. (same lookup as for u08-l03-p03, none repeated for this lesson), so a native speaker should decide, and this list should follow the same decision as u08-l03-p03.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=dež"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u08-l05-p05": "0180b07136e04fad"
+  }
+}

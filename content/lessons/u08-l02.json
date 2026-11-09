@@ -1,0 +1,432 @@
+{
+  "id": "u08-l02",
+  "unit": "u08",
+  "order": 2,
+  "role": "theme",
+  "title_sl": "Všeč mi je",
+  "title_en": "I like it",
+  "items": [
+    {
+      "id": "u08-l02-i01",
+      "type": "chunk",
+      "sl": "Všeč mi je.",
+      "sl_colloquial": null,
+      "en": "I like it.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Všeč mi je morje.",
+          "en": "I like the sea."
+        },
+        {
+          "sl": "Všeč mi je mesto.",
+          "en": "I like the town."
+        }
+      ],
+      "helper": "Works like German Es gefällt mir: literally it pleases me.",
+      "accept": [],
+      "rules": [
+        "r-vsec-mi-je"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l02-i02",
+      "type": "chunk",
+      "sl": "Ali ti je všeč?",
+      "sl_colloquial": null,
+      "en": "Do you like it? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Ali ti je všeč glasba?",
+          "en": "Do you like the music?"
+        },
+        {
+          "sl": "Ali ti je všeč film?",
+          "en": "Do you like the film?"
+        }
+      ],
+      "helper": "ti is for someone close; polite is Ali vam je všeč?",
+      "accept": [
+        "A ti je všeč?",
+        "Ti je všeč?"
+      ],
+      "rules": [
+        "r-vsec-mi-je",
+        "r-a-ali"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l02-i03",
+      "type": "chunk",
+      "sl": "Ni mi všeč.",
+      "sl_colloquial": null,
+      "en": "I don't like it.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ni mi všeč tukaj.",
+          "en": "I don't like it here."
+        },
+        {
+          "sl": "Ni mi všeč, res ne.",
+          "en": "I don't like it, I really don't."
+        }
+      ],
+      "helper": "ni replaces je and comes first: Ni mi všeč.",
+      "accept": [],
+      "rules": [
+        "r-vsec-mi-je"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l02-i04",
+      "type": "chunk",
+      "sl": "Ljubljana mi je všeč.",
+      "sl_colloquial": null,
+      "en": "I like Ljubljana.",
+      "register": "neutral",
+      "slots": [
+        {
+          "label": "what you like",
+          "fillers": [
+            "u08-l02-i05",
+            "u08-l02-i07",
+            "u08-l02-i08"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "sl": "Ljubljana mi je zelo všeč.",
+          "en": "I really like Ljubljana."
+        },
+        {
+          "sl": "Tudi Ljubljana mi je všeč.",
+          "en": "I like Ljubljana too."
+        }
+      ],
+      "helper": "Like German Ljubljana gefällt mir: the place is the subject.",
+      "accept": [
+        "Všeč mi je Ljubljana."
+      ],
+      "rules": [
+        "r-vsec-mi-je"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l02-i05",
+      "type": "word",
+      "sl": "glasba",
+      "sl_colloquial": null,
+      "en": "music",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "glasbo"
+      },
+      "examples": [
+        {
+          "sl": "Glasba je zelo lepa.",
+          "en": "The music is very lovely."
+        },
+        {
+          "sl": "Imam rad glasbo.",
+          "en": "I like music."
+        }
+      ],
+      "helper": "From glas, voice.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 784,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l02-i06",
+      "type": "word",
+      "sl": "film",
+      "sl_colloquial": null,
+      "en": "film",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "examples": [
+        {
+          "sl": "To je dober film.",
+          "en": "That's a good film."
+        },
+        {
+          "sl": "Film mi je všeč.",
+          "en": "I like the film."
+        }
+      ],
+      "helper": "Like German Film and English film.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 573,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l02-i07",
+      "type": "word",
+      "sl": "morje",
+      "sl_colloquial": null,
+      "en": "sea",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "forms": {
+        "loc": "morju"
+      },
+      "examples": [
+        {
+          "sl": "Morje je daleč.",
+          "en": "The sea is far away."
+        },
+        {
+          "sl": "Slovenija ima tudi morje.",
+          "en": "Slovenia also has a sea."
+        }
+      ],
+      "helper": "Related to German Meer.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 510,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l02-i08",
+      "type": "word",
+      "sl": "mesto",
+      "sl_colloquial": null,
+      "en": "town or city",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "examples": [
+        {
+          "sl": "Ljubljana je lepo mesto.",
+          "en": "Ljubljana is a lovely city."
+        },
+        {
+          "sl": "Mesto mi je všeč.",
+          "en": "I like the town."
+        }
+      ],
+      "helper": "Also means place, not only town.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 203,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-vsec-mi-je"
+  ],
+  "structured": [
+    {
+      "id": "u08-l02-s01",
+      "prompt_sl": "Ljubljana mi ___ všeč.",
+      "options": [
+        "je",
+        "sem",
+        "si"
+      ],
+      "answer": "je",
+      "rule": "r-vsec-mi-je",
+      "en": "I like Ljubljana."
+    },
+    {
+      "id": "u08-l02-s02",
+      "prompt_sl": "Tudi ___ mi je všeč.",
+      "options": [
+        "glasba",
+        "glasbo",
+        "glasbi"
+      ],
+      "answer": "glasba",
+      "rule": "r-vsec-mi-je",
+      "en": "I like the music too."
+    },
+    {
+      "id": "u08-l02-s03",
+      "prompt_sl": "Film ___ je všeč.",
+      "options": [
+        "mi",
+        "jaz",
+        "me"
+      ],
+      "answer": "mi",
+      "rule": "r-vsec-mi-je",
+      "en": "I like the film."
+    },
+    {
+      "id": "u08-l02-s04",
+      "prompt_sl": "Ali ___ je všeč?",
+      "options": [
+        "ti",
+        "te",
+        "si"
+      ],
+      "answer": "ti",
+      "rule": "r-vsec-mi-je",
+      "en": "Do you like it? (to someone close)"
+    },
+    {
+      "id": "u08-l02-s05",
+      "prompt_sl": "___ mi všeč.",
+      "options": [
+        "Ni",
+        "Ne",
+        "Nisem"
+      ],
+      "answer": "Ni",
+      "rule": "r-vsec-mi-je",
+      "en": "I don't like it."
+    }
+  ],
+  "production": [
+    {
+      "id": "u08-l02-p01",
+      "en": "Say you like it.",
+      "answer": "Všeč mi je.",
+      "accept": [],
+      "item": "u08-l02-i01"
+    },
+    {
+      "id": "u08-l02-p02",
+      "en": "Ask someone close if they like it.",
+      "answer": "Ali ti je všeč?",
+      "accept": [
+        "A ti je všeč?",
+        "Ti je všeč?"
+      ],
+      "item": "u08-l02-i02"
+    },
+    {
+      "id": "u08-l02-p03",
+      "en": "Say you don't like it.",
+      "answer": "Ni mi všeč.",
+      "accept": [],
+      "item": "u08-l02-i03"
+    },
+    {
+      "id": "u08-l02-p04",
+      "en": "Say with všeč that you like Ljubljana.",
+      "answer": "Ljubljana mi je všeč.",
+      "accept": [
+        "Všeč mi je Ljubljana."
+      ],
+      "item": "u08-l02-i04"
+    },
+    {
+      "id": "u08-l02-p05",
+      "en": "Say with všeč that you like the sea.",
+      "answer": "Morje mi je všeč.",
+      "accept": [
+        "Všeč mi je morje."
+      ],
+      "item": "u08-l02-i04",
+      "filler": "morje"
+    },
+    {
+      "id": "u08-l02-p06",
+      "en": "Say with všeč that you like the music.",
+      "answer": "Glasba mi je všeč.",
+      "accept": [
+        "Všeč mi je glasba."
+      ],
+      "item": "u08-l02-i04",
+      "filler": "glasba"
+    }
+  ],
+  "dialogue": {
+    "id": "u08-l02-d",
+    "title_sl": "Slovenija",
+    "title_en": "Slovenia so far",
+    "setting_en": "Your hosts ask how you like Slovenia so far.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Ali ti je Slovenija všeč?",
+        "en": "Do you like Slovenia?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, zelo. Ljubljana mi je všeč.",
+        "en": "Yes, very much. I like Ljubljana.",
+        "new_items": [
+          "u08-l02-i04"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kaj pa morje? Ali ti je všeč?",
+        "en": "And the sea? Do you like it?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Morje mi je zelo všeč.",
+        "en": "I really like the sea.",
+        "new_items": [
+          "u08-l02-i04",
+          "u08-l02-i07"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Tudi mesto je lepo.",
+        "en": "The town is lovely too."
+      }
+    ]
+  }
+}

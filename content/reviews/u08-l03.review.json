@@ -1,0 +1,302 @@
+{
+  "lesson": "u08-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 2,
+      "items": {
+        "u08-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Natural; agreement note correct; examples natural."
+        },
+        "u08-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Natural, and all three word orders in the item are normal."
+        },
+        "u08-l03-i03": {
+          "verdict": "accepted",
+          "reason": "Dežuje is the neutral target. The accept variant Dež gre is labelled pog. in SSKJ and neknj. pog. in Pravopis, but it is everyday speech and right as an alternative answer.",
+          "source": "https://fran.si/iskanje?View=1&Query=dež"
+        },
+        "u08-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Natural; variant order correct; examples natural."
+        },
+        "u08-l03-i05": {
+          "verdict": "accepted",
+          "reason": "SSKJ has predicative 'bilo je mrzlo' and Pleteršnik lists 'mrzlo je'. Mraz je is at least as common in speech, but Mrzlo je passes.",
+          "source": "https://fran.si/iskanje?View=1&Query=mrzel"
+        },
+        "u08-l03-i06": {
+          "verdict": "doubtful",
+          "reason": "Field examples and register: the example Danes gre dež uses dež gre, labelled pog. in SSKJ and neknj. pog. in Pravopis, while the item is tagged neutral. The style guide makes a neutral tag despite a label on the use in the item doubtful. The sentence itself is common speech, so a native speaker should decide the tag or the example.",
+          "source": "https://fran.si/iskanje?View=1&Query=dež"
+        },
+        "u08-l03-i07": {
+          "verdict": "accepted",
+          "reason": "Gender correct; examples natural; true cognates."
+        },
+        "u08-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Gender correct; examples natural; true cognates."
+        }
+      },
+      "lines": {
+        "u08-l03-s01": {
+          "verdict": "accepted",
+          "reason": "Neuter vroče is the one right option without a subject."
+        },
+        "u08-l03-s02": {
+          "verdict": "accepted",
+          "reason": "Neuter mrzlo is the one right option."
+        },
+        "u08-l03-s03": {
+          "verdict": "accepted",
+          "reason": "lepo agrees with neuter vreme."
+        },
+        "u08-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Ending -o is the one right option."
+        },
+        "u08-l03-s05": {
+          "verdict": "accepted",
+          "reason": "dežuje is the one right option."
+        },
+        "u08-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct and natural."
+        },
+        "u08-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct."
+        },
+        "u08-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Answer correct. Accept Dež gre is colloquial (SSKJ pog.) but heard everywhere and acceptable as an alternative.",
+          "source": "https://fran.si/iskanje?View=1&Query=dež"
+        },
+        "u08-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct."
+        },
+        "u08-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct. Mraz je is also right and not listed, which only matters if mraz has been taught earlier."
+        },
+        "u08-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Locative plural correct; variant correct."
+        },
+        "u08-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural enough to someone who has just come in; English faithful."
+        },
+        "u08-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Lep dan še naprej is a usual parting wish; English faithful."
+        },
+        "r-weather": {
+          "verdict": "accepted",
+          "reason": "Example, toggles, quick check and notes correct."
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 4,
+      "items": {
+        "u08-l03-i01": {
+          "verdict": "accepted",
+          "reason": "Standard question, the neuter agreement note is right and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-i02": {
+          "verdict": "accepted",
+          "reason": "Natural; all three word orders are correct, and the examples are faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-i03": {
+          "verdict": "doubtful",
+          "reason": "Dežuje is fine, but the accept variant Dež gre is labelled pog. in SSKJ and neknj. pog. in Pravopis, so it is below the written standard on an item tagged neutral. It is widely heard, so a native speaker should confirm whether it stays as an accepted answer.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=dež"
+        },
+        "u08-l03-i04": {
+          "verdict": "accepted",
+          "reason": "Predicative vroče is attested for weather (bilo je vroče in soparno); both word orders are natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=vroče"
+        },
+        "u08-l03-i05": {
+          "verdict": "accepted",
+          "reason": "Predicative mrzlo is attested (bilo je mrzlo), and the examples are natural.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=mrzlo"
+        },
+        "u08-l03-i06": {
+          "verdict": "doubtful",
+          "reason": "Headword and gender are right, but the example Danes gre dež uses the construction SSKJ labels pog. and Pravopis neknj. pog., on an item tagged neutral. A native speaker should confirm the tag or the example.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=dež"
+        },
+        "u08-l03-i07": {
+          "verdict": "accepted",
+          "reason": "Neuter, standard spelling, true cognate. Je sonce and bo sonce pass in everyday talk about the weather.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=sonce"
+        },
+        "u08-l03-i08": {
+          "verdict": "accepted",
+          "reason": "Masculine, true cognate, natural examples.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u08-l03-s01": {
+          "verdict": "accepted",
+          "reason": "Predicative vroče is the only right option for the English given.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-s02": {
+          "verdict": "accepted",
+          "reason": "Mrzlo is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-s03": {
+          "verdict": "accepted",
+          "reason": "Neuter lepo agrees with vreme; one correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-s04": {
+          "verdict": "accepted",
+          "reason": "Ending -o agrees with neuter vreme; one correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-s05": {
+          "verdict": "accepted",
+          "reason": "Dežuje is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct chunk.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and both variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-p03": {
+          "verdict": "doubtful",
+          "reason": "Dežuje is right, but the accepted variant Dež gre is labelled pog. in SSKJ and neknj. pog. in Pravopis. A native speaker should confirm it is acceptable as an answer.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=dež"
+        },
+        "u08-l03-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct chunk.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Correct locative plural; the reversed order is a valid variant.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural with a neighbour and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l03-d-05": {
+          "verdict": "accepted",
+          "reason": "Lep dan še naprej is a normal parting wish, and the English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "r-weather": {
+          "verdict": "accepted",
+          "reason": "Card text, toggles, quick check and helpers are correct; neuter form is a fair simplification for predicative mrzlo and vroče.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u08-l03-i01": "24bee2e4cb33b9d1",
+    "u08-l03-i02": "5cb662c57f4d9252",
+    "u08-l03-i03": "f4187f89ce5cf982",
+    "u08-l03-i04": "662307a24225af1a",
+    "u08-l03-i05": "db01a7cf4f87d18f",
+    "u08-l03-i06": "aa2d85debadaeb0c",
+    "u08-l03-i07": "f87551951c2df6ba",
+    "u08-l03-i08": "abf96491727ffaab",
+    "u08-l03-s01": "562000ff69733742",
+    "u08-l03-s02": "2c25e8e1b03b6650",
+    "u08-l03-s03": "eae9f042a9c69671",
+    "u08-l03-s04": "880f19e3ae304dca",
+    "u08-l03-s05": "32874ae232c6e680",
+    "u08-l03-p01": "1f0491700012df9e",
+    "u08-l03-p02": "31a36521796d64c7",
+    "u08-l03-p03": "adfe374bb12cce70",
+    "u08-l03-p04": "7eb424e390fe3cfe",
+    "u08-l03-p05": "b2d89c317cd5b4b9",
+    "u08-l03-p06": "dc12f2c82d9f3bb8",
+    "u08-l03-d-01": "40a34422198691d5",
+    "u08-l03-d-02": "893f34afdc0f011f",
+    "u08-l03-d-03": "fb02a0ec82e5fd84",
+    "u08-l03-d-04": "b67726154f5d0666",
+    "u08-l03-d-05": "d60638f56b364c03",
+    "r-weather": "7d7f4365574488c9"
+  }
+}

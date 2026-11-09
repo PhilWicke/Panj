@@ -1,0 +1,34 @@
+{
+  "lesson": "u08-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {},
+      "lines": {
+        "u08-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Dežuje. is the correct third person of deževati, used alone as an impersonal verb, with no colloquial label in Fran. The instruction 'in one word' rules out the two-word Dež gre, which the item accepts, so the empty accept list is right and there is one correct answer among what the course has taught. The English is accurate and does not repeat another instruction word for word.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=deževati"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u08-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Dežuje. is the correct 3sg present of deževati with the right spelling and diacritic, and it is what people say. The instruction 'in one word' now excludes the colloquial Dež gre. and other phrasings, so there is one right answer and an empty accept list is correct. The English is accurate and does not repeat another instruction word for word.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u08-l03-p03": "0180b07136e04fad"
+  }
+}

@@ -119,7 +119,13 @@
     "title_sl": "Prosti čas in vreme",
     "title_en": "Free time and the weather",
     "motif": "leaf",
-    "lessons": []
+    "lessons": [
+      "u08-l01",
+      "u08-l02",
+      "u08-l03",
+      "u08-l04",
+      "u08-l05"
+    ]
   },
   {
     "id": "u09",

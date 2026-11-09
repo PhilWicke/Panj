@@ -1,0 +1,34 @@
+{
+  "lesson": "u08-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 7,
+      "items": {},
+      "lines": {
+        "r-rad": {
+          "verdict": "accepted",
+          "reason": "All table forms follow the regular adjective paradigm: m. rad, rada, radi and f. rada, radi, rade. The feminine dual in -i matches Wiktionary's table for lep (lepa, lepi, lepe). SSKJ supports dual rada (rada se imata) and feminine plural rade. Fran gives both medve and midve under midva with no label, so the pronoun medve is standard. The example, the toggles and the quick check (Ona rada kuha, with one right option) are correct and natural, and the English is faithful. Card and helpers are accurate. 'radi for a group' simplifies, but the table's f.pl cell gives rade with 'Women only'.",
+          "fix": "",
+          "source": "https://en.wiktionary.org/wiki/lep"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 6,
+      "items": {},
+      "lines": {
+        "r-rad": {
+          "verdict": "accepted",
+          "reason": "All table forms are right: rad, rada in the singular; rada (m) and radi (f) in the dual; radi and rade in the plural. The pronouns fit, and medve is the first form SSKJ and Pravopis give (medve tudi midve, unmarked). Wiktionary has no adjective table for rad, so the feminine dual radi rests on the regular adjective ending -i, not on a lookup. The example, the toggle pair Rad berem / Rada berem and the quick check Ona rada kuha are natural, and the quick check has one right option. The notes and the German and English helpers are accurate, and the card text is 31 words.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=midva"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "r-rad": "dcbfd7562a4cd047"
+  }
+}

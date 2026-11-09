@@ -1,0 +1,313 @@
+{
+  "lesson": "u08-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 3,
+      "items": {
+        "u08-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Natural. SSKJ marks početi nav. ekspr., not pog.; the colloquial tag is justified by vikend. Accept variants correct.",
+          "source": "https://fran.si/iskanje?View=1&Query=početi"
+        },
+        "u08-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Natural; variants and examples correct; addressee named."
+        },
+        "u08-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Correct instrumental; examples natural; helper accurate."
+        },
+        "u08-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Natural. SSKJ gives mogoče as a particle of uncertainty with no pog. label, so neutral stands. Accept variant correct.",
+          "source": "https://fran.si/iskanje?View=1&Query=mogoče"
+        },
+        "u08-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Natural parting phrase; examples correct; helper accurate."
+        },
+        "u08-l05-i06": {
+          "verdict": "accepted",
+          "reason": "SSKJ pog., consistent with recognition; the German fein origin is confirmed on Fran; examples natural.",
+          "source": "https://fran.si/iskanje?View=1&Query=fajn"
+        }
+      },
+      "lines": {
+        "u08-l05-s01": {
+          "verdict": "accepted",
+          "reason": "rad agrees with on."
+        },
+        "u08-l05-s02": {
+          "verdict": "accepted",
+          "reason": "mi is the one right option."
+        },
+        "u08-l05-s03": {
+          "verdict": "accepted",
+          "reason": "Neuter mrzlo is the one right option."
+        },
+        "u08-l05-s04": {
+          "verdict": "accepted",
+          "reason": "bili is the standard form with ste; addressee named."
+        },
+        "u08-l05-s05": {
+          "verdict": "accepted",
+          "reason": "sem is the one right option."
+        },
+        "u08-l05-s06": {
+          "verdict": "accepted",
+          "reason": "bila agrees with ona."
+        },
+        "u08-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct."
+        },
+        "u08-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct; instruction clear."
+        },
+        "u08-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct."
+        },
+        "u08-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and all variants correct."
+        },
+        "u08-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Answer correct. Accept Dež gre is colloquial (SSKJ pog.) but heard everywhere and acceptable as an alternative.",
+          "source": "https://fran.si/iskanje?View=1&Query=dež"
+        },
+        "u08-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and variants correct."
+        },
+        "u08-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural; fajn is the host's line, so recognition only."
+        },
+        "u08-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Natural parting, English faithful."
+        },
+        "u08-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural reciprocal parting, English faithful."
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 4,
+      "items": {
+        "u08-l05-i01": {
+          "verdict": "accepted",
+          "reason": "Natural, and colloquial is the right tag given vikend (pog.) and početi (nav. ekspr.). All three variants are correct.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=početi"
+        },
+        "u08-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Natural invitation; variants are correct and the helper is accurate.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-i03": {
+          "verdict": "accepted",
+          "reason": "Standard phrase, natural examples, and veselje shares its root with veseliti.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-i04": {
+          "verdict": "accepted",
+          "reason": "Natural refusal; drugič in the sense of another occasion is attested, and it is cross-referenced to drug.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=drugič"
+        },
+        "u08-l05-i05": {
+          "verdict": "accepted",
+          "reason": "Common parting phrase in the ti imperative; the examples are natural and the literal note is fair.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=imej se lepo"
+        },
+        "u08-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Colloquial and non-standard per SSKJ and Pravopis, so recognition is the right tag. From German fein is attested.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=fajn"
+        }
+      },
+      "lines": {
+        "u08-l05-s01": {
+          "verdict": "accepted",
+          "reason": "Rad is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-s02": {
+          "verdict": "accepted",
+          "reason": "Mi is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-s03": {
+          "verdict": "accepted",
+          "reason": "Mrzlo is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-s04": {
+          "verdict": "accepted",
+          "reason": "Bili is the only right option, and the addressee note uses the course wording.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-s05": {
+          "verdict": "accepted",
+          "reason": "The English fixes first person, so sem is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-s06": {
+          "verdict": "accepted",
+          "reason": "Bila is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and all three variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variant are correct, and the instruction is clear.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and all three variants are correct and natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-p05": {
+          "verdict": "doubtful",
+          "reason": "Dežuje is right, but the accepted variant Dež gre is labelled pog. in SSKJ and neknj. pog. in Pravopis. A native speaker should confirm it is acceptable as an answer.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=dež"
+        },
+        "u08-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Answer and all variants are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural from a host; fajn is recognition only and here is heard, not produced.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural; prejšnji vikend as a time accusative is normal.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-d-07": {
+          "verdict": "accepted",
+          "reason": "Natural parting and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l05-d-08": {
+          "verdict": "accepted",
+          "reason": "Natural reply and faithful.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u08-l05-i01": "e2f5212fa5334bbe",
+    "u08-l05-i02": "4887ba2b9cf3f62e",
+    "u08-l05-i03": "687eeecc6b1142b5",
+    "u08-l05-i04": "58366b3859756e0f",
+    "u08-l05-i05": "ccb8397bb6fba5a3",
+    "u08-l05-i06": "7a900d3d60c7c6bb",
+    "u08-l05-s01": "57ea8faee969a720",
+    "u08-l05-s02": "c9aeef0e65679a97",
+    "u08-l05-s03": "7cefb3a6583f71f7",
+    "u08-l05-s04": "144fa0449e051c91",
+    "u08-l05-s05": "7fa54d3531b3f5bd",
+    "u08-l05-s06": "0e5099f18a644c9d",
+    "u08-l05-p01": "7a19040be5cdbd45",
+    "u08-l05-p02": "2e6cac9ee66d3ad3",
+    "u08-l05-p03": "4fb21e8217d64e37",
+    "u08-l05-p04": "8d33e3f10973df62",
+    "u08-l05-p05": "adfe374bb12cce70",
+    "u08-l05-p06": "c8b5ad83fc065a78",
+    "u08-l05-d-01": "ec8b1574bf314d95",
+    "u08-l05-d-02": "f70b246b839a6444",
+    "u08-l05-d-03": "c7b694a34977ddf8",
+    "u08-l05-d-04": "3b182ba006d324ea",
+    "u08-l05-d-05": "5d4600b6d6204413",
+    "u08-l05-d-06": "679245f2a95cac9c",
+    "u08-l05-d-07": "1fa8fb187826c010",
+    "u08-l05-d-08": "658be387a8dac308"
+  }
+}

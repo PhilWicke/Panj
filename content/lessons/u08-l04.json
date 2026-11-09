@@ -1,0 +1,441 @@
+{
+  "id": "u08-l04",
+  "unit": "u08",
+  "order": 4,
+  "role": "theme",
+  "title_sl": "Kje si bil?",
+  "title_en": "Where were you?",
+  "items": [
+    {
+      "id": "u08-l04-i01",
+      "type": "chunk",
+      "sl": "Kje si bil?",
+      "sl_colloquial": null,
+      "en": "Where were you? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kje si bil včeraj?",
+          "en": "Where were you yesterday?"
+        },
+        {
+          "sl": "Kje si bil v nedeljo?",
+          "en": "Where were you on Sunday?"
+        }
+      ],
+      "helper": "To a woman: Kje si bila?",
+      "accept": [
+        "Kje si bila?"
+      ],
+      "rules": [
+        "r-past-biti"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l04-i02",
+      "type": "chunk",
+      "sl": "Bil sem na morju.",
+      "sl_colloquial": null,
+      "en": "I was at the seaside.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Bil sem na morju, zelo lepo je bilo.",
+          "en": "I was at the seaside, it was very lovely."
+        },
+        {
+          "sl": "Včeraj sem bil na morju.",
+          "en": "Yesterday I was at the seaside."
+        }
+      ],
+      "helper": "A woman says Bila sem na morju.",
+      "accept": [
+        "Bila sem na morju."
+      ],
+      "rules": [
+        "r-past-biti",
+        "r-locative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l04-i03",
+      "type": "chunk",
+      "sl": "Bila sem v hribih.",
+      "sl_colloquial": null,
+      "en": "I was in the hills.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Bila sem v hribih, lepo je bilo.",
+          "en": "I was in the hills, it was lovely."
+        },
+        {
+          "sl": "V soboto sem bila v hribih.",
+          "en": "On Saturday I was in the hills."
+        }
+      ],
+      "helper": "A man says Bil sem v hribih.",
+      "accept": [
+        "Bil sem v hribih."
+      ],
+      "rules": [
+        "r-past-biti",
+        "r-locative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l04-i04",
+      "type": "chunk",
+      "sl": "Kako je bilo?",
+      "sl_colloquial": null,
+      "en": "How was it?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kako je bilo na morju?",
+          "en": "How was it at the seaside?"
+        },
+        {
+          "sl": "Kako je bilo v hribih?",
+          "en": "How was it in the hills?"
+        }
+      ],
+      "helper": "bilo is the form for it: je bilo, it was.",
+      "accept": [],
+      "rules": [
+        "r-past-biti"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l04-i05",
+      "type": "chunk",
+      "sl": "Bilo je lepo.",
+      "sl_colloquial": null,
+      "en": "It was lovely.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Bilo je zelo lepo, hvala.",
+          "en": "It was very lovely, thank you."
+        },
+        {
+          "sl": "Včeraj je bilo lepo.",
+          "en": "Yesterday it was lovely."
+        }
+      ],
+      "helper": "Same order as bil sem: bilo first, then je.",
+      "accept": [
+        "Lepo je bilo."
+      ],
+      "rules": [
+        "r-past-biti"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l04-i06",
+      "type": "chunk",
+      "sl": "Nisem bil doma.",
+      "sl_colloquial": null,
+      "en": "I wasn't at home.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "V soboto nisem bil doma.",
+          "en": "On Saturday I wasn't at home."
+        },
+        {
+          "sl": "Včeraj nisem bil doma.",
+          "en": "Yesterday I wasn't at home."
+        }
+      ],
+      "helper": "nisem replaces sem, as in Nisem od tukaj. A woman says Nisem bila doma.",
+      "accept": [
+        "Nisem bila doma."
+      ],
+      "rules": [
+        "r-past-biti",
+        "r-biti-negative"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l04-i07",
+      "type": "word",
+      "sl": "včeraj",
+      "sl_colloquial": null,
+      "en": "yesterday",
+      "register": "neutral",
+      "pos": "adverb",
+      "examples": [
+        {
+          "sl": "Včeraj sem bil doma.",
+          "en": "Yesterday I was at home."
+        },
+        {
+          "sl": "Včeraj je bil ponedeljek.",
+          "en": "Yesterday was Monday."
+        }
+      ],
+      "helper": "Sounds like večer, evening: think of last evening.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 297,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l04-i08",
+      "type": "word",
+      "sl": "vikend",
+      "sl_colloquial": null,
+      "en": "weekend",
+      "register": "colloquial",
+      "pos": "noun",
+      "gender": "m",
+      "examples": [
+        {
+          "sl": "Vikend je bil zelo lep.",
+          "en": "The weekend was very nice."
+        },
+        {
+          "sl": "Kako je bilo za vikend?",
+          "en": "How was it at the weekend?"
+        }
+      ],
+      "helper": "The English weekend, spelled the Slovenian way.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 665,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-past-biti"
+  ],
+  "structured": [
+    {
+      "id": "u08-l04-s01",
+      "prompt_sl": "Jaz ___ bil doma.",
+      "options": [
+        "sem",
+        "si",
+        "je"
+      ],
+      "answer": "sem",
+      "rule": "r-past-biti",
+      "en": "I was at home."
+    },
+    {
+      "id": "u08-l04-s02",
+      "prompt_sl": "Ti ___ bil na morju?",
+      "options": [
+        "sem",
+        "si",
+        "je"
+      ],
+      "answer": "si",
+      "rule": "r-past-biti",
+      "en": "Were you at the seaside? (to someone close)"
+    },
+    {
+      "id": "u08-l04-s03",
+      "prompt_sl": "Ona je ___ v hribih.",
+      "options": [
+        "bil",
+        "bila",
+        "bilo"
+      ],
+      "answer": "bila",
+      "rule": "r-past-biti",
+      "en": "She was in the hills."
+    },
+    {
+      "id": "u08-l04-s04",
+      "prompt_sl": "Kako je ___?",
+      "options": [
+        "bil",
+        "bila",
+        "bilo"
+      ],
+      "answer": "bilo",
+      "rule": "r-past-biti",
+      "en": "How was it?"
+    },
+    {
+      "id": "u08-l04-s05",
+      "prompt_sl": "Midva ___ bila doma.",
+      "options": [
+        "sva",
+        "sta",
+        "smo"
+      ],
+      "answer": "sva",
+      "rule": "r-past-biti",
+      "en": "The two of us were at home."
+    },
+    {
+      "id": "u08-l04-s06",
+      "prompt_sl": "Mi ___ bili na morju.",
+      "options": [
+        "sem",
+        "smo",
+        "ste"
+      ],
+      "answer": "smo",
+      "rule": "r-past-biti",
+      "en": "We were at the seaside."
+    }
+  ],
+  "production": [
+    {
+      "id": "u08-l04-p01",
+      "en": "Ask someone close where they were.",
+      "answer": "Kje si bil?",
+      "accept": [
+        "Kje si bila?"
+      ],
+      "item": "u08-l04-i01"
+    },
+    {
+      "id": "u08-l04-p02",
+      "en": "Say you were at the seaside.",
+      "answer": "Bil sem na morju.",
+      "accept": [
+        "Bila sem na morju."
+      ],
+      "item": "u08-l04-i02"
+    },
+    {
+      "id": "u08-l04-p03",
+      "en": "Say you were in the hills.",
+      "answer": "Bila sem v hribih.",
+      "accept": [
+        "Bil sem v hribih."
+      ],
+      "item": "u08-l04-i03"
+    },
+    {
+      "id": "u08-l04-p04",
+      "en": "Ask how it was.",
+      "answer": "Kako je bilo?",
+      "accept": [],
+      "item": "u08-l04-i04"
+    },
+    {
+      "id": "u08-l04-p05",
+      "en": "Say it was lovely.",
+      "answer": "Bilo je lepo.",
+      "accept": [
+        "Lepo je bilo."
+      ],
+      "item": "u08-l04-i05"
+    },
+    {
+      "id": "u08-l04-p06",
+      "en": "Say you weren't at home.",
+      "answer": "Nisem bil doma.",
+      "accept": [
+        "Nisem bila doma."
+      ],
+      "item": "u08-l04-i06"
+    }
+  ],
+  "dialogue": {
+    "id": "u08-l04-d",
+    "title_sl": "Ponedeljek zjutraj",
+    "title_en": "Monday morning",
+    "setting_en": "On Monday morning your hosts ask about your weekend.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Dobro jutro. Kje si bil za vikend?",
+        "en": "Good morning. Where were you at the weekend?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Bil sem na morju. Včeraj je bilo sonce.",
+        "en": "I was at the seaside. Yesterday it was sunny.",
+        "new_items": [
+          "u08-l04-i02",
+          "u08-l04-i07"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kako je bilo?",
+        "en": "How was it?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Bilo je lepo. Kje ste bili vi?",
+        "en": "It was lovely. Where were you all?",
+        "new_items": [
+          "u08-l04-i05"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Mi smo bili v hribih.",
+        "en": "We were in the hills."
+      },
+      {
+        "speaker": "you",
+        "sl": "Kako je bilo v hribih?",
+        "en": "How was it in the hills?",
+        "new_items": [
+          "u08-l04-i04"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,439 @@
+{
+  "id": "u08-l01",
+  "unit": "u08",
+  "order": 1,
+  "role": "theme",
+  "title_sl": "Rad berem",
+  "title_en": "I like reading",
+  "items": [
+    {
+      "id": "u08-l01-i01",
+      "type": "chunk",
+      "sl": "Kaj rad delaš?",
+      "sl_colloquial": null,
+      "en": "What do you like doing? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Kaj rad delaš doma?",
+          "en": "What do you like doing at home?"
+        },
+        {
+          "sl": "Kaj rada delaš zvečer?",
+          "en": "What do you like doing in the evening?"
+        }
+      ],
+      "helper": "rad matches the person you ask; to a woman it is Kaj rada delaš?",
+      "accept": [
+        "Kaj rada delaš?"
+      ],
+      "rules": [
+        "r-rad"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l01-i02",
+      "type": "chunk",
+      "sl": "Rad berem.",
+      "sl_colloquial": null,
+      "en": "I like reading.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Zvečer rad berem.",
+          "en": "In the evening I like reading."
+        },
+        {
+          "sl": "Doma rad berem knjige.",
+          "en": "At home I like reading books."
+        }
+      ],
+      "helper": "Works like German gern: Ich lese gern. A woman says Rada berem.",
+      "accept": [
+        "Rada berem."
+      ],
+      "rules": [
+        "r-rad"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l01-i03",
+      "type": "chunk",
+      "sl": "Rada kuham.",
+      "sl_colloquial": null,
+      "en": "I like cooking.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Doma rada kuham.",
+          "en": "At home I like cooking."
+        },
+        {
+          "sl": "Rada kuham za vse.",
+          "en": "I like cooking for everyone."
+        }
+      ],
+      "helper": "kuham is I cook, from kuhati, like German kochen. A man says Rad kuham.",
+      "accept": [
+        "Rad kuham."
+      ],
+      "rules": [
+        "r-rad"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l01-i04",
+      "type": "chunk",
+      "sl": "Rad hodim v hribe.",
+      "sl_colloquial": null,
+      "en": "I like hiking in the hills.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Zelo rad hodim v hribe.",
+          "en": "I really like hiking in the hills."
+        },
+        {
+          "sl": "Rad hodim v hribe, ti tudi?",
+          "en": "I like hiking in the hills, you too?"
+        }
+      ],
+      "helper": "hodim is I walk or go regularly, from hoditi; grem is one trip.",
+      "accept": [
+        "Rada hodim v hribe."
+      ],
+      "rules": [
+        "r-rad",
+        "r-grem-v-na"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l01-i05",
+      "type": "chunk",
+      "sl": "Ne maram športa.",
+      "sl_colloquial": null,
+      "en": "I don't like sport.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Ne maram športa, rad sem doma.",
+          "en": "I don't like sport, I like being at home."
+        },
+        {
+          "sl": "Ne maram športa, rada berem.",
+          "en": "I don't like sport, I like reading."
+        }
+      ],
+      "helper": "After ne, šport becomes športa, just as imam otroke becomes nimam otrok.",
+      "accept": [],
+      "rules": [
+        "r-genitive-ni"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l01-i06",
+      "type": "word",
+      "sl": "knjiga",
+      "sl_colloquial": null,
+      "en": "book",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "f",
+      "forms": {
+        "acc": "knjigo",
+        "acc.pl": "knjige"
+      },
+      "examples": [
+        {
+          "sl": "Kje je moja knjiga?",
+          "en": "Where is my book?"
+        },
+        {
+          "sl": "Zvečer berem knjigo.",
+          "en": "In the evening I read a book."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 434,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l01-i07",
+      "type": "word",
+      "sl": "hrib",
+      "sl_colloquial": null,
+      "en": "hill",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "acc.pl": "hribe",
+        "loc.pl": "hribih"
+      },
+      "examples": [
+        {
+          "sl": "To je lep hrib.",
+          "en": "That's a nice hill."
+        },
+        {
+          "sl": "Jutri grem v hribe.",
+          "en": "Tomorrow I'm going to the hills."
+        }
+      ],
+      "helper": null,
+      "accept": [],
+      "rules": [],
+      "freq_rank": 1115,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l01-i08",
+      "type": "word",
+      "sl": "šport",
+      "sl_colloquial": null,
+      "en": "sport",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "forms": {
+        "gen": "športa"
+      },
+      "examples": [
+        {
+          "sl": "Imam rad šport.",
+          "en": "I like sport."
+        },
+        {
+          "sl": "Šport je za vse.",
+          "en": "Sport is for everyone."
+        }
+      ],
+      "helper": "Like German Sport and English sport.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 967,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-rad"
+  ],
+  "structured": [
+    {
+      "id": "u08-l01-s01",
+      "prompt_sl": "Jaz ___ kuham.",
+      "options": [
+        "rad",
+        "rada",
+        "radi"
+      ],
+      "answer": "rada",
+      "rule": "r-rad",
+      "en": "I like cooking. (a woman speaking)"
+    },
+    {
+      "id": "u08-l01-s02",
+      "prompt_sl": "On ___ bere.",
+      "options": [
+        "rad",
+        "rada",
+        "radi"
+      ],
+      "answer": "rad",
+      "rule": "r-rad",
+      "en": "He likes reading."
+    },
+    {
+      "id": "u08-l01-s03",
+      "prompt_sl": "Ona ___ hodi v hribe.",
+      "options": [
+        "rad",
+        "rada",
+        "radi"
+      ],
+      "answer": "rada",
+      "rule": "r-rad",
+      "en": "She likes hiking in the hills."
+    },
+    {
+      "id": "u08-l01-s04",
+      "prompt_sl": "Mi ___ beremo.",
+      "options": [
+        "rad",
+        "rada",
+        "radi"
+      ],
+      "answer": "radi",
+      "rule": "r-rad",
+      "en": "We like reading."
+    },
+    {
+      "id": "u08-l01-s05",
+      "prompt_sl": "Midva ___ bereva.",
+      "options": [
+        "rad",
+        "rada",
+        "radi"
+      ],
+      "answer": "rada",
+      "rule": "r-rad",
+      "en": "The two of us like reading. (two men speaking)"
+    },
+    {
+      "id": "u08-l01-s06",
+      "prompt_sl": "Ne maram ___.",
+      "options": [
+        "šport",
+        "športa",
+        "športu"
+      ],
+      "answer": "športa",
+      "rule": "r-genitive-ni",
+      "en": "I don't like sport."
+    }
+  ],
+  "production": [
+    {
+      "id": "u08-l01-p01",
+      "en": "Ask someone close what they like doing.",
+      "answer": "Kaj rad delaš?",
+      "accept": [
+        "Kaj rada delaš?"
+      ],
+      "item": "u08-l01-i01"
+    },
+    {
+      "id": "u08-l01-p02",
+      "en": "Say you like reading.",
+      "answer": "Rad berem.",
+      "accept": [
+        "Rada berem."
+      ],
+      "item": "u08-l01-i02"
+    },
+    {
+      "id": "u08-l01-p03",
+      "en": "Say you like cooking.",
+      "answer": "Rada kuham.",
+      "accept": [
+        "Rad kuham."
+      ],
+      "item": "u08-l01-i03"
+    },
+    {
+      "id": "u08-l01-p04",
+      "en": "Say you like hiking in the hills.",
+      "answer": "Rad hodim v hribe.",
+      "accept": [
+        "Rada hodim v hribe."
+      ],
+      "item": "u08-l01-i04"
+    },
+    {
+      "id": "u08-l01-p05",
+      "en": "Say you don't like sport.",
+      "answer": "Ne maram športa.",
+      "accept": [],
+      "item": "u08-l01-i05"
+    },
+    {
+      "id": "u08-l01-p06",
+      "en": "Say you are reading a book.",
+      "answer": "Berem knjigo.",
+      "accept": [],
+      "item": "u08-l01-i06"
+    }
+  ],
+  "dialogue": {
+    "id": "u08-l01-d",
+    "title_sl": "Konec tedna",
+    "title_en": "At the weekend",
+    "setting_en": "At home with your hosts, you talk about what you like doing at the weekend.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "Kaj rad delaš konec tedna?",
+        "en": "What do you like doing at the weekend?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Rad berem. Ne maram športa.",
+        "en": "I like reading. I don't like sport.",
+        "new_items": [
+          "u08-l01-i02",
+          "u08-l01-i05"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Jaz rada kuham. Greš v soboto v hribe?",
+        "en": "I like cooking. Are you going to the hills on Saturday?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Ja, rad hodim v hribe.",
+        "en": "Yes, I like hiking in the hills.",
+        "new_items": [
+          "u08-l01-i04"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Dobro. V soboto gremo skupaj.",
+        "en": "Good. On Saturday we'll go together."
+      }
+    ]
+  }
+}

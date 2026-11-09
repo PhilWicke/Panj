@@ -1,0 +1,117 @@
+{
+  "id": "r-past-biti",
+  "unit": "u08",
+  "title_en": "The past of biti: bil sem",
+  "card_en": "The past of biti is sem, si, je as in the present, plus a past form that matches who it was: bil sem for a man, bila sem for a woman, bilo je for it.",
+  "example": {
+    "sl": "Bil sem na morju.",
+    "en": "I was at the seaside."
+  },
+  "table": {
+    "rows": [
+      "1",
+      "2",
+      "3"
+    ],
+    "cols": [
+      "sg",
+      "du",
+      "pl"
+    ],
+    "cells": {
+      "1.sg": {
+        "form": "bil sem",
+        "pronoun": "jaz",
+        "note_en": "A woman says bila sem."
+      },
+      "2.sg": {
+        "form": "bil si",
+        "pronoun": "ti",
+        "note_en": "To a woman: bila si."
+      },
+      "3.sg": {
+        "form": "bil je",
+        "pronoun": "on",
+        "note_en": "For she, bila je; for it, bilo je."
+      },
+      "1.du": {
+        "form": "bila sva",
+        "pronoun": "midva",
+        "note_en": "Two women say bili sva."
+      },
+      "2.du": {
+        "form": "bila sta",
+        "pronoun": "vidva",
+        "note_en": "To two women: bili sta."
+      },
+      "3.du": {
+        "form": "bila sta",
+        "pronoun": "onadva",
+        "note_en": "Two women: bili sta."
+      },
+      "1.pl": {
+        "form": "bili smo",
+        "pronoun": "mi",
+        "note_en": "Women only: bile smo."
+      },
+      "2.pl": {
+        "form": "bili ste",
+        "pronoun": "vi",
+        "note_en": "Women only: bile ste. Also the polite you."
+      },
+      "3.pl": {
+        "form": "bili so",
+        "pronoun": "oni",
+        "note_en": "Women only: bile so."
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "Who was there",
+      "options": [
+        "a man",
+        "a woman"
+      ],
+      "examples": {
+        "a man": {
+          "sl": "Bil sem doma.",
+          "en": "I was at home."
+        },
+        "a woman": {
+          "sl": "Bila sem doma.",
+          "en": "I was at home."
+        }
+      }
+    },
+    {
+      "label": "Yes or no",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "examples": {
+        "yes": {
+          "sl": "Bil sem doma.",
+          "en": "I was at home."
+        },
+        "no": {
+          "sl": "Nisem bil doma.",
+          "en": "I wasn't at home."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Ona je ___ na morju.",
+    "options": [
+      "bil",
+      "bila",
+      "bilo"
+    ],
+    "answer": "bila",
+    "explain_en": "Ona is a woman, so the past form is bila: ona je bila."
+  },
+  "helper_de": "German has war and bin gewesen; Slovenian always uses sem with bil.",
+  "helper_en": "The past form changes with the person's gender: bil for a man, bila for a woman."
+}

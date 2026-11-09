@@ -1,0 +1,416 @@
+{
+  "id": "u08-l03",
+  "unit": "u08",
+  "order": 3,
+  "role": "theme",
+  "title_sl": "Kakšno je vreme?",
+  "title_en": "What is the weather like?",
+  "items": [
+    {
+      "id": "u08-l03-i01",
+      "type": "chunk",
+      "sl": "Kakšno je vreme?",
+      "sl_colloquial": null,
+      "en": "What is the weather like?",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Kakšno je vreme danes?",
+          "en": "What is the weather like today?"
+        },
+        {
+          "sl": "Kakšno je vreme na morju?",
+          "en": "What is the weather like at the seaside?"
+        }
+      ],
+      "helper": "kakšno, what kind of, takes -o to match neuter vreme.",
+      "accept": [],
+      "rules": [
+        "r-weather",
+        "r-adjective-agreement"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l03-i02",
+      "type": "chunk",
+      "sl": "Lepo vreme je.",
+      "sl_colloquial": null,
+      "en": "The weather is nice.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Danes je lepo vreme.",
+          "en": "The weather is nice today."
+        },
+        {
+          "sl": "Lepo vreme je, mi pa delamo.",
+          "en": "The weather is nice, and we're working."
+        }
+      ],
+      "helper": "vreme is neuter, so lepo ends in -o.",
+      "accept": [
+        "Vreme je lepo.",
+        "Lepo je vreme."
+      ],
+      "rules": [
+        "r-weather",
+        "r-adjective-agreement"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l03-i03",
+      "type": "chunk",
+      "sl": "Dežuje.",
+      "sl_colloquial": null,
+      "en": "It's raining.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Spet dežuje.",
+          "en": "It's raining again."
+        },
+        {
+          "sl": "Dežuje, grem domov.",
+          "en": "It's raining, I'm going home."
+        }
+      ],
+      "helper": "From dež, rain.",
+      "accept": [
+        "Dež gre."
+      ],
+      "rules": [
+        "r-weather"
+      ],
+      "freq_rank": 2498,
+      "verification": {
+        "review1": "accepted",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review2 doubtful: Dežuje is fine, but the accept variant Dež gre is labelled pog. in SSKJ and neknj. pog. in Pravopis, so it is below the written standard on an item tagged neutral. It is widely heard, so a native speaker should confirm whether it stays as an accepted answer."
+      }
+    },
+    {
+      "id": "u08-l03-i04",
+      "type": "chunk",
+      "sl": "Zelo je vroče.",
+      "sl_colloquial": null,
+      "en": "It's very hot.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Danes je zelo vroče.",
+          "en": "It's very hot today."
+        },
+        {
+          "sl": "Zelo je vroče, lahko dobim vodo?",
+          "en": "It's very hot, can I have some water?"
+        }
+      ],
+      "helper": "vroče is the weather form of vroč, hot.",
+      "accept": [
+        "Zelo vroče je."
+      ],
+      "rules": [
+        "r-weather"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l03-i05",
+      "type": "chunk",
+      "sl": "Mrzlo je.",
+      "sl_colloquial": null,
+      "en": "It's cold.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Zjutraj je mrzlo.",
+          "en": "It's cold in the morning."
+        },
+        {
+          "sl": "Mrzlo je, pridi naprej.",
+          "en": "It's cold, come on in."
+        }
+      ],
+      "helper": "mrzlo is the weather form of mrzel, cold.",
+      "accept": [],
+      "rules": [
+        "r-weather"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l03-i06",
+      "type": "word",
+      "sl": "dež",
+      "sl_colloquial": null,
+      "en": "rain",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "examples": [
+        {
+          "sl": "Danes gre dež.",
+          "en": "It's raining today."
+        },
+        {
+          "sl": "Jutri bo dež.",
+          "en": "It will rain tomorrow."
+        }
+      ],
+      "helper": "dežuje, it's raining, comes from this word.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 894,
+      "verification": {
+        "review1": "doubtful",
+        "review2": "doubtful",
+        "native": null,
+        "status": "pending",
+        "notes": "review1 doubtful: Field examples and register: the example Danes gre dež uses dež gre, labelled pog. in SSKJ and neknj. pog. in Pravopis, while the item is tagged neutral. The style guide makes a neutral tag despite a label on the use in the item doubtful. The sentence itself is common speech, so a native speaker should decide the tag or the example.; review2 doubtful: Headword and gender are right, but the example Danes gre dež uses the construction SSKJ labels pog. and Pravopis neknj. pog., on an item tagged neutral. A native speaker should confirm the tag or the example."
+      }
+    },
+    {
+      "id": "u08-l03-i07",
+      "type": "word",
+      "sl": "sonce",
+      "sl_colloquial": null,
+      "en": "sun",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "n",
+      "examples": [
+        {
+          "sl": "Jutri bo sonce.",
+          "en": "Tomorrow it will be sunny."
+        },
+        {
+          "sl": "Danes je sonce.",
+          "en": "It's sunny today."
+        }
+      ],
+      "helper": "Related to German Sonne and English sun.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 754,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l03-i08",
+      "type": "word",
+      "sl": "sneg",
+      "sl_colloquial": null,
+      "en": "snow",
+      "register": "neutral",
+      "pos": "noun",
+      "gender": "m",
+      "examples": [
+        {
+          "sl": "V hribih je sneg.",
+          "en": "There's snow in the hills."
+        },
+        {
+          "sl": "Jutri bo sneg.",
+          "en": "It will snow tomorrow."
+        }
+      ],
+      "helper": "Related to German Schnee and English snow.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 663,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [
+    "r-weather"
+  ],
+  "structured": [
+    {
+      "id": "u08-l03-s01",
+      "prompt_sl": "Danes je zelo ___.",
+      "options": [
+        "vroče",
+        "vroč",
+        "vroča"
+      ],
+      "answer": "vroče",
+      "rule": "r-weather",
+      "en": "It's very hot today."
+    },
+    {
+      "id": "u08-l03-s02",
+      "prompt_sl": "Zjutraj je ___.",
+      "options": [
+        "mrzlo",
+        "mrzel",
+        "mrzla"
+      ],
+      "answer": "mrzlo",
+      "rule": "r-weather",
+      "en": "It's cold in the morning."
+    },
+    {
+      "id": "u08-l03-s03",
+      "prompt_sl": "Danes je ___ vreme.",
+      "options": [
+        "lepo",
+        "lep",
+        "lepa"
+      ],
+      "answer": "lepo",
+      "rule": "r-adjective-agreement",
+      "en": "The weather is nice today."
+    },
+    {
+      "id": "u08-l03-s04",
+      "prompt_sl": "Kakšn_ je vreme?",
+      "options": [
+        "o",
+        "a",
+        "i"
+      ],
+      "answer": "o",
+      "rule": "r-adjective-agreement",
+      "en": "What is the weather like?"
+    },
+    {
+      "id": "u08-l03-s05",
+      "prompt_sl": "Danes ___.",
+      "options": [
+        "dežuje",
+        "dež",
+        "dežujem"
+      ],
+      "answer": "dežuje",
+      "rule": "r-weather",
+      "en": "It's raining today."
+    }
+  ],
+  "production": [
+    {
+      "id": "u08-l03-p01",
+      "en": "Ask what the weather is like.",
+      "answer": "Kakšno je vreme?",
+      "accept": [],
+      "item": "u08-l03-i01"
+    },
+    {
+      "id": "u08-l03-p02",
+      "en": "Say the weather is nice.",
+      "answer": "Lepo vreme je.",
+      "accept": [
+        "Vreme je lepo.",
+        "Lepo je vreme."
+      ],
+      "item": "u08-l03-i02"
+    },
+    {
+      "id": "u08-l03-p03",
+      "en": "Say in one word that it's raining.",
+      "answer": "Dežuje.",
+      "accept": [],
+      "item": "u08-l03-i03"
+    },
+    {
+      "id": "u08-l03-p04",
+      "en": "Say it's very hot.",
+      "answer": "Zelo je vroče.",
+      "accept": [
+        "Zelo vroče je."
+      ],
+      "item": "u08-l03-i04"
+    },
+    {
+      "id": "u08-l03-p05",
+      "en": "Say it's cold.",
+      "answer": "Mrzlo je.",
+      "accept": [],
+      "item": "u08-l03-i05"
+    },
+    {
+      "id": "u08-l03-p06",
+      "en": "Say there is snow in the hills.",
+      "answer": "V hribih je sneg.",
+      "accept": [
+        "Sneg je v hribih."
+      ],
+      "item": "u08-l03-i08"
+    }
+  ],
+  "dialogue": {
+    "id": "u08-l03-d",
+    "title_sl": "Na stopnicah",
+    "title_en": "On the stairs",
+    "setting_en": "On the stairs you meet a neighbour who has just come in from outside.",
+    "lines": [
+      {
+        "speaker": "you",
+        "sl": "Dober dan. Kakšno je vreme?",
+        "en": "Good day. What is the weather like?",
+        "new_items": [
+          "u08-l03-i01"
+        ]
+      },
+      {
+        "speaker": "neighbour",
+        "sl": "Dežuje in mrzlo je.",
+        "en": "It's raining and it's cold."
+      },
+      {
+        "speaker": "you",
+        "sl": "Spet dežuje? Jutri grem v hribe.",
+        "en": "Raining again? Tomorrow I'm going to the hills.",
+        "new_items": [
+          "u08-l03-i03"
+        ]
+      },
+      {
+        "speaker": "neighbour",
+        "sl": "Jutri bo lepo vreme.",
+        "en": "Tomorrow the weather will be nice."
+      },
+      {
+        "speaker": "you",
+        "sl": "To je dobro. Lep dan še naprej.",
+        "en": "That's good. Have a nice rest of the day."
+      }
+    ]
+  }
+}

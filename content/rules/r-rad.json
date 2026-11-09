@@ -1,0 +1,82 @@
+{
+  "id": "r-rad",
+  "unit": "u08",
+  "title_en": "Liking to do something: rad and rada",
+  "card_en": "Rad plus a verb says you like doing something. It matches the person who likes it, not the thing: rad for a man, rada for a woman, radi for a group.",
+  "example": {
+    "sl": "Rad berem.",
+    "en": "I like reading."
+  },
+  "table": {
+    "rows": [
+      "m",
+      "f"
+    ],
+    "cols": [
+      "sg",
+      "du",
+      "pl"
+    ],
+    "cells": {
+      "m.sg": {
+        "form": "rad",
+        "pronoun": "on"
+      },
+      "m.du": {
+        "form": "rada",
+        "pronoun": "midva",
+        "note_en": "Two men or a mixed pair: the same form as for one woman."
+      },
+      "m.pl": {
+        "form": "radi",
+        "pronoun": "mi",
+        "note_en": "Men or a mixed group."
+      },
+      "f.sg": {
+        "form": "rada",
+        "pronoun": "ona"
+      },
+      "f.du": {
+        "form": "radi",
+        "pronoun": "medve",
+        "note_en": "Two women: the same form as for a group."
+      },
+      "f.pl": {
+        "form": "rade",
+        "pronoun": "me",
+        "note_en": "Women only."
+      }
+    }
+  },
+  "toggles": [
+    {
+      "label": "Who likes it",
+      "options": [
+        "a man",
+        "a woman"
+      ],
+      "examples": {
+        "a man": {
+          "sl": "Rad berem.",
+          "en": "I like reading."
+        },
+        "a woman": {
+          "sl": "Rada berem.",
+          "en": "I like reading."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Ona ___ kuha.",
+    "options": [
+      "rad",
+      "rada",
+      "radi"
+    ],
+    "answer": "rada",
+    "explain_en": "Ona is one woman, so rad takes the form rada."
+  },
+  "helper_de": "Like gern with a verb: Ich lese gern, rad berem. But rad changes with who likes it.",
+  "helper_en": "English like works for things and activities. Rad goes with what you do: rad berem, I like reading."
+}

@@ -1,0 +1,34 @@
+{
+  "lesson": "u08-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u08-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Dežuje. is correct and natural as a one-word reply to a question about the weather, as confirmed by the Fran entry looked up for u08-l03. 'In one word' excludes Dež gre, so the empty accept list is right and the answer is unique. The instruction is worded differently from u08-l03-p03, as the consolidation lesson requires, and its English is accurate.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=deževati"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u08-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Dežuje. is correct and a natural one-word reply to a question about the weather. 'In one word' leaves a single right answer, so an empty accept list is correct. The instruction is accurate English and worded differently from u08-l03-p03, as the consolidation lesson requires.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u08-l05-p05": "0180b07136e04fad"
+  }
+}

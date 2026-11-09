@@ -1,0 +1,392 @@
+{
+  "id": "u08-l05",
+  "unit": "u08",
+  "order": 5,
+  "role": "consolidation",
+  "title_sl": "Prosti dan",
+  "title_en": "A day off",
+  "items": [
+    {
+      "id": "u08-l05-i01",
+      "type": "chunk",
+      "sl": "Kaj počneš ta vikend?",
+      "sl_colloquial": null,
+      "en": "What are you doing this weekend? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Živjo, kaj počneš ta vikend?",
+          "en": "Hi, what are you doing this weekend?"
+        },
+        {
+          "sl": "Kaj počneš ta vikend, greš na morje?",
+          "en": "What are you doing this weekend, are you going to the seaside?"
+        }
+      ],
+      "helper": "počneš is from početi, to do; delaš fits here too.",
+      "accept": [
+        "Kaj delaš ta vikend?",
+        "Kaj počneš ta konec tedna?",
+        "Kaj delaš ta konec tedna?"
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l05-i02",
+      "type": "chunk",
+      "sl": "Greš z nami?",
+      "sl_colloquial": null,
+      "en": "Are you coming with us? (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Greš z nami na kavo?",
+          "en": "Are you coming with us for a coffee?"
+        },
+        {
+          "sl": "Greš z nami v hribe?",
+          "en": "Are you coming with us to the hills?"
+        }
+      ],
+      "helper": "z nami, with us: the same z as z mlekom, with milk.",
+      "accept": [
+        "A greš z nami?",
+        "Ali greš z nami?"
+      ],
+      "rules": [
+        "r-iti-present",
+        "r-z-instrumental"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l05-i03",
+      "type": "chunk",
+      "sl": "Z veseljem.",
+      "sl_colloquial": null,
+      "en": "With pleasure.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Z veseljem pridem.",
+          "en": "I'd be glad to come."
+        },
+        {
+          "sl": "Hvala, z veseljem.",
+          "en": "Thank you, with pleasure."
+        }
+      ],
+      "helper": "Same root as Me veseli, pleased to meet you.",
+      "accept": [],
+      "rules": [
+        "r-z-instrumental"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l05-i04",
+      "type": "chunk",
+      "sl": "Mogoče drugič.",
+      "sl_colloquial": null,
+      "en": "Maybe another time.",
+      "register": "neutral",
+      "examples": [
+        {
+          "sl": "Danes ne morem, mogoče drugič.",
+          "en": "I can't today, maybe another time."
+        },
+        {
+          "sl": "Hvala, mogoče drugič.",
+          "en": "Thank you, maybe another time."
+        }
+      ],
+      "helper": "drugič, another time, comes from drugi, other.",
+      "accept": [
+        "Morda drugič."
+      ],
+      "rules": [],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l05-i05",
+      "type": "chunk",
+      "sl": "Imej se lepo.",
+      "sl_colloquial": null,
+      "en": "Have a good time. (to someone close)",
+      "register": "colloquial",
+      "examples": [
+        {
+          "sl": "Hvala, imej se lepo.",
+          "en": "Thank you, have a good time."
+        },
+        {
+          "sl": "Adijo in imej se lepo.",
+          "en": "Bye, and have a good time."
+        }
+      ],
+      "helper": "From imeti, to have: literally have yourself nicely.",
+      "accept": [],
+      "rules": [
+        "r-ti-vi"
+      ],
+      "freq_rank": null,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    },
+    {
+      "id": "u08-l05-i06",
+      "type": "chunk",
+      "sl": "Fajn.",
+      "sl_colloquial": null,
+      "en": "Nice, fine. (colloquial)",
+      "register": "recognition",
+      "examples": [
+        {
+          "sl": "Fajn, se vidimo.",
+          "en": "Nice, see you."
+        },
+        {
+          "sl": "Kosilo je fajn.",
+          "en": "Lunch is nice."
+        }
+      ],
+      "helper": "From German fein, fine.",
+      "accept": [],
+      "rules": [],
+      "freq_rank": 213,
+      "verification": {
+        "review1": "accepted",
+        "review2": "accepted",
+        "native": null,
+        "status": "accepted"
+      }
+    }
+  ],
+  "rules": [],
+  "structured": [
+    {
+      "id": "u08-l05-s01",
+      "prompt_sl": "On ___ hodi v hribe.",
+      "options": [
+        "rad",
+        "rada",
+        "radi"
+      ],
+      "answer": "rad",
+      "rule": "r-rad",
+      "en": "He likes hiking in the hills."
+    },
+    {
+      "id": "u08-l05-s02",
+      "prompt_sl": "Morje ___ je všeč.",
+      "options": [
+        "mi",
+        "jaz",
+        "me"
+      ],
+      "answer": "mi",
+      "rule": "r-vsec-mi-je",
+      "en": "I like the sea."
+    },
+    {
+      "id": "u08-l05-s03",
+      "prompt_sl": "Zjutraj je zelo ___.",
+      "options": [
+        "mrzlo",
+        "mrzel",
+        "mrzla"
+      ],
+      "answer": "mrzlo",
+      "rule": "r-weather",
+      "en": "It's very cold in the morning."
+    },
+    {
+      "id": "u08-l05-s04",
+      "prompt_sl": "Kje ste ___ vi?",
+      "options": [
+        "bil",
+        "bila",
+        "bili"
+      ],
+      "answer": "bili",
+      "rule": "r-past-biti",
+      "en": "Where were you? (polite, or to several people)"
+    },
+    {
+      "id": "u08-l05-s05",
+      "prompt_sl": "V soboto ___ bil na morju.",
+      "options": [
+        "sem",
+        "si",
+        "je"
+      ],
+      "answer": "sem",
+      "rule": "r-past-biti",
+      "en": "On Saturday I was at the seaside."
+    },
+    {
+      "id": "u08-l05-s06",
+      "prompt_sl": "Ona je ___ doma.",
+      "options": [
+        "bil",
+        "bila",
+        "bilo"
+      ],
+      "answer": "bila",
+      "rule": "r-past-biti",
+      "en": "She was at home."
+    }
+  ],
+  "production": [
+    {
+      "id": "u08-l05-p01",
+      "en": "Ask someone close what they are doing this weekend.",
+      "answer": "Kaj počneš ta vikend?",
+      "accept": [
+        "Kaj delaš ta vikend?",
+        "Kaj počneš ta konec tedna?",
+        "Kaj delaš ta konec tedna?"
+      ],
+      "item": "u08-l05-i01"
+    },
+    {
+      "id": "u08-l05-p02",
+      "en": "Your hosts invite you out, but you cannot come. Say maybe another time.",
+      "answer": "Mogoče drugič.",
+      "accept": [
+        "Morda drugič."
+      ],
+      "item": "u08-l05-i04"
+    },
+    {
+      "id": "u08-l05-p03",
+      "en": "A neighbour asks what you like doing. Say you like reading.",
+      "answer": "Rad berem.",
+      "accept": [
+        "Rada berem."
+      ],
+      "item": "u08-l01-i02"
+    },
+    {
+      "id": "u08-l05-p04",
+      "en": "Your hosts ask how you like the town. Tell them you like it.",
+      "answer": "Všeč mi je.",
+      "accept": [
+        "Mesto mi je všeč.",
+        "Zelo mi je všeč.",
+        "Všeč mi je mesto."
+      ],
+      "item": "u08-l02-i01"
+    },
+    {
+      "id": "u08-l05-p05",
+      "en": "Someone asks about the weather. Tell them in one word that it's raining.",
+      "answer": "Dežuje.",
+      "accept": [],
+      "item": "u08-l03-i03"
+    },
+    {
+      "id": "u08-l05-p06",
+      "en": "Your hosts ask where you were on Saturday. Say you were at the seaside.",
+      "answer": "Bil sem na morju.",
+      "accept": [
+        "Bila sem na morju.",
+        "V soboto sem bil na morju.",
+        "V soboto sem bila na morju."
+      ],
+      "item": "u08-l04-i02"
+    }
+  ],
+  "dialogue": {
+    "id": "u08-l05-d",
+    "title_sl": "V nedeljo",
+    "title_en": "On Sunday",
+    "setting_en": "Your hosts invite you on a Sunday walk in the hills. You talk about the weather and about last weekend.",
+    "lines": [
+      {
+        "speaker": "host",
+        "sl": "V nedeljo gremo v hribe. Greš z nami?",
+        "en": "On Sunday we're going to the hills. Are you coming with us?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Z veseljem. Rad hodim v hribe.",
+        "en": "With pleasure. I like hiking in the hills.",
+        "new_items": [
+          "u08-l05-i03",
+          "u08-l01-i04"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Fajn. V nedeljo bo lepo vreme.",
+        "en": "Nice. On Sunday the weather will be nice."
+      },
+      {
+        "speaker": "you",
+        "sl": "Danes dežuje in mrzlo je.",
+        "en": "It's raining today and it's cold.",
+        "new_items": [
+          "u08-l03-i03",
+          "u08-l03-i05"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Kje si bil prejšnji vikend?",
+        "en": "Where were you last weekend?"
+      },
+      {
+        "speaker": "you",
+        "sl": "Bil sem na morju. Bilo je lepo.",
+        "en": "I was at the seaside. It was lovely.",
+        "new_items": [
+          "u08-l04-i02",
+          "u08-l04-i05"
+        ]
+      },
+      {
+        "speaker": "host",
+        "sl": "Se vidimo v nedeljo. Imej se lepo.",
+        "en": "See you on Sunday. Have a good time."
+      },
+      {
+        "speaker": "you",
+        "sl": "Hvala, imej se lepo.",
+        "en": "Thank you, have a good time.",
+        "new_items": [
+          "u08-l05-i05"
+        ]
+      }
+    ]
+  }
+}

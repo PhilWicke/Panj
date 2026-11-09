@@ -1,0 +1,313 @@
+{
+  "lesson": "u08-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 5,
+      "items": {
+        "u08-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Natural question. rad/rada agreement, the accept variant, examples and helper are correct."
+        },
+        "u08-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Natural. Examples correct, and the comparison with German gern is fair."
+        },
+        "u08-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Natural. The kochen hook is honest: Fran entries trace kuhati to Old High German kohhon, from Latin coquere.",
+          "source": "https://fran.si/iskanje?View=1&Query=kuhati"
+        },
+        "u08-l01-i04": {
+          "verdict": "accepted",
+          "reason": "Natural set phrase. SSKJ has 'že dolgo hodi v hribe' for engaging in mountaineering, so the hiking gloss fits.",
+          "source": "https://fran.si/iskanje?View=1&Query=hrib"
+        },
+        "u08-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Natural, with the genitive after negation (SSKJ: 'ne mara glasbe'). SSKJ marks this sense ekspr., not pog., so the neutral tag stands.",
+          "source": "https://fran.si/iskanje?View=1&Query=marati"
+        },
+        "u08-l01-i06": {
+          "verdict": "accepted",
+          "reason": "Gender, acc and acc.pl correct; examples natural."
+        },
+        "u08-l01-i07": {
+          "verdict": "accepted",
+          "reason": "Gender, acc.pl hribe and loc.pl hribih correct; examples natural."
+        },
+        "u08-l01-i08": {
+          "verdict": "accepted",
+          "reason": "Gender and gen športa correct; examples natural; a true cognate."
+        }
+      },
+      "lines": {
+        "u08-l01-s01": {
+          "verdict": "accepted",
+          "reason": "rada is the only right option for a woman speaking."
+        },
+        "u08-l01-s02": {
+          "verdict": "accepted",
+          "reason": "rad agrees with on; distractors wrong."
+        },
+        "u08-l01-s03": {
+          "verdict": "accepted",
+          "reason": "rada agrees with ona; natural sentence."
+        },
+        "u08-l01-s04": {
+          "verdict": "accepted",
+          "reason": "radi agrees with mi."
+        },
+        "u08-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Masculine dual rada is correct with midva, and the English names two men."
+        },
+        "u08-l01-s06": {
+          "verdict": "accepted",
+          "reason": "Genitive športa after negated marati is the one right option."
+        },
+        "u08-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and feminine variant correct; instruction names the addressee."
+        },
+        "u08-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct."
+        },
+        "u08-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct."
+        },
+        "u08-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variant correct and natural."
+        },
+        "u08-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural, and gender-neutral for the learner."
+        },
+        "u08-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Correct accusative, one clear answer."
+        },
+        "u08-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Natural. konec tedna without ob is fine: SSKJ has konec as a preposition with the genitive for time ('konec januarja').",
+          "source": "https://fran.si/iskanje?View=1&Query=konec"
+        },
+        "u08-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "u08-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural and short, English faithful."
+        },
+        "u08-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural reply, English faithful."
+        },
+        "u08-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural, English faithful."
+        },
+        "r-rad": {
+          "verdict": "accepted",
+          "reason": "Table forms are right (m.du rada, f.du radi, m.pl radi, f.pl rade), as are the toggles and quick check. helper_de says rad changes with who is speaking, which is loose for the third person (who likes it would be exact), but card_en and the table state it correctly."
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 6,
+      "items": {
+        "u08-l01-i01": {
+          "verdict": "accepted",
+          "reason": "Natural question in the ti form. Rad and rada are both covered by the helper and accept, and the examples are grammatical and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-i02": {
+          "verdict": "accepted",
+          "reason": "Standard chunk. German gern is an honest functional comparison, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-i03": {
+          "verdict": "accepted",
+          "reason": "Standard chunk with natural examples. Kuhati goes back to Old High German kohhon, the older stage of kochen, so the helper is honest.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=kuhati"
+        },
+        "u08-l01-i04": {
+          "verdict": "accepted",
+          "reason": "The idiomatic way to say one likes hiking. Accusative v hribe is correct, and the hodim versus grem note is right.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-i05": {
+          "verdict": "accepted",
+          "reason": "Genitive after negated marati is correct and attested (ne mara glasbe, ne ~ mleka). The sense carries only nav. ekspr. in SSKJ and no pog. label, so neutral stands.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=marati"
+        },
+        "u08-l01-i06": {
+          "verdict": "accepted",
+          "reason": "Feminine, acc knjigo and acc.pl knjige are correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-i07": {
+          "verdict": "accepted",
+          "reason": "Masculine, acc.pl hribe and loc.pl hribih are correct, and the examples are natural.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-i08": {
+          "verdict": "accepted",
+          "reason": "Masculine, gen športa is correct, the examples are natural and the cognate is true.",
+          "fix": "",
+          "source": ""
+        }
+      },
+      "lines": {
+        "u08-l01-s01": {
+          "verdict": "accepted",
+          "reason": "The English fixes a woman speaking, so rada is the only right option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-s02": {
+          "verdict": "accepted",
+          "reason": "On takes rad; one correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-s03": {
+          "verdict": "accepted",
+          "reason": "Ona takes rada; one correct option.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-s04": {
+          "verdict": "accepted",
+          "reason": "Mi takes radi, and feminine rade is not among the options.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-s05": {
+          "verdict": "accepted",
+          "reason": "Masculine dual rada is correct, and the note on two men excludes feminine dual radi.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-s06": {
+          "verdict": "accepted",
+          "reason": "Genitive športa after negation is correct; the distractors are plausible and wrong.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Answer and rada variant are correct, and the addressee is named.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Answer and variant are correct.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Correct genitive, and the instruction points to the taught chunk.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Correct accusative and a faithful instruction.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-d-01": {
+          "verdict": "accepted",
+          "reason": "Pravopis lists konec with the genitive as an improper preposition (konec meseca, konec januarja), so bare konec tedna is sound and reads naturally here.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=konec"
+        },
+        "u08-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Natural, short and faithfully translated.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-d-03": {
+          "verdict": "accepted",
+          "reason": "Natural; the host is a woman, so rada fits, and the English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Natural and faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "u08-l01-d-05": {
+          "verdict": "accepted",
+          "reason": "Natural; present gremo for a plan is normal, and the English is faithful.",
+          "fix": "",
+          "source": ""
+        },
+        "r-rad": {
+          "verdict": "doubtful",
+          "reason": "All forms and pronouns are correct (rad, rada, radi; feminine dual radi; feminine plural rade), as are the toggles and quick check. The doubt is in helper_de: 'rad changes with who is speaking' is untrue for a third person, as in On rad bere and Ona rada kuha on this same card. It should say it changes with who likes it, as card_en does.",
+          "fix": "",
+          "source": ""
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u08-l01-i01": "8f7598ebafbcc600",
+    "u08-l01-i02": "3013f98289474cae",
+    "u08-l01-i03": "7a96f6ad7055dbf7",
+    "u08-l01-i04": "291a39176687c88f",
+    "u08-l01-i05": "a47fe384ee2b6335",
+    "u08-l01-i06": "8df0ef91e226ce36",
+    "u08-l01-i07": "d545bc15bc029952",
+    "u08-l01-i08": "183eb420ed504236",
+    "u08-l01-s01": "e8087fd99d721005",
+    "u08-l01-s02": "104a3c6926508727",
+    "u08-l01-s03": "cdabcef4651941ba",
+    "u08-l01-s04": "0b9bb8ec51c87e95",
+    "u08-l01-s05": "8b0f382439f2c597",
+    "u08-l01-s06": "85d8365d8bdc5b42",
+    "u08-l01-p01": "9e9dbf9dc8f70f22",
+    "u08-l01-p02": "4fb21e8217d64e37",
+    "u08-l01-p03": "7b1167bde0de4d79",
+    "u08-l01-p04": "576c1f35e94e1139",
+    "u08-l01-p05": "b6b3e55aae106d30",
+    "u08-l01-p06": "a378bcc1d363f11e",
+    "u08-l01-d-01": "fb057822d080e3f5",
+    "u08-l01-d-02": "992b1c000bfeff97",
+    "u08-l01-d-03": "11652a18750af5f1",
+    "u08-l01-d-04": "cd51933aa32e295d",
+    "u08-l01-d-05": "57811dce05b7994b",
+    "r-rad": "dcbfd7562a4cd047"
+  }
+}

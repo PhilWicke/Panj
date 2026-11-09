@@ -1,0 +1,58 @@
+{
+  "id": "r-vsec-mi-je",
+  "unit": "u08",
+  "title_en": "Liking a thing: všeč mi je",
+  "card_en": "To say you like a thing or place, make it the subject: Ljubljana mi je všeč, literally Ljubljana is pleasing to me. The person who likes it takes mi or ti.",
+  "example": {
+    "sl": "Ljubljana mi je všeč.",
+    "en": "I like Ljubljana."
+  },
+  "toggles": [
+    {
+      "label": "Who likes it",
+      "options": [
+        "I do",
+        "you do"
+      ],
+      "examples": {
+        "I do": {
+          "sl": "Všeč mi je.",
+          "en": "I like it."
+        },
+        "you do": {
+          "sl": "Všeč ti je.",
+          "en": "You like it. (to someone close)"
+        }
+      }
+    },
+    {
+      "label": "Yes or no",
+      "options": [
+        "yes",
+        "no"
+      ],
+      "examples": {
+        "yes": {
+          "sl": "Všeč mi je.",
+          "en": "I like it."
+        },
+        "no": {
+          "sl": "Ni mi všeč.",
+          "en": "I don't like it."
+        }
+      }
+    }
+  ],
+  "quick_check": {
+    "prompt_sl": "Ljubljana mi ___ všeč.",
+    "options": [
+      "je",
+      "sem",
+      "si"
+    ],
+    "answer": "je",
+    "explain_en": "Ljubljana is the subject, so the verb is je, whoever likes it."
+  },
+  "helper_de": "Like gefallen: Ljubljana gefällt mir. The thing is the subject, and the person takes mi, like mir.",
+  "helper_en": "The person is not the subject, unlike English I like it. Think of it pleases me."
+}

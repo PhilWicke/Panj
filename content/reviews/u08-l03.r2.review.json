@@ -1,0 +1,34 @@
+{
+  "lesson": "u08-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 1,
+      "items": {},
+      "lines": {
+        "u08-l03-p03": {
+          "verdict": "accepted",
+          "reason": "Dežuje is the correct 3sg of deževati (SSKJ, -ujem, usually third person) and the natural answer to the instruction, which is clear and needs no addressee. Empty accept is defensible here: the only other candidate, Dež gre, is the labelled colloquial variant already waiting for a native speaker. Note for the editor: item u08-l03-i03 still lists Dež gre in its accept and i06 has Danes gre dež, so if the native confirms it, this line should accept it too.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=de%C5%BEevati"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 3,
+      "items": {},
+      "lines": {
+        "u08-l03-p03": {
+          "verdict": "doubtful",
+          "reason": "The answer Dežuje. is correct and natural (SSKJ: zunaj dežuje), and the English is accurate. The doubt is the empty accept list. Item u08-l03-i03 lists Dež gre. as an accepted variant and the example of u08-l03-i06 teaches Danes gre dež., so the course has taught a second answer that this exercise would mark wrong, against the style guide rule that accept lists every other right answer. Against adding it: SSKJ labels dež gre pog. and Pravopis neknj. pog., so leaving it out may be deliberate. A native speaker should decide whether Dež gre. counts: if yes, add it to this accept list; if no, remove it from the item's accept as well.",
+          "fix": "",
+          "source": "https://fran.si/iskanje?View=1&Query=dež"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u08-l03-p03": "0180b07136e04fad"
+  }
+}
