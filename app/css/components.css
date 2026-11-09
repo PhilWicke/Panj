@@ -973,7 +973,7 @@ button.rule-cell {
 }
 
 /* Motifs: the parts of a motif symbol (motifs.js), flat in the folk colours, each filled part
-   outlined in --motif-line; m-line parts are a stroke alone. */
+   outlined in --motif-line; m-line parts are a stroke alone, in --motif-stroke. */
 
 .motif .m-main {
   fill: var(--poppy);
@@ -1002,7 +1002,7 @@ button.rule-cell {
 
 .motif .m-line {
   fill: none;
-  stroke: var(--motif-line);
+  stroke: var(--motif-stroke);
   stroke-width: 1.6;
   stroke-linecap: round;
 }

@@ -83,8 +83,11 @@
   --hive-board: var(--surface);
   --hive-cell: var(--warm-white);
   --hive-text: var(--indigo);
-  /* The motifs' outline: indigo in both themes, since it outlines coloured parts. */
+  /* The motifs: --motif-line outlines the coloured parts, indigo in both themes. --motif-stroke
+     draws the m-line parts, which have no fill and lie on whatever is behind the motif (an empty
+     cell, the page, a card), so it turns warm white in the dark theme, where indigo would vanish. */
   --motif-line: var(--indigo);
+  --motif-stroke: var(--indigo);
   /* The toast: ink on the warm page, indigo on the deep indigo page; its text is warm white in both. */
   --toast-bg: var(--ink);
   --toast-border: color-mix(in srgb, var(--warm-white) 16%, transparent);
@@ -113,6 +116,7 @@
     --hive-board: var(--indigo);
     --hive-cell: var(--indigo-deep);
     --hive-text: var(--warm-white);
+    --motif-stroke: var(--warm-white);
     --toast-bg: var(--indigo);
     --toast-border: color-mix(in srgb, var(--warm-white) 28%, transparent);
   }
@@ -138,6 +142,7 @@
   --hive-board: var(--indigo);
   --hive-cell: var(--indigo-deep);
   --hive-text: var(--warm-white);
+  --motif-stroke: var(--warm-white);
   --toast-bg: var(--indigo);
   --toast-border: color-mix(in srgb, var(--warm-white) 28%, transparent);
 }
