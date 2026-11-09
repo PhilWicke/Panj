@@ -6,12 +6,15 @@
 // Through tests/helpers/fake-dom.js, renderHive draws one strip per unit with its cells, states,
 // fills, caption and tap target, a heading per level when the course has more than one, and the
 // painted seal over a sealed strip; renderStrip draws one strip large, marks the current lesson,
-// reports cell taps and carries the seal too. A second render starts each cell where it was and
-// moves it to the new fill, a seal new in this page's life paints once, and resetHiveMemory
-// forgets what was shown, so each test starts from a hive never drawn. sealedUnits turns
-// meta.sealed into the hive's flags.
+// reports cell taps and carries the seal too. The fake DOM does no hit testing, so a CSS test pins
+// the seal as paint only (pointer-events: none): in a browser a tap on a sealed cell must fall
+// through the board and motifs to the cell and the strip. A second render starts each cell where
+// it was and moves it to the new fill, a seal new in this page's life paints once, and
+// resetHiveMemory forgets what was shown, so each test starts from a hive never drawn. sealedUnits
+// turns meta.sealed into the hive's flags.
 import { test, before, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
 import { HIVE_WIDTH, CELL_W, CELL_H, CAPTION_H, STRIP_PITCH, cellWidth, stripCells, cellCenters, hexPoints,
   renderHive, renderStrip, resetHiveMemory, sealedUnits } from '../../app/js/ui/components/hive.js';
@@ -184,6 +187,13 @@ test("renderStrip draws one strip large, marks the current lesson's cell, report
   assert.equal(motifs.length, withClass(sealed, 'hive-cell').length, 'one motif per cell');
   assert.equal(motifs.length, 5);
   assert.ok(elements(sealed).some((e) => e.tagName === 'symbol' && e.getAttribute('id') === motifs[0].getAttribute('href').slice(1)), 'the symbol is in the same SVG');
+});
+
+test('the seal is paint only, so a tap on a sealed cell reaches the cell and the strip under it', () => {
+  const css = readFileSync(new URL('../../app/css/components.css', import.meta.url), 'utf8');
+  const rule = css.match(/^\.hive-seal\s*\{([^}]*)\}/m);
+  assert.ok(rule, 'components.css has a .hive-seal rule');
+  assert.match(rule[1], /pointer-events:\s*none;/, 'the board and motifs take no taps');
 });
 
 test('sealedUnits turns the dates of meta.sealed into flags by unit id', () => {

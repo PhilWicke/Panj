@@ -908,7 +908,9 @@ button.rule-cell {
 /* Hive: honeycomb strips (hive.js), one per unit. A strip's tap target is a transparent rect, so
    the whole row answers a tap; on focus its own stroke carries the ring's band, since an SVG group
    has no box for base.css's shadow. The cells are outlines over the honey; a sealed strip is
-   painted over with a translucent board and the unit's motif. */
+   painted over with a translucent board and the unit's motif. The seal is paint only: it takes no
+   taps, so a tap on a sealed cell reaches the cell (renderStrip's onCell) and the strip's own tap
+   target under it. */
 
 .hive {
   display: block;
@@ -972,6 +974,10 @@ button.rule-cell {
   fill: var(--hive-text);
   font-family: var(--font);
   font-weight: 600;
+}
+
+.hive-seal {
+  pointer-events: none;
 }
 
 .hive-seal-board {
