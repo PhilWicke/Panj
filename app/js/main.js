@@ -13,6 +13,9 @@ import { register } from './ui/exercises/registry.js';
 import * as meet from './ui/exercises/meet.js';
 import * as typed from './ui/exercises/typed.js';
 import * as rule from './ui/exercises/rule.js';
+import * as structured from './ui/exercises/structured.js';
+import * as slot from './ui/exercises/slot.js';
+import * as dialogue from './ui/exercises/dialogue.js';
 import { renderNav } from './ui/components/nav.js';
 import { renderToday } from './ui/screens/today.js';
 import { renderSession } from './ui/screens/session.js';
@@ -44,6 +47,9 @@ import { renderRules } from './ui/screens/rules.js';
 register('meet', meet.render);
 register('typed_en_sl', typed.render);
 register('rule', rule.render);
+register('structured', structured.render);
+register('slot', slot.render);
+register('dialogue', dialogue.render);
 
 const root = /** @type {HTMLElement} */ (document.getElementById('app'));
 /** Routes that hide the tab bar. */
