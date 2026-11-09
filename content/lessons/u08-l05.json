@@ -343,7 +343,7 @@
       {
         "speaker": "you",
         "sl": "Z veseljem. Rad hodim v hribe.",
-        "en": "With pleasure. I like hiking in the hills.",
+        "en": "With pleasure. I like hiking in the hills. (a man speaking)",
         "new_items": [
           "u08-l05-i03",
           "u08-l01-i04"
@@ -371,7 +371,7 @@
       {
         "speaker": "you",
         "sl": "Bil sem na morju. Bilo je lepo.",
-        "en": "I was at the seaside. It was lovely.",
+        "en": "I was at the seaside. It was lovely. (a man speaking)",
         "new_items": [
           "u08-l04-i02",
           "u08-l04-i05"
