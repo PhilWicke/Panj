@@ -7,8 +7,9 @@
 // screen applies the results only at the end, so leaving early records nothing. A passed unit
 // checkpoint seals the unit in meta.sealed; the weekly check appends to meta.weeklyChecks and
 // shows the calibration line; each check appends one SessionRecord. The placement runs the first
-// unit's checkpoint and goes on to the next units while passing, each pass sealing its unit. The
-// pure wording helpers are exported for the tests.
+// unit's checkpoint and goes on to the next units while passing, each pass sealing its unit; the
+// chain of units is read from the content (placementUnits, engine/course.js). The pure wording
+// helpers are exported for the tests.
 
 import { h, mount } from '../../util/dom.js';
 import { localDateKey } from '../../util/time.js';
@@ -16,7 +17,7 @@ import { onlyKnown } from '../../content/loader.js';
 import { navigate } from '../../router.js';
 import { grade } from '../../engine/grading.js';
 import { honeyFor } from '../../engine/progress.js';
-import { practisable } from '../../engine/course.js';
+import { placementUnits, practisable } from '../../engine/course.js';
 import {
   WEEKLY_MIN_ITEMS, applyCheckpoint, buildUnitCheckpoint, buildWeeklyCheck, calibration, checkpointMinutes, scoreCheckpoint,
 } from '../../engine/checkpoint.js';
@@ -47,8 +48,6 @@ import { promptWithBlank } from '../exercises/structured.js';
  */
 
 const MINUTE_MS = 60_000;
-/** The units the placement check runs through, in order, while passing. */
-const PLACEMENT_UNITS = ['u01', 'u02', 'u03'];
 /** The share of items the prediction input starts at. */
 const PREDICTION_SHARE = 0.8;
 
@@ -417,7 +416,8 @@ export function renderCheckpoint(container, app, params = {}) {
       if (score) endCard(check, score, predicted);
     })()));
   } else if (params.placement === '1') {
-    const first = unitCheck(app, PLACEMENT_UNITS[0], 'placement');
+    const chain = placementUnits(app.index.units);
+    const first = unitCheck(app, chain[0] ?? '', 'placement');
     if (!first) notFound();
     else {
       intro(first, () => guard((async () => {
@@ -425,7 +425,7 @@ export function renderCheckpoint(container, app, params = {}) {
         for (let k = 0; ; k += 1) {
           const score = await run(check, 0);
           if (!score) return;
-          const nextId = PLACEMENT_UNITS[k + 1];
+          const nextId = chain[k + 1];
           const next = score.passed && nextId !== undefined ? unitCheck(app, nextId, 'placement') : null;
           if (!next || totalOf(next) === 0 || !next.blocks[0].items.some((item) => item.itemId.startsWith(`${nextId}-`))) {
             endCard(check, score, null);

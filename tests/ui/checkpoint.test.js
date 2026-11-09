@@ -6,8 +6,9 @@
 // saved), the settings onboarding saves (the clause trimmed, the
 // name capped, onboarded set, Ruling 52), and the feedback panel without its retry, which the
 // checkpoint asks for. Through tests/helpers/fake-dom.js, onboarding's last step holds its buttons
-// while it saves and, when the save is refused, says so and offers them again. The checkpoint flow
-// itself runs in the browser check.
+// while it saves and, when the save is refused, says so and offers them again. The placement check
+// takes its chain of units from the content, and an empty chain reaches the not-found card. The
+// checkpoint flow itself runs in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
@@ -15,7 +16,7 @@ import { grade } from '../../app/js/engine/grading.js';
 import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
 import { renderFeedback } from '../../app/js/ui/components/feedback.js';
 import {
-  aboutLine, calibrationLine, countLine, defaultPrediction, failureLine, predictionFrom, resultLine, verdictLine,
+  aboutLine, calibrationLine, countLine, defaultPrediction, failureLine, predictionFrom, renderCheckpoint, resultLine, verdictLine,
 } from '../../app/js/ui/screens/checkpoint.js';
 import { DEFAULT_INTENTION, onboardingSettings, renderOnboarding } from '../../app/js/ui/screens/onboarding.js';
 
@@ -166,4 +167,26 @@ test('renderFeedback without a retry offers Continue only, as the primary action
     [['Type it again', 'btn btn-primary'], ['Continue', 'btn btn-secondary']], 'the retry is offered by default (Ruling 32)');
   const right = renderFeedback({ answer: 'Živjo', graded: grade('Živjo', 'Živjo.'), effective: 'correct', target: 'Živjo.', rule: null, retry: false, onDone: () => {} });
   assert.deepEqual(elements(right).filter((e) => e.tagName === 'BUTTON').map((b) => b.textContent), ['Continue']);
+});
+
+test('the placement check takes its units from the content', () => {
+  const unit = { id: 'u05', order: 5, title_sl: 'Dan in čas', title_en: 'Day and time', motif: 'sun', lessons: ['u05-l01'] };
+  const lesson = { id: 'u05-l01', unit: 'u05', order: 1, title_sl: 'Moj dan', title_en: 'My day', rules: [], structured: [], production: [],
+    items: [{ id: 'u05-l01-i01', type: 'word', sl: 'zjutraj', en: 'in the morning', register: 'neutral', examples: [],
+      verification: { review1: 'accepted', review2: 'accepted', native: null, status: 'accepted' } }] };
+  /** Renders the placement check over a course whose index lists `units`. @param {any[]} units */
+  const placement = (units) => {
+    const container = /** @type {any} */ (document.createElement('main'));
+    renderCheckpoint(container, /** @type {any} */ ({
+      index: { units, rules: [] }, units: [{ unit, lessons: [lesson] }], known: new Set(['u05-l01-i01']), allowPending: false,
+      state: { items: {}, sessions: [], settings: { ...DEFAULT_APP_SETTINGS }, meta: { schemaVersion: 1, createdAt: 0 } },
+    }), { placement: '1' });
+    return container;
+  };
+  const placed = placement([unit]);
+  assert.ok(placed.querySelector('.checkpoint-intro'), 'the first unit of the content starts the chain, whatever its id');
+  assert.equal(elements(placed).some((e) => e.textContent === 'Checkpoint not found'), false);
+  const empty = placement([]);
+  assert.equal(empty.querySelector('.checkpoint-intro'), null);
+  assert.ok(elements(empty).some((e) => e.tagName === 'H1' && e.textContent === 'Checkpoint not found'), 'an empty chain reaches the not-found card');
 });
