@@ -427,6 +427,20 @@
   background: var(--surface);
 }
 
+/* A choice that holds looks on, not disabled: pressed in the panel, and the session bar's toggle
+   reads "Quiet on" with the same look while either holds. */
+.quiet-panel .btn[aria-pressed='true'],
+.session-quiet.is-on {
+  opacity: 1;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.session-quiet.is-on {
+  text-decoration: none;
+}
+
 /* The choice offered beside an exercise; it takes no room while nothing is offered. */
 .quiet-offer {
   display: flex;
@@ -434,6 +448,12 @@
 
 .quiet-offer:empty {
   display: none;
+}
+
+/* The offer's text starts at the content edge; its tap target stays 44 px high. */
+.quiet-offer .btn-quiet {
+  padding-inline: 0;
+  border-inline-width: 0;
 }
 
 /* The unit's checkpoint on the closing screen of its last lesson, set apart from the menu under it. */

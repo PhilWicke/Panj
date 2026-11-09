@@ -13,9 +13,11 @@
 // (Ruling 94). The sitting's quiet choices: a run built while one holds leaves out what it drops;
 // "Can't listen right now" beside an audio exercise skips it without a miss and prunes the rest,
 // beside a meet draws the meet again without sound, and silences every context of the sitting;
-// the Quiet control in the session bar holds both choices; the closing menu offers "Can't talk
-// right now" after "A speaking round", and a draw a choice leaves behind cannot draw over the
-// screen after it. The closing screen of a unit's last lesson (its consolidation lesson at the
+// the Quiet control in the session bar holds both choices and reads "Quiet on" while one holds;
+// a dialogue on screen stays as it is after "Can't listen right now", its host lines silent; a run
+// whose every entry a choice skipped says nothing was practised, with no minutes; the closing menu
+// offers "Can't talk right now" after "A speaking round", and a draw a choice leaves behind cannot
+// draw over the screen after it. The closing screen of a unit's last lesson (its consolidation lesson at the
 // unit's lessonCount, or the role alone without one) offers the unit's checkpoint between the
 // summary and the menu once the run has met the lesson's last item, and keeps it when "Can't talk
 // right now" draws the menu again; an earlier lesson's closing screen does not.
@@ -61,7 +63,7 @@ const waitingExercise = (/** @type {any} */ container, /** @type {any} */ entry,
 before(() => {
   document = installFakeDom();
   Object.defineProperty(globalThis, 'location', { value: { hash: '', replace() {} }, configurable: true, writable: true });
-  for (const kind of /** @type {const} */ (['typed_en_sl', 'listening', 'perception', 'meet', 'speaking'])) register(kind, waitingExercise);
+  for (const kind of /** @type {const} */ (['typed_en_sl', 'listening', 'perception', 'meet', 'speaking', 'dialogue'])) register(kind, waitingExercise);
 });
 
 beforeEach(() => {
@@ -522,6 +524,82 @@ test('the Quiet control holds both choices, pressed once chosen, listening press
   assert.deepEqual([mutedListen.getAttribute('aria-pressed'), mutedListen.getAttribute('aria-disabled')], ['true', 'true']);
 });
 
+test('the session bar\'s Quiet toggle reads "Quiet on", pressed, while a choice holds, and "Quiet" otherwise', async () => {
+  for (const label of ["Can't listen right now", "Can't talk right now"]) {
+    resetQuiet();
+    const container = /** @type {any} */ (document.createElement('main'));
+    renderSession(container, sessionApp({ states: byId(due('u01-l01-i01')), settings: { mute: false }, audio: true }));
+    await settle();
+    const toggle = container.querySelector('.session-quiet');
+    assert.deepEqual([toggle.textContent, toggle.classList.contains('is-on')], ['Quiet', false], 'a new sitting');
+    toggle.dispatch('click');
+    button(container.querySelector('.quiet-panel'), label).dispatch('click');
+    await settle();
+    assert.deepEqual([toggle.textContent, toggle.classList.contains('is-on')], ['Quiet on', true], label);
+    assert.deepEqual([toggle.getAttribute('aria-expanded'), toggle.getAttribute('aria-controls')], ['true', 'session-quiet-panel'], 'still the panel\'s disclosure');
+    const next = /** @type {any} */ (document.createElement('main'));
+    renderSession(next, sessionApp({ states: byId(due('u01-l01-i01')), settings: { mute: false }, audio: true }));
+    await settle();
+    assert.equal(next.querySelector('.session-quiet').textContent, 'Quiet on', `${label}: a later run of the sitting starts on`);
+  }
+  resetQuiet();
+  const muted = /** @type {any} */ (document.createElement('main'));
+  renderSession(muted, sessionApp({ states: byId(due('u01-l01-i01')), settings: { mute: true }, audio: true }));
+  await settle();
+  const toggle = muted.querySelector('.session-quiet');
+  assert.deepEqual([toggle.textContent, toggle.classList.contains('is-on')], ['Quiet on', true], "the learner's mute holds from the start");
+});
+
+test("a run whose every entry a quiet choice skips says nothing was practised, with no minutes and no record", async () => {
+  const app = sessionApp({ states: byId(later('u01-l01-i01'), later('u01-l01-i02')), settings: { mute: false }, audio: true });
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderSession(container, app, { mode: 'speaking' });
+  await settle();
+  assert.equal(shown[0].kind, 'speaking');
+  button(container.querySelector('.quiet-offer'), "Can't talk right now").dispatch('click');
+  await settle();
+  const closing = container.querySelector('.closing');
+  assert.ok(closing.querySelector('.closing-menu'), 'the run closed');
+  assert.equal(closing.querySelector('h2').textContent, 'Nothing practised this round.');
+  assert.equal(closing.querySelector('.en-text'), null, 'no summary line');
+  assert.doesNotMatch(closing.textContent, /about \d+ minute/i, 'no minutes');
+  assert.deepEqual(await app.adapter.getAll('sessions'), [], 'no session record');
+});
+
+/** One lesson whose dialogue practises an item in review, its other item never met so the lesson is current, and no new item today. */
+function dialogueApp() {
+  const dialogue = {
+    id: 'u01-l01-d', title_sl: 'Pogovor', title_en: 'Talk', setting_en: 'At the door.',
+    lines: [
+      { speaker: 'host', sl: 'Dober dan.', en: 'Good day.' },
+      { speaker: 'you', sl: 'Dober dan.', en: 'Good day.', new_items: ['u01-l01-i01'] },
+      { speaker: 'host', sl: 'Hvala.', en: 'Thank you.' },
+    ],
+  };
+  const lesson = { ...LESSON, dialogue };
+  const app = lessonApp({ settings: { mute: false, newPerDay: 0 }, audio: false });
+  app.state.items = byId(later('u01-l01-i01'));
+  app.units = [{ unit: UNIT, lessons: [lesson] }];
+  app.lessons = new Map([[lesson.id, lesson]]);
+  app.items = new Map(lesson.items.map((item) => [item.id, { item, lesson }]));
+  return app;
+}
+
+test("a dialogue on screen stays as it is after \"Can't listen right now\", and its next host line plays nothing", async () => {
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderSession(container, dialogueApp());
+  await settle();
+  assert.deepEqual(shown.map((e) => e.kind), ['dialogue']);
+  assert.equal(contexts[0].mode.mute, false, 'host lines are played');
+  button(container.querySelector('.session-bar'), 'Quiet').dispatch('click');
+  button(container.querySelector('.quiet-panel'), "Can't listen right now").dispatch('click');
+  await settle();
+  assert.deepEqual(shown.map((e) => e.kind), ['dialogue'], 'rendered once: the lines typed so far stay');
+  const before = plays;
+  assert.equal(await contexts[0].play('Hvala.'), 'none');
+  assert.equal(plays, before, 'the player was not called');
+});
+
 test("the closing menu puts \"Can't talk right now\" after \"A speaking round\", and a tap takes both away", async () => {
   const container = /** @type {any} */ (document.createElement('main'));
   renderSession(container, sessionApp({ states: byId(due('u01-l01-i01')), settings: { mute: false }, audio: true }));
@@ -597,11 +675,11 @@ test("the unit checkpoint sits between the summary and the menu, stays when \"Ca
   await playToEnd(container);
   const closing = () => container.querySelector('.closing');
   const parts = () => closing().childNodes.map((/** @type {any} */ e) => e.className);
-  assert.deepEqual(parts(), ['prompt', 'en-text', 'actions closing-checkpoint', 'actions actions-stack closing-menu']);
+  assert.deepEqual(parts(), ['prompt', 'en-text', 'actions actions-stack closing-checkpoint', 'actions actions-stack closing-menu'], 'the checkpoint spans the column like the menu');
   assert.equal(document.activeElement, button(container.querySelector('.closing-menu'), 'Stop here'));
   button(container.querySelector('.closing-menu'), "Can't talk right now").dispatch('click');
   assert.equal(button(container.querySelector('.closing-menu'), 'A speaking round'), undefined, 'the menu is drawn again');
-  assert.deepEqual(parts(), ['prompt', 'en-text', 'actions closing-checkpoint', 'actions actions-stack closing-menu'], 'the link stays');
+  assert.deepEqual(parts(), ['prompt', 'en-text', 'actions actions-stack closing-checkpoint', 'actions actions-stack closing-menu'], 'the link stays');
   assert.equal(elements(container.querySelector('.closing-checkpoint')).find((e) => e.tagName === 'A').textContent, 'Take the unit checkpoint');
   assert.equal(document.activeElement, button(container.querySelector('.closing-menu'), 'Stop here'), 'the focus still goes to the menu');
 });

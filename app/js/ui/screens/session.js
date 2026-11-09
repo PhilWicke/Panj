@@ -14,9 +14,10 @@
 // was done (Ruling 78), and the same id is finalised when the run ends; its minutes are credited
 // time, the gaps between entries capped (creditedMinutes, Ruling 79). At the end the closing menu
 // (components/menu.js) is offered: stop, three more minutes, a speaking round, continue the
-// lesson. Three more minutes (`?mode=more`) is a new run over buildMoreRound's queue: the
-// review-phase items this run did not practise, weakest first, filled up from its misses, and the
-// option is left out when that round would be empty (Ruling 80). A speaking round
+// lesson; a run in which nothing was played (every entry skipped by a quiet choice) says so in
+// place of the summary. Three more minutes (`?mode=more`) is a new run over buildMoreRound's
+// queue: the review-phase items this run did not practise, weakest first, filled up from its
+// misses, and the option is left out when that round would be empty (Ruling 80). A speaking round
 // (`?mode=speaking`) plays the speaking entries buildSession planned when speech recognition is
 // on, else the self-rated speaking exercise over up to five review-phase items. The run that meets
 // the last item of a unit's last lesson (its consolidation lesson, at the unit's lessonCount) also
@@ -27,10 +28,13 @@
 // Quiet choices (ui/quiet.js) hold for the sitting: a run starts from the choices made so far, and
 // its queue leaves out what they drop (quietDrops). "Can't listen right now" and "Can't talk right
 // now" are offered once each, beside the first exercise that would play sound or ask the learner to
-// speak, and both sit in the Quiet panel under the session bar; the closing menu offers "Can't talk
-// right now" after its speaking round. A choice prunes the rest of the queue (pruneQueue) and
-// reaches the exercise on screen: one whose kind it drops is skipped without an outcome, and a
-// meet, dialogue or speaking exercise is drawn again without sound after "Can't listen right now".
+// speak, and both sit in the Quiet panel under the session bar, whose toggle reads "Quiet on" while
+// a choice holds (or the learner's own mute does); the closing menu offers "Can't talk right now"
+// after its speaking round. A choice prunes the rest of the queue (pruneQueue) and reaches the
+// exercise on screen: one whose kind it drops is skipped without an outcome, and a meet or
+// speaking exercise is drawn again without sound after "Can't listen right now". A dialogue stays
+// as it is, so the lines already typed are kept: its later host lines go through the context's
+// play, which plays nothing once the learner can't listen.
 // Every interruptible draw has its own element in the stage, so one left behind cannot draw over
 // what follows, and once the learner can't listen no exercise context plays anything. Once a
 // speaking exercise is skipped or drawn again, or the screen is left, no recogniser listens
@@ -71,8 +75,13 @@ const RETRIED_KINDS = new Set(['typed_en_sl', 'typed_sl_en']);
 const SPEAKING_ROUND = 5;
 /** The quiet choices, in the order the Quiet panel shows them. @type {readonly QuietKind[]} */
 const QUIET_KINDS = ['listen', 'talk'];
-/** Kinds drawn again after "Can't listen right now", so they show without Listen and play nothing. @type {ReadonlySet<ExerciseKind>} */
-const REDRAWN_SILENT = new Set(['meet', 'dialogue', 'speaking']);
+/**
+ * Kinds drawn again after "Can't listen right now", so they show without Listen and play nothing.
+ * A dialogue is not among them: drawing it again would lose the lines typed, and its host lines
+ * play nothing once the learner can't listen (contextFor's play).
+ * @type {ReadonlySet<ExerciseKind>}
+ */
+const REDRAWN_SILENT = new Set(['meet', 'speaking']);
 
 /**
  * What the last run practised and missed, for the "Three more minutes" run that may follow it
@@ -276,13 +285,20 @@ export function renderSession(container, app, params = {}) {
     quietToggle.setAttribute('aria-expanded', String(!panel.hidden));
   };
 
-  /** Shows each choice pressed, and disabled, while it holds. */
+  /**
+   * Shows each choice pressed, and disabled, while it holds, and the toggle in the session bar as
+   * "Quiet on", pressed, while either holds.
+   */
   const drawPanel = () => {
     for (const { kind, button } of choices) {
       button.setAttribute('aria-pressed', String(holds(kind)));
       if (holds(kind)) button.setAttribute('aria-disabled', 'true');
       else button.removeAttribute('aria-disabled');
     }
+    const on = QUIET_KINDS.some(holds);
+    quietToggle.textContent = on ? 'Quiet on' : 'Quiet';
+    if (on) quietToggle.classList.add('is-on');
+    else quietToggle.classList.remove('is-on');
   };
   drawPanel();
 
@@ -341,8 +357,8 @@ export function renderSession(container, app, params = {}) {
    * Makes a quiet choice for the sitting and applies it to this run: the mode follows it, the sound
    * stops for listening, the rest of the queue loses the kinds it drops, the bar and the panel are
    * drawn again and the offer goes. The exercise on screen is then skipped when the choice drops its
-   * kind, drawn again when the learner can't listen and it is a meet, dialogue or speaking exercise,
-   * and otherwise stays.
+   * kind, drawn again when the learner can't listen and it is a meet or speaking exercise, and
+   * otherwise stays.
    * @param {QuietKind} kind
    */
   const choose = (kind) => {
@@ -474,6 +490,8 @@ export function renderSession(container, app, params = {}) {
       speaking: () => navigate('/session?mode=speaking'),
       continue: () => navigate('/session?mode=continue'),
     };
+    /** Every entry was skipped by a quiet choice: nothing was played and nothing recorded. */
+    const nothingPlayed = tally.played === 0;
     const minutes = Math.max(1, Math.round(session?.minutes ?? 0));
     /** @type {string[]} */
     const parts = [];
@@ -508,9 +526,9 @@ export function renderSession(container, app, params = {}) {
       };
       const menu = renderMenu(options, (option) => actions[option](), mode.cantTalk ? {} : { onCantTalk });
       mount(stage, h('article', { class: 'exercise closing' },
-        h('h2', { class: 'prompt' }, 'Session complete.'),
-        h('p', { class: 'en-text' }, `${summary.charAt(0).toUpperCase()}${summary.slice(1)}.`),
-        checkpointUnit && h('div', { class: 'actions closing-checkpoint' },
+        h('h2', { class: 'prompt' }, nothingPlayed ? 'Nothing practised this round.' : 'Session complete.'),
+        !nothingPlayed && h('p', { class: 'en-text' }, `${summary.charAt(0).toUpperCase()}${summary.slice(1)}.`),
+        checkpointUnit && h('div', { class: 'actions actions-stack closing-checkpoint' },
           h('a', { class: 'btn btn-secondary', href: `#/checkpoint?unit=${checkpointUnit.id}` }, 'Take the unit checkpoint')),
         menu));
       /** @type {HTMLElement|null} */ (menu.querySelector('button'))?.focus();

@@ -38,6 +38,8 @@ import { COURSE_TITLES, fourWords, tenByFive } from './course-fixture.js';
 const LESSON_ID = 'u01-l01';
 const NAME = 'Ana';
 const SESSION_DONE = 'Session complete.';
+/** The closing card's first line when a quiet choice skipped every entry of the run. */
+const NOTHING_PLAYED = 'Nothing practised this round.';
 const NO_AUDIO = 'No audio on this device.';
 /** What the update toast says, as app/js/main.js shows it. */
 const UPDATE_TEXT = 'A new version is ready. Reload when you have a moment.';
@@ -411,7 +413,8 @@ test.describe('a lesson of four words', () => {
     await expect(button(page, "I'm ready")).toBeVisible();
     await expect(button(page, 'Listen')).toHaveCount(0);
     await expect(button(page, "Can't listen right now")).toHaveCount(0);
-    await button(page, 'Quiet').click();
+    await expect(button(page, 'Quiet')).toHaveCount(0);
+    await button(page, 'Quiet on').click();
     const panel = page.locator('#session-quiet-panel');
     await expect(panel.getByRole('button', { name: "Can't listen right now" })).toHaveAttribute('aria-pressed', 'true');
     await expect(panel.getByRole('button', { name: "Can't talk right now" })).toHaveAttribute('aria-pressed', 'false');
@@ -421,8 +424,9 @@ test.describe('a lesson of four words', () => {
     await page.evaluate(() => { location.hash = '#/session?mode=speaking'; });
     await expect(page.getByText('Say it in Slovenian', { exact: true })).toBeVisible();
     await expect(button(page, 'Listen again')).toBeVisible();
+    await expect(button(page, 'Quiet')).toBeVisible();
     await button(page, "Can't talk right now").click();
-    await expect(page.getByRole('heading', { name: SESSION_DONE })).toBeVisible();
+    await expect(page.getByRole('heading', { name: NOTHING_PLAYED })).toBeVisible();
     await expect(button(page, 'A speaking round')).toHaveCount(0);
   });
 });

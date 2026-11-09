@@ -8,9 +8,9 @@
 // checkpoint seals the unit in meta.sealed; the weekly check appends to meta.weeklyChecks and
 // shows the calibration line; each check appends one SessionRecord. The placement runs the first
 // unit's checkpoint and goes on to the next units while passing, each pass sealing its unit; the
-// chain of units is read from the content (placementUnits, engine/course.js). The end card after
-// a pass, of a unit or of the last unit the placement passed, paints the unit's strip sealed
-// (renderStrip), filled from the states the results left. The pure wording helpers are exported
+// chain of units is read from the content (placementUnits, engine/course.js). The end card of a
+// passed check (a unit check, or a placement whose last check passed) paints that unit's strip
+// sealed (renderStrip), filled from the states the results left. The pure wording helpers are exported
 // for the tests.
 
 import { h, mount } from '../../util/dom.js';
