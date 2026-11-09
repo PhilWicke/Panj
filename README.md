@@ -25,7 +25,7 @@ npm run lint:content
 
 `npm run test:e2e` runs the app end to end in a phone-sized Chromium after `npm install --no-save @playwright/test@1.64.1`, which leaves `package.json` as it is; on a machine that already has Playwright's Chromium 1248, put `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1` in front of that install, and elsewhere fetch the browser with `npx playwright install chromium`. The CI workflow runs the same test on every push and pull request with a browser it installs itself.
 
-The hive scenario serves its own course of ten units with five lessons each, so it does not depend on the content written so far.
+The hive and quiet scenarios serve their own courses, so they do not depend on the content written so far.
 
 ## Build
 

@@ -12,9 +12,14 @@ import { optionGroup } from './option-group.js';
 /** @typedef {import('../../content/types.js').Rule} Rule */
 /** @typedef {import('../../content/types.js').RuleCell} RuleCell */
 
-/** Headers for the row and col keys the content uses; any other key shows as written. */
+/** Headers for the row and col keys the content uses (persons, numbers, genders, cases, counts); any other key shows as written. */
 /** @type {Record<string, string>} */
-const LABELS = { 1: '1st', 2: '2nd', 3: '3rd', sg: 'Singular', du: 'Dual', pl: 'Plural' };
+const LABELS = {
+  1: '1st', 2: '2nd', 3: '3rd', sg: 'Singular', du: 'Dual', pl: 'Plural',
+  m: 'Masculine', f: 'Feminine', n: 'Neuter',
+  nom: 'Nominative', gen: 'Genitive', dat: 'Dative', acc: 'Accusative', loc: 'Locative', ins: 'Instrumental',
+  one: 'One', two: 'Two', three: 'Three', four: 'Four',
+};
 /** Cols marked in the table, with the caption under their header: the dual is new to German and English speakers. */
 /** @type {Record<string, string>} */
 const MARKED_COLS = { du: 'exactly two' };

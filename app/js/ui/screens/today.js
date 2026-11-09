@@ -1,9 +1,10 @@
 // The Today screen (spec 6, concept section 3): the greeting in Slovenian by the hour with the
 // learner's name, a tap plays it; the week calendar; the primary action, worded from the session
 // buildSession would start now, from the same inputs the session screen uses, with the weekly
-// check under it when one is due (every seventh active day, engine/checkpoint.js); right under
-// it the strip of the unit in focus (focusUnitId: the current lesson's unit, else the last unit
-// with lessons) drawn large, the current lesson's cell rimmed, a tap opens the Hive; the current
+// check under it when one is due (every seventh active day, engine/checkpoint.js), and right
+// after them, when nothing is due, the line that explains the disabled action; under them the
+// strip of the unit in focus (focusUnitId: the current lesson's unit, else the last unit with
+// lessons) drawn large, the current lesson's cell rimmed, a tap opens the Hive; the current
 // lesson; and one quiet line when the store is not persistent. A course without lessons yet (a
 // strict build before any content is accepted) says so in place of the primary action and draws
 // no strip. The pure parts are exported for the tests.
@@ -117,8 +118,9 @@ export function renderToday(container, app) {
         }, actionLabel(action.text)),
         canContinue && h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => navigate('/session?mode=continue') }, 'Continue lesson'),
         weeklyItems >= WEEKLY_MIN_ITEMS && h('a', { class: 'btn btn-secondary', href: '#/checkpoint?weekly=1' }, `Weekly check: ${countLine(weeklyItems)}`)),
-    strip,
+    // The line that explains a disabled action comes right after the actions, before the strip.
     !noLessons && !action.enabled && h('p', { class: 'quiet' }, 'Come back later today or tomorrow.'),
+    strip,
     !app.persistent && h('p', { class: 'notice' }, 'Progress is not being saved in this browser.'),
     lesson && h('div', { class: 'lesson-card' },
       h('p', { class: 'eyebrow' }, unit ? `Unit ${unit.order}, lesson ${lesson.order}` : `Lesson ${lesson.order}`),

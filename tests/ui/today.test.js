@@ -4,7 +4,8 @@
 // in honey, grace as text, a fresh start instead of a loss message, honey as a quiet line) and the
 // closing menu. Through tests/helpers/fake-dom.js, the screen on a course without lessons says the
 // first lessons are still being checked and shows no primary action and no strip, a course with
-// lessons and nothing due keeps the disabled action, the current unit's strip sits under the
+// lessons and nothing due keeps the disabled action with the line that explains it right after the
+// actions and before the strip, the current unit's strip sits under the
 // primary action with the current lesson's cell marked, linking to the Hive, and no intention line
 // shows, even for an old settings record that carries one. The closing menu offers "Can't talk
 // right now" after the speaking round only when the session asks for it. The rest of the screen
@@ -149,6 +150,14 @@ test('Today with lessons and nothing due keeps the disabled primary action and i
   assert.equal(action.getAttribute('aria-disabled'), 'true');
   assert.ok(all.some((el) => el.textContent === 'Come back later today or tomorrow.'));
   assert.equal(all.some((el) => el.textContent === 'Nothing to practise yet'), false);
+  const stack = all.find((el) => el.classList.contains('actions-stack'));
+  const siblings = stack.parentNode.childNodes;
+  const next = siblings[siblings.indexOf(stack) + 1];
+  assert.equal(next.textContent, 'Come back later today or tomorrow.', 'the line comes right after the action it explains');
+  assert.ok(next.tagName === 'P' && next.classList.contains('quiet'));
+  const strip = siblings.find((/** @type {any} */ el) => el.classList?.contains('today-strip'));
+  assert.ok(strip, 'the strip is drawn');
+  assert.ok(siblings.indexOf(strip) > siblings.indexOf(next), 'and the strip after it');
 });
 
 const STRIP_UNIT = { id: 'u01', order: 1, title_sl: 'Prvi stik', title_en: 'First contact', motif: 'flower', lessonCount: 5, lessons: ['u01-l01'] };
