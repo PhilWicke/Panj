@@ -396,11 +396,11 @@
     "title_en": "Outside the house",
     "setting_en": "Outside your hosts' house, one of their neighbours stops to talk to you.",
     "cast": {
-      "passer-by": "female"
+      "neighbour": "female"
     },
     "lines": [
       {
-        "speaker": "passer-by",
+        "speaker": "neighbour",
         "sl": "Dober dan. Ste iz Slovenije?",
         "en": "Good day. Are you from Slovenia?"
       },
@@ -414,7 +414,7 @@
         ]
       },
       {
-        "speaker": "passer-by",
+        "speaker": "neighbour",
         "sl": "Od kod ste?",
         "en": "Where are you from?"
       },
@@ -427,7 +427,7 @@
         ]
       },
       {
-        "speaker": "passer-by",
+        "speaker": "neighbour",
         "sl": "Jaz sem od tukaj. Dobrodošli.",
         "en": "I'm from here. Welcome."
       },

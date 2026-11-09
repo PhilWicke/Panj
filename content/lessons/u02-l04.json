@@ -434,11 +434,11 @@
     "title_en": "In the street",
     "setting_en": "A neighbour of your hosts stops you in the street and asks about your family.",
     "cast": {
-      "passer-by": "male"
+      "neighbour": "male"
     },
     "lines": [
       {
-        "speaker": "passer-by",
+        "speaker": "neighbour",
         "sl": "Imate brate ali sestre?",
         "en": "Do you have brothers or sisters?"
       },
@@ -451,7 +451,7 @@
         ]
       },
       {
-        "speaker": "passer-by",
+        "speaker": "neighbour",
         "sl": "In otroke? Imate otroke?",
         "en": "And children? Do you have children?"
       },
@@ -464,7 +464,7 @@
         ]
       },
       {
-        "speaker": "passer-by",
+        "speaker": "neighbour",
         "sl": "Dva? Mi imamo štiri otroke.",
         "en": "Two? We have four children."
       }
