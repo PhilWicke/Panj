@@ -49,7 +49,7 @@
     "enText": {
       "type": "string",
       "minLength": 1,
-      "description": "English copy in generic framing: never girlfriend, boyfriend, my partner, her parents or his parents (lint rule personal)."
+      "description": "English copy in generic framing: never a named person or relationship (lint rule personal)."
     },
     "Example": {
       "type": "object",

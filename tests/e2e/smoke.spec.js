@@ -3,13 +3,19 @@
 // lesson to practise). Each test starts in a fresh context, with empty storage: onboarding to
 // Today; a full u01-l01 session answered right; a wrong typed answer, its diff, the retry and the
 // item's return after two entries; mute without listening; export with a flag; a malformed import;
-// a session with IndexedDB blocked; the service worker serving the app offline (kept last).
+// a session with IndexedDB blocked; the service worker serving the app offline; and a new version
+// showing the update toast once and reloading only on Reload (it rebuilds the dev bundle with a
+// probe module to make the second version, and removes it again).
 //
 // The answers come from the bundle itself (app/content/dist/), read when a test asks for them,
 // after the web server has built it. Machines differ in their speech voices (a Mac may have a
 // Slovenian one, the CI runner has none) and the audio manifest lists no recordings yet, so every
-// test hides the device voices: each audio exercise takes its no-audio form, the same everywhere.
-import { readFileSync } from 'node:fs';
+// test hides the device voices: nothing can play, so no listening or perception exercise is
+// scheduled (Ruling 81), the same everywhere.
+import { execFileSync } from 'node:child_process';
+import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { test, expect } from '@playwright/test';
 import { validateImport } from '../../app/js/store/state.js';
 import { localDateKey } from '../../app/js/util/time.js';
@@ -27,6 +33,12 @@ const LESSON_ID = 'u01-l01';
 const NAME = 'Ana';
 const SESSION_DONE = 'Session complete.';
 const NO_AUDIO = 'No audio on this device.';
+/** What the update toast says, as app/js/main.js shows it. */
+const UPDATE_TEXT = 'A new version is ready. Reload when you have a moment.';
+const ROOT = fileURLToPath(new URL('../../', import.meta.url));
+/** The module the update test writes to make a second version; git-ignored, removed afterwards. */
+const PROBE = join(ROOT, 'app/js/e2e-update-probe.js');
+const VERSION_FILE = join(ROOT, 'app/version.js');
 
 /** @type {Answers|null} */
 let answersRead = null;
@@ -56,6 +68,25 @@ test.beforeEach(async ({ context }) => {
     if (globalThis.speechSynthesis) globalThis.speechSynthesis.getVoices = () => [];
   });
 });
+
+/** Runs the development build from the repository root, as the web server did before the tests. */
+function rebuild() {
+  execFileSync(process.execPath, ['tools/build-content.js', '--allow-pending'], { cwd: ROOT, stdio: 'ignore' });
+}
+
+/** @returns {string} the version app/version.js carries now; the module is cached by import, so the file is read */
+function builtVersion() {
+  const match = /SLOVELINGO_VERSION = "([0-9a-f]+)"/.exec(readFileSync(VERSION_FILE, 'utf8'));
+  if (!match) throw new Error('app/version.js carries no version');
+  return match[1];
+}
+
+/** Removes the probe module, if a run left it behind, and builds the version without it. */
+function removeProbe() {
+  if (!existsSync(PROBE)) return;
+  rmSync(PROBE);
+  rebuild();
+}
 
 /** @param {Page} page @param {string} name */
 const button = (page, name) => page.getByRole('button', { name, exact: true });
@@ -243,13 +274,17 @@ test('a full u01-l01 session answered right ends at the closing menu, and Today 
   await primaryAction(page).click();
   const played = await playSession(page);
   const kinds = played.map((entry) => entry.kind);
-  for (const kind of ['meet', 'rule', 'structured', 'typed', 'perception', 'dialogue']) expect(kinds).toContain(kind);
+  for (const kind of ['meet', 'rule', 'structured', 'typed', 'dialogue']) expect(kinds).toContain(kind);
+  // nothing can play (no recordings, the device voices hidden), so no audio exercise is scheduled (Ruling 81)
+  expect(played.filter((entry) => entry.kind === 'perception' || entry.kind === 'listening')).toEqual([]);
 
   const summary = await page.getByText(/^\d+ of \d+ answers right/).textContent();
   const [, right, of] = /^(\d+) of (\d+)/.exec(summary ?? '') ?? [];
   expect(Number(right)).toBeGreaterThan(0);
   expect(right).toBe(of);
-  await expect(button(page, 'Three more minutes')).toBeVisible();
+  // every item of the only lesson was practised and none missed, so there is no round to offer (Ruling 80)
+  await expect(button(page, 'Stop here')).toBeVisible();
+  await expect(button(page, 'Three more minutes')).toHaveCount(0);
   await button(page, 'Stop here').click();
 
   await expect(primaryAction(page).or(page.getByRole('button', { name: 'Nothing due right now' }))).toBeVisible();
@@ -270,7 +305,7 @@ test('a wrong typed answer shows the diff and a retry, and the item returns afte
     if (entry.kind === 'typed' && missed === null) {
       missed = { at, key: entry.key ?? '' };
       const field = page.getByRole('textbox', { name: 'Your answer in Slovenian' });
-      await field.fill('Zdravo');
+      await field.fill('xyzzy');   // a string no item can ever accept
       await field.press('Enter');
       await expect(page.getByText('Not quite.', { exact: true })).toBeVisible();
       await expect(page.locator('.diff').locator('.diff-del, .diff-sub').first()).toBeVisible();
@@ -371,7 +406,7 @@ test('with IndexedDB blocked, Today says progress is not saved and a session sti
   await expect(button(page, 'Stop here')).toBeVisible();
 });
 
-// Kept last: it takes the context offline.
+// Takes its context offline; the update test follows it in a context of its own.
 test('the service worker serves the app offline and a session plays a typed item', async ({ context, page }) => {
   await onboard(page);
   await page.evaluate(async () => {
@@ -393,4 +428,53 @@ test('the service worker serves the app offline and a session plays a typed item
   await primaryAction(page).click();
   const played = await playSession(page, { stop: (entry, done) => done.some((each) => each.kind === 'typed') });
   expect(played.filter((entry) => entry.kind === 'typed')).toHaveLength(1);
+});
+
+// The update flow (Ruling 85): a second version is built from the same tree plus a probe module
+// under app/js/, which the dev build lists in precache.json and hashes into the version; the
+// server serves the folder live, so the next reload sees the new version.js and precache.json.
+test('a new version shows the update toast once and reloads only on Reload', async ({ page }) => {
+  removeProbe();
+  try {
+    await onboard(page);
+    await page.evaluate(async () => {
+      await navigator.serviceWorker.ready;
+    });
+    await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+    const oldVersion = await page.evaluate(() => /** @type {any} */ (globalThis).SLOVELINGO_VERSION);
+    expect(oldVersion).toBe(builtVersion());
+    expect(await page.evaluate(() => navigator.serviceWorker.controller?.scriptURL)).toMatch(new RegExp(`\\?v=${oldVersion}$`));
+
+    writeFileSync(PROBE, '// A probe the end-to-end update test writes to make a second version; never committed.\n');
+    rebuild();
+    const newVersion = builtVersion();
+    expect(newVersion).not.toBe(oldVersion);
+
+    // one reload: the page learns the new version, registers the new worker, and the toast shows
+    await page.reload();
+    await page.evaluate(() => { /** @type {any} */ (window).__slovelingoMarker = 1; });
+    const region = page.locator('[role=status]').filter({ hasText: UPDATE_TEXT });
+    await expect(region.getByText(UPDATE_TEXT, { exact: true })).toBeVisible();
+    expect(await page.evaluate(() => /** @type {any} */ (window).__slovelingoMarker)).toBe(1);   // nothing reloaded by itself
+    expect(await page.evaluate(() => navigator.serviceWorker.controller?.scriptURL)).toMatch(new RegExp(`\\?v=${oldVersion}$`));
+    await expect(page.locator('.toast')).toHaveCount(1);
+
+    // the Reload tap: the waiting worker takes over, the page reloads once into the new version
+    const reloaded = page.waitForEvent('load');
+    await region.getByRole('button', { name: 'Reload', exact: true }).click();
+    await reloaded;
+    await page.waitForFunction((version) => /** @type {any} */ (window).__slovelingoMarker === undefined
+      && navigator.serviceWorker.controller?.scriptURL.endsWith(`?v=${version}`) === true, newVersion);
+    await page.waitForFunction(async () => {
+      const registration = await navigator.serviceWorker.getRegistration();
+      return registration !== undefined && registration.installing === null && registration.waiting === null;
+    });
+    expect(await page.evaluate(() => /** @type {any} */ (globalThis).SLOVELINGO_VERSION)).toBe(newVersion);
+    const cacheNames = await page.evaluate(() => caches.keys());
+    expect(cacheNames.filter((name) => /^slovelingo-(?!audio$)/.test(name))).toEqual([`slovelingo-${newVersion}`]);
+    await expect(page.locator('.toast')).toHaveCount(0);
+    await expect(primaryAction(page)).toBeVisible();
+  } finally {
+    removeProbe();
+  }
 });

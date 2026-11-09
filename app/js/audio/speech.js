@@ -4,8 +4,9 @@
 // (settings.speech, off by default); speechAvailable only checks that the API exists and never
 // constructs a recogniser. A failure that does not pass by itself (a refused microphone or speech
 // service, no microphone, a recogniser without Slovenian) is remembered until resetRecognition,
-// which the session screen calls as each session starts and the Settings switch when recognition
-// is turned on; recognitionBlocked tells the exercises so they do not ask again in the meantime.
+// which the session screen calls as each session starts, so a recogniser refused in one session
+// is offered again in the next; recognitionBlocked tells the exercises so they do not ask again
+// in the meantime.
 // Any other failure (no connection, a recogniser that would not start, an error the browser names
 // otherwise) is reported for the one attempt only. compareSpoken judges a transcript against the
 // line coarsely: a match, close, or a miss, never a score.

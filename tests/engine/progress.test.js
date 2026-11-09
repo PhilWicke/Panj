@@ -1,14 +1,15 @@
 // tests/engine/progress.test.js
 // Progress counters over the item states and the session records: the items the learner can recall
 // now, the words met, the hive fill per lesson and unit, the Monday-based week with its one grace
-// day, honey and the hours practised. Every function is pure and counts in the learner's local days.
+// day, honey, the hours practised and the credited minutes of a session (the gaps between its
+// marks, each capped, Ruling 79). Every function is pure and counts in the learner's local days.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { DEFAULT_SETTINGS, createState, recordRecall, skipAheadState, retrievability } from '../../app/js/engine/scheduler.js';
 import { localDateKey } from '../../app/js/util/time.js';
 import {
-  recallNow, wordsMet, lessonFill, hiveFill, weekSummary, honeyFor, hoursPracticed, a1Hours,
+  recallNow, wordsMet, lessonFill, hiveFill, weekSummary, honeyFor, hoursPracticed, a1Hours, creditedMinutes, MAX_GAP_MS,
 } from '../../app/js/engine/progress.js';
 
 const TZ = 'Europe/Berlin';
@@ -298,6 +299,19 @@ test('hoursPracticed rounds to one decimal', () => {
   assert.equal(hoursPracticed([session(T0, 10), session(T0 + DAY, 10), session(T0 + 2 * DAY, 7)]), 0.5);   // 27 minutes
   assert.equal(hoursPracticed([session(T0, 6.6), session(T0 + DAY, 6.6), session(T0 + 2 * DAY, 6.6)]), 0.3);   // fractional minutes
   assert.equal(hoursPracticed([session(T0, 1680)]), 28);    // "28 hours practised"
+});
+
+test('creditedMinutes sums the gaps between the marks, each capped at two minutes (Ruling 79)', () => {
+  assert.equal(MAX_GAP_MS, 2 * MINUTE);
+  assert.equal(creditedMinutes([]), 0, 'no marks, no credit');
+  assert.equal(creditedMinutes([T0]), 0, 'a single mark, no gap');
+  assert.equal(creditedMinutes([T0, T0 + 30_000, T0 + 60_000]), 1, 'three marks 30 s apart');
+  assert.equal(creditedMinutes([T0, T0 + 3 * HOUR]), 2, 'a 3-hour gap counts as 2 minutes');
+  assert.equal(creditedMinutes([T0, T0 + 30_000, T0 + 3 * HOUR, T0 + 3 * HOUR + 30_000]), 3, 'half a minute, the cap, half a minute');
+  assert.equal(creditedMinutes([T0, T0 + 3 * HOUR], 5 * MINUTE), 5, 'the cap is a parameter');
+  assert.equal(creditedMinutes([T0 + MINUTE, T0]), 0, 'a mark before the one before it credits nothing');
+  const marks = Object.freeze([T0, T0 + MINUTE]);
+  assert.equal(creditedMinutes(marks), 1, 'the marks are read, not changed');
 });
 
 // Beyond the brief: the words met against the compiler's count, the hive, honey, the A1 budget and purity.

@@ -1,6 +1,8 @@
 // The audio player (spec 5). A line plays from its recording when the manifest lists one in the
 // learner's voice, else with the device's own Slovenian voice (one whose `lang` starts with `sl`)
-// through speechSynthesis, else not at all, and play() says which happened. Mute plays nothing.
+// through speechSynthesis, else not at all, and play() says which happened; audioAvailable() says
+// beforehand whether either source exists, so the session schedules no audio exercise nothing can
+// play (Ruling 81). Mute plays nothing.
 // One sound at a time: play(), stop(), setMute() and setVoice() end whatever plays; setVoice()
 // changes the learner's voice for every later lookup (Ruling 48). The manifest is the one
 // tools/gen-audio.js writes ({ id: { text, voice, model, bytes } }, id = audioId(text, voice)),
@@ -40,6 +42,10 @@ const CANCEL_SETTLE_MS = 150;
  *   preferred voice exists; a promise, since it awaits the manifest and audioId
  * @property {() => boolean} deviceVoiceAvailable whether the device has a Slovenian voice, from
  *   the voice list as it stands
+ * @property {() => Promise<boolean>} audioAvailable whether anything can play: the manifest has a
+ *   recording in the preferred voice, or the device has a Slovenian voice. It awaits the manifest
+ *   (never fetched for the voice `device`, Ruling 45) and the voice list, which some browsers
+ *   fill late; mute does not enter into it
  */
 
 /**
@@ -263,5 +269,15 @@ export function createPlayer({ manifestUrl, voicePref, mute }) {
       return (await recordingFor(text)) !== null;
     },
     deviceVoiceAvailable,
+    async audioAvailable() {
+      const voice = voiceFor(preferred);
+      if (voice) {
+        manifest ??= fetchManifest(manifestUrl);
+        if (Object.values(await manifest).some((entry) => entry?.voice === voice)) return true;
+      }
+      const synth = globalThis.speechSynthesis;
+      if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return false;
+      return slovenianVoice(await voices(synth)) !== null;
+    },
   };
 }

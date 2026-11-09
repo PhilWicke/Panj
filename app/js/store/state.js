@@ -7,11 +7,13 @@
 
 import { DEFAULT_SETTINGS } from '../engine/scheduler.js';
 import { STORE_NAMES } from './memory.js';
+import { SETTING_RANGES, THEME_OPTIONS, VOICE_OPTIONS, clampToRange, withinRange } from './setting-ranges.js';
 
 /** @typedef {import('../engine/scheduler.js').ItemState} ItemState */
 /** @typedef {import('../engine/scheduler.js').Settings} Settings */
 /** @typedef {import('../engine/progress.js').SessionRecord} SessionRecord */
 /** @typedef {import('./memory.js').StoreAdapter} StoreAdapter */
+/** @typedef {import('./setting-ranges.js').NumericSetting} NumericSetting */
 
 /**
  * What the app keeps beyond the scheduler's Settings.
@@ -104,11 +106,20 @@ export async function saveItemState(adapter, state) {
 }
 
 /**
+ * Writes a session record. A record with the id of one already stored replaces it (the store's
+ * put), which is how the session screen turns its provisional record into the final one (Ruling
+ * 78); `sessions`, when given, is the app's in-memory list, where the record replaces the one with
+ * its id as well, or joins the end.
  * @param {StoreAdapter} adapter
  * @param {SessionRecord} record
+ * @param {SessionRecord[]} [sessions] the in-memory list to keep in step with the store
  */
-export async function appendSession(adapter, record) {
+export async function appendSession(adapter, record, sessions) {
   await adapter.put('sessions', record);
+  if (!sessions) return;
+  const at = sessions.findIndex((session) => session.id === record.id);
+  if (at === -1) sessions.push(record);
+  else sessions[at] = record;
 }
 
 /**
@@ -236,10 +247,41 @@ export function validateImport(json) {
 }
 
 /**
+ * A file's settings made safe to store (Ruling 84): only the keys of DEFAULT_APP_SETTINGS survive.
+ * A number outside its range (setting-ranges.js), a theme or voice outside its options, a switch
+ * that is not a boolean and a name or clause that is not a string each take their default; a
+ * number inside its range lands on its step. A missing or non-object settings value gives the
+ * defaults.
+ * @param {unknown} settings `data.settings`, in whatever shape the file has it
+ * @returns {AppSettings}
+ */
+export function sanitizeSettings(settings) {
+  const given = /** @type {Record<string, unknown>} */ (isRecord(settings) ? settings : {});
+  const defaults = /** @type {Record<string, unknown>} */ (DEFAULT_APP_SETTINGS);
+  /** @type {Record<string, unknown>} */
+  const kept = { ...defaults };
+  for (const key of Object.keys(defaults)) {
+    if (!Object.hasOwn(given, key)) continue;
+    const value = given[key];
+    if (Object.hasOwn(SETTING_RANGES, key)) {
+      const numeric = /** @type {NumericSetting} */ (key);
+      if (withinRange(numeric, value)) kept[key] = clampToRange(numeric, value);
+    } else if (key === 'theme') {
+      if (typeof value === 'string' && THEME_OPTIONS.includes(value)) kept[key] = value;
+    } else if (key === 'voice') {
+      if (typeof value === 'string' && VOICE_OPTIONS.includes(value)) kept[key] = value;
+    } else if (typeof value === typeof defaults[key]) {
+      kept[key] = value;
+    }
+  }
+  return /** @type {AppSettings} */ (kept);
+}
+
+/**
  * Replaces the whole state with a validated file's: every store is cleared, then the file's items
- * (each under its own itemId), sessions, settings over the defaults, flags and meta are written.
- * Only ever called with the data validateImport returned; a file that fails validation never
- * reaches it.
+ * (each under its own itemId), sessions, settings (sanitizeSettings over the defaults), flags and
+ * meta are written. Only ever called with the data validateImport returned; a file that fails
+ * validation never reaches it.
  * @param {StoreAdapter} adapter
  * @param {ImportData} data
  * @param {number} [now] epoch ms for a meta record without createdAt; the clock when omitted
@@ -248,7 +290,7 @@ export async function importState(adapter, data, now = Date.now()) {
   for (const store of STORE_NAMES) await adapter.clear(store);
   for (const state of Object.values(data.items)) await saveItemState(adapter, state);
   for (const record of data.sessions) await appendSession(adapter, record);
-  await saveSettings(adapter, { ...DEFAULT_APP_SETTINGS, ...data.settings });
+  await saveSettings(adapter, sanitizeSettings(data.settings));
   for (const flag of data.flags ?? []) await addFlag(adapter, flag);
   const createdAt = typeof data.meta?.createdAt === 'number' ? data.meta.createdAt : now;
   await saveMeta(adapter, { ...data.meta, schemaVersion: SCHEMA_VERSION, createdAt });

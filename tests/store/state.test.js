@@ -9,7 +9,7 @@ import { STORE_NAMES, createMemoryStore } from '../../app/js/store/memory.js';
 import { DB_NAME, DB_VERSION, openIndexedDb, openStore } from '../../app/js/store/db.js';
 import {
   APP_ID, SCHEMA_VERSION, DEFAULT_APP_SETTINGS,
-  loadState, saveItemState, appendSession, saveSettings, addFlag, saveMeta, exportState, validateImport, importState,
+  loadState, saveItemState, appendSession, saveSettings, addFlag, saveMeta, exportState, validateImport, importState, sanitizeSettings,
 } from '../../app/js/store/state.js';
 
 const TZ = 'Europe/Berlin';
@@ -165,6 +165,49 @@ test('export contains app marker and schema version; import restores the same st
   const renamed = validateImport(JSON.stringify({ app: 'slovelingo', schemaVersion: 1, items: { whatever: state.items['u01-l01-i02'] }, sessions: [] }));
   await importState(target, renamed.data, T1);
   assert.deepEqual((await loadState(target)).items, { 'u01-l01-i02': state.items['u01-l01-i02'] });
+});
+
+test('appendSession keeps one row per id and, given the in-memory list, replaces the record there too (Ruling 78)', async () => {
+  const adapter = createMemoryStore();
+  /** @type {any[]} */
+  const list = [];
+  const first = session('run-1', T0, 0.5);
+  await appendSession(adapter, first, list);
+  assert.deepEqual(await adapter.getAll('sessions'), [first]);
+  assert.deepEqual(list, [first]);
+  const again = { ...first, minutes: 1, recalls: 2 };
+  await appendSession(adapter, again, list);
+  assert.deepEqual(await adapter.getAll('sessions'), [again], 'one stored row, the later write');
+  assert.deepEqual(list, [again], 'replaced in place, not pushed');
+  const other = session('run-2', T0 + HOUR);
+  await appendSession(adapter, other, list);
+  assert.deepEqual(list.map((s) => s.id), ['run-1', 'run-2'], 'a new id joins the end');
+  await appendSession(adapter, session('run-3', T0 + 2 * HOUR));
+  assert.equal((await adapter.getAll('sessions')).length, 3, 'without a list, the store alone');
+  assert.equal(list.length, 2);
+});
+
+test('importState sanitises the settings: unknown keys dropped, numbers outside their range and options outside their list take the default (Ruling 84)', async () => {
+  const target = createMemoryStore();
+  const file = validateImport(JSON.stringify({
+    app: 'slovelingo', schemaVersion: 1, items: {}, sessions: [],
+    settings: {
+      desiredRetention: 2, theme: 'blue', newPerDay: 50, dailyMinutes: 15, mute: 'yes', voice: 'male', name: 'Eva', intention: 7,
+      speech: true, onboarded: 1, bogus: 1, nested: { a: 1 },
+    },
+  }));
+  assert.equal(file.ok, true, 'the file validates: the values are the import\'s business');
+  await importState(target, file.data, T1);
+  assert.deepEqual((await loadState(target)).settings, { ...DEFAULTS, dailyMinutes: 15, voice: 'male', name: 'Eva', speech: true });
+  assert.deepEqual(sanitizeSettings({ desiredRetention: 0.873, newPerDay: 3.4, dailyMinutes: 60 }),
+    { ...DEFAULTS, desiredRetention: 0.87, newPerDay: 3, dailyMinutes: 60 }, 'inside the range, a value lands on its step');
+  assert.deepEqual(sanitizeSettings({ desiredRetention: 0.849, dailyMinutes: 61, newPerDay: -1 }), DEFAULTS, 'just outside the range is the default, not the edge');
+  assert.deepEqual(sanitizeSettings({ desiredRetention: '0.9', dailyMinutes: Number.NaN, newPerDay: null }), DEFAULTS, 'not a finite number');
+  assert.deepEqual(sanitizeSettings({ theme: 'dark', voice: 'device', mute: true, onboarded: true }), { ...DEFAULTS, theme: 'dark', voice: 'device', mute: true, onboarded: true });
+  assert.deepEqual(sanitizeSettings(undefined), DEFAULTS, 'no settings in the file');
+  assert.deepEqual(sanitizeSettings([1]), DEFAULTS);
+  assert.deepEqual(sanitizeSettings('dark'), DEFAULTS);
+  assert.deepEqual(sanitizeSettings(DEFAULT_APP_SETTINGS), DEFAULTS, 'the defaults pass through');
 });
 
 test('validateImport rejects foreign or malformed JSON with a reason and does not touch the store', async () => {

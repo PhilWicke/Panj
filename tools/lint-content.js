@@ -2,7 +2,8 @@
 // app/js/content/types.js and the content rules of the plan.
 // Library: lintContent({ contentDir, allowPending }).
 // CLI: node tools/lint-content.js [--allow-pending] [contentDir]; exit 1 on any error.
-// No dependencies: node:fs, node:path and node:url only.
+// No dependencies beyond Node's own modules (node:fs, node:path, node:url) and the app's
+// util/ids.js, the one place the rule-id pattern lives.
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

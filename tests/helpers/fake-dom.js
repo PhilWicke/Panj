@@ -3,10 +3,12 @@
 // createElement, createElementNS (the tag name keeps its case and the element records its
 // namespace, as an SVG element does), createTextNode, className, classList, dataset, style,
 // setAttribute, removeAttribute, hidden (reflecting the attribute, as on an HTML element),
-// querySelector (one class or attribute selector), appendChild, append, replaceChildren, remove,
-// addEventListener, focus (recorded as document.activeElement), textContent, a documentElement
-// for the theme and a body for the toast. It keeps dom.js and the small components honest
-// without a browser; the session itself runs in the end-to-end check.
+// querySelector (one tag, class or attribute selector), appendChild, append, replaceChildren,
+// remove, addEventListener, focus (recorded as document.activeElement), textContent, a
+// documentElement for the theme and a body for the toast; and a localStorage stand-in on
+// globalThis, which the theme mirrors into (Node's own localStorage warns when it is used without
+// a file). It keeps dom.js and the small components honest without a browser; the session itself
+// runs in the end-to-end check.
 
 /** The document installFakeDom put on globalThis, which focus() reports to. @type {{ activeElement: FakeElement|null }|null} */
 let installed = null;
@@ -137,19 +139,21 @@ class FakeElement extends FakeNode {
   }
 
   /**
-   * The first element under this one, depth first, that matches. Only a single class selector
-   * such as `.settings-notice` or a single attribute selector such as `[data-autofocus]` or
-   * `[tabindex="-1"]` is understood; anything else throws, so a test never passes on a selector
-   * the fake cannot read.
+   * The first element under this one, depth first, that matches. Only a single tag selector such
+   * as `button`, a single class selector such as `.settings-notice` or a single attribute selector
+   * such as `[data-autofocus]` or `[tabindex="-1"]` is understood; anything else throws, so a test
+   * never passes on a selector the fake cannot read.
    * @param {string} selector
    * @returns {FakeElement|null}
    */
   querySelector(selector) {
+    const byTag = /^[a-z][a-z0-9-]*$/.exec(selector);
     const byClass = /^\.([\w-]+)$/.exec(selector);
     const byAttribute = /^\[([\w-]+)(?:="([^"]*)")?\]$/.exec(selector);
-    if (!byClass && !byAttribute) throw new Error(`The fake DOM's querySelector takes one class or attribute selector, not ${selector}`);
+    if (!byTag && !byClass && !byAttribute) throw new Error(`The fake DOM's querySelector takes one tag, class or attribute selector, not ${selector}`);
     /** @param {FakeElement} el @returns {boolean} */
     const matches = (el) => {
+      if (byTag) return el.tagName === byTag[0].toUpperCase();
       if (byClass) return el.classList.contains(byClass[1]);
       const value = el.selectorValue(/** @type {RegExpExecArray} */ (byAttribute)[1]);
       const wanted = /** @type {RegExpExecArray} */ (byAttribute)[2];
@@ -201,10 +205,28 @@ class FakeElement extends FakeNode {
 }
 
 /**
- * Puts a fake `document` on globalThis and returns it.
+ * A localStorage stand-in over a Map: getItem, setItem, removeItem and clear, as the theme uses
+ * them.
+ * @returns {{ getItem(key: string): string|null, setItem(key: string, value: string): void, removeItem(key: string): void, clear(): void }}
+ */
+export function fakeStorage() {
+  /** @type {Map<string, string>} */
+  const stored = new Map();
+  return {
+    getItem: (key) => stored.get(key) ?? null,
+    setItem: (key, value) => { stored.set(key, String(value)); },
+    removeItem: (key) => { stored.delete(key); },
+    clear: () => { stored.clear(); },
+  };
+}
+
+/**
+ * Puts a fake `document` on globalThis, and a fresh localStorage stand-in beside it, and returns
+ * the document.
  * @returns {{ createElement(tag: string): FakeElement, createElementNS(namespace: string, tag: string): FakeElement, createTextNode(data: string): FakeText, documentElement: FakeElement, body: FakeElement, activeElement: FakeElement|null }}
  */
 export function installFakeDom() {
+  Object.defineProperty(globalThis, 'localStorage', { value: fakeStorage(), configurable: true, writable: true });
   const document = {
     createElement: (/** @type {string} */ tag) => new FakeElement(tag),
     createElementNS: (/** @type {string} */ namespace, /** @type {string} */ tag) => new FakeElement(tag, namespace),

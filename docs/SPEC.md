@@ -15,7 +15,7 @@ By default the app introduces seven new items a day against a ten-minute daily g
 ## Exercises
 
 - Meet: a first look at a new word or phrase, with audio and a helper line.
-- Typed recall in both directions, English to Slovenian and Slovenian to English.
+- Typed recall from English to Slovenian.
 - Structured choice: pick the form or ending that fits a sentence.
 - Slot production: type a known chunk with a new filler.
 - Dialogues: scripted scenes in which the learner types their own lines.

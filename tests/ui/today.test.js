@@ -2,13 +2,18 @@
 // The Today screen's pure parts and the two components it is built from: the greeting by the hour,
 // the primary action's text from the planned session, the four-weeks rule that retires the
 // intention line, the week calendar (Ruling 25: active days in honey, grace as text, a fresh start
-// instead of a loss message, honey as a quiet line) and the closing menu. The DOM parts run through
-// tests/helpers/fake-dom.js; the screen itself runs in the browser check.
+// instead of a loss message, honey as a quiet line) and the closing menu. Through
+// tests/helpers/fake-dom.js, the screen on a course without lessons says the first lessons are
+// still being checked and shows no primary action, while a course with lessons and nothing due
+// keeps the disabled action. The rest of the screen runs in the browser check.
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { installFakeDom } from '../helpers/fake-dom.js';
+import { skipAheadState } from '../../app/js/engine/scheduler.js';
 import { weekSummary } from '../../app/js/engine/progress.js';
-import { greetingFor, primaryAction, habitHolds } from '../../app/js/ui/screens/today.js';
+import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
+import { greetingFor, primaryAction, habitHolds, renderToday } from '../../app/js/ui/screens/today.js';
 import { calendarLine, honeyInWeek, renderCalendar } from '../../app/js/ui/components/calendar.js';
 import { renderMenu } from '../../app/js/ui/components/menu.js';
 
@@ -139,6 +144,56 @@ test('renderCalendar draws seven day squares, active days in honey, today marked
   const activeToday = renderCalendar(weekSummary([...sessions, session(berlin(9, 8))], berlin(9, 12), 5, TZ), { todayDate: '2026-01-09', honey: 1 });
   assert.equal(label(elements(activeToday).filter((e) => e.classList.contains('calendar-day'))[4]), 'Friday, today, practised');
   assert.deepEqual(elements(activeToday).filter((e) => e.tagName === 'P').map((e) => e.textContent), ['4 of 5 days this week', '1 honey this week']);
+});
+
+const FIXTURE = new URL('../../tools/fixtures/content-valid/', import.meta.url);
+/** @param {string} path */
+const fixture = (path) => JSON.parse(readFileSync(new URL(path, FIXTURE), 'utf8'));
+
+/**
+ * The app the Today screen is drawn from: the bundle given, every item known, a dev build.
+ * @param {{ index: any, units: any[], states: Record<string, any> }} parts
+ */
+function todayApp({ index, units, states }) {
+  return /** @type {any} */ ({
+    persistent: true, allowPending: true, index, units, known: new Set(Object.keys(states)),
+    state: { settings: { ...DEFAULT_APP_SETTINGS, onboarded: true }, items: states, sessions: [], flags: [], meta: { schemaVersion: 1, createdAt: Date.now() } },
+    player: { play: async () => 'none' },
+  });
+}
+
+test('Today on a course without lessons says the first lessons are still being checked and shows no primary action', () => {
+  const index = { version: 't', mode: 'strict', generated: '', units: [], rules: [], lessonIndex: [], counts: { scheduledItems: 0, lemmasMet: 0 } };
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderToday(container, todayApp({ index, units: [], states: {} }));
+  const all = elements(container);
+  const heading = all.find((el) => el.tagName === 'H2' && el.textContent === 'Nothing to practise yet');
+  assert.ok(heading, 'the heading says nothing can be practised yet');
+  assert.ok(all.some((el) => el.tagName === 'P' && el.textContent === 'The first lessons are still being checked. Come back when they are released.'), 'the line under it');
+  assert.equal(all.some((el) => el.classList.contains('btn-session')), false, 'no primary action');
+  assert.equal(all.some((el) => el.textContent === 'Come back later today or tomorrow.'), false, 'not the nothing-due line');
+  assert.ok(all.some((el) => el.tagName === 'H1'), 'the greeting is still there');
+});
+
+test('Today with lessons and nothing due keeps the disabled primary action and its line', () => {
+  const [unit] = fixture('units.json');
+  const lesson = fixture('lessons/u01-l01.json');
+  const index = {
+    version: 't', mode: 'dev', generated: '', units: [unit], rules: [],
+    lessonIndex: [{ id: lesson.id, unit: unit.id, order: lesson.order, title_sl: lesson.title_sl, title_en: lesson.title_en, itemCount: lesson.items.length }],
+    counts: { scheduledItems: lesson.items.length, lemmasMet: 0 },
+  };
+  // every item met and in review, none due: nothing to start
+  const states = Object.fromEntries(lesson.items.map((/** @type {any} */ item) => [item.id, skipAheadState(item.id, Date.now())]));
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderToday(container, todayApp({ index, units: [{ unit, lessons: [lesson] }], states }));
+  const all = elements(container);
+  const action = all.find((el) => el.classList.contains('btn-session'));
+  assert.ok(action, 'the primary action is shown');
+  assert.equal(action.textContent, 'Nothing due right now');
+  assert.equal(action.getAttribute('aria-disabled'), 'true');
+  assert.ok(all.some((el) => el.textContent === 'Come back later today or tomorrow.'));
+  assert.equal(all.some((el) => el.textContent === 'Nothing to practise yet'), false);
 });
 
 test('renderMenu offers the closing options in order with their labels, the first as the primary action, and reports the pick', () => {

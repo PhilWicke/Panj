@@ -62,7 +62,8 @@ export function renderOnboarding(container, app) {
     const settings = onboardingSettings(app.state.settings, draft);
     try {
       await saveSettings(app.adapter, settings);
-    } catch {
+    } catch (error) {
+      console.error(error);
       saving = false;
       for (const button of buttons) button.disabled = false;
       notice.hidden = false;

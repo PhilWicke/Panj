@@ -6,8 +6,10 @@
 // version waits until the learner taps Reload (Ruling 58). activate drops every other
 // slovelingo-* cache but the audio, claims the pages and tells them `{ type: 'updated' }`. fetch
 // follows js/sw-policy.js: network-first for the shell and the content with the cache behind it
-// (also when the host answers 5xx; a navigation falls back to index.html), cache-first for fonts,
-// icons and clips; a clip fetched is kept in the audio cache under a 60 MB limit through a ledger
+// (also when the host answers 5xx; a navigation falls back to index.html), the cache holding what
+// the install fetched and nothing newer, so a version's cache never mixes in the files of the next
+// deploy before the learner reloads into it (Ruling 82); cache-first for fonts, icons and clips,
+// a miss being kept; a clip fetched is kept in the audio cache under a 60 MB limit through a ledger
 // entry, the oldest going first (Ruling 57), and a media element's Range request is answered with
 // the 206 it asked for. Messages: `skip-waiting` from the Reload tap, and `cache-unit-audio` from
 // the unit page's "Keep offline", which fetches the clips of a unit's texts
@@ -88,19 +90,19 @@ sw.addEventListener('fetch', (event) => {
   const policy = policyFor(url, SCOPE);
   if (policy === 'network-only') return;
   if (policy === 'cache-first') event.respondWith(isAudio(url, SCOPE) ? clipFirst(event, url) : cacheFirst(event, request));
-  else event.respondWith(networkFirst(event, request));
+  else event.respondWith(networkFirst(request));
 });
 
 /**
- * The network, with the cache behind it: a fresh response replaces the cached copy; when the
- * network fails, or the host answers with a server error (fallsBackToCache), the cached copy
- * answers, and a navigation gets index.html when its own URL is not cached. A server error with
- * nothing cached goes through as it is.
- * @param {FetchEvent} event
+ * The network, with the cache behind it: a fresh response goes through and is not written back,
+ * so this version's cache holds only what its install fetched (the precache list is complete by
+ * construction, Ruling 66); when the network fails, or the host answers with a server error
+ * (fallsBackToCache), the cached copy answers, and a navigation gets index.html when its own URL
+ * is not cached. A server error with nothing cached goes through as it is.
  * @param {Request} request
  * @returns {Promise<Response>}
  */
-async function networkFirst(event, request) {
+async function networkFirst(request) {
   const cache = await caches.open(CACHE);
   /** @returns {Promise<Response|undefined>} */
   const cachedCopy = async () => (await cache.match(request)) ?? (request.mode === 'navigate' ? await cache.match(inScope('index.html')) : undefined);
@@ -113,7 +115,6 @@ async function networkFirst(event, request) {
     throw error;
   }
   if (fallsBackToCache(response.status)) return (await cachedCopy()) ?? response;
-  if (keepable(response)) event.waitUntil(cache.put(request, response.clone()));
   return response;
 }
 

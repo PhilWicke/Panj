@@ -85,12 +85,15 @@ export function predictionFrom(value, count) {
 
 /**
  * The error card's line: before the end card nothing is recorded, so a failure there loses
- * nothing; a failure while the results are being saved may have saved some of them.
+ * nothing; a failure while the results are being saved may have saved some of them; a failure
+ * later in the placement chain, once a unit's check was saved, keeps what was saved.
  * @param {boolean} saving whether the results were being saved when it failed
+ * @param {boolean} [savedAny] whether an earlier check of this run was saved in full (the placement chain)
  * @returns {string}
  */
-export function failureLine(saving) {
-  return saving ? 'Some results may not have been saved. Check your progress on Today.' : 'The check stopped and nothing was recorded.';
+export function failureLine(saving, savedAny = false) {
+  if (saving) return 'Some results may not have been saved. Check your progress on Today.';
+  return savedAny ? 'The check stopped. The units checked before it were saved.' : 'The check stopped and nothing was recorded.';
 }
 
 /**
@@ -213,6 +216,8 @@ export function renderCheckpoint(container, app, params = {}) {
   let alive = true;
   /** Whether a check's results are being written, so a failure may have saved part of them. */
   let saving = false;
+  /** Whether a check of this run was saved in full: the placement chain saves one unit per pass. */
+  let savedAny = false;
 
   /** @param {...Child} children */
   const view = (...children) => {
@@ -347,6 +352,7 @@ export function renderCheckpoint(container, app, params = {}) {
     app.state.sessions.push(record);
     await appendSession(app.adapter, record);
     saving = false;
+    savedAny = true;
     return score;
   };
 
@@ -399,7 +405,7 @@ export function renderCheckpoint(container, app, params = {}) {
       console.error(error);
       if (!alive) return;
       view(h('h1', { class: 'screen-title' }, 'Something went wrong.'),
-        h('p', { class: 'en-text' }, failureLine(saving)),
+        h('p', { class: 'en-text' }, failureLine(saving, savedAny)),
         h('div', { class: 'actions' }, h('a', { class: 'btn btn-primary', href: '#/today' }, 'Back to Today')));
     });
   };

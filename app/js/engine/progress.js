@@ -19,15 +19,17 @@ import { isRuleId } from '../util/ids.js';
 /** @typedef {import('../content/types.js').UnitContent} UnitContent */
 
 /**
- * One finished session, appended by the session screen when the closing menu is reached. Times
- * are epoch ms. `recalls` and `correct` count the typed and the recognition-judged spoken recalls
- * and the successful ones among them (correct or slip), the only answers that change recall
- * state; `kinds` counts the exercises done per ExerciseKind (session.js).
+ * One session, written by the session screen after each settled entry (a provisional record, so a
+ * session the browser or the learner abandons still counts for what was done, Ruling 78) and
+ * finalised under the same id when the run ends. Times are epoch ms. `recalls` and `correct`
+ * count the typed and the recognition-judged spoken recalls and the successful ones among them
+ * (correct or slip), the only answers that change recall state; `kinds` counts the exercises done
+ * per ExerciseKind (session.js).
  * @typedef {object} SessionRecord
  * @property {string} id
  * @property {number} startedAt epoch ms; the local day this instant falls on is the day the session counts for
  * @property {number} endedAt epoch ms
- * @property {number} minutes practised time, endedAt minus startedAt in minutes
+ * @property {number} minutes credited time in minutes: the gaps between the start, each settled entry and the end, each capped at MAX_GAP_MS (creditedMinutes, Ruling 79)
  * @property {number} recalls
  * @property {number} correct
  * @property {number} newItems items met for the first time
@@ -67,6 +69,22 @@ export const a1Hours = Object.freeze({ min: 120, max: 180 });
 
 const DAY_MS = 86_400_000;
 const DAYS_PER_WEEK = 7;
+const MINUTE_MS = 60_000;
+/** The most time credited between two marks of a session: a phone left locked mid-session does not count as practice. */
+export const MAX_GAP_MS = 2 * 60 * 1000;
+
+/**
+ * The minutes a session is credited with (Ruling 79): the gaps between consecutive marks, each
+ * capped at `capMs`, summed. No gap, no credit: an empty or single mark gives 0.
+ * @param {number[]} marks epoch ms in order: the start, each settled entry, the end
+ * @param {number} [capMs] the most one gap counts, MAX_GAP_MS by default
+ * @returns {number} minutes, fractional
+ */
+export function creditedMinutes(marks, capMs = MAX_GAP_MS) {
+  let credited = 0;
+  for (let i = 1; i < marks.length; i += 1) credited += Math.min(Math.max(0, marks[i] - marks[i - 1]), capMs);
+  return credited / MINUTE_MS;
+}
 
 /**
  * An item the learner can recall now: in review (mastered or not) with a predicted recall at or

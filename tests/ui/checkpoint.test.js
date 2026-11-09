@@ -2,7 +2,8 @@
 // The pure parts of the checkpoint and onboarding screens: the intro and end-card wording (the
 // count and minutes line, the result line with its rounded percent, the verdict, the calibration
 // line of the weekly check, the default prediction and how the prediction field is read, the error
-// card's line before and during the save), the settings onboarding saves (the clause trimmed, the
+// card's line before and during the save, and once an earlier unit of the placement chain was
+// saved), the settings onboarding saves (the clause trimmed, the
 // name capped, onboarded set, Ruling 52), and the feedback panel without its retry, which the
 // checkpoint asks for. Through tests/helpers/fake-dom.js, onboarding's last step holds its buttons
 // while it saves and, when the save is refused, says so and offers them again. The checkpoint flow
@@ -61,9 +62,12 @@ test('predictionFrom reads the prediction field: a number in range, rounded, and
   assert.equal(predictionFrom('1e400', 10), 8, 'not a finite number');
 });
 
-test('failureLine: before the end nothing was recorded; a failure while saving says some results may be missing', () => {
+test('failureLine: before the end nothing was recorded; a failure while saving says some results may be missing; after a saved unit, that it was saved', () => {
   assert.equal(failureLine(false), 'The check stopped and nothing was recorded.');
+  assert.equal(failureLine(false, false), 'The check stopped and nothing was recorded.');
   assert.equal(failureLine(true), 'Some results may not have been saved. Check your progress on Today.');
+  assert.equal(failureLine(true, true), 'Some results may not have been saved. Check your progress on Today.', 'a save in progress is the message that matters');
+  assert.equal(failureLine(false, true), 'The check stopped. The units checked before it were saved.', 'the placement chain: a later unit stopped, the earlier ones are kept');
 });
 
 test('aboutLine says what each check is', () => {
@@ -106,6 +110,7 @@ test('onboarding: a refused save says so, offers the buttons again and keeps the
     value: { hash: '', replace: (/** @type {string} */ hash) => { visited.push(hash); } }, configurable: true, writable: true,
   });
   t.after(() => { delete (/** @type {Record<string, unknown>} */ (globalThis)).location; });
+  const errors = t.mock.method(console, 'error', () => {});
   /** @type {{ resolve: () => void, reject: (error: Error) => void }[]} */
   const writes = [];
   const adapter = { put: () => new Promise((resolve, reject) => { writes.push({ resolve: () => resolve(undefined), reject }); }) };
@@ -133,6 +138,7 @@ test('onboarding: a refused save says so, offers the buttons again and keeps the
   assert.ok(!start.disabled && !placement.disabled, 'the buttons are offered again');
   assert.equal(app.state.settings.onboarded, false, 'the app is not onboarded while the store is not');
   assert.deepEqual(visited, [], 'and stays on the step');
+  assert.equal(errors.mock.callCount(), 1, 'the refused save is logged, so a device test can see why');
 
   placement.dispatch('click');
   assert.equal(writes.length, 2);

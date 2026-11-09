@@ -1,4 +1,5 @@
 node_modules/
+package-lock.json
 .superpowers/
 tmp/
 *.pcm
@@ -11,3 +12,6 @@ playwright-report/
 app/content/dist/
 app/version.js
 app/precache.json
+
+# The probe module the end-to-end update test writes to make a second version
+app/js/e2e-update-probe.js

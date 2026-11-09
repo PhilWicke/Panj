@@ -2,7 +2,7 @@
 // The daily session builder: due reviews interleaved with the lesson's new items under the per-day
 // and forecast caps, rule cards right after the meet that introduces them, slot production as the third
 // recall, the dialogue once its items have graduated, audio kinds by mode, one fluency pass to
-// close, and the closing menu.
+// close, the closing menu, and the "Three more minutes" round (Ruling 80).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
@@ -10,7 +10,7 @@ import {
 } from '../../app/js/engine/scheduler.js';
 import { localDateKey } from '../../app/js/util/time.js';
 import {
-  buildSession, forecastReviewMinutes, closingMenu, REVIEW_MINUTES, NEW_ITEM_MINUTES, MINUTES_PER_KIND,
+  buildSession, forecastReviewMinutes, closingMenu, buildMoreRound, REVIEW_MINUTES, NEW_ITEM_MINUTES, MINUTES_PER_KIND, MORE_ITEMS, MORE_MIN,
 } from '../../app/js/engine/session.js';
 
 const TZ = 'Europe/Berlin';
@@ -358,12 +358,58 @@ test('allowPending lets a dev build practise pending items', () => {
 });
 
 test('closing menu options follow the rules', () => {
-  assert.deepEqual(closingMenu({ minutesToday: 10, settings: S, lessonRemaining: true, mode: SOUND }), ['stop', 'more3', 'speaking', 'continue']);
-  assert.deepEqual(closingMenu({ minutesToday: 25, settings: S, lessonRemaining: true, mode: SOUND }), ['stop', 'speaking', 'continue'], 'at the goal plus 15 minutes, no more3');
-  assert.deepEqual(closingMenu({ minutesToday: 24.9, settings: S, lessonRemaining: false, mode: MUTE }), ['stop', 'more3']);
-  assert.deepEqual(closingMenu({ minutesToday: 40, settings: S, lessonRemaining: false, mode: MUTE }), ['stop']);
-  assert.deepEqual(closingMenu({ minutesToday: 0, settings: { ...S, dailyMinutes: 5 }, lessonRemaining: false, mode: SPEECH }), ['stop', 'more3', 'speaking']);
-  assert.deepEqual(closingMenu({ minutesToday: 19.9, settings: { ...S, dailyMinutes: 5 }, lessonRemaining: true, mode: MUTE }), ['stop', 'more3', 'continue']);
+  assert.deepEqual(closingMenu({ minutesToday: 10, settings: S, lessonRemaining: true, mode: SOUND, moreAvailable: true }), ['stop', 'more3', 'speaking', 'continue']);
+  assert.deepEqual(closingMenu({ minutesToday: 25, settings: S, lessonRemaining: true, mode: SOUND, moreAvailable: true }), ['stop', 'speaking', 'continue'], 'at the goal plus 15 minutes, no more3');
+  assert.deepEqual(closingMenu({ minutesToday: 24.9, settings: S, lessonRemaining: false, mode: MUTE, moreAvailable: true }), ['stop', 'more3']);
+  assert.deepEqual(closingMenu({ minutesToday: 40, settings: S, lessonRemaining: false, mode: MUTE, moreAvailable: true }), ['stop']);
+  assert.deepEqual(closingMenu({ minutesToday: 0, settings: { ...S, dailyMinutes: 5 }, lessonRemaining: false, mode: SPEECH, moreAvailable: true }), ['stop', 'more3', 'speaking']);
+  assert.deepEqual(closingMenu({ minutesToday: 19.9, settings: { ...S, dailyMinutes: 5 }, lessonRemaining: true, mode: MUTE, moreAvailable: true }), ['stop', 'more3', 'continue']);
+  assert.deepEqual(closingMenu({ minutesToday: 10, settings: S, lessonRemaining: true, mode: SOUND, moreAvailable: false }), ['stop', 'speaking', 'continue'], 'no round to offer: no more3, whatever the minutes (Ruling 80)');
+  assert.deepEqual(closingMenu({ minutesToday: 0, settings: S, lessonRemaining: false, mode: MUTE, moreAvailable: false }), ['stop']);
+});
+
+test('buildMoreRound: unpractised review items weakest first, capped at eight, filled from the misses below three, empty when nothing qualifies (Ruling 80)', () => {
+  assert.equal(MORE_ITEMS, 8);
+  assert.equal(MORE_MIN, 3);
+  // ten review items that skipped ahead one to ten days ago: the older, the weaker
+  const pool = byId(...Array.from({ length: 10 }, (_, i) => skipAheadState(`u01-l01-i${String(i + 1).padStart(2, '0')}`, T0 - (i + 1) * DAY)));
+  const round = buildMoreRound({ now: T0, states: pool, practised: new Set(), missed: [], settings: S });
+  assert.equal(round.length, MORE_ITEMS, 'capped');
+  assert.ok(round.every((e) => e.kind === 'typed_en_sl' && Object.keys(e).length === 2), 'typed recall, the id and nothing else');
+  assert.deepEqual(round.map((e) => e.itemId), ['u01-l01-i10', 'u01-l01-i09', 'u01-l01-i08', 'u01-l01-i07', 'u01-l01-i06', 'u01-l01-i05', 'u01-l01-i04', 'u01-l01-i03'],
+    'the weakest first; the two strongest are left out');
+  for (let i = 1; i < round.length; i += 1) {
+    assert.ok(retrievability(pool[round[i - 1].itemId], T0) <= retrievability(pool[round[i].itemId], T0), 'rising retrievability');
+  }
+  // practised items, rule items, learning and lapsed items are left out
+  const mixed = {
+    ...byId(review('u01-l01-i01', T0 - DAY), review('u01-l01-i02', T0 + DAY), skipAheadState('r-a', T0 - DAY)),
+    'u01-l01-i03': recall(createState('u01-l01-i03', T0 - HOUR), 'correct', T0 - HOUR),
+    'u01-l01-i04': recall(review('u01-l01-i04', T0 - DAY), 'wrong', T0 - HOUR),
+  };
+  assert.equal(mixed['u01-l01-i03'].phase, 'learning');
+  assert.equal(mixed['u01-l01-i04'].phase, 'lapsed');
+  assert.deepEqual(buildMoreRound({ now: T0, states: mixed, practised: new Set(['u01-l01-i01']), missed: [], settings: S }),
+    [{ kind: 'typed_en_sl', itemId: 'u01-l01-i02' }], 'the one review item the run did not practise; the due one was practised');
+  // below three unpractised items, the run's misses follow, in order, without repeats, never a rule
+  const filled = buildMoreRound({
+    now: T0, states: mixed, practised: new Set(['u01-l01-i01']), missed: ['u01-l01-i04', 'r-a', 'u01-l01-i03', 'u01-l01-i04', 'u01-l01-i02'], settings: S,
+  });
+  assert.deepEqual(filled.map((e) => e.itemId), ['u01-l01-i02', 'u01-l01-i04', 'u01-l01-i03']);
+  // three or more unpractised items: the misses are not appended
+  const three = byId(review('u01-l01-i01', T0), review('u01-l01-i02', T0 + DAY), review('u01-l01-i03', T0 + 2 * DAY));
+  assert.equal(buildMoreRound({ now: T0, states: three, practised: new Set(), missed: ['u01-l01-i09'], settings: S }).length, 3);
+  assert.ok(!buildMoreRound({ now: T0, states: three, practised: new Set(), missed: ['u01-l01-i09'], settings: S }).some((e) => e.itemId === 'u01-l01-i09'));
+  // nothing qualifies and nothing was missed: empty, so the menu leaves the option out
+  assert.deepEqual(buildMoreRound({ now: T0, states: {}, practised: new Set(), missed: [], settings: S }), []);
+  assert.deepEqual(buildMoreRound({ now: T0, states: byId(review('u01-l01-i01', T0)), practised: new Set(['u01-l01-i01']), missed: [], settings: S }), []);
+  assert.deepEqual(buildMoreRound({ now: T0, states: byId(review('u01-l01-i01', T0)), practised: new Set(['u01-l01-i01']), missed: ['u01-l01-i01'], settings: S }),
+    [{ kind: 'typed_en_sl', itemId: 'u01-l01-i01' }], 'a practised item that was missed comes back through the misses');
+  // the inputs are left alone
+  const practised = new Set(['u01-l01-i01']);
+  const missed = Object.freeze(['u01-l01-i04']);
+  buildMoreRound({ now: T0, states: Object.freeze(mixed), practised, missed: /** @type {string[]} */ (/** @type {unknown} */ (missed)), settings: S });
+  assert.deepEqual([...practised], ['u01-l01-i01']);
 });
 
 test('the dialogue waits for its items to graduate and a fluency pass closes the queue once five items are in review', () => {

@@ -2,7 +2,7 @@
 
 Slovelingo is an installable web app for learning everyday Slovenian, aimed at someone who wants to talk with the people around them. Short daily sessions mix new words and phrases with spaced review, and the app runs offline on a phone once it has been added to the home screen. There is no account and no server: progress stays on the device.
 
-The project needs Node 24 or later and has no dependencies. [docs/SPEC.md](docs/SPEC.md) summarises the design.
+The project needs Node 24 or later and has no runtime dependencies. [docs/SPEC.md](docs/SPEC.md) summarises the design.
 
 ## Run locally
 

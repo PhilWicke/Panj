@@ -1,20 +1,28 @@
 // The session screen. It builds today's queue with buildSession, keeps the entries some exercise
 // is registered for, and plays them in order, one exercise at a time, without waiting for the one
-// and ten minute steps: the queue interleaves enough other work (Ruling 22). Every recall goes
+// and ten minute steps: the queue interleaves enough other work (Ruling 22). The mode it builds
+// with mutes the queue when nothing can play (no recording in the learner's voice and no device
+// voice, Ruling 81), so no audio exercise is scheduled into the no-audio line. Every recall goes
 // through applyRecall: effectiveResult decides how it counts, recordRecall (or skipAheadState for
 // a rule's correct quick check, Ruling 21) gives the next state, which is saved at once. A typed
 // recall that counts as a miss comes back after the next two entries until it is right or a slip.
-// At the end a SessionRecord is appended and the closing menu (components/menu.js) is offered:
-// stop, three more minutes, a speaking round, continue the lesson. A speaking round
+// The run's SessionRecord has its id from the start: after every settled entry a provisional
+// record is written under it, so a run the browser or the learner abandons still counts for what
+// was done (Ruling 78), and the same id is finalised when the run ends; its minutes are credited
+// time, the gaps between entries capped (creditedMinutes, Ruling 79). At the end the closing menu
+// (components/menu.js) is offered: stop, three more minutes, a speaking round, continue the
+// lesson. Three more minutes (`?mode=more`) is a new run over buildMoreRound's queue: the
+// review-phase items this run did not practise, weakest first, filled up from its misses, and the
+// option is left out when that round would be empty (Ruling 80). A speaking round
 // (`?mode=speaking`) plays the speaking entries buildSession planned when speech recognition is
 // on, else the self-rated speaking exercise over up to five review-phase items. Each session
 // starts with speech recognition offered again, even if it was refused in an earlier one
 // (resetRecognition). The pure parts are exported for the tests.
 
 import { h, mount } from '../../util/dom.js';
-import { buildSession, closingMenu } from '../../engine/session.js';
+import { buildMoreRound, buildSession, closingMenu } from '../../engine/session.js';
 import { createState, effectiveResult, recordRecall, skipAheadState } from '../../engine/scheduler.js';
-import { honeyFor } from '../../engine/progress.js';
+import { creditedMinutes, honeyFor } from '../../engine/progress.js';
 import { currentLesson, todayTotals, unmetItems } from '../../engine/course.js';
 import { isRuleId } from '../../util/ids.js';
 import { shuffle } from '../../util/shuffle.js';
@@ -27,6 +35,7 @@ import { resetRecognition } from '../../audio/speech.js';
 
 /** @typedef {import('../../app-types.js').App} App */
 /** @typedef {import('../../engine/session.js').QueueEntry} QueueEntry */
+/** @typedef {import('../../engine/session.js').Mode} Mode */
 /** @typedef {import('../../engine/scheduler.js').ItemState} ItemState */
 /** @typedef {import('../../engine/scheduler.js').Settings} Settings */
 /** @typedef {import('../../engine/scheduler.js').RecallResult} RecallResult */
@@ -34,13 +43,20 @@ import { resetRecognition } from '../../audio/speech.js';
 /** @typedef {import('../exercises/registry.js').ExerciseContext} ExerciseContext */
 /** @typedef {import('../exercises/registry.js').ExerciseOutcome} ExerciseOutcome */
 
-const MINUTE_MS = 60_000;
 /** Entries a missed recall waits behind before it comes back. */
 const REQUEUE_GAP = 2;
 /** Kinds whose missed recall is played again; slot and dialogue entries play as planned. */
 const RETRIED_KINDS = new Set(['typed_en_sl', 'typed_sl_en']);
 /** Items a speaking round speaks when buildSession planned no speaking entries. */
 const SPEAKING_ROUND = 5;
+
+/**
+ * What the last run practised and missed, for the "Three more minutes" run that may follow it
+ * (buildMoreRound); set when a run reaches its closing menu. A more round started without a run
+ * before it (a direct link) takes the weakest review items.
+ * @type {{ practised: Set<string>, missed: string[] }}
+ */
+let lastRun = { practised: new Set(), missed: [] };
 
 /**
  * Puts `entry` back into the run-time queue after the REQUEUE_GAP entries that follow `index`, or
@@ -123,8 +139,9 @@ function playable(app, entry) {
 
 /**
  * Runs a session in `container`. `params.mode` is `continue` to raise the day's new-item cap by
- * the lesson's remaining items (the closing menu's "Continue the lesson", Ruling 22), or
- * `speaking` for a speaking round (speakingQueue).
+ * the lesson's remaining items (the closing menu's "Continue the lesson", Ruling 22), `speaking`
+ * for a speaking round (speakingQueue), or `more` for the three more minutes after the run before
+ * (buildMoreRound). Each run has its own SessionRecord.
  * @param {HTMLElement} container
  * @param {App} app
  * @param {Record<string, string>} [params]
@@ -132,12 +149,22 @@ function playable(app, entry) {
  */
 export function renderSession(container, app, params = {}) {
   const settings = app.state.settings;
+  /** @type {Mode} `mute` is settled by buildQueue once the player has said whether anything can play */
   const mode = { mute: settings.mute, speech: settings.speech };
   const startedAt = Date.now();
+  /** The run's record id, fixed from the start so every write replaces the one before (Ruling 78). */
+  const id = `${startedAt}-${globalThis.crypto.randomUUID()}`;
   resetRecognition();
   /** @type {Record<string, number>} exercises played per kind */
   const kinds = {};
   const tally = { played: 0, recalls: 0, correct: 0, newItems: 0, kinds };
+  /** Epoch ms of each settled entry, the marks the credited time is read from (Ruling 79). */
+  /** @type {number[]} */
+  const marks = [];
+  /** @type {Set<string>} the item ids this run practised, for the more round after it */
+  const practised = new Set();
+  /** @type {string[]} the item ids this run missed, in order, for the more round after it */
+  const missed = [];
   let alive = true;
   let recorded = false;
 
@@ -145,12 +172,24 @@ export function renderSession(container, app, params = {}) {
   const { newToday, minutesToday } = todayTotals(app.state.sessions, startedAt);
   const { lesson, unitLessons, remaining } = currentLesson(app.index, app.units, known(), app.allowPending);
   const newPerDay = settings.newPerDay + (params.mode === 'continue' ? remaining : 0);
-  const { queue: planned } = buildSession({
-    now: startedAt, states: known(), lesson, unitLessons, rules: app.index.rules, settings: { ...settings, newPerDay },
-    mode, newToday, minutesToday, allowPending: app.allowPending,
-  });
-  const round = params.mode === 'speaking' ? speakingQueue(planned, known(), mode.speech, Math.random) : planned;
-  const queue = round.filter((entry) => playable(app, entry));
+  /** @type {QueueEntry[]} the run-time queue, filled by buildQueue */
+  const queue = [];
+
+  /**
+   * Builds this run's queue once the player has said whether anything can play: the day's plan
+   * (muted when it cannot, Ruling 81), a speaking round, or the more round after the last run.
+   */
+  const buildQueue = async () => {
+    mode.mute = settings.mute || !(await app.player.audioAvailable());
+    const { queue: planned } = buildSession({
+      now: startedAt, states: known(), lesson, unitLessons, rules: app.index.rules, settings: { ...settings, newPerDay },
+      mode, newToday, minutesToday, allowPending: app.allowPending,
+    });
+    const round = params.mode === 'speaking' ? speakingQueue(planned, known(), mode.speech, Math.random)
+      : params.mode === 'more' ? buildMoreRound({ now: startedAt, states: known(), practised: lastRun.practised, missed: lastRun.missed, settings })
+        : planned;
+    queue.push(...round.filter((entry) => playable(app, entry)));
+  };
 
   const progress = h('div', { class: 'progress-fill' });
   const bar = h('div', { class: 'progress', role: 'progressbar', 'aria-label': 'Session progress', 'aria-valuemin': '0' }, progress);
@@ -206,7 +245,8 @@ export function renderSession(container, app, params = {}) {
   };
 
   /**
-   * Records the recalls of an outcome and re-queues a missed typed recall.
+   * Records the recalls of an outcome, notes what was practised and missed, and re-queues a
+   * missed typed recall.
    * @param {QueueEntry} entry
    * @param {number} index
    * @param {ExerciseOutcome} outcome
@@ -216,36 +256,45 @@ export function renderSession(container, app, params = {}) {
       ?? (outcome.recall !== undefined && outcome.itemId !== undefined ? [{ itemId: outcome.itemId, recall: outcome.recall }] : []);
     for (const { itemId, recall } of recalls) {
       const effective = await applyRecall(itemId, recall, Date.now());
+      practised.add(itemId);
       tally.recalls += 1;
       if (effective !== 'wrong') {
         tally.correct += 1;
       } else {
+        if (!missed.includes(itemId)) missed.push(itemId);
         const retry = retryEntry(entry, itemId);
         if (retry) requeue(queue, index, retry);
       }
     }
   };
 
-  /** @returns {Promise<SessionRecord|null>} the record of the work done, appended once */
-  const record = async () => {
-    if (recorded || tally.played === 0) return null;
-    recorded = true;
-    const endedAt = Date.now();
+  /**
+   * Writes the record of the work done so far under the run's id, replacing the one before.
+   * @param {number} endedAt epoch ms
+   * @returns {Promise<SessionRecord>}
+   */
+  const write = async (endedAt) => {
     /** @type {SessionRecord} */
     const session = {
-      id: `${startedAt}-${globalThis.crypto.randomUUID()}`,
+      id,
       startedAt,
       endedAt,
-      minutes: (endedAt - startedAt) / MINUTE_MS,
+      minutes: creditedMinutes([startedAt, ...marks, endedAt]),
       recalls: tally.recalls,
       correct: tally.correct,
       newItems: tally.newItems,
       honey: honeyFor(tally.correct),
       kinds: tally.kinds,
     };
-    app.state.sessions.push(session);
-    await appendSession(app.adapter, session);
+    await appendSession(app.adapter, session, app.state.sessions);
     return session;
+  };
+
+  /** @returns {Promise<SessionRecord|null>} the final record of the work done, written once; null when no entry was settled */
+  const record = async () => {
+    if (recorded || tally.played === 0) return null;
+    recorded = true;
+    return write(Date.now());
   };
 
   const leave = async () => {
@@ -256,18 +305,21 @@ export function renderSession(container, app, params = {}) {
 
   const close = async () => {
     const session = await record();
+    const now = Date.now();
+    lastRun = { practised: new Set(practised), missed: [...missed] };
     showProgress(queue.length);
     end.hidden = true;
     const options = closingMenu({
-      minutesToday: todayTotals(app.state.sessions, Date.now()).minutesToday,
+      minutesToday: todayTotals(app.state.sessions, now).minutesToday,
       settings,
       lessonRemaining: lesson !== null && unmetItems(lesson, known(), app.allowPending) > 0,
       mode,
+      moreAvailable: buildMoreRound({ now, states: known(), practised, missed, settings }).length > 0,
     });
     /** @type {Record<(typeof options)[number], () => void>} */
     const actions = {
       stop: () => navigate('/today'),
-      more3: () => navigate('/session'),
+      more3: () => navigate('/session?mode=more'),
       speaking: () => navigate('/session?mode=speaking'),
       continue: () => navigate('/session?mode=continue'),
     };
@@ -286,6 +338,8 @@ export function renderSession(container, app, params = {}) {
   };
 
   const play = async () => {
+    await buildQueue();
+    if (!alive) return;
     if (queue.length === 0) {
       end.hidden = true;
       showProgress(0);
@@ -312,9 +366,13 @@ export function renderSession(container, app, params = {}) {
         if (!alive) return;
         await settle(entry, index, outcome);
       }
+      if (entry.itemId !== undefined) practised.add(entry.itemId);
       tally.played += 1;
       tally.kinds[entry.kind] = (tally.kinds[entry.kind] ?? 0) + 1;
       if (entry.kind === 'meet') tally.newItems += 1;
+      marks.push(Date.now());
+      // The provisional record: the run counts for what is done so far, should it never reach its end.
+      if (alive && !recorded) await write(marks[marks.length - 1]);
     }
     if (alive) await close();
   };

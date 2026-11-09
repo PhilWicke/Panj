@@ -81,7 +81,6 @@ function ruleItem(rule) {
   return { itemId: rule.id, kind: 'rule', prompt_sl: check.prompt_sl, options: check.options.slice(), answer: check.answer, accept: [], explain_en: check.explain_en };
 }
 
-
 /**
  * The items of a unit's lessons, in lesson order.
  * @param {UnitContent} unitContent

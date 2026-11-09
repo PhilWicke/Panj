@@ -119,7 +119,8 @@ async function settingsOver(adapter) {
   };
 }
 
-test('Settings refuses a foreign or malformed file with its reason, opens no confirmation and every store keeps its records', async () => {
+test('Settings refuses a foreign or malformed file with its reason, opens no confirmation and every store keeps its records', async (t) => {
+  t.mock.method(console, 'error', () => {});   // the unreadable file is logged for a device test; the output stays quiet here
   const adapter = await populated();
   const before = await snapshot(adapter);
   assert.ok(STORE_NAMES.every((store) => before[store].length > 0), 'every store holds something to lose');
@@ -225,7 +226,8 @@ async function failing() {
 /** The value the Settings screen shows in a field. @param {any} container @param {string} id */
 const fieldValue = (container, id) => elements(container).find((el) => el.getAttribute('id') === id)?.getAttribute('value');
 
-test('a Replace that fails half-way reloads the state from the store, so the screen shows what the store holds', async () => {
+test('a Replace that fails half-way reloads the state from the store, so the screen shows what the store holds', async (t) => {
+  t.mock.method(console, 'error', () => {});   // the failed import is logged for a device test; the output stays quiet here
   const { adapter, arm } = await failing();
   const other = createMemoryStore();
   await saveItemState(other, createState('u02-l01-i01', T0));

@@ -16,6 +16,8 @@
 //   4. the lesson's dialogue, once every item it practises has graduated.
 //   5. with speech recognition on: speaking over known items.
 //   6. one fluency pass over five review-phase items, when there are at least five.
+// buildMoreRound plans the closing menu's "Three more minutes" (Ruling 80): typed recall over the
+// review-phase items the run did not practise, weakest first, filled up from the run's misses.
 // Items whose verification is not `accepted` never enter the queue (the compiler keeps them in the
 // lesson's `items`), unless `allowPending` is set, which a dev build does to try pending content
 // end to end; items the builder has no content for are trusted, since their state means they were
@@ -109,6 +111,10 @@ const FLUENCY_ITEMS = 5;
 const LISTENING_PER_SESSION = 2;
 const SPEAKING_PER_SESSION = 2;
 const MORE_MINUTES_UNTIL = 15;
+/** The most items a "Three more minutes" round holds. */
+export const MORE_ITEMS = 8;
+/** Below this many unpractised review items, the round fills up from the run's misses. */
+export const MORE_MIN = 3;
 const DAY_MS = 86_400_000;
 
 /**
@@ -130,19 +136,51 @@ export function forecastReviewMinutes(states, now, days = 1) {
 }
 
 /**
- * The options of the closing menu, in display order: stop always; three more minutes until the
- * goal plus MORE_MINUTES_UNTIL minutes are done; a speaking round when sound is on; continue the
- * lesson when it has items left.
- * @param {{ minutesToday: number, settings: Settings, lessonRemaining: boolean, mode: Mode }} input
+ * The options of the closing menu, in display order: stop always; three more minutes while a
+ * round is available (buildMoreRound) and until the goal plus MORE_MINUTES_UNTIL minutes are done;
+ * a speaking round when sound is on; continue the lesson when it has items left.
+ * @param {{ minutesToday: number, settings: Settings, lessonRemaining: boolean, mode: Mode, moreAvailable: boolean }} input
  * @returns {('stop'|'more3'|'speaking'|'continue')[]}
  */
-export function closingMenu({ minutesToday, settings, lessonRemaining, mode }) {
+export function closingMenu({ minutesToday, settings, lessonRemaining, mode, moreAvailable }) {
   /** @type {('stop'|'more3'|'speaking'|'continue')[]} */
   const options = ['stop'];
-  if (minutesToday < settings.dailyMinutes + MORE_MINUTES_UNTIL) options.push('more3');
+  if (moreAvailable && minutesToday < settings.dailyMinutes + MORE_MINUTES_UNTIL) options.push('more3');
   if (!mode.mute) options.push('speaking');
   if (lessonRemaining) options.push('continue');
   return options;
+}
+
+/**
+ * @typedef {object} MoreRoundInput
+ * @property {number} now epoch ms
+ * @property {Record<string, ItemState>} states by item id (rule ids included; they never enter the round)
+ * @property {Set<string>} practised the item ids the run that just ended practised
+ * @property {string[]} missed the item ids the run missed, in order
+ * @property {Settings} [settings] the learner's settings, part of the input Ruling 80 fixes; the round does not read them yet
+ */
+
+/**
+ * The queue of "Three more minutes" (Ruling 80): typed recall over the review-phase items the run
+ * did not practise, the weakest retrievability first, at most MORE_ITEMS; when fewer than MORE_MIN
+ * qualify, the run's missed items follow, in order and without repeats. Rule items, the dialogue,
+ * listening, perception and meets never appear; the round is empty when nothing qualifies and
+ * nothing was missed.
+ * @param {MoreRoundInput} input
+ * @returns {QueueEntry[]}
+ */
+export function buildMoreRound({ now, states, practised, missed }) {
+  const fresh = Object.values(states)
+    .filter((state) => state.phase === 'review' && !isRuleId(state.itemId) && !practised.has(state.itemId))
+    .map((state) => ({ itemId: state.itemId, r: retrievability(state, now) }))
+    .sort((a, b) => a.r - b.r || (a.itemId < b.itemId ? -1 : 1))
+    .slice(0, MORE_ITEMS)
+    .map(({ itemId }) => itemId);
+  const ids = new Set(fresh);
+  if (fresh.length < MORE_MIN) {
+    for (const itemId of missed) if (!isRuleId(itemId)) ids.add(itemId);
+  }
+  return [...ids].map((itemId) => ({ kind: 'typed_en_sl', itemId }));
 }
 
 /**

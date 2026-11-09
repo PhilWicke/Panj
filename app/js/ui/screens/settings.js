@@ -1,7 +1,9 @@
 // The Settings screen (spec 6): one form of sections, every change saved at once (no Save button),
-// with a quiet "Saved" for assistive technology. The learner's name and the clause that completes
-// "I practise …" (Ruling 52); the daily goal, the new items per day and the target recall, each kept
-// in its range; the theme, applied at once; the voice of the recordings and mute, passed to the
+// with a quiet "Saved" for assistive technology; a change the store refuses is taken back, in the
+// app's settings, in the player and in the control, with "Not saved. Try again." The learner's
+// name and the clause that completes "I practise …" (Ruling 52); the daily goal, the new items per
+// day and the target recall, each kept in its range (store/setting-ranges.js, shared with the
+// import); the theme, applied at once; the voice of the recordings and mute, passed to the
 // player (Ruling 48); the speaking checks switch, off by default, with the Global Constraints'
 // description. Then the learner's data: export (shared as a file where the phone can, else
 // downloaded), import (validated, confirmed with its counts, then replacing everything) and reset
@@ -16,6 +18,7 @@ import { STORE_NAMES } from '../../store/memory.js';
 import {
   DEFAULT_APP_SETTINGS, exportState, importState, loadState, saveSettings, validateImport,
 } from '../../store/state.js';
+import { SETTING_RANGES, clampToRange } from '../../store/setting-ranges.js';
 import { applyTheme } from '../theme.js';
 
 /** @typedef {import('../../app-types.js').App} App */
@@ -23,7 +26,7 @@ import { applyTheme } from '../theme.js';
 /** @typedef {import('../../store/state.js').ImportData} ImportData */
 /** @typedef {import('../theme.js').Theme} Theme */
 /** @typedef {import('../../audio/player.js').VoicePref} VoicePref */
-/** @typedef {'dailyMinutes'|'newPerDay'|'desiredRetention'} NumericSetting */
+/** @typedef {import('../../store/setting-ranges.js').NumericSetting} NumericSetting */
 
 /** The description under the speaking checks switch, verbatim from the Global Constraints. */
 export const SPEECH_DESCRIPTION = "Speaking checks send your voice to Google's speech service while recognising. Off, your speaking is self-rated and nothing leaves the phone.";
@@ -32,30 +35,21 @@ const RESET_WORD = 'reset';
 const NAME_MAX = 40;
 const INTENTION_MAX = 120;
 
-/** The range of each numeric setting (spec 4.2) and the step its values keep. @type {Record<NumericSetting, { min: number, max: number, step: number }>} */
-const RANGES = {
-  dailyMinutes: { min: 3, max: 60, step: 1 },
-  newPerDay: { min: 0, max: 20, step: 1 },
-  desiredRetention: { min: 0.85, max: 0.92, step: 0.01 },
-};
-
 /** @type {readonly [Theme, string][]} */
 const THEMES = [['system', 'System'], ['light', 'Light'], ['dark', 'Dark']];
 /** @type {readonly [VoicePref, string][]} */
 const VOICE_CHOICES = [['female', 'Female'], ['male', 'Male'], ['device', 'Device voice']];
 
 /**
- * A numeric setting kept in its range and on its step: whole minutes, whole items, retention to
- * the hundredth. A value that is not a finite number gives the default.
+ * A numeric setting kept in its range and on its step (setting-ranges.js): whole minutes, whole
+ * items, retention to the hundredth. A value that is not a finite number gives the default.
  * @param {NumericSetting} key
  * @param {number} value
  * @returns {number}
  */
 export function clampSetting(key, value) {
   if (!Number.isFinite(value)) return DEFAULT_APP_SETTINGS[key];
-  const { min, max, step } = RANGES[key];
-  const stepped = Math.round(value / step) * step;
-  return Number(Math.min(max, Math.max(min, stepped)).toFixed(2));
+  return clampToRange(key, value);
 }
 
 /**
@@ -96,8 +90,9 @@ export function importQuestion(summary) {
 
 /**
  * A switch: a button with role switch whose label is its name, aria-checked its state, and an
- * optional description under it. A tap flips it and reports the new value.
- * @param {{ id: string, label: string, description?: string, checked: boolean, onChange: (on: boolean) => void }} options
+ * optional description under it. A tap flips it and reports the new value, with the button, so
+ * the caller can set it back when the change is not kept.
+ * @param {{ id: string, label: string, description?: string, checked: boolean, onChange: (on: boolean, button: HTMLElement) => void }} options
  * @returns {HTMLElement}
  */
 export function renderSwitch({ id, label, description, checked, onChange }) {
@@ -108,7 +103,7 @@ export function renderSwitch({ id, label, description, checked, onChange }) {
     onclick: () => {
       const on = button.getAttribute('aria-checked') !== 'true';
       button.setAttribute('aria-checked', String(on));
-      onChange(on);
+      onChange(on, button);
     },
   },
   h('span', { class: 'switch-label' }, label),
@@ -122,37 +117,41 @@ export function renderSwitch({ id, label, description, checked, onChange }) {
  * @param {string} label
  * @param {string} value
  * @param {number} max
- * @param {(value: string) => void} onCommit called on change, when the learner leaves the field or presses Enter
+ * @param {(value: string, input: HTMLInputElement) => void} onCommit called on change, when the learner leaves the field or presses Enter, with the field
  * @param {string} [hint]
  * @returns {HTMLElement}
  */
 function textField(id, label, value, max, onCommit, hint) {
+  const input = /** @type {HTMLInputElement} */ (h('input', {
+    id, type: 'text', class: 'text-input', maxlength: String(max), autocomplete: 'off', value,
+    'aria-describedby': hint ? `${id}-hint` : null,
+    onchange: () => onCommit(input.value, input),
+  }));
   return h('div', { class: 'field' },
     h('label', { class: 'field-label', for: id }, label),
-    h('input', {
-      id, type: 'text', class: 'text-input', maxlength: String(max), autocomplete: 'off', value,
-      'aria-describedby': hint ? `${id}-hint` : null,
-      onchange: (/** @type {Event} */ event) => onCommit(/** @type {HTMLInputElement} */ (event.target).value),
-    }),
+    input,
     hint ? h('p', { class: 'quiet', id: `${id}-hint` }, hint) : null);
 }
 
 /**
- * A group of radios inside a fieldset.
+ * A group of radios inside a fieldset. A pick reports the choice and `check`, which checks the
+ * radio of a value again, for a change the store did not keep.
  * @template {string} T
  * @param {string} name
  * @param {string} legend
  * @param {readonly (readonly [T, string])[]} choices
  * @param {T} value
- * @param {(value: T) => void} onPick
+ * @param {(value: T, check: (value: T) => void) => void} onPick
  * @returns {HTMLElement}
  */
 function radios(name, legend, choices, value, onPick) {
+  const inputs = choices.map(([choice]) => /** @type {HTMLInputElement} */ (h('input', { type: 'radio', name, value: choice, checked: choice === value })));
+  /** @param {T} picked */
+  const check = (picked) => { inputs.forEach((input, i) => { input.checked = choices[i][0] === picked; }); };
+  inputs.forEach((input, i) => input.addEventListener('change', () => onPick(choices[i][0], check)));
   return h('fieldset', { class: 'choice-list' },
     h('legend', { class: 'field-label' }, legend),
-    choices.map(([choice, label]) => h('label', { class: 'choice' },
-      h('input', { type: 'radio', name, value: choice, checked: choice === value, onchange: () => onPick(choice) }),
-      h('span', null, label))));
+    choices.map(([, label], i) => h('label', { class: 'choice' }, inputs[i], h('span', null, label))));
 }
 
 /**
@@ -174,16 +173,26 @@ function draw(container, app, message) {
   const status = h('p', { class: 'settings-saved', role: 'status' });
 
   /**
-   * Saves a change at once and says so.
+   * Saves a change at once and says so. When the store refuses it, the settings from before come
+   * back: in the app, in the player (mute and voice, where they changed), on the page (the theme)
+   * and in the control, through `restore`.
    * @param {Partial<AppSettings>} changes
+   * @param {(settings: AppSettings) => void} [restore] puts the settings given back into the control that changed
    */
-  const save = async (changes) => {
-    app.state.settings = { ...app.state.settings, ...changes };
+  const save = async (changes, restore) => {
+    const previous = app.state.settings;
+    app.state.settings = { ...previous, ...changes };
     status.textContent = '';
     try {
       await saveSettings(app.adapter, app.state.settings);
       status.textContent = 'Saved';
-    } catch {
+    } catch (error) {
+      console.error(error);
+      app.state.settings = previous;
+      if ('mute' in changes) app.player.setMute(previous.mute);
+      if ('voice' in changes) app.player.setVoice(previous.voice);
+      if ('theme' in changes) applyTheme(previous.theme);
+      restore?.(previous);
       status.textContent = 'Not saved. Try again.';
     }
   };
@@ -198,7 +207,7 @@ function draw(container, app, message) {
    * @returns {HTMLElement}
    */
   const numberField = (key, id, label, hint) => {
-    const { min, max } = RANGES[key];
+    const { min, max } = SETTING_RANGES[key];
     return h('div', { class: 'field' },
       h('label', { class: 'field-label', for: id }, label),
       h('input', {
@@ -212,7 +221,7 @@ function draw(container, app, message) {
           }
           const value = clampSetting(key, input.valueAsNumber);
           input.value = String(value);
-          void save(/** @type {Partial<AppSettings>} */ ({ [key]: value }));
+          void save(/** @type {Partial<AppSettings>} */ ({ [key]: value }), (restored) => { input.value = String(restored[key]); });
         },
       }),
       h('p', { class: 'quiet', id: `${id}-hint` }, hint));
@@ -220,6 +229,12 @@ function draw(container, app, message) {
 
   const retentionPercent = Math.round(settings.desiredRetention * 100);
   const retentionShown = h('output', { class: 'range-value', for: 'settings-retention' }, `${retentionPercent}%`);
+  /** Shows a percent on the slider and its label. @param {HTMLInputElement} input @param {number} percent */
+  const showRetention = (input, percent) => {
+    input.value = String(percent);
+    retentionShown.textContent = `${percent}%`;
+    input.setAttribute('aria-valuetext', `${percent}%`);
+  };
   const retention = h('div', { class: 'field' },
     h('div', { class: 'range-head' },
       h('label', { class: 'field-label', for: 'settings-retention' }, 'Target recall'),
@@ -233,7 +248,9 @@ function draw(container, app, message) {
         input.setAttribute('aria-valuetext', `${input.value}%`);
       },
       onchange: (/** @type {Event} */ event) => {
-        void save({ desiredRetention: clampSetting('desiredRetention', Number(/** @type {HTMLInputElement} */ (event.target).value) / 100) });
+        const input = /** @type {HTMLInputElement} */ (event.target);
+        void save({ desiredRetention: clampSetting('desiredRetention', Number(input.value) / 100) },
+          (restored) => showRetention(input, Math.round(restored.desiredRetention * 100)));
       },
     }),
     h('p', { class: 'quiet', id: 'settings-retention-hint' }, 'How likely you are to recall an item when it comes back. Higher means more reviews.'));
@@ -244,9 +261,11 @@ function draw(container, app, message) {
     h('form', { class: 'settings-form', onsubmit: (/** @type {SubmitEvent} */ event) => event.preventDefault() },
       h('section', { class: 'settings-group', 'aria-labelledby': 'settings-you' },
         h('h2', { class: 'section-title', id: 'settings-you' }, 'You'),
-        textField('settings-name', 'Name', settings.name, NAME_MAX, (value) => { void save({ name: value.trim().slice(0, NAME_MAX) }); },
+        textField('settings-name', 'Name', settings.name, NAME_MAX,
+          (value, input) => { void save({ name: value.trim().slice(0, NAME_MAX) }, (restored) => { input.value = restored.name; }); },
           'Optional. The name stays on this phone.'),
-        textField('settings-intention', 'I practise …', settings.intention, INTENTION_MAX, (value) => { void save({ intention: value.trim() }); },
+        textField('settings-intention', 'I practise …', settings.intention, INTENTION_MAX,
+          (value, input) => { void save({ intention: value.trim() }, (restored) => { input.value = restored.intention; }); },
           'Your fixed moment in the day, such as on the train after the first stop.')),
       h('section', { class: 'settings-group', 'aria-labelledby': 'settings-practice' },
         h('h2', { class: 'section-title', id: 'settings-practice' }, 'Practice'),
@@ -255,27 +274,27 @@ function draw(container, app, message) {
         retention),
       h('section', { class: 'settings-group', 'aria-labelledby': 'settings-look' },
         h('h2', { class: 'section-title', id: 'settings-look' }, 'Look'),
-        radios('settings-theme', 'Theme', THEMES, settings.theme, (theme) => {
+        radios('settings-theme', 'Theme', THEMES, settings.theme, (theme, check) => {
           applyTheme(theme);
-          void save({ theme });
+          void save({ theme }, (restored) => check(restored.theme));
         })),
       h('section', { class: 'settings-group', 'aria-labelledby': 'settings-sound' },
         h('h2', { class: 'section-title', id: 'settings-sound' }, 'Sound'),
-        radios('settings-voice', 'Voice', VOICE_CHOICES, settings.voice, (voice) => {
-          void save({ voice });
+        radios('settings-voice', 'Voice', VOICE_CHOICES, settings.voice, (voice, check) => {
+          void save({ voice }, (restored) => check(restored.voice));
           app.player.setVoice(voice);
         }),
         h('p', { class: 'quiet' }, "Female and male are the course's recordings. The device voice is your phone's own Slovenian voice."),
         renderSwitch({
           id: 'settings-mute', label: 'Mute', description: 'No sound at all: every exercise has a silent form.', checked: settings.mute,
-          onChange: (mute) => {
-            void save({ mute });
+          onChange: (mute, button) => {
+            void save({ mute }, (restored) => button.setAttribute('aria-checked', String(restored.mute)));
             app.player.setMute(mute);
           },
         }),
         renderSwitch({
           id: 'settings-speech', label: 'Speaking checks', description: SPEECH_DESCRIPTION, checked: settings.speech,
-          onChange: (speech) => { void save({ speech }); },
+          onChange: (speech, button) => { void save({ speech }, (restored) => button.setAttribute('aria-checked', String(restored.speech))); },
         }))),
     renderData(container, app, message)));
 }
@@ -322,7 +341,8 @@ function renderData(container, app, message) {
       let message = 'Progress imported.';
       try {
         await importState(app.adapter, data);
-      } catch {
+      } catch (error) {
+        console.error(error);
         message = 'The import did not work. Your progress may be incomplete: import the file again.';
       } finally {
         await reloadState(app);
@@ -350,7 +370,8 @@ function renderData(container, app, message) {
       let text;
       try {
         text = await file.text();
-      } catch {
+      } catch (error) {
+        console.error(error);
         say('Nothing was imported. The file could not be read.');
         return;
       }
@@ -472,8 +493,9 @@ async function exportProgress(app) {
 async function reloadState(app) {
   try {
     app.state = await loadState(app.adapter);
-  } catch {
+  } catch (error) {
     // The store cannot be read now either; the state in memory is the best there is.
+    console.error(error);
   }
 }
 

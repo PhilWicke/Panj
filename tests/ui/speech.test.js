@@ -7,7 +7,8 @@
 // recognitionBlocked until resetRecognition, and no other error is. createPlayer plays the recording first, the device's Slovenian voice second and
 // resolves 'none' when neither exists; a missing manifest reads as empty without a console error,
 // and a missing Web Crypto as no recording; mute plays nothing; setVoice changes the voice of later lookups and stops what
-// plays; a new play waits for the cancelled utterance to let go before it speaks.
+// plays; a new play waits for the cancelled utterance to let go before it speaks; audioAvailable
+// says whether a recording in the preferred voice or a Slovenian device voice exists (Ruling 81).
 import { test, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { compareSpoken, recognitionBlocked, recognizeOnce, resetRecognition, speechAvailable } from '../../app/js/audio/speech.js';
@@ -287,6 +288,39 @@ test('createPlayer resolves none with an empty manifest and no device voice, wit
   const offline = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false });
   assert.equal(await offline.play('Dober dan.'), 'none', 'a network error reads as an empty manifest');
   assert.equal(errors.mock.callCount(), 0);
+});
+
+test('audioAvailable: a recording in the preferred voice or a Slovenian device voice; neither is no audio (Ruling 81)', async () => {
+  const { fetch, calls } = notFound();
+  stub('fetch', fetch);
+  stub('speechSynthesis', undefined);
+  const silent = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false });
+  assert.equal(await silent.audioAvailable(), false, 'an empty manifest and no device voice');
+  assert.deepEqual(calls, [MANIFEST_URL], 'the manifest is fetched once');
+  assert.equal(await silent.audioAvailable(), false);
+  assert.equal(calls.length, 1, 'and not again');
+
+  const id = await audioId('Dober dan.', 'Kore');
+  stub('fetch', serving({ [id]: { text: 'Dober dan.', voice: 'Kore', model: 'm', bytes: 1 } }).fetch);
+  const female = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: true });
+  assert.equal(await female.audioAvailable(), true, 'a recording in the preferred voice; mute does not enter into it');
+  const male = createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'male', mute: false });
+  assert.equal(await male.audioAvailable(), false, 'the one recording is in the other voice');
+  male.setVoice('female');
+  assert.equal(await male.audioAvailable(), true, 'setVoice changes the voice the lookup uses');
+  stub('fetch', serving({ odd: null, other: 'text' }).fetch);
+  assert.equal(await createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false }).audioAvailable(), false, 'a manifest with odd entries reads as none');
+
+  const { synth, FakeUtterance } = fakeSynth();
+  stub('speechSynthesis', synth);
+  stub('SpeechSynthesisUtterance', FakeUtterance);
+  const device = notFound();
+  stub('fetch', device.fetch);
+  assert.equal(await createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'device', mute: false }).audioAvailable(), true, 'a Slovenian device voice');
+  assert.deepEqual(device.calls, [], 'the voice device never fetches the manifest (Ruling 45)');
+  assert.equal(await createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'female', mute: false }).audioAvailable(), true, 'no recording, but the device voice');
+  stub('speechSynthesis', fakeSynth({ voices: [{ lang: 'en-GB', name: 'Daniel' }] }).synth);
+  assert.equal(await createPlayer({ manifestUrl: MANIFEST_URL, voicePref: 'device', mute: false }).audioAvailable(), false, 'no Slovenian voice among the device voices');
 });
 
 test('createPlayer never rejects: without Web Crypto (an insecure context) there is no recording to find', async () => {

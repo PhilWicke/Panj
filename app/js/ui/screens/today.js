@@ -4,7 +4,8 @@
 // one is due (every seventh active day, engine/checkpoint.js); the current lesson; the intention line
 // until the habit holds (the week target met four weeks in a row); the hive as the lower part of
 // the screen, a tap on a board opens its unit; and one quiet line when the store is not
-// persistent. The pure parts are exported for the tests.
+// persistent. A course without lessons yet (a strict build before any content is accepted) says
+// so in place of the primary action. The pure parts are exported for the tests.
 
 import { h, mount, svg } from '../../util/dom.js';
 import { onlyKnown } from '../../content/loader.js';
@@ -122,6 +123,8 @@ export function renderToday(container, app) {
   const fills = app.units.map((content) => hiveFill(states, content, now, settings.desiredRetention, { allowPending: app.allowPending }));
   const weekly = dueWeeklyCheck(app.state.sessions, app.state.meta, now) ? buildWeeklyCheck(app.index, app.units, states, Math.random) : null;
   const weeklyItems = weekly ? weekly.blocks.reduce((sum, block) => sum + block.items.length, 0) : 0;
+  /** The bundle carries no lesson yet: nothing can be practised until content is released. */
+  const noLessons = app.index.lessonIndex.length === 0;
 
   mount(container, h('section', { class: 'screen screen-today' },
     h('h1', { class: 'greeting' },
@@ -131,14 +134,17 @@ export function renderToday(container, app) {
         speakerIcon(),
         h('span', { class: 'visually-hidden' }, ', listen'))),
     renderCalendar(week, { todayDate: localDateKey(now), honey: honeyInWeek(app.state.sessions, week) }),
-    h('div', { class: 'actions actions-stack' },
-      h('button', {
-        type: 'button', class: 'btn btn-primary btn-large btn-session', 'aria-disabled': action.enabled ? null : 'true',
-        onclick: () => { if (action.enabled) navigate('/session'); },
-      }, actionLabel(action.text)),
-      canContinue && h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => navigate('/session?mode=continue') }, 'Continue lesson'),
-      weeklyItems >= WEEKLY_MIN_ITEMS && h('a', { class: 'btn btn-secondary', href: '#/checkpoint?weekly=1' }, `Weekly check: ${countLine(weeklyItems)}`)),
-    !action.enabled && h('p', { class: 'quiet' }, 'Come back later today or tomorrow.'),
+    noLessons
+      ? [h('h2', { class: 'section-title' }, 'Nothing to practise yet'),
+        h('p', { class: 'quiet' }, 'The first lessons are still being checked. Come back when they are released.')]
+      : h('div', { class: 'actions actions-stack' },
+        h('button', {
+          type: 'button', class: 'btn btn-primary btn-large btn-session', 'aria-disabled': action.enabled ? null : 'true',
+          onclick: () => { if (action.enabled) navigate('/session'); },
+        }, actionLabel(action.text)),
+        canContinue && h('button', { type: 'button', class: 'btn btn-secondary', onclick: () => navigate('/session?mode=continue') }, 'Continue lesson'),
+        weeklyItems >= WEEKLY_MIN_ITEMS && h('a', { class: 'btn btn-secondary', href: '#/checkpoint?weekly=1' }, `Weekly check: ${countLine(weeklyItems)}`)),
+    !noLessons && !action.enabled && h('p', { class: 'quiet' }, 'Come back later today or tomorrow.'),
     !app.persistent && h('p', { class: 'notice' }, 'Progress is not being saved in this browser.'),
     lesson && h('div', { class: 'lesson-card' },
       h('p', { class: 'eyebrow' }, unit ? `Unit ${unit.order}, lesson ${lesson.order}` : `Lesson ${lesson.order}`),
