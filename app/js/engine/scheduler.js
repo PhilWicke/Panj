@@ -4,14 +4,17 @@
 // retrievability. The steps inside a session (one and ten minutes, ten minutes after a lapse) are
 // this module's own, so FSRS runs with its short-term steps off. Every function is pure.
 //
-// Days are the learner's local days (app/js/util/time.js). A review is due from the start of the
-// local day FSRS schedules and never before the next local day, so an item reviewed late in the
-// evening is in the next day's session whatever the time. Mastery needs successful review-phase
-// recalls on MASTERY_SESSIONS distinct local days after the recall that brought the item into
-// review.
+// Days are the learner's local days (app/js/util/time.js). An item that graduates is due at the
+// start of the next local day whatever FSRS scheduled (spec 4.2, the first review is the next day);
+// the card keeps the fields the rating produced and drives every later review, which is due from
+// the start of the local day FSRS schedules and never before the next local day, so an item
+// reviewed late in the evening is in the next day's session whatever the time. Mastery needs
+// successful review-phase recalls on MASTERY_SESSIONS distinct local days after the recall that
+// brought the item into review. A slip is a success rated Hard, but a slip right after a slip on
+// the same item counts as a miss (spec 5): effectiveResult decides, and lastResult remembers.
 
 import { fsrs, createEmptyCard, Rating } from './fsrs.vendored.js';
-import { localDateKey, startOfLocalDay, daysBetween } from '../util/time.js';
+import { localDateKey, startOfLocalDay, startOfNextLocalDay, daysBetween } from '../util/time.js';
 
 /**
  * @typedef {object} Settings
@@ -52,6 +55,7 @@ import { localDateKey, startOfLocalDay, daysBetween } from '../util/time.js';
  * @property {FsrsCard|null} card null until the item graduates
  * @property {number} due epoch ms
  * @property {number|null} lastReview epoch ms of the last recall
+ * @property {RecallResult|null} lastResult the last recall as the learner gave it, null before the first; a slip right after a slip counts as a miss (effectiveResult)
  * @property {number} reps recalls recorded, whatever the result
  * @property {number} lapses misses in review phase
  */
@@ -140,8 +144,7 @@ function rate(card, result, now, settings) {
  * @returns {number}
  */
 function reviewDue(cardDue, now, tz) {
-  const nextDayStart = startOfLocalDay(startOfLocalDay(now, tz) + 36 * 3_600_000, tz);
-  return Math.max(startOfLocalDay(cardDue, tz), nextDayStart);
+  return Math.max(startOfLocalDay(cardDue, tz), startOfNextLocalDay(now, tz));
 }
 
 /**
@@ -181,6 +184,7 @@ export function createState(itemId, now) {
     card: null,
     due: now,
     lastReview: null,
+    lastResult: null,
     reps: 0,
     lapses: 0,
   };
@@ -208,16 +212,31 @@ export function retrievability(state, now) {
 }
 
 /**
+ * The result a recall counts as: a slip right after a slip on the same item is a miss (spec 5, "a
+ * soft pass once, a fail if repeated"), any other recall counts as given. recordRecall drives every
+ * branch from it and stores the raw result, and the session screen words its feedback with it.
+ * @param {ItemState} state the state before the recall
+ * @param {RecallResult} result
+ * @returns {RecallResult}
+ */
+export function effectiveResult(state, result) {
+  return result === 'slip' && (state.lastResult ?? null) === 'slip' ? 'wrong' : result;
+}
+
+/**
  * Records a typed recall, or a spoken one judged by recognition, and returns the next state. The
  * input is left as it is.
  *
- * Learning: a success advances the step and the item is due after that step; the GRADUATE_AFTER-th
- * success of the session graduates it to review with an FSRS card rated Good (Hard for a slip),
- * due from the start of a later local day. A miss restarts the steps. Review: a success rates Good
- * or Hard and reschedules by FSRS; a miss rates Again, counts a lapse and sends the item through
- * the relearning step. Lapsed: a success returns the item to review on the day FSRS set when it
- * lapsed; a miss repeats the relearning step without touching the card. A new local day starts a
- * new session: the session counter, and in learning the steps, start over.
+ * The recall counts as effectiveResult says: a slip right after a slip is a miss, so every branch
+ * below runs on the effective result, while `lastResult` records the result as given. Learning: a
+ * success advances the step and the item is due after that step; the GRADUATE_AFTER-th success of
+ * the session graduates it to review with an FSRS card rated Good (Hard for a slip) and due at the
+ * start of the next local day, whatever the card says (the card keeps its own fields for the
+ * reviews that follow). A miss restarts the steps. Review: a success rates Good or Hard and
+ * reschedules by FSRS; a miss rates Again, counts a lapse and sends the item through the relearning
+ * step. Lapsed: a success returns the item to review on the day FSRS set when it lapsed; a miss
+ * repeats the relearning step without touching the card. A new local day starts a new session: the
+ * session counter, and in learning the steps, start over.
  *
  * @param {ItemState} state
  * @param {RecallResult} result
@@ -228,7 +247,8 @@ export function retrievability(state, now) {
  */
 export function recordRecall(state, result, now, settings, tz) {
   if (!RESULTS.has(result)) throw new RangeError(`Unknown recall result: ${String(result)}`);
-  const success = result !== 'wrong';
+  const effective = effectiveResult(state, result);
+  const success = effective !== 'wrong';
   const key = localDateKey(now, tz);
   const sameSession = state.sessionKey === key;
   /** @type {ItemState} */
@@ -240,6 +260,7 @@ export function recordRecall(state, result, now, settings, tz) {
     correctInSession: success ? (sameSession ? state.correctInSession : 0) + 1 : 0,
     step: sameSession ? state.step : 0,
     lastReview: now,
+    lastResult: result,
     reps: state.reps + 1,
   };
 
@@ -251,8 +272,8 @@ export function recordRecall(state, result, now, settings, tz) {
     } else if (next.correctInSession >= GRADUATE_AFTER) {
       next.phase = 'review';
       next.step = 0;
-      next.card = rate(null, result, now, settings);
-      next.due = reviewDue(next.card.due, now, tz);
+      next.card = rate(null, effective, now, settings);
+      next.due = startOfNextLocalDay(now, tz);
     } else {
       next.due = now + LEARNING_STEPS_MS[Math.min(next.step, LEARNING_STEPS_MS.length - 1)];
       next.step += 1;
@@ -263,7 +284,7 @@ export function recordRecall(state, result, now, settings, tz) {
   const relearning = state.phase === 'lapsed';
   // Every review-phase recall is an FSRS rating. Relearning steps leave the card alone, unless a
   // review item somehow has none (not produced here): then it gets a card from this recall.
-  if (!relearning || !next.card) next.card = rate(state.card, result, now, settings);
+  if (!relearning || !next.card) next.card = rate(state.card, effective, now, settings);
   next.step = 0;
   if (!success) {
     if (!relearning) next.lapses += 1;

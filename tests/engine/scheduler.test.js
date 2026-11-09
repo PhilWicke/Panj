@@ -7,9 +7,9 @@ import { readFile } from 'node:fs/promises';
 import * as vendored from '../../app/js/engine/fsrs.vendored.js';
 import {
   DEFAULT_SETTINGS, LEARNING_STEPS_MS, RELEARNING_STEPS_MS, GRADUATE_AFTER, MASTERY_SESSIONS,
-  createState, recordRecall, isDue, retrievability, skipAheadState,
+  createState, recordRecall, effectiveResult, isDue, retrievability, skipAheadState,
 } from '../../app/js/engine/scheduler.js';
-import { localDateKey, startOfLocalDay, daysBetween } from '../../app/js/util/time.js';
+import { localDateKey, startOfLocalDay, startOfNextLocalDay } from '../../app/js/util/time.js';
 
 const { fsrs, createEmptyCard, Rating, State } = vendored;
 const TZ = 'Europe/Berlin';
@@ -28,9 +28,6 @@ function graduated(now = T0) {
   s = recall(s, 'correct', s.due);
   return recall(s, 'correct', s.due);
 }
-
-/** The first instant of the local day after the one containing `t`. */
-const nextDayStart = (t) => startOfLocalDay(startOfLocalDay(t, TZ) + 36 * HOUR, TZ);
 
 function deepFreeze(value) {
   if (value && typeof value === 'object') for (const v of Object.values(value)) deepFreeze(v);
@@ -71,7 +68,7 @@ test('vendored fsrs reproduces reference vectors', async () => {
   }
 });
 
-test('new item graduates after three correct recalls and is due next day', () => {
+test('new item graduates after three correct recalls and is due at the start of the next local day', () => {
   const s0 = createState('u01-l01-i01', T0);
   assert.equal(s0.phase, 'new');
   assert.equal(s0.due, T0);
@@ -107,14 +104,21 @@ test('new item graduates after three correct recalls and is due next day', () =>
   assert.equal(s3.card.reps, 1);
   assert.equal(s3.card.last_review, t3);
   assert.ok(s3.card.stability > 0 && s3.card.difficulty >= 1);
-  // due at a local midnight, on the day FSRS scheduled, and not before the next local day
-  assert.equal(s3.due, startOfLocalDay(s3.due, TZ));
-  assert.equal(localDateKey(s3.due, TZ), localDateKey(s3.card.due, TZ));
-  assert.ok(s3.due >= nextDayStart(t3));
-  assert.ok(daysBetween(localDateKey(t3, TZ), localDateKey(s3.due, TZ)) >= 1);
+  // due at the start of the next local day, whatever FSRS scheduled: the first review is the next day
+  assert.equal(s3.due, startOfNextLocalDay(t3, TZ));
+  assert.equal(s3.due, Date.UTC(2026, 0, 5, 23, 0), 'midnight of 6 January in Berlin');
+  assert.equal(localDateKey(s3.due, TZ), '2026-01-06');
+  assert.ok(s3.card, 'the FSRS card keeps its own scheduling; only due is pinned');
+  assert.ok(s3.card.due > s3.due, 'FSRS alone would have waited longer');
   assert.ok(!isDue(s3, t3) && isDue(s3, s3.due));
+  // three correct recalls at 10:00, 10:01 and 10:11 on 8 November 2026 in Berlin: due at midnight of the 9th
+  const nov = graduated(Date.UTC(2026, 10, 8, 9, 0));
+  assert.equal(nov.lastReview, Date.UTC(2026, 10, 8, 9, 11));
+  assert.equal(nov.due, startOfNextLocalDay(nov.lastReview, TZ));
+  assert.equal(nov.due, Date.UTC(2026, 10, 8, 23, 0));
   assert.equal(retrievability(s3, t3), 1);
-  assert.ok(retrievability(s3, s3.due) < 1 && retrievability(s3, s3.due) > 0.8);
+  assert.equal(retrievability(s3, s3.due), 1, 'FSRS counts whole days, and the next midnight is less than one away');
+  assert.ok(retrievability(s3, s3.due + DAY) < 1 && retrievability(s3, s3.due + DAY) > 0.8, 'the memory model runs on from the card');
   assert.equal(s3.mastered, false);
   assert.deepEqual(s3.masterySessions, []);
   assert.equal(s3.reps, 3);
@@ -164,9 +168,8 @@ test('slip rates Hard and still counts as a correct step', () => {
   // Hard gives a harder and less stable card than Good, so an earlier review
   assert.ok(bySlip.card.difficulty > byCorrect.card.difficulty);
   assert.ok(bySlip.card.stability < byCorrect.card.stability);
-  assert.ok(bySlip.due <= byCorrect.due);
-  assert.ok(bySlip.due >= nextDayStart(t3));
-  assert.equal(bySlip.due, startOfLocalDay(bySlip.due, TZ));
+  assert.equal(bySlip.due, startOfNextLocalDay(t3, TZ), 'graduation by a slip is due the next day too');
+  assert.equal(bySlip.due, byCorrect.due);
   // in review a slip keeps the item in review and strengthens the memory less than a correct answer
   const t = byCorrect.due + 9 * HOUR;
   const slipped = recall(byCorrect, 'slip', t);
@@ -208,7 +211,7 @@ test('wrong in review lapses, correct in lapsed returns to review', () => {
   assert.deepEqual(back.card, lapsed.card);
   assert.equal(back.due, startOfLocalDay(back.due, TZ));
   assert.equal(localDateKey(back.due, TZ), localDateKey(lapsed.card.due, TZ));
-  assert.ok(back.due >= nextDayStart(failed.due));
+  assert.ok(back.due >= startOfNextLocalDay(failed.due, TZ));
   assert.deepEqual(back.masterySessions, [], 'relearning is not a mastery session');
   assert.equal(back.correctInSession, 1);
   assert.equal(recall(failed, 'slip', failed.due).phase, 'review', 'a slip also ends relearning');
@@ -328,4 +331,72 @@ test('recordRecall leaves its input untouched and rejects unknown results', () =
   assert.notEqual(next.card, frozen.card);
   assert.notEqual(next.masterySessions, frozen.masterySessions);
   assert.throws(() => recordRecall(g, 'maybe', T0, S, TZ), RangeError);
+});
+
+test('a slip right after a slip counts as a miss', () => {
+  // learning: correct, slip (a success), slip (a miss) -> the steps start over
+  let s = recall(createState('u01-l01-i06', T0), 'correct', T0);
+  s = recall(s, 'slip', s.due);
+  assert.equal(s.correctInSession, 2);
+  assert.equal(s.step, 2);
+  assert.equal(s.lastResult, 'slip');
+  assert.equal(effectiveResult(s, 'slip'), 'wrong');
+  assert.equal(effectiveResult(s, 'correct'), 'correct');
+  assert.equal(effectiveResult(s, 'wrong'), 'wrong');
+  const t = s.due;
+  const missed = recall(s, 'slip', t);
+  assert.equal(missed.phase, 'learning');
+  assert.equal(missed.correctInSession, 0);
+  assert.equal(missed.step, 0);
+  assert.equal(missed.due, t + LEARNING_STEPS_MS[0]);
+  assert.equal(missed.card, null);
+  assert.equal(missed.lastResult, 'slip', 'the raw result is what the state records');
+  assert.equal(effectiveResult(missed, 'slip'), 'wrong', 'so a third slip in a row is a miss as well');
+  // a fresh item, or one stored before lastResult existed: a first slip is a slip
+  const fresh = createState('u01-l01-i07', T0);
+  assert.equal(fresh.lastResult, null);
+  assert.equal(effectiveResult(fresh, 'slip'), 'slip');
+  assert.equal(effectiveResult({ ...fresh, lastResult: undefined }, 'slip'), 'slip');
+  assert.equal(effectiveResult(fresh, 'correct'), 'correct');
+  assert.equal(effectiveResult(fresh, 'wrong'), 'wrong');
+  // review: slip then slip lapses the item, rated Again
+  const g = graduated();
+  const t1 = g.due + 9 * HOUR;
+  const once = recall(g, 'slip', t1);
+  assert.equal(once.phase, 'review');
+  assert.equal(once.lapses, 0);
+  assert.equal(once.correctInSession, 1);
+  const twice = recall(once, 'slip', t1 + 20 * MINUTE);
+  assert.equal(twice.phase, 'lapsed');
+  assert.equal(twice.lapses, 1);
+  assert.equal(twice.correctInSession, 0);
+  assert.equal(twice.due, t1 + 20 * MINUTE + RELEARNING_STEPS_MS[0]);
+  assert.equal(twice.card.lapses, 1);
+  assert.ok(twice.card.stability < once.card.stability, 'rated Again, not Hard');
+  // the streak belongs to the item, not to the day: a slip the day after a slip is a miss too
+  assert.equal(recall(once, 'slip', t1 + DAY).phase, 'lapsed');
+});
+
+test('a correct recall clears the slip streak and lastResult records the raw result', () => {
+  let s = createState('u01-l01-i08', T0);
+  assert.equal(s.lastResult, null);
+  s = recall(s, 'slip', T0);
+  assert.equal(s.lastResult, 'slip');
+  assert.equal(s.correctInSession, 1);
+  s = recall(s, 'correct', s.due);
+  assert.equal(s.lastResult, 'correct');
+  assert.equal(s.correctInSession, 2);
+  assert.equal(effectiveResult(s, 'slip'), 'slip', 'the correct answer cleared the streak');
+  const t3 = s.due;
+  s = recall(s, 'slip', t3);
+  assert.equal(s.lastResult, 'slip');
+  assert.equal(s.correctInSession, GRADUATE_AFTER, 'the last slip is a success');
+  assert.equal(s.phase, 'review');
+  assert.equal(s.due, startOfNextLocalDay(t3, TZ));
+  // a miss is recorded as given and clears the streak as well
+  const w = recall(graduated(), 'wrong', T0 + DAY);
+  assert.equal(w.lastResult, 'wrong');
+  assert.equal(effectiveResult(w, 'slip'), 'slip');
+  // a skip-ahead state starts without a last result
+  assert.equal(skipAheadState('u02-l01-i01', T0).lastResult, null);
 });

@@ -3,9 +3,10 @@
 // one at 00:05 belong to different days, and a due date snaps to a local midnight.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { localDateKey, startOfLocalDay, daysBetween } from '../../app/js/util/time.js';
+import { localDateKey, startOfLocalDay, startOfNextLocalDay, daysBetween, formatterCacheSize } from '../../app/js/util/time.js';
 
 const TZ = 'Europe/Berlin';
+const HOUR = 3_600_000;
 
 test('local date keys split at local midnight', () => {
   const tz = 'Europe/Berlin';
@@ -57,4 +58,39 @@ test('daysBetween counts calendar days between keys, negative when the second is
   assert.equal(daysBetween('2026-01-01', '2026-12-31'), 364);
   assert.throws(() => daysBetween('2026-1-1', '2026-01-02'), RangeError);
   assert.throws(() => daysBetween('2026-01-01', 'tomorrow'), RangeError);
+});
+
+test('startOfNextLocalDay is the start of the following local day, across both DST changes', () => {
+  const tz = 'Europe/Berlin';
+  // 2026-03-28 is a 24 h day followed by the 23 h day of 2026-03-29; 2026-10-24 by the 25 h day of 2026-10-25
+  assert.equal(localDateKey(startOfNextLocalDay(Date.UTC(2026, 2, 28, 12), tz), tz), '2026-03-29');
+  assert.equal(startOfNextLocalDay(Date.UTC(2026, 2, 28, 12), tz), startOfLocalDay(Date.UTC(2026, 2, 29, 12), tz));
+  assert.equal(localDateKey(startOfNextLocalDay(Date.UTC(2026, 9, 24, 23, 30), tz), tz), '2026-10-26'); // 01:30 local on the 25th, still summer time
+  assert.equal(startOfNextLocalDay(Date.UTC(2026, 9, 24, 23, 30), tz), startOfLocalDay(Date.UTC(2026, 9, 26, 12), tz));
+  // the short and the long day: 23 hours from the start of 29 March to the start of 30 March, 25 from 25 to 26 October
+  assert.equal(startOfNextLocalDay(Date.UTC(2026, 2, 29, 15), tz) - startOfLocalDay(Date.UTC(2026, 2, 29, 15), tz), 23 * HOUR);
+  assert.equal(startOfNextLocalDay(Date.UTC(2026, 9, 25, 15), tz) - startOfLocalDay(Date.UTC(2026, 9, 25, 15), tz), 25 * HOUR);
+  // 23:58 on 8 November in Berlin: the next day starts two minutes later; a midnight gives the following midnight
+  assert.equal(startOfNextLocalDay(Date.UTC(2026, 10, 8, 22, 58), tz), Date.UTC(2026, 10, 8, 23, 0));
+  assert.equal(startOfNextLocalDay(Date.UTC(2026, 10, 8, 23, 0), tz), Date.UTC(2026, 10, 9, 23, 0));
+  assert.equal(startOfNextLocalDay(Date.UTC(2026, 10, 8, 23, 0) - 1, tz), Date.UTC(2026, 10, 8, 23, 0));
+  // noon UTC on 1 July is midnight on 2 July in New Zealand, so the next local day starts a day later
+  assert.equal(startOfNextLocalDay(Date.UTC(2026, 6, 1, 12, 0), 'Pacific/Auckland'), Date.UTC(2026, 6, 2, 12, 0));
+  const here = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  assert.equal(startOfNextLocalDay(Date.UTC(2026, 6, 1, 12, 0)), startOfNextLocalDay(Date.UTC(2026, 6, 1, 12, 0), here));
+});
+
+test('wallClock caches one formatter per zone', () => {
+  // zones no other test of this file uses, so the count does not depend on what ran before
+  const before = formatterCacheSize();
+  for (let i = 0; i < 1000; i += 1) localDateKey(Date.UTC(2026, 0, 1, i % 24), 'Asia/Tokyo');
+  assert.equal(formatterCacheSize(), before + 1, 'a thousand calls in a new zone add one formatter');
+  for (let i = 0; i < 1000; i += 1) startOfLocalDay(Date.UTC(2026, 5, 1, i % 24), 'Asia/Tokyo');
+  assert.equal(formatterCacheSize(), before + 1, 'every helper shares the zone\'s formatter');
+  localDateKey(Date.UTC(2026, 0, 1), 'Asia/Kolkata');
+  assert.equal(formatterCacheSize(), before + 2, 'another zone is another formatter');
+  // the cached formatter answers as a fresh one would: 00:00Z is 09:00 in Tokyo, 16:00Z is 01:00 the next day
+  assert.equal(localDateKey(Date.UTC(2026, 0, 1, 0), 'Asia/Tokyo'), '2026-01-01');
+  assert.equal(localDateKey(Date.UTC(2026, 0, 1, 16), 'Asia/Tokyo'), '2026-01-02');
+  assert.equal(startOfLocalDay(Date.UTC(2026, 0, 1, 16), 'Asia/Tokyo'), Date.UTC(2026, 0, 1, 15));
 });
