@@ -420,7 +420,10 @@
       {
         "speaker": "you",
         "sl": "Rad berem. Ne maram športa.",
-        "en": "I like reading. I don't like sport. (a man speaking)",
+        "en": "I like reading. I don't like sport.",
+        "accept": [
+          "Rada berem. Ne maram športa."
+        ],
         "new_items": [
           "u08-l01-i02",
           "u08-l01-i05"
@@ -434,9 +437,11 @@
       {
         "speaker": "you",
         "sl": "Ja, rad hodim v hribe.",
-        "en": "Yes, I like hiking in the hills. (a man speaking)",
+        "en": "Yes, I like hiking in the hills.",
         "accept": [
-          "Da, rad hodim v hribe."
+          "Da, rad hodim v hribe.",
+          "Ja, rada hodim v hribe.",
+          "Da, rada hodim v hribe."
         ],
         "new_items": [
           "u08-l01-i04"

@@ -422,7 +422,10 @@
       {
         "speaker": "you",
         "sl": "Slabo se počutim. Utrujen sem.",
-        "en": "I don't feel well. I'm tired. (a man speaking)",
+        "en": "I don't feel well. I'm tired.",
+        "accept": [
+          "Slabo se počutim. Utrujena sem."
+        ],
         "new_items": [
           "u09-l02-i02",
           "u09-l02-i07"
@@ -436,9 +439,11 @@
       {
         "speaker": "you",
         "sl": "Ja, imam vročino. Prehlajen sem.",
-        "en": "Yes, I have a fever. I have a cold. (a man speaking)",
+        "en": "Yes, I have a fever. I have a cold.",
         "accept": [
-          "Da, imam vročino. Prehlajen sem."
+          "Da, imam vročino. Prehlajen sem.",
+          "Ja, imam vročino. Prehlajena sem.",
+          "Da, imam vročino. Prehlajena sem."
         ],
         "new_items": [
           "u09-l02-i05",

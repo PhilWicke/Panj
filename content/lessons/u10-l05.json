@@ -381,7 +381,10 @@
       {
         "speaker": "you",
         "sl": "V četrtek sem ves dan delal v pisarni.",
-        "en": "On Thursday I worked in the office all day. (a man speaking)",
+        "en": "On Thursday I worked in the office all day.",
+        "accept": [
+          "V četrtek sem ves dan delala v pisarni."
+        ],
         "new_items": [
           "u10-l02-i02",
           "u10-l01-i06"

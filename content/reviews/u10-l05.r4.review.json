@@ -1,0 +1,34 @@
+{
+  "lesson": "u10-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u10-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct for a woman, but the prompt fixes a man speaking, so delala contradicts it. The note \"(a man speaking)\" on the English prompt, which was the only objection, is removed with this change.",
+          "fix": "",
+          "source": "usage"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u10-l05-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct feminine Slovene, but the prompt says a man is speaking, so acceptable only if that tag is dropped. The note \"(a man speaking)\" on the English prompt, which was the only objection, is removed with this change.",
+          "fix": "",
+          "source": "usage"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l05-d-04": "dc92ab201038d82f"
+  }
+}

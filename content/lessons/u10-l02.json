@@ -446,7 +446,10 @@
       {
         "speaker": "you",
         "sl": "V ponedeljek sem ves dan delal.",
-        "en": "On Monday I worked all day. (a man speaking)",
+        "en": "On Monday I worked all day.",
+        "accept": [
+          "V ponedeljek sem ves dan delala."
+        ],
         "new_items": [
           "u10-l02-i02"
         ]
@@ -462,7 +465,10 @@
       {
         "speaker": "you",
         "sl": "Ne, nisem imel časa.",
-        "en": "No, I didn't have time. (a man speaking)",
+        "en": "No, I didn't have time.",
+        "accept": [
+          "Ne, nisem imela časa."
+        ],
         "new_items": [
           "u10-l02-i04",
           "u10-l02-i07"
@@ -476,7 +482,10 @@
       {
         "speaker": "you",
         "sl": "V petek sem šel v službo, potem domov.",
-        "en": "On Friday I went to work, then home. (a man speaking)",
+        "en": "On Friday I went to work, then home.",
+        "accept": [
+          "V petek sem šla v službo, potem domov."
+        ],
         "new_items": [
           "u10-l02-i03"
         ]

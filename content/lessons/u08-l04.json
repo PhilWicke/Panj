@@ -408,7 +408,10 @@
       {
         "speaker": "you",
         "sl": "Bil sem na morju. Včeraj je bilo sonce.",
-        "en": "I was at the seaside. Yesterday it was sunny. (a man speaking)",
+        "en": "I was at the seaside. Yesterday it was sunny.",
+        "accept": [
+          "Bila sem na morju. Včeraj je bilo sonce."
+        ],
         "new_items": [
           "u08-l04-i02",
           "u08-l04-i07"

@@ -1,0 +1,47 @@
+{
+  "lesson": "u09-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u09-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct for a woman, but the prompt fixes a man speaking, so utrujena contradicts it. The note \"(a man speaking)\" on the English prompt, which was the only objection, is removed with this change.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u09-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct for a woman, but the prompt fixes a man speaking, so prehlajena contradicts it. The note \"(a man speaking)\" on the English prompt, which was the only objection, is removed with this change.",
+          "fix": "",
+          "source": "usage"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u09-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct feminine Slovene, but the prompt says a man is speaking, so acceptable only if that tag is dropped. The note \"(a man speaking)\" on the English prompt, which was the only objection, is removed with this change.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u09-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct feminine Slovene, but the prompt says a man is speaking, so acceptable only if that tag is dropped. The note \"(a man speaking)\" on the English prompt, which was the only objection, is removed with this change.",
+          "fix": "",
+          "source": "usage"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u09-l02-d-02": "ec50a9ca5bb14b60",
+    "u09-l02-d-04": "b535e17a90a14118"
+  }
+}
