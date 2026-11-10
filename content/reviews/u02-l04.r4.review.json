@@ -1,0 +1,47 @@
+{
+  "lesson": "u02-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u02-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct; Da is merely more formal.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u02-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct; Da is merely more formal.",
+          "fix": "",
+          "source": "usage"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u02-l04-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct, only slightly more formal than Ja.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u02-l04-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct, only slightly more formal than Ja.",
+          "fix": "",
+          "source": "usage"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u02-l04-d-02": "106319d13c13e907",
+    "u02-l04-d-04": "1957fbff9474c6e1"
+  }
+}

@@ -85,6 +85,7 @@ test('no accept entry repeats its target without diacritics or punctuation (the 
     const graded = [
       ...lesson.items.map((it) => [it.id, it.sl, it.accept ?? []]),
       ...lesson.production.map((p) => [p.id, p.answer, p.accept ?? []]),
+      ...(lesson.dialogue?.lines ?? []).map((line, i) => [`${lesson.dialogue.id}-${String(i + 1).padStart(2, '0')}`, line.sl, line.accept ?? []]),
     ];
     for (const [id, target, accept] of graded) {
       for (const variant of accept) {

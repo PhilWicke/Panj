@@ -23,13 +23,11 @@ For each row, add one line to native-confirmations.tsv: the id, a tab, then `con
 
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
-| question:u04-l04-p02 | Ni več kruha. | There's no more bread. | Is "Kruha ni več" just as natural as "Ni več kruha" for "There's no more bread"? Should we count both as correct? | If yes, "Kruha ni več." counts as correct too, in this exercise and wherever the phrase is practised. |
 
 ## Unit 07
 
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
-| question:u07-l03-p01 | Grem z avtobusom. | I'm going by bus. | If someone starts with "Jaz", as in "Jaz grem z avtobusom.", is that normal, or only when stressing who? Should we count it as correct everywhere? | If it is normal, the version with "Jaz" counts as correct in every exercise of this kind. |
 | question:u07-numbers | Avtobus 6. / na peronu 2 / na peronu 1 | Bus 6. / on platform 2 / on platform 1 | Please listen to the recordings with numbers written as figures, such as "na peronu 2" and "Avtobus 6.". Are they read the way you would say them? |  |
 
 ## Unit 08
@@ -46,8 +44,6 @@ For each row, add one line to native-confirmations.tsv: the id, a tab, then `con
 
 | id | sl | en | doubt | proposed fix |
 |---|---|---|---|---|
-| question:u10-l05-p02 | Se vidimo v ponedeljek. | See you on Monday. | Talking to one colleague, could you also say "Se vidiva v ponedeljek." instead of "Se vidimo v ponedeljek."? | If yes, "Se vidiva v ponedeljek." counts as correct too, in this exercise and wherever the phrase is practised. |
-| question:u10-l05-p01 | Bilo je naporno. | It was tiring. | Is "Naporno je bilo." just as natural as "Bilo je naporno."? | If yes, "Naporno je bilo." counts as correct too, in this exercise and wherever the phrase is practised. |
 
 ## Drill words
 

@@ -387,7 +387,8 @@
       "en": "You have a fever. Tell your hosts.",
       "answer": "Imam vročino.",
       "accept": [
-        "Imam temperaturo."
+        "Imam temperaturo.",
+        "Jaz imam vročino."
       ],
       "item": "u09-l02-i05"
     },
@@ -436,6 +437,9 @@
         "speaker": "you",
         "sl": "Ja, imam vročino. Prehlajen sem.",
         "en": "Yes, I have a fever. I have a cold. (a man speaking)",
+        "accept": [
+          "Da, imam vročino. Prehlajen sem."
+        ],
         "new_items": [
           "u09-l02-i05",
           "u09-l02-i06"

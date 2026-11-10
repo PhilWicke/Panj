@@ -1,0 +1,47 @@
+{
+  "lesson": "u01-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u01-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Correct; Da is merely more formal.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u01-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u01-l05-d-06": {
+          "verdict": "accepted",
+          "reason": "Correct, only slightly more formal than Ja.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u01-l05-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u01-l05-p05": "88dff86a8124beb8",
+    "u01-l05-d-06": "424b88e2824fd263"
+  }
+}

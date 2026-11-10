@@ -348,7 +348,8 @@
       "en": "Your back hurts badly. Say you have to see a doctor.",
       "answer": "Moram k zdravniku.",
       "accept": [
-        "Moram iti k zdravniku."
+        "Moram iti k zdravniku.",
+        "Jaz moram k zdravniku."
       ],
       "item": "u09-l04-i01"
     },
@@ -357,7 +358,8 @@
       "en": "Your hosts ask you out, but you are ill. Say you have to rest.",
       "answer": "Moram počivati.",
       "accept": [
-        "Moram počivat."
+        "Moram počivat.",
+        "Jaz moram počivati."
       ],
       "item": "u09-l04-i02"
     },
@@ -396,7 +398,8 @@
       "en": "You need help. Say so.",
       "answer": "Potrebujem pomoč.",
       "accept": [
-        "Rabim pomoč."
+        "Rabim pomoč.",
+        "Jaz potrebujem pomoč."
       ],
       "item": "u09-l04-i08"
     }

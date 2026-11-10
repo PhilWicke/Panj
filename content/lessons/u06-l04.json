@@ -366,7 +366,8 @@
       "en": "Say you live in the centre.",
       "answer": "Stanujem v centru.",
       "accept": [
-        "Živim v centru."
+        "Živim v centru.",
+        "Jaz stanujem v centru."
       ],
       "item": "u06-l04-i02"
     },

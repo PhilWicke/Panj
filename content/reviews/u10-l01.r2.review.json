@@ -1,0 +1,73 @@
+{
+  "lesson": "u10-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u10-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Correct and natural when saying what you do.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u10-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural when saying what you do.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u10-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural when saying what you do.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u10-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural when saying what you do.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u10-l01-p01": {
+          "verdict": "accepted",
+          "reason": "Correct, the usual full form when asked what you do.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u10-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Correct, the usual full form for stating a profession.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u10-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, the usual full form for stating a profession.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u10-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l01-p01": "278ae1bb338425d7",
+    "u10-l01-p02": "438f35d0bf7b00de",
+    "u10-l01-p03": "fdfd3a4adf919152",
+    "u10-l01-p05": "fa159bdd3ba97f46"
+  }
+}

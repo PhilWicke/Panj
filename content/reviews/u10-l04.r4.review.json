@@ -1,0 +1,47 @@
+{
+  "lesson": "u10-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u10-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u10-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u10-l04-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u10-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l04-p03": "36a2d06156a2bf24",
+    "u10-l04-p04": "114d1b9f13debf30"
+  }
+}

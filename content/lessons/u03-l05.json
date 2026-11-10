@@ -376,6 +376,9 @@
         "speaker": "you",
         "sl": "Ja, prosim. Res je okusno. Lahko dobim recept?",
         "en": "Yes, please. It's really tasty. Can I have the recipe?",
+        "accept": [
+          "Da, prosim. Res je okusno. Lahko dobim recept?"
+        ],
         "new_items": [
           "u03-l03-i03",
           "u03-l05-i03",

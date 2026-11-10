@@ -456,6 +456,9 @@
         "speaker": "you",
         "sl": "Ja, imam brata in sestro.",
         "en": "Yes, I have a brother and a sister.",
+        "accept": [
+          "Da, imam brata in sestro."
+        ],
         "new_items": [
           "u02-l01-i01"
         ]

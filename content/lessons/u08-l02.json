@@ -407,6 +407,9 @@
         "speaker": "you",
         "sl": "Ja, zelo. Ljubljana mi je všeč.",
         "en": "Yes, very much. I like Ljubljana.",
+        "accept": [
+          "Da, zelo. Ljubljana mi je všeč."
+        ],
         "new_items": [
           "u08-l02-i04"
         ]

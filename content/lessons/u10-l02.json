@@ -397,7 +397,8 @@
       "en": "Say you had no time.",
       "answer": "Nisem imel časa.",
       "accept": [
-        "Nisem imela časa."
+        "Nisem imela časa.",
+        "Jaz nisem imel časa."
       ],
       "item": "u10-l02-i04"
     },
@@ -406,7 +407,8 @@
       "en": "Say you have a meeting at eight.",
       "answer": "Imam sestanek ob osmih.",
       "accept": [
-        "Ob osmih imam sestanek."
+        "Ob osmih imam sestanek.",
+        "Jaz imam sestanek ob osmih."
       ],
       "item": "u10-l02-i06"
     },

@@ -359,7 +359,8 @@
       "en": "Say you like reading.",
       "answer": "Rad berem.",
       "accept": [
-        "Rada berem."
+        "Rada berem.",
+        "Jaz rad berem."
       ],
       "item": "u08-l01-i02"
     },
@@ -368,7 +369,8 @@
       "en": "Say you like cooking.",
       "answer": "Rada kuham.",
       "accept": [
-        "Rad kuham."
+        "Rad kuham.",
+        "Jaz rada kuham."
       ],
       "item": "u08-l01-i03"
     },
@@ -377,7 +379,8 @@
       "en": "Say you like hiking in the hills.",
       "answer": "Rad hodim v hribe.",
       "accept": [
-        "Rada hodim v hribe."
+        "Rada hodim v hribe.",
+        "Jaz rad hodim v hribe."
       ],
       "item": "u08-l01-i04"
     },
@@ -385,14 +388,18 @@
       "id": "u08-l01-p05",
       "en": "Say you don't like sport.",
       "answer": "Ne maram športa.",
-      "accept": [],
+      "accept": [
+        "Jaz ne maram športa."
+      ],
       "item": "u08-l01-i05"
     },
     {
       "id": "u08-l01-p06",
       "en": "Say you are reading a book.",
       "answer": "Berem knjigo.",
-      "accept": [],
+      "accept": [
+        "Jaz berem knjigo."
+      ],
       "item": "u08-l01-i06"
     }
   ],
@@ -428,6 +435,9 @@
         "speaker": "you",
         "sl": "Ja, rad hodim v hribe.",
         "en": "Yes, I like hiking in the hills. (a man speaking)",
+        "accept": [
+          "Da, rad hodim v hribe."
+        ],
         "new_items": [
           "u08-l01-i04"
         ]

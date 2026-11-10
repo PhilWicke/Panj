@@ -274,7 +274,8 @@
       "en": "The doctor asks how you are. Say you have a fever.",
       "answer": "Imam vročino.",
       "accept": [
-        "Imam temperaturo."
+        "Imam temperaturo.",
+        "Jaz imam vročino."
       ],
       "item": "u09-l02-i05"
     },
@@ -290,7 +291,8 @@
       "en": "Tell your hosts you must go to the doctor.",
       "answer": "Moram k zdravniku.",
       "accept": [
-        "Moram iti k zdravniku."
+        "Moram iti k zdravniku.",
+        "Jaz moram k zdravniku."
       ],
       "item": "u09-l04-i01"
     },
@@ -334,7 +336,10 @@
       {
         "speaker": "you",
         "sl": "Ja, izvolite.",
-        "en": "Yes, here you are."
+        "en": "Yes, here you are.",
+        "accept": [
+          "Da, izvolite."
+        ]
       },
       {
         "speaker": "doctor",

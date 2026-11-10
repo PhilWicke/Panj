@@ -1,0 +1,34 @@
+{
+  "lesson": "u08-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u08-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural as a reply about yourself.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u08-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, the prompt names no gender, and jaz is natural when asked about yourself.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u08-l05-p03": "e0aa9b5dccaae993"
+  }
+}

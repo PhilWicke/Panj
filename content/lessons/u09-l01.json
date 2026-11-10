@@ -413,6 +413,9 @@
         "speaker": "you",
         "sl": "Ja, boli me grlo.",
         "en": "Yes, my throat hurts.",
+        "accept": [
+          "Da, boli me grlo."
+        ],
         "new_items": [
           "u09-l01-i04"
         ]

@@ -352,7 +352,9 @@
       "id": "u01-l04-p05",
       "en": "Say you do not understand.",
       "answer": "Ne razumem.",
-      "accept": [],
+      "accept": [
+        "Jaz ne razumem."
+      ],
       "item": "u01-l04-i06"
     },
     {

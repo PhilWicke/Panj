@@ -1,0 +1,34 @@
+{
+  "lesson": "u02-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u02-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct; Da suits a polite answer to an older relative.",
+          "fix": "",
+          "source": "usage"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u02-l01-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct, and suits speaking politely to an older relative.",
+          "fix": "",
+          "source": "usage"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u02-l01-d-02": "15eed4a8fcd354b5"
+  }
+}

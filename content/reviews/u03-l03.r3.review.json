@@ -1,0 +1,47 @@
+{
+  "lesson": "u03-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u03-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct; Da, prosim is a normal polite acceptance.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u03-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural at table with light emphasis.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u03-l03-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct, only slightly more formal than Ja.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u03-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct and a common way to say this at the table.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u03-l03-p05": "ef9fabf7e968e2f7",
+    "u03-l03-d-02": "c41955dc95f8eaf7"
+  }
+}

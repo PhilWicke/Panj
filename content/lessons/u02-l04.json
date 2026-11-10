@@ -446,6 +446,9 @@
         "speaker": "you",
         "sl": "Ja, imam dve sestri in brata.",
         "en": "Yes, I have two sisters and a brother.",
+        "accept": [
+          "Da, imam dve sestri in brata."
+        ],
         "new_items": [
           "u02-l04-i03"
         ]
@@ -459,6 +462,9 @@
         "speaker": "you",
         "sl": "Ja, imava dva otroka. Še mlada sta.",
         "en": "Yes, the two of us have two children. They are still young.",
+        "accept": [
+          "Da, imava dva otroka. Še mlada sta."
+        ],
         "new_items": [
           "u02-l04-i02"
         ]

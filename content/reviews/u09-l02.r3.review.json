@@ -1,0 +1,47 @@
+{
+  "lesson": "u09-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u09-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct, masculine as the prompt asks, and Da is merely more formal.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u09-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u09-l02-d-04": {
+          "verdict": "accepted",
+          "reason": "Masculine matches the prompt and Da is only slightly more formal.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u09-l02-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u09-l02-p05": "083232ac582a9882",
+    "u09-l02-d-04": "3c39baa2097de094"
+  }
+}

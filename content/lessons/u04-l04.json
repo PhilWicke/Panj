@@ -58,7 +58,9 @@
         }
       ],
       "helper": "ni več is no more, as in ne morem več; after ni, kruh becomes kruha.",
-      "accept": [],
+      "accept": [
+        "Kruha ni več."
+      ],
       "rules": [
         "r-genitive-ni"
       ],
@@ -344,7 +346,9 @@
       "id": "u04-l04-p02",
       "en": "Say there's no more bread.",
       "answer": "Ni več kruha.",
-      "accept": [],
+      "accept": [
+        "Kruha ni več."
+      ],
       "item": "u04-l04-i02"
     },
     {
@@ -359,7 +363,8 @@
       "en": "Point at something and say you'll take this.",
       "answer": "Vzamem to.",
       "accept": [
-        "To vzamem."
+        "To vzamem.",
+        "Jaz vzamem to."
       ],
       "item": "u04-l04-i05"
     },

@@ -1,0 +1,99 @@
+{
+  "lesson": "u08-l01",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u08-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Correct, masculine as the prompt asks, and Da is merely more formal.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u08-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u08-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Correct; the prompt does not fix gender.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u08-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u08-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural when stating a personal dislike.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u08-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u08-l01-d-04": {
+          "verdict": "accepted",
+          "reason": "Masculine matches the prompt and Da is only slightly more formal.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u08-l01-p02": {
+          "verdict": "accepted",
+          "reason": "Correct, the prompt names no gender, and jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u08-l01-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, the prompt names no gender, and jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u08-l01-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, the prompt names no gender, and jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u08-l01-p05": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u08-l01-p06": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u08-l01-p02": "e0aa9b5dccaae993",
+    "u08-l01-p03": "55d9bf7f22938fba",
+    "u08-l01-p04": "bdbb12cc024ae632",
+    "u08-l01-p05": "f96e437c7c315220",
+    "u08-l01-p06": "1ee06b0652c91869",
+    "u08-l01-d-04": "c996f60d3e7af4ee"
+  }
+}

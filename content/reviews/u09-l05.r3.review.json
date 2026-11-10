@@ -1,0 +1,60 @@
+{
+  "lesson": "u09-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u09-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct and fitting at a doctor's office.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u09-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u09-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u09-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct and well suited to the formal doctor's office.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u09-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u09-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u09-l05-p02": "083232ac582a9882",
+    "u09-l05-p04": "6e9a39eb47ee4378",
+    "u09-l05-d-02": "e6ac933854814e29"
+  }
+}

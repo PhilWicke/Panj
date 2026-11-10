@@ -1,0 +1,60 @@
+{
+  "lesson": "u07-l03",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u07-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u07-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u07-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u07-l03-p01": {
+          "verdict": "accepted",
+          "reason": "Correct and natural, the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u07-l03-p05": {
+          "verdict": "accepted",
+          "reason": "Correct and natural, the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u07-l03-p06": {
+          "verdict": "accepted",
+          "reason": "Correct and natural, the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u07-l03-p01": "7a26e22cc4617f9f",
+    "u07-l03-p05": "d3b3c362476e4c0a",
+    "u07-l03-p06": "3b78bda5647da51a"
+  }
+}

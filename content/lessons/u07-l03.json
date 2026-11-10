@@ -353,7 +353,9 @@
       "id": "u07-l03-p01",
       "en": "Say you're going by bus.",
       "answer": "Grem z avtobusom.",
-      "accept": [],
+      "accept": [
+        "Jaz grem z avtobusom."
+      ],
       "item": "u07-l03-i01"
     },
     {
@@ -387,14 +389,18 @@
       "id": "u07-l03-p05",
       "en": "Say you're going by train.",
       "answer": "Grem z vlakom.",
-      "accept": [],
+      "accept": [
+        "Jaz grem z vlakom."
+      ],
       "item": "u07-l03-i06"
     },
     {
       "id": "u07-l03-p06",
       "en": "Say you're going by car.",
       "answer": "Grem z avtom.",
-      "accept": [],
+      "accept": [
+        "Jaz grem z avtom."
+      ],
       "item": "u07-l03-i07"
     }
   ],

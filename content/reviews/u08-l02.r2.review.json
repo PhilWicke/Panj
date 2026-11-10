@@ -1,0 +1,34 @@
+{
+  "lesson": "u08-l02",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u08-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct; Da is merely more formal.",
+          "fix": "",
+          "source": "usage"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u08-l02-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct, only slightly more formal than Ja.",
+          "fix": "",
+          "source": "usage"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u08-l02-d-02": "e6e2dc9ed138a892"
+  }
+}

@@ -383,7 +383,8 @@
       "en": "Tell the pharmacist you need medicine.",
       "answer": "Potrebujem zdravilo.",
       "accept": [
-        "Rabim zdravilo."
+        "Rabim zdravilo.",
+        "Jaz potrebujem zdravilo."
       ],
       "item": "u09-l03-i08"
     }

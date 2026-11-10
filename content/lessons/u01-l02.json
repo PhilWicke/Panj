@@ -397,6 +397,9 @@
         "speaker": "you",
         "sl": "Ja, hvala. Kako ste?",
         "en": "Yes, thanks. How are you?",
+        "accept": [
+          "Da, hvala. Kako ste?"
+        ],
         "new_items": [
           "u01-l02-i07",
           "u01-l02-i04"

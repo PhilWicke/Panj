@@ -363,7 +363,9 @@
       "id": "u03-l03-p05",
       "en": "Say you can't eat any more.",
       "answer": "Ne morem več.",
-      "accept": [],
+      "accept": [
+        "Jaz ne morem več."
+      ],
       "item": "u03-l03-i06"
     },
     {
@@ -395,6 +397,9 @@
         "speaker": "you",
         "sl": "Ja, prosim. Zelo je dobro.",
         "en": "Yes, please. It's very good.",
+        "accept": [
+          "Da, prosim. Zelo je dobro."
+        ],
         "new_items": [
           "u03-l03-i03"
         ]

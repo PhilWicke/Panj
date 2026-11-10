@@ -375,7 +375,8 @@
       "accept": [
         "Sem študentka.",
         "Študent sem.",
-        "Študentka sem."
+        "Študentka sem.",
+        "Jaz sem študent."
       ],
       "item": "u10-l01-i04"
     },
@@ -386,7 +387,8 @@
       "accept": [
         "Sem učiteljica.",
         "Učitelj sem.",
-        "Učiteljica sem."
+        "Učiteljica sem.",
+        "Jaz sem učitelj."
       ],
       "item": "u10-l01-i04",
       "filler": "učitelj"
@@ -398,7 +400,8 @@
       "accept": [
         "Sem profesorica.",
         "Profesor sem.",
-        "Profesorica sem."
+        "Profesorica sem.",
+        "Jaz sem profesor."
       ],
       "item": "u10-l01-i04",
       "filler": "profesor"
@@ -417,7 +420,8 @@
       "en": "Say you work in an office.",
       "answer": "Delam v pisarni.",
       "accept": [
-        "V pisarni delam."
+        "V pisarni delam.",
+        "Jaz delam v pisarni."
       ],
       "item": "u10-l01-i03"
     },

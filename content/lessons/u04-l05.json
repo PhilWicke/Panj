@@ -314,7 +314,8 @@
       "en": "Tell the seller you'll take this one.",
       "answer": "Vzamem to.",
       "accept": [
-        "To vzamem."
+        "To vzamem.",
+        "Jaz vzamem to."
       ],
       "item": "u04-l04-i05"
     },

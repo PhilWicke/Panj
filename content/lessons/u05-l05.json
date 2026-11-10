@@ -265,7 +265,9 @@
       "id": "u05-l05-p02",
       "en": "Phone ahead to say you're running a little late.",
       "answer": "Malo zamujam.",
-      "accept": [],
+      "accept": [
+        "Jaz malo zamujam."
+      ],
       "item": "u05-l05-i03"
     },
     {
@@ -322,6 +324,9 @@
         "speaker": "you",
         "sl": "Ja, dobro. Kdaj se dobimo?",
         "en": "Yes, fine. When shall we meet?",
+        "accept": [
+          "Da, dobro. Kdaj se dobimo?"
+        ],
         "new_items": [
           "u05-l05-i01"
         ]

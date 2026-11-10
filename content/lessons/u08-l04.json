@@ -385,7 +385,8 @@
       "en": "Say you weren't at home.",
       "answer": "Nisem bil doma.",
       "accept": [
-        "Nisem bila doma."
+        "Nisem bila doma.",
+        "Jaz nisem bil doma."
       ],
       "item": "u08-l04-i06"
     }

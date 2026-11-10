@@ -379,7 +379,8 @@
       "en": "Say you speak a little Slovenian.",
       "answer": "Govorim malo slovensko.",
       "accept": [
-        "Malo govorim slovensko."
+        "Malo govorim slovensko.",
+        "Jaz govorim malo slovensko."
       ],
       "item": "u10-l04-i03"
     },
@@ -387,7 +388,9 @@
       "id": "u10-l04-p04",
       "en": "Say you go to a course.",
       "answer": "Hodim na tečaj.",
-      "accept": [],
+      "accept": [
+        "Jaz hodim na tečaj."
+      ],
       "item": "u10-l04-i04"
     },
     {

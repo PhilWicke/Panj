@@ -370,7 +370,9 @@
       "id": "u04-l02-p04",
       "en": "Say you'll pay by card.",
       "answer": "Plačam s kartico.",
-      "accept": [],
+      "accept": [
+        "Jaz plačam s kartico."
+      ],
       "item": "u04-l02-i04"
     },
     {

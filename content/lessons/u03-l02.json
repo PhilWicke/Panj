@@ -417,6 +417,9 @@
         "speaker": "you",
         "sl": "Ja, zelo je dobro.",
         "en": "Yes, it's very good.",
+        "accept": [
+          "Da, zelo je dobro."
+        ],
         "new_items": [
           "u03-l02-i04"
         ]

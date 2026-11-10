@@ -274,7 +274,8 @@
       "en": "Tell the neighbours you are not from here.",
       "answer": "Nisem od tukaj.",
       "accept": [
-        "Nisem od tod."
+        "Nisem od tod.",
+        "Jaz nisem od tukaj."
       ],
       "item": "u01-l03-i04"
     },
@@ -332,6 +333,9 @@
         "speaker": "you",
         "sl": "Ja, sem na obisku.",
         "en": "Yes, I'm visiting.",
+        "accept": [
+          "Da, sem na obisku."
+        ],
         "new_items": [
           "u01-l02-i07",
           "u01-l04-i04"

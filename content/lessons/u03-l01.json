@@ -438,6 +438,9 @@
         "speaker": "you",
         "sl": "Ja, z mlekom, prosim. Lahko dobim vodo?",
         "en": "Yes, with milk, please. Can I have some water?",
+        "accept": [
+          "Da, z mlekom, prosim. Lahko dobim vodo?"
+        ],
         "new_items": [
           "u03-l01-i04",
           "u03-l01-i03"

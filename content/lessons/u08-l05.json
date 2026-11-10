@@ -292,7 +292,8 @@
       "en": "A neighbour asks what you like doing. Say you like reading.",
       "answer": "Rad berem.",
       "accept": [
-        "Rada berem."
+        "Rada berem.",
+        "Jaz rad berem."
       ],
       "item": "u08-l01-i02"
     },

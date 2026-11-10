@@ -1,0 +1,62 @@
+{
+  "lesson": "u04-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {
+        "u04-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Correct genitive of negation and very natural with bread as topic.",
+          "fix": "",
+          "source": "grammar rule: genitive after negated biti"
+        }
+      },
+      "lines": {
+        "u04-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Correct genitive of negation and very natural with bread as topic.",
+          "fix": "",
+          "source": "grammar rule: genitive after negated biti"
+        },
+        "u04-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct; natural when picking something out.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u04-l04-i02": {
+          "verdict": "accepted",
+          "reason": "Correct genitive of negation, and very natural with bread as topic.",
+          "fix": "",
+          "source": "grammar rule: genitive after negated biti, free topic position"
+        }
+      },
+      "lines": {
+        "u04-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Correct genitive of negation, and very natural with bread as topic.",
+          "fix": "",
+          "source": "grammar rule: genitive after negated biti, free topic position"
+        },
+        "u04-l04-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u04-l04-i02": "b8409d5258e67b59",
+    "u04-l04-p02": "f79e7ab6bafa969c",
+    "u04-l04-p04": "bfbd40c479f36b21"
+  }
+}

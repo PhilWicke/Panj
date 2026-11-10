@@ -1,0 +1,114 @@
+{
+  "lesson": "u10-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {
+        "u10-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Correct clitic placement and natural with tiring stressed.",
+          "fix": "",
+          "source": "grammar rule: clitic je in second position"
+        },
+        "u10-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Dual is the standard and natural form when addressing one person.",
+          "fix": "",
+          "source": "grammar rule: dual for two persons"
+        }
+      },
+      "lines": {
+        "u10-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Correct clitic placement and natural with tiring stressed.",
+          "fix": "",
+          "source": "grammar rule: clitic je in second position"
+        },
+        "u10-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Dual is the standard and natural form when addressing one colleague.",
+          "fix": "",
+          "source": "grammar rule: dual for two persons"
+        },
+        "u10-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct and natural when saying what you do.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u10-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct and natural as an excuse about yourself.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u10-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {
+        "u10-l05-i02": {
+          "verdict": "accepted",
+          "reason": "Correct clitic placement and a natural stress on tiring.",
+          "fix": "",
+          "source": "grammar rule: clitic je in second position"
+        },
+        "u10-l05-i06": {
+          "verdict": "accepted",
+          "reason": "Correct dual, natural when saying it to one person.",
+          "fix": "",
+          "source": "grammar rule: first person dual"
+        }
+      },
+      "lines": {
+        "u10-l05-p01": {
+          "verdict": "accepted",
+          "reason": "Correct clitic placement and a natural stress on tiring.",
+          "fix": "",
+          "source": "grammar rule: clitic je in second position"
+        },
+        "u10-l05-p02": {
+          "verdict": "accepted",
+          "reason": "The dual is the right form between two people, and the scene has one colleague.",
+          "fix": "",
+          "source": "grammar rule: first person dual"
+        },
+        "u10-l05-p03": {
+          "verdict": "accepted",
+          "reason": "Correct, the usual full form when asked what you do.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u10-l05-p04": {
+          "verdict": "accepted",
+          "reason": "Correct, and jaz fits giving your own excuse.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u10-l05-p06": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u10-l05-i02": "a61e7d1e2b9795c5",
+    "u10-l05-i06": "ce86fe326872f2f7",
+    "u10-l05-p01": "4a8d031a4dd6550f",
+    "u10-l05-p02": "36c2425ed27cc898",
+    "u10-l05-p03": "278ae1bb338425d7",
+    "u10-l05-p04": "e0d74d09af8bb823",
+    "u10-l05-p06": "36a2d06156a2bf24"
+  }
+}

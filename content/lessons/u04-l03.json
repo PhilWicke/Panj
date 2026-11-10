@@ -386,7 +386,8 @@
       "en": "Tell the clerk you need a bag.",
       "answer": "Potrebujem vrečko.",
       "accept": [
-        "Rabim vrečko."
+        "Rabim vrečko.",
+        "Jaz potrebujem vrečko."
       ],
       "item": "u04-l03-i05"
     },
@@ -441,6 +442,9 @@
         "speaker": "you",
         "sl": "Ja, deset jajc, prosim.",
         "en": "Yes, ten eggs, please.",
+        "accept": [
+          "Da, deset jajc, prosim."
+        ],
         "new_items": [
           "u04-l03-i02"
         ]
@@ -454,6 +458,9 @@
         "speaker": "you",
         "sl": "Ja, to je vse. Potrebujem še vrečko.",
         "en": "Yes, that's all. I also need a bag.",
+        "accept": [
+          "Da, to je vse. Potrebujem še vrečko."
+        ],
         "new_items": [
           "u04-l03-i04",
           "u04-l03-i05"

@@ -322,7 +322,9 @@
       "id": "u07-l05-p04",
       "en": "Tell a passer-by you'll take the bus.",
       "answer": "Grem z avtobusom.",
-      "accept": [],
+      "accept": [
+        "Jaz grem z avtobusom."
+      ],
       "item": "u07-l03-i01"
     },
     {

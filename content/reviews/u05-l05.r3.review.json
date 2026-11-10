@@ -1,0 +1,47 @@
+{
+  "lesson": "u05-l05",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u05-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct; Da is a bit stiff with a neighbour but merely more formal.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u05-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural on the phone.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u05-l05-d-02": {
+          "verdict": "accepted",
+          "reason": "Correct, a little stiff with a ti neighbour but merely more formal.",
+          "fix": "",
+          "source": "usage"
+        },
+        "u05-l05-p02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural on the phone to people waiting for you.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u05-l05-p02": "d33dd5441fa37e58",
+    "u05-l05-d-02": "5269c04220a6ef1a"
+  }
+}

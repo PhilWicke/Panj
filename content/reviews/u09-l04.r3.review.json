@@ -1,0 +1,60 @@
+{
+  "lesson": "u09-l04",
+  "reviews": [
+    {
+      "reviewer": "review1",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u09-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u09-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Correct and natural when declining an invitation.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u09-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Correct; written jaz is only a little emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    },
+    {
+      "reviewer": "review2",
+      "lookups": 0,
+      "items": {},
+      "lines": {
+        "u09-l04-p01": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u09-l04-p02": {
+          "verdict": "accepted",
+          "reason": "Correct, and jaz fits declining an invitation.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        },
+        "u09-l04-p06": {
+          "verdict": "accepted",
+          "reason": "Correct, and the written jaz is only mildly emphatic.",
+          "fix": "",
+          "source": "grammar rule: optional subject pronoun"
+        }
+      }
+    }
+  ],
+  "applied": {
+    "u09-l04-p01": "6e9a39eb47ee4378",
+    "u09-l04-p02": "ea3d4b62dcb1a48a",
+    "u09-l04-p06": "5fef530cf177963f"
+  }
+}
