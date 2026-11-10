@@ -157,8 +157,8 @@
       "verification": {
         "review1": "doubtful",
         "review2": "doubtful",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review1 doubtful: Fields sl, examples, helper. Zgrešiti for missing a place is transitive in SSKJ, whose closest examples keep the object: ne boste je zgrešili, tega človeka ne moreš zgrešiti. The object-free headword may read as a calque or as 'you can't go wrong', and the example 'Cerkev je na trgu, ne morete zgrešiti' would more naturally have je. The helper says it is built like the English, but the English has 'it'. The listed variants Ne morete ga zgrešiti and Ne morete je zgrešiti are fine. A native should say whether the bare form is heard.; review2 doubtful: sl: SSKJ gives this sense of zgrešiti only with an object (ne boste je zgrešili, tega človeka ne moreš zgrešiti). Without one it may be heard in speech, but a native should confirm it as the headword, since the accept variants with ga and je are the attested pattern. helper: Built like English you can't miss it is not quite so, as the headword has no it. Fix: Ne morete ga zgrešiti."
       }
     },

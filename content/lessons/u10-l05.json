@@ -33,8 +33,8 @@
       "verification": {
         "review1": "doubtful",
         "review2": "accepted",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review1 doubtful: Natural, but register: 'v službi' for the workplace is the sense SSKJ labels pog. ('to sem slišal v službi'), and the chunk is tagged neutral. By the style guide it waits for a native to confirm the tag."
       }
     },

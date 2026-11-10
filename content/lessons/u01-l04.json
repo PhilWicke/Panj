@@ -64,8 +64,8 @@
       "verification": {
         "review1": "accepted",
         "review2": "doubtful",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review2 doubtful: The Slovenian and the examples are correct. The doubt is in the en field: '(to someone close)' is an odd note for asking a name, since you already know the name of someone close. The lesson's own s01 and p02 frame it as 'to a child'. The note would be clearer as '(informal: to a child or a peer)'."
       }
     },

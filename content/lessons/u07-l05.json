@@ -71,8 +71,8 @@
       "verification": {
         "review1": "doubtful",
         "review2": "doubtful",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review1 doubtful: Headword, gender of smer and variants are fine, but the second example 'Do postaje, je to prava smer?' is a fronted fragment that may sound built. Je to prava smer do postaje? looks more natural. A native should check that example.; review2 doubtful: examples: Do postaje, je to prava smer? is a stilted left-dislocation, and a speaker would more likely say Je to prava smer do postaje? The headword, the other example and the variants are fine. Fix: Je to prava smer do postaje?"
       }
     },

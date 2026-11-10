@@ -70,8 +70,8 @@
       "verification": {
         "review1": "doubtful",
         "review2": "doubtful",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review1 doubtful: The accept variants are confirmed: Pravopis gives učiti se kaj, česa, so slovenščine and slovenščino both stand. The headword with the adverb slovensko is the doubt: Fran shows the adverb only with govoriti and no attestation of učiti se slovensko. It sounds natural in speech to me, but I cannot source it and the neutral tag rests on it.; review2 doubtful: sl and examples use the adverb slovensko with učiti se. SSKJ and Pravopis show that adverb only with govoriti, the same holds for angleško, and Pravopis gives učiti se the government kaj, česa (fiziko, kuhanja). So the accept variants Učim se slovenščine and Učim se slovenščino are supported, while the headword form, heard in speech as far as I know, is not attested in the dictionaries. A native should confirm it, or the headword should move to slovenščino or slovenščine. Slovensko se učim shares the doubt. Fix: Učim se slovenščino."
       }
     },

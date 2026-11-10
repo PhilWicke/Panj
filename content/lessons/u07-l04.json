@@ -95,8 +95,8 @@
       "verification": {
         "review1": "accepted",
         "review2": "doubtful",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review2 doubtful: register and helper: tagged neutral, and the helper presents gre as the verb for trains leaving, but SSKJ labels this use colloquial (pog. kdaj gre vlak, standard odpelje). The chunk is natural in speech and the accept variants are correct, but the tag and helper need a native's confirmation."
       }
     },

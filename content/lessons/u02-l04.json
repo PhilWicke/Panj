@@ -35,8 +35,8 @@
       "verification": {
         "review1": "accepted",
         "review2": "doubtful",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review2 doubtful: accept: 'Sta brata.' opens with the clitic sta and reads as the question Sta brata?; the natural short statement is Brata sta. examples: 'Kdo je to? Onadva sta brata.' answers a singular question about two people; To sta brata. would be the natural answer. Fix: accept: Brata sta.; example: Kdo je to? To sta brata."
       }
     },

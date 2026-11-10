@@ -266,8 +266,8 @@
       "verification": {
         "review1": "accepted",
         "review2": "doubtful",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review2 doubtful: examples: Riba ali meso? glossed Fish or meat? As an offer (the sense this unit trains with Kavo ali čaj?) a native says Ribo ali meso?; the nominative only fits the reading Is it fish or meat? Other fields correct."
       }
     }

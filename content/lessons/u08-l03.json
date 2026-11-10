@@ -99,8 +99,8 @@
       "verification": {
         "review1": "accepted",
         "review2": "doubtful",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review2 doubtful: Dežuje is fine, but the accept variant Dež gre is labelled pog. in SSKJ and neknj. pog. in Pravopis, so it is below the written standard on an item tagged neutral. It is widely heard, so a native speaker should confirm whether it stays as an accepted answer."
       }
     },
@@ -192,8 +192,8 @@
       "verification": {
         "review1": "doubtful",
         "review2": "doubtful",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review1 doubtful: Field examples and register: the example Danes gre dež uses dež gre, labelled pog. in SSKJ and neknj. pog. in Pravopis, while the item is tagged neutral. The style guide makes a neutral tag despite a label on the use in the item doubtful. The sentence itself is common speech, so a native speaker should decide the tag or the example.; review2 doubtful: Headword and gender are right, but the example Danes gre dež uses the construction SSKJ labels pog. and Pravopis neknj. pog., on an item tagged neutral. A native speaker should confirm the tag or the example."
       }
     },

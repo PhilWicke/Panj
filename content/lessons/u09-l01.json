@@ -138,8 +138,8 @@
       "verification": {
         "review1": "doubtful",
         "review2": "doubtful",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review1 doubtful: Slovenian, English, accept and examples are fine. The doubt is the helper. grlo comes from Proto-Slavic *gъrdlo, PIE *gʷerh₃-, and the lookup names Latin gurges among its cognates, so German Gurgel can only be a distant link through Latin, which the Gurgel page does not confirm. English gargle is traced by Wiktionary to French gargouiller and is not shown as related, so offering it as a comparison looks like forced resemblance. Keep Gurgel only if a native or etymology source confirms it, otherwise set helper to null.; review2 doubtful: Slovenian, gloss, examples and accept are fine. The doubt is the helper: Gurgel is a real but remote relative (PIE *gwerh3- through Latin gurgulio), while the lookup traces gargle only to Old French gargouille and shows no link to grlo, so that half may be forced resemblance. Fix: grlo, throat: distantly related to German Gurgel."
       }
     },
@@ -224,8 +224,8 @@
       "verification": {
         "review1": "doubtful",
         "review2": "doubtful",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review1 doubtful: Headword, gender and form pl noge are right, and the first example is natural. The doubt is the second example, Moja noga je v redu: Slovenian normally leaves out the possessive with one's own body part, so moja reads as a calque of my leg and as a sentence built to show the word. Noga je v redu would be the natural form. Fix: Noga je v redu.; review2 doubtful: Headword, gender and pl form are correct. The doubt is the second example: 'Moja noga je v redu.' sounds translated, since Slovenian normally drops the possessive with a body part unless there is a contrast. Fix: Noga je v redu."
       }
     },

@@ -64,8 +64,8 @@
       "verification": {
         "review1": "accepted",
         "review2": "doubtful",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review2 doubtful: register: tagged neutral, but SSKJ labels iti for a vehicle's route as colloquial (pog. ta vlak gre na Jesenice, standard bo peljal). The sentence itself is natural in speech. The course tags karta colloquial on the same kind of evidence, so neutral needs a native's confirmation."
       }
     },

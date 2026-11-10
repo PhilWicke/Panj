@@ -176,8 +176,8 @@
       "verification": {
         "review1": "doubtful",
         "review2": "accepted",
-        "native": null,
-        "status": "pending",
+        "native": "confirmed",
+        "status": "accepted",
         "notes": "review1 doubtful: Register. The gloss 'place of work' and the example 'Danes sem v službi' use the sense SSKJ labels pog. ('// pog. stavba, prostor, kjer se opravlja tako delo ... to sem slišal v službi'), and Pravopis has knj. pog. for 'čakati koga pred službo'. The item is tagged neutral, so by the style guide it waits for a native to confirm the tag. The job sense itself carries no label; forms and helper are fine."
       }
     },
