@@ -277,6 +277,7 @@ const dialogueLine = object({
   speaker: req(text),
   sl: req(text),
   en: req(text),
+  accept: opt(arrayOf(text)),
   audio: opt(text),
   new_items: opt(arrayOf(itemId)),
 });

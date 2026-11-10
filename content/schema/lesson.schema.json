@@ -162,6 +162,7 @@
         "speaker": { "$ref": "#/$defs/text", "description": "you is the learner; the other speakers are the roles in the scene." },
         "sl": { "$ref": "#/$defs/slText", "description": "At most 60 characters and 10 words, so the line can be typed (lint rule standalone)." },
         "en": { "$ref": "#/$defs/enText" },
+        "accept": { "type": "array", "items": { "$ref": "#/$defs/text" }, "description": "Other answers that count as correct." },
         "audio": { "$ref": "#/$defs/text" },
         "new_items": { "type": "array", "items": { "$ref": "#/$defs/itemId" }, "description": "Ids of the items this line practises, under the same rule as a production item (lint rule standalone)." }
       }

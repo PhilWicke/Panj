@@ -13,8 +13,9 @@
 // line when nothing plays and finishes once, and a `none` that arrives once the learner has
 // answered changes nothing; structured input, the meaning pick and the perception drill resolve
 // their `aux` through the shared option group; the typed recall's feedback lands in a live region
-// that was there before the answer, the dialogue keeps one live region, its transcript, and plays
-// a line in the voice its cast gives the speaker; Speak
+// that was there before the answer, the dialogue keeps one live region, its transcript, grades a
+// learner line with the line's accept list, and plays a line in the voice its cast gives the
+// speaker; Speak
 // waits while the model line plays; a refused microphone keeps the later speaking exercises
 // self-rated until resetRecognition, a lost connection or a failed start only the one exercise.
 // The rest of the exercises' DOM runs in the browser check.
@@ -452,6 +453,37 @@ test('the dialogue keeps one live region, its transcript, with the feedback of a
   button(stage, "I don't know").dispatch('click');
   assert.ok(transcript.querySelector('.feedback'), 'the feedback is announced through the transcript');
   assert.equal(live().length, 1, 'and adds no live region of its own');
+});
+
+test('a learner line takes the answers on its accept list and still shows its own line afterwards; without a list it takes only its own', async () => {
+  /** The answer typed at a one-line scene, and what the learner sees. @param {string} answer @param {string[]} [accept] */
+  const answered = async (answer, accept) => {
+    const staged = /** @type {any} */ ({
+      ...lesson,
+      dialogue: {
+        id: 'u01-l01-d', title_sl: 'Pogovor', title_en: 'A talk', setting_en: 'At a table.',
+        lines: [{ speaker: 'you', sl: 'Ja, hvala.', en: 'Yes, thanks.', ...(accept ? { accept } : {}) }],
+      },
+    });
+    const stage = /** @type {any} */ (h('div'));
+    const outcome = renderDialogue(stage, { kind: 'dialogue', lessonId: lesson.id }, context({ lesson: staged }));
+    await settle();
+    stage.querySelector('input').value = answer;
+    stage.querySelector('form').dispatch('submit');
+    const panel = stage.querySelector('.feedback').className;
+    const form = stage.querySelector('.feedback-form').textContent;
+    button(stage, 'Continue').dispatch('click');
+    const { aux } = await outcome;
+    return { panel, form, correct: aux.correct, line: stage.querySelector('.examples').querySelector('.sl-title').textContent };
+  };
+
+  const right = { panel: 'feedback feedback-correct', form: 'Ja, hvala.', correct: true, line: 'Ja, hvala.' };
+  const wrong = { panel: 'feedback feedback-wrong', form: 'Ja, hvala.', correct: false, line: 'Ja, hvala.' };
+  assert.deepEqual(await answered('Da, hvala.', ['Da, hvala.']), right, 'a variant on the list');
+  assert.deepEqual(await answered('Ja, hvala.', ['Da, hvala.']), right, 'the line itself, with a list');
+  assert.deepEqual(await answered('Hvala lepa.', ['Da, hvala.']), wrong, 'an answer that is not on the list');
+  assert.deepEqual(await answered('Ja, hvala.'), right, 'the line itself, without a list');
+  assert.deepEqual(await answered('Da, hvala.'), wrong, 'without a list the variant is a miss, as before');
 });
 
 test("a dialogue plays each line in its speaker's voice, and with the text alone where the cast names nobody", async () => {

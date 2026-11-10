@@ -73,6 +73,7 @@
  * @property {string} speaker `you` is the learner; the other speakers are the roles in the scene
  * @property {string} sl
  * @property {string} en
+ * @property {string[]} [accept] other answers that count as correct
  * @property {string} [audio]
  * @property {string[]} [new_items] ids of the items this line practises
  */

@@ -3,8 +3,8 @@
 // its Slovenian large with the English under it and plays (unless muted), in the voice the
 // dialogue's cast gives that speaker if it names one, and the scene goes on when the playback
 // ends, or after the line's wait if it never does; a learner line shows the
-// English and the shared typed answer field, graded against the line's Slovenian with the
-// diacritic rule, with the feedback panel after it. The transcript is the scene's one live
+// English and the shared typed answer field, graded against the line's Slovenian and the other
+// answers it accepts with the diacritic rule, with the feedback panel after it. The transcript is the scene's one live
 // region: the lines and the feedback inside it are read out as they arrive, and the feedback slot
 // is no live region of its own. Once the learner goes on, the line stays in the transcript as it
 // should be said. The outcome is one recall per item a learner line practises, with that line's
@@ -121,7 +121,7 @@ export function render(container, entry, ctx) {
         id: `answer-${dialogue.id}-${index}`,
         label: 'Your line in Slovenian',
         onAnswer: (answer) => {
-          const graded = grade(answer, line.sl, []);
+          const graded = grade(answer, line.sl, line.accept ?? []);
           results[index] = graded.result;
           mountFeedback(feedback, {
             answer, graded, effective: lineEffective(line, graded.result, ctx.effective), target: line.sl, rule: ctx.rule,

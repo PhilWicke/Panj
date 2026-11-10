@@ -411,3 +411,13 @@ test('cast: the schema names the two voices and does not require the field', asy
   assert.deepEqual(schema.$defs.Dialogue.properties.cast.additionalProperties.enum, ['female', 'male']);
   assert.ok(!schema.$defs.Dialogue.required.includes('cast'));
 });
+
+test('accept: a dialogue line may list other answers as texts, and the schema does not require the field', async () => {
+  const listed = await lintMutated((dir) => editJson(dir, LESSON, (doc) => { doc.dialogue.lines[1].accept = ['Da, hvala.']; }));
+  assert.deepEqual(byRule(listed.errors, 'schema'), []);
+  const bare = await lintMutated((dir) => editJson(dir, LESSON, (doc) => { doc.dialogue.lines[1].accept = 'Da, hvala.'; }));
+  assert.deepEqual(byRule(bare.errors, 'schema').map(describe), ['lessons/u01-l01.json dialogue/lines/1/accept: expected an array']);
+  const schema = JSON.parse(await readFile(fileURLToPath(new URL('../../content/schema/lesson.schema.json', import.meta.url)), 'utf8'));
+  assert.deepEqual(schema.$defs.DialogueLine.properties.accept.items, { $ref: '#/$defs/text' });
+  assert.ok(!schema.$defs.DialogueLine.required.includes('accept'));
+});
