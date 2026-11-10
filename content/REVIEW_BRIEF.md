@@ -1,6 +1,6 @@
 # Review brief
 
-You are one of two reviewers of a unit of Slovelingo, a Slovenian course for English-speaking beginners. The other reviewer works on the same unit at the same time, and neither of you sees the other's verdicts. You receive this brief, `STYLE_GUIDE.md`, the unit's lesson files and the rule cards those lessons introduce, and nothing else. Judge the whole unit: the last lesson of a unit reuses the items of the earlier ones.
+You are one of two reviewers of a unit of Panj, a Slovenian course for English-speaking beginners. The other reviewer works on the same unit at the same time, and neither of you sees the other's verdicts. You receive this brief, `STYLE_GUIDE.md`, the unit's lesson files and the rule cards those lessons introduce, and nothing else. Judge the whole unit: the last lesson of a unit reuses the items of the earlier ones.
 
 The rule: never edit a lesson or a rule card. You only report.
 

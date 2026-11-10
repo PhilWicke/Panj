@@ -50,9 +50,9 @@ test('clampSetting keeps each number in its range, whole minutes and items, rete
 
 test('backupFilename names the backup by the local date', () => {
   const lateEvening = Date.UTC(2026, 10, 8, 23, 30);   // 9 November 00:30 in Berlin
-  assert.equal(backupFilename(lateEvening, 'Europe/Berlin'), 'slovelingo-backup-2026-11-09.json');
-  assert.equal(backupFilename(lateEvening, 'UTC'), 'slovelingo-backup-2026-11-08.json');
-  assert.equal(backupFilename(Date.UTC(2027, 0, 5, 12), 'UTC'), 'slovelingo-backup-2027-01-05.json');
+  assert.equal(backupFilename(lateEvening, 'Europe/Berlin'), 'panj-backup-2026-11-09.json');
+  assert.equal(backupFilename(lateEvening, 'UTC'), 'panj-backup-2026-11-08.json');
+  assert.equal(backupFilename(Date.UTC(2027, 0, 5, 12), 'UTC'), 'panj-backup-2027-01-05.json');
 });
 
 test('importQuestion names the items and sessions the file holds', () => {

@@ -63,7 +63,7 @@ function page(rows, model) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Slovelingo voice check</title>
+<title>Panj voice check</title>
 <style>
   :root { --indigo: #22307A; --deep-indigo: #161F5C; --honey: #F0B323; --warm-white: #FFFDF9; --ink: #1B1B2A; --line: #E3E0EC; --muted: #5C5A70; }
   * { box-sizing: border-box; }
@@ -90,7 +90,7 @@ function page(rows, model) {
 </head>
 <body>
 <main>
-  <h1>Slovelingo voice check</h1>
+  <h1>Panj voice check</h1>
   <p class="instruction">Play each line in the three voices, then pick a female voice (${female}) and a male voice (${male}) for the course, or reject them.</p>
   <div class="scroll">
     <table>

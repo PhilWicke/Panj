@@ -453,7 +453,7 @@ test('export downloads a backup that validates and carries a flag from Words', a
   const downloaded = page.waitForEvent('download');
   await button(page, 'Export progress').click();
   const download = await downloaded;
-  const name = `slovelingo-backup-${localDateKey(Date.now())}.json`;
+  const name = `panj-backup-${localDateKey(Date.now())}.json`;
   expect(download.suggestedFilename()).toBe(name);
   await expect(page.getByText(`Backup saved as ${name}.`, { exact: true })).toBeVisible();
 

@@ -64,7 +64,7 @@ import { SETTING_RANGES, THEME_OPTIONS, VOICE_OPTIONS, clampToRange, withinRange
  * @property {Partial<Meta>} [meta]
  */
 
-/** The marker that tells a Slovelingo backup from any other JSON file. */
+/** The marker that tells a Panj backup from any other JSON file. It keeps the app's first name, slovelingo, so every backup made so far still imports. */
 export const APP_ID = 'slovelingo';
 export const SCHEMA_VERSION = 1;
 const SETTINGS_ID = 'settings';
@@ -240,7 +240,7 @@ export function validateImport(json) {
   } catch {
     return fail('The file is not valid JSON.');
   }
-  if (!isRecord(data) || data.app !== APP_ID) return fail('The file is not a Slovelingo export.');
+  if (!isRecord(data) || data.app !== APP_ID) return fail('The file is not a Panj export.');
   if (data.schemaVersion === undefined) return fail('The file has no schema version.');
   if (data.schemaVersion !== SCHEMA_VERSION) {
     return fail(`The file has schema version ${JSON.stringify(data.schemaVersion)}, this app reads version ${SCHEMA_VERSION}.`);

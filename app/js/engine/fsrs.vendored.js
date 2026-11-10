@@ -1,5 +1,5 @@
 // @ts-nocheck
-// ts-fsrs 6.0.0, vendored for Slovelingo. https://github.com/open-spaced-repetition/ts-fsrs
+// ts-fsrs 6.0.0, vendored for Panj. https://github.com/open-spaced-repetition/ts-fsrs
 //
 // Why this shape: the package's ES module entry (dist/index.mjs) is split into hashed chunk files and
 // imports its dependency @open-spaced-repetition/srs-kit 1.0.0 by bare specifier, so it cannot be served
@@ -10,7 +10,7 @@
 // namespace into named ES module exports. Nothing else was changed. To reproduce: npm pack ts-fsrs@6.0.0
 // in a temporary folder, tar xzf ts-fsrs-6.0.0.tgz, compare package/dist/index.umd.js with the block.
 //
-// Slovelingo uses the legacy API fsrs(), createEmptyCard() and Rating (FSRS-6, deprecated upstream in
+// Panj uses the legacy API fsrs(), createEmptyCard() and Rating (FSRS-6, deprecated upstream in
 // favour of DefaultScheduler but kept); see app/js/engine/scheduler.js.
 //
 // Licence of ts-fsrs (LICENSE in the package):
@@ -5340,7 +5340,7 @@ exports.statsFieldsSchema = statsFieldsSchema;
 exports.temporalInstantChrono = temporalInstantChrono;
 exports.withFuzzing = withFuzzing;
 });
-// ---- Slovelingo wrapper, not part of the upstream file ----
+// ---- Panj wrapper, not part of the upstream file ----
 // Evaluated as an ES module, the UMD block above finds neither CommonJS nor AMD and hands its namespace
 // to globalThis.FSRS. Take it, remove the global again and re-export every upstream name.
 const FSRS_NAMESPACE = globalThis.FSRS;

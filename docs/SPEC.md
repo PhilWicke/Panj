@@ -1,6 +1,6 @@
-# Slovelingo technical summary
+# Panj technical summary
 
-Slovelingo is an installable web app for learning everyday Slovenian in short daily sessions.
+Panj is an installable web app for learning everyday Slovenian in short daily sessions.
 
 ## What it teaches
 

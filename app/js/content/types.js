@@ -1,4 +1,4 @@
-// Content types for Slovelingo: the shapes of the JSON files under content/.
+// Content types for Panj: the shapes of the JSON files under content/.
 //
 // These typedefs are the reference for authors, for the linter
 // (tools/lint-content.js, which checks every file against them by hand) and for

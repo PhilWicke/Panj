@@ -78,7 +78,7 @@ function showNav(path) {
 function renderBootError(error) {
   console.error(error);
   mount(root, h('section', { class: 'screen' },
-    h('h1', { class: 'prompt' }, 'Slovelingo could not start.'),
+    h('h1', { class: 'prompt' }, 'Panj could not start.'),
     h('p', { class: 'en-text' }, 'The course could not be loaded. Check the connection and reload the page.'),
     h('p', { class: 'quiet' }, error instanceof Error ? error.message : String(error))));
 }

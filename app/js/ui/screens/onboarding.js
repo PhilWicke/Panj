@@ -96,7 +96,7 @@ export function renderOnboarding(container, app) {
   const welcome = () => frame(1,
     h('h1', { class: 'greeting', lang: 'sl', tabindex: '-1' }, 'Dobrodošli'),
     [
-      h('p', { class: 'en-text' }, 'Welcome. Slovelingo teaches Slovenian a few minutes a day, starting with your first hello.'),
+      h('p', { class: 'en-text' }, 'Welcome. Panj teaches Slovenian a few minutes a day, starting with your first hello.'),
       h('div', { class: 'field' },
         h('label', { class: 'field-label', for: 'onboarding-name' }, 'What should we call you?'),
         h('input', {
@@ -136,7 +136,7 @@ export function renderOnboarding(container, app) {
     return frame(3,
       h('h1', { class: 'screen-title', tabindex: '-1' }, 'Add to home screen'),
       [
-        h('p', { class: 'en-text' }, 'Open the browser menu and choose Add to Home screen. Slovelingo then opens like an app.'),
+        h('p', { class: 'en-text' }, 'Open the browser menu and choose Add to Home screen. Panj then opens like an app.'),
         h('div', { class: 'actions actions-stack' }, start),
         notice,
         h('div', { class: 'card' },

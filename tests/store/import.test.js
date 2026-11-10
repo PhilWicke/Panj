@@ -114,7 +114,7 @@ test('Settings refuses a foreign or malformed file with its reason, opens no con
   const variant = (changes) => JSON.stringify({ ...valid, ...changes });
   /** @type {[string, string|null, string][]} what the file is, its text, the reason the notice gives */
   const cases = [
-    ['another app\'s export', variant({ app: 'anki' }), 'The file is not a Slovelingo export.'],
+    ['another app\'s export', variant({ app: 'anki' }), 'The file is not a Panj export.'],
     ['a newer schema version', variant({ schemaVersion: 2 }), 'The file has schema version 2, this app reads version 1.'],
     ['text that is not JSON', variant({}).slice(0, -20), 'The file is not valid JSON.'],
     ['items that are not an object', variant({ items: Object.values(valid.items) }), "The file's items are not an object."],

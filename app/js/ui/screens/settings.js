@@ -55,13 +55,13 @@ export function clampSetting(key, value) {
 }
 
 /**
- * The name of the backup file, by the local date: `slovelingo-backup-YYYY-MM-DD.json`.
+ * The name of the backup file, by the local date: `panj-backup-YYYY-MM-DD.json`.
  * @param {number} now epoch ms
  * @param {string} [tz] IANA zone, for tests; the phone's zone when omitted
  * @returns {string}
  */
 export function backupFilename(now, tz) {
-  return `slovelingo-backup-${localDateKey(now, tz)}.json`;
+  return `panj-backup-${localDateKey(now, tz)}.json`;
 }
 
 /**

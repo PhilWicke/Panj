@@ -1,6 +1,6 @@
 # Style guide
 
-This guide is for the sessions that draft Slovelingo lessons and the sessions that review them. It holds for every level of the course. Numbers that differ by level, such as lessons per unit, items per lesson or lines per dialogue, live in `SYLLABUS.md` and nowhere else.
+This guide is for the sessions that draft Panj lessons and the sessions that review them. It holds for every level of the course. Numbers that differ by level, such as lessons per unit, items per lesson or lines per dialogue, live in `SYLLABUS.md` and nowhere else.
 
 ## Who the course is for
 

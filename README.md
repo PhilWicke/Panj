@@ -1,6 +1,6 @@
-# Slovelingo
+# Panj
 
-Slovelingo is an installable web app for learning everyday Slovenian, aimed at someone who wants to talk with the people around them. Short daily sessions mix new words and phrases with spaced review, and the app runs offline on a phone once it has been added to the home screen. A session can go quiet for the moment, without sound or without speaking, and the hive shows each unit as a row of cells that fill with what you can recall now. There is no account and no server: progress stays on the device.
+Panj, Slovenian for beehive, is an installable web app for learning everyday Slovenian, aimed at someone who wants to talk with the people around them. Short daily sessions mix new words and phrases with spaced review, and the app runs offline on a phone once it has been added to the home screen. A session can go quiet for the moment, without sound or without speaking, and the hive shows each unit as a row of cells that fill with what you can recall now. There is no account and no server: progress stays on the device.
 
 The project needs Node 24 or later and has no runtime dependencies. [docs/SPEC.md](docs/SPEC.md) summarises the design.
 
@@ -61,7 +61,7 @@ The repository's Pages workflow publishes the site to GitHub Pages from a strict
 
 ## Licences
 
-Slovelingo combines parts under different licences. The MIT License in [LICENSE](LICENSE) covers everything except the third-party parts listed below.
+Panj combines parts under different licences. The MIT License in [LICENSE](LICENSE) covers everything except the third-party parts listed below.
 
 MIT License (see [LICENSE](LICENSE)): the app code except `app/js/engine/fsrs.vendored.js`, the build tools, the tests, the course content under `content/` except `content/reference/`, and the recordings under `app/assets/audio/`, each to the extent that it is protected by copyright.
 
@@ -77,4 +77,4 @@ How the content and the recordings were made:
 - The course content was drafted with an AI model. Two independent AI reviews checked every item against dictionaries, a native speaker confirmed the 17 items those reviews had doubted, and an independent AI review read the whole course once more.
 - The recordings are computer-generated voices, not recordings of people: Google's Gemini text-to-speech, model `gemini-3.1-flash-tts-preview`, voices Kore and Puck. Google claims no ownership of content generated with it.
 
-Slovelingo is not affiliated with or endorsed by Google, Open Spaced Repetition, CLARIN.SI, CSDTJ, ZRC SAZU or the authors of Bricolage Grotesque.
+Panj is not affiliated with or endorsed by Google, Open Spaced Repetition, CLARIN.SI, CSDTJ, ZRC SAZU or the authors of Bricolage Grotesque.

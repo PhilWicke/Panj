@@ -1,4 +1,4 @@
-// Local calendar helpers for the scheduler and the progress views. Slovelingo counts in the
+// Local calendar helpers for the scheduler and the progress views. Panj counts in the
 // learner's local days: an item that graduates is due at the start of the next local day, a later
 // review is due from the start of a local day, mastery needs recalls on distinct local days, and
 // the week view groups sessions by local date. Every function takes an optional IANA zone for
