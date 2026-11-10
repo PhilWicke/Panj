@@ -36,6 +36,9 @@ const NAME_MAX = 40;
 
 /** @type {readonly [Theme, string][]} */
 const THEMES = [['system', 'System'], ['light', 'Light'], ['dark', 'Dark']];
+/** The legal notice of the site, kept on the maintainer's own site (§ 18 MStV). */
+export const IMPRESSUM_URL = 'https://phil-wicke.com/imprint.html';
+
 /** @type {readonly [VoicePref, string][]} */
 const VOICE_CHOICES = [['female', 'Female'], ['male', 'Male'], ['device', 'Device voice']];
 
@@ -292,7 +295,8 @@ function draw(container, app, message) {
           id: 'settings-speech', label: 'Speaking checks', description: SPEECH_DESCRIPTION, checked: settings.speech,
           onChange: (speech, button) => { void save({ speech }, (restored) => button.setAttribute('aria-checked', String(restored.speech))); },
         }))),
-    renderData(container, app, message)));
+    renderData(container, app, message),
+    h('p', { class: 'settings-legal' }, h('a', { href: IMPRESSUM_URL, target: '_blank', rel: 'noopener' }, 'Impressum'))));
 }
 
 /**

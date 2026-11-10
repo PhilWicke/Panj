@@ -1550,6 +1550,21 @@ button.rule-cell {
   gap: var(--space-16);
 }
 
+/* The legal notice: a quiet link at the foot of Settings, one tap from every screen with the tab bar. */
+.settings-legal {
+  margin: var(--space-24) 0 0;
+  font-size: var(--text-14);
+}
+
+.settings-legal a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: var(--text-muted);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
 .choice-list {
   min-width: 0;
 }

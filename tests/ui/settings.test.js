@@ -12,7 +12,7 @@ import assert from 'node:assert/strict';
 import { installFakeDom } from '../helpers/fake-dom.js';
 import { elements } from '../helpers/dom-query.js';
 import { DEFAULT_APP_SETTINGS } from '../../app/js/store/state.js';
-import { SPEECH_DESCRIPTION, backupFilename, clampSetting, importQuestion, renderSettings, renderSwitch } from '../../app/js/ui/screens/settings.js';
+import { IMPRESSUM_URL, SPEECH_DESCRIPTION, backupFilename, clampSetting, importQuestion, renderSettings, renderSwitch } from '../../app/js/ui/screens/settings.js';
 
 /** @type {ReturnType<typeof installFakeDom>} */
 let document;
@@ -64,6 +64,21 @@ test('importQuestion names the items and sessions the file holds', () => {
 test('the speaking checks description is the Global Constraints text, word for word', () => {
   assert.equal(SPEECH_DESCRIPTION,
     "Speaking checks send your voice to Google's speech service while recognising. Off, your speaking is self-rated and nothing leaves the phone.");
+});
+
+test('the foot of Settings links to the Impressum, in a new tab', () => {
+  const app = /** @type {any} */ ({ adapter: { put: async () => {} }, state: { settings: { ...DEFAULT_APP_SETTINGS, onboarded: true } }, player: { setMute() {}, setVoice() {} } });
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderSettings(container, app);
+  const link = elements(container).find((el) => el.tagName === 'A' && el.textContent === 'Impressum');
+  assert.ok(link, 'a link labelled Impressum');
+  assert.equal(IMPRESSUM_URL, 'https://phil-wicke.com/imprint.html');
+  assert.equal(link.getAttribute('href'), IMPRESSUM_URL);
+  assert.equal(link.getAttribute('target'), '_blank');
+  assert.equal(link.getAttribute('rel'), 'noopener');
+  assert.equal(link.parentNode.className, 'settings-legal');
+  const screen = container.childNodes[0];
+  assert.equal(screen.childNodes[screen.childNodes.length - 1], link.parentNode, 'the last thing on the screen');
 });
 
 test('the quiet line under the Voice choice says that each speaker keeps a voice of their own', () => {
