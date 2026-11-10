@@ -14,9 +14,9 @@
 // The answers come from the bundle itself (app/content/dist/), read when a test asks for them,
 // after the web server has built it, except in the quiet scenario, which takes them from its own
 // course. Machines differ in their speech voices (a Mac may have a Slovenian one, the CI runner has
-// none) and the audio manifest lists no recordings yet, so every test hides the device voices:
-// nothing can play, so no listening or perception exercise is scheduled (Ruling 81), the same
-// everywhere.
+// none) and the repository's recordings grow with the content, so every test hides the device
+// voices and answers the audio manifest with an empty list: nothing can play, so no listening or
+// perception exercise is scheduled (Ruling 81), the same everywhere.
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -96,6 +96,11 @@ async function serveCourse(page, course) {
 test.beforeEach(async ({ context }) => {
   await context.addInitScript(() => {
     if (globalThis.speechSynthesis) globalThis.speechSynthesis.getVoices = () => [];
+    // In the page, not page.route: a request the service worker answers never reaches a route.
+    const realFetch = globalThis.fetch.bind(globalThis);
+    globalThis.fetch = (input, init) => (String(input?.url ?? input).includes('assets/audio/manifest.json')
+      ? Promise.resolve(new Response('{}', { headers: { 'content-type': 'application/json' } }))
+      : realFetch(input, init));
   });
 });
 

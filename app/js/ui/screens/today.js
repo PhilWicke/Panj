@@ -102,7 +102,7 @@ export function renderToday(container, app) {
 
   mount(container, h('section', { class: 'screen screen-today' },
     h('h1', { class: 'greeting' },
-      h('button', { type: 'button', class: 'greeting-play', onclick: () => { void app.player.play(greeting); } },
+      h('button', { type: 'button', class: 'greeting-play', onclick: () => { void app.player.play(`${greeting}.`); } },
         h('span', { lang: 'sl' }, greeting),
         settings.name ? h('span', { class: 'greeting-name' }, `, ${settings.name}`) : null,
         speakerIcon(),
