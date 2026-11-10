@@ -117,6 +117,19 @@ function todayApp({ index, units, states }) {
   });
 }
 
+test('tapping the greeting plays the recorded item, which ends with a full stop', () => {
+  const index = { version: 't', mode: 'strict', generated: '', units: [], rules: [], lessonIndex: [], counts: { scheduledItems: 0, lemmasMet: 0 } };
+  const app = todayApp({ index, units: [], states: {} });
+  /** @type {string[]} */
+  const played = [];
+  app.player = { play: async (/** @type {string} */ text) => { played.push(text); return 'none'; } };
+  const container = /** @type {any} */ (document.createElement('main'));
+  renderToday(container, app);
+  elements(container).find((el) => el.classList.contains('greeting-play')).dispatch('click');
+  assert.equal(played.length, 1);
+  assert.match(played[0], /^(Dobro jutro|Dober dan|Dober večer)\.$/);
+});
+
 test('Today on a course without lessons says the first lessons are still being checked and shows no primary action', () => {
   const index = { version: 't', mode: 'strict', generated: '', units: [], rules: [], lessonIndex: [], counts: { scheduledItems: 0, lemmasMet: 0 } };
   const container = /** @type {any} */ (document.createElement('main'));
