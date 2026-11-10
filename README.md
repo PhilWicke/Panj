@@ -59,6 +59,22 @@ This renders `app/assets/icon.svg` and `app/assets/icon-maskable.svg` into the P
 
 The repository's Pages workflow publishes the site to GitHub Pages from a strict content build. Every push to `main` deploys once the tests have passed: `.github/workflows/ci.yml` runs the strict build and publishes the `app/` folder. The live app is at https://philwicke.github.io/Slovelingo/.
 
-## Licence
+## Licences
 
-MIT, see [LICENSE](LICENSE).
+Slovelingo combines parts under different licences. The MIT License in [LICENSE](LICENSE) covers everything except the third-party parts listed below.
+
+MIT License (see [LICENSE](LICENSE)): the app code except `app/js/engine/fsrs.vendored.js`, the build tools, the tests, the course content under `content/` except `content/reference/`, and the recordings under `app/assets/audio/`, each to the extent that it is protected by copyright.
+
+Third-party parts:
+
+- `app/assets/fonts/`: Bricolage Grotesque, Copyright 2022 The Bricolage Grotesque Project Authors (https://github.com/ateliertriay/bricolage), as WOFF2 subsets. SIL Open Font License 1.1, see [app/assets/fonts/LICENSE-OFL.txt](app/assets/fonts/LICENSE-OFL.txt). The font is not under the MIT License.
+- `app/js/engine/fsrs.vendored.js`: ts-fsrs 6.0.0, Copyright (c) 2026 Open Spaced Repetition, MIT License, with the bundled @open-spaced-repetition/srs-kit 1.0.0, Copyright (c) 2026, Open Spaced Repetition contributors, BSD 3-Clause License. Both licence texts are at the top of the file.
+- `content/reference/gos-top3000.tsv`: adapted from *Frequency lists of words from the GOS 1.0 corpus 1.1* by Jaka Čibej, Špela Arhar Holdt, Kaja Dobrovoljc and Simon Krek, Slovenian language resource repository CLARIN.SI, 2020, http://hdl.handle.net/11356/1364, licensed under CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Rows and columns were removed, see [content/reference/README.md](content/reference/README.md). This file is under CC BY-SA 4.0, not MIT. The `freq_rank` values in the course content come from it.
+- `content/reference/a1-topics.md` and `content/reviews/`: these quote short passages, with their sources, from two curriculum documents of the Center za slovenščino kot drugi in tuji jezik (CSDTJ) and from the Fran dictionary portal (ZRC SAZU). The quotations remain their owners' and are not licensed under MIT.
+
+How the content and the recordings were made:
+
+- The course content was drafted with an AI model. Two independent AI reviews checked every item against dictionaries, a native speaker confirmed the 17 items those reviews had doubted, and an independent AI review read the whole course once more.
+- The recordings are computer-generated voices, not recordings of people: Google's Gemini text-to-speech, model `gemini-3.1-flash-tts-preview`, voices Kore and Puck. Google claims no ownership of content generated with it.
+
+Slovelingo is not affiliated with or endorsed by Google, Open Spaced Repetition, CLARIN.SI, CSDTJ, ZRC SAZU or the authors of Bricolage Grotesque.
